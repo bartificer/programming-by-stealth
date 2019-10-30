@@ -40,6 +40,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col text-center text-muted">
+			<small>Currency data from <a href="https://exchangeratesapi.io/" target="_blank" rel="noopener">exchangeratesapi.io</a></small>
+		</div>
+	</div>
 </main>
 
 <!-- Include Bootstrap JavaScript from CDNs -->
@@ -58,6 +63,11 @@
 	
 	// constants
 	var CURRENCIES = { // a dicrionary of currency data indexed by code
+		AUD: {
+			name: 'Australian Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
 		CAD: {
 			name: 'Canadian Dollar',
 			symbol: '$',
@@ -86,7 +96,7 @@
 	};
 	var CURRENCY_API_URL = 'https://api.exchangeratesapi.io/latest';
 	var DEFAULT_CURRENCIES = ['EUR', 'GBP', 'USD']; // the default currencies to load
-	var DISPLAY_CURRENCIES = ['USD', 'GBP', 'CAD', 'NZD']; // the currencies to display the rates against
+	var DISPLAY_CURRENCIES = ['AUD', 'EUR', 'USD', 'GBP', 'CAD', 'NZD']; // the currencies to display the rates against
 	
 	// globally scoped helper variables
 	var CURRENCY_CARD_TPL = ''; // loaded by document ready handler
@@ -157,6 +167,7 @@
 			rates: []
 		};
 		for(const cur of DISPLAY_CURRENCIES){
+			if(cur === curData.base) continue; // skip self
 			cardView.rates.push({
 				code: cur,
 				rate: curData.rates[cur],
