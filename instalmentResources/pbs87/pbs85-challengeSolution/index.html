@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+				
+	<!-- Include Bootstrap 4 CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<!-- Include Font Awesome 5 -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	
+	<title>PBS 85 — Currency Converter</title>
+</head>
+<body>
+
+<!-- The Page header (a Jumbotron) -->
+<header class="container mt-5">
+	<div class="jumbotron">
+		<h1 class="display-4">PBS 85 <small class="text-muted">Currency Converter</small></h1>
+
+		<p class="lead">A sample solution to the challenge set in <a href="https://www.bartbusschots.ie/s/2019/11/03/pbs-85-of-x-objects-as-arrays-in-javascript-redux-update/" target="_blank">instalment 85</a> of the <a href="https://bartb.ie/pbs" target="_blank">Programming by Stealth series</a>.</p>
+	</div>
+</header>
+
+<!-- The main page body -->
+<main class="container">
+	<div class="row">
+		<div class="col">
+			<h1 class="display-4">
+				<i class="fas fa-coins"></i>
+				Current Exchange Rates
+			</h1>
+		</div>
+	</div>
+	<div class="row no-gutters" id="currency_cards">
+		<div class="col text-center">
+			<div class="spinner-border m-5" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col text-center text-muted">
+			<small>Currency data from <a href="https://exchangeratesapi.io/" target="_blank" rel="noopener">exchangeratesapi.io</a></small>
+		</div>
+	</div>
+</main>
+
+<!-- Include Bootstrap JavaScript from CDNs -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- Include Mustache.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
+
+<!-- Include Numeral.js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<!-- This Page's Local JavaScript Code -->
+<script type="text/javascript">
+	//
+	// Define helper variables & functions
+	//
+	
+	// constants
+	var CURRENCIES = { // a dicrionary of currency data indexed by code
+		AUD: {
+			name: 'Australian Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		CAD: {
+			name: 'Canadian Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		CHY: {
+			name: 'Chinese Yuan',
+			symbol: '¥',
+			icon: '<i class="fas fa-yen-sign"></i>'
+		},
+		EUR: {
+			name: 'Euro',
+			symbol: '€',
+			icon: '<i class="fas fa-euro-sign"></i>'
+		},
+		GBP: {
+			name: 'British Pound',
+			symbol: '£',
+			icon: '<i class="fas fa-pound-sign"></i>'
+		},
+		HKD: {
+			name: 'Hong Kong Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		IDR: {
+			name: 'Indian Rupee',
+			symbol: '₹',
+			icon: '<i class="fas fa-rupee-sign"></i>'
+		},
+		ILS: {
+			name: 'Israeli Shekel',
+			symbol: '₪',
+			icon: '<i class="fas fa-shekel-sign"></i>'
+		},
+		JPY: {
+			name: 'Japanese Yen',
+			symbol: '¥',
+			icon: '<i class="fas fa-yen-sign"></i>'
+		},
+		KRW: {
+			name: 'South Korean Won',
+			symbol: '₩',
+			icon: '<i class="fas fa-won-sign"></i>'
+		},
+		MXN: {
+			name: 'Mexican Peso',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		NZD: {
+			name: 'New Zealand Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		RUB: {
+			name: 'Russian Ruble',
+			symbol: '₽',
+			icon: '<i class="fas fa-ruble-sign"></i>'
+		},
+		SGD: {
+			name: 'Singapor Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		TRY: {
+			name: 'Turkish Lira',
+			symbol: '₺',
+			icon: '<i class="fas fa-lira-sign"></i>'
+		},
+		USD: {
+			name: 'US Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		}
+	};
+	var CURRENCY_API_URL = 'https://api.exchangeratesapi.io/latest';
+	var DEFAULT_CURRENCIES = ['EUR', 'GBP', 'USD']; // the default currencies to load
+	var DISPLAY_CURRENCIES = ['AUD', 'EUR', 'USD', 'GBP', 'CAD', 'NZD']; // the currencies to display the rates against
+	
+	// globally scoped helper variables
+	var CURRENCY_CARD_TPL = ''; // loaded by document ready handler
+	var ADD_CURRENCY_FORM_TPL = ''; // loaded by document ready handler
+	
+	//
+	// Document ready handler
+	//
+	$(function(){
+		// load the templates
+		CURRENCY_CARD_TPL = $('#currencyCardTpl').html();
+		ADD_CURRENCY_FORM_TPL = $('#addCurrencyFormTpl').html();
+		
+		// get a refence to the row where all the cards will go
+		const $cards = $('#currency_cards');
+		
+		// build the view for the new currency form
+		const addCurrencyFormView = { currencies: [] };
+		for(const code of Object.keys(CURRENCIES).sort()){
+			addCurrencyFormView.currencies.push({
+				code,
+				...CURRENCIES[code]
+			});
+		}
+		console.log('Add Currency Form view', );
+		
+		// render the new currency form
+		$cards.empty().append(Mustache.render(ADD_CURRENCY_FORM_TPL, addCurrencyFormView));
+		
+		// load the currencies
+		const cardPromises  = [];
+		for(const cur of DEFAULT_CURRENCIES){
+			cardPromises.push(buildCurrencyCard(cur));
+		}
+		Promise.all(cardPromises).then(
+			function(cards){ // success handler
+				for(const card of cards){
+					$cards.append(card);
+				}
+			},
+			function(err){ // error handler
+				console.error('failed to load currencies with error:', err);
+				renderError('Failed to load currency data 🙁');
+			}
+		);
+	});
+	
+	//
+	// Helper functions
+	//
+	
+	/**
+	 * An asynchronous function to generate the HTML for a card for a given
+	 * currency.
+	 *
+	 * @param {string} curCode - The three-letter code for the currency to load.
+	 * @return {jQuery} Returns a jQuery object representing a currency card.
+	 * @throws {TypeError} A type error is throw if the currency code is not valid.
+	 */
+	async function buildCurrencyCard(curCode){
+		// validate the currency code
+		curCode = String(curCode).toUpperCase();
+		if(!curCode.match(/^[A-Z]{3}$/)){
+			throw new TypeError(`Invalid country code: ${curCode}`);
+		}
+		
+		// fetch the data for the currency
+		const curData = await $.ajax({ // could throw Error
+			url: CURRENCY_API_URL,
+			method: 'GET',
+			cache: false,
+			data: {
+				base: curCode
+			}
+		});
+		console.debug(`received currency data for '${curCode}': `, curData);
+		
+		// build the view for the card
+		const cardView = {
+			base: {
+				code: curData.base,
+				...CURRENCIES[curData.base]
+			},
+			rates: []
+		};
+		for(const cur of DISPLAY_CURRENCIES){
+			if(cur === curData.base) continue; // skip self
+			cardView.rates.push({
+				code: cur,
+				rate: numeral(curData.rates[cur]).format('0,0.00'),
+				...CURRENCIES[cur]
+			});
+		}
+		console.debug('generated view:', cardView);
+		
+		// generate the HTML
+		const cardHTML = Mustache.render(CURRENCY_CARD_TPL, cardView);
+		
+		// convert the HTML to a jQuery object
+		const $card = $(cardHTML);
+		
+		// add a click handler to the close button
+		$('button.close', $card).click(function(){
+			// get the clicked close button as a jQuery object
+			const $closeBtn = $(this);
+			
+			// get the col containing the card
+			const $cardCol = $closeBtn.closest('.card').parent();
+			
+			// hide and then remove the col from the DOM
+			$cardCol.hide(function(){$(this).remove(); });
+		});
+		
+		// return the card
+		return $card;
+	}
+	
+	/**
+	 * A function to render an error message to the user
+	 * 
+	 * @param {string} message
+	 */
+	function renderError(message){
+		$('#currency_cards')
+			.empty()
+			.append(Mustache.render($('#errorCardTpl').html(), {message}));
+	}
+</script>
+
+<!-- The Error template -->
+<script type="text/html" id="errorCardTpl">
+	<div  class="col">
+		<div class="card bg-danger text-white">
+			<h2 class="card-header h4">Error</h2>
+			<div class="card-body">
+				<p class="card-text">{{message}}</p>
+			</div>
+		</div>
+	</div>
+</script>
+
+<!-- The card template -->
+<script type="text/html" id="currencyCardTpl">
+	<div  class="col-12 col-md-6 col-lg-4">
+		<div class="card m-3">
+			<h2 class="card-header h4">
+				<small class="text-secondary">{{base.code}}</small>
+				{{{base.icon}}} {{base.name}}
+				<button type="button" class="close" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</h2>
+			<ul class="list-group list-group-flush">
+			{{#rates}}
+				<li class="list-group-item">
+					<h3 class="d-inline h6 mr-2 text-secondary">{{code}}</h3>
+					{{base.symbol}}1 = {{symbol}}{{rate}}
+					<small class="text-muted">{{name}}</small>
+				</li>
+			{{/rates}}
+			</ul>
+		</div>
+	</div>
+</script>
+
+<!-- The add card form template -->
+<script type="text/html" id="addCurrencyFormTpl">
+	<div  class="col-12 col-md-6 col-lg-4">
+		<div class="card m-3">
+			<h2 class="card-header h4">Add Currency</h2>
+			<div class="card-body">
+				<form class="form">
+					<div class="form-group">
+						<select class="custom-select" multiple>
+						{{#currencies}}
+							<option>{{code}}</option>
+						{{/currencies}}
+						</select>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary form-control">Add</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</script>
+
+</body>
+</html>
