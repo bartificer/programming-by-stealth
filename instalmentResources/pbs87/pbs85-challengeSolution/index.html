@@ -56,7 +56,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
 
 <!-- Include Numeral.js -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
 <!-- This Page's Local JavaScript Code -->
 <script type="text/javascript">
@@ -76,7 +76,7 @@
 			symbol: '$',
 			icon: '<i class="fas fa-dollar-sign"></i>'
 		},
-		CHY: {
+		CNY: {
 			name: 'Chinese Yuan',
 			symbol: '¥',
 			icon: '<i class="fas fa-yen-sign"></i>'
@@ -154,6 +154,7 @@
 	// globally scoped helper variables
 	var CURRENCY_CARD_TPL = ''; // loaded by document ready handler
 	var ADD_CURRENCY_FORM_TPL = ''; // loaded by document ready handler
+	var $ADD_CURRENCY_FORM = null; // loaded by document ready handler
 	
 	//
 	// Document ready handler
@@ -174,10 +175,39 @@
 				...CURRENCIES[code]
 			});
 		}
-		console.log('Add Currency Form view', );
+		console.log('add currency form view:', addCurrencyFormView);
 		
-		// render the new currency form
-		$cards.empty().append(Mustache.render(ADD_CURRENCY_FORM_TPL, addCurrencyFormView));
+		// build the new currency form
+		const $newCurrencyForm = $(Mustache.render(ADD_CURRENCY_FORM_TPL, addCurrencyFormView));
+		
+		// select the first currency in the list
+		$('select option', $newCurrencyForm).first().prop('selected', true);
+		
+		// add a submit handler to the add currency form
+		$('form', $newCurrencyForm).on('submit', function(){
+			// get a reference to the form
+			$form = $(this);
+			
+			// get the selected currency
+			const code = $('select', $form).val();
+			
+			// generate the card and insert it into the list
+			buildCurrencyCard(code).then(
+				function($card){ // success handler
+					$('#currency_cards').append($card);
+				},
+				function(err){ // error handler
+					console.error(`failed to add card for currency '${code}' with error:`, err);
+					renderError(`Failed to load exchange rates for '${code}' 🙁`);
+				}
+			);
+		});
+		
+		// replace the loading spinner with the form
+		$cards.empty().append($newCurrencyForm);
+		
+		// save a reference to the form to the global helper variable
+		$ADD_CURRENCY_FORM = $newCurrencyForm;
 		
 		// load the currencies
 		const cardPromises  = [];
@@ -282,9 +312,9 @@
 <!-- The Error template -->
 <script type="text/html" id="errorCardTpl">
 	<div  class="col">
-		<div class="card bg-danger text-white">
-			<h2 class="card-header h4">Error</h2>
-			<div class="card-body">
+		<div class="card border-danger">
+			<h2 class="card-header h4 bg-danger text-white">Error</h2>
+			<div class="card-body text-danger bg-light">
 				<p class="card-text">{{message}}</p>
 			</div>
 		</div>
@@ -318,19 +348,22 @@
 <!-- The add card form template -->
 <script type="text/html" id="addCurrencyFormTpl">
 	<div  class="col-12 col-md-6 col-lg-4">
-		<div class="card m-3">
-			<h2 class="card-header h4">Add Currency</h2>
+		<div class="card m-3 border-success bg-light">
+			<h2 class="card-header h4 text-success border-success">
+				<i class="fas fa-plus-circle" aria-hidden></i>
+				Add Currency
+			</h2>
 			<div class="card-body">
-				<form class="form">
+				<form class="form" action="javascript:void(0);">
 					<div class="form-group">
-						<select class="custom-select" multiple>
+						<select id="add_currency_sel" class="custom-select" size=6>
 						{{#currencies}}
-							<option>{{code}}</option>
+							<option value="{{{code}}}">{{symbol}}{{code}} — {{name}}</option>
 						{{/currencies}}
 						</select>
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary form-control">Add</button>
+						<button type="submit" class="btn btn-success form-control">Add Currency Card</button>
 					</div>
 				</form>
 			</div>
