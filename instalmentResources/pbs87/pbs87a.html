@@ -32,6 +32,19 @@
 			<p class="font-weight-bold">Note that you'll need to refresh the page between examples to remove any declared variables.</p>
 		</div>
 	</section>
+	<section class="row">
+		<div class="col">
+				<h1>Iterator Demo</h1>
+				
+				<p>The sample code in the instalment will iterate over the list below.</p>
+				
+				<ul id="jq_iter_demo">
+					<li>First item in list</li>
+					<li>Second thingy</li>
+					<li>Last in the list</li>
+				</ul>
+			</div>
+		</section>
 </main>
 
 <!-- Include Bootstrap JavaScript from CDNs -->
@@ -45,7 +58,19 @@
 	// Define global variables for examples
 	//
 	
-	// none for this instalment!
+	// variable to store generator objects
+	var myGeneratorObj = null;
+	
+	//
+	// Define functions for examples
+	//
+	
+	// basic generator function
+	function* basicGenerator(){
+		yield 'first yielded value';
+		yield 'second yielded value';
+		return 'final returned value';
+	}
 </script>
 
 </body>
