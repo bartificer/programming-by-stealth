@@ -32,19 +32,36 @@
 			<p class="font-weight-bold">Note that you'll need to refresh the page between examples to remove any declared variables.</p>
 		</div>
 	</section>
-	<section class="row">
-		<div class="col">
-				<h1>Iterator Demo</h1>
+	<div class="row">
+		<section class="col-12 col-md-6 col-lg-8">
+			<h1>Iterator Demo</h1>
 				
-				<p>The sample code in the instalment will iterate over the list below.</p>
+			<p>The sample code in the instalment will iterate over the list below.</p>
 				
-				<ul id="jq_iter_demo">
-					<li>First item in list</li>
-					<li>Second thingy</li>
-					<li>Last in the list</li>
-				</ul>
+			<ul id="jq_iter_demo">
+				<li>First item in list</li>
+				<li>Second thingy</li>
+				<li>Last in the list</li>
+			</ul>
+		</section>
+		<section class="col-12 col-md-6 col-lg-4">
+			<div class="card">
+				<h1 class="card-header  h4">Random Number Generator</h1>
+				<div class="card-body">
+					<form action="javascript:void(0);">
+						<div class="form-group">
+							<button class="btn btn-primary form-control" id="rng_btn">
+								Generate Random Number
+							</button>
+						</div>
+						<div class=form-group>
+							<input type="text" class="form-control" id="rng_tb">
+						</div>
+					</form>
+				</div>
 			</div>
 		</section>
+	</div>
 </main>
 
 <!-- Include Bootstrap JavaScript from CDNs -->
@@ -62,6 +79,19 @@
 	var myGeneratorObj = null;
 	
 	//
+	// Document ready handler
+	//
+	$(function(){
+		// create an infinite RNG generator object
+		const rngObj = rng();
+		
+		// add a click handler to the randon number button
+		$('#rng_btn').click(function(){
+			$('#rng_tb').val(rngObj.next().value).select();
+		});
+	});
+	
+	//
 	// Define functions for examples
 	//
 	
@@ -70,6 +100,46 @@
 		yield 'first yielded value';
 		yield 'second yielded value';
 		return 'final returned value';
+	}
+	
+	// basic random number generator
+	function* basicRNG(n){
+		while(n > 0){
+			yield Math.random();
+			n--;
+		}
+	}
+	
+	// better random number generator
+	function* rng(n=0){
+		if(n > 0){
+			// generate a finite number of random numbers
+			while(n > 0){
+				yield Math.random();
+				n--;
+			}
+		}else{
+			// generate an infinite stram of random numbes
+			while(true) yield Math.random();
+		}
+	}
+	
+	// an acumulator implemented with a generator function
+	function* accumulator(initVal){
+		// if an initial value was passed, store it
+		// otherwise start at zero
+		let balance = initVal ? initVal : 0;
+		
+		// keep updating the balance for ever
+		while(true){
+			// yield the current balance and accept an increment
+			let incBy = yield balance;
+			
+			// if an increment was passed to next(), apply it
+			if(incBy){
+				balance += incBy;
+			}
+		}
 	}
 </script>
 
