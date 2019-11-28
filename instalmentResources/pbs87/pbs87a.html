@@ -10,14 +10,14 @@
 	<!-- Include Font Awesome 5 -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	
-	<title>PBS 87a — JavaScript Function Playground</title>
+	<title>PBS 87a — JavaScript Iterable &amp; Generator Playground</title>
 </head>
 <body>
 
 <!-- The Page header (a Jumbotron) -->
 <header class="container mt-5">
 	<div class="jumbotron">
-		<h1 class="display-4">PBS 87a <small class="text-muted">JavaScript Function Playground</small></h1>
+		<h1 class="display-4">PBS 87a <small class="text-muted">JavaScript Iterator &amp; Generator Playground</small></h1>
 
 		<p class="lead">A page to execute the examples from instalment 87 of the <a href="https://bartb.ie/pbs" target="_blank" rel="noopener">Programming by Stealth series</a>.</p>
 	</div>
@@ -33,7 +33,7 @@
 		</div>
 	</section>
 	<div class="row">
-		<section class="col-12 col-md-6 col-lg-8">
+		<section class="col-12 col-lg-4">
 			<h1>Iterator Demo</h1>
 				
 			<p>The sample code in the instalment will iterate over the list below.</p>
@@ -56,6 +56,29 @@
 						</div>
 						<div class=form-group>
 							<input type="text" class="form-control" id="rng_tb">
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section class="col-12 col-md-6 col-lg-4">
+			<div class="card">
+				<h1 class="card-header  h4">Accumulator</h1>
+				<div class="card-body">
+					<form id="accumulator_fm" action="javascript:void(0);">
+						<div class=form-group>
+							<div class="input-group">
+								<input type="number" class="form-control" placeholder="Increment by ..." aria-label="Increment by ..." id="accumulator_inc_tb">
+								<div class="input-group-append">
+									<button class="btn btn-success" type="submit">Add</button>
+								</div>
+							</div>
+						</div>
+						<div class=form-group>
+							<input type="text" class="form-control" id="accumulator_out_tb" value="0">
+						</div>
+						<div class=form-group>
+							<button class="btn btn-danger form-control" type="reset">Reset</button>
 						</div>
 					</form>
 				</div>
@@ -89,6 +112,28 @@
 		$('#rng_btn').click(function(){
 			$('#rng_tb').val(rngObj.next().value).select();
 		});
+		
+		// variable to store the accumulartor generator object
+		let accumulatorGenObj = null;
+		
+		// add event handlers to the accumulator UI
+		// and when done, call the reset event
+		$('#accumulator_fm').on('reset', function(){
+			// create a new accumulator generator object
+			accumulatorGenObj = accumulator();
+			
+			// call .next() once to get the accumulator to
+			// yield its initial balance
+			accumulatorGenObj.next();
+		}).on('submit', function(){
+			// call next with the appropriate value
+			let incBy = $('#accumulator_inc_tb').val();
+			if(!incBy) incBy = 0;
+			const newTotal = accumulatorGenObj.next(incBy).value;
+			
+			// update the display
+			$('#accumulator_out_tb').val(newTotal);
+		}).trigger('reset');
 	});
 	
 	//
@@ -97,8 +142,11 @@
 	
 	// basic generator function
 	function* basicGenerator(){
+		console.log('basic generator: started to execute');
 		yield 'first yielded value';
+		console.log('basic generator: resumed after first yield');
 		yield 'second yielded value';
+		console.log('basic generator: resumed after second yield');
 		return 'final returned value';
 	}
 	
@@ -128,16 +176,18 @@
 	function* accumulator(initVal){
 		// if an initial value was passed, store it
 		// otherwise start at zero
-		let balance = initVal ? initVal : 0;
+		const initValNum = Number(initVal); // force to number
+		let balance = initValNum ? initValNum : 0;
 		
 		// keep updating the balance for ever
 		while(true){
 			// yield the current balance and accept an increment
-			let incBy = yield balance;
+			const incBy = yield balance;
+			const incByNum = Number(incBy);  // force to number
 			
-			// if an increment was passed to next(), apply it
-			if(incBy){
-				balance += incBy;
+			// if a valid increment was passed to next(), apply it
+			if(incByNum){
+				balance += incByNum;
 			}
 		}
 	}
