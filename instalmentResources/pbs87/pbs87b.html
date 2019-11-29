@@ -35,7 +35,7 @@
 							<button class="btn btn-success form-control" type="submit">Next</button>
 						</div>
 						<div class=form-group>
-							<input type="text" class="form-control" id="fib_out_tb" value="0">
+							<p class="form-text" id="fib_out"></p>
 						</div>
 						<div class=form-group>
 							<button class="btn btn-danger form-control" type="reset">Reset</button>
@@ -47,10 +47,18 @@
 	</div>
 </main>
 
+<!-- Sequence Value Template -->
+<script type="text/html" id="fib_num_tpl">
+	<span class="h4"><span class="badge badge-primary fib_val fib_val_current">{{num}}</span></span>
+</script>
+
 <!-- Include Bootstrap JavaScript from CDNs -->
 <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- Include Mustache from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js" integrity="sha256-MPgtcamIpCPKRRm1ppJHkvtNBAuE71xcOM+MmQytXi8=" crossorigin="anonymous"></script>
 
 <!-- This Page's Local JavaScript Code -->
 <script type="text/javascript">
@@ -58,8 +66,14 @@
 	// Document ready handler
 	//
 	$(function(){
+		// load the template for rendering a number in the series
+		const fibNumTpl = $('#fib_num_tpl').html();
+		
 		// variable to store the Fibonacci generator object
 		let fibGenObj = null;
+		
+		// variables for storing the needed page elements
+		const $fibOut = $('#fib_out');
 		
 		// add event handlers to the Fibonacci UI
 		// and when done, call the reset event
@@ -67,12 +81,26 @@
 			// create a new accumulator generator object
 			fibGenObj = fibonacci();
 			
+			// empty the output area
+			$fibOut.empty();
+			
 			// step to the first value
 			$(this).trigger('submit');
 		}).on('submit', function(){
-			// call next on the Fibonacci generator object
-			// and display the result
-			$('#fib_out_tb').val(fibGenObj.next().value);
+			// get the next value in the sequence
+			const newVal = fibGenObj.next().value;
+			
+			// generate the markup for the new value
+			const newValHTML = Mustache.render(fibNumTpl, { num: newVal });
+			
+			// un-highlight the previous value
+			$('.fib_val.fib_val_current', $fibOut)
+				.removeClass('badge-primary fib_val_current')
+				.addClass('badge-secondary')
+				.unwrap();
+			
+			// append the new value
+			$fibOut.append(newValHTML);
 		}).trigger('reset');
 	});
 	
