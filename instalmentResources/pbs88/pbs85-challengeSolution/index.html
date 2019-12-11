@@ -328,7 +328,55 @@
 		// if we got here, try render the card
 		$curCol.data('loading', true).show();
 		try{
+			// fetch the data for the currency
+			const curData = await $.ajax({ // could throw Error
+				url: CURRENCY_API_URL,
+				method: 'GET',
+				cache: false,
+				data: {
+					base: curCode
+				}
+			});
+			console.debug(`received currency data for '${curCode}': `, curData);
 			
+			// build the view for the card
+			const cardView = {
+				base: {
+					code: curData.base,
+					...CURRENCIES[curData.base]
+				},
+				rates: []
+			};
+			for(const cur of DISPLAY_CURRENCIES){
+				if(cur === curData.base) continue; // skip self
+				cardView.rates.push({
+					code: cur,
+					rate: numeral(curData.rates[cur]).format('0,0.00'),
+					...CURRENCIES[cur]
+				});
+			}
+			console.debug('generated view:', cardView);
+			
+			// generate the HTML
+			const cardHTML = Mustache.render(TEMPLATES.currencies.displayCard, cardView);
+			
+			// convert the HTML to a jQuery object
+			const $card = $(cardHTML);
+			
+			//// add a click handler to the close button
+			//$('button.close', $card).click(function(){
+			//	// get the clicked close button as a jQuery object
+			//	const $closeBtn = $(this);
+			//	
+			//	// get the col containing the card
+			//	const $cardCol = $closeBtn.closest('.card').parent();
+			//	
+			//	// hide and then remove the col from the DOM
+			//	$cardCol.hide(function(){$(this).remove(); });
+			//});
+			
+			// replace the placeholder with the card
+			$curCol.empty().append($card);
 		}catch(err){
 			// log the error's details to the console
 			console.log(`failed to render currency '${curCode}'`, err);
