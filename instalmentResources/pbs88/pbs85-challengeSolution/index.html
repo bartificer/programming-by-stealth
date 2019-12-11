@@ -119,12 +119,14 @@
 		EUR: {
 			name: 'Euro',
 			symbol: '€',
-			icon: '<i class="fas fa-euro-sign"></i>'
+			icon: '<i class="fas fa-euro-sign"></i>',
+			defaultCard: true
 		},
 		GBP: {
 			name: 'British Pound',
 			symbol: '£',
-			icon: '<i class="fas fa-pound-sign"></i>'
+			icon: '<i class="fas fa-pound-sign"></i>',
+			defaultCard: true
 		},
 		HKD: {
 			name: 'Hong Kong Dollar',
@@ -179,11 +181,11 @@
 		USD: {
 			name: 'US Dollar',
 			symbol: '$',
-			icon: '<i class="fas fa-dollar-sign"></i>'
+			icon: '<i class="fas fa-dollar-sign"></i>',
+			defaultCard: true
 		}
 	};
 	var CURRENCY_API_URL = 'https://api.exchangeratesapi.io/latest';
-	var DEFAULT_CURRENCIES = ['EUR', 'GBP', 'USD']; // the default currencies to load
 	var DISPLAY_CURRENCIES = ['AUD', 'EUR', 'USD', 'GBP', 'CAD', 'NZD']; // the currencies to display the rates against
 	
 	// globally scoped helper variables
@@ -240,8 +242,10 @@
 			// get the selected currency
 			const curCode = $('select', $form).val();
 			
-			// show the requested card
-			showCurrencyCard(curCode)	;		
+			// show the requested card (avoid unhandled promise rejection)
+			showCurrencyCard(curCode).catch(function(e){
+				console.error(`failed to show '${curCode}'`, e);
+			});		
 		});
 		
 		// Add the form into the page
@@ -266,21 +270,14 @@
 		}
 		$('#currency_cards').empty().append($placeholderCards);
 		
-//		const cardPromises  = [];
-//		for(const cur of DEFAULT_CURRENCIES){
-//			cardPromises.push(buildCurrencyCard(cur));
-//		}
-//		Promise.all(cardPromises).then(
-//			function(cards){ // success handler
-//				for(const card of cards){
-//					$cards.append(card);
-//				}
-//			},
-//			function(err){ // error handler
-//				console.error('failed to load currencies with error:', err);
-//				renderError('Failed to load currency data 🙁');
-//			}
-//		);
+		// load the default currencies
+		for(const curCode of Object.keys(CURRENCIES).sort()){
+			if(CURRENCIES[curCode].defaultCard){
+				showCurrencyCard(curCode).catch(function(e){
+					console.error(`failed to show '${curCode}'`, e);
+				});
+			}
+		}
 	});
 	
 	//
