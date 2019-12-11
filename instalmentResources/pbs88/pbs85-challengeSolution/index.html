@@ -198,7 +198,6 @@
 			displayCard: '' // loaded by document ready handler
 		}
 	};
-	var $ADD_CURRENCY_FORM = null; // loaded by document ready handler
 	
 	//
 	// Document ready handler
@@ -233,33 +232,22 @@
 		// select the first currency in the list
 		$('select option', $newCurrencyForm).first().prop('selected', true);
 	
-//		// add a submit handler to the add currency form
-//		$('form', $newCurrencyForm).on('submit', function(){
-//			// get a reference to the form
-//			$form = $(this);
-//			
-//			// get the selected currency
-//			const code = $('select', $form).val();
-//			
-//			// generate the card and insert it into the list
-//			buildCurrencyCard(code).then(
-//				function($card){ // success handler
-//					$('#currency_cards').append($card);
-//				},
-//				function(err){ // error handler
-//					console.error(`failed to add card for currency '${code}' with error:`, err);
-//					renderError(`Failed to load exchange rates for '${code}' 🙁`);
-//				}
-//			);
-//		});
+		// add a submit handler to the add currency form
+		$('form', $newCurrencyForm).on('submit', function(){
+			// get a reference to the form as a jQuery object
+			$form = $(this);
+			
+			// get the selected currency
+			const curCode = $('select', $form).val();
+			
+			// show the requested card
+			showCurrencyCard(curCode)	;		
+		});
 		
 		// Add the form into the page
 		$('#currency_controls').empty().append($newCurrencyForm);
 		
-		// save a reference to the form to the global helper variable
-		$ADD_CURRENCY_FORM = $newCurrencyForm;
-		
-		// load the empty and hidden cards for each currency
+		// load the hidden placeholder cards for each currency
 		let $placeholderCards = $(); // empty jQuery object
 		for(const curCode of Object.keys(CURRENCIES).sort()){
 			const $card = $(Mustache.render(
@@ -276,7 +264,6 @@
 			)).hide();
 			$placeholderCards = $placeholderCards.add($card);
 		}
-		console.log($placeholderCards);
 		$('#currency_cards').empty().append($placeholderCards);
 		
 //		const cardPromises  = [];
@@ -306,7 +293,7 @@
 	 * @param {string} curCode - The three-letter code for the currency to load.
 	 * @throws {TypeError} A type error is throw if the currency code is not valid.
 	 */
-	async function renderCurrencyCard(curCode){
+	async function showCurrencyCard(curCode){
 		// validate the currency code
 		curCode = String(curCode).toUpperCase();
 		if(!curCode.match(/^[A-Z]{3}$/)){
@@ -318,12 +305,16 @@
 		
 		// if the card has already been loaded, just show it and exit
 		if($curCol.data('loaded')){
+			console.debug(`card for '${curCode}' already loaded, so just showing it`);
 			$curCol.show();
 			return;
 		}
 		
 		// if the card is in the process of loading, do nothing
-		if($curCol.data('loading')) return;
+		if($curCol.data('loading')){
+			console.debug(`card for '${curCode}' already loading, will not start another load`);
+			return;
+		}
 		
 		// if we got here, try render the card
 		$curCol.data('loading', true).show();
@@ -363,17 +354,11 @@
 			// convert the HTML to a jQuery object
 			const $card = $(cardHTML);
 			
-			//// add a click handler to the close button
-			//$('button.close', $card).click(function(){
-			//	// get the clicked close button as a jQuery object
-			//	const $closeBtn = $(this);
-			//	
-			//	// get the col containing the card
-			//	const $cardCol = $closeBtn.closest('.card').parent();
-			//	
-			//	// hide and then remove the col from the DOM
-			//	$cardCol.hide(function(){$(this).remove(); });
-			//});
+			// add a click handler to the close button
+			$('button.close', $card).click(function(){
+				// hide the card
+				$curCol.hide();
+			});
 			
 			// replace the placeholder with the card
 			$curCol.empty().append($card);
