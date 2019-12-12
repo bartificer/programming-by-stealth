@@ -368,7 +368,17 @@
 		// if the card has already been loaded, just show it and exit
 		if($curCol.data('loaded')){
 			console.debug(`card for '${curCode}' already loaded, so just showing it`);
+			
+			// show the col
 			$curCol.show();
+			
+			// focus the card
+			$curCol.children('.card').focus();
+			
+			// update the select in the add card form
+			updateAddCardSelectOptions();
+			
+			// end the function
 			return;
 		}
 		
@@ -427,10 +437,16 @@
 			$('button.close', $card).click(function(){
 				// hide the card
 				$curCol.hide();
+				
+				// update the add card select
+				updateAddCardSelectOptions();
 			});
 			
 			// replace the placeholder with the card
 			$curCol.empty().append($card);
+			
+			// focus the card
+			$curCol.children('.card').focus();
 		}catch(err){
 			// log the error's details to the console
 			console.log(`failed to render currency '${curCode}'`, err);
@@ -453,8 +469,48 @@
 			return;
 		}
 		
-		// mark the col as loaded
+		// mark the col as loaded and 
 		$curCol.data('loading', false).data('loaded', true);
+		
+		// update the rendering of the select for adding cards
+		updateAddCardSelectOptions();
+	}
+	
+	/**
+	 * Update the enabled/disabled state of each option in the
+	 *  select for adding cards.
+	 */
+	function updateAddCardSelectOptions(){
+		// get a reference to the options in the select as a jQuery object
+		const $opts = $('#add_currency_sel option');
+		
+		// loop over all the options in the select and enable/disable as needed
+		for(const opt of $opts){
+			// convert DOM object to jQuery object
+			const $opt = $(opt);
+			
+			// get the currency code the option represents
+			const curCode = $opt.val();
+			
+			// get a reference to the col for this currency
+			const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
+			
+			// enabled/disable this option based on the visibility
+			// of the matching card
+			$opt.prop('disabled', $curCol.is(':hidden') ? false : true );
+		}
+		
+		// select the first enabled option
+		for(const opt of $opts){
+			// convert DOM object to jQuery object
+			const $opt = $(opt);
+			
+			// if the current option is not disabled, select it and exit the loop
+			if(!$opt.prop('disabled')){
+				$opt.prop('selected', true);
+				break; // end the loop
+			}
+		}
 	}
 </script>
 
@@ -491,7 +547,7 @@
 
 <!-- The Currency Card Template -->
 <script type="text/html" id="currencyDisplayCardTpl">
-	<div class="card m-3">
+	<div class="card m-3" tabindex="100">
 		<h2 class="card-header h4">
 			<small class="text-secondary">{{base.code}}</small>
 			{{{base.icon}}} {{base.name}}
