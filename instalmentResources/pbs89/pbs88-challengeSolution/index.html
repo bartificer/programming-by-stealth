@@ -1,0 +1,692 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+				
+	<!-- Include Bootstrap 4 CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<!-- Include Font Awesome 5 -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	
+	<title>PBS 88 — Currency Converter</title>
+</head>
+<body>
+
+<!-- The Page Heading (a NavBar) -->
+<header class="navbar navbar-dark bg-dark navbar-expand-sm">
+	<h1 class="navbar-brand">
+		<img src="data://image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAIAAAC0Ujn1AAAEq2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjMwIgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iMzAiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgdGlmZjpJbWFnZVdpZHRoPSIzMCIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMzAiCiAgIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiCiAgIHRpZmY6WFJlc29sdXRpb249IjcyLjAiCiAgIHRpZmY6WVJlc29sdXRpb249IjcyLjAiCiAgIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiCiAgIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIKICAgeG1wOk1vZGlmeURhdGU9IjIwMTktMTEt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" class="border rounded" width="30" height="30" alt="">
+		PBS 85
+	</h1>
+	<h2 class="navbar-text h5">Currency Converter</h2>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header_nav" aria-controls="header_nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<nav class="collapse navbar-collapse justify-content-end" id="header_nav">
+		<ul class="navbar-nav">
+			 <li class="nav-item">
+				<a class="nav-link" href="https://bartb.ie/pbs" target="_blank" rel="noopener">PBS Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://bartb.ie/pbsindex" target="_blank" rel="noopener">PBS Index</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<!-- The main page body -->
+<main class="container-fluid mt-3">
+	<div class="row">
+		<div class="col">
+			<p class="lead">A sample solution to the challenge set in <a href="https://www.bartbusschots.ie/s/2019/12/15/pbs-88-of-x-dom-jquery-objects-redux/" target="_blank">instalment 88</a> of the <a href="https://bartb.ie/pbs" target="_blank">Programming by Stealth series</a>.</p>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col">
+			<h1 class="display-4">
+				<i class="fas fa-coins"></i>
+				Current Exchange Rates
+			</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-lg-8 col-xl-9 order-lg-2 p-0">
+			<div class="container p-0">
+				<div class="row no-gutters" id="currency_cards">
+					<div class="col text-center">
+						<div class="spinner-border m-5" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-4 col-xl-3 order-lg-1 p-0">
+			<div class="container">
+				<div class="row" id="currency_controls">
+					<div class="col text-center">
+						<div class="spinner-border m-5" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col text-center text-muted">
+			<small>Currency data from <a href="https://exchangeratesapi.io/" target="_blank" rel="noopener">exchangeratesapi.io</a></small>
+		</div>
+	</div>
+</main>
+
+<!-- Include Bootstrap JavaScript from CDNs -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- Include Mustache.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
+
+<!-- Include Numeral.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<!-- This Page's Local JavaScript Code -->
+<script type="text/javascript">
+	//
+	// Define helper variables & functions
+	//
+	
+	// constants
+	var CURRENCIES = { // a dictionary of currency data indexed by code
+		AUD: {
+			name: 'Australian Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>',
+			defaultDisplay: true
+		},
+		CAD: {
+			name: 'Canadian Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>',
+			defaultDisplay: true
+		},
+		CNY: {
+			name: 'Chinese Yuan',
+			symbol: '¥',
+			icon: '<i class="fas fa-yen-sign"></i>'
+		},
+		EUR: {
+			name: 'Euro',
+			symbol: '€',
+			icon: '<i class="fas fa-euro-sign"></i>',
+			defaultCard: true,
+			defaultDisplay: true
+		},
+		GBP: {
+			name: 'British Pound',
+			symbol: '£',
+			icon: '<i class="fas fa-pound-sign"></i>',
+			defaultCard: true,
+			defaultDisplay: true
+		},
+		HKD: {
+			name: 'Hong Kong Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		IDR: {
+			name: 'Indian Rupee',
+			symbol: '₹',
+			icon: '<i class="fas fa-rupee-sign"></i>'
+		},
+		ILS: {
+			name: 'Israeli Shekel',
+			symbol: '₪',
+			icon: '<i class="fas fa-shekel-sign"></i>'
+		},
+		JPY: {
+			name: 'Japanese Yen',
+			symbol: '¥',
+			icon: '<i class="fas fa-yen-sign"></i>',
+			defaultDisplay: true
+		},
+		KRW: {
+			name: 'South Korean Won',
+			symbol: '₩',
+			icon: '<i class="fas fa-won-sign"></i>'
+		},
+		MXN: {
+			name: 'Mexican Peso',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		NZD: {
+			name: 'New Zealand Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>',
+			defaultDisplay: true
+		},
+		RUB: {
+			name: 'Russian Ruble',
+			symbol: '₽',
+			icon: '<i class="fas fa-ruble-sign"></i>'
+		},
+		SGD: {
+			name: 'Singapor Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>'
+		},
+		TRY: {
+			name: 'Turkish Lira',
+			symbol: '₺',
+			icon: '<i class="fas fa-lira-sign"></i>'
+		},
+		USD: {
+			name: 'US Dollar',
+			symbol: '$',
+			icon: '<i class="fas fa-dollar-sign"></i>',
+			defaultCard: true,
+			defaultDisplay: true
+		}
+	};
+	var SORTED_CURRENCY_CODES = Object.keys(CURRENCIES).sort();
+	var CURRENCY_API_URL = 'https://api.exchangeratesapi.io/latest';
+	
+	// globally scoped helper variables
+	var TEMPLATES = {
+		forms: {
+			addBaseCurrency: '', // loaded by document ready handler
+			showHideRates: '' // loaded by document ready handler
+		},
+		errorCard: '', // loaded by document ready handler
+		currencies: {
+			col: '',  // loaded by document ready handler
+			loadingCard: '',  // loaded by document ready handler
+			displayCard: '' // loaded by document ready handler
+		}
+	};
+	
+	// A flag to indicate whether or not each currency should
+	// be shown as a row within cards
+	var DISPLAY_CURRENCIES = {};
+	for(const curCode of SORTED_CURRENCY_CODES){
+		DISPLAY_CURRENCIES[curCode] = CURRENCIES[curCode].defaultDisplay ? true : false;
+	}
+	
+	//
+	// Document ready handler
+	//
+	$(function(){
+		// load the templates
+		TEMPLATES.forms.addBaseCurrency = $('#addCurrencyFormTpl').html();
+		TEMPLATES.forms.showHideRates = $('#showHideRatesFormTpl').html();
+		TEMPLATES.errorCard = $('#errorCardTpl').html();
+		TEMPLATES.currencies.col = $('#currencyColTpl').html();
+		TEMPLATES.currencies.loadingCard = $('#currencyLoadingCardTpl').html();
+		TEMPLATES.currencies.displayCard = $('#currencyDisplayCardTpl').html();
+		
+		// get a refence to the row where all the cards will go
+		const $cards = $('#currency_cards');
+		
+		// build the view for the new currency form
+		const contorlFormView = { currencies: [] };
+		for(const code of SORTED_CURRENCY_CODES){
+			contorlFormView.currencies.push({
+				code,
+				...CURRENCIES[code]
+			});
+		}
+		console.debug('generated control form view', contorlFormView);
+		
+		// build the add currency card form
+		const $newCurrencyForm = $(Mustache.render(
+			TEMPLATES.forms.addBaseCurrency,
+			contorlFormView
+		));
+		
+		// select the first currency in the list
+		$('select option', $newCurrencyForm).first().prop('selected', true);
+	
+		// add a submit handler to the add currency card form
+		$('form', $newCurrencyForm).on('submit', function(){
+			// get a reference to the form as a jQuery object
+			$form = $(this);
+			
+			// get the selected currency
+			const curCode = $('select', $form).val();
+			
+			// show the requested card (avoid unhandled promise rejection)
+			showCurrencyCard(curCode).catch(function(e){
+				console.error(`failed to show '${curCode}'`, e);
+			});		
+		});
+		
+		// Add the form into the page
+		$('#currency_controls').empty().append($newCurrencyForm);
+		
+		// build the show/hide rates form
+		const $showHideRatesForm = $(Mustache.render(
+			TEMPLATES.forms.showHideRates,
+			contorlFormView
+		));
+		
+		// enable the appropriate toggles
+		for(const curCode of SORTED_CURRENCY_CODES){
+			if(DISPLAY_CURRENCIES[curCode]){
+				$(`input[value='${curCode}']`, $showHideRatesForm).prop('checked', true);
+			}
+		}
+		
+		
+		// add event handlers to all the toggles and trigger them to get the
+		// inital rendering right
+		$('input[type="checkbox"]', $showHideRatesForm).on('input', function(){
+			// get a reference to a jQuery object representing the toggle
+			const $toggle = $(this);
+			
+			// get the currency the toggle controls
+			const curCode = $toggle.val();
+			
+			// updating the styling of the toggle as appropriate
+			if($toggle.prop('checked')){
+				$toggle.closest('li')
+					.removeClass('border-secondary')
+					.addClass('border-primary font-weight-bold');
+			}else{
+				$toggle.closest('li')
+					.removeClass('border-primary font-weight-bold')
+					.addClass('border-secondary');
+			}
+			
+			// save the states to the global variable
+			DISPLAY_CURRENCIES[curCode] = $toggle.prop('checked') ? true : false;
+			
+			// show/hide the rates for this currency in all cards
+			const $rateLis = $(`li.currencyRate[data-currency='${curCode}']`);
+			if(DISPLAY_CURRENCIES[curCode]){
+				$rateLis.show();
+			}else{
+				$rateLis.hide();
+			}
+		}).trigger('input');
+		
+		// add the form into the page
+		$('#currency_controls').append($showHideRatesForm);
+		
+		// load the hidden placeholder cards for each currency
+		let $placeholderCards = $(); // empty jQuery object
+		for(const curCode of SORTED_CURRENCY_CODES){
+			const $card = $(Mustache.render(
+				TEMPLATES.currencies.col, // the template
+				{ // the view
+					base: {
+						code: curCode,
+						...CURRENCIES[curCode]
+					}
+				},
+				{ // the partials
+					loadingCard: TEMPLATES.currencies.loadingCard
+				}
+			)).hide();
+			$placeholderCards = $placeholderCards.add($card);
+		}
+		$('#currency_cards').empty().append($placeholderCards);
+		
+		// load the default currencies
+		for(const curCode of SORTED_CURRENCY_CODES){
+			if(CURRENCIES[curCode].defaultCard){
+				showCurrencyCard(curCode).catch(function(e){
+					console.error(`failed to show '${curCode}'`, e);
+				});
+			}
+		}
+	});
+	
+	//
+	// Helper functions
+	//
+	
+	/**
+	 * An asynchronous function to show the card for a given currency.
+	 *
+	 * @param {string} curCode - The three-letter code for the currency to load.
+	 * @throws {TypeError} A type error is throw if the currency code is not valid.
+	 */
+	async function showCurrencyCard(curCode){
+		// validate the currency code
+		curCode = String(curCode).toUpperCase();
+		if(!curCode.match(/^[A-Z]{3}$/)){
+			throw new TypeError(`Invalid country code: ${curCode}`);
+		}
+		
+		// get the col for the currency
+		const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
+		
+		// if the card has already been loaded, just show it and exit
+		if($curCol.data('loaded')){
+			console.debug(`card for '${curCode}' already loaded, so just showing it`);
+			
+			// show the col
+			$curCol.show();
+			
+			// focus the card
+			$curCol.children('.card').focus();
+			
+			// update the select in the add card form
+			updateAddCardSelectOptions();
+			
+			// end the function
+			return;
+		}
+		
+		// if the card is in the process of loading, do nothing
+		if($curCol.data('loading')){
+			console.debug(`card for '${curCode}' already loading, will not start another load`);
+			return;
+		}
+		
+		// if we got here, try render the card
+		$curCol.data('loading', true).show();
+		try{
+			// fetch the data for the currency
+			const curData = await $.ajax({ // could throw Error
+				url: CURRENCY_API_URL,
+				method: 'GET',
+				cache: false,
+				data: {
+					base: curCode
+				}
+			});
+			console.debug(`received currency data for '${curCode}': `, curData);
+			
+			// build the view for the card
+			const cardView = {
+				base: {
+					code: curData.base,
+					...CURRENCIES[curData.base]
+				},
+				rates: []
+			};
+			for(const cc of SORTED_CURRENCY_CODES){
+				if(cc === curData.base) continue; // skip self
+				cardView.rates.push({
+					code: cc,
+					rate: numeral(curData.rates[cc]).format('0,0[.]00'),
+					...CURRENCIES[cc]
+				});
+			}
+			console.debug(`generated view for '${curData.base}':`, cardView);
+			
+			// generate the HTML
+			const cardHTML = Mustache.render(TEMPLATES.currencies.displayCard, cardView);
+			
+			// convert the HTML to a jQuery object
+			const $card = $(cardHTML);
+			
+			// hide the currencies that should not be showing
+			for(const cc of SORTED_CURRENCY_CODES){
+				if(!DISPLAY_CURRENCIES[cc]){
+					$(`li.currencyRate[data-currency='${cc}']`, $card).hide();
+				}
+			}
+			
+			// add a click handler to the close button
+			$('button.close', $card).click(function(){
+				// hide the card
+				$curCol.hide();
+				
+				// update the add card select
+				updateAddCardSelectOptions();
+			});
+			
+			// replace the placeholder with the card
+			$curCol.empty().append($card);
+			
+			// focus the card
+			$curCol.children('.card').focus();
+		}catch(err){
+			// log the error's details to the console
+			console.log(`failed to render currency '${curCode}'`, err);
+			
+			// generate an error card
+			const errorCardHTML = Mustache.render(
+				TEMPLATES.errorCard, // template string
+				{ // view
+					message: `Failed to load '${curCode}'.`
+				} 
+			);
+			
+			// show the error card
+			$curCol.empty().append(errorCardHTML);
+			
+			// remove the loading flag from the col
+			$curCol.data('loading', false);
+			
+			// end the function
+			return;
+		}
+		
+		// mark the col as loaded and 
+		$curCol.data('loading', false).data('loaded', true);
+		
+		// update the rendering of the select for adding cards
+		updateAddCardSelectOptions();
+	}
+	
+	/**
+	 * Update the conversions within a loaded card for a given currency.
+	 * 
+	 * @param {string} curCode - The three-letter code for the card to update.
+	 * @param {number} baseAmount - The amount of the base currency to convert.
+     * @throws {TypeError} A type error is throw if the currency code or amount
+     * are not valid.
+     * @throws {Error} A generic error is thrown if the currency's card is not
+     * loaded.
+	 */
+	function updateCardConversions(curCode, baseAmount){
+		// validate the currency code
+		curCode = String(curCode).toUpperCase();
+		if(!curCode.match(/^[A-Z]{3}$/)){
+			throw new TypeError(`Invalid country code: ${curCode}`);
+		}
+		
+		// get the col for the currency
+		const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
+		
+		// if the card has not been loaded, throw an error
+		if(!$curCol.data('loaded')){
+			throw new Error(`Currency ${curCode} is not loaded`);
+		}
+		
+		// validate the amount
+		if(!String(baseAmount).match(/^\d+(?:[.]\d+)?$/)){
+			throw new TypeError(`Invalid base amount: ${baseAmount}`);
+		}
+		
+		// update all the renderings of the base amount
+		$('.baseAmount', $curCol).text(numeral(baseAmount).format('0,0[.]00'));
+		
+		// loop through each currency in the card and update the conversion
+		//const $rateLis = $(`li.currencyRate[data-currency='${curCode}']`);
+		const $rateLis = $('li.currencyRate', $curCol);
+		for(const li of $rateLis){
+			// convert the DOM object to a jQuery object
+			const $li = $(li);
+			
+			// get the rate
+			const rate = $li.data('rate');
+			
+			// get a reference to the converted value place holder
+			$convSpan = $('.convertedAmount', $li);
+			
+			// do the conversion
+			const convAmount = baseAmount * rate;
+			
+			// output the value
+			$convSpan.text(numeral(convAmount).format('0,0[.]00'));
+		}
+	}
+	
+	/**
+	 * Update the enabled/disabled state of each option in the
+	 * select for adding cards.
+	 */
+	function updateAddCardSelectOptions(){
+		// get a reference to the options in the select as a jQuery object
+		const $opts = $('#add_currency_sel option');
+		
+		// loop over all the options in the select and enable/disable as needed
+		for(const opt of $opts){
+			// convert DOM object to jQuery object
+			const $opt = $(opt);
+			
+			// get the currency code the option represents
+			const curCode = $opt.val();
+			
+			// get a reference to the col for this currency
+			const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
+			
+			// enabled/disable this option based on the visibility
+			// of the matching card
+			$opt.prop('disabled', $curCol.is(':hidden') ? false : true );
+		}
+		
+		// select the first enabled option
+		for(const opt of $opts){
+			// convert DOM object to jQuery object
+			const $opt = $(opt);
+			
+			// if the current option is not disabled, select it and exit the loop
+			if(!$opt.prop('disabled')){
+				$opt.prop('selected', true);
+				break; // end the loop
+			}
+		}
+	}
+</script>
+
+<!-- The Error Card Template -->
+<script type="text/html" id="errorCardTpl">
+	<div class="card border-danger">
+		<h2 class="card-header h4 bg-danger text-white">Error</h2>
+		<div class="card-body text-danger bg-light">
+			<p class="card-text">{{message}}</p>
+		</div>
+	</div>
+</script>
+
+<!-- The Currency Col Template -->
+<script type="text/html" id="currencyColTpl">
+	<div data-currency="{{{base.code}}}" class="currencyCol col-12 col-md-6 col-xl-4">
+		{{> loadingCard}}
+	</div>
+</script>
+
+<!-- The Currency Loading Card Template -->
+<script type="text/html" id="currencyLoadingCardTpl">
+	<div class="card m-3 text-center">
+		<h2 class="card-header h4">
+			{{base.name}}
+		</h2>
+		<div class="card-body">
+			<div class="spinner-border m-5" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+	</div>
+</script>
+
+<!-- The Currency Card Template -->
+<script type="text/html" id="currencyDisplayCardTpl">
+	<div class="card m-3" tabindex="100">
+		<h2 class="card-header h4">
+			<small class="text-secondary">{{base.code}}</small>
+			{{{base.icon}}} {{base.name}}
+			<button type="button" class="close" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</h2>
+		<div class="card-body p-2">
+			<form class="form was-validated">
+				<div class="input-group input-group-sm">
+					<div class="input-group-prepend">
+						<span class="input-group-text">{{{base.icon}}}</span>
+					</div>
+					<input type="number" class="form-control" placeholder="Amount" aria-label="Amount" value="1.00" min="0.01" step="0.01">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
+					</div>
+				</div>
+			</form>
+		</div>
+		<ul class="list-group list-group-flush">
+		{{#rates}}
+			<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rate}}}">
+				<h3 class="d-inline h6 mr-2 text-secondary">{{code}}</h3>
+				{{base.symbol}}<span class="baseAmount">1</span>
+				=
+				{{symbol}}<span class="convertedAmount">{{rate}}</span>
+				<small class="text-muted">{{name}}</small>
+			</li>
+		{{/rates}}
+		</ul>
+	</div>
+</script>
+
+<!-- The add card form template -->
+<script type="text/html" id="addCurrencyFormTpl">
+	<div  class="col-12 col-md-6 col-lg-12 p-0">
+		<div class="card m-3 border-success bg-light">
+			<h2 class="card-header h4 text-success border-success">
+				<i class="fas fa-plus-circle" aria-hidden></i>
+				Add Currency Card
+			</h2>
+			<div class="card-body">
+				<form class="form" action="javascript:void(0);">
+					<div class="form-group">
+						<select id="add_currency_sel" class="custom-select" size=6>
+						{{#currencies}}
+							<option value="{{{code}}}">{{symbol}}{{code}} — {{name}}</option>
+						{{/currencies}}
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success form-control">Add Currency Card</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</script>
+
+<!-- The show/hide rate form template -->
+<script type="text/html" id="showHideRatesFormTpl">
+	<div  class="col-12 col-md-6 col-lg-12 p-0">
+		<div class="card m-3 border-success bg-light">
+			<h2 class="card-header h4 text-success border-success">
+				<i class="fas fa-toggle-on" aria-hidden></i>
+				Show/Hide Rates
+			</h2>
+			<div class="card-body">
+				<form class="form" action="javascript:void(0);">
+					<ul class="list-unstyled d-flex flex-wrap justify-content-between">
+					{{#currencies}}
+						<li class="border border-secondary rounded p-2 m-2" style="flex: 1">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="showCurrency{{{code}}}Tgl" value="{{{code}}}">
+								<label class="custom-control-label" for="showCurrency{{{code}}}Tgl"><span class="text-muted">{{symbol}}</span>{{code}}</label>
+							</div>
+						</li>
+					{{/currencies}}
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+</script>
+
+</body>
+</html>
