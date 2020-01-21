@@ -442,6 +442,32 @@
 				updateAddCardSelectOptions();
 			});
 			
+			// add an input handler to the base amount text box
+			$('input.baseAmount', $card).on('input', function(){
+				// convert the DOM object for the input to a jQuery object
+				const $input = $(this);
+				
+				// get a reference to the card's form
+				const $form = $input.closest('form');
+				
+				// enable the display of the validation state on the form
+				$form.addClass('was-validated');
+				
+				// read the base amount for the form
+				let baseAmount = $input.val();
+				
+				// default to 1 if invalid
+				if($input.is(':invalid')){
+					baseAmount = 1;
+				}
+				
+				// remove a trailing dot if present ('4.' to '4')
+				baseAmount = String(baseAmount).replace(/[.]$/, '');
+				
+				// do the conversion
+				updateCardConversions(curCode, baseAmount);
+			});
+			
 			// replace the placeholder with the card
 			$curCol.empty().append($card);
 			
@@ -610,12 +636,12 @@
 			</button>
 		</h2>
 		<div class="card-body p-2">
-			<form class="form was-validated">
+			<form action="javascript:void(0);" class="form">
 				<div class="input-group input-group-sm">
 					<div class="input-group-prepend">
 						<span class="input-group-text">{{{base.icon}}}</span>
 					</div>
-					<input type="number" class="form-control" placeholder="Amount" aria-label="Amount" value="1.00" min="0.01" step="0.01">
+					<input type="number" class="baseAmount form-control" placeholder="Amount" aria-label="Amount" value="1.00" min="0.01" step="0.01" required>
 					<div class="input-group-append">
 						<span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
 					</div>
@@ -625,8 +651,8 @@
 		<ul class="list-group list-group-flush">
 		{{#rates}}
 			<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rate}}}">
-				<h3 class="d-inline h6 mr-2 text-secondary">{{code}}</h3>
-				{{base.symbol}}<span class="baseAmount">1</span>
+				<h3 class="d-inline h6 mr-2 text-primary">{{code}}</h3>
+				<span class="text-muted">{{base.symbol}}<span class="baseAmount">1</span></span>
 				=
 				{{symbol}}<span class="convertedAmount">{{rate}}</span>
 				<small class="text-muted">{{name}}</small>
