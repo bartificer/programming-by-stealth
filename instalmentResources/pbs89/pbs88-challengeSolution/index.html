@@ -375,7 +375,7 @@
 			$curCol.show();
 			
 			// focus the card if appropriate
-			if(!skipFocus) $curCol.children('.card').focus();
+			if(!skipFocus) $('input.baseAmount', $curCol).focus();
 			
 			// update the select in the add card form
 			updateAddCardSelectOptions();
@@ -474,7 +474,7 @@
 			$curCol.empty().append($card);
 			
 			// focus the card if appropriate
-			if(!skipFocus) $curCol.children('.card').focus();
+			if(!skipFocus) $('input.baseAmount', $curCol).focus();
 		}catch(err){
 			// log the error's details to the console
 			console.log(`failed to render currency '${curCode}'`, err);
@@ -629,7 +629,7 @@
 
 <!-- The Currency Card Template -->
 <script type="text/html" id="currencyDisplayCardTpl">
-	<div class="card m-3" tabindex="100">
+	<div class="card m-3">
 		<h2 class="card-header h4">
 			<small class="text-secondary">{{base.code}}</small>
 			{{{base.icon}}} {{base.name}}
