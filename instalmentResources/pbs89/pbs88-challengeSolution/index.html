@@ -338,7 +338,7 @@
 		// load the default currencies
 		for(const curCode of SORTED_CURRENCY_CODES){
 			if(CURRENCIES[curCode].defaultCard){
-				showCurrencyCard(curCode).catch(function(e){
+				showCurrencyCard(curCode, true).catch(function(e){
 					console.error(`failed to show '${curCode}'`, e);
 				});
 			}
@@ -353,9 +353,11 @@
 	 * An asynchronous function to show the card for a given currency.
 	 *
 	 * @param {string} curCode - The three-letter code for the currency to load.
+	 * @param {boolean} [skipFocus=false] - Pass a truthy value to skip the
+	 * focusing of the card after loading.
 	 * @throws {TypeError} A type error is throw if the currency code is not valid.
 	 */
-	async function showCurrencyCard(curCode){
+	async function showCurrencyCard(curCode, skipFocus){
 		// validate the currency code
 		curCode = String(curCode).toUpperCase();
 		if(!curCode.match(/^[A-Z]{3}$/)){
@@ -372,8 +374,8 @@
 			// show the col
 			$curCol.show();
 			
-			// focus the card
-			$curCol.children('.card').focus();
+			// focus the card if appropriate
+			if(!skipFocus) $curCol.children('.card').focus();
 			
 			// update the select in the add card form
 			updateAddCardSelectOptions();
@@ -471,8 +473,8 @@
 			// replace the placeholder with the card
 			$curCol.empty().append($card);
 			
-			// focus the card
-			$curCol.children('.card').focus();
+			// focus the card if appropriate
+			if(!skipFocus) $curCol.children('.card').focus();
 		}catch(err){
 			// log the error's details to the console
 			console.log(`failed to render currency '${curCode}'`, err);
