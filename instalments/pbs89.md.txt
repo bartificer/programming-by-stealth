@@ -1,0 +1,38 @@
+# PBS Instalment 89 of X — Currency Converter Challenge
+
+This instalment is an experiment! The intention going forward is to stop combining new content and challenge solutions into single instalments. When the challenges were short and simple this approach worked well, but as the series has moved on the challenges have evolved from small assignments into what could better be described as little coding projects. This is the natural results of an ever-expanding skill-set, and a sign that the series is moving in the right direction.
+
+Keeping the challenge solutions as a mere opening section of a larger instalment has resulted in them becoming rushed, and as such, adding much less value than they should. The discussions of the solutions have been superficial at best lately, and that's simply a waste of time and opportunity. Bigger projects open up bigger questions, and they should be properly explored. In short, I want to switch the focus from the *what* to the *why* of my sample solutions.
+
+So, in this instalment we'll focus purely on my sample solution to the challenge set at the end of instalment 88 — the addition of a single new feature to our currency conversion web app. We'll end the instalment with a new challenge, one intended to keep you occupied until instalment 91 (about 4 weeks).
+
+<!-- more -->
+
+### The Problem to be Solved
+
+The starting point for this challenge was a working solution to the previous challenge. That is to say, a web app that presents the user with a number of cards containing currency conversion rates. Each card shows the rates for one base currency against a list of other currencies, and users have the ability to dismiss cards and to create new cards for the currencies of their choice. For extra credit there was also the option to add some UI to allow user to choose the currencies listed in the cards.
+
+The challenge was to take this existing web app, and add the ability for users to specify an amount at the top of each card, and show that amount converted on each row of the card, rather than just the rate.
+
+The starting point I used for my sample solution to this challenge was my sample solution to the previous challenge.
+
+* [See my starting point functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bbusschots/pbs-resources/f4ba373772b77bf617629b723e1df87bd7a3441b/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
+* [View the source code for my starting point — github.com/…](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
+
+### The Sample Solution
+
+Before describing the decisions that went into building my solution, let's start by taking a look at the solution in action:
+
+* [See my solution functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bbusschots/pbs-resources/093672169c6a949eb00ab0874a9bfdadb80bc992/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
+* [View the source code for my solution — github.com/…](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
+
+Visually, the most important things to note are the following:
+
+1. My choice of UI — a Bootstrap input group with a standard HTML 5 number input at it's centre, the appropriate currency symbol as a prepend, and a conversion icon as an append.
+2. My data validation choices — I chose to use standard HTML 5 form validation in conjunction with Bootrap's built-in form validation styles. I also chose not to apply any form validation styles until the first time the user interacts with a given number field.
+3. My event handling choice — I chose to have the cards update each time the user changes the number in any way. I did this using the `input` event (not `change` or `keyup`).
+4. My error handling choice — I chose to to treat invalid values as `1`.
+
+Looking at the code, the most important things to note are:
+* A focus on **generality** — there is a single event handler handing the number field on all cards.
+* The use of data attributes to embed information into the cards themselves, hence enabling the desired generality.
