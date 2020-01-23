@@ -1,12 +1,12 @@
+# PBS 89 of X — Currency Converter Challenge
+
 This instalment is an experiment! The intention going forward is to stop combining new content and challenge solutions into single instalments. When the challenges were short and simple this approach worked well, but as the series has moved on the challenges have evolved from small assignments into what could better be described as little coding projects. This is the natural results of an ever-expanding skill-set, and a sign that the series is moving in the right direction.
 
 Keeping the challenge solutions as a mere opening section of a larger instalment has resulted in them becoming rushed, and as such, adding much less value than they should. The discussions of the solutions have been superficial at best lately, and that's simply a waste of time and opportunity. Bigger projects open up bigger questions, and they should be properly explored. In short, I want to switch the focus from the *what* to the *why* of my sample solutions.
 
 So, in this instalment we'll focus purely on my sample solution to the challenge set at the end of [Instalment 88](https://bartificer.net/pbs88) — the addition of a single new feature to our currency conversion web app. We'll end the instalment with a new challenge, one intended to keep you occupied until instalment 92 (about 6 weeks). Instalments 90 and 91 will continue our review of the various hats objects wear in JavaScript.
 
-<!-- more -->
-
-### The Problem to be Solved
+## The Problem to be Solved
 
 The starting point for this challenge was a working solution to the previous challenge. That's to say, a web app that presents the user with a number of cards containing currency conversion rates. Each card shows the rates for one base currency against a list of other currencies. Users have the ability to dismiss cards and to create new cards for the currencies of their choice. For extra credit there was also the option to add some UI to allow user to choose the currencies listed in the cards.
 
@@ -17,7 +17,7 @@ The starting point I used for my sample solution to this challenge was my sample
 * [See my starting point functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bbusschots/pbs-resources/f4ba373772b77bf617629b723e1df87bd7a3441b/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
 * [View the source code for my starting point — github.com/…](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
 
-### Sample Solution Overview
+## Sample Solution Overview
 
 Before describing the decisions that went into building my solution, let's start by taking a look at the solution in action:
 
@@ -35,9 +35,9 @@ Looking at the code, the most important things to note are:
 * A focus on **generality** — there is a single event handler handing the number field on all cards.
 * The use of data attributes to embed information into the cards themselves, hence enabling the desired generality.
 
-### UI Decisions
+## UI Decisions
 
-#### Entering the Number
+### Entering the Number
 
 When ever possible I prefer not to re-invent the wheel. Since HTML 5 provides an input type specifically for numbers, I chose to use that. My advice generally is to use the standard HTML 5 tags unless you have a good reason not to!
 
@@ -67,7 +67,7 @@ The final markup for the input in the relevant Mustache template is as follows:
 
 By default the `.card-body` class gave a little too much padding, so I added `.p-2` to reduce it a little. Other than that small tweak this is a completely *by the book* implementation.
 
-#### Data Validation
+### Data Validation
 
 Again, to avoid re-inventing the wheel I chose to start by trying to use standard HTML 5 form validation in conjunction with Bootstrap's form validation classes. That proved to be a nice solution, so I never considered anything more complex.
 
@@ -85,7 +85,7 @@ The bright green and red styles for valid and invalid are very eye-catching, whi
 
 BTW, the way the styling is enabled is by using jQuery to add the `.was-validated` class to the appropriate `<form>` tag in the event handler for the number inputs.
 
-#### Event Handling
+### Event Handling
 
 When should the content of the cards get updated? Should the user type some text, then hit a button to perform the calculation? Or should the change be instantaneous?
 
@@ -97,7 +97,7 @@ This case is different though, the updates are effectively instantaneous, and th
 
 That's why I chose to have the conversions update in real time as the user typed. As discussed in previous instalments, the correct event for this is `input`, not the more obvious `keyup` or `change`.
 
-#### Error Handling
+### Error Handling
 
 With real-time updating of the exchange rates, the next problem becomes what to do when the user types something invalid? The HTML 5 form  validation and the Bootstrap validation styles will show the user something is wrong, but what way should the card be rendered when the input is in an invalid state? Blank each row? Or something else?
 
@@ -115,7 +115,7 @@ if($input.is(':invalid')){
 baseAmount = String(baseAmount).replace(/[.]$/, '');
 ```
 
-### The Code — Keeping it General
+## The Code — Keeping it General
 
 In the broad scheme of things, having your code figure out was much information as it can on its own will result in better code. Rather than having a function take 20 arguments, give it one argument that gives it the help it enough information to find the rest by itself.
 
@@ -202,7 +202,7 @@ The `$()` function finds all tags with the class `.baseAmount` within the correc
 
 The logic for writing out each converted value is similar, but contained within the loop that iterates over each row in turn.
 
-### Some Little Final Touches
+## Some Little Final Touches
 
 I didn't like the way I was rendering each row within a card previously. Both the original amount (then always 1), and the rate had the same visual weight, so the eye was not drawn to the rate as it should be.
 
@@ -246,7 +246,7 @@ for(const curCode of SORTED_CURRENCY_CODES){
 }
 ```
 
-### New Challenge
+## A New Challenge — Currency Grid View
 
 Using your current currency conversion app or my sample solution as your starting point, allow users to switch between the existing card view and a new grid view.
 
