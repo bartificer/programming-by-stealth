@@ -14,15 +14,15 @@ The challenge was to take this existing web app, and add the ability for users t
 
 The starting point I used for my sample solution to this challenge was my sample solution to the previous challenge.
 
-* [See my starting point functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bbusschots/pbs-resources/f4ba373772b77bf617629b723e1df87bd7a3441b/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
-* [View the source code for my starting point — github.com/…](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
+* [See my starting point functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bartificer/programming-by-stealth/3c2a630d78790cfa45cdc38a03ee0e9911f07c66/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
+* [View the source code for my starting point — github.com/…](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
 
 ## Sample Solution Overview
 
 Before describing the decisions that went into building my solution, let's start by taking a look at the solution in action:
 
-* [See my solution functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bbusschots/pbs-resources/093672169c6a949eb00ab0874a9bfdadb80bc992/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
-* [View the source code for my solution — github.com/…](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
+* [See my solution functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bartificer/programming-by-stealth/3c2a630d78790cfa45cdc38a03ee0e9911f07c66/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
+* [View the source code for my solution — github.com/…](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
 
 Visually, the most important things to note are the following:
 
