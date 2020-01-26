@@ -49,6 +49,7 @@ When adding a UI element to a regular form it usually makes sense to add explana
 
 The final markup for the input in the relevant Mustache template is as follows:
 
+<!-- {% raw %} -->
 ```html
 <div class="card-body p-2">
 	<form action="javascript:void(0);" class="form">
@@ -64,6 +65,7 @@ The final markup for the input in the relevant Mustache template is as follows:
 	</form>
 </div>
 ```
+<!-- {% endraw %} -->
 
 By default the `.card-body` class gave a little too much padding, so I added `.p-2` to reduce it a little. Other than that small tweak this is a completely *by the book* implementation.
 
@@ -170,9 +172,11 @@ The conversion is pretty simple math — multiple the base amount by the rate. T
 
 My card template stores the rates into each list item in a data attribute named `rate`:
 
+<!-- {% raw %} -->
 ```html
 <li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rate}}}">
 ```
+<!-- {% endraw %} -->
 
 This means the rate can be read very simply:
 
