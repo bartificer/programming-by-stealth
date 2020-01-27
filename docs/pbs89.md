@@ -10,7 +10,9 @@ So, in this instalment we'll focus purely on my sample solution to the challenge
 
 Listen along to this instalment on [episode 662 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/01/ccatp-622/).
 
-<a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_01_25.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
+<audio src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_01_25.mp3"></audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_01_25.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
 
 ## The Problem to be Solved
 
@@ -269,5 +271,3 @@ You may use any UI you like, but I suggest looking at [Bootstrap Nav Tabs](https
 If, like in my sample solution, you are loading each currency with a separate AJAX request you'll need to re-factor your code to load the rates for a single currency and then use some simple maths to derive the rates between the various currencies. I would suggest building a lookup table to map the rates from every currency to every other currency.
 
 Because this is a very substantial challenge, there will be two regular instalments between this instalment and the solution instalment for this challenge. I.e. you have about six weeks 🙂
-
-{% include open-embed.html %}
