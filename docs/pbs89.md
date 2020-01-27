@@ -10,7 +10,7 @@ So, in this instalment we'll focus purely on my sample solution to the challenge
 
 Listen along to this instalment on [episode 662 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/01/ccatp-622/).
 
-<audio src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_01_25.mp3"></audio>
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_01_25.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
 You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_01_25.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
 
