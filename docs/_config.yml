@@ -25,5 +25,5 @@ community:
   url: https://podfeet.com/slack
   description: Find us in the PBS channel on the NosillaCast Slack.
   icon: "fab fa-slack"
-  labels:
+  label:
     button: "NosillaCast Slack"
