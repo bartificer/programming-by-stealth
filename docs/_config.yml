@@ -17,7 +17,7 @@ accent:
 nav_items:
   - url: https://bartb.ie/pbsindex
     icon: "fas fa-search"
-    text: "The PBS Index"
+    text: "PBS Index"
   - url: https://www.podfeet.com/blog/category/ccatp/
     icon: "fas fa-podcast"
     text: "Chit Chat Across the Pond"
