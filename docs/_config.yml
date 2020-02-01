@@ -1,5 +1,5 @@
 #theme: jekyll-theme-cayman
-remote_theme: bbusschots/bartificer-jeklly-theme
+remote_theme: bartificer/bartificer-jekyll-theme
 title: Programming by Stealth
 email: podcasting@bartificer.net
 description: >- # this means to ignore newlines until "baseurl:"
@@ -21,3 +21,9 @@ nav_items:
   - url: https://www.podfeet.com/blog/category/ccatp/
     icon: "fas fa-podcast"
     text: "Chit Chat Across the Pond"
+community:
+  url: https://podfeet.com/slack
+  description: Find us in the PBS channel on the NosillaCast Slack.
+  icon: "fab fa-slack"
+  labels:
+    button: "NosillaCast Slack"
