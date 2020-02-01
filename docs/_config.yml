@@ -18,9 +18,9 @@ nav_items:
   - url: https://bartb.ie/pbsindex
     icon: "fas fa-search"
     text: "PBS Index"
-  - url: https://www.podfeet.com/blog/category/ccatp/
+  - url: https://www.podfeet.com/blog/category/programming-by-stealth/
     icon: "fas fa-podcast"
-    text: "Chit Chat Across the Pond"
+    text: "Podcast Episodes"
 community:
   url: https://podfeet.com/slack
   description: Find us in the PBS channel on the NosillaCast Slack.

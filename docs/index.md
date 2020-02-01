@@ -21,3 +21,4 @@ For now, this is still a very **incomplete** list of instalments.
 * …
 * [PBS 89](pbs89.md)
 
+You'll find the notes for the other instalments at [bartb.ie/pbs](https://bartb.ie/pbs).
