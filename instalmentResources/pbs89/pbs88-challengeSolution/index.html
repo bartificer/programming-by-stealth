@@ -417,6 +417,7 @@
 				cardView.rates.push({
 					code: cc,
 					rate: numeral(curData.rates[cc]).format('0,0[.]00'),
+					rawRate: curData.rates[cc],
 					...CURRENCIES[cc]
 				});
 			}
@@ -652,7 +653,7 @@
 		</div>
 		<ul class="list-group list-group-flush">
 		{{#rates}}
-			<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rate}}}">
+			<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rawRate}}}">
 				<h3 class="d-inline h6 mr-2 text-primary">{{code}}</h3>
 				<span class="text-muted">{{base.symbol}}<span class="baseAmount">1</span></span>
 				=
