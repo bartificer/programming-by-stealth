@@ -175,7 +175,7 @@ let x = 4;
 console.log(`x=${x} & x.adams=${(new Number(x)).adams}`);
 ```
 
-So, one temporary object was created on the second line, a property named `adam` was added to that object, and then that object disappeared. On the next time another entirely new object was created, and when asked for its `adam` property there was none set, hence the `undefined` in the output.
+So, one temporary object was created on the second line, a property named `adams` was added to that object, and then that object disappeared. On the next time another entirely new object was created, and when asked for its `adams` property there was none set, hence the `undefined` in the output.
 
 ## The `Boolean` Class
 
