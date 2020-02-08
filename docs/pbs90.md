@@ -162,17 +162,17 @@ Consider the following snippet:
 ```js
 let x = 4;
 x.adams = 42; // no error because of auto-boxing
-console.log(`x=${x} & x.adam=${x.adam}`);
+console.log(`x=${x} & x.adams=${x.adams}`);
 ```
 
-This produces the output `x=4 & x.adam=undefined`. So, auto-boxing prevented an error by creating a temporary object, but that object was not retained!
+This produces the output `x=4 & x.adams=undefined`. So, auto-boxing prevented an error by creating a temporary object, but that object was not retained!
 
 This is effectively what happened:
 
 ```js
 let x = 4;
 (new Number(x)).adams = 42;
-console.log(`x=${x} & x.adam=${(new Number(x)).adam}`);
+console.log(`x=${x} & x.adams=${(new Number(x)).adams}`);
 ```
 
 So, one temporary object was created on the second line, a property named `adam` was added to that object, and then that object disappeared. On the next time another entirely new object was created, and when asked for its `adam` property there was none set, hence the `undefined` in the output.
