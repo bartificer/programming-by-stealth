@@ -23,7 +23,7 @@ nav_items:
     text: "Podcast Episodes"
 community:
   url: https://podfeet.com/slack
-  description: Find us in the PBS channel on the NosillaCast Slack.
+  description: Find us in the PBS channel on the Podfeet Slack.
   icon: "fab fa-slack"
   labels:
-    button: "NosillaCast Slack"
+    button: "Podfeet Slack"
