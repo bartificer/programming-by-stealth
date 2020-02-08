@@ -27,6 +27,11 @@ The starting point I used for my sample solution to this challenge was my sample
 
 ## Sample Solution Overview
 
+> # Update: Bug Fixed 8 Feb 2020
+>
+> These notes and the code on GitHub were updated to incorporate a bug fix described in [this blog post](https://www.bartbusschots.ie/s/2020/02/08/pbs-tidbit-1-of-y-display-values-are-not-data/).
+{: class="aside"}
+
 Before describing the decisions that went into building my solution, let's start by taking a look at the solution in action:
 
 * [See my solution functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bartificer/programming-by-stealth/3c2a630d78790cfa45cdc38a03ee0e9911f07c66/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
@@ -182,7 +187,7 @@ My card template stores the rates into each list item in a data attribute named 
 
 <!-- {% raw %} -->
 ```html
-<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rate}}}">
+<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rawRate}}}">
 ```
 <!-- {% endraw %} -->
 
@@ -192,6 +197,8 @@ This means the rate can be read very simply:
 // get the rate
 const rate = $li.data('rate');
 ```
+
+Note that when writing the rate into the data attribute it's important to write the full rate, and not a version truncated for presentation to the user.
 
 We now know everything we need, so the actual conversion itself is trivial:
 
