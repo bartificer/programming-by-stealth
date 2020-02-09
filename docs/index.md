@@ -19,6 +19,12 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 For now, this is still a very **incomplete** list of instalments.
 
 * …
-* [PBS 89](pbs89.md)
+* [PBS 89 — Currency Converter Challenge](pbs89.md)
+* [PBS 90 — JavaScript Wrapper Objects](pbs90.md)
 
 You'll find the notes for the other instalments at [bartb.ie/pbs](https://bartb.ie/pbs).
+
+# Tidbits Blog Posts
+
+Bart ocassionally makes blog posts related to the series, but not strictly a part of it. You'll find those on [bartb.ie](https://www.bartb.ie) under the [programming-by-stealth-tidbit tag](https://www.bartbusschots.ie/s/tag/programming-by-stealth-tidbit/).
+
