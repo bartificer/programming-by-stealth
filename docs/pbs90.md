@@ -30,6 +30,11 @@ This one level of indirection has two very significant implications.
 
 ### Primitives Copy on Assignment, Objects Don't
 
+> # Running Snippets
+>
+> The code snippets in this instalment can be run in the JavaScript console on any web page (including this one), but you'll need to refresh the page between snippets to avoid errors about re-declaring variables.
+{: class="notice"}
+
 Consider this simple code code snippet:
 
 ```js
