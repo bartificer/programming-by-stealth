@@ -24,7 +24,8 @@ For now, this is still a very **incomplete** list of instalments.
 
 You'll find the notes for the other instalments at [bartb.ie/pbs](https://bartb.ie/pbs).
 
-# Tidbits Blog Posts
+# Related Contents
 
-Bart ocassionally makes blog posts related to the series, but not strictly a part of it. You'll find those on [bartb.ie](https://www.bartb.ie) under the [programming-by-stealth-tidbit tag](https://www.bartbusschots.ie/s/tag/programming-by-stealth-tidbit/).
+* Bart occasionally makes blog posts related to the series, but not strictly a part of it. You'll find those on [bartb.ie](https://www.bartb.ie) under the [programming-by-stealth-tidbit tag](https://www.bartbusschots.ie/s/tag/programming-by-stealth-tidbit/).
+* A blog post by Allison Sheridan explaining how she added support for currencies with different numbers of decimal places to her sample solution to PBS 88: [When Currency Rate Decimals Go Wrong — www.podfeet.com/…](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/)
 
