@@ -48,12 +48,64 @@ const schemeRE = /cat|dog/gi;
 
 The RE itself is `cat|dog`, which you'd read as *'cat or dog'*, and `g` & `i` are flags — `g` for *global*, and `i` for *case insensitive*.
 
+## RE Syntax Lightning Refresher
+
 I'm not going to repeat the entire syntax here, instead, I'll recommend two very good links on Mozilla's excellent developer portal:
 
 1. [Regular Expressions Guide — developer.mozilla.org/…](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
 2. [Regular Expressions Cheatsheet — developer.mozilla.org/…](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet)
 
-I will point out a few highlights though:
+But, let's run through a few highlights all the same.
+
+### Escaping Special Characters
+
+Firstly, special characters are escaped with a backslash character (`\\`).
+
+### Flags
+
+Secondly, while there are a total of six possible flags (as of ES2018), there are three particularly important ones:
+
+| flag | Meaning |
+| :--: | --- |
+| `g` | Perform a **global** search. This flag alters the behaviour or many functions that use regular expressions, the details will be in the documentation for the function in question. |
+| `i` | Perform as **case-insensitive** search. |
+| `m` | Perform a multi-line search, i.e. interpret `^` as *start of line* instead of *start of string*, and `$` as *end of line* instead of *end of string*. | 
+
+### Character Classes
+
+PCRE provides us with many codes for specifying a single occurrence of a given special character, or a single individual character from a related group of characters.  The table below is far from an exhaustive list, but it covers the ones you're most likely to need regularly.
+
+| Character Descriptor | Meaning |
+| :---: | :--- |
+| `.` | Any one character. |
+| `\d` | Any digit. |
+| `\w` | Any word character (a to z, A to Z, 0 to 9, and underscore). |
+| `\s` | any blank space character |
+| `\D` | any character that's not a digit |
+| `\W` | any non-word character |
+| `\S` | any non-space character |
+| `\t` | a tab character |
+| `\n` | a newline character |
+
+As well as supporting many pre-defined character classes, PCRE also lets us define our own by listing the contents of our desired class within square brackets. For example, the character class to match any single un-accented lower-case western vowel is `[aeiou]`.
+
+PCRE also allows us to specify ranges of characters within our character classes, so the following character class represents a single lower-case hexadecimal digit — `[0-9a-f]`.
+
+Finally, we can negate our entire character class by starting it with the carat symbol (`^`), so, any one character that's not a lower-case western vowel can be matched with `[^aeiou]`.
+
+### Position Indicators
+
+PCRE also gives us a number of position indicators to help us anchor our pattern within a string. Again, the table below is not exhaustive.
+
+| Position Indicator | Meaning |
+| :---: | :--- |
+| `^` | the start of the string (or of a line with the `m` flag). |
+| `$` | the end of the string (or of a line with the `m` flag). |
+| `\b` | a word boundary (start or end of a word). |
+
+### Quantity Specifiers
+
+As well as allowing us to specify which characters we want where, PCRE also allows us to specify how often parts of the pattern should repeat. Again, not an exhaustive list, but some of the common PCRE quantity specifiers are shown in the table below.
 
 | Quantity Specifier | Meaning | Example |
 | :---: | :--- | : -- |
@@ -64,24 +116,40 @@ I will point out a few highlights though:
 | `{n}` | exactly `n` of … | `/b{2}/` *two b characters* |
 | `{x, y}` | between `x` and `y` (inclusive) of … | `/\d{1,3}/` *one, two, or three digits* |
 
-| Character Descriptor | Meaning |
-| :---: | :--- |
-| `.` | any one character |
-| `\d` | any digit |
-| `\w` | any word character |
-| `\s` | any blank space character |
-| `\D` | any character that's not a digit |
-| `\W` | any non-word character |
-| `\S` | any non-space character |
-| `\t` | a tab character |
-| `\n` | a newline character |
+### Groupings (Capturing & Non-Capturing)
 
-| Position Indicator | Meaning |
-| :---: | :--- |
-| `^` | the start of the string (or of a line with the `m` flag) |
-| `$` | the end of the string (or of a line with the `m` flag) |
-| `\b` | a word boundary (start or end of a word) |
+Plain parenthesis serve a dual role in PCRE. They allow you to group parts of a pattern together so they can be addressed as a group by the various operators and quantity specifiers, but they also act as so-called *capture groups*. Each opening parenthesis starts a numbered sub-pattern, and some of the regular expression-related functions allow us to make use of these numbered sub-patterns. The sub-patterns are numbered from the left, and patterns can be nested within each other.
 
-Character classes — TO DO
+As an example, given the following RE: `/((\d{2}):(\d{2}))(:(\d{2}))?/`, the strings `12:01` and `12:01:02` would both match. The final set of parenthesis group the `:\d{2}` together so the `?` makes that entire piece of the pattern optional.
 
-Capture Groups — TO DO
+If we take the second of those two strings (`12:01:02`) and match it against the regular expression then the parentheses also mean that there will be five numbered sub-patterns, or capture groups, populated. Starting form the left the first open parenthesis is part of a set that encloses `(\d{2}):(\d{2})`, so the first numbered match will be `12:01`. The second opening parenthesis only encloses `\d{2}`, so it will match just `12`. Similarly the third opening parenthesis will match `01`. The fourth opening parenthesis encapsulates `:(\d{2})`, so it will match `:02`. Finally, the fifth opening parenthesis encapsulates just `\d{2}`, so it will match `02`.
+
+Of those five example capture groups four capture useful information — 1 captures the time without seconds, 2 captures the hours, 3 the minutes, and 5 the seconds, but 4 captures nothing of value, it's only there to connect the third colon to the seconds and make them optional as a group, not individually. We need this grouping to make the RE work, but we don't want to capture it!
+
+Non-capturing groups allow us to group parts of an RE together without them being captured. A non-capturing groups starts with `(?:` and ends with `)`. So, we can re-write our sample RE to only capture the four useful groupings like so: `/((\d{2}):(\d{2}))(?::(\d{2}))?/`.
+
+## The RegExp Class
+
+JavaScript represents regular expressions with the built-in class `RegExp`.  For full documentation of all properties and functions [see the class's page on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
+
+We're going to confine our look at this class to just two functions — those that encapsulate the two most common use-cases for regular expressions — validation, and parsing.
+
+### Validation with `.test()`
+
+TO DO
+
+### Parsing with `.exec()`
+
+TO DO
+
+NB - remember the g flag!
+
+## String Functions that use REs
+
+TO DO
+
+## Array Functions that use REs
+
+TO DO
+
+## 
