@@ -59,7 +59,7 @@ But, let's run through a few highlights all the same.
 
 ### Escaping Special Characters
 
-Firstly, special characters are escaped with a backslash character (`\\`).
+Firstly, special characters are escaped with a backslash character (`\`).
 
 ### Flags
 
@@ -134,15 +134,80 @@ JavaScript represents regular expressions with the built-in class `RegExp`.  For
 
 We're going to confine our look at this class to just two functions — those that encapsulate the two most common use-cases for regular expressions — validation, and parsing.
 
+While there is a `RegExp` constructor available for use, you're better off using RE literals to create `RegExp` objects. Why? Because the contractor takes a string as an argument, so the backslash character needs to be double-escaped, one for the string, then again for the RE. This is very confusing to look at!
+
+To prove this point, the following two assignments result in `RegExp` objects representing the same pattern:
+
+```js
+const hasWebScheme1 = /^https?:\/\//i;
+const hasWebScheme2 = new RegExp('^https?:\\/\\/', 'i');
+```
+
+Note that `RegExp` instance functions can be directly invoked on RE literals, even when they have flags:
+
+```js
+const doesMatch1 = /^\d+$/.test(42); // true
+const doesMatch2 = /^https?:\/\//i.test('HttP://www.podfeet.com/'); // true
+```
+
 ### Validation with `.test()`
 
+The first common task regular expressions are used for is to validate input of some kind to be sure it meets some required pattern.
+
+When validating data all you're interested in is a yes/no answers, you're not interested in capturing sub-patterns or anything like that. The `RegExp` class provides and instance function dedicated to this use — `.test()`. It takes the string to test as an argument, and returns `true` if the string matches the pattern, and `false` otherwise.
+
+For one-off tests it makes sense to use the `.test()` function on an RE literal:
+
+```
+const valToTest = 42;
+const isOK = /^\d+$/.test(valToTest);
+console.log(`testing '${valToTest}' resulted in ${isOK}`);
+```
+
+When making multiple tests it's more efficient to create an RE object once, then re-use that object as needed:
+
+```js
+const okRE = /^\d+$/;
+const valsToTest = [42, 'boogers', '99'];
+for(const val of valsToTest){
+	const isOK = okRE.test(val);
+	console.log(`testing '${val}' resulted in ${isOK}`);
+}
+```
+
+### Parsing and Extracting with `.exec()`
+
+Parsing is a little more involved than testing, and this is where *capture groups* come into their own. By parsing we mean processing text in order to extract meaningful information. 
+
+For example, we can use a regular expression with three capture groups to break a time apart into its component pieces:
+
+```js
+const timeParseRE = /^(\d{2}):(\d{2}):(\d{2})$/;
+```
+
+Given this RE, we can use the `.exec()` instance function from the `RegExp` class to parse a given string. This function takes the string to parse as an argument, and has many possible return values depending on both the RE flags and whether or not the string matched the RE.
+
+Let's start by assuming the RE does does not have the global (`g`) flag set (as is the case with our example). In this scenario `.exec()` will return one of two things — if the RE does not match it will return `null`, and if it does match it will return an array. Assuming a match, the first element in the array (i.e. the *zeroth* element) will be the full matched string. This will be followed by the matched values for each capture group in the RE, so, the first capture group will be at position 1, the second at position 2, etc..
+
+Given our example RE above we can see this in action:
+
+```js
+console.log(timeParseRE.exec('boogers')); // null
+console.log(timeParseRE.exec('12:01:02')); // ["12:01:02", "12", "01", "02"]
+```
+
+In the real world we would extract the parts into sensibly named variables, probably using restructuring assignment:
+
+```js
+const [, hrs, mins, secs] = timeParseRE.exec('12:01:02');
+console.log(`hrs=${hrs}, mins=${mins} & secs=${secs}`);
+```
+
+Notice the leading comma to discard the un-wanted first item in the array.
+
+so far we have been breaking a single time into pieces, what if we wanted to find all times in a long string of text? This is where the `g` flag comes into play.
+
 TO DO
-
-### Parsing with `.exec()`
-
-TO DO
-
-NB - remember the g flag!
 
 ## String Functions that use REs
 
