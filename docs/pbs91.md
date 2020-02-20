@@ -205,16 +205,57 @@ console.log(`hrs=${hrs}, mins=${mins} & secs=${secs}`);
 
 Notice the leading comma to discard the un-wanted first item in the array.
 
-so far we have been breaking a single time into pieces, what if we wanted to find all times in a long string of text? This is where the `g` flag comes into play.
+so far we have been breaking a single time into pieces, what if we wanted to find all times in a long string of text? This is where the global flag comes into play.
 
-TO DO
+If the RE that `.exec()` is called on has the global (`g`) flag set then the RE object becomes *stateful* and remembers the location in a string immediately following the previous match. If you pass the same string in again the search will resume from where it left off. This will keep happening until there are no more matches, at which point `null` will be returned, and the internal state gets reset.
+
+This behaviour is extremely un-obvious and clunky, and there are proposals to fix it in a future version of the language, but for now, it's the best we can do. If we update our previous RE to remove the start and end of string indicators we can look over a string of text and pull out all the times:
+
+```js
+// define a string to search
+const stringToSearch = "I thought we might meet at 07:00, but that was too early for Bob so I suggested 10:00, but that was too late for Alice, so we settled on 08:00 in meeting room 3.";
+
+// define a global RE
+const globalTimeRE = /(\d{2}):(\d{2})(?::(\d{2}))?/g;
+
+// loop over the string using .exec() on the RE
+let match = null;
+while(match = globalTimeRE.exec(stringToSearch)){
+	const [, hr, min, sec] = match;
+	console.log(`Found time with hours='${hr}', minutes='${min}', and seconds='${sec}'`);
+}
+```
 
 ## String Functions that use REs
 
-TO DO
+A number of the instance functions provided by the built-in `String` class make use of regular expressions. As per usual I don't want to give a definitive list of all string functions that use REs, but I do want to highlight what I consider the most notable ones.
+
+Firstly, there is `.search()` which is essentially the mirror image of the `.test()` instance function provided by the `RegExp` class, but with one very important difference. While you call `.test()` on an RE object and pass it a string, you call `.search()` on a string object and pass it an RE.
+
+While calling `.test()` on an RE returns a boolean, calling `.search()` on a string doesn't. Rather than returning a boolean `.search()` returns an integer — the character index within the string where the sub-string that matched the passed RE starts, or -1 if no match was found.
+
+```js
+const meetStr = "meet Bob at 10:00 tomorrow";
+const timeIdx = meetStr.search(/\d{2}:\d{2}/);
+if(timeIdx >= 0){
+	console.log(`the time starts at index ${timeIdx} of the string '${meetStr}'`);
+}else{
+	console.log('no time found');
+}
+```
+
+Unless you need the index, it's easier to use the `.test()` function provided by `RegExp`.
+
+LEFT OF HERE!!!
+
+TO DO — String.match & String.matchAll
+
+TO DO — String.replace
 
 ## Array Functions that use REs
 
-TO DO
+TO DO — Array.split
 
-## 
+## Final Thoughts
+
+TO DO
