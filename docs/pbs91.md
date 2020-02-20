@@ -226,35 +226,87 @@ while(match = globalTimeRE.exec(stringToSearch)){
 }
 ```
 
-## String Functions that use REs
+## REs with Other Standard Functions
 
-A number of the instance functions provided by the built-in `String` class make use of regular expressions. As per usual I don't want to give a definitive list of all string functions that use REs, but I do want to highlight what I consider the most notable ones.
+A number of built-in JavaScript classes beyond `RegExp` provide instance functions that make use of regular expressions. Below are some of the highlights, again, this is by no means a definitive list.
 
-Firstly, there is `.search()` which is essentially the mirror image of the `.test()` instance function provided by the `RegExp` class, but with one very important difference. While you call `.test()` on an RE object and pass it a string, you call `.search()` on a string object and pass it an RE.
+### Finding Patterns in Strings via the `String` Class
 
-While calling `.test()` on an RE returns a boolean, calling `.search()` on a string doesn't. Rather than returning a boolean `.search()` returns an integer — the character index within the string where the sub-string that matched the passed RE starts, or -1 if no match was found.
+The built-in `String` class provides two functions for finding a pattern within a string. These functions are similar to the `.exec()` function provided by the `RegExp` class, but in reverse. While `.exec()` is invoked on an RE object and passed a string, these functions are invoked on a string and passed an RE.
+
+The first of this pair of functions is `.match()`. This function behaves differently depending on whether or not the RE passed to it has the global flag set. If the global flag is set it returns an array of all complete matches, ignoring the capture groups. If the global flag is not set it returns only the first match, in the same format as returned by `.exec()` from the RegExp class. Regardless of whether or not the global flag is set, if the string does not match the regular expression at all, `null` is returned.
+
+If we are interested in finding a single date within a string and breaking it into pieces we would use an RE without the global flag:
 
 ```js
 const meetStr = "meet Bob at 10:00 tomorrow";
-const timeIdx = meetStr.search(/\d{2}:\d{2}/);
-if(timeIdx >= 0){
-	console.log(`the time starts at index ${timeIdx} of the string '${meetStr}'`);
+const dateMatch = meetStr.match(/\b(\d{2}):(\d{2})\b/);
+if(dateMatch){
+	const [mTime, mH, mM] = dateMatch;
+	console.log(`The meeting is at ${mTime} (hours='${mH}' & minutes='${mM}')`);
 }else{
-	console.log('no time found');
+	console.log('No idea when the meeting is 🙁');
 }
 ```
 
-Unless you need the index, it's easier to use the `.test()` function provided by `RegExp`.
+Note the use of the word boundary position indicator (`\b`) within the RE, and the use of destructuring assignment to split the array into separate named variables.
 
-LEFT OF HERE!!!
+If, on the other hand, we want to extract all times from a string but don't want the sub-parts we can use an RE with the global flag set:
 
-TO DO — String.match & String.matchAll
+```js
+const inputStr = "I wanted to meet at 08:00, but that was too early for Bob, so he suggested 10:00, but that was too late for Alice, so we settled on 09:00";
+const matchedTimes = inputStr.match(/\b\d{2}:\d{2}\b/g);
+if(matchedTimes){
+	console.log(`found ${matchedTimes.length} times: ${matchedTimes.join(', ')}`);
+}else{
+	console.log('No times found 🙁');
+}
+```
 
-TO DO — String.replace
+At the moment we're forced to choose between two sub-optimal options when it comes to finding multiple matches in a string — either we give up getting the sub-matches (capture groups), or we use the unintuitive state-full behaviour of the `.exec()` function from the RegExp class. The good news is change is coming — there is a draft specification for a new function named `.matchAll()` for the `String` class that will take an RE as an argument and return an iterator to iterate over all matches, giving sub-matches for each match. For now (February 2020), this function is not in the official spec, and not widely supported in browsers.
 
-## Array Functions that use REs
+### Replacing Patterns within Strings with `.replace()`
 
-TO DO — Array.split
+The final function I want to highlight from the `String` class is `.replace()`. This function can accept an RE object as the first argument. Depending on whether or not the passed RE has the global flag set, either the first occurrence of the pattern or the second will be replaced by the replacement string passed as the second argument.
+
+The replacement string can include a number of special values based on the regular expression. You can include the entire match in the replacement string with `$&` and the matched capture groups with `$1`, `$2` etc.. Because the `$` character has a meaning within the replacement string you need to use `$$` to represent an actual dollar character.
+
+Note that this function is a little more complex than this simply description implies — the first argument can be a string rather than an RE, and the second argument can be a function rather than a string. If you want to learn more about this function [see the relevant MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace).
+
+As a simple example, let's use this function to replace all arbitrarily capitalised variants of the word `NosillaCast` with the nicely inter-capped version:
+
+```js
+const originStr = "The Nosillacast Rocks! Those nosillacastaways sure know how to geek!";
+const fixedStr = originStr.replace(/nosillacast/gi, 'NosillaCast');
+console.log(`Before:\n${originStr}\n\nAfter:\n${fixedStr}`);
+```
+
+Note the use of both the `i` and `g` flags. The `i` flag ensures our pattern matches regardless of case, and the `g` ensure we replace all occurrences of the pattern, not just the first.
+
+Also note that because we did not wrap the letters `nosillacast` with word boundary position indicators (`\b`), `nosillacastaways` was matched as well as `Nosillacast`.
+
+This simple example does not use capture groups, so let's take things up a notch and use the `.replace()` function to convert American dates to US Dates.
+
+```js
+const usDateStr = "I had a great time 12/25/2019, I'm hoping 12/25/2020 is as good!";
+const euDateStr = usDateStr.replace(/\b(\d{2})\/(\d{2})\/(\d{4})\b/g, '$2-$1-$3');
+console.log(`Before:\n${usDateStr}\n\nAfter:\n${euDateStr}`);
+```
+
+### Splitting Strings into Arrays with `.split()`
+
+The final `String` instance function I want to highlight is `.split()`. This function splits a string into an array of strings based on a delimiter which is passed as an argument. That delimiter can be a string, but it can also be a regular expression object.
+
+When parsing input from users or a remote data source there's often subtle variations in the format that your code should take into account. For example, if you ask users for a coma-separated list of items will they add a space after the coma or not?
+
+The following example will split a string on a comma followed by zero or more spaces:
+
+```js
+const rawList = 'something, something else,another thing,  one last thing';
+const splitList = rawList.split(/,[ ]*/);
+console.log(splitList); // ["something", "something else", "another thing", "one last thing"]
+```
+Notice that this RE split on a comma with one space, no spaces, and two spaces, and that in each case, the entire matched pattern was treated as the delimiter and removed.
 
 ## Final Thoughts
 
