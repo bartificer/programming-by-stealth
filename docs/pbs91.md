@@ -1,20 +1,20 @@
 # PBS 91 of X — JavaScript RE Objects
 
-Over the past few instalments we've been looking at many of the different *hats* objects wear in JavaScript. We've seen how JavaScript uses Objects to implement dictionaries/hash tables, arrays, strings, functions of various kinds, and to wrap primitive values when they need object-like behaviour. In this instalment we'll be looking at our penultimate *hat* — regular expressions.
+Over the past few instalments we've been looking at many of the different *hats* objects wear in JavaScript. We've seen how JavaScript uses objects to implement dictionaries/hash tables, arrays, strings, functions of various kinds, and to wrap primitive values when they need object-like behaviour. In this instalment we'll be looking at our penultimate *hat* — regular expressions.
 
-As a gentle reminder, Regular Expressions, also known as RegExps or simply REs are a means of representing text patterns. 
+As a gentle reminder, Regular Expressions, also known as RegExps or simply REs, are a means of representing text patterns. 
 
-We'll start by reminding ourselves of the syntax for regular expression literals in JavaScript. Next we'll look at some of the useful functions provided by the built-in RegExp class, and how they allow us to do two extremely common RE-related tasks — checking whether or not strings match a given pattern, and using patterns to break strings into meaningful components, or *string parsing* if you prefer fancier jargon 🙂. After that we'll take a quick look at how the String and Array built-in classes make use of REs, and will finish with a nice new RE feature being added in ES2018 TO CHECK
+We'll start by reminding ourselves of the syntax for regular expression literals in JavaScript. Next we'll look at some of the useful functions provided by the built-in RegExp class, and how they allow us to do three extremely common RE-related tasks — checking whether or not strings match a given pattern, and using patterns to extract meaningful information from strings, or *string parsing* if you prefer fancier jargon 🙂 We'll finish be re-visiting some instance functions provided by the built-in `String` class which make use of regular expressions.
 
 <!-- more -->
 
-## Regular Expressions on JavaScript
+## Regular Expressions in JavaScript
 
 Regular expressions are an abstract theoretical computer science concept, and many different languages have been devised to express them. JavaScript uses one of the most common RE languages — *Perl Compatible Regular Expressions*, or PCRE.
 
 Different programming languages choose to implement REs in very different ways. Some languages have just minimal support for REs, storing them simply as strings. Others integrate them deeply, providing native representations and implementations. While JavaScript doesn't integrate REs quite as deeply as Perl does, it does have extremely good RE support, including RE literals and a built-in class (`RegExp`) for storing RE objects.
 
-We covered REs in detail in instalments XXXXXX TO DO, but let's quickly go over the highlights again, starting with RE literals.
+We looked at regular expressions way back in [instalment 18](https://bartificer.net/pbs18), but let's quickly go over the highlights again, starting with RE literals.
 
 ## Regular Expression Literals
 
@@ -48,7 +48,7 @@ const schemeRE = /cat|dog/gi;
 
 The RE itself is `cat|dog`, which you'd read as *'cat or dog'*, and `g` & `i` are flags — `g` for *global*, and `i` for *case insensitive*.
 
-## RE Syntax Lightning Refresher
+## PCRE Syntax Refresher
 
 I'm not going to repeat the entire syntax here, instead, I'll recommend two very good links on Mozilla's excellent developer portal:
 
@@ -226,17 +226,17 @@ while(match = globalTimeRE.exec(stringToSearch)){
 }
 ```
 
-## REs with Other Standard Functions
+## REs in `String` Instance Functions
 
-A number of built-in JavaScript classes beyond `RegExp` provide instance functions that make use of regular expressions. Below are some of the highlights, again, this is by no means a definitive list.
+Given how closely related regular expressions and strings are, it's quite logical for some of the instance functions provided by the built-in `String` class to utilise regular expressions. Below are some of the highlights, again, this is by no means an exhaustive list.
 
-### Finding Patterns in Strings via the `String` Class
+### Finding Patterns in Strings
 
-The built-in `String` class provides two functions for finding a pattern within a string. These functions are similar to the `.exec()` function provided by the `RegExp` class, but in reverse. While `.exec()` is invoked on an RE object and passed a string, these functions are invoked on a string and passed an RE.
+The built-in `String` class provides two functions for finding a pattern within a string. These functions are similar to the `.exec()` function provided by the `RegExp` class, but mirrored. While `.exec()` is invoked on RE objects and passed a string, these functions are invoked on strings and passed an RE.
 
-The first of this pair of functions is `.match()`. This function behaves differently depending on whether or not the RE passed to it has the global flag set. If the global flag is set it returns an array of all complete matches, ignoring the capture groups. If the global flag is not set it returns only the first match, in the same format as returned by `.exec()` from the RegExp class. Regardless of whether or not the global flag is set, if the string does not match the regular expression at all, `null` is returned.
+The first of this pair of functions is `.match()`. This function behaves differently depending on whether or not the RE its passed has the global flag set. If the global flag is set it returns an array of all complete matches, ignoring the capture groups. If the global flag is not set it returns only the first match, in the same format as returned by `.exec()` from the RegExp class, i.e. with its sub-matches. Regardless of whether or not the global flag is set, if the string doesn't match the regular expression at all, `null` is returned.
 
-If we are interested in finding a single date within a string and breaking it into pieces we would use an RE without the global flag:
+If we're interested in finding a single date within a string and breaking it into pieces we could use an RE without the global flag:
 
 ```js
 const meetStr = "meet Bob at 10:00 tomorrow";
@@ -267,7 +267,7 @@ At the moment we're forced to choose between two sub-optimal options when it com
 
 ### Replacing Patterns within Strings with `.replace()`
 
-The final function I want to highlight from the `String` class is `.replace()`. This function can accept an RE object as the first argument. Depending on whether or not the passed RE has the global flag set, either the first occurrence of the pattern or the second will be replaced by the replacement string passed as the second argument.
+The next function I want to highlight from the `String` class is `.replace()`. This function can accept an RE object as the first argument. Depending on whether or not the passed RE has the global flag set, either the first occurrence of the pattern or the second will be replaced by the replacement string passed as the second argument.
 
 The replacement string can include a number of special values based on the regular expression. You can include the entire match in the replacement string with `$&` and the matched capture groups with `$1`, `$2` etc.. Because the `$` character has a meaning within the replacement string you need to use `$$` to represent an actual dollar character.
 
@@ -310,4 +310,6 @@ Notice that this RE split on a comma with one space, no spaces, and two spaces, 
 
 ## Final Thoughts
 
-TO DO
+We've now revisited all the *hats* objects wear in JavaScript that I think are worth focusing on but one. I've left what is arguably the most powerful and important hat of all until the very end of this little series within a series. JavaScript uses objects to represent classes. JavaScript's implementation of object orientation is extremely unusual, and before ES6 there was no way of writing your own classes without coming face-to-face with the intricate details of this unusual approach. This make writing classes in JavaScript extremely confusing. We initially learned to do it the hard way all the way back in instalments [17](https://bartificer.net/pbs17), [27](https://bartificer.net/pbs27), [28](https://bartificer.net/pbs28) & [29](https://bartificer.net/pbs2), and it didn't go well. It simply didn't click into place for Allison and many others. We tried again using the modern ES6 syntax in instalments [46](https://bartificer.net/pbs46), [47](https://bartificer.net/pbs47) & [48](https://bartificer.net/pbs48), but again, it didn't click. I'm hoping the third time is a charm! I'm hoping the third time will be a charm! My plan is to avoid any mention of the pre-ES6 way of doing things, to keep things simple, and to spread the topic over two instalments.
+
+Before we dive into our third attempt at understanding JavaScript classes we'll dedicate the next instalment to the solution to the challenge set in [instalment 89](https://bartificer.net/pbs89).
