@@ -40,7 +40,7 @@ const insulter = function(){
 const bothedMovieLine = 'lying, dog-faced pony soldier';
 ```
 
-In JavaScript, RE literals consist of PCRE patters enclosed by forward slashes (`/`) followed by zero or more flags. As a simple example, here's an RE literal to match all occurrences of `cat` or `dog` in any case: 
+In JavaScript, RE literals consist of PCRE patterns enclosed by forward slashes (`/`) followed by zero or more flags. As a simple example, here's an RE literal to match all occurrences of `cat` or `dog` in any case: 
 
 ```js
 const schemeRE = /cat|dog/gi;
@@ -80,12 +80,12 @@ PCRE provides us with many codes for specifying a single occurrence of a given s
 | `.` | Any one character. |
 | `\d` | Any digit. |
 | `\w` | Any word character (a to z, A to Z, 0 to 9, and underscore). |
-| `\s` | any blank space character |
-| `\D` | any character that's not a digit |
-| `\W` | any non-word character |
-| `\S` | any non-space character |
-| `\t` | a tab character |
-| `\n` | a newline character |
+| `\s` | any blank space character. |
+| `\D` | any character that's not a digit. |
+| `\W` | any non-word character. |
+| `\S` | any non-space character. |
+| `\t` | a tab character. |
+| `\n` | a newline character. |
 
 As well as supporting many pre-defined character classes, PCRE also lets us define our own by listing the contents of our desired class within square brackets. For example, the character class to match any single un-accented lower-case western vowel is `[aeiou]`.
 
@@ -205,7 +205,7 @@ console.log(`hrs=${hrs}, mins=${mins} & secs=${secs}`);
 
 Notice the leading comma to discard the un-wanted first item in the array.
 
-so far we have been breaking a single time into pieces, what if we wanted to find all times in a long string of text? This is where the global flag comes into play.
+So far we have been breaking a single time into pieces, what if we wanted to find all times in a long string of text? This is where the global flag comes into play.
 
 If the RE that `.exec()` is called on has the global (`g`) flag set then the RE object becomes *stateful* and remembers the location in a string immediately following the previous match. If you pass the same string in again the search will resume from where it left off. This will keep happening until there are no more matches, at which point `null` will be returned, and the internal state gets reset.
 
