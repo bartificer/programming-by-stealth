@@ -21,6 +21,7 @@ For now, this is still a very **incomplete** list of instalments.
 * …
 * [PBS 89 — Currency Converter Challenge](pbs89.md)
 * [PBS 90 — JavaScript Wrapper Objects](pbs90.md)
+* [PBS 91 — JavaScript Wrapper Objects](pbs91.md)
 
 You'll find the notes for the other instalments at [bartb.ie/pbs](https://bartb.ie/pbs).
 

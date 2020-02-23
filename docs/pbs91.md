@@ -6,7 +6,13 @@ As a gentle reminder, Regular Expressions, also known as RegExps or simply REs, 
 
 We'll start by reminding ourselves of the syntax for regular expression literals in JavaScript. Next we'll look at some of the useful functions provided by the built-in RegExp class, and how they allow us to do three extremely common RE-related tasks — checking whether or not strings match a given pattern, and using patterns to extract meaningful information from strings, or *string parsing* if you prefer fancier jargon 🙂 We'll finish be re-visiting some instance functions provided by the built-in `String` class which make use of regular expressions.
 
-<!-- more -->
+## Matching Podcast Episode 626
+
+Listen along to this instalment on [episode 626 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/02/ccatp-626/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_02_22.mp3">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_02_22.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
 
 ## Regular Expressions in JavaScript
 
