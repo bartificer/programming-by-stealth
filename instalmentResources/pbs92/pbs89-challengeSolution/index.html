@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+				
+	<!-- Include Bootstrap 4 CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<!-- Include Font Awesome 5 -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	
+	<title>PBS 89 — Currency Converter</title>
+</head>
+<body>
+
+<!-- The Page Heading (a NavBar) -->
+<header class="navbar navbar-dark bg-dark navbar-expand-sm">
+	<h1 class="navbar-brand">
+		<img src="data://image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAIAAAC0Ujn1AAAEq2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjMwIgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iMzAiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgdGlmZjpJbWFnZVdpZHRoPSIzMCIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMzAiCiAgIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiCiAgIHRpZmY6WFJlc29sdXRpb249IjcyLjAiCiAgIHRpZmY6WVJlc29sdXRpb249IjcyLjAiCiAgIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiCiAgIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIKICAgeG1wOk1vZGlmeURhdGU9IjIwMTktMTEtMjlUMTE6NTg6MDVaIgogICB4bXA6TWV0YWRhdGFEYXRlPSIyMDE5LTExLTI5VDExOjU4OjA1WiI+CiAgIDx4bXBNTTpIaXN0b3J5PgogICAgPHJkZjpTZXE+CiAgICAgPHJkZjpsaQogICAgICBzdEV2dDphY3Rpb249InByb2R1Y2VkIgogICAgICBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZmZpbml0eSBEZXNpZ25lciAoU2VwIDIyIDIwMTkpIgogICAgICBzdEV2dDp3aGVuPSIyMDE5LTExLTI5VDExOjU4OjA1WiIvPgogICAgPC9yZGY6U2VxPgogICA8L3htcE1NOkhpc3Rvcnk+CiAgPC9yZGY6RGVzY3JpcHRpb24+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+YjheEgAAAYJpQ0NQc1JHQiBJRUM2MTk2Ni0yLjEAACiRdZHLS0JBFIc/tShSK6hFixYS1kqjB0htgpSwQELMIKuN3nwEPi73KiFtg7ZCQdSm16L+gtoGrYOgKIJo06Z1UZuK27kZGJFnOHO++c2cw8wZsEazSk5vGIBcvqhFgn7XXGze1fSInVYcOPHGFV0dD4dD1LW3GyxmvPKateqf+9fsS0ldAUuz8JiiakXhSeHQSlE1eVO4U8nEl4SPhT2aXFD42tQTVX4yOV3lD5O1aCQA1nZhV/oXJ36xktFywvJy3LlsSfm5j/kSRzI/OyOxR7wbnQhB/LiYYoIAPgYZldmHlyH6ZUWd/IHv/GkKkqvIrFJGY5k0GYp4RC1J9aTElOhJGVnKZv//9lVPDQ9Vqzv80PhgGC+90LQBnxXDeN83jM8DsN3DWb6WX9iDkVfRKzXNvQtta3ByXtMSW3C6Dl13alyLf0s2cWsqBc9H4IxBxyW0LFR79rPP4S1EV+WrLmB7B/rkfNviF0IaZ9X54WhGAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFJ0lEQVRIibWWf0xTVxTHv23h9QcWAxTUibMVSXSFGWhW2GSzbisuTrfAXLto5lCsy5xbhIzo/oDoX4vGxh9zg2STZQtBkaXDDZdFYEo6hQhjYvkVKbNUgVLKgyJteba8tz9eeRSoyh/u/HXvOed+3rnnnnPf5TEMg/9H+AtV/gA9Mu6b9PkXs95LBSj/9NPRTZ1Drxy8QGhPJ+SUflNzezHoA6fqRdlnZO9++9FXf4xOTIVH250Ptx4xNXUOLYY4T0Ynpn662vXa51U0HZJeZkaOX7gFjREaY9mv7X2D4zTNLBR6gdZH+e/0jZSU32DX1jb1cabZqM13BgAkJ8Z8vP3FNSuW8nizn3c6nQUFBZmZmVKpNDk5WafTNTQ0sCYREZG6Rla8O3OlbAmAlp5hblUENxp7OAVAvW75vM2aTCaDwUCSJDu1Wq1Wq7W6unrv3r2lpaUEQQCIEPCfky0ZcE1OeB+FyTV70AkxklCuxWLZuXMnxw2V8vLykpISbhop4ANwT1JhovZRAQBiIiJkOfLz8ymK2rRRvUaxKlQ/5HDWXbt54sQJvV6flpYGgIgUABgPiyYfTgEQC0M0JNnS0nL8WFHhp3tomubzg1tkxxdNVz7cX1RfX8+i5cujAYxNztZf0Jth4HL75qHb2toA5G7TAthz4Mitv+8AsNkH3tbtp2n6ve1bALS2trLOKQoZgFH3AvSI2+sP0ADWr47lbPHx8QBc5DiA7DdeVcgTASxfJsvZpuXz+S5yDEBCQsIMOg6Ag/RMz5R2EF18/iaAxHjplpfkHFqpVIrF4mPHv7bZB3a9vz0+LhaASCjcn6d3OF1fHj0JQK1Wh0btHPeWXm4Prq+o63q9oBoao3jLmQsNPfM64vDhw8EQ5gqrlMvlbrebcy4qa4TGKNSe1h397frt+8j67CI0xmU5pV22UdajtrY2NzfX4XAwDENRVHp6OsKJQCAwm81ze5WpqOsSak9DYzScvMqXCCMADI95D575kz3JpKSk5uZmtVrd3t5OEERjY+OhQ4d4od0JpKWltba2ZmVlhSqHxzwVdd1sfwgjBQhM039ZBuQffAeNUfvFz+z3Hzx4oFKpoqKiampq+vv79Xr9vJBjY2ONRqPP5wsNed3uH6AxZnxSeat7aHqaDl5PV5r/hcbI22z0TPlZjcfj2bFjB4/HEwqFYRPC7s9ut7P+1/6xQ2OMeOMUl9jggWhVqwEwDHrswZ6WSCQGg4HH41EU9Th0X19fdna2y+UCYDJbAShWLOXKN4iOjOBHSwgAHfdcrGZkZESn09E0/TguKz09PYWFhZi5PeKiRZxp9nqKjRYB6Lw3yk4vXbrkdrufzGWlqqpqeHjY9ygAQLZUHAYdIxUBcHuC26+srFwMF0BMTIzNZvNOBQBIJUQYNJsQtt0BnD17Nicn58lQsVhcXFzc29ubkZHhpfwARISAs85eRtFRBIBHgeDvWaVSmUymjo6Oc+fOWSyWu3fvssclEAjWrl2rVCpTU1P37duXmJgIgGHQ3U+CLeeFaDZNDW12yj/NeaSkpJSVlbFjkiSdTqdCoVhYjnbnhIP0AFi/Oo5T8rgnzvXb9zcXVANQyuMyX1iR95YyK3XlkxMC4BeztaKuu7H9PvtS6P4xb93zc4sPwKYNq/K3pgDotI2e/73jRsfgU7kALt+wmsy9LPdo3sscd05CeDx8X5S96831TV2Dgy7PhqT4xaA3bVgllRBx0eJ3NialJyeEmmYT8swlzJvvWcl/xjinEI5qQegAAAAASUVORK5CYII=" class="border rounded" width="30" height="30" alt="">
+		PBS 89
+	</h1>
+	<h2 class="navbar-text h5">Currency Converter</h2>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header_nav" aria-controls="header_nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<nav class="collapse navbar-collapse justify-content-end" id="header_nav">
+		<ul class="navbar-nav">
+			 <li class="nav-item">
+				<a class="nav-link" href="https://bartb.ie/pbs" target="_blank" rel="noopener">PBS Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://bartb.ie/pbsindex" target="_blank" rel="noopener">PBS Index</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<!-- The main page body -->
+<main class="container-fluid mt-3">
+	<div class="row">
+		<div class="col">
+			<p class="lead">A sample solution to the challenge set in <a href="https://bartificer.net/pbs89" target="_blank">instalment 89</a> of the <a href="https://bartb.ie/pbs" target="_blank">Programming by Stealth series</a>.</p>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col">
+			<h1 class="display-4">
+				<i class="fas fa-coins"></i>
+				Current Exchange Rates
+			</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-lg-8 col-xl-9 order-lg-2 p-0">
+			<div class="container p-0">
+				<div class="row no-gutters" id="currency_cards">
+					<div class="col text-center">
+						<div class="spinner-border m-5" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-4 col-xl-3 order-lg-1 p-0">
+			<div class="container">
+				<div class="row" id="currency_controls">
+					<div class="col text-center">
+						<div class="spinner-border m-5" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col text-center text-muted">
+			<small>Currency data from <a href="https://exchangeratesapi.io/" target="_blank" rel="noopener">exchangeratesapi.io</a></small>
+		</div>
+	</div>
+</main>
+
+<!-- Include Bootstrap JavaScript from CDNs -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- Include Mustache.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
+
+<!-- Include Numeral.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<!-- Load the currency data -->
+<script type="text/javascript" src="./currencyData.js"></script>
+
+<!-- Load the local JS Code -->
+<script type="text/javascript" src="./index.js"></script></script>
+
+<!-- The Error Card Template -->
+<script type="text/html" id="errorCardTpl">
+	<div class="card border-danger">
+		<h2 class="card-header h4 bg-danger text-white">Error</h2>
+		<div class="card-body text-danger bg-light">
+			<p class="card-text">{{message}}</p>
+		</div>
+	</div>
+</script>
+
+<!-- The Currency Col Template -->
+<script type="text/html" id="currencyColTpl">
+	<div data-currency="{{{base.code}}}" class="currencyCol col-12 col-md-6 col-xl-4">
+		{{> loadingCard}}
+	</div>
+</script>
+
+<!-- The Currency Loading Card Template -->
+<script type="text/html" id="currencyLoadingCardTpl">
+	<div class="card m-3 text-center">
+		<h2 class="card-header h4">
+			{{base.name}}
+		</h2>
+		<div class="card-body">
+			<div class="spinner-border m-5" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+	</div>
+</script>
+
+<!-- The Currency Card Template -->
+<script type="text/html" id="currencyDisplayCardTpl">
+	<div class="card m-3">
+		<h2 class="card-header h4">
+			<small class="text-secondary">{{base.code}}</small>
+			{{{base.icon}}} {{base.name}}
+			<button type="button" class="close" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</h2>
+		<div class="card-body p-2">
+			<form action="javascript:void(0);" class="form">
+				<div class="input-group input-group-sm">
+					<div class="input-group-prepend">
+						<span class="input-group-text">{{{base.icon}}}</span>
+					</div>
+					<input type="number" class="baseAmount form-control" placeholder="Amount" aria-label="Amount" value="1.00" min="0.01" step="0.01" required>
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
+					</div>
+				</div>
+			</form>
+		</div>
+		<ul class="list-group list-group-flush">
+		{{#rates}}
+			<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rawRate}}}">
+				<h3 class="d-inline h6 mr-2 text-primary">{{code}}</h3>
+				<span class="text-muted">{{base.symbol}}<span class="baseAmount">1</span></span>
+				=
+				{{symbol}}<span class="convertedAmount">{{rate}}</span>
+				<small class="text-muted">{{name}}</small>
+			</li>
+		{{/rates}}
+		</ul>
+	</div>
+</script>
+
+<!-- The add card form template -->
+<script type="text/html" id="addCardFormTpl">
+	<div  class="col-12 col-md-6 col-xl-4">
+		<div class="card m-3 border-success bg-light">
+			<h2 class="card-header h4 text-success border-success">
+				<i class="fas fa-plus-circle" aria-hidden></i>
+				Add Currency Card
+			</h2>
+			<div class="card-body">
+				<form class="form" action="javascript:void(0);">
+					<div class="form-group">
+						<select id="add_currency_sel" class="custom-select" size=6>
+						{{#currencies}}
+							<option value="{{{code}}}">{{symbol}}{{code}} — {{name}}</option>
+						{{/currencies}}
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success form-control">Add Currency Card</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</script>
+
+<!-- The show/hide rate form template -->
+<script type="text/html" id="showHideRatesFormTpl">
+	<div  class="col-12 col-md-6 col-lg-12 p-0">
+		<div class="card m-3 border-success bg-light">
+			<h2 class="card-header h4 text-success border-success">
+				<i class="fas fa-toggle-on" aria-hidden></i>
+				Show/Hide Rates
+			</h2>
+			<div class="card-body">
+				<form class="form" action="javascript:void(0);">
+					<ul class="list-unstyled d-flex flex-wrap justify-content-between">
+					{{#currencies}}
+						<li class="border border-secondary rounded p-2 m-2" style="flex: 1">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="showCurrency{{{code}}}Tgl" value="{{{code}}}">
+								<label class="custom-control-label" for="showCurrency{{{code}}}Tgl"><span class="text-muted">{{symbol}}</span>{{code}}</label>
+							</div>
+						</li>
+					{{/currencies}}
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+</script>
+
+</body>
+</html>
