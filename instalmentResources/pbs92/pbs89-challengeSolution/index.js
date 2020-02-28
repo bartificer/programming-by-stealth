@@ -71,6 +71,71 @@ $(function(){
 });
 
 //
+// Data Loading Functions
+//
+
+/**
+ * Load the exchange rates for all currencies by loading the rates for one
+ * currency and then inverting them.
+ *
+ * The rates are injected into the CURRENCIES data structure.
+ *
+ * @throws {RangeError} A Range Error is thrown if the Euro data is missing any expected rates.
+ */
+async function loadCurrencyRates(){
+	const eurData = await $.ajax({ // could throw Error
+		url: CURRENCY_API_URL,
+		method: 'GET',
+		cache: false,
+		data: {
+			base: 'EUR'
+		}
+	});
+	console.debug(`received Euro excange rates: `, eurData);
+	
+	// store the Euro rates and throw an error if any expected currency is missing
+	CURRENCIES.EUR.rates = {};
+	for(const toCur of SORTED_CURRENCY_CODES){
+		// deal with the special case of the Euro mapping to itself
+		if(toCur === 'EUR'){
+			// store the Euro to Euro rate
+			CURRENCIES.EUR.rates.EUR = 1;
+		}else{
+			// store the rate or throw an error
+			if(eurData.rates[toCur]){
+				CURRENCIES.EUR.rates[toCur] = eurData.rates[toCur];
+			}else{
+				throw RangeError(`no data received for currency '${toCur}'`);
+			}
+		}
+	};
+	
+	// generate the rates for all other currencies
+	for(const fromCode of SORTED_CURRENCY_CODES){
+		// skip the Euro
+		if(fromCode === 'EUR') continue;
+		
+		// calculate the rate to Euro by inverting the rate from Euro
+		const toEuro = 1 / eurData.rates[fromCode];
+		CURRENCIES[fromCode].rates = { EUR: toEuro};
+		for(const toCode of SORTED_CURRENCY_CODES){
+			// skip the Euro
+			if(toCode === 'EUR') continue;
+			
+			// check for self
+			if(fromCode === toCode){
+				CURRENCIES[fromCode].rates[toCode] = 1;
+			}else{
+				const rate = toEuro * eurData.rates[toCode];
+				CURRENCIES[fromCode].rates[toCode] = rate;
+			}
+		}
+	}
+
+	console.debug('Finished currency rate conversions');
+}
+
+//
 // UI Generation Functions
 //
 
