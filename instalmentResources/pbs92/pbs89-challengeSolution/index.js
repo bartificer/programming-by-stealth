@@ -51,11 +51,37 @@ $(function(){
 	const $currencyControls = $('#currency_controls'); // where the global UI cards go
 	const $cards = $('#currency_cards'); // where the currency cards go
 	
-	// add the New Card Form into the page
-	$cards.empty().append(buildNewCardFormUI());
+	// add the Currency Selection form into the page
+	$currencyControls.empty().append(biuldCurrencySelectionFormUI());
 	
+	// load the placeholders for the currency cards into the page
+	$cards.empty().append(buildCurrencyCardPlaceholders());
+	
+	// add the New Card Form into the page
+	$cards.append(buildNewCardFormUI());
+	
+	// load the cards for the default currencies
+	for(const curCode of SORTED_CURRENCY_CODES){
+		if(CURRENCIES[curCode].defaultCard){
+			showCurrencyCard(curCode, true).catch(function(e){
+				console.error(`failed to show '${curCode}'`, e);
+			});
+		}
+	}
+});
+
+//
+// UI Generation Functions
+//
+
+/**
+ * A function to build the form for selecting currencies.
+ *
+ * @return {jQuery}
+ */
+function biuldCurrencySelectionFormUI(){
 	// build the show/hide rates form
-	const $showHideRatesForm = $(Mustache.render(
+	const $currencySelectionForm = $(Mustache.render(
 		TEMPLATES.forms.showHideRates,
 		CURRENCY_CONTROL_VIEW
 	));
@@ -63,14 +89,13 @@ $(function(){
 	// enable the appropriate toggles
 	for(const curCode of SORTED_CURRENCY_CODES){
 		if(DISPLAY_CURRENCIES[curCode]){
-			$(`input[value='${curCode}']`, $showHideRatesForm).prop('checked', true);
+			$(`input[value='${curCode}']`, $currencySelectionForm).prop('checked', true);
 		}
 	}
 	
-	
 	// add event handlers to all the toggles and trigger them to get the
 	// inital rendering right
-	$('input[type="checkbox"]', $showHideRatesForm).on('input', function(){
+	$('input[type="checkbox"]', $currencySelectionForm).on('input', function(){
 		// get a reference to a jQuery object representing the toggle
 		const $toggle = $(this);
 		
@@ -100,41 +125,9 @@ $(function(){
 		}
 	}).trigger('input');
 	
-	// add the form into the page
-	$currencyControls.empty().append($showHideRatesForm);
-	
-	// load the hidden placeholder cards for each currency
-	let $placeholderCards = $(); // empty jQuery object
-	for(const curCode of SORTED_CURRENCY_CODES){
-		const $card = $(Mustache.render(
-			TEMPLATES.currencies.col, // the template
-			{ // the view
-				base: {
-					code: curCode,
-					...CURRENCIES[curCode]
-				}
-			},
-			{ // the partials
-				loadingCard: TEMPLATES.currencies.loadingCard
-			}
-		)).hide();
-		$placeholderCards = $placeholderCards.add($card);
-	}
-	$cards.append($placeholderCards);
-	
-	// load the default currencies
-	for(const curCode of SORTED_CURRENCY_CODES){
-		if(CURRENCIES[curCode].defaultCard){
-			showCurrencyCard(curCode, true).catch(function(e){
-				console.error(`failed to show '${curCode}'`, e);
-			});
-		}
-	}
-});
-
-//
-// UI Generation Functions
-//
+	// return the form
+	return $currencySelectionForm;
+}
 
 /**
  * A function to build the form used to add cards in the currency card view.
@@ -167,6 +160,33 @@ function buildNewCardFormUI(){
 	
 	// return the form
 	return $addCardForm;
+}
+
+/**
+ * A function to build the placeholder cards for each currency.
+ *
+ * @return {jQuery} Returns a single jQuery object representing all the cards.
+ */
+function buildCurrencyCardPlaceholders(){
+	let $placeholderCards = $(); // empty jQuery object
+	for(const curCode of SORTED_CURRENCY_CODES){
+		const $card = $(Mustache.render(
+			TEMPLATES.currencies.col, // the template
+			{ // the view
+				base: {
+					code: curCode,
+					...CURRENCIES[curCode]
+				}
+			},
+			{ // the partials
+				loadingCard: TEMPLATES.currencies.loadingCard
+			}
+		)).hide();
+		$placeholderCards = $placeholderCards.add($card);
+	}
+	
+	// return the placeholder cards
+	return $placeholderCards;
 }
 
 //
