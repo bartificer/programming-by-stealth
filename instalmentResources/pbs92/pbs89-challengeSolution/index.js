@@ -38,11 +38,18 @@ for(const curCode of SORTED_CURRENCY_CODES){
 //
 // Document ready handler
 //
-$(function(){
+
+/**
+ * The async function that will be invoked by the document ready handler.
+ * 
+ * @throws {Error} An error is thrown if the document fails to initialise.
+ */
+async function initCurrencyConverter(){
 	// load the templates
 	TEMPLATES.forms.addBaseCurrency = $('#addCardFormTpl').html();
 	TEMPLATES.forms.showHideRates = $('#showHideRatesFormTpl').html();
 	TEMPLATES.errorCard = $('#errorCardTpl').html();
+	TEMPLATES.currencyCardCol = $('#currencyCardColTpl').html();
 	TEMPLATES.currencies.col = $('#currencyColTpl').html();
 	TEMPLATES.currencies.loadingCard = $('#currencyLoadingCardTpl').html();
 	TEMPLATES.currencies.displayCard = $('#currencyDisplayCardTpl').html();
@@ -51,23 +58,40 @@ $(function(){
 	const $currencyControls = $('#currency_controls'); // where the global UI cards go
 	const $cards = $('#currency_cards'); // where the currency cards go
 	
+	// load the currency data
+	await loadCurrencyRates();
+	
 	// add the Currency Selection form into the page
 	$currencyControls.empty().append(biuldCurrencySelectionFormUI());
 	
+	// load all the currency cards
+	//$cards.empty().append(buildCurrencyCards());
+	
 	// load the placeholders for the currency cards into the page
-	$cards.empty().append(buildCurrencyCardPlaceholders());
+	//$cards.empty().append(buildCurrencyCardPlaceholders());
 	
 	// add the New Card Form into the page
-	$cards.append(buildNewCardFormUI());
+	//$cards.append(buildNewCardFormUI());
 	
 	// load the cards for the default currencies
-	for(const curCode of SORTED_CURRENCY_CODES){
-		if(CURRENCIES[curCode].defaultCard){
-			showCurrencyCard(curCode, true).catch(function(e){
-				console.error(`failed to show '${curCode}'`, e);
-			});
+	//for(const curCode of SORTED_CURRENCY_CODES){
+	//	if(CURRENCIES[curCode].defaultCard){
+	//		showCurrencyCard(curCode, true).catch(function(e){
+	//			console.error(`failed to show '${curCode}'`, e);
+	//		});
+	//	}
+	//}
+}
+
+$(async function(){
+	initCurrencyConverter().then(
+		function(){ // success handler
+			console.debug('successfully initialised currency converter');
+		},
+		function(e){ // error handler
+			console.error('failed to initialise currency converter with error:', e);
 		}
-	}
+	);
 });
 
 //
@@ -228,6 +252,103 @@ function buildNewCardFormUI(){
 }
 
 /**
+ * A function to build the the card, and its contianing col, for a given currency.
+ *
+ * @param {string} curCode
+ */
+function buildCurrencyCardCol(curCode){
+	// build the view for the card
+	const cardView = {
+		base: {
+			code: curCode,
+			...CURRENCIES[curCode]
+		},
+		rates: []
+	};
+	for(const toCurCode of SORTED_CURRENCY_CODES){
+		if(toCurCode === curCode) continue; // skip self
+		cardView.rates.push({
+			code: toCurCode,
+			rate: numeral(CURRENCIES[curCode].rates[toCurCode]).format('0,0[.]00'),
+			rawRate: CURRENCIES[curCode].rates[toCurCode],
+			...CURRENCIES[toCurCode]
+		});
+	}
+	console.debug(`generated view for '${curCode}':`, cardView);
+	
+	// generate the HTML
+	const cardHTML = Mustache.render(TEMPLATES.currencyCardCol, cardView);
+	
+	// convert the HTML to a jQuery object
+	const $card = $(cardHTML);
+	
+	// hide the currencies that should not be showing
+	for(const toCurCode of SORTED_CURRENCY_CODES){
+		if(!DISPLAY_CURRENCIES[toCurCode]){
+			$(`li.currencyRate[data-currency='${toCurCode}']`, $card).hide();
+		}
+	}
+	
+	// LEFT OFF HERE!!!
+	
+	//// add a click handler to the close button
+	//$('button.close', $card).click(function(){
+	//	// hide the card
+	//	$currencyCardCol(curCode).hide();
+	//	
+	//	// update the add card select
+	//	updateAddCardSelectOptions();
+	//});
+
+	//// add an input handler to the base amount text box
+	//$('input.baseAmount', $card).on('input', function(){
+	//	// convert the DOM object for the input to a jQuery object
+	//	const $input = $(this);
+	//	
+	//	// get a reference to the card's form
+	//	const $form = $input.closest('form');
+	//	
+	//	// enable the display of the validation state on the form
+	//	$form.addClass('was-validated');
+	//	
+	//	// read the base amount for the form
+	//	let baseAmount = $input.val();
+	//	
+	//	// default to 1 if invalid
+	//	if($input.is(':invalid')){
+	//		baseAmount = 1;
+	//	}
+	//	
+	//	// remove a trailing dot if present ('4.' to '4')
+	//	baseAmount = String(baseAmount).replace(/[.]$/, '');
+	//	
+	//	// do the conversion
+	//	updateCardConversions(curCode, baseAmount);
+	//});
+	
+	// return the card
+	return $card;
+}
+
+
+/**
+ * A function to build the cards, including their cols, for each currency.
+ *
+ * @return {jQuery} Returns a single jQuery object representing all the cards.
+ */
+function buildCurrencyCardCols(){
+	let $cards = $(); // empty jQuery object
+	
+	// build and store each card
+	for(const baseCurCode of SORTED_CURRENCY_CODES){
+		$cards = $cards.add(buildCurrencyCardCol(baseCurCode));
+	}
+	
+	// return the placeholder cards
+	return $cards;
+}
+
+/**
  * A function to build the placeholder cards for each currency.
  *
  * @return {jQuery} Returns a single jQuery object representing all the cards.
@@ -256,6 +377,20 @@ function buildCurrencyCardPlaceholders(){
 
 //
 // Helper functions
+//
+
+/**
+ * Get a jQuery object representing the col for a given currency card.
+ * 
+ * @param {string} curCode
+ * @return {jQuery}
+ */
+function $currencyCardCol(curCode){
+	return $(`.currencyCol[data-currency=${curCode}]`);
+}
+
+//
+// LEGACY
 //
 
 /**

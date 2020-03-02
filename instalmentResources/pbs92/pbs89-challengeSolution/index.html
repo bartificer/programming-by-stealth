@@ -109,6 +109,45 @@
 	</div>
 </script>
 
+<!-- The Currency Column & Card Template  -->
+<script type="text/html" id="currencyCardColTpl">
+	<div data-currency="{{{base.code}}}" class="currencyCol col-12 col-md-6 col-xl-4">
+		<div class="card m-3">
+			<h2 class="card-header h4">
+				<small class="text-secondary">{{base.code}}</small>
+				{{{base.icon}}} {{base.name}}
+				<button type="button" class="close" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</h2>
+			<div class="card-body p-2">
+				<form action="javascript:void(0);" class="form">
+					<div class="input-group input-group-sm">
+						<div class="input-group-prepend">
+							<span class="input-group-text">{{{base.icon}}}</span>
+						</div>
+						<input type="number" class="baseAmount form-control" placeholder="Amount" aria-label="Amount" value="1.00" min="0.01" step="0.01" required>
+						<div class="input-group-append">
+							<span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
+						</div>
+					</div>
+				</form>
+			</div>
+			<ul class="list-group list-group-flush">
+			{{#rates}}
+				<li class="list-group-item currencyRate" data-currency="{{{code}}}" data-rate="{{{rawRate}}}">
+					<h3 class="d-inline h6 mr-2 text-primary">{{code}}</h3>
+					<span class="text-muted">{{base.symbol}}<span class="baseAmount">1</span></span>
+					=
+					{{symbol}}<span class="convertedAmount">{{rate}}</span>
+					<small class="text-muted">{{name}}</small>
+				</li>
+			{{/rates}}
+			</ul>
+		</div>
+	</div>
+</script>
+
 <!-- The Currency Col Template -->
 <script type="text/html" id="currencyColTpl">
 	<div data-currency="{{{base.code}}}" class="currencyCol col-12 col-md-6 col-xl-4">
@@ -116,7 +155,7 @@
 	</div>
 </script>
 
-<!-- The Currency Loading Card Template -->
+<!-- The Currency Loading Card Template LEGACY -->
 <script type="text/html" id="currencyLoadingCardTpl">
 	<div class="card m-3 text-center">
 		<h2 class="card-header h4">
@@ -130,7 +169,7 @@
 	</div>
 </script>
 
-<!-- The Currency Card Template -->
+<!-- The Currency Card Template LEGACY -->
 <script type="text/html" id="currencyDisplayCardTpl">
 	<div class="card m-3">
 		<h2 class="card-header h4">
