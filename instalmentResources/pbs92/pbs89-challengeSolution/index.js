@@ -4,15 +4,17 @@
 
 // a lookup table for the various templates
 var TEMPLATES = {
-	forms: {
-		addBaseCurrency: '', // loaded by document ready handler
-		showHideRates: '' // loaded by document ready handler
+	ui: {
+		showHideRates: '', // loaded by document ready handler
+		errorCard: '' // loaded by document ready handler
 	},
-	errorCard: '', // loaded by document ready handler
-	currencies: {
-		col: '',  // loaded by document ready handler
-		loadingCard: '',  // loaded by document ready handler
-		displayCard: '' // loaded by document ready handler
+	cards: {
+		addCardForm: '',  // loaded by document ready handler
+		currencyCardCol: ''  // loaded by document ready handler
+	},
+	grid: {
+		table: '',  // loaded by document ready handler
+		currencyRow: ''  // loaded by document ready handler
 	}
 };
 
@@ -46,17 +48,16 @@ for(const curCode of SORTED_CURRENCY_CODES){
  */
 async function initCurrencyConverter(){
 	// load the templates
-	TEMPLATES.forms.addBaseCurrency = $('#addCardFormTpl').html();
-	TEMPLATES.forms.showHideRates = $('#showHideRatesFormTpl').html();
-	TEMPLATES.errorCard = $('#errorCardTpl').html();
-	TEMPLATES.currencyCardCol = $('#currencyCardColTpl').html();
-	TEMPLATES.currencies.col = $('#currencyColTpl').html();
-	TEMPLATES.currencies.loadingCard = $('#currencyLoadingCardTpl').html();
-	TEMPLATES.currencies.displayCard = $('#currencyDisplayCardTpl').html();
+	TEMPLATES.ui.showHideRates = $('#showHideRatesFormTpl').html();
+	TEMPLATES.ui.errorCard = $('#errorCardTpl').html();
+	TEMPLATES.cards.addCardForm = $('#addCardFormTpl').html();
+	TEMPLATES.cards.currencyCardCol = $('#currencyCardColTpl').html();
+	TEMPLATES.grid.table = $("#currencyGridTableTpl").html();
 	
 	// get refences to the place-holders for the various UI components
 	const $currencyControls = $('#currency_controls'); // where the global UI cards go
 	const $cards = $('#currency_cards'); // where the currency cards go
+	const $grid = $('#currency_grid'); // where the currency table goes
 	
 	// load the currency data
 	await loadCurrencyRates();
@@ -76,6 +77,9 @@ async function initCurrencyConverter(){
 			showCurrencyCard(curCode, true);
 		}
 	}
+	
+	// load the currency grid
+	$grid.empty().append(buildCurrencyGrid());
 }
 
 $(async function(){
@@ -166,7 +170,7 @@ async function loadCurrencyRates(){
 function biuldCurrencySelectionFormUI(){
 	// build the show/hide rates form
 	const $currencySelectionForm = $(Mustache.render(
-		TEMPLATES.forms.showHideRates,
+		TEMPLATES.ui.showHideRates,
 		CURRENCY_CONTROL_VIEW
 	));
 	
@@ -221,7 +225,7 @@ function biuldCurrencySelectionFormUI(){
 function buildNewCardFormUI(){	
 	// build the form
 	const $addCardForm = $(Mustache.render(
-		TEMPLATES.forms.addBaseCurrency,
+		TEMPLATES.cards.addCardForm,
 		CURRENCY_CONTROL_VIEW
 	));
 		
@@ -270,7 +274,7 @@ function buildCurrencyCardCol(curCode){
 	console.debug(`generated view for '${curCode}':`, cardView);
 	
 	// generate the HTML
-	const cardHTML = Mustache.render(TEMPLATES.currencyCardCol, cardView);
+	const cardHTML = Mustache.render(TEMPLATES.cards.currencyCardCol, cardView);
 	
 	// convert the HTML to a jQuery object
 	const $card = $(cardHTML);
@@ -317,6 +321,19 @@ function buildCurrencyCardCol(curCode){
 	return $card;
 }
 
+/**
+ * A function to build the currency grid.
+ */
+function buildCurrencyGrid(curCode){
+	// build the table
+	const $table = $(Mustache.render(
+		TEMPLATES.grid.table,
+		CURRENCY_CONTROL_VIEW
+	));
+	
+	// return the table
+	return $table;
+}
 
 /**
  * A function to build the cards, including their cols, for each currency.
