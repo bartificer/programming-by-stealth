@@ -52,9 +52,9 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 col-lg-8 col-xl-9 order-lg-2 p-0">
+		<div class="col-12 col-lg-8 col-xl-9 order-lg-2">
 			<!-- Cards/Table Navigation Tabs -->
-			<ul class="nav nav-tabs mt-3" id="UITabs" role="tablist">
+			<ul class="nav nav-tabs" id="UITabs" role="tablist">
 				<li class="nav-item h3">
 					<a class="nav-link active" id="cards-tab" data-toggle="tab" href="#cardsUI" role="tab" aria-controls="cards" aria-selected="true">Currency Cards</a>
 				</li>
@@ -116,6 +116,9 @@
 
 <!-- Include Numeral.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<!-- Include LoDash -->
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
 
 <!-- Load the currency data -->
 <script type="text/javascript" src="./currencyData.js"></script>
@@ -226,26 +229,28 @@
 
 <!-- The currency grid template -->
 <script type="text/html" id="currencyGridTableTpl">
-	<table class="table table-sm">
-		<thead>
-			<tr>
-				<th>
-				{{#currencies}}
-					<th title="{{name}}">{{symbol}}<br />{{code}}</th>
-				{{/currencies}}
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-		{{#currencies}}
-			<tr>
-				{{#currencies}}
-					<td>$</td>
-				{{/currencies}}
-			</tr>
-		{{/currencies}}
-		</tbody>
-	</table>
+	<div class="table-responsive border-top-0">
+		<table class="table table-sm m-0 border-top-0">
+			<thead class="border-top-0">
+				<tr>
+					<th  class="border-top-0">&nbsp;</th>
+					{{#currencies}}
+					<th title="{{name}}" class="text-center border-top-0">{{symbol}}<br />{{code}}</th>
+					{{/currencies}}
+				</tr>
+			</thead>
+			<tbody>
+			{{#currencies}}
+				<tr>
+					<th title="{{name}}">{{symbol}}{{code}}</th>
+					{{#conversions}}
+						<td>{{{rate}}}</td>
+					{{/conversions}}
+				</tr>
+			{{/currencies}}
+			</tbody>
+		</table>
+	</div>
 </script>
 
 </body>

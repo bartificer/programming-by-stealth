@@ -322,20 +322,6 @@ function buildCurrencyCardCol(curCode){
 }
 
 /**
- * A function to build the currency grid.
- */
-function buildCurrencyGrid(curCode){
-	// build the table
-	const $table = $(Mustache.render(
-		TEMPLATES.grid.table,
-		CURRENCY_CONTROL_VIEW
-	));
-	
-	// return the table
-	return $table;
-}
-
-/**
  * A function to build the cards, including their cols, for each currency.
  *
  * @return {jQuery} Returns a single jQuery object representing all the cards.
@@ -360,30 +346,31 @@ function buildCurrencyCardCols(){
 }
 
 /**
- * A function to build the placeholder cards for each currency.
- *
- * @return {jQuery} Returns a single jQuery object representing all the cards.
+ * A function to build the currency grid.
  */
-function buildCurrencyCardPlaceholders(){
-	let $placeholderCards = $(); // empty jQuery object
-	for(const curCode of SORTED_CURRENCY_CODES){
-		const $card = $(Mustache.render(
-			TEMPLATES.currencies.col, // the template
-			{ // the view
-				base: {
-					code: curCode,
-					...CURRENCIES[curCode]
-				}
-			},
-			{ // the partials
-				loadingCard: TEMPLATES.currencies.loadingCard
-			}
-		)).hide();
-		$placeholderCards = $placeholderCards.add($card);
+function buildCurrencyGrid(curCode){
+	// build the view
+	const gridView = _.cloneDeep(CURRENCY_CONTROL_VIEW);
+	for(const curObj of gridView.currencies){
+		curObj.conversions = [];
+		for(const toCode of SORTED_CURRENCY_CODES){
+			curObj.conversions.push({
+				...CURRENCIES[toCode],
+				rate: numeral(CURRENCIES[curObj.code].rates[toCode]).format('0,0[.]0000'),
+				rawRate: CURRENCIES[curObj.code].rates[toCode]
+			});
+		}
 	}
+	console.debug('generate view for currency grid:', gridView);
 	
-	// return the placeholder cards
-	return $placeholderCards;
+	// build the table
+	const $table = $(Mustache.render(
+		TEMPLATES.grid.table,
+		gridView
+	));
+	
+	// return the table
+	return $table;
 }
 
 //
@@ -489,10 +476,10 @@ function updateAddCardSelectOptions(){
  * 
  * @param {string} curCode - The three-letter code for the card to update.
  * @param {number} baseAmount - The amount of the base currency to convert.
-     * @throws {TypeError} A type error is throw if the currency code or amount
-     * are not valid.
-     * @throws {Error} A generic error is thrown if the currency's card is not
-     * loaded.
+ * @throws {TypeError} A type error is throw if the currency code or amount
+ * are not valid.
+ * @throws {Error} A generic error is thrown if the currency's card is not
+ * loaded.
  */
 function updateCardConversions(curCode, baseAmount){
 	// validate the currency code
