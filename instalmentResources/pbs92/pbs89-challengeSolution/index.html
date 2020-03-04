@@ -145,7 +145,7 @@
 				Show/Hide Rates
 			</h2>
 			<div class="card-body">
-				<form class="form" action="javascript:void(0);">
+				<form class="form" action="javascript:void(0);" id="showHideRatesForm">
 					<ul class="list-unstyled d-flex flex-wrap justify-content-between">
 					{{#currencies}}
 						<li class="border border-secondary rounded p-2 m-2" style="flex: 1">
@@ -230,21 +230,25 @@
 <!-- The currency grid template -->
 <script type="text/html" id="currencyGridTableTpl">
 	<div class="table-responsive border-top-0">
-		<table class="table table-sm m-0 border-top-0">
+		<table class="table table-sm m-0 border-top-0" id="currency_grid">
 			<thead class="border-top-0">
 				<tr>
 					<th  class="border-top-0">&nbsp;</th>
 					{{#currencies}}
-					<th title="{{name}}" class="text-center border-top-0">{{symbol}}<br />{{code}}</th>
+					<th title="{{name}}" class="text-center border-top-0 currencyGridCell" data-col-currency="{{{code}}}">
+						{{symbol}}
+						<br />
+						{{code}}
+					</th>
 					{{/currencies}}
 				</tr>
 			</thead>
 			<tbody>
 			{{#currencies}}
-				<tr>
+				<tr class="currencyGridRow" data-row-currency="{{{code}}}">
 					<th title="{{name}}">{{symbol}}{{code}}</th>
 					{{#conversions}}
-						<td>{{{rate}}}</td>
+						<td class="currencyGridCell" data-col-currency="{{{code}}}">{{{rate}}}</td>
 					{{/conversions}}
 				</tr>
 			{{/currencies}}

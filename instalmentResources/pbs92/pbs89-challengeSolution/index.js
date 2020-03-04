@@ -34,7 +34,7 @@ console.debug('generated shared view for the currenct-control forms', CURRENCY_C
 // be shown as a row within cards
 var DISPLAY_CURRENCIES = {};
 for(const curCode of SORTED_CURRENCY_CODES){
-	DISPLAY_CURRENCIES[curCode] = CURRENCIES[curCode].defaultDisplay ? true : false;
+	DISPLAY_CURRENCIES[curCode] = false;
 }
 
 //
@@ -63,7 +63,7 @@ async function initCurrencyConverter(){
 	await loadCurrencyRates();
 	
 	// add the Currency Selection form into the page
-	$currencyControls.empty().append(biuldCurrencySelectionFormUI());
+	$currencyControls.empty().append(buildRatesSelectionFormUI());
 	
 	// load all the currency cards
 	$cards.empty().append(buildCurrencyCardCols());
@@ -71,15 +71,18 @@ async function initCurrencyConverter(){
 	// add the New Card Form into the page
 	$cards.append(buildNewCardFormUI());
 	
-	// load the cards for the default currencies
+	// load the currency grid
+	$grid.empty().append(buildCurrencyGrid());
+	
+	// load the default rates and cards
 	for(const curCode of SORTED_CURRENCY_CODES){
+		if(CURRENCIES[curCode].defaultDisplay){
+			showRate(curCode);
+		}
 		if(CURRENCIES[curCode].defaultCard){
 			showCurrencyCard(curCode, true);
 		}
 	}
-	
-	// load the currency grid
-	$grid.empty().append(buildCurrencyGrid());
 }
 
 $(async function(){
@@ -167,19 +170,12 @@ async function loadCurrencyRates(){
  *
  * @return {jQuery}
  */
-function biuldCurrencySelectionFormUI(){
+function buildRatesSelectionFormUI(){
 	// build the show/hide rates form
 	const $currencySelectionForm = $(Mustache.render(
 		TEMPLATES.ui.showHideRates,
 		CURRENCY_CONTROL_VIEW
 	));
-	
-	// enable the appropriate toggles
-	for(const curCode of SORTED_CURRENCY_CODES){
-		if(DISPLAY_CURRENCIES[curCode]){
-			$(`input[value='${curCode}']`, $currencySelectionForm).prop('checked', true);
-		}
-	}
 	
 	// add event handlers to all the toggles and trigger them to get the
 	// inital rendering right
@@ -190,27 +186,20 @@ function biuldCurrencySelectionFormUI(){
 		// get the currency the toggle controls
 		const curCode = $toggle.val();
 		
-		// updating the styling of the toggle as appropriate
-		if($toggle.prop('checked')){
-			$toggle.closest('li')
-				.removeClass('border-secondary')
-				.addClass('border-primary font-weight-bold');
-		}else{
-			$toggle.closest('li')
-				.removeClass('border-primary font-weight-bold')
-				.addClass('border-secondary');
-		}
-		
-		// save the states to the global variable
+		// save the state to the global variable
 		DISPLAY_CURRENCIES[curCode] = $toggle.prop('checked') ? true : false;
 		
-		// show/hide the rates for this currency in all cards
-		const $rateLis = $(`li.currencyRate[data-currency='${curCode}']`);
+		// update the rendering for the currency in all cards and in the grid
 		if(DISPLAY_CURRENCIES[curCode]){
-			$rateLis.show();
+			showCurrencyCardConversions(curCode);
+			showGridCurrency(curCode);
 		}else{
-			$rateLis.hide();
+			hideCurrencyCardConversions(curCode);
+			hideGridCurrency(curCode);
 		}
+		
+		// update the rates show/hide UI
+		updateRatesUI();
 	}).trigger('input');
 	
 	// return the form
@@ -356,6 +345,7 @@ function buildCurrencyGrid(curCode){
 		for(const toCode of SORTED_CURRENCY_CODES){
 			curObj.conversions.push({
 				...CURRENCIES[toCode],
+				code: toCode,
 				rate: numeral(CURRENCIES[curObj.code].rates[toCode]).format('0,0[.]0000'),
 				rawRate: CURRENCIES[curObj.code].rates[toCode]
 			});
@@ -369,8 +359,67 @@ function buildCurrencyGrid(curCode){
 		gridView
 	));
 	
+	// hide all the currency grid rows and columns
+	$('.currencyGridCell, .currencyGridRow', $table).hide();
+	
 	// return the table
 	return $table;
+}
+
+//
+// Global currency functions
+//
+
+/**
+ * Show the card and grid row & column for a given currency.
+ *
+ * @param {string} curCode - The three-letter code for the currency to load.
+ * @throws {TypeError} A type error is throw if the currency code is not valid.
+ */
+function showRate(curCode){
+	// validate the currency code
+	curCode = String(curCode).toUpperCase();
+	if(!curCode.match(/^[A-Z]{3}$/)){
+		throw new TypeError(`Invalid country code: ${curCode}`);
+	}
+	
+	// show the currency card conversions
+	showCurrencyCardConversions(curCode)
+	
+	// show the grid row & column for the currency
+	showGridCurrency(curCode);
+	
+	// mark the currency as active
+	DISPLAY_CURRENCIES[curCode] = true;
+	
+	// update the show/hide rate UI
+	updateRatesUI();
+}
+
+/**
+ * Hide the card and grid row & column for a given currency.
+ *
+ * @param {string} curCode - The three-letter code for the currency to load.
+ * @throws {TypeError} A type error is throw if the currency code is not valid.
+ */
+function hideCurrency(curCode){
+	// validate the currency code
+	curCode = String(curCode).toUpperCase();
+	if(!curCode.match(/^[A-Z]{3}$/)){
+		throw new TypeError(`Invalid country code: ${curCode}`);
+	}
+	
+	// hide the currency card conversions
+	hideCurrencyCardConversions(curCode)
+	
+	// hide the grid row & column for the currency
+	hideGridCurrency(curCode);
+	
+	// mark the currency as inactive
+	DISPLAY_CURRENCIES[curCode] = fale;
+	
+	// update the show/hide rate UI
+	updateRatesUI();
 }
 
 //
@@ -432,6 +481,69 @@ function hideCurrencyCard(curCode){
 		
 	// update the select in the add card form
 	updateAddCardSelectOptions();
+}
+
+/**
+ * Show the row within all cards showing the conversion to a given currency.
+ *
+ * @param {string} curCode - The three-letter code for the currency to show.
+ * @throws {TypeError} A type error is throw if the currency code is not valid.
+ */
+function showCurrencyCardConversions(curCode){
+	// validate the currency code
+	curCode = String(curCode).toUpperCase();
+	if(!curCode.match(/^[A-Z]{3}$/)){
+		throw new TypeError(`Invalid country code: ${curCode}`);
+	}
+	
+	// show the rows
+	$currencyCardLi(curCode).show();
+}
+
+/**
+ * Hide the row within all cards showing the conversion to a given currency.
+ *
+ * @param {string} curCode - The three-letter code for the currency to hide.
+ * @throws {TypeError} A type error is throw if the currency code is not valid.
+ */
+function hideCurrencyCardConversions(curCode){
+	// validate the currency code
+	curCode = String(curCode).toUpperCase();
+	if(!curCode.match(/^[A-Z]{3}$/)){
+		throw new TypeError(`Invalid country code: ${curCode}`);
+	}
+	
+	// hide the rows
+	$currencyCardLi(curCode).hide();
+}
+
+/**
+ * Update the state & display state of each currency switch in the show/hide
+ * rates UI as needed.
+ */
+function updateRatesUI(){
+	// loop over all the switches
+	$('input:checkbox', $('#showHideRatesForm')).each(function(){
+		// get a reference to a jQuery object representing the toggle
+		const $toggle = $(this);
+			
+		// get the currency the toggle controls
+		const curCode = $toggle.val();
+		
+		// set the state of the toggle to match the stored state
+		$toggle.prop('checked', DISPLAY_CURRENCIES[curCode] ? true : false );
+			
+		// updating the styling of the toggle as appropriate
+		if($toggle.prop('checked')){
+			$toggle.closest('li')
+				.removeClass('border-secondary')
+				.addClass('border-primary font-weight-bold');
+		}else{
+			$toggle.closest('li')
+				.removeClass('border-primary font-weight-bold')
+			.addClass('border-secondary');
+		}
+	});
 }
 
 /**
@@ -528,4 +640,84 @@ function updateCardConversions(curCode, baseAmount){
  */
 function $currencyCardCol(curCode){
 	return $(`.currencyCol[data-currency=${curCode}]`);
+}
+
+/**
+ * Get a jQuery object representing the list items for a given currency
+ * within each currency card.
+ * 
+ * @param {string} curCode
+ * @return {jQuery} A single jQuery object representing many li tags.
+ */
+function $currencyCardLi(curCode){
+	return $(`li.currencyRate[data-currency='${curCode}']`);
+}
+
+//
+// grid-view functions
+//
+
+/**
+ * Show the row and column for a given currency in the grid.
+ *
+ * @param {string} curCode - The three-letter code for the currency to show.
+ * @throws {TypeError} A type error is throw if the currency code is not valid.
+ */
+function showGridCurrency(curCode){
+	// validate the currency code
+	curCode = String(curCode).toUpperCase();
+	if(!curCode.match(/^[A-Z]{3}$/)){
+		throw new TypeError(`Invalid country code: ${curCode}`);
+	}
+	
+	// get the row and column (th & tds) for the currency
+	const $curRow = $currencyGridRow(curCode);
+	const $curCol = $currencyGridCol(curCode);
+	
+	// show the row and column
+	$curRow.show();
+	$curCol.show();
+}
+
+/**
+ * Hide the row and column for a given currency in the grid.
+ *
+ * @param {string} curCode - The three-letter code for the currency to load.
+ * @throws {TypeError} A type error is throw if the currency code is not valid.
+ */
+function hideGridCurrency(curCode){
+	// validate the currency code
+		curCode = String(curCode).toUpperCase();
+		if(!curCode.match(/^[A-Z]{3}$/)){
+			throw new TypeError(`Invalid country code: ${curCode}`);
+		}
+		
+		// get the row and column (th & tds) for the currency
+		const $curRow = $currencyGridRow(curCode);
+		const $curCol = $currencyGridCol(curCode);
+		
+		// hide the row and column
+		$curRow.hide();
+		$curCol.hide();
+}
+
+/**
+ * Get a jQuery object representing the row for a given currency in the grid.
+ * 
+ * @param {string} curCode
+ * @return {jQuery}
+ */
+function $currencyGridRow(curCode){
+	return $(`tr[data-row-currency=${curCode}]`, $('#currency_grid'));
+}
+
+/**
+ * Get a jQuery object representing the column for a given currency in the grid.
+ * This will be a single jQuery object representing a th and many tds.
+ * 
+ * @param {string} curCode
+ * @return {jQuery}
+ */
+function $currencyGridCol(curCode){
+	return $(`th[data-col-currency=${curCode}], td[data-col-currency=${curCode}]`, $('#currency_grid'));
 }
