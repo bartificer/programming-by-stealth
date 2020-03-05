@@ -10,6 +10,12 @@
 	<!-- Include Font Awesome 5 -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	
+	<!-- Local styles -->
+	<style type="text/css">
+		td.currencyGridCell:hover{
+			background-color: darkgray;
+		}
+	</style>
 	<title>PBS 89 — Currency Converter</title>
 </head>
 <body>
@@ -238,13 +244,13 @@
 <!-- The currency grid template -->
 <script type="text/html" id="currencyGridTableTpl">
 	<div class="table-responsive border-top-0">
-		<table class="table table-sm m-0 border-top-0" id="currency_grid">
+		<table class="table table-sm table-hover m-0 border-top-0 text-dark" id="currency_grid">
 			<thead class="border-top-0">
 				<tr>
 					<th  class="border-top-0">&nbsp;</th>
 					{{#currencies}}
-					<th title="{{name}}" class="text-center border-top-0 currencyGridCell" data-col-currency="{{{code}}}">
-						{{symbol}}
+					<th title="To {{name}}" data-toggle="tooltip" class="text-center border-top-0 currencyGridCell" data-col-currency="{{{code}}}">
+						<small class="text-secondary">{{{icon}}}</small>
 						<br />
 						{{code}}
 					</th>
@@ -254,9 +260,12 @@
 			<tbody>
 			{{#currencies}}
 				<tr class="currencyGridRow" data-row-currency="{{{code}}}">
-					<th title="{{name}}">{{symbol}}{{code}}</th>
+					<th title="From {{name}}" data-toggle="tooltip">
+						<small class="text-secondary">{{{icon}}}</small>
+						<span class="text-primary">{{code}}</span>
+					</th>
 					{{#conversions}}
-						<td class="currencyGridCell" data-col-currency="{{{code}}}">{{{rate}}}</td>
+						<td class="currencyGridCell text-center" data-col-currency="{{{code}}}" title="{{{base.name}}} → {{name}}" data-toggle="tooltip">{{{rate}}}</td>
 					{{/conversions}}
 				</tr>
 			{{/currencies}}

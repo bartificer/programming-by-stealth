@@ -83,6 +83,9 @@ async function initCurrencyConverter(){
 			showCurrencyCard(curCode, true);
 		}
 	}
+	
+	// now that all the templates have loaded, enable the Boostrap Tooltip pluging
+	$('[data-toggle="tooltip"]').tooltip();
 }
 
 $(async function(){
@@ -347,11 +350,17 @@ function buildCurrencyGrid(curCode){
 				...CURRENCIES[toCode],
 				code: toCode,
 				rate: numeral(CURRENCIES[curObj.code].rates[toCode]).format('0,0[.]0000'),
-				rawRate: CURRENCIES[curObj.code].rates[toCode]
+				rawRate: CURRENCIES[curObj.code].rates[toCode],
+				base: {
+					name: curObj.name,
+					code: curObj.code,
+					icon: curObj.icon,
+					symbol: curObj.symbol
+				}
 			});
 		}
 	}
-	console.debug('generate view for currency grid:', gridView);
+	console.debug('generated view for currency grid:', gridView);
 	
 	// build the table
 	const $table = $(Mustache.render(
