@@ -52,22 +52,30 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 col-lg-8 col-xl-9 order-lg-2">
+		<div class="col-12 col-lg-8 col-xl-9 mb-3">
 			<!-- Cards/Table Navigation Tabs -->
 			<ul class="nav nav-tabs" id="UITabs" role="tablist">
 				<li class="nav-item h3">
-					<a class="nav-link active" id="cards-tab" data-toggle="tab" href="#cardsUI" role="tab" aria-controls="cards" aria-selected="true">Currency Cards</a>
+					<a class="nav-link active" id="cards-tab" data-toggle="tab" href="#cardsUI" role="tab" aria-controls="cards" aria-selected="true">
+						<i class="fas fa-list" aria-hidden></i>
+						<span class="d-none d-sm-inline">Currency</span>
+						Cards
+					</a>
 				</li>
 				<li class="nav-item h3">
-					<a class="nav-link" id="table-tab" data-toggle="tab" href="#tableUI" role="tab" aria-controls="table" aria-selected="false">Conversion Table</a>
+					<a class="nav-link" id="table-tab" data-toggle="tab" href="#tableUI" role="tab" aria-controls="table" aria-selected="false">
+						<i class="fas fa-th" aria-hidden></i>
+						<span class="d-none d-sm-inline">Conversion</span>
+						Table
+					</a>
 				</li>
 			</ul>
 			
 			<!-- Cards/Table UI Panes -->
 			<div class="tab-content border border-top-0 rounded-bottom" id="uiTabs">
 				<div class="tab-pane fade show active" id="cardsUI" role="tabpanel" aria-labelledby="cards-tab">
-					<div class="container p-0">
-						<div class="row no-gutters" id="currency_cards">
+					<div class="container-fluid py-3">
+						<div class="row" id="currency_cards">
 							<div class="col text-center">
 								<div class="spinner-border m-5" role="status">
 									<span class="sr-only">Loading...</span>
@@ -87,8 +95,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-12 col-lg-4 col-xl-3 order-lg-1 p-0">
-			<div class="container">
+		<div class="col order-lg-first">
+			<div class="container-fluid p-0">
 				<div class="row" id="currency_controls">
 					<div class="col text-center">
 						<div class="spinner-border m-5" role="status">
@@ -138,8 +146,8 @@
 
 <!-- The show/hide rate form template -->
 <script type="text/html" id="showHideRatesFormTpl">
-	<div  class="col-12 col-md-6 col-lg-12 p-0">
-		<div class="card m-3 border-success bg-light">
+	<div  class="col-12">
+		<div class="card border-success bg-light">
 			<h2 class="card-header h4 text-success border-success">
 				<i class="fas fa-toggle-on" aria-hidden></i>
 				Show/Hide Rates
@@ -164,8 +172,8 @@
 
 <!-- The Currency Column & Card Template  -->
 <script type="text/html" id="currencyCardColTpl">
-	<div data-currency="{{{base.code}}}" class="currencyCol col-12 col-md-6 col-xl-4">
-		<div class="card m-3">
+	<div data-currency="{{{base.code}}}" class="currencyCol col-12 col-md-6 col-xl-4 mb-3">
+		<div class="card">
 			<h2 class="card-header h4">
 				<small class="text-secondary">{{base.code}}</small>
 				{{{base.icon}}} {{base.name}}
@@ -204,7 +212,7 @@
 <!-- The add card form template -->
 <script type="text/html" id="addCardFormTpl">
 	<div  class="col-12 col-md-6 col-xl-4">
-		<div class="card m-3 border-success bg-light">
+		<div class="card border-success bg-light">
 			<h2 class="card-header h4 text-success border-success">
 				<i class="fas fa-plus-circle" aria-hidden></i>
 				Add Currency Card
