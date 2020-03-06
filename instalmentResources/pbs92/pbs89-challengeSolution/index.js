@@ -244,8 +244,14 @@ function buildNewCardFormUI(){
  * A function to build the the card, and its contianing col, for a given currency.
  *
  * @param {string} curCode
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function buildCurrencyCardCol(curCode){
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
+	
 	// build the view for the card
 	const cardView = {
 		base: {
@@ -340,7 +346,7 @@ function buildCurrencyCardCols(){
 /**
  * A function to build the currency grid.
  */
-function buildCurrencyGrid(curCode){
+function buildCurrencyGrid(){
 	// build the view
 	const gridView = _.cloneDeep(CURRENCY_CONTROL_VIEW);
 	for(const curObj of gridView.currencies){
@@ -383,14 +389,13 @@ function buildCurrencyGrid(curCode){
  * Show the card and grid row & column for a given currency.
  *
  * @param {string} curCode - The three-letter code for the currency to load.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function showRate(curCode){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	
 	// show the currency card conversions
 	showCurrencyCardConversions(curCode)
@@ -409,14 +414,13 @@ function showRate(curCode){
  * Hide the card and grid row & column for a given currency.
  *
  * @param {string} curCode - The three-letter code for the currency to load.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function hideCurrency(curCode){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	
 	// hide the currency card conversions
 	hideCurrencyCardConversions(curCode)
@@ -441,14 +445,13 @@ function hideCurrency(curCode){
  * @param {string} curCode - The three-letter code for the currency to load.
  * @param {boolean} [skipFocus=false] - Pass a truthy value to skip the
  * focusing of the card after loading.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function showCurrencyCard(curCode, skipFocus){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	
 	// get the col for the currency
 	const $curCol = $currencyCardCol(curCode);
@@ -470,14 +473,13 @@ function showCurrencyCard(curCode, skipFocus){
  * Hide the card for a given currency.
  *
  * @param {string} curCode - The three-letter code for the currency to load.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function hideCurrencyCard(curCode){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 		
 	// get the col for the currency
 	const $curCol = $currencyCardCol(curCode);
@@ -496,14 +498,13 @@ function hideCurrencyCard(curCode){
  * Show the row within all cards showing the conversion to a given currency.
  *
  * @param {string} curCode - The three-letter code for the currency to show.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function showCurrencyCardConversions(curCode){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	
 	// show the rows
 	$currencyCardLi(curCode).show();
@@ -513,14 +514,13 @@ function showCurrencyCardConversions(curCode){
  * Hide the row within all cards showing the conversion to a given currency.
  *
  * @param {string} curCode - The three-letter code for the currency to hide.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function hideCurrencyCardConversions(curCode){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	
 	// hide the rows
 	$currencyCardLi(curCode).hide();
@@ -599,15 +599,14 @@ function updateAddCardSelectOptions(){
  * @param {number} baseAmount - The amount of the base currency to convert.
  * @throws {TypeError} A type error is throw if the currency code or amount
  * are not valid.
- * @throws {Error} A generic error is thrown if the currency's card is not
- * loaded.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown. A `TypeError` is also thrown if an invalid amount
+ * is passed.
  */
 function updateCardConversions(curCode, baseAmount){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	
 	// get the col for the currency
 	const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
@@ -646,8 +645,13 @@ function updateCardConversions(curCode, baseAmount){
  * 
  * @param {string} curCode
  * @return {jQuery}
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function $currencyCardCol(curCode){
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	return $(`.currencyCol[data-currency=${curCode}]`);
 }
 
@@ -657,8 +661,13 @@ function $currencyCardCol(curCode){
  * 
  * @param {string} curCode
  * @return {jQuery} A single jQuery object representing many li tags.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function $currencyCardLi(curCode){
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	return $(`li.currencyRate[data-currency='${curCode}']`);
 }
 
@@ -670,14 +679,13 @@ function $currencyCardLi(curCode){
  * Show the row and column for a given currency in the grid.
  *
  * @param {string} curCode - The three-letter code for the currency to show.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function showGridCurrency(curCode){
-	// validate the currency code
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	
 	// get the row and column (th & tds) for the currency
 	const $curRow = $currencyGridRow(curCode);
@@ -692,22 +700,26 @@ function showGridCurrency(curCode){
  * Hide the row and column for a given currency in the grid.
  *
  * @param {string} curCode - The three-letter code for the currency to load.
- * @throws {TypeError} A type error is throw if the currency code is not valid.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function hideGridCurrency(curCode){
-	// validate the currency code
-		curCode = String(curCode).toUpperCase();
-		if(!curCode.match(/^[A-Z]{3}$/)){
-			throw new TypeError(`Invalid country code: ${curCode}`);
-		}
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
+	
+	curCode = String(curCode).toUpperCase();
+	if(!curCode.match(/^[A-Z]{3}$/)){
+		throw new TypeError(`Invalid country code: ${curCode}`);
+	}
 		
-		// get the row and column (th & tds) for the currency
-		const $curRow = $currencyGridRow(curCode);
-		const $curCol = $currencyGridCol(curCode);
+	// get the row and column (th & tds) for the currency
+	const $curRow = $currencyGridRow(curCode);
+	const $curCol = $currencyGridCol(curCode);
 		
-		// hide the row and column
-		$curRow.hide();
-		$curCol.hide();
+	// hide the row and column
+	$curRow.hide();
+	$curCol.hide();
 }
 
 /**
@@ -715,8 +727,13 @@ function hideGridCurrency(curCode){
  * 
  * @param {string} curCode
  * @return {jQuery}
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function $currencyGridRow(curCode){
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	return $(`tr[data-row-currency=${curCode}]`, $('#currency_grid'));
 }
 
@@ -726,7 +743,43 @@ function $currencyGridRow(curCode){
  * 
  * @param {string} curCode
  * @return {jQuery}
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
  */
 function $currencyGridCol(curCode){
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
 	return $(`th[data-col-currency=${curCode}], td[data-col-currency=${curCode}]`, $('#currency_grid'));
+}
+
+//
+// Generic helper functions
+//
+
+/**
+ * Check that a given value is a valid and supported 3-digit ISO 4217 currency
+ * codes. Invalid values will throw an error.
+ *
+ * This function will coerce values by converting to upper case before testing,
+ * and return that coerced version.
+ * 
+ * @param {*} val — the vaue to test.
+ * @return {string} The original string forced to upper case.
+ * @throws {TypeError} A Type Error is thrown if the value is not a string.
+ * @throws {RangeError} A Range Error is thrown if the value is a string but
+ * not a valid and supported code.
+ */
+function assertCurrencyCode(val){
+	// if we didn't get a string, throw a type error
+	if(typeof val !== 'string') throw new TypeError(`invalid country code, must be a string: '${val}'`);
+	
+	// force the string to upper case
+	val = val.toUpperCase();
+	
+	// make sure the string is a key in the currencies database
+	if(!CURRENCIES[val]) throw new TypeError(`invalid or un-supported country code: '${val}'`);
+	
+	// if we got here, all is well, return the upper-cased string
+	return val;	
 }
