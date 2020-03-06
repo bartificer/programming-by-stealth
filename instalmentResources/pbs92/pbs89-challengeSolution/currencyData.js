@@ -43,11 +43,11 @@ var CURRENCIES = { // a dictionary of currency data indexed by code
 		icon: '<i class="fas fa-dollar-sign"></i>',
 		decimalDigits: 2
 	},
-	IDR: {
+	INR: {
 		name: 'Indian Rupee',
 		symbol: '₹',
 		icon: '<i class="fas fa-rupee-sign"></i>',
-		decimalDigits: 0
+		decimalDigits: 2
 	},
 	ILS: {
 		name: 'Israeli Shekel',
