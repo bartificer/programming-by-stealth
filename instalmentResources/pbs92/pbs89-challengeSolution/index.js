@@ -264,7 +264,7 @@ function buildCurrencyCardCol(curCode){
 		if(toCurCode === curCode) continue; // skip self
 		cardView.rates.push({
 			code: toCurCode,
-			rate: numeral(CURRENCIES[curCode].rates[toCurCode]).format('0,0[.]00'),
+			rate: formatCurrencyAmount(CURRENCIES[curCode].rates[toCurCode], toCurCode),
 			rawRate: CURRENCIES[curCode].rates[toCurCode],
 			...CURRENCIES[toCurCode]
 		});
@@ -617,7 +617,7 @@ function updateCardConversions(curCode, baseAmount){
 	}
 	
 	// update all the renderings of the base amount
-	$('.baseAmount', $curCol).text(numeral(baseAmount).format('0,0[.]00'));
+	$('.baseAmount', $curCol).text(formatCurrencyAmount(baseAmount, curCode));
 	
 	// loop through each currency in the card and update the conversion
 	//const $rateLis = $(`li.currencyRate[data-currency='${curCode}']`);
@@ -636,7 +636,7 @@ function updateCardConversions(curCode, baseAmount){
 		const convAmount = baseAmount * rate;
 		
 		// output the value
-		$convSpan.text(numeral(convAmount).format('0,0[.]00'));
+		$convSpan.text(formatCurrencyAmount(convAmount, $li.data('currency')));
 	}
 }
 
@@ -782,4 +782,41 @@ function assertCurrencyCode(val){
 	
 	// if we got here, all is well, return the upper-cased string
 	return val;	
+}
+
+/**
+ * Given an amount and a currency code, format the ammount with the appropriate
+ * number of decimal places. Integer amounts will show no decimal places.
+ *
+ * This function only formats the number, it does not pre-fix a symbol or
+ * currency code.
+ *
+ * @param {number} amount
+ * @param {string} curCode
+ * @return {string} The amount as an appropriately formatted string.
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
+ */
+function formatCurrencyAmount(amount, curCode){
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
+	
+	// build the format string based on the number of digits
+	const numDigits = CURRENCIES[curCode].decimalDigits;
+	let formatString = '0,0'; // default to no decimal places
+	if(numDigits){
+		// more than zero digits after the decimal place
+		
+		// add the optional period
+		formatString += '[.]';
+		
+		// add the needed decimal places
+		for(let d = numDigits; d > 0; d--){
+			formatString += '0';
+		}
+	}
+	
+	// format and return the amount
+	return numeral(amount).format(formatString);
 }
