@@ -44,9 +44,9 @@ var CURRENCIES = { // a dictionary of currency data indexed by code
 		decimalDigits: 2
 	},
 	INR: {
-		name: 'Indian Rupee',
-		symbol: '₹',
-		icon: '<i class="fas fa-rupee-sign"></i>',
+		name: 'Indonesian Rupee',
+		symbol: 'Rp',
+		icon: 'Rp',
 		decimalDigits: 2
 	},
 	ILS: {
