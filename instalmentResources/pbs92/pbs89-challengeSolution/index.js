@@ -707,11 +707,6 @@ function showGridCurrency(curCode){
 function hideGridCurrency(curCode){
 	// force the code to upper case and validate
 	curCode = assertCurrencyCode(curCode);
-	
-	curCode = String(curCode).toUpperCase();
-	if(!curCode.match(/^[A-Z]{3}$/)){
-		throw new TypeError(`Invalid country code: ${curCode}`);
-	}
 		
 	// get the row and column (th & tds) for the currency
 	const $curRow = $currencyGridRow(curCode);
