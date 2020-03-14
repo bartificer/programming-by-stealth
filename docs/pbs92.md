@@ -192,7 +192,7 @@ $('input[type="checkbox"]', $currencySelectionForm).on('input', function(){
 
 This event handler does a lot of work, but because that work has been broken down into clearly named functions, the code within the event handler is so clear as to be almost self-documenting!
 
-As a practical example of functions facilitating code re-use, consider the function ` assertCurrencyCode()`. As I was breaking the code into functions I very quickly noticed a pattern, many of these functions expected a three-letter currency code as an argument. Since I believe in defensive programming I consider it important to validate all input to functions. Copy-and-pasting the same validation code over and over again is clearly not a good solution, so I wrote a function to do that work, and named it ` assertCurrencyCode()`.
+As a practical example of functions facilitating code re-use, consider the function `assertCurrencyCode()`. As I was breaking the code into functions I very quickly noticed a pattern, many of these functions expected a three-letter currency code as an argument. Since I believe in defensive programming I consider it important to validate all input to functions. Copy-and-pasting the same validation code over and over again is clearly not a good solution, so I wrote a function to do that work, and named it `assertCurrencyCode()`.
 
 ## Coercion & Assertion
 
@@ -422,7 +422,7 @@ for(const curObj of gridView.currencies){
 This generated a nested view of the following form:
 
 ```json
-[Log] {
+{
   "currencies": [
     {
       "code": "AUD",
@@ -626,7 +626,7 @@ td.currencyGridCell:hover{
 
 As a reminder, this CSS selector uses the `:hover` pseudo-class to set the background colour to dark grey on all table data cells with the class `.currencyGridCell` when they are being hovered over.
 
-## A New Challenge — A World Clock App
+## New Challenge — A World Clock App
 
 As much fun as this currency converter web app has been, it's time to move on!
 
@@ -640,3 +640,5 @@ The challenge now is to make a start on a web app for showing the current time i
 4. Whether or not the clock shows pulsing dividers between the parts of the time.
 
 Rather than implementing your own timezone conversion, please use either JavaScript's built-in date functions, or, better yet, an open source library dedicated to making date and time operations easy. I'd recommend using [moment.js](https://momentjs.com) with it's [optional timezone extension](https://momentjs.com/timezone/).
+
+Instalment 95 will be dedicated to a sample solution to this challenge.
