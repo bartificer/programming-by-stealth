@@ -120,7 +120,7 @@ async function loadCurrencyRates(){
 			base: 'EUR'
 		}
 	});
-	console.debug(`received Euro excange rates: `, eurData);
+	console.debug(`received Euro exchange rates: `, eurData);
 	
 	// store the Euro rates and throw an error if any expected currency is missing
 	CURRENCIES.EUR.rates = {};
