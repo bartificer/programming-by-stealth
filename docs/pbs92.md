@@ -6,8 +6,8 @@ The challenge was to start with the currency conversion web app we've been devel
 
 For reference, this is the starting point I used:
 
-* [See my **starting point** functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bartificer/programming-by-stealth/3c2a630d78790cfa45cdc38a03ee0e9911f07c66/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
-* [View the source code for my starting point — github.com/…](https://rawcdn.githack.com/bartificer/programming-by-stealth/c5b3a3b6e49574473bb10de06c74a5a8fb4ae4df/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
+* [See my **starting point** functioning — rawcdn.githack.com/…](https://rawcdn.githack.com/bartificer/programming-by-stealth/3c2a630d78790cfa45cdc38a03ee0e9911f07c66/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
+* [View the source code for my starting point — github.com/…](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs89/pbs88-challengeSolution/index.html)
 
 The app had been built around the concept of *currency cards* where each card showed the conversions from one base currency to a number of other target currencies. Users could add or remove cards as they wished, and enable or disable target currencies on the cards.
 
