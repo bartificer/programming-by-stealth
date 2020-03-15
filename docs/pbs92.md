@@ -581,28 +581,38 @@ My approach was to generate the entire table when the page loads, with all but t
 
 As with my solution to the previous challenge, I chose to use data attributes to embed the three-letter currency codes into the HTML elements themselves. In this case each row was given a data attribute named `data-row-currency` and the class `currencyGridRow`, and each data cell and column header an attribute named `data-col-currency` and the class `currencyGridCell`.
 
-Showing both the row and column for a given currency then becomes as simple as:
+Getting references to the row or column for a given currency then becomes as simple as:
 
 ```js
 /**
- * Show the row and column for a given currency in the grid.
- *
- * @param {string} curCode - The three-letter code for the currency to show.
+ * Get a jQuery object representing the row for a given currency in the grid.
+ * 
+ * @param {string} curCode
+ * @return {jQuery}
  * @throws {Error} An error is thrown if an invalid currency code is passed.
  * If the code is not a string a `TypeError` is thrown, otherwise a
  * `RangeError` is thrown.
  */
-function showGridCurrency(curCode){
+function $currencyGridRow(curCode){
 	// force the code to upper case and validate
 	curCode = assertCurrencyCode(curCode);
-	
-	// get the row and column (th & tds) for the currency
-	const $curRow = $currencyGridRow(curCode);
-	const $curCol = $currencyGridCol(curCode);
-	
-	// show the row and column
-	$curRow.show();
-	$curCol.show();
+	return $(`tr[data-row-currency=${curCode}]`, $('#currency_grid'));
+}
+
+/**
+ * Get a jQuery object representing the column for a given currency in the grid.
+ * This will be a single jQuery object representing a th and many tds.
+ * 
+ * @param {string} curCode
+ * @return {jQuery}
+ * @throws {Error} An error is thrown if an invalid currency code is passed.
+ * If the code is not a string a `TypeError` is thrown, otherwise a
+ * `RangeError` is thrown.
+ */
+function $currencyGridCol(curCode){
+	// force the code to upper case and validate
+	curCode = assertCurrencyCode(curCode);
+	return $(`th[data-col-currency=${curCode}], td[data-col-currency=${curCode}]`, $('#currency_grid'));
 }
 ```
 
