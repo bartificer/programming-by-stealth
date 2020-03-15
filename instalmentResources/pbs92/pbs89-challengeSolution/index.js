@@ -759,7 +759,7 @@ function $currencyGridCol(curCode){
  * This function will coerce values by converting to upper case before testing,
  * and return that coerced version.
  * 
- * @param {*} val — the vaue to test.
+ * @param {*} val — the value to test.
  * @return {string} The original string forced to upper case.
  * @throws {TypeError} A Type Error is thrown if the value is not a string.
  * @throws {RangeError} A Range Error is thrown if the value is a string but
@@ -773,7 +773,7 @@ function assertCurrencyCode(val){
 	val = val.toUpperCase();
 	
 	// make sure the string is a key in the currencies database
-	if(!CURRENCIES[val]) throw new TypeError(`invalid or un-supported country code: '${val}'`);
+	if(!CURRENCIES[val]) throw new RangeError(`invalid or un-supported country code: '${val}'`);
 	
 	// if we got here, all is well, return the upper-cased string
 	return val;	

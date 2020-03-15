@@ -196,7 +196,7 @@ As a practical example of functions facilitating code re-use, consider the funct
 
 ## Coercion & Assertion
 
-My ` assertCurrencyCode()` function serves as a good illustration of two common ideas in software engineering — assertions and coercions. This function implements a common *design pattern* that ensures functions are operating on valid data while being as forgiving as possible.
+My `assertCurrencyCode()` function serves as a good illustration of two common ideas in software engineering — assertions and coercions. This function implements a common *design pattern* that ensures functions are operating on valid data while being as forgiving as possible.
 
 You can think of data validation as having two obvious possible extreme approaches — you can simply not bother with any validation and assume all the data is good and write your code accordingly, or, you can enforce your assumptions with rigorous tests and throw an error if anything is any way not as demanded.
 
@@ -277,7 +277,7 @@ Here's my code for this validation function:
  * This function will coerce values by converting to upper case before testing,
  * and return that coerced version.
  * 
- * @param {*} val — the vaue to test.
+ * @param {*} val — the value to test.
  * @return {string} The original string forced to upper case.
  * @throws {TypeError} A Type Error is thrown if the value is not a string.
  * @throws {RangeError} A Range Error is thrown if the value is a string but
@@ -291,7 +291,7 @@ function assertCurrencyCode(val){
 	val = val.toUpperCase();
 	
 	// make sure the string is a key in the currencies database
-	if(!CURRENCIES[val]) throw new TypeError(`invalid or un-supported country code: '${val}'`);
+	if(!CURRENCIES[val]) throw new RangeError(`invalid or un-supported country code: '${val}'`);
 	
 	// if we got here, all is well, return the upper-cased string
 	return val;	
@@ -526,6 +526,7 @@ This view is very large, and looks very duplicative, but that's fine, because mu
 
 This is my entire template for the grid:
 
+<!-- {% raw %} -->
 ```html
 <!-- The currency grid template -->
 <script type="text/html" id="currencyGridTableTpl">
@@ -560,6 +561,7 @@ This is my entire template for the grid:
 	</div>
 </script>
 ```
+<!-- {% endraw %} -->
 
 Notice there are three loops:
 
