@@ -2,6 +2,16 @@
 
 In this instalment we'll be describing my sample solution to the challenge set at the end of [PBS 89](https://bartificer.net/pbs89). 
 
+## Matching Podcast Episode
+
+Listen along to this instalment on [episode 630 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/03/ccatp-630/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_03_14.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_03_14.mp3" >Download the MP3</a>
+
+## The Challenge
+
 The challenge was to start with the currency conversion web app we've been developing for quite a few months now, and add an entire new interface to it.
 
 For reference, this is the starting point I used:
