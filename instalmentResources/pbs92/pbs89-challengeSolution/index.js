@@ -1,5 +1,5 @@
 //
-// Define globally scoped helper variables
+// Define globally-scoped helper variables
 //
 
 // a lookup table for the various templates
@@ -84,7 +84,7 @@ async function initCurrencyConverter(){
 		}
 	}
 	
-	// now that all the templates have loaded, enable the Boostrap Tooltip pluging
+	// now that all the templates have loaded, enable the Boostrap Tooltip plugin
 	$('[data-toggle="tooltip"]').tooltip();
 }
 
