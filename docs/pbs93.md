@@ -12,7 +12,7 @@ In a simplistic script you might only be dealing with a single collection of rel
 
 ## The Concept of Encapsulation
 
-Encapsulation is one of those core concepts of computer science that span languages. If a language supports object orientation, then it must implement encapsulation in some way.
+[Encapsulation](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)) is one of those core concepts of computer science that span languages. If a language supports object orientation, then it must implement encapsulation in some way.
 
 All encapsulation must allow related variables and functions to be combined into a single entity that can represent both information, and the functions for processing or transforming that information.
 
@@ -34,7 +34,91 @@ JavaSript's lack of support for encapsulation access control is one of the reaso
 Since Java was my first language, and hence, my introduction to encapsulation and object orientation focused heavily on access control, I too looked down my nose at JavaScript for a long time. I'm well and truly over my dumb prejudice now, but it took years, so I empathise with those who haven't yet seen the light 😉
 </aside>
 
-## A Simplistic Example
+## A Simplistic Worked Example — The Hoonyaker
+
+<aside>When recording reviews for the [NosillaCast](https://www.podfeet.com/blog/category/nosillacast/) listener Kaylee likes to use a currency the invented and named the Hoonyaker that just happens to be worth about one US dollar.</aside>
+
+To understand encapsulation we'll start with a completely un-encapsulated collection of a data and related functions. We'll then encapsulate just the data, and finally, the data and the functions.
+
+### The Un-encapsulated Hoonyaker
+
+Our starting point will be a collection of variables that describe the fictitious Hoonyaker currency and a collection of functions for interacting with this fictitious currency.
+
+You'll find the code for this naive representation of the Hoonyaker in `hoonyaker1.js`. You can interact with these variables and functions by opening `pbs93a.html` in your favourite browser and using the JavaScript console. The examples below are intended to be executed there. Note that the page defines two global variables which contain reference to jQuery objects representing the two output areas on the page, `$OUT_TEXT` & `$OUT_HTML`, and that we'll use these variables to display the output form the various functions.
+
+So, let's look at our starting point:
+
+```js
+//
+// Define the data related to the Hoonyaker
+//
+
+const hoonyakerName = 'Hoonyaker';
+const hoonyakerDescriptionHTML = 'a fictitious currency invented by podcast listener and <em>Nosillacastaway</em> Kaylee that happens to equal about one US Dollar';
+const hoonyakerSymbol = '₪'; // think 'n' for NosillaCast (ignore that it's a Shekel)
+const hoonyakerSymbolHTML = '<i class="fas fa-shekel-sign mx-1" title="₪" aria-hidden></i><span class="sr-only">₪</span>';
+const hoonyakerNumDecimalPlaces = 3;
+
+//
+// Define the functions related to the Hoonyaker
+//
+
+/**
+ * Generate a plain-text description of the Hoonyaker.
+ * 
+ * @return {string}
+ */
+function describeHoonyaker(){
+	// use jQuery to convert HTML to text
+	const plainTextDesc = $(`<p>${hoonyakerDescriptionHTML}</p>`).text();
+	return `The ${hoonyakerName} is ${plainTextDesc}. It's symbol is ${hoonyakerSymbol}, and it has ${hoonyakerNumDecimalPlaces} decimal places.`;
+}
+
+/**
+ * Generate an HTML description of the Hoonyaker.
+ * 
+ * @return {string}
+ */
+function describeHoonyakerHTML(){
+	return `<p>The ${hoonyakerName} is ${hoonyakerDescriptionHTML}. It's symbol is ${hoonyakerSymbolHTML}, and it has ${hoonyakerNumDecimalPlaces} decimal places.</p>`
+}
+
+/**
+ * Render an amount in Hoonyakers as plain text.
+ * 
+ * @param {number} amount
+ * @return {string}
+ */
+function asHoonyakers(amount){
+	// format the number
+	const formattedAmount = numeral(amount).format('0,0[.]000');
+	return `${hoonyakerSymbol}${formattedAmount}`;
+}
+
+/**
+ * Render an amount in Hoonyakers as HTML.
+ * 
+ * @param {number} amount
+ * @return {string}
+ */
+function asHoonyakersHTML(amount){
+	// format the number
+	const formattedAmount = numeral(amount).format('0,0[.]000');
+	return `${hoonyakerSymbolHTML}${formattedAmount}`;
+}
+```
+
+As you can see, the code simply defines a few variables and functions. We can see these functions in action like so:
+
+```js
+// output the descriptions
+$OUT_TEXT.append(describeHoonyaker());
+$OUT_HTML.append(describeHoonyakerHTML());
+
+// output some formatted amounts
+$OUT_TEXT.empty().append(asHoonyakers(Math.PI));
+$OUT_HTML.empty().append(asHoonyakersHTML(Math.PI));
+```
 
 ## The Importance of `this` for Encapsulation
 
