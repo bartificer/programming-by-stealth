@@ -71,7 +71,7 @@ const hoonyakerNumDecimalPlaces = 3;
 function describeHoonyaker(){
 	// use jQuery to convert HTML to text
 	const plainTextDesc = $(`<p>${hoonyakerDescriptionHTML}</p>`).text();
-	return `The ${hoonyakerName} is ${plainTextDesc}. It's symbol is ${hoonyakerSymbol}, and it has ${hoonyakerNumDecimalPlaces} decimal places.`;
+	return `The ${hoonyakerName} is ${plainTextDesc}. Its symbol is ${hoonyakerSymbol}, and it has ${hoonyakerNumDecimalPlaces} decimal places.`;
 }
 
 /**
@@ -80,7 +80,7 @@ function describeHoonyaker(){
  * @return {string}
  */
 function describeHoonyakerHTML(){
-	return `<p>The ${hoonyakerName} is ${hoonyakerDescriptionHTML}. It's symbol is ${hoonyakerSymbolHTML}, and it has ${hoonyakerNumDecimalPlaces} decimal places.</p>`
+	return `<p>The ${hoonyakerName} is ${hoonyakerDescriptionHTML}. Its symbol is ${hoonyakerSymbolHTML}, and it has ${hoonyakerNumDecimalPlaces} decimal places.</p>`
 }
 
 /**
@@ -151,7 +151,7 @@ Here's the updated `describeHoonyaker()` function to illustrate the point:
 function describeHoonyaker(){
 	// use jQuery to convert HTML to text
 	const plainTextDesc = $(`<p>${hoonyaker.descriptionHTML}</p>`).text();
-	return `The ${hoonyaker.name} is ${plainTextDesc}. It's symbol is ${hoonyaker.symbol}, and it has ${hoonyaker.numDecimalPlaces} decimal places.`;
+	return `The ${hoonyaker.name} is ${plainTextDesc}. Its symbol is ${hoonyaker.symbol}, and it has ${hoonyaker.numDecimalPlaces} decimal places.`;
 }
 ```
 
@@ -198,10 +198,10 @@ const hoonyaker = {
 	numDecimalPlaces: 3,
 	describe: function(){
 		const plainTextDesc = $(`<p>${this.descriptionHTML}</p>`).text();
-		return `The ${this.name} is ${plainTextDesc}. It's symbol is ${this.symbol}, and it has ${this.numDecimalPlaces} decimal places.`;
+		return `The ${this.name} is ${plainTextDesc}. Its symbol is ${this.symbol}, and it has ${this.numDecimalPlaces} decimal places.`;
 	},
 	describeHTML: function(){
-		return `<p>The ${this.name} is ${this.descriptionHTML}. It's symbol is ${this.symbolHTML}, and it has ${this.numDecimalPlaces} decimal places.</p>`
+		return `<p>The ${this.name} is ${this.descriptionHTML}. Its symbol is ${this.symbolHTML}, and it has ${this.numDecimalPlaces} decimal places.</p>`
 	},
 	as: function(amount){
 		const formattedAmount = numeral(amount).format(`0,0[.]${'0'.repeat(this.numDecimalPlaces)}`);
@@ -258,6 +258,18 @@ const squid = {
 ```
 
 The second thing I want to draw your attention to is that the functions are not just similar, they are **identical**!
+
+You can see that the code works the same though by executing the following in the JavaScript console on `pbs93d.html`:
+
+```js
+// output the descriptions
+$OUT_TEXT.append(squid.describe());
+$OUT_HTML.append(squid.describeHTML());
+
+// output some formatted amounts
+$OUT_TEXT.empty().append(squid.as(Math.PI));
+$OUT_HTML.empty().append(squid.asHTML(Math.PI));
+```
 
 ### A Code Duplication Disaster
 

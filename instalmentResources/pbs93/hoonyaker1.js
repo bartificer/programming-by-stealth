@@ -20,7 +20,7 @@ const hoonyakerNumDecimalPlaces = 3;
 function describeHoonyaker(){
 	// use jQuery to convert HTML to text
 	const plainTextDesc = $(`<p>${hoonyakerDescriptionHTML}</p>`).text();
-	return `The ${hoonyakerName} is ${plainTextDesc}. It's symbol is ${hoonyakerSymbol}, and it has ${hoonyakerNumDecimalPlaces} decimal places.`;
+	return `The ${hoonyakerName} is ${plainTextDesc}. Its symbol is ${hoonyakerSymbol}, and it has ${hoonyakerNumDecimalPlaces} decimal places.`;
 }
 
 /**
@@ -29,7 +29,7 @@ function describeHoonyaker(){
  * @return {string}
  */
 function describeHoonyakerHTML(){
-	return `<p>The ${hoonyakerName} is ${hoonyakerDescriptionHTML}. It's symbol is ${hoonyakerSymbolHTML}, and it has ${hoonyakerNumDecimalPlaces} decimal places.</p>`
+	return `<p>The ${hoonyakerName} is ${hoonyakerDescriptionHTML}. Its symbol is ${hoonyakerSymbolHTML}, and it has ${hoonyakerNumDecimalPlaces} decimal places.</p>`
 }
 
 /**

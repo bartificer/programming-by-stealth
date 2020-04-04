@@ -22,7 +22,7 @@ const hoonyaker = {
 function describeHoonyaker(){
 	// use jQuery to convert HTML to text
 	const plainTextDesc = $(`<p>${hoonyaker.descriptionHTML}</p>`).text();
-	return `The ${hoonyaker.name} is ${plainTextDesc}. It's symbol is ${hoonyaker.symbol}, and it has ${hoonyaker.numDecimalPlaces} decimal places.`;
+	return `The ${hoonyaker.name} is ${plainTextDesc}. Its symbol is ${hoonyaker.symbol}, and it has ${hoonyaker.numDecimalPlaces} decimal places.`;
 }
 
 /**
@@ -31,7 +31,7 @@ function describeHoonyaker(){
  * @return {string}
  */
 function describeHoonyakerHTML(){
-	return `<p>The ${hoonyaker.name} is ${hoonyaker.descriptionHTML}. It's symbol is ${hoonyaker.symbolHTML}, and it has ${hoonyaker.numDecimalPlaces} decimal places.</p>`
+	return `<p>The ${hoonyaker.name} is ${hoonyaker.descriptionHTML}. Its symbol is ${hoonyaker.symbolHTML}, and it has ${hoonyaker.numDecimalPlaces} decimal places.</p>`
 }
 
 /**

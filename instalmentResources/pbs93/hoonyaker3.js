@@ -25,7 +25,7 @@ const hoonyaker = {
 	describe: function(){
 		// use jQuery to convert HTML to text
 		const plainTextDesc = $(`<p>${this.descriptionHTML}</p>`).text();
-		return `The ${this.name} is ${plainTextDesc}. It's symbol is ${this.symbol}, and it has ${this.numDecimalPlaces} decimal places.`;
+		return `The ${this.name} is ${plainTextDesc}. Its symbol is ${this.symbol}, and it has ${this.numDecimalPlaces} decimal places.`;
 	},
 
 	/**
@@ -34,7 +34,7 @@ const hoonyaker = {
 	 * @return {string}
 	 */
 	describeHTML: function(){
-		return `<p>The ${this.name} is ${this.descriptionHTML}. It's symbol is ${this.symbolHTML}, and it has ${this.numDecimalPlaces} decimal places.</p>`
+		return `<p>The ${this.name} is ${this.descriptionHTML}. Its symbol is ${this.symbolHTML}, and it has ${this.numDecimalPlaces} decimal places.</p>`
 	},
 
 	/**
