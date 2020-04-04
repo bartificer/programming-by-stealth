@@ -91,7 +91,7 @@ function describeHoonyakerHTML(){
  */
 function asHoonyakers(amount){
 	// format the number
-	const formattedAmount = numeral(amount).format('0,0[.]000');
+	const formattedAmount = numeral(amount).format(`0,0[.]${'0'.repeat(hoonyakerNumDecimalPlaces)}`);
 	return `${hoonyakerSymbol}${formattedAmount}`;
 }
 
@@ -103,7 +103,7 @@ function asHoonyakers(amount){
  */
 function asHoonyakersHTML(amount){
 	// format the number
-	const formattedAmount = numeral(amount).format('0,0[.]000');
+	const formattedAmount = numeral(amount).format(`0,0[.]${'0'.repeat(hoonyakerNumDecimalPlaces)}`);
 	return `${hoonyakerSymbolHTML}${formattedAmount}`;
 }
 ```
@@ -120,6 +120,178 @@ $OUT_TEXT.empty().append(asHoonyakers(Math.PI));
 $OUT_HTML.empty().append(asHoonyakersHTML(Math.PI));
 ```
 
-## The Importance of `this` for Encapsulation
+### Step 1 — Encapsulate the Data
 
-TO DO
+What we're looking for is a mechanism for collecting all the named pieces of information describing the Hoonyaker into a single variable. Does that sound like a problem we've solved before? Yes! That's literally what dictionaries are for!
+
+The file `pbs93b.html` is almost identical to `pbs93a.html`, the only significant difference is that it loads `hoonyaker2.js`, which contains an encapsulated version of the Hoonyaker data.
+
+Looking in that file you can see how the data has now been wrapped up in a single dictionary:
+
+```js
+const hoonyaker = {
+	name: 'Hoonyaker',
+	descriptionHTML: 'a fictitious currency invented by podcast listener and <em>Nosillacastaway</em> Kaylee that happens to equal about one US Dollar',
+	symbol: '₪',
+	symbolHTML: '<i class="fas fa-shekel-sign mx-1" title="₪" aria-hidden></i><span class="sr-only">₪</span>',
+	numDecimalPlaces: 3
+};
+```
+
+Changing how we store the information requires us to also change how we access the data in the functions, so hoonyaker2.js contains the same functions as the original file, but each piece of Hoonyaker data is now accessed by a different name. Every reference to `hoonyakerName` becomes `hoonyaker.name`, every reference to `hoonyakerSymbol` becomes `hoonyaker.symbol`, and so on.
+
+Here's the updated `describeHoonyaker()` function to illustrate the point:
+
+```js
+/**
+ * Generate a plain-text description of the Hoonyaker.
+ * 
+ * @return {string}
+ */
+function describeHoonyaker(){
+	// use jQuery to convert HTML to text
+	const plainTextDesc = $(`<p>${hoonyaker.descriptionHTML}</p>`).text();
+	return `The ${hoonyaker.name} is ${plainTextDesc}. It's symbol is ${hoonyaker.symbol}, and it has ${hoonyaker.numDecimalPlaces} decimal places.`;
+}
+```
+
+Using the JavaScript console from `pbs93b.html` we can see that our functions behave in exactly the same way they did before:
+
+```js
+// output the descriptions
+$OUT_TEXT.append(describeHoonyaker());
+$OUT_HTML.append(describeHoonyakerHTML());
+
+// output some formatted amounts
+$OUT_TEXT.empty().append(asHoonyakers(Math.PI));
+$OUT_HTML.empty().append(asHoonyakersHTML(Math.PI));
+```
+
+### Step 2 — Encapsulate the Functions Too
+
+The next step is to get the functions out of the global name space and get them encapsulated into the dictionary along with the data.
+
+Since JavaScript dictionaries can store anything a variable can store, including references to objects, and since JavaScript functions are objects, we can embed the functions straight into the dictionary using [function expressions](https://developer.mozilla.org/en/docs/web/JavaScript/Reference/Operators/function).
+
+You might hope the next step is as simply as copying-and-pasting the functions into the dictionary, but there's just a little more to it than that. 
+
+When we encapsulated the data we needed to change how the functions accessed the data, now that we are encapsulating them both, we need to change how we access data again.
+
+#### The Importance of `this` for Function Encapsulation
+
+When we move the functions into the dictionary they will effectively become peers within the dictionary's name space. We need a way of expressing the concept of *"the dictionary I belong to"*, and that's where the `this` keyword comes in.
+
+**Within functions embedded in dictionaries, the special variable `this` is a reference to the dictionary.**
+
+That sounds complicated, but it looks a lot simpler in actual code.
+
+The file `pbs93c.html` is effectively identical to `pbs93b.html`, but it imports a fully encapsulated version of the Hoonyaker code from `hoonyaker3.js`.
+
+The code in `hoonyaker3.js` is fully commented, but those comments distract from the structure of the code, so below is the fully encapsulated Hoonyaker with all comments removed:
+
+```js
+const hoonyaker = {
+	name: 'Hoonyaker',
+	descriptionHTML: 'a fictitious currency invented by podcast listener and <em>Nosillacastaway</em> Kaylee that happens to equal about one US Dollar',
+	symbol: '₪',
+	symbolHTML: '<i class="fas fa-shekel-sign mx-1" title="₪" aria-hidden></i><span class="sr-only">₪</span>',
+	numDecimalPlaces: 3,
+	describe: function(){
+		const plainTextDesc = $(`<p>${this.descriptionHTML}</p>`).text();
+		return `The ${this.name} is ${plainTextDesc}. It's symbol is ${this.symbol}, and it has ${this.numDecimalPlaces} decimal places.`;
+	},
+	describeHTML: function(){
+		return `<p>The ${this.name} is ${this.descriptionHTML}. It's symbol is ${this.symbolHTML}, and it has ${this.numDecimalPlaces} decimal places.</p>`
+	},
+	as: function(amount){
+		const formattedAmount = numeral(amount).format(`0,0[.]${'0'.repeat(this.numDecimalPlaces)}`);
+		return `${this.symbol}${formattedAmount}`;
+	},
+	asHTML: function(amount){
+		const formattedAmount = numeral(amount).format(`0,0[.]${'0'.repeat(this.numDecimalPlaces)}`);
+		return `${this.symbolHTML}${formattedAmount}`;
+	}
+};
+```
+
+Notice the use of `this` to access the data from within all the functions.
+
+Since we have now moved our functions into the dictionary, we need to change how we call them. They are now entries in a dictionary, so we call them using the dot syntax. For example, what was `describeHooneyaker()` has now become `hoonyaker.describe()`;
+
+The code below is intended to be run the JavaScript console from `pbs93c.html`, and calls each of our functions in turn:
+
+```js
+// output the descriptions
+$OUT_TEXT.append(hoonyaker.describe());
+$OUT_HTML.append(hoonyaker.describeHTML());
+
+// output some formatted amounts
+$OUT_TEXT.empty().append(hoonyaker.as(Math.PI));
+$OUT_HTML.empty().append(hoonyaker.asHTML(Math.PI));
+```
+
+## What has Encapsulation Given Us?
+
+The file `hoonyaker3.js` defines just a single well named globally scoped variable, and that variable contains all the information and functions that together describe the Hoonyaker. This file is easy to share between pages, projects, and even people. There is no pollution of the global name space, and the syntax for calling the functions reads well — I would argue code of the form `hoonyaker.as(42)` is very clear and understandable!
+
+So we're done? Not quite, encapsulation is just the first step towards truly object oriented code, there are more problems to be solved yet!
+
+## The Next Problem — Generalisation
+
+Using a dictionary we were able to create a beautifully encapsulated representation of the Hoonyaker, but what if we want to describe another fictitious currency?
+
+### Encapsulating the *Squid* (Bart's Imaginary Currency)
+
+The file `squid1.js` contains the code to represent this currency, and the examples are intended to be run from the JavaScript console from `pbs93d.html`.
+
+Looking at `squid1.js` the first thing I want to draw your attention to is that while the content of the data entries is obviously different than it was for the Hoonyaker, the names are the same!
+
+```js
+const squid = {
+	name: 'Squid',
+	descriptionHTML: 'a fictitious currency invented by <a href="https://bartb.ie/">Bart</a> that happens to equal about one Euro these days, even though it started life being about equal to an Irish Punt 🙂',
+	symbol: '₴',
+	symbolHTML: '<i class="fas fa-hryvnia mx-1" title="₴" aria-hidden></i><span class="sr-only">₴</span>',
+	numDecimalPlaces: 2,
+	// …
+}
+```
+
+The second thing I want to draw your attention to is that the functions are not just similar, they are **identical**!
+
+### A Code Duplication Disaster
+
+So, **both currency objects have data entries with the same names, and identical functions**.
+
+Copying-and-pasting the functions once is bad enough, but imagine trying to build encapsulated objects to represent each of the currencies in the [recent currency converter challenge](https://bartificer.net/pbs92)!
+
+This level of duplication is beyond a so-called *software engineering bad smell*, and deserves to be called a *software engineering stench*!
+
+### A Wasted Opportunity for Generalisation
+
+Let's set the code duplication problem aside for a moment and look at whole other shortcoming of simple encapsulation like this.
+
+We have effectively solved the currency problem in the abstract. Our functions will work for any currency anyone could dream up, but it's very difficult for others to make use of those very general functions for their own imagined currencies.
+
+The instructions would need to be:
+
+1. Download the code for the Hoonyaker (or Squid).
+2. Create an empty object named for your own currency.
+3. Copy-and-paste the names of the data fields into your object and enter the data.
+4. Copy-and-paste the functions into your object.
+
+That's not worthless, but it's hardly a developer-friendly solution, and of course, if we stop ignoring the code duplication, it also stinks!
+
+## Classes to the Rescue!
+
+If we look at object orientation as a philosophy (computer scientists use the term *paradigm*), then we can ask the question, what problem do classes solve?
+
+Well, we can now answer that — classes provide a mechanism for defining the structure and functionality of a collection of objects that represent instances of a single idea.
+
+What we need to avoid the problems with our Hoonyaker and Squid implementations is a class that represents the structure and functionality of any invented currency. We could then use that class ourselves to create Hoonyaker and Squid objects without any code duplication, but we could also share that class with other developers so they could build objects for their own imagined currencies without having copy-and-paste any of our code.
+
+## Final Thoughts
+
+This instalment ends on a cliff hanger! We've seen the value encapsulation brings, but we need to take things a step further by looking at how classes build on the concept of encapsulation to provide a mechanism for building encapsulated objects on demand.
+
+Your write classes to represent abstract concepts, and you then use those classes to quickly and easily construct encapsulated objects without any need for code duplication or tedious copying-and-pasting. And what's more, classes allow you to do it all in an easily re-usable and sharable way!

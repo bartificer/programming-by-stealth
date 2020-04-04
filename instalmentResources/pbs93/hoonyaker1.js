@@ -40,7 +40,7 @@ function describeHoonyakerHTML(){
  */
 function asHoonyakers(amount){
 	// format the number
-	const formattedAmount = numeral(amount).format('0,0[.]000');
+	const formattedAmount = numeral(amount).format(`0,0[.]${'0'.repeat(hoonyakerNumDecimalPlaces)}`);
 	return `${hoonyakerSymbol}${formattedAmount}`;
 }
 
@@ -52,6 +52,6 @@ function asHoonyakers(amount){
  */
 function asHoonyakersHTML(amount){
 	// format the number
-	const formattedAmount = numeral(amount).format('0,0[.]000');
+	const formattedAmount = numeral(amount).format(`0,0[.]${'0'.repeat(hoonyakerNumDecimalPlaces)}`);
 	return `${hoonyakerSymbolHTML}${formattedAmount}`;
 }
