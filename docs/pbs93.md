@@ -29,22 +29,22 @@ We can **store both information and references to functions as key/values pairs 
 Note that I described JavaScript's implementation of encapsulation as *basic* in this section's opening sentence. There's a good reason for that — **JavaScript's implementation of encapsulation does not provide any form of access control**. We won't encounter an implementation of that concept until we move on to PHP in future instalments.
 
 <aside>
-JavaSript's lack of support for encapsulation access control is one of the reasons C++ and Java programmers tend to look down on JavaScript and often refer to it pejoratively as a *toy language* or *just a scripting language*. When you come from a world where you can use keywords like `private` and `protected` to block access to internal variables, the idea that any script using your code can reach in and mess with any of your variables behind you back is horrifying — how can you write robust code if the developers using your API can tinker with all your variables behind your back?
+JavaScript's lack of support for encapsulation access control is one of the reasons C++ and Java programmers tend to look down on JavaScript and often refer to it pejoratively as a *toy language* or *just a scripting language*. When you come from a world where you can use keywords like `private` and `protected` to block access to internal variables, the idea that any script using your code can reach in and mess with any of your variables behind your back is horrifying — how can you write robust code if the developers using your API can tinker with all your variables behind your back?
 
 Since Java was my first language, and hence, my introduction to encapsulation and object orientation focused heavily on access control, I too looked down my nose at JavaScript for a long time. I'm well and truly over my dumb prejudice now, but it took years, so I empathise with those who haven't yet seen the light 😉
 </aside>
 
 ## A Simplistic Worked Example — The Hoonyaker
 
-<aside>When recording reviews for the [NosillaCast](https://www.podfeet.com/blog/category/nosillacast/) listener Kaylee likes to use a currency the invented and named the Hoonyaker that just happens to be worth about one US dollar.</aside>
+<aside>When recording reviews for the [NosillaCast](https://www.podfeet.com/blog/category/nosillacast/), listener Kaylee likes to use a currency she invented and named the Hoonyaker that just happens to be worth about one US dollar.</aside>
 
-To understand encapsulation we'll start with a completely un-encapsulated collection of a data and related functions. We'll then encapsulate just the data, and finally, the data and the functions.
+To understand encapsulation we'll start with a completely unencapsulated collection of a data and related functions. We'll then encapsulate just the data, and finally, the data and the functions.
 
-### The Un-encapsulated Hoonyaker
+### The Unencapsulated Hoonyaker
 
 Our starting point will be a collection of variables that describe the fictitious Hoonyaker currency and a collection of functions for interacting with this fictitious currency.
 
-You'll find the code for this naive representation of the Hoonyaker in `hoonyaker1.js`. You can interact with these variables and functions by opening `pbs93a.html` in your favourite browser and using the JavaScript console. The examples below are intended to be executed there. Note that the page defines two global variables which contain reference to jQuery objects representing the two output areas on the page, `$OUT_TEXT` & `$OUT_HTML`, and that we'll use these variables to display the output form the various functions.
+You'll find the code for this naive representation of the Hoonyaker in `hoonyaker1.js`. You can interact with these variables and functions by opening `pbs93a.html` in your favourite browser and using the JavaScript console. The examples below are intended to be executed there. Note that the page defines two global variables which contain reference to jQuery objects representing the two output areas on the page, `$OUT_TEXT` & `$OUT_HTML`, and that we'll use these variables to display the output from the various functions.
 
 So, let's look at our starting point:
 
@@ -294,4 +294,4 @@ What we need to avoid the problems with our Hoonyaker and Squid implementations 
 
 This instalment ends on a cliff hanger! We've seen the value encapsulation brings, but we need to take things a step further by looking at how classes build on the concept of encapsulation to provide a mechanism for building encapsulated objects on demand.
 
-Your write classes to represent abstract concepts, and you then use those classes to quickly and easily construct encapsulated objects without any need for code duplication or tedious copying-and-pasting. And what's more, classes allow you to do it all in an easily re-usable and sharable way!
+You write classes to represent abstract concepts, and you then use those classes to quickly and easily construct encapsulated objects without any need for code duplication or tedious copying-and-pasting. And what's more, classes allow you to do it all in an easily re-usable and sharable way!
