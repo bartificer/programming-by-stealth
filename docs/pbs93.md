@@ -4,6 +4,26 @@ Since [instalment 84](https://bartificer.net/pbs84) we've been slowly making our
 
 This leaves just one proverbial *hat* to explore — JavaScript's rather unique use of objects to support object oriented programming. Because this is both an important and a somewhat complex topic, we're going to split it into two parts. In this instalment we'll focus on a core principle that forms the foundation of object oriented programming — *encapsulation*.
 
+## Instalment Resources
+
+This instalment uses 8 example files:
+
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentZips/pbs93.zip)
+* [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs93)
+* View the four HTML files in your browser:
+	* [`pbs93a.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93a.html)
+	* [`pbs93b.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93b.html)
+	* [`pbs93c.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93c.html)
+	* [`pbs93d.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93d.html)
+
+## Matching Podcast Episode
+
+Listen along to this instalment on [episode 632 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/04/ccatp-632/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_04.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_04.mp3" >Download the MP3</a>
+
 ## The Problem Encapsulation Solves
 
 At its most fundamental level, programming is about representing information and transforming it. The various types of variables allow us to store information, and functions allow us to transform or process that information.
@@ -44,7 +64,7 @@ To understand encapsulation we'll start with a completely unencapsulated collect
 
 Our starting point will be a collection of variables that describe the fictitious Hoonyaker currency and a collection of functions for interacting with this fictitious currency.
 
-You'll find the code for this naive representation of the Hoonyaker in `hoonyaker1.js`. You can interact with these variables and functions by opening `pbs93a.html` in your favourite browser and using the JavaScript console. The examples below are intended to be executed there. Note that the page defines two global variables which contain reference to jQuery objects representing the two output areas on the page, `$OUT_TEXT` & `$OUT_HTML`, and that we'll use these variables to display the output from the various functions.
+You'll find the code for this naive representation of the Hoonyaker in `hoonyaker1.js`. You can interact with these variables and functions by opening `pbs93a.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93a.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs93/pbs93a.html)) in your favourite browser and using the JavaScript console. The examples below are intended to be executed there. Note that the page defines two global variables which contain reference to jQuery objects representing the two output areas on the page, `$OUT_TEXT` & `$OUT_HTML`, and that we'll use these variables to display the output from the various functions.
 
 So, let's look at our starting point:
 
@@ -124,7 +144,7 @@ $OUT_HTML.empty().append(asHoonyakersHTML(Math.PI));
 
 What we're looking for is a mechanism for collecting all the named pieces of information describing the Hoonyaker into a single variable. Does that sound like a problem we've solved before? Yes! That's literally what dictionaries are for!
 
-The file `pbs93b.html` is almost identical to `pbs93a.html`, the only significant difference is that it loads `hoonyaker2.js`, which contains an encapsulated version of the Hoonyaker data.
+The file `pbs93b.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93b.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs93/pbs93b.html)) is almost identical to `pbs93a.html`, the only significant difference is that it loads `hoonyaker2.js`, which contains an encapsulated version of the Hoonyaker data.
 
 Looking in that file you can see how the data has now been wrapped up in a single dictionary:
 
@@ -185,7 +205,7 @@ When we move the functions into the dictionary they will effectively become peer
 
 That sounds complicated, but it looks a lot simpler in actual code.
 
-The file `pbs93c.html` is effectively identical to `pbs93b.html`, but it imports a fully encapsulated version of the Hoonyaker code from `hoonyaker3.js`.
+The file `pbs93c.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93c.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs93/pbs93c.html)) is effectively identical to `pbs93b.html`, but it imports a fully encapsulated version of the Hoonyaker code from `hoonyaker3.js`.
 
 The code in `hoonyaker3.js` is fully commented, but those comments distract from the structure of the code, so below is the fully encapsulated Hoonyaker with all comments removed:
 
@@ -242,7 +262,7 @@ Using a dictionary we were able to create a beautifully encapsulated representat
 
 ### Encapsulating the *Squid* (Bart's Imaginary Currency)
 
-The file `squid1.js` contains the code to represent this currency, and the examples are intended to be run from the JavaScript console from `pbs93d.html`.
+The file `squid1.js` contains the code to represent this currency, and the examples are intended to be run from the JavaScript console from `pbs93d.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/0a781116a0c53f6368505f07a50f88e9f5d49247/instalmentResources/pbs93/pbs93d.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs93/pbs93d.html)).
 
 Looking at `squid1.js` the first thing I want to draw your attention to is that while the content of the data entries is obviously different than it was for the Hoonyaker, the names are the same!
 
