@@ -28,15 +28,15 @@ We can **store both information and references to functions as key/values pairs 
 
 Note that I described JavaScript's implementation of encapsulation as *basic* in this section's opening sentence. There's a good reason for that — **JavaScript's implementation of encapsulation does not provide any form of access control**. We won't encounter an implementation of that concept until we move on to PHP in future instalments.
 
-<aside>
-JavaScript's lack of support for encapsulation access control is one of the reasons C++ and Java programmers tend to look down on JavaScript and often refer to it pejoratively as a *toy language* or *just a scripting language*. When you come from a world where you can use keywords like `private` and `protected` to block access to internal variables, the idea that any script using your code can reach in and mess with any of your variables behind your back is horrifying — how can you write robust code if the developers using your API can tinker with all your variables behind your back?
-
-Since Java was my first language, and hence, my introduction to encapsulation and object orientation focused heavily on access control, I too looked down my nose at JavaScript for a long time. I'm well and truly over my dumb prejudice now, but it took years, so I empathise with those who haven't yet seen the light 😉
-</aside>
+> JavaScript's lack of support for encapsulation access control is one of the reasons C++ and Java programmers tend to look down on JavaScript and often refer to it pejoratively as a *toy language* or *just a scripting language*. When you come from a world where you can use keywords like `private` and `protected` to block access to internal variables, the idea that any script using your code can reach in and mess with any of your variables behind your back is horrifying — how can you write robust code if the developers using your API can tinker with all your variables behind your back?
+> 
+> Since Java was my first language, and hence, my introduction to encapsulation and object orientation focused heavily on access control, I too looked down my nose at JavaScript for a long time. I'm well and truly over my dumb prejudice now, but it took years, so I empathise with those who haven't yet seen the light 😉
+{: .aside}
 
 ## A Simplistic Worked Example — The Hoonyaker
 
-<aside>When recording reviews for the [NosillaCast](https://www.podfeet.com/blog/category/nosillacast/), listener Kaylee likes to use a currency she invented and named the Hoonyaker that just happens to be worth about one US dollar.</aside>
+> When recording reviews for the [NosillaCast](https://www.podfeet.com/blog/category/nosillacast/), listener Kaylee likes to use a currency she invented and named the Hoonyaker that just happens to be worth about one US dollar.
+{: .aside}
 
 To understand encapsulation we'll start with a completely unencapsulated collection of a data and related functions. We'll then encapsulate just the data, and finally, the data and the functions.
 
