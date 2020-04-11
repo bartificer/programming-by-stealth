@@ -8,7 +8,7 @@ class ImaginaryCurrency{
 	
 	/**
 	 * @param {Object} [details={}] - a dictionary of initial values for the currency's properties.
-	 * @param {string} [details.name='Imaginary Dollars'] - the currency's name.
+	 * @param {string} [details.name='Imaginary Dollar'] - the currency's name.
 	 * @param {string} [details.descriptionHTML='an imaginary currency'] - a discription of the currency, optionally including HTML tags.
 	 * @param {string} [details.symbol='$'] - a plain-text version of the currency's symbol.
 	 * @param {string} [details.symbolHTML='<i class="fas fa-dollar-sign mx-1" title="$" aria-hidden></i><span class="sr-only">$</span>'] - an HTML version of the currency's symbol.
@@ -23,7 +23,7 @@ class ImaginaryCurrency{
 		if(typeof details.name === 'string'){
 			this.name = details.name;
 		}else{
-			this.name = 'Imaginary Dollars';
+			this.name = 'Imaginary Dollar';
 		}
 		if(typeof details.descriptionHTML === 'string'){
 			this.descriptionHTML = details.descriptionHTML;

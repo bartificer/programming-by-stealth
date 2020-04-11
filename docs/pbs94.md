@@ -164,7 +164,12 @@ class ImaginaryCurrency{
 
 If you look at the code from `hoonyaker3.js` (and indeed `squid1.js`) from the previous instalment you'll see how similar this is in structure. Instead of defining our data attributes directly we now define them inside the constructor function, but their names remain un-changed. Also notice that the names and contents of all the functions remain the same too.
 
-Notice that I chose to write the constructor function in such a way that it expects to be passed the currency's details in a single argument named `details` that is a dictionary. To make it easy for users of the function to remember the property names, they are the same as those the class will use.
+Notice that I chose to write the constructor function in such a way that it expects to be passed the currency's details in a single argument named `details` that's a dictionary. To make it easy for users of the function to remember the property names, they're the same as those the class will use.
+
+> # The Three-Argument 'Rule'
+> 
+> As a general rule, if a function needs more than three arguments you should refactor it to accept a single dictionary argument with named values.
+{: .aside}
 
 ### Creating Instances of Classes with the `new` keyword
 
@@ -180,4 +185,124 @@ The file `pbs94a.html` includes the file `ImaginaryCurrency1.js`, so we can open
 
 As a practical example, let's create an object representing the Bars of Gold-pressed Latinum the Ferengi in Star Trek are so fond of acquiring 🙂
 
-LEFT OFF HERE!!!
+```js
+// create a Gold Pressed Latinum object
+const goldPressedLatinum = new ImaginaryCurrency({
+	name: 'Gold Pressed Latinum Bar',
+	descriptionHTML: 'a bar of Gold Pressed Latinum, a material that for inexplicable reasons can\'t be replicated even though pretty much anything else in the <a href="https://en.wikipedia.org/wiki/Star_Trek" target="_blank" rel="noopener">Star Trek</a> universe can',
+	symbol: '₤',
+	symbolHTML: '<i class="fas fa-lira-sign mx-1" title="₤" aria-hidden></i><span class="sr-only">₤</span>',
+	numDecimalPlaces: 0
+});
+
+// use our new object
+$OUT_TEXT.append(goldPressedLatinum.describe());
+$OUT_HTML.append(goldPressedLatinum.describeHTML());
+$OUT_TEXT.empty().append(goldPressedLatinum.as(Math.PI));
+$OUT_HTML.empty().append(goldPressedLatinum.asHTML(Math.PI));
+```
+
+This first implementation is extremely demanding of the programmer, to create a currency they must specify a value for every property, there is no concept of a default. This is generally considered bad practice, so in general, you should write your constructors so they can default as many values as possible, ideally, returning a usable object even when passed no arguments at all.
+
+The file `ImaginaryCurrency2.js` defines an improved version of the class which is identical except that the constructor now supports default values for all the currency details:
+
+```js
+class ImaginaryCurrency{
+	//
+	// Define the Constructor
+	//
+	
+	/**
+	 * @param {Object} [details={}] - a dictionary of initial values for the currency's properties.
+	 * @param {string} [details.name='Imaginary Dollar'] - the currency's name.
+	 * @param {string} [details.descriptionHTML='an imaginary currency'] - a discription of the currency, optionally including HTML tags.
+	 * @param {string} [details.symbol='$'] - a plain-text version of the currency's symbol.
+	 * @param {string} [details.symbolHTML='<i class="fas fa-dollar-sign mx-1" title="$" aria-hidden></i><span class="sr-only">$</span>'] - an HTML version of the currency's symbol.
+	 * @param {number} [numDecimalPlaces=2] - the number of decimal places the currency usually displays.
+	 */
+	constructor(details){
+		// ensure details is a dictionary
+		if(typeof details !== 'object') details = {};
+		
+		// initialise all the data attributes
+		// use the passed value if possible, otherwise, use a default
+		if(typeof details.name === 'string'){
+			this.name = details.name;
+		}else{
+			this.name = 'Imaginary Dollar';
+		}
+		if(typeof details.descriptionHTML === 'string'){
+			this.descriptionHTML = details.descriptionHTML;
+		}else{
+			this.descriptionHTML = 'an imaginary currency';
+		}
+		if(typeof details.symbol === 'string'){
+			this.symbol = details.symbol;
+		}else{
+			this.symbol = '$';
+		}
+		if(typeof details.symbolHTML === 'string'){
+			this.symbolHTML = details.symbolHTML;
+		}else{
+			this.symbolHTML = '<i class="fas fa-dollar-sign mx-1" title="$" aria-hidden></i><span class="sr-only">$</span>';
+		}
+		// best-effort to convert the number of decimal places to a number
+		const numDecimalPlaces = parseInt(details.numDecimalPlaces);
+		if(!isNaN(numDecimalPlaces) && numDecimalPlaces >= 0){
+			this.numDecimalPlaces = numDecimalPlaces;
+		}else{
+			this.numDecimalPlaces = 2;
+		}
+	}
+	
+	// …
+}
+```
+
+Notice that for each data attribute the constructor checks to see if a valid value was passed, and if it was it uses it, if not, it uses a default instead.t Also notice the code makes a reasonable effort to coerce the number of decimal places into a valid value. Finally notice that the doc comments document the default values.
+
+The file `pbs94b.html` loads this improved class, so we can experiment with it by opening that file in our favourite browser and entering the following into the JavaScript Console:
+
+```js
+// create an object with all the default values
+const defaultyDollars = new ImaginaryCurrency();
+
+// use our new object
+$OUT_TEXT.append(defaultyDollars.describe());
+$OUT_HTML.append(defaultyDollars.describeHTML());
+$OUT_TEXT.empty().append(defaultyDollars.as(Math.PI));
+$OUT_HTML.empty().append(defaultyDollars.asHTML(Math.PI));
+```
+
+In general developers will use a mix of default and custom values, so let's make use of our new support for defaults to create an object representing the Quatloo, the currency the aliens in the [Star Trek original series](https://en.wikipedia.org/wiki/Star_Trek:_The_Original_Series) episode [*The Gamesters of Triskelion*](https://en.wikipedia.org/wiki/The_Gamesters_of_Triskelion) used when betting on fights. Like many earth currencies, the Quatloo has two decimal places, which also happens to be the default provided by our improved `ImaginaryCurrency` class:
+
+```js
+// create the quatloo object
+const quatloo = new ImaginaryCurrency({
+	name: 'Quatloo',
+	descriptionHTML: 'a currency from the planet <a href="https://memory-alpha.fandom.com/wiki/Triskelion" target="_blank" rel="noopener">Triskelion</a>',
+	symbol: '₸',
+	symbolHTML: '<i class="fas fa-tenge mx-1" title="₸" aria-hidden></i><span class="sr-only">₸</span>'
+});
+
+// use the quatloo object
+$OUT_TEXT.append(quatloo.describe());
+$OUT_HTML.append(quatloo.describeHTML());
+$OUT_TEXT.empty().append(quatloo.as(Math.PI));
+$OUT_HTML.empty().append(quatloo.asHTML(Math.PI));
+```
+
+While this implementation is clearly more advanced, it's actually overly forgiving, resulting in the kind of silent error that will drive developers nuts!
+
+Take this simple example:
+
+```js
+const woopsie = new ImaginaryCurrency({numDecimalPlaces: '-3'});
+$OUT_TEXT.empty().append(quatloo.as(Math.PI));
+```
+
+This will print out `$3.14`, because the invalid value of `'-3'` was silently ignored and the default of `2` used instead.
+
+While we do want defaults when values are not passed at all, we also want to throw errors when invalid values are passed.
+
+LEFT OFF HERE

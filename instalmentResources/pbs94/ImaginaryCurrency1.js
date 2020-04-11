@@ -22,7 +22,7 @@ class ImaginaryCurrency{
 		this.descriptionHTML = details.descriptionHTML;
 		this.symbol = details.symbol;
 		this.symbolHTML = details.symbolHTML;
-		this.numDecimalPlaces = numDecimalPlaces;
+		this.numDecimalPlaces = details.numDecimalPlaces;
 	}
 	
 	//
