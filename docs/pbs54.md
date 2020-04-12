@@ -2,11 +2,11 @@
 
 In the previous instalment we started our exploration of Bootstrap with a look at some of its commonly used utility CSS classes. We’ll finish that off in this instalment by looking at some more utility CSS classes. That will finish out our initial look at the utilities. We’ll then be ready to move on to the next major component of Bootstrap, the CSS libraries it provides for enhancing existing HTML content.
 
-[The ZIP file for this instalment can be downloaded here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs54.zip).
+[The ZIP file for this instalment can be downloaded here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs54.zip).
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 537
+# Matching Postcast Episode 537
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 537 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/05/ccatp-537//)
+Listen along to this instalment on [episode 537 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/05/ccatp-537//)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_05_19.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -14,7 +14,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 53 Challenge Solution
 
-At the end of [the previous instalment](https://bartificer.net/pbs53) I set the challenge of applying what we learned during the instalment to the recipe page you created for the previous challenge, and to add some extra HTML elements into your recipe that we’ll need in future instalments. You’ll find my sample solution in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs54.zip) in the folder named `pbs53-challengeSolution`.
+At the end of [the previous instalment](https://bartificer.net/pbs53) I set the challenge of applying what we learned during the instalment to the recipe page you created for the previous challenge, and to add some extra HTML elements into your recipe that we’ll need in future instalments. You’ll find my sample solution in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs54.zip) in the folder named `pbs53-challengeSolution`.
 
 I chose to use the colour, margin, padding, and border utility classes to style my _Did You Know_ box:
 
@@ -31,7 +31,7 @@ When it came to adding in the requested extra HTML elements I chose to add the b
 
 ## Playground
 
-Like last time I’ve created an HTML document with some pre-created elements and empty `class` attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs54.zip) as `pbs54a.html`, and in [this interactive Bootply playground](https://www.bootply.com/aNM7DS9MfB#).
+Like last time I’ve created an HTML document with some pre-created elements and empty `class` attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs54.zip) as `pbs54a.html`, and in [this interactive Bootply playground](https://www.bootply.com/aNM7DS9MfB#).
 
 ```XHTML
 <!DOCTYPE HTML>

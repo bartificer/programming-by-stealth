@@ -4,11 +4,11 @@ In [the previous instalment](https://bartificer.net/pbs33) we had our first look
 
 Wrapping up our brief detour into testing a QUnit leaves us free to move back to HTML forms and more JavaScript practice in the next instalment. The aim is to slowly bring those two streams back together through a new multi-instalment project. Over the next few instalments we’ll be building up a web app that makes use of both web forms and JavaScript prototypes.
 
-As usual, I’ve collected the code referenced in this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs34.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs34.zip).
+As usual, I’ve collected the code referenced in this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs34.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs34.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_30.mp3
+# Matching Postcast Episode 484
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_30.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_30.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 484
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_30.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -276,7 +276,7 @@ must_throw.forEach(function(tn){
 
 The above snippet of code produces the following output when the test suite is run:
 
-![pbs.Time Hour Validation Partial Output](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-29-at-02.04.17.png)
+![pbs.Time Hour Validation Partial Output](../assets/pbs34/Screen-Shot-2017-04-29-at-02.04.17.png)
 
 You’ll find this same basic approach used to test validation through all three of the prototypes.
 

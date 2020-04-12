@@ -2,9 +2,9 @@
 
 Since this is the first instalment back after our summer hiatus, it seems like a good time to pause and take stock. I want to look back to revise what we’ve learned to far, and, to look forward to where I want to take this series next.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_01.mp3
+# Matching Postcast Episode 500
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_01.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_01.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 500
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_01.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

@@ -10,11 +10,11 @@ We’ll be working towards our first truly practical assignment in the series �
 4.  How to embed images directly into web pages using Data URLs
 5.  How to use the 3rd-party library URI.js to interrogate URLs
 
-There are four examples in this instalment, and a starting-point for the challenge. I’ve gathered them, and the other files they depend on, into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs23.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs23.zip). It’s assumed that you’ll extract this ZIP file and place the five HTML files and one folder it contains into a folder named `pbs23` in your local web server’s htdocs folder. The folder is particularly important because it contains a copy of the URI.js library, and if it’s not in the same folder as `pbs23d.html` and `pbs23-assignment.html`, those pages won’t work.
+There are four examples in this instalment, and a starting-point for the challenge. I’ve gathered them, and the other files they depend on, into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs23.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs23.zip). It’s assumed that you’ll extract this ZIP file and place the five HTML files and one folder it contains into a folder named `pbs23` in your local web server’s htdocs folder. The folder is particularly important because it contains a copy of the URI.js library, and if it’s not in the same folder as `pbs23d.html` and `pbs23-assignment.html`, those pages won’t work.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_13.mp3
+# Matching Postcast Episode 459
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_13.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_13.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 459
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_13.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

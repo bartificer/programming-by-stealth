@@ -8,9 +8,9 @@ Before we dive into the specifics, I want to take a moment to explain the larger
 
 We’ll be moving on to CSS once we finish describing HTML. Until we get CSS, the web pages we create will look exceptional plain and frankly boring, but don’t worry, we’ll move on to CSS soon enough, and then you can really let your creative juices fly!
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 409
+# Matching Postcast Episode 409
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 409 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/10/ccatp-409-bart-pbs2/)
+Listen along to this instalment on [episode 409 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/10/ccatp-409-bart-pbs2/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2015_10_24_bart_pbs2.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -134,8 +134,8 @@ separated from the first by a horizontal rule.</p>
 </html>
 ```
 
-![PBS2 Example](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-22-at-2.29.17-p.m.-e1445520640804.png)
+![PBS2 Example](../assets/pbs2/Screen-Shot-2015-10-22-at-2.29.17-p.m.-e1445520640804.png)
 
 Once this file is saved, and assuming your web server is running, you should be able to view your newly created page at the URL `http://localhost/pbs2/`.
 
-![PBS2 Example](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-22-at-2.32.47-p.m.-e1445520810976.png)
+![PBS2 Example](../assets/pbs2/Screen-Shot-2015-10-22-at-2.32.47-p.m.-e1445520810976.png)

@@ -2,9 +2,9 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2015/11/05/programming-by-stealth-part-3-of-x-html-block-elements/) we introduced the concept of block-level tags, and inline tags. Block level tags define blocks of text like headers, paragraphs and lists, and starting a new block-level tag generally starts a new line in the page. Inline tags on the other hand effect a part of a block, and opening an inline tag generally doesn’t start a new line. In the previous instalment we looked at some of the most important block-level tags, in this instalment we’ll look at some of the most common inline tags.
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 413
+# Matching Postcast Episode 413
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 413 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/11/ccatp-413/)
+Listen along to this instalment on [episode 413 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/11/ccatp-413/)
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2015_11_21.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -59,4 +59,4 @@ Create a folder called `pbs4` in the document root of your web server, and save 
 
 Once the file is saved, and your web server started, you should be able to browse to the page at `http://localhost/pbs4/`, and it should look something like:
 
-![PBS 4 - Example](https://www.bartbusschots.ie/s/wp-content/uploads/2015/11/Screen-Shot-2015-11-20-at-2.06.20-p.m.-e1448028433115.png)
+![PBS 4 - Example](../assets/pbs4/Screen-Shot-2015-11-20-at-2.06.20-p.m.-e1448028433115.png)

@@ -2,9 +2,9 @@
 
 In this instalment we’ll build on our basic understanding of CSS from previous instalment. We’ll start with some new CSS selectors, in the process, introduce two new HTML tag attributes, then we’ll move on to the CSS box model. Each HTML tag is represented in the page as a box, and all those boxes can be manipulated with CSS.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_22.mp3
+# Matching Postcast Episode 422
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_22.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_22.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 422
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_22.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -141,7 +141,7 @@ Within the browser, every HTML tag that makes up part of the page is defined by 
 
 To build the box for an element, start with the content region itself. Around that you can wrap a region zero or more pixels wide in the same colour as the box’s background (transparent by default) called the padding, around that you can wrap a coloured region zero or more pixels wide called the border, and finally, around that you can add a transparent region zero or more pixels wide called the margin. Padding, border, and margin default to be symmetric, but each can have a different thickness on the top, bottom, left, and right.
 
-![The CSS Box Model](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/Screen-Shot-2016-01-15-at-16.06.11.png)
+![The CSS Box Model](../assets/pbs7/Screen-Shot-2016-01-15-at-16.06.11.png)
 
 The boxes for block-level tags stretch to the full width of the the content area of the tag they are contained within, and stack one against the other, with the boxes touching each other. The body tag’s box extends to the edges of the content area of the browser window or tab they are appearing in.
 
@@ -244,13 +244,13 @@ When only repeating in one direction, or not at all, the positioning of the back
 
 ## A Worked Example
 
-This week’s example consists of four files – an HTML file, a CSS file, and two images used as backgrounds. You can download all four in a single ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/pbs7.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs7.zip).
+This week’s example consists of four files – an HTML file, a CSS file, and two images used as backgrounds. You can download all four in a single ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/pbs7.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs7.zip).
 
 As usual, copy the four files into a folder called `pbs7` in your web server’s document root, then browse to `http://localhost/pbs7`.
 
 The page should look something like:
 
-![PBS 7 - Example](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/Screen-Shot-2016-01-19-at-16.33.19-e1453221254823.png)
+![PBS 7 - Example](../assets/pbs7/Screen-Shot-2016-01-19-at-16.33.19-e1453221254823.png)
 
 For completeness, the code for the HTML and CSS files is shown below:
 
@@ -391,20 +391,20 @@ blockquote p.author{
 
 All modern browsers, even Microsoft’s new Edge, now include developer tools that can be used to interrogate a web page and get the active CSS properties for any given tag, and, to see the details of every box on the page. In Safari, you need to enable the developer tools in the `Advanced` tab of the preferences window:
 
-![Safari Enable Developer Tools](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/Screen-Shot-2016-01-18-at-10.44.11.png)
+![Safari Enable Developer Tools](../assets/pbs7/Screen-Shot-2016-01-18-at-10.44.11.png)
 
 Because FireFox is cross-platform, that’s the one we’ll demo in this series, but like I say, all modern browsers have the ability to do the same kinds of things, just in slightly different ways.
 
 In FireFox, you’ll find the various developer tools under `Tools`, `Web Developer`:
 
-![FireFox Developer Tools](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/Screen-Shot-2016-01-19-at-16.50.15-e1453222286203.png)
+![FireFox Developer Tools](../assets/pbs7/Screen-Shot-2016-01-19-at-16.50.15-e1453222286203.png)
 
 For today, what we want is the web inspector (`Tools`, `Web Developer`, `Inspector`):
 
-![FireFox Developer Tools Web Inspectror](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/Screen-Shot-2016-01-19-at-17.02.56-e1453223192795.png)
+![FireFox Developer Tools Web Inspectror](../assets/pbs7/Screen-Shot-2016-01-19-at-17.02.56-e1453223192795.png)
 
 This will add new interface to the bottom of the browser window with two panes – one showing the HTML tags in the document, and one showing info about the currently selected tag. To see a tag’s box, just hover over it in the right pane, to see its properties, click on it. In the left pane, where the properties are shown, there are tabs to control what properties you see. The two that are of interest to use at the moment are Rules, which show all the CSS definitions in our stylesheets that apply to the selected tag, and Computed, which shows the rules that have been applied to the tag when all the cascading of styles and calculations of specificity have been done.
 
-![FireFox Web Inspector](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/Screen-Shot-2016-01-19-at-17.11.42-e1453223585271.png)
+![FireFox Web Inspector](../assets/pbs7/Screen-Shot-2016-01-19-at-17.11.42-e1453223585271.png)
 
 This interface makes it much easier to debug your CSS, and will become even more valuable in the next instalment when we look at using CSS to position elements within a page.

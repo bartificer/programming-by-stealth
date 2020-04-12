@@ -4,7 +4,7 @@ There are many programming concepts that are common to the vast majority of prog
 
 We’ll also look at a sample solution to the challenge set at the end of instalment 83, but unusually, we’ll do that after our look at arrays.
 
-You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs85.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs85.zip) (now via the JSDelivr CDN). If you prefer, you can access this instalment’s resources directly at the following links:
+You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs85.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs85.zip) (now via the JSDelivr CDN). If you prefer, you can access this instalment’s resources directly at the following links:
 
 *   `pbs85a.html`:  
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/d52db74056e78a9e298a691c716b487c93db910f/instalmentResources/pbs85/pbs85a.html) or  

@@ -2,7 +2,7 @@
 
 In this instalment we finish our exploration of promises with a look at the two new promise-related keywords added to JavaScript in ES 2017. These keywords allow us to write asynchronous code in a more human-friendly way.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/09/pbs82.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs82.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/09/pbs82.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs82.zip).
 
 # Matching Postcast Episode 609
 
@@ -214,7 +214,7 @@ If this was a normal function the value of `demoOut` would now be 16, but this i
 console.log(demoOut);
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/09/Screenshot-2019-09-19-at-19.02.11.png)
+![](../assets/pbs82/Screenshot-2019-09-19-at-19.02.11.png)
 
 Below is an example of a similarly simple async function, but this time one declared with a function expression:
 

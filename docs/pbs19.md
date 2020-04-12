@@ -4,9 +4,9 @@ While recording [instalment 18](https://www.bartbusschots.ie/s/2016/07/06/pbs-18
 
 These challenges are designed to be run in the [PBS JavaScript Playground](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/). You may also find the [PBS JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) helpful.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_08_08.mp3
+# Matching Postcast Episode 449
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_08_08.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_08_08.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 449
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_08_08.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

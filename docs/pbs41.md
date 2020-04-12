@@ -8,11 +8,11 @@ When it comes to keyboard interaction we’ll start by looking at how browsers t
 
 Finally, we’ll wrap up with a handy reference table summarising the most important webform-related JavaScripts events, giving some guidance on their use.
 
-There’s just one sample file associated with this instalment, and it’s available for download as a ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs41.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs41.zip).
+There’s just one sample file associated with this instalment, and it’s available for download as a ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs41.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs41.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_13.mp3
+# Matching Postcast Episode 505
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_13.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_13.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 505
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_13.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

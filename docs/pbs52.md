@@ -13,9 +13,9 @@ Out of the box, all versions of HTML, even HTML 5, have some significant short-c
 
 Bootstap aims to solve all these shortcomings using a combination of mostly CSS combined with a little JavaScript.
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 531
+# Matching Postcast Episode 531
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 531 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/03/ccatp-531/)
+Listen along to this instalment on [episode 531 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/03/ccatp-531/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_03_31.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -90,7 +90,7 @@ The three valid values for the `box-sizing` CSS property are:
 2.  `padding-box` — the `width` and `height` properties are interpreted as referring to the content width plus any padding.
 3.  `border-box` — the `width` and `height` properties are interpreted as referring to the content width plus any padding plus the border width (the old IE approach).
 
-![A diagram illustrating the three different CSS box models](https://www.bartbusschots.ie/s/wp-content/uploads/2018/03/PBS52-TheCSSBoxModels.png)
+![A diagram illustrating the three different CSS box models](../assets/pbs52/PBS52-TheCSSBoxModels.png)
 
 Why am I telling you all this? Simple, because **Bootstrap changes the default `box-sizing` for all elements from `content-box` to `border-box`**. In other words, Bootstrap changes your page from the counter-intuitive Netscape box model to the much more sensible IE box model.
 
@@ -114,7 +114,7 @@ You can find the documentation at [https://getbootstrap.com/docs/4.0/](https://g
 
 The most important four buttons for navigating the documentation are the ones matching the four main categories of CSS classes listed above. This is where you’ll find them:
 
-![Screenshot of the Bootstrap 4 Docs with most important links highlighted](https://www.bartbusschots.ie/s/wp-content/uploads/2018/03/Screen-Shot-2018-03-31-at-10.55.38.png)
+![Screenshot of the Bootstrap 4 Docs with most important links highlighted](../assets/pbs52/Screen-Shot-2018-03-31-at-10.55.38.png)
 
 ## A New Playground
 
@@ -135,7 +135,7 @@ Enter the following into the HTML area in the playground:
 
 To see what this looks like, press the _Run_ button in the upper left:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/03/Screen-Shot-2018-03-31-at-11.09.09.png)
+![](../assets/pbs52/Screen-Shot-2018-03-31-at-11.09.09.png)
 
 Initially, until we learn about Bootstrap’s layout functionality, we’ll need to wrap our code snippets with the following:
 

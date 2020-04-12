@@ -12,9 +12,9 @@ We’ll finish by creating a final, fully accessible, button complete with a pre
 
 In the next instalment we’ll finally be ready to move on to some more different form inputs, specifically, checkboxes and radio buttons.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_17.mp3
+# Matching Postcast Episode 476
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_17.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_17.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 476
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_17.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

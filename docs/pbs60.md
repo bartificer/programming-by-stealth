@@ -4,11 +4,11 @@ So far we’ve looked at three our of the four aspects of Bootstrap — the util
 
 That changes in this instalment when we make a start on Bootstrap’s final aspect, so-called _components_. These are re-usable generic website components, and they rely on JavaScript for some or all of their functionality. To get the ball rolling we’ll take a look at just one very simple component, the Bootstrap _alert_.
 
-You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/pbs60.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs60.zip).
+You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/pbs60.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs60.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 558
+# Matching Postcast Episode 558
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 558 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/08/ccatp-558/)
+Listen along to this instalment on [episode 558 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/08/ccatp-558/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_08_12.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -111,7 +111,7 @@ Here’s a very basic example:
 
 This is what it looks like within a page:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/Screen-Shot-2018-08-12-at-13.21.01.png)
+![](../assets/pbs60/Screen-Shot-2018-08-12-at-13.21.01.png)
 
 We can add appropriately styles headers by giving them the class `alert-heading`, appropriately styles links by giving them the class `alert-link`, and we can break our alert into sections with the `<hr>` tag:
 
@@ -126,7 +126,7 @@ We can add appropriately styles headers by giving them the class `alert-heading`
 
 Our alert now looks like this:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/Screen-Shot-2018-08-12-at-13.36.45.png)
+![](../assets/pbs60/Screen-Shot-2018-08-12-at-13.36.45.png)
 
 So far we’ve not used any JavaScript functionality yet. Let’s add some, but without writing a single line of JavaScript code. Let’s use Bootstrap’s support for data attributes to add a close button to our alert. This can be done by adding a `<button>` with the HTML data attribute `data-dismiss` with a value of alert. This tells Bootstrap’s document ready handler that we want this button to dismiss the alert that it’s contained within.
 
@@ -140,7 +140,7 @@ The snippet below is straight form the example in the Bootstrap docs. We’ve no
 
 We now have a dismissible alert!
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/Screen-Shot-2018-08-12-at-13.49.11.png)
+![](../assets/pbs60/Screen-Shot-2018-08-12-at-13.49.11.png)
 
 You can find the full code for a sample page containing this dismissible alert in the ZIP as `pbs60a.html`.
 

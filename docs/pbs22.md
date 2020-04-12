@@ -2,11 +2,11 @@
 
 In the previous instalments we experimented with jQuery using the web console on our [dummy page](https://www.bartbusschots.ie/pbsdemos/pbs-dummyPage/). In this instalment we’ll learn how to embed JavaScript into web pages, and, how to attach our code so it gets triggered by browser events.
 
-This instalment includes a number of examples. You can copy-and-paste the code out of the page, but for convenience I’ve zipped up all the files and you can [download them here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/pbs22.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs22.zip).
+This instalment includes a number of examples. You can copy-and-paste the code out of the page, but for convenience I’ve zipped up all the files and you can [download them here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/pbs22.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs22.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_30.mp3
+# Matching Postcast Episode 457
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_30.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_30.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 457
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_30.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

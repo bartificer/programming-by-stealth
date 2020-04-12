@@ -2,7 +2,7 @@
 
 This will be the penultimate instalment of our introduction to Bootstrap forms. Today we’ll be looking at a really useful Bootstrap component for making form inputs clearer for the user, more powerful, and prettier. In the next instalment we’ll finish off with Bootstraps forms for the moment with a look at Boostrap’s built-in form validation features.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs65.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs65.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs65.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs65.zip).
 
 # Matching Postcast Episode 568
 
@@ -133,7 +133,7 @@ The above snippet shows an entire row from within a horizontal Bootstrap form. N
 
 This is what this input looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-14.53.10.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-14.53.10.png)
 
 Text inputs can also contain text-based icons like emoji or glyphicons, so we could improve our Twitter input by adding an Twitter icon as an append:
 
@@ -151,7 +151,7 @@ Text inputs can also contain text-based icons like emoji or glyphicons, so we co
 
 The above snippet uses a Font Awesome glyphicon and looks like this:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-15.06.14.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-15.06.14.png)
 
 Another very common way to show context with text add-ons is currency amounts. You can use a pre-pend add-on to show the currency, and an append add-on to show that you want the user to enter just the major part of the amount. For example, here is an input group asking for a Euro amount to the nearest Euro:
 
@@ -172,7 +172,7 @@ Another very common way to show context with text add-ons is currency amounts. Y
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-15.08.45.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-15.08.45.png)
 
 You can use a text add-on as a label, but just remember to use the appropriate ARIA attributes to support assistive technologies:
 
@@ -191,7 +191,7 @@ You can use a text add-on as a label, but just remember to use the appropriate A
 
 Note that the add-on text was given the ID `#message_ta_lbl`, and the text area specifies that ID as its label with the `aria-labelledby` attribute. This is what the text area looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-15.19.50.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-15.19.50.png)
 
 ## Checkboxes/Radio Buttons as Input Group Add-ons
 
@@ -223,7 +223,7 @@ The following input asks the users for a homepage URL, and asks them whether or 
 
 Note the use of the `aria-label` attribute to give the checkbox a label for assistive devices. This is what the input group looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-15.36.39.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-15.36.39.png)
 
 ## Multiple Inputs and Add-ons
 
@@ -244,7 +244,7 @@ While you can only have a single prepend or append add-on as such, each of those
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-15.44.25.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-15.44.25.png)
 
 An example where you might want multiple inputs would be someone’s name:
 
@@ -265,7 +265,7 @@ An example where you might want multiple inputs would be someone’s name:
 
 Note the use of `aria-label` attributes to give each input an individual label for assistive devices. This is what the input group looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-15.52.29.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-15.52.29.png)
 
 ## Input Group Selects
 
@@ -291,11 +291,11 @@ You can add a dropdown into your input groups by giving it the class `.custom-se
 
 Note that this is not a standard select, but a bootstrap-special that keeps its colour scheme more in tune with the input group as a whole. The difference is not that striking when the select s collapsed:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-16.33.08.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-16.33.08.png)
 
 But it’s very noticeably when its expanded:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-16.33.41.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-16.33.41.png)
 
 ## Input Group Buttons
 
@@ -325,7 +325,7 @@ As an example, let’s make a simple small search box:
 
 Again, note the use of the `aria-label` attribute to label the text box for assistive technologies. This is what the entire form looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-20-at-16.20.20.png)
+![](../assets/pbs65/Screenshot-2018-10-20-at-16.20.20.png)
 
 ## Challenge
 

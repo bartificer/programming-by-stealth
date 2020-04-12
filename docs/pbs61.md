@@ -4,11 +4,11 @@ In the previous instalment we met our first so-called Bootstrap _Component_, the
 
 While many, probably most, Bootstrap components either require JavaScript to function at all, or, require JavaScript for their more advanced features, that’s not true of all components, some of the simpler ones are implemented in pure CSS. We’ll look at two such simple components in this instalment – the wonderfully named _Jumbotron_, and badges.
 
-You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/pbs61.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs61.zip).
+You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/pbs61.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs61.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 561
+# Matching Postcast Episode 561
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 561 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/08/ccatp-561/)
+Listen along to this instalment on [episode 561 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/08/ccatp-561/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_08_30.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -145,7 +145,7 @@ To use the edge-to-edge form you effectively reverse the process, you add a top-
 
 I’ve added a file demoing both flavours of Jumbotron to this instalment’s ZIP file (`pbs61a.html`). Here’s what it looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/Screen-Shot-2018-08-26-at-14.57.12.png)
+![](../assets/pbs61/Screen-Shot-2018-08-26-at-14.57.12.png)
 
 Let’s look at the relevant code snippets, starting with the simple edge-to-edge Jumbotron:
 
@@ -196,7 +196,7 @@ If you want to make actionable badges then add the badge classes directly to an 
 
 The file `pbs61b.html` in the ZIP file contains a sampling of some different badges. The code is pretty self-explanatory, so I’ll just include a screenshot here:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/Screen-Shot-2018-08-26-at-15.18.30.png)
+![](../assets/pbs61/Screen-Shot-2018-08-26-at-15.18.30.png)
 
 ## Challenges
 

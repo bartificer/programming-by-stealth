@@ -4,9 +4,9 @@ After six instalments, it’s finally time to bring our JavaScript knowledge int
 
 A key point to note is that HTML, CSS, and JavaScript are all so-called client-side technologies. It’s the web browser doing the work, not the web server. The web server simply delivers the HTML, CSS, and JavaScript code to the browser as text, just like you type it, and the browser then interprets that code and turns it into the web page you see and interact with.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_02.mp3
+# Matching Postcast Episode 453
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_02.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_02.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 453
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_02.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -240,25 +240,25 @@ Most browsers allow you to have the console appear as a sidebar (or bottom bar) 
 
 The exact mechanisms for accessing and using these consoles vary from browser to browser, as indeed do the names the browsers use to describe them. My absolute favourite remains that in Safari, so I do all my development work in that browser, but to remain cross-platform, we’ll use the FireFox console here.
 
-To test the console, lets open a dummy page in FireFox, and then activate FireFox’s console on that page. You can [access the dummy page on my server](https://www.bartb.ie/pbsdemos/pbs-dummyPage/), or you can [download the code](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/pbs-dummyPage.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs-dummyPage.zip) and run it in your own local server. Once you have the page open, go to the `Tools` menu, then to `Web Developer`, and click on `Web Console`.
+To test the console, lets open a dummy page in FireFox, and then activate FireFox’s console on that page. You can [access the dummy page on my server](https://www.bartb.ie/pbsdemos/pbs-dummyPage/), or you can [download the code](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/pbs-dummyPage.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-dummyPage.zip) and run it in your own local server. Once you have the page open, go to the `Tools` menu, then to `Web Developer`, and click on `Web Console`.
 
-![Enable FireFox Web Console](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/Screen-Shot-2016-09-01-at-23.41.27.png)
+![Enable FireFox Web Console](../assets/pbs20/Screen-Shot-2016-09-01-at-23.41.27.png)
 
 By default, this should open the console in a docked region at the bottom of the browser window.
 
-![The FireFox Web Console](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/Screen-Shot-2016-09-01-at-23.44.30-e1472769884644.png)
+![The FireFox Web Console](../assets/pbs20/Screen-Shot-2016-09-01-at-23.44.30-e1472769884644.png)
 
 The buttons at the top-right of this region allow you to close the console, un-dock it so it becomes a floating window, or, change it to a side bar. I like to un-dock it, so that’s how you’ll see it in my screenshots.
 
-![Undock FireFox Web Console](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/Screen-Shot-2016-09-01-at-23.47.10.png)
+![Undock FireFox Web Console](../assets/pbs20/Screen-Shot-2016-09-01-at-23.47.10.png)
 
 The bar at the top of the console region lets you control what messages you see. Messages from different origins will have different colours. You can control the messages from each origin that you see with the colour-coded drop-down menus starting at the left of the bar. At the far left of the bar is a trashcan icon which will empty the console, removing all messages. The right of the bar contains a search box that you can use to do real-time filtering of the messages show in the console.
 
-![Control Messages in FireFox Web Console](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/Screen-Shot-2016-09-01-at-23.54.23.png)
+![Control Messages in FireFox Web Console](../assets/pbs20/Screen-Shot-2016-09-01-at-23.54.23.png)
 
 At the bottom of the console you’ll see a text box next to a double-shevron – that’s effectively a JavaScript command prompt. You can enter JavaScript code there and hit enter to run it. If the executed code returns a value, that will be printed to the console. The console is smart enough to sensibly render more complex data structures like arrays and objects.
 
-![FireFox Web Console](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/Screen-Shot-2016-09-02-at-00.02.58.png)
+![FireFox Web Console](../assets/pbs20/Screen-Shot-2016-09-02-at-00.02.58.png)
 
 Try it out by entering the following (one-by-one):
 

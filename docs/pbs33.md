@@ -6,11 +6,11 @@ What we’ll be doing in this instalment is taking a first look at the concept o
 
 The tool we’ll be looking at to implement our JavaScript test suites is [QUnit](http://qunitjs.com). This is a Unit Testing framework developed by the jQuery project, and used by them for jQuery’s test suite.
 
-All code files used in this instalment are contained in a single ZIP file which you can download [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs33.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs33.zip).
+All code files used in this instalment are contained in a single ZIP file which you can download [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs33.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs33.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_14.mp3
+# Matching Postcast Episode 482
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_14.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_14.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 482
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_14.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -325,7 +325,7 @@ Remember, with TDD you shouldn’t write code until you’ve defined some tests 
 
 You should now see a page like the following when you load `index.html` in your browser (or run it within CodeRunner):
 
-![Basic QUnit Test Runner](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-08-at-15.33.16-e1491662047256.png)
+![Basic QUnit Test Runner](../assets/pbs33/Screen-Shot-2017-04-08-at-15.33.16-e1491662047256.png)
 
 Next, we need to write some tests. Let’s start with a general test to be sure our namespace exists. Use the following as the initial content of `test/pbs.math.test.js`:
 
@@ -355,7 +355,7 @@ The `ok()` assertion function expects two arguments, the value to test for truth
 
 OK – let’s refresh our test runner (`test/index.html`) and see what we get:
 
-![QUnit showing a failing test](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-08-at-15.43.23-e1491663195812.png)
+![QUnit showing a failing test](../assets/pbs33/Screen-Shot-2017-04-08-at-15.43.23-e1491663195812.png)
 
 As expected, we see a big red error message (since we haven’t added anything into `pbs.math.js` yet, not even the namespace declaration). But, look a little closer and you might notice something unexpected – the summary says:
 
@@ -975,16 +975,16 @@ Within our source code we now have our tests sorted into nice clear groupings. B
 
 Let’s have a more detailed look at the test runner now that we have a pretty full-featured test suite. Between the title of the test suite and the output of the tests is a toolbar, marked in red on the screenshot below:
 
-[![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-14-at-15.24.32-300x103.png)  
+[![](../assets/pbs33/Screen-Shot-2017-04-14-at-15.24.32-300x103.png)  
 Click to Enlarge](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-14-at-15.24.32.png)
 
 The first thing I want to draw your attention to is the drop-down at the right of the tool bar labeled _Module_. Using this dropdown we can instruct QUnit to only run the tests for a given sub-set of modules, allowing us to cut down on clutter as we focus on specific parts of our code.
 
-![QUnit Modules Dropdown](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-14-at-15.35.33.png)
+![QUnit Modules Dropdown](../assets/pbs33/Screen-Shot-2017-04-14-at-15.35.33.png)
 
 Next to that dropdown is a text box labeled _Filter_, this allows us to show only tests that match a given search string. You apply the filter by clicking the _Go_ button next to the text box. Again, this is a mechanism to allow us to filter out clutter and help focus our attention. The bigger your code base, and hence your test suite, the more valuable this filter box becomes.
 
-![QUnit Filter Text Box](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-14-at-15.39.14.png)
+![QUnit Filter Text Box](../assets/pbs33/Screen-Shot-2017-04-14-at-15.39.14.png)
 
 Finally, the tool bar contains a collection of three checkboxes:
 

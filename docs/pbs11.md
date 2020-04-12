@@ -4,9 +4,9 @@ Finally, after many months of making Allison wait, it’s time to look at tables
 
 Remember – tables are for one thing, and one thing only – **displaying tabular data**!
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_17.mp3
+# Matching Postcast Episode 430
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_17.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_17.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 430
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_17.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -113,7 +113,7 @@ table footer, and a table body.</p>
 
 The table will look something like:
 
-![PBS11 - Un-styled Table](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-15-at-13.55.42-e1458050213106.png)
+![PBS11 - Un-styled Table](../assets/pbs11/Screen-Shot-2016-03-15-at-13.55.42-e1458050213106.png)
 
 You can see that the caption appears at the top, the header and footer are above and below the data, and the footer has a single cell stretched across the full width.
 
@@ -148,7 +148,7 @@ table.basic, table.basic th, table.basic td{
 
 Our table now looks like this:
 
-![PBS 11 - Table with Wide Border Spacing](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-15-at-14.32.37-e1458052404823.png)
+![PBS 11 - Table with Wide Border Spacing](../assets/pbs11/Screen-Shot-2016-03-15-at-14.32.37-e1458052404823.png)
 
 We can make tables behave like they do in Excel by collapsing the borders. Whether or not the borders are collapsed is controlled by the `border-collapse` CSS property, which can have the following two values; `separate` (not collapsed), and `collapse`.
 
@@ -169,7 +169,7 @@ table.basic th, table.basic td{
 
 This produces a table that looks like this:
 
-![PBS 11 - Collapsed Border Table](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-15-at-15.54.13-e1458057295195.png)
+![PBS 11 - Collapsed Border Table](../assets/pbs11/Screen-Shot-2016-03-15-at-15.54.13-e1458057295195.png)
 
 ### Controlling Column Widths
 
@@ -199,7 +199,7 @@ As an example, the following CSS code sets the widths of each of the four column
 
 Our table now looks like this:
 
-![PBS 11 - Table with Specified Column widths](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-15-at-16.10.07-e1458058276515.png)
+![PBS 11 - Table with Specified Column widths](../assets/pbs11/Screen-Shot-2016-03-15-at-16.10.07-e1458058276515.png)
 
 The above example uses percentages, but you can also use exact pixel values. If your table is variable width (not set to an exact width), you can still use exact pixel values for your column widths, as long as you leave at least one `width` set to `auto`.
 
@@ -263,7 +263,7 @@ Putting it all together, the following definition would truncate the first colum
 
 ## A Worked Example
 
-You can download a zip file with the code [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/pbs11.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs11.zip). Extract the files and save them in a folder called `pbs11` in your local web server’s document root, and then you’ll be able to browse to the demo at `http://localhost/pbs11/`. For completeness, the HTML and CSS from the example are included below:
+You can download a zip file with the code [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/pbs11.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs11.zip). Extract the files and save them in a folder called `pbs11` in your local web server’s document root, and then you’ll be able to browse to the demo at `http://localhost/pbs11/`. For completeness, the HTML and CSS from the example are included below:
 
 ```XHTML
 <!DOCTYPE HTML>
@@ -589,7 +589,7 @@ style the cool URLs table only
 
 The page should look something like this:
 
-![PBS 11 Demo](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-17-at-15.08.35-e1458227378869.png)
+![PBS 11 Demo](../assets/pbs11/Screen-Shot-2016-03-17-at-15.08.35-e1458227378869.png)
 
 I want draw your attention to a few key features of the second, more advanced, table example. Firstly, the regions of the table are used to style the header, footer, and table body differently. The `:nth-child pseudo-class` we learned about in [the previous instalment](https://www.bartbusschots.ie/s/2016/03/04/programming-by-stealth-10-of-x-yet-more-css/) is used heavily in this example – to set column widths, and to create the zebra-pattern in the rows.
 

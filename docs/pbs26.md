@@ -6,11 +6,11 @@ We’ll also revise what we learned about defining our own object prototypes to 
 
 Finally, as a practical worked example, we’ll build a better clock API for Allison’s website. Each Sunday she streams the live recording of her podcast from [podfeet.com/live](http://podfeet.com/live) at 5pm at her house. To avoid timezone confusion, Allison would like a clock on that page that shows the current time at her house.
 
-As usual I’ve packaged all the files needed for the worked example into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/12/pbs26.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs26.zip).
+As usual I’ve packaged all the files needed for the worked example into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/12/pbs26.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs26.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_12_10.mp3
+# Matching Postcast Episode 467
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_12_10.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_12_10.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 467
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_12_10.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

@@ -6,11 +6,11 @@ The important points to remember are that **breakpoints apply to a given viewpor
 
 Bootstrap does not just use breakpoints within the grid though. Some of the Bootstrap _utility_ and _content_ classes also have breakpoint support. In this instalment we’ll circle back and re-visit some of these. Note that only some utility and content classes have breakpoint support, not most, let alone all.
 
-You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs59.zip).
+You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs59.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 556
+# Matching Postcast Episode 556
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 556 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-556/)
+Listen along to this instalment on [episode 556 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-556/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_07_28.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -74,7 +74,7 @@ This works and does exactly what I want, but there is a slightly more efficient 
 
 I applied the same logic to the other rows that make up my page.
 
-You can see a full version of my recipe in the folder `pbs58-challengeSolution` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs59.zip).
+You can see a full version of my recipe in the folder `pbs58-challengeSolution` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs59.zip).
 
 ## Bootstrap Utility & Content Classes with Breakpoint Support
 
@@ -106,7 +106,7 @@ We’ve seen that we can make tables horizontally scrollable by wrapping them in
 
 ### Worked Example
 
-This all sounds a little abstract, so let’s work through a simple example that illustrates some common use-cases. To do this we’ll use a simplified version of the Irish Referendum page we’ve use before. You’ll find it in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs59.zip) as `pbs59a.html`.
+This all sounds a little abstract, so let’s work through a simple example that illustrates some common use-cases. To do this we’ll use a simplified version of the Irish Referendum page we’ve use before. You’ll find it in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs59.zip) as `pbs59a.html`.
 
 The first problem we want to address is that the display header does not work well on small screens. The sub-heading with the month and year work well on medium screens and bigger, but not on smaller screens. We can address this by hiding that sub-heading on smaller screens by giving a default display of none with the class `d-none`, then having it appear as regular inline text from the large breakpoint up by adding the class `d-lg-inline`.
 
@@ -156,7 +156,7 @@ To:
 <div class="table-responsive-lg">
 ```
 
-You’ll find an updated version of the entire file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs59.zip) as `pbs59b.html`.
+You’ll find an updated version of the entire file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs59.zip) as `pbs59b.html`.
 
 ## Challenge
 

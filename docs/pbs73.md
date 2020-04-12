@@ -2,7 +2,7 @@
 
 In [the previous instalment](https://bartificer.net/pbs72) we took our first look at using templates with JavaScript to create cookie-cutter content like Toast notifications more easily than building them up piece-by-piece with jQuery. We started our exploration of the topic with a look at HTML5’s new `<template>` tag. In this instalment we’ll introduce a third-party templating tool, [Mustache](http://mustache.github.io), and see how it can take our templates to the next level with concepts like conditional and looped sections.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/03/pbs73.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs73.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/03/pbs73.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs73.zip).
 
 # Matching Postcast Episode 585
 

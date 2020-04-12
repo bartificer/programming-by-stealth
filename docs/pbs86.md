@@ -4,7 +4,7 @@ This is the third instalment in a mini-series within the PBS series looking at t
 
 Because functions are so important, and because there is a lot of ground to cover, I’ve spread this topic over two instalments. This first instalment will be mostly (but not entirely) a redux, and most of the new content will be covered in the next instalment.
 
-You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs86.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs86.zip) (now via the JSDelivr CDN). If you prefer, you can access this instalment’s resources directly at the following links:
+You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs86.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs86.zip) (now via the JSDelivr CDN). If you prefer, you can access this instalment’s resources directly at the following links:
 
 *   `pbs86a.html`:  
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/5ddb3466abe64963a57daf09692b366fa845e483/instalmentResources/pbs86/pbs86a.html) or  

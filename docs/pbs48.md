@@ -2,11 +2,11 @@
 
 I had initially planned to return to our Cellular Automata classes and Conway’s Game of Life for this instalment, but based on some listener feedback I’ve decided to delay that by at least one instalment and dedicate this entire instalment to a closer look at just two JavaScript keywords – `this` and `static` instead. The two are more closely related that you might think.
 
-[The ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/01/pbs48.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs48.zip) contains my sample solution to the challenge set at the end of [the previous instalment](https://bartificer.net/pbs47), the starting point for the next challenge, and a JavaScript file containing all the example code snippets that appear in this instalment.
+[The ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/01/pbs48.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs48.zip) contains my sample solution to the challenge set at the end of [the previous instalment](https://bartificer.net/pbs47), the starting point for the next challenge, and a JavaScript file containing all the example code snippets that appear in this instalment.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_20.mp3
+# Matching Postcast Episode 519
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_20.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_20.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 519
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_20.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

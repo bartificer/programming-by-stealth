@@ -2,11 +2,11 @@
 
 In the previous few instalments we’ve been learning about Bootstrap forms. We first learned how to include standard HTML form controls like text areas, text boxes, checkboxes, radio buttons, and dropdowns into the default form layout. Then we learned about buttons and button groups. Now it’s time to learn about three alternative form layouts — inline forms, horizontal forms, and grid-based forms.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs64.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs64.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs64.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs64.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 566
+# Matching Postcast Episode 566
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 566 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/10/ccatp-566/)
+Listen along to this instalment on [episode 566 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/10/ccatp-566/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_10_04.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -39,19 +39,19 @@ Let’s have a look at a simple example:
 
 When the viewport is larger than the first breakpoint we get an inline form:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-02-at-23.45.45.png)
+![](../assets/pbs64/Screenshot-2018-10-02-at-23.45.45.png)
 
 However, when we shrink the viewport down the form elements stack:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-02-at-23.47.54.png)
+![](../assets/pbs64/Screenshot-2018-10-02-at-23.47.54.png)
 
 I want to draw your attention to a few key points in this code. Firstly, note the use of the `sr-only` utility class to hide the labels from everything but assistive devices.
 
 The second thing I want to draw your attention to is the use of the sizing utility classes `mr-sm-2` and `mb-2`. The first adds a small right margin at all breakpoints above the very smallest. I.e., when ever the form is not stacked a small right margin is added to stop the elements touching off each other. The `mb-2` ensures that when the form is stacked that there is vertical space between the elements. Removing these classes results in a very ugly form indeed!
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-02-at-23.53.54.png)
+![](../assets/pbs64/Screenshot-2018-10-02-at-23.53.54.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-02-at-23.54.06.png)
+![](../assets/pbs64/Screenshot-2018-10-02-at-23.54.06.png)
 
 ## Form Sizes
 
@@ -72,9 +72,9 @@ Small forms work particularly well with inline forms, allowing you to make much 
 
 Note the change to smaller margins with the replacement of `mr-sm-2` with `mr-sm-1` and `mb-2` with `mb-1`.
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-00.09.02.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-00.09.02.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-00.09.23.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-00.09.23.png)
 
 Similarly, you could use a large form to encourage users to subscribe to a news letter within an alert:
 
@@ -93,9 +93,9 @@ Similarly, you could use a large form to encourage users to subscribe to a news 
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-00.23.18.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-00.23.18.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-00.23.41.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-00.23.41.png)
 
 ## Horizontal Forms
 
@@ -133,9 +133,9 @@ As a simple example, the following login form is horizontal for all but the smal
 </fieldset>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-11.21.24.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-11.21.24.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-11.22.49.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-11.22.49.png)
 
 I do want to draw your attention to one subtle detail in this form that makes use of a Bootstrap grid feature we’ve not seen before — the `offset-sm-3` class on the `<div>` acting as a `col` for the button. This is an example of Bootstap’s offsetting classes, which you can [read more about in the Bootstrap docs](http://getbootstrap.com/docs/4.1/layout/grid/#offsetting-columns). What it means is that at breakpoints from small up the column for the button will be shifted to the right by three grid columns.
 
@@ -165,13 +165,13 @@ To illustrate this point, the following grid-based form has three different beha
 </fieldset>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-11.54.25.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-11.54.25.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-11.54.36.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-11.54.36.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-11.55.00.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-11.55.00.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-03-at-11.55.14.png)
+![](../assets/pbs64/Screenshot-2018-10-03-at-11.55.14.png)
 
 ## Challenge
 

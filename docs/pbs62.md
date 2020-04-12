@@ -6,11 +6,11 @@ One of the reasons I’ve delayed diving into Bootstrap forms is that it’s alm
 
 We’ll start our exploration of forms very simply, but bear in mind that what we’ll see today is just the tip of the proverbial iceberg.
 
-You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/pbs62.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs62.zip).
+You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/pbs62.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs62.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 563
+# Matching Postcast Episode 563
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 563 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/09/ccatp-563/)
+Listen along to this instalment on [episode 563 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/09/ccatp-563/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_09_15.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -143,7 +143,7 @@ Rather than try explain the basic concepts in the abstract, let’s build a simp
 
 When I say simple, what do I mean? I mean that there are not sub-sections in the form, that there is no custom layout, and that it only uses commonly used native HTML form elements. You’ll find the code for this example in the ZIP file for this instalment as `pbs62a.html`, and this is what the form looks like in a browser:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/Screen-Shot-2018-09-15-at-14.46.47.png)
+![](../assets/pbs62/Screen-Shot-2018-09-15-at-14.46.47.png)
 
 As you can see, by default Bootstrap defaults to vertical stacks of full-width form elements with their labels above. We’ll be sticking with that default today, but know that it’s just a default, Bootstrap gives you so many more choices and options when it comes to laying out forms!
 

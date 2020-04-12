@@ -4,11 +4,11 @@ This instalment will be the last before we go on hiatus for a few weeks while Al
 
 As this is the last instalment before the hiatus we’ll use it to wrap up our work on the Cellular Automata prototypes. We’ll start with a sample solution to the challenge from the previous instalment, and finish with a worked example where we use our prototypes to create three distinct CAs.
 
-The final code for the worked example is included in [this instalment’s ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/03/pbs51.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs51.zip).
+The final code for the worked example is included in [this instalment’s ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/03/pbs51.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs51.zip).
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 530
+# Matching Postcast Episode 530
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 530 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/03/ccatp-530/)
+Listen along to this instalment on [episode 530 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/03/ccatp-530/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_03_03.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

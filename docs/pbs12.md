@@ -4,9 +4,9 @@ With this instalment we’re starting into a whole new phase of the series. We�
 
 Learning the basics of JavaScript, and learning how to connect JavaScript into the browser environment are two very different tasks, so, we’re going to separate them. We’ll start by learning some JavaScript fundamentals in a JavaScript playground I’ve created. Only when we know enough JavaScript for the mechanics of the browser’s JavaScript integration to make sense will we move tackle the so-called DOM, and the browser event model.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_01.mp3
+# Matching Postcast Episode 432
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_01.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_01.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 432
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_01.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -24,7 +24,7 @@ JavaScript is a language on the rise – now is great time to learn it.
 
 ## Hello World in Our JavaScript Playground
 
-So, we’re going to take our first steps into JavaScript in a little playground I’ve created. BTW, the playground is entirely written in HTML, CSS, and JavaScript, so when we’ve learned a little more JavaScript you’ll be able to go back and look under the hood and understand exactly how it works. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs-JavaScriptPlayground.zip). You can run the playground from your local server, or, you can use an online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground-v1](http://www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground-v1/).
+So, we’re going to take our first steps into JavaScript in a little playground I’ve created. BTW, the playground is entirely written in HTML, CSS, and JavaScript, so when we’ve learned a little more JavaScript you’ll be able to go back and look under the hood and understand exactly how it works. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground.zip). You can run the playground from your local server, or, you can use an online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground-v1](http://www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground-v1/).
 
 The playground has a text region for entering your code, some text boxes you can use to send inputs to your code, and, a button to run your code. The code region uses the open-source JavaScript library [CodeMirror](https://codemirror.net) to do syntax-highlighting.
 

@@ -6,11 +6,11 @@ We won’t be updating our date and time prototypes, but we will be using them i
 
 Finally, the challenge set at the end of this instalment will also combine our prototypes with HTML forms, and JavaScript error handling.
 
-You can download my solution to the challenge set in the previous instalment, and all the code samples for this instalment in a single ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs32.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs32.zip).
+You can download my solution to the challenge set in the previous instalment, and all the code samples for this instalment in a single ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs32.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs32.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_15.mp3
+# Matching Postcast Episode 480
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_15.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_15.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 480
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_15.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -422,7 +422,7 @@ The user sees the contents of the `<option>` tags, while the value part of the n
 > 
 > A quick note for those of you using the CodeRunner editor, if you set the execution language to HTML (the dropdown next to the run button, not the syntax highlighting setting), you can _‘run’_ HTML directly in the CodeRunner console as shown in this screenshot:
 > 
-> ![HTML in CodeRunner](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/Screen-Shot-2017-03-13-at-01.08.24-e1489367406400.png)
+> ![HTML in CodeRunner](../assets/pbs32/Screen-Shot-2017-03-13-at-01.08.24-e1489367406400.png)
 
 By default, the first option in a dropdown is automatically selected, but you can have any option be the default by adding the attribute `selected="selected"` to the `<option>` tag of your choice.
 

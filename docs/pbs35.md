@@ -6,11 +6,11 @@ Next, we’ll make a start on text input in HTML forms. This time we’ll focus 
 
 Finally, we’ll make a start on what will be an on-going project. The idea is to combine our understanding of HTML, CSS, JavaScript, jQuery, and QUnit to implement a zero-player with a really cool computer science back-story.
 
-As usual, I’ve created a ZIP file with the files for this instalment, including a sample HTML page that demonstrates text input in action, and the files that make up the starting point for this instalment’s challenge which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/pbs35.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs35.zip).
+As usual, I’ve created a ZIP file with the files for this instalment, including a sample HTML page that demonstrates text input in action, and the files that make up the starting point for this instalment’s challenge which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/pbs35.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs35.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_05_19.mp3
+# Matching Postcast Episode 487
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_05_19.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_05_19.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 487
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_05_19.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -314,7 +314,7 @@ Before we move away from JavaScript I briefly want to mention another useful fea
 
 Tests marked as todo are not run, but they also don’t vanish from the test runner’s output, as shown by the following screenshot (a sneak-peak at this instalment’s challenge starting point):
 
-[![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-01.25.04-234x300.png)  
+[![](../assets/pbs35/Screen-Shot-2017-05-18-at-01.25.04-234x300.png)  
 Click to See Full Size](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-01.25.04.png)
 
 ## Basic Text Input in HTML
@@ -346,7 +346,7 @@ Below is a very simple form with just a single text box:
 
 And it looks like this:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-16.43.22.png)
+![](../assets/pbs35/Screen-Shot-2017-05-18-at-16.43.22.png)
 
 The `value` attribute can be used to specify text that will be pre-loaded into the text box when the page loads or the form is reset:
 
@@ -358,7 +358,7 @@ The `value` attribute can be used to specify text that will be pre-loaded into t
 
 The form now looks like this when the page loads:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-16.51.21.png)
+![](../assets/pbs35/Screen-Shot-2017-05-18-at-16.51.21.png)
 
 HTML 5 added the placeholder attribute for specifying place-holder text that’s visible but dimmed while the text box is empty and not focused, and invisible the rest of the time. Here we can see a placeholder used to give the user a hint as to what to enter:
 
@@ -368,7 +368,7 @@ HTML 5 added the placeholder attribute for specifying place-holder text that’s
 </form>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-17.07.43.png)
+![](../assets/pbs35/Screen-Shot-2017-05-18-at-17.07.43.png)
 
 The visual size of the text box depends on the font size. The bigger the font size the taller the text box. The length of the text box is controlled by the `size` attribute, and specified as a number of characters, not a pixel size or percentage.
 
@@ -380,7 +380,7 @@ The number of characters that can be typed before the browser will prevent furth
 </form>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-17.20.22.png)
+![](../assets/pbs35/Screen-Shot-2017-05-18-at-17.20.22.png)
 
 HTML 5 has added two very important attributes for controlling how modern browsers deal with text in text boxes. The `spellcheck` attribute tells browsers with spell checking support how they should treat the text box, and the `autocomplete` attribute tells browsers that support autocompletion what they should do with the text in a given text box.
 
@@ -407,7 +407,7 @@ Like text boxes, the visual size of text areas is determined by the font size, a
 </form>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-19-at-00.23.36.png)
+![](../assets/pbs35/Screen-Shot-2017-05-19-at-00.23.36.png)
 
 There’s one final text area attribute that I want to draw your attention to – `wrap`. This attribute controls how the text area should behave when the cursor reaches the right-edge of the text box and you keep typing. There are three valid values for this attribute.
 

@@ -4,9 +4,9 @@ We’ll start this instalment be re-visting the question of when to use `let` an
 
 Next we’ll have a quick look at my sample solution to the challenge set at the end of the previous instalment, before moving on to some new material. Specifically, we’ll look at some of the ways in which ES6 has improved arrays and strings.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_11.mp3
+# Matching Postcast Episode 514
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_11.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_11.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 514
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_11.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

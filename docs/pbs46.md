@@ -6,9 +6,9 @@ Finally, we’ll make a start on my personal favourite new feature in ES6 — cl
 
 We’ll only be covering the basics of the class keyword in this instalment. In the next instalment we’ll take things up a notch when we finally explore the concept of _polymorphism_, the heart and soul of object oriented programming.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_21.mp3
+# Matching Postcast Episode 516
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_21.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_21.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 516
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_21.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

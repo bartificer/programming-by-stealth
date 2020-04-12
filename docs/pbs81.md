@@ -2,7 +2,7 @@
 
 So far in our exploration of promises we’ve learned the core concept — a promise is an object that represents the status and/or result of an asynchronous task. Asynchronous tasks are inherently parallel, but we’ve learned how to use `.then()` and `.catch()` to create so-called _promise chains_, allowing promises to be executed in series. What we’ve not looked at yet is JavaScript’s native `Promise` class. This class is primarily used to create promises, but it also provides some useful utility functions. For now at least, we’re focusing on using promises rather than creating them, so we won’t be digging into how the `Promise` class’s contractor works. However, some of the utility functions are designed to help developers use promises in more powerful ways, so those will be our focus for this instalment. The most powerful of these utilities is `Promise.all()`, a function that allows us to create promise chains that perform some tasks in series, and others in parallel, allowing us to efficiently manage our asynchronous tasks.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/07/pbs81.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs81.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/07/pbs81.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs81.zip).
 
 # Matching Postcast Episode 597
 

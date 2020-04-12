@@ -4,9 +4,9 @@ We have now learned enough HTML to encode basic page content, marking things as 
 
 In the bad old days, HTML pages were styled by adding attributes directly into the HTML tags. This was very time-consuming, and it greatly reduced the re-usability of the HTML markup. Those attributes still exist in the HTML spec, but we have completely ignored them, and will continue to do so for the entire series. This is not the bad old days, so we now have access to a much better solution – _Cascading Style Sheets_, or CSS.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_09.mp3
+# Matching Postcast Episode 420
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_09.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_09.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 420
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_09.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -263,7 +263,7 @@ text-transform: none; /* leave the case as-is (default) */
 
 ## A Worked Example
 
-As an example, I have created a web page that makes use of many of the HTML tags we’ve learned about so far, and imported an external CSS stylesheet to style those tags. You can [download a zip file containing both files here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/pbs6.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs6.zip). The two files in the zip should be extracted to a folder called `pbs6` in your web server’s document root folder.
+As an example, I have created a web page that makes use of many of the HTML tags we’ve learned about so far, and imported an external CSS stylesheet to style those tags. You can [download a zip file containing both files here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/pbs6.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs6.zip). The two files in the zip should be extracted to a folder called `pbs6` in your web server’s document root folder.
 
 The contents of both files are shown below:
 
@@ -357,7 +357,7 @@ blockquote{
 
 Once both files are saved in the appropriate folder, and your local web server is started, you should be able to see the resulting page at the URL `http://localhost/pbs6/`. The page should look something like:
 
-![PBS 6 - Demo](https://www.bartbusschots.ie/s/wp-content/uploads/2016/01/Screen-Shot-2016-01-09-at-20.41.05-e1452372124484.png)
+![PBS 6 - Demo](../assets/pbs6/Screen-Shot-2016-01-09-at-20.41.05-e1452372124484.png)
 
 ## Conclusion
 

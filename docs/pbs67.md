@@ -2,7 +2,7 @@
 
 In this instalment we’ll start a two-part look at the Bootstrap Dropdown component. This component can be used to add pretty dropdown menus to both web app UIs and website navigation bars. In this instalment we’ll look at the first of those uses, and then in the next instalment we’ll look at navigation bars in general, which we’ve not seen before, and then Dropdowns within navigation bars.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs67.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs67.zip).
 
 # Matching Postcast Episode 573
 
@@ -119,13 +119,13 @@ Finally, I added an event handler to all inputs within the login form to validat
 
 With all that done we can now see what our validation tooltip looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/11/Screenshot-2018-11-28-at-15.27.26.png)
+![](../assets/pbs67/Screenshot-2018-11-28-at-15.27.26.png)
 
 At first glance this looks OK, but there actually is a problem. Bootstrap validation tooltips appear directly below form inputs, and since this form is at the very bottom of the page within the footer, it’s adding extra scrolling and a white bar below the subtle grey footer. We really want the tooltip above the inputs. Unfortunately, while control of the positioning has been requested as an open issue on Bootstrap’s GitHub page, it hasn’t been implemented yet. We can fix it ourselves though with a little CSS.
 
 Using the developer tools I was able to determine that the tooltip is positioned `absolute` with `top` set to `31px`. This means we can alter the position of the tooltip by setting a different value for the tooltip’s `top` CSS property. With a little experimentation I found that `-2.5em` worked well, so I added the following inline CSS attribute to the tooltip’s `<div>` tag: `style="top: -2.5em"`. With that subtle change made things look much better!
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/11/Screenshot-2018-11-28-at-15.37.45.png)
+![](../assets/pbs67/Screenshot-2018-11-28-at-15.37.45.png)
 
 ## Introducing Bootstrap Dropdowns
 
@@ -151,7 +151,7 @@ The simplest form of a dropdown is the stand-alone form. In this case, the conta
 
 ## Bootstrap Dropdown Menus as Web App UI
 
-Note that all the examples below can be found in the file `pbs67a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs67.zip).
+Note that all the examples below can be found in the file `pbs67a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs67.zip).
 
 ### A Basic Dropdown Menu
 
@@ -185,7 +185,7 @@ Putting all that together we get the following simple example:
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-01-at-19.22.30.png)
+![](../assets/pbs67/Screenshot-2018-12-01-at-19.22.30.png)
 
 ### Controlling Direction
 
@@ -206,7 +206,7 @@ The following shows a menu set to drop right:
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-01-at-19.25.01.png)
+![](../assets/pbs67/Screenshot-2018-12-01-at-19.25.01.png)
 
 ### Adding Headings, Help Text & Dividers
 
@@ -239,7 +239,7 @@ Here’s a sample menu using all three of the above:
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-01-at-19.27.21.png)
+![](../assets/pbs67/Screenshot-2018-12-01-at-19.27.21.png)
 
 ### Disabled Dropdown Menu Items
 
@@ -270,7 +270,7 @@ You can see all this in action in the following example:
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-01-at-19.32.30.png)
+![](../assets/pbs67/Screenshot-2018-12-01-at-19.32.30.png)
 
 While you can only have one dropdown per button group, you can have more than one regular button in the button group along with the dropdown:
 
@@ -288,7 +288,7 @@ While you can only have one dropdown per button group, you can have more than on
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-01-at-19.33.52.png)
+![](../assets/pbs67/Screenshot-2018-12-01-at-19.33.52.png)
 
 ### Dropdowns in Input Groups
 
@@ -314,7 +314,7 @@ An example using a regular dropdown:
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-01-at-19.35.40.png)
+![](../assets/pbs67/Screenshot-2018-12-01-at-19.35.40.png)
 
 An example using a split button:
 
@@ -334,7 +334,7 @@ An example using a split button:
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-01-at-19.37.45.png)
+![](../assets/pbs67/Screenshot-2018-12-01-at-19.37.45.png)
 
 ## A Challenge
 

@@ -2,9 +2,9 @@
 
 Continuing our look at CSS, in this instalment we’ll start by looking at how to style lists, then we’ll move on to look at some more CSS selectors, and we’ll finish with an introduction to a new CSS concept – pseudo-classes.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_04.mp3
+# Matching Postcast Episode 428
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_04.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_04.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 428
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_04.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -117,7 +117,7 @@ With that CSS in place, and the following HTML, the result will look like the sc
 </ul>
 ```
 
-![Nested Bulleted List demo](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-03-at-20.42.00.png)
+![Nested Bulleted List demo](../assets/pbs10/Screen-Shot-2016-03-03-at-20.42.00.png)
 
 The same technique can be used on numbered lists, and also on lists that uses images for bullets.
 
@@ -136,11 +136,11 @@ ul li{ /* list items in un-ordered lists */
 
 And indeed, in the simple case where there is no mixed-nesting, it does:
 
-![PBS 10 - styled list items - unnested](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-03-at-20.57.10.png)
+![PBS 10 - styled list items - unnested](../assets/pbs10/Screen-Shot-2016-03-03-at-20.57.10.png)
 
 But what happens if we nest ordered lists inside un-ordered lists, or vica-versa? Well, we get unexpected behaviour:
 
-![PBS 10 - nested styled list items ](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-03-at-20.58.44.png)
+![PBS 10 - nested styled list items ](../assets/pbs10/Screen-Shot-2016-03-03-at-20.58.44.png)
 
 What’s going on here? Well, the key is that the inner list items are **both** list items within ordered lists, and list items within un-ordered lists! Or, to be more technical, the inner list items match **both** the `ol li` and `ul li` selectors. More than that, the two selectors contain the identical numbers of IDs (zero), classes (zero), and tag names (two), so they have identical specificities – that means that the last rule defined wins. The last of the two matched rules defined is the one with the selector `ul li`, hence, the inner list items are always light blue.
 
@@ -161,7 +161,7 @@ ul > li{ /* list items directly contained within un-ordered lists */
 
 We now get the colouring we were expecting all along:
 
-![PBS 10 - Nested Lists](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-03-at-21.09.25.png)
+![PBS 10 - Nested Lists](../assets/pbs10/Screen-Shot-2016-03-03-at-21.09.25.png)
 
 This list still looks pretty silly though, because we are using the default positioning of the bullets and numbers, `outside`. The background colours really highlight what it means for the bullets and numbers to be outside of the list items. We can make the whole thing look a lot more sane by switching to inside positioning:
 
@@ -181,7 +181,7 @@ ul > li{
 }
 ```
 
-![PBS 10 - Nice Nested Lists](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/Screen-Shot-2016-03-03-at-21.15.12.png)
+![PBS 10 - Nice Nested Lists](../assets/pbs10/Screen-Shot-2016-03-03-at-21.15.12.png)
 
 ## The _Following_ and _Precedes_ Selectors
 
@@ -282,7 +282,7 @@ Finally, when ever a region of text is selected by the user, it’s given the ps
 
 ## Worked Example
 
-You can download a zip file of the code for the demo [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/pbs10.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs10.zip). Extract its contents to a folder called `pbs10` and place it in your local web server’s document root. Once you start your server you should be able to access the demo at `http://localhost/pbs10/`. The two most important files are the HTML And CSS files, so their contents are shown below:
+You can download a zip file of the code for the demo [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/pbs10.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs10.zip). Extract its contents to a folder called `pbs10` and place it in your local web server’s document root. Once you start your server you should be able to access the demo at `http://localhost/pbs10/`. The two most important files are the HTML And CSS files, so their contents are shown below:
 
 ```XHTML
 <!DOCTYPE HTML>

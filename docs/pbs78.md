@@ -4,7 +4,7 @@ For boring real-life reasons this instalment is a bit of an intermission. In the
 
 What we’re going to do in this instalment is focus entirely on my sample solution to the challenge set at the end of the previous instalment, which I’ve used as an opportunity to demonstrate two new tools to add to our programming tool belt — the micro-checking library [is.js](http://is.js.org/), and [Bootstrap Popovers](https://getbootstrap.com/docs/4.3/components/popovers/).
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs78.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs78.zip).  
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs78.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs78.zip).  
 
 # Matching Postcast Episode 593
 
@@ -127,7 +127,7 @@ This uses the [CSS attribute selector](https://developer.mozilla.org/en-US/docs/
 
 Note that you may not always want to use such a broad brush. You may want to treat some of your popovers differently to others, so you may want to use a more narrowly-focused CSS selector.
 
-![Bootstrap Popover on Button](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/Screenshot-2019-05-17-at-23.45.50.png)
+![Bootstrap Popover on Button](../assets/pbs78/Screenshot-2019-05-17-at-23.45.50.png)
 
 ### Triggers
 
@@ -331,7 +331,7 @@ is.any.empty(barfArray)
 
 Note that not all checks support .all and .any. The entry in the documentation for each check lists the supported interfaces, e.g. the check `.even()` supports all three interfaces:
 
-![is.js Documentation Example with Interfaces Highlighted](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/Screenshot-2019-05-17-at-23.49.11.png)
+![is.js Documentation Example with Interfaces Highlighted](../assets/pbs78/Screenshot-2019-05-17-at-23.49.11.png)
 
 ### Getting is.js
 

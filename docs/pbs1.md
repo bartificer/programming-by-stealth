@@ -6,9 +6,9 @@ In case you hadn’t guessed yet, I’m not going to pick a single computer lang
 
 In order to help bring everyone along, I’m also not going to go from zero to real programming in one go. The plan is to sneak up on programming in small steps – hence the title of the series. We will be using computer languages from the start, but initially, they won’t be programming languages. Also, in order to be as inclusive as possible, I’m going to avoid vendor-specific languages – that means no Apple Script, no VB Script, no Objective C, and no C# (pronounced ‘see-sharp’ BTW). Instead, I’m going to use the most universal platform of all – the world wide web. We’re going to sneak up on programming by learning to create web pages.
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 407
+# Matching Postcast Episode 407
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 407 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2015/10/ccatp-407/)
+Listen along to this instalment on [episode 407 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2015/10/ccatp-407/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2015_10_09.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -32,26 +32,26 @@ I’ll be using the free version of MAMP. MAMP comes with the various servers ne
 
 When you first launch MAMP it will try to strong-arm you into using MAMP Pro, don’t give in! My advice is to un-check the checkbox to check for MAMP Pro, and then click the `Launch MAMP` button.
 
-![Avoid MAMP Pro](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-09-at-4.13.31-p.m.-e1444403735573.png)
+![Avoid MAMP Pro](../assets/pbs1/Screen-Shot-2015-10-09-at-4.13.31-p.m.-e1444403735573.png)
 
 This is what the current version of the MAMP controller app looks like when it launches:
 
-![MAMP App](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-09-at-4.16.58-p.m.-e1444403862205.png)
+![MAMP App](../assets/pbs1/Screen-Shot-2015-10-09-at-4.16.58-p.m.-e1444403862205.png)
 
 The little icons in the top-right show whether or not the web and DB servers are running.
 
 I like to re-configure MAMP to use the industry standard ports for the web and DB servers (80 and 3306). You do this by clicking `Preferences`, then selecting the `Ports` tab, and then clicking on the button `Set Web & MySQL ports to 80 & 3306`.
 
-![Configure MAMP](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-09-at-4.19.40-p.m.-e1444404044353.png)  
-![MAMP - set ports](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-09-at-4.21.25-p.m.-e1444404176176.png)
+![Configure MAMP](../assets/pbs1/Screen-Shot-2015-10-09-at-4.19.40-p.m.-e1444404044353.png)  
+![MAMP - set ports](../assets/pbs1/Screen-Shot-2015-10-09-at-4.21.25-p.m.-e1444404176176.png)
 
 Any of the web server packages mentioned will map a given folder on your hard drive to the URL `http://localhost/`. In MAMP you can see which folder is in use by going to the `Web Server` tab in the `Preferences` window. On the Mac the default is `Macintosh HD:Applications:MAMP:htdocs`. The documentation for the other products will tell you where their so-called _Document Root_ is located.
 
-![MAMP htdocs](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-09-at-4.23.46-p.m.-e1444404299350.png)
+![MAMP htdocs](../assets/pbs1/Screen-Shot-2015-10-09-at-4.23.46-p.m.-e1444404299350.png)
 
 You are now ready to start your web server by clicking the `Start Servers` button.
 
-![MAMP - Start Servers](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-09-at-4.26.22-p.m.-e1444404438861.png)
+![MAMP - Start Servers](../assets/pbs1/Screen-Shot-2015-10-09-at-4.26.22-p.m.-e1444404438861.png)
 
 Note that if you’ve edited your server to use port 80, you’ll be asked for your admin password each time you start and stop your servers.
 
@@ -80,11 +80,11 @@ Add the following content to the file:
 
 This is a screenshot of the file in my editor of choice, Atom:
 
-![PBS1 - index.html](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-07-at-22.41.46-e1444254317754.png)
+![PBS1 - index.html](../assets/pbs1/Screen-Shot-2015-10-07-at-22.41.46-e1444254317754.png)
 
 Assuming your server is running, you should be able to view the little web page we just created by browsing to the URL `http://localhost/pbs1/` in your favourite browser.
 
-![PBS1 - Hello World!](https://www.bartbusschots.ie/s/wp-content/uploads/2015/10/Screen-Shot-2015-10-07-at-22.42.31-e1444254392895.png)
+![PBS1 - Hello World!](../assets/pbs1/Screen-Shot-2015-10-07-at-22.42.31-e1444254392895.png)
 
 Note that if you’ve not configured your web server to use port 80, you’ll need to specify the port number in the URL. For example, if you used the default port used by MAMP (8888), the URL would be: `http://localhost:8888/pbs1/`.
 

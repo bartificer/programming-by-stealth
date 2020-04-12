@@ -4,7 +4,7 @@ As we near the end of our initial exploration of client-side web technologies I 
 
 Since objects are so ubiquitous in JavaScript I want to start there, and I want to start with their most fundamental use, as so-called _dictionaries_.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs84.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs84.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs84.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs84.zip).
 
 # Matching Postcast Episode 611
 

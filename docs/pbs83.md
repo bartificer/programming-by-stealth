@@ -4,7 +4,7 @@ In this instalment we’ll finish our first exploration of Bootstrap 4 with a lo
 
 It’s important to stress that while we’re wrapping up our exploration of Bootstrap 4 with this instalment, that does not mean we’ve come close to covering every feature this impressive library offers. Instead, the aim was to cover the big-picture items, and leave you with enough experience to be able to learn the rest independently by reading [Bootstrap’s excellent documentation](https://getbootstrap.com/docs/).
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs83.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs83.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs83.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs83.zip).
 
 # Matching Postcast Episode 610
 
@@ -258,7 +258,7 @@ The easiest way to illustrate Cards in use is with an example. As a first exampl
 
 This produces a card that looks like this:
 
-![Kitchen Sink Card 1](https://www.bartbusschots.ie/s/wp-content/uploads/2019/09/Screenshot-2019-10-03-at-23.56.30.png)
+![Kitchen Sink Card 1](../assets/pbs83/Screenshot-2019-10-03-at-23.56.30.png)
 
 ### Kitchen Sink Example 2 — Everything but Header & Footer
 
@@ -303,7 +303,7 @@ Notice that rather confusingly, both the top and bottom image caps have the clas
 
 The code above produces a Card that looks like this:
 
-![Kitchen Sink Card Example 2](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/Screenshot-2019-10-04-at-00.19.19.png)
+![Kitchen Sink Card Example 2](../assets/pbs83/Screenshot-2019-10-04-at-00.19.19.png)
 
 ## Collections of Card
 
@@ -338,11 +338,11 @@ In this case each Card is a little simpler than the kitchen sink examples above.
 
 This produces a Card Group that looks like this:
 
-![Card Group Example](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/Screenshot-2019-10-04-at-00.33.07.png)
+![Card Group Example](../assets/pbs83/Screenshot-2019-10-04-at-00.33.07.png)
 
 We can convert this card group into a card deck by simply changing `card-group` to `card-deck`. When we do that we get a Card Deck that looks like this:
 
-![Card Deck Example](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/Screenshot-2019-10-04-at-00.35.26.png)
+![Card Deck Example](../assets/pbs83/Screenshot-2019-10-04-at-00.35.26.png)
 
 ## A Challenge
 

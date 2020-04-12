@@ -4,11 +4,11 @@ We’re going to continue our twin-track approach in this instalment – first s
 
 Switching our focus on HTML forms, we’ll look at some important form-specific ARIA roles, we’ll introduce two useful tags for enclosing forms, or parts of forms `<fieldset>` & `<legend>`, and we’ll introduce the concept of form data. With those foundations laid, we’ll look at how to add checkboxes and radio buttons to web forms, and how to interact with them through jQuery.
 
-You can download a ZIP file containing the code files for this instalment [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs31.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs31.zip).
+You can download a ZIP file containing the code files for this instalment [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs31.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs31.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_01.mp3
+# Matching Postcast Episode 478
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_01.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_01.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 478
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_01.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

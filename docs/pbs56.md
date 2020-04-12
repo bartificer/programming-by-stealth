@@ -4,11 +4,11 @@ In the previous instalment we got our first look at the functionality the Bootst
 
 In the next instalment we’ll move on to the most powerful aspect of Bootstrap, layout. This will take us a few instalments to cover, but when we’re done we’ll have learned how to use Bootstrap to arrange content on a page, and, better yet, to make our layouts _responsive_. That is to say, we’ll learn how to use Bootstrap to make our pages look right on any screen, from the smallest phone to the largest desktop!
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs56.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 551
+# Matching Postcast Episode 551
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 551 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-551/)
+Listen along to this instalment on [episode 551 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-551/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_06_16.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -74,11 +74,11 @@ Finally, the fifth task was to update the flex box with required equipment to us
 
 The key points are the addition of the class `list-unstyled` to the `<ul>` tag, and the removal of all classes from the individual `<li>` tags.
 
-I’ve included my full sample solution within the folder named `pbs55-challengeSolution` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs56.zip).
+I’ve included my full sample solution within the folder named `pbs55-challengeSolution` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip).
 
 ## Playground
 
-Like last time I’ve created an HTML document with some pre-created elements and empty class attributes which you can use to play along with this instalment. This time the source is very long because it contains tabular data, so I’m not including the source below, but you’ll find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs56.zip) as `pbs56a.html`, and in [this interactive Bootply playground](https://www.bootply.com/84ZKahLphH).
+Like last time I’ve created an HTML document with some pre-created elements and empty class attributes which you can use to play along with this instalment. This time the source is very long because it contains tabular data, so I’m not including the source below, but you’ll find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip) as `pbs56a.html`, and in [this interactive Bootply playground](https://www.bootply.com/84ZKahLphH).
 
 ## Images & Figures
 
@@ -270,7 +270,7 @@ Let’s do this for the second, larger, table in our sandbox:
 </div>
 ```
 
-You’ll find a version of the sandbox page with all the examples added as `pbs56b.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs56.zip).
+You’ll find a version of the sandbox page with all the examples added as `pbs56b.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip).
 
 ## A Challenge
 

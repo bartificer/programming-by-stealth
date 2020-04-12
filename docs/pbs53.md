@@ -4,11 +4,11 @@ We’ll start this instalment with a very quick look at my sample solution to th
 
 As we learned last time, Bootstrap can be thought of as consisting of four separate chunks of functionality — layout, content, components, and utilities. Because utilities are universally useful, that’s where we’ll be start our journey. In this instalment we’ll meet our first few Bootstrap utility CSS classes.
 
-You can [download the ZIP file for this instalment here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs53.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs53.zip).
+You can [download the ZIP file for this instalment here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs53.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs53.zip).
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 535
+# Matching Postcast Episode 535
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 535 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/05/ccatp-535/)
+Listen along to this instalment on [episode 535 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/05/ccatp-535/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_05_05.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -198,7 +198,7 @@ Let’s finish off the quotation in our dummy page by aligning the author to the
 
 Here’s what the final product looks like:
 
-[![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/Screen-Shot-2018-05-05-at-15.32.44.png)](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/Screen-Shot-2018-05-05-at-15.32.44.png)
+[![](../assets/pbs53/Screen-Shot-2018-05-05-at-15.32.44.png)](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/Screen-Shot-2018-05-05-at-15.32.44.png)
 
 ## Practical Example — An Extra Info Box
 
@@ -213,7 +213,7 @@ As an example, let’s see how we could combine these classes to quickly create 
 
 And this is what it looks like in the page:
 
-[![Screenshot of info box](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/Screen-Shot-2018-05-04-at-23.54.04.png)](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/Screen-Shot-2018-05-04-at-23.54.04.png)
+[![Screenshot of info box](../assets/pbs53/Screen-Shot-2018-05-04-at-23.54.04.png)](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/Screen-Shot-2018-05-04-at-23.54.04.png)
 
 AS you can see, the entire box has a rounded bluish border and a very large margin because it has the CSS classes `m-5`, `border`, `border-info` & `rounded`. Let’s break that down — `m-5` adds a large margin to all four sides, `border` adds a border to all four sides, `border-info` sets the colour of the border, and `rounded` adds the rounding to the border. You might think that if you use `border-info` you can get away without also using `border`, but you’d be dead wrong! Why? Because `border-info` **only** sets the border colour, it does not set the border width, that’s what `border` does.
 

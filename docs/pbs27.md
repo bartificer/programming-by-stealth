@@ -2,11 +2,11 @@
 
 In this instalment we’ll make a start on a large topic which we have intentionally ignored until now – taking user input on the web. The way this is done is through HTML forms. It will take us a few instalments to learn all about them, so we’ll start with the basics in this instalment.
 
-The code for the examples in this instalment has been collected into a single ZIP file which you can download [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/12/pbs27.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs27.zip).
+The code for the examples in this instalment has been collected into a single ZIP file which you can download [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/12/pbs27.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs27.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_02.mp3
+# Matching Postcast Episode 470
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_02.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_02.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 470
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_02.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

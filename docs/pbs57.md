@@ -6,11 +6,11 @@ Bootstrap’s layout functionality is designed from the ground up to be _respons
 
 Going from zero to responsive design would be a big leap, so we’re going to break it down into two distinct parts. In this instalment we’re going to confine ourselves to creating layouts that work on larger screen devices like desktops, laptops, and large tablets. Once we can lay things out at one size, then we’ll add in responsiveness in the following instalment.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs57.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 553
+# Matching Postcast Episode 553
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 553 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-553//)
+Listen along to this instalment on [episode 553 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-553//)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_06_30.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -48,7 +48,7 @@ Purely on aesthetic grounds I chose to make the text in the entire table muted b
 
 Lastly, the challenged suggested making any other changes you thought were appropriate.
 
-You’ll find my full sample solution in the folder named `pbs56-challengeSolution` in [the ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs57.zip).
+You’ll find my full sample solution in the folder named `pbs56-challengeSolution` in [the ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip).
 
 ## Introducing Bootstrap Grid Layouts
 
@@ -80,7 +80,7 @@ To mark a tag as a fixed-width container give it the class `container`, and to m
 
 Note that all nested containers behave like fluid containers, regardless of whether they have the class `container` or `container-fluid`.
 
-The following simple demo (`pbs57a.html` in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs57.zip)) illustrates the difference between how fixed and fluid containers respond to window width — play around with the window’s width to see how differently the two kinds of container respond.
+The following simple demo (`pbs57a.html` in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip)) illustrates the difference between how fixed and fluid containers respond to window width — play around with the window’s width to see how differently the two kinds of container respond.
 
 ```XHTML
 <!DOCTYPE HTML>
@@ -129,7 +129,7 @@ Firstly, you can just use `col`, this gives you an auto-width column. What ever 
 
 The classes `col-1` through `col-12` will give you columns of width one through twelve atomic columns.
 
-The following would be a very common arrangement — two side bars with explicit widths, and the space between given over to a central main content area (you’ll find this file in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs57.zip) as `pbs57b.html`):
+The following would be a very common arrangement — two side bars with explicit widths, and the space between given over to a central main content area (you’ll find this file in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57b.html`):
 
 ```XHTML
 <!DOCTYPE HTML>
@@ -189,7 +189,7 @@ At the time I didn’t explain what the code meant, but promised I would at some
 
 ## A Worked Example
 
-As a practical worked example, let’s take a slightly expanded version of the file with the tables and figures we used in the previous instalment as our starting point, and lay it out. To give the page a more consistent look across computers I changed the existing fluid container into a fixed-width one. You’ll find the full source code for the starting point in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs57.zip) as `pbs57c.html`.
+As a practical worked example, let’s take a slightly expanded version of the file with the tables and figures we used in the previous instalment as our starting point, and lay it out. To give the page a more consistent look across computers I changed the existing fluid container into a fixed-width one. You’ll find the full source code for the starting point in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57c.html`.
 
 To lay out a page you need to break it down into chunks of related content, and then move those chunks around. Sometimes those chunks will have semantic meaning, and sometimes they’re just convenient chunks of information. Each chunk needs to be wrapped in a tag, and my advice would be to prefer semantic tags over `<div>`s when ever they make sense, but only ever if they make sense.
 
@@ -199,7 +199,7 @@ Since this is a single article, the best semantic tag for describing the distinc
 
 Finally, to give us a meaningful sidebar to work with, I moved the small table and the small figure into a separate grouping. I chose to mark them up as an aside, and removed the utility tags to set their width and to float them.
 
-A version of the file with all the semantic markup added can be found in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs57.zip) as `pbs57d.html`.
+A version of the file with all the semantic markup added can be found in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57d.html`.
 
 Now that our page has been broken into chunks we can think about how we’d like to lay those chunks out.
 
@@ -271,7 +271,7 @@ Finally, we want to group the last two sections into a third row in our inner gr
 
 At this stage we’re almost done. We just need to do a little house-keeping in the right side bar. The table caption is not centred, so we need to give the `<caption>` tag within the small table the class `text-center`. The figure is also not centred so we need to give it the classes `d-block`, `mx-auto`, and `text-center` (the technique we learned in the previous instalment for centring figures within their containing block).
 
-You’ll find the full source for the finished laided-out page in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs57.zip) as `pbs57e.html`, but this is the basic structure of the final page:
+You’ll find the full source for the finished laided-out page in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57e.html`, but this is the basic structure of the final page:
 
 ```XHTML
 <!DOCTYPE html>

@@ -4,7 +4,7 @@ Templating is a very important concept to get to grips with as you move from web
 
 I’ve been trying to find the perfect moment to insert this topic into the series, and it struck me that Bootstrap Toasts would make a simple but informative example around which to introduce the topic. So far we’ve been generating toasts by building them up piece-by-piece with jQuery, starting with a tag, setting the text, setting some attributes and properties, adding some classes, appending tags together, and so on. The code works, but it’s cumbersome to write, and worse still, difficult to debug and maintain. Hopefully you’ve been thinking to yourself _‘there must be a better way?’_, because if you have been, you’ll be very well motivated to ingest this instalment!
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/02/pbs72.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs72.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/02/pbs72.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs72.zip).
 
 # Matching Postcast Episode 583
 

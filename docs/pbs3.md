@@ -8,9 +8,9 @@ Block level tags define regions of content – things like titles, paragraphs, l
 
 In this instalment we’ll start with some of the most common block-level tags.
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 411
+# Matching Postcast Episode 411
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 411 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/11/ccatp-411/)
+Listen along to this instalment on [episode 411 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/11/ccatp-411/)
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2015_11_08.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -199,4 +199,4 @@ Start by adding a folder called `pbs3` to the document root of your web server. 
 
 Make sure your web server is started, and then visit `http://localhost/pbs3/` in your favourite browser to see what this page looks like. It should look something like:
 
-![PB3 Final Example](https://www.bartbusschots.ie/s/wp-content/uploads/2015/11/Screen-Shot-2015-11-07-at-13.51.34-e1446904337845.png)
+![PB3 Final Example](../assets/pbs3/Screen-Shot-2015-11-07-at-13.51.34-e1446904337845.png)

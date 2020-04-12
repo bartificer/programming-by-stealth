@@ -8,9 +8,9 @@ Now that we know about objects, we need to re-visit the `arguments` object prese
 
 We also need to look at how JavaScript handles regular expressions, and finally, we need to introduce the concept of exception handling.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_07_08.mp3
+# Matching Postcast Episode 446
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_07_08.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_07_08.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 446
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_07_08.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -18,7 +18,7 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## Our Playground
 
-This is the final instalment for which we’ll be using our JavaScript playground. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
+This is the final instalment for which we’ll be using our JavaScript playground. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
 
 ## A Solution to the PBS 17 Challenge
 

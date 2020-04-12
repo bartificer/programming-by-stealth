@@ -2,9 +2,9 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2016/02/03/programming-by-stealth-8-of-x-css-positioning/) we learned how to group multiple HTML tags together to define regions within a page, and then how to move those regions around by floating them, or positioning them explicitly. We’ll start this instalment with a little revision – there was a lot to digest last time! While re-visiting the layout from last time, we’ll also look at some of its limitations, and then we’ll move on to look at the CSS `display` property, how it can be used to alter layouts, and, how we can use it to improve on our demo layout.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_19.mp3
+# Matching Postcast Episode 426
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_19.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_19.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 426
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_19.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -12,7 +12,7 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## A Little Revision
 
-Because there was a lot of absorb last time, I thought it would be a good idea to re-vist the concepts from last time in a more practical way. To that end I’ve created a little web app for demonstrating CSS positioning. You can download the code [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs8-PositioningPlayground.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs8-PositioningPlayground.zip) and run it on your own local server, or, you can run the tool from my web server [here](https://www.bartbusschots.ie/pbsdemos/pbs8-PositioningPlayground/).
+Because there was a lot of absorb last time, I thought it would be a good idea to re-vist the concepts from last time in a more practical way. To that end I’ve created a little web app for demonstrating CSS positioning. You can download the code [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs8-PositioningPlayground.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs8-PositioningPlayground.zip) and run it on your own local server, or, you can run the tool from my web server [here](https://www.bartbusschots.ie/pbsdemos/pbs8-PositioningPlayground/).
 
 You can use the tool to experiment with the different CSS properties we worked with last time, and, there are instructions included to re-create the two-column layout from the demo at the end of the last instalment.
 
@@ -89,7 +89,7 @@ span.cartouche img{
 
 This is what it looks like when used within a paragraph of text:
 
-![Emoji Cartouche](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-17-at-17.50.08-e1455731538296.png)
+![Emoji Cartouche](../assets/pbs9/Screen-Shot-2016-02-17-at-17.50.08-e1455731538296.png)
 
 You can control the vertical alignment of any item that is displayed as `inline-block`, including images. The relevant CSS property is `vertical-align`, and it can have the following values:
 
@@ -123,9 +123,9 @@ Raises or lowers the inline block by a percentage of the line-height. Positive p
 
 Displaying items as `inline-block` can be used to make a line of fixed-width items behave nicely as the page re-sizes. You can see this in action in the CSS Playground web app used earlier in the instalment. The main form headed with the legend _Control Panel_ contains sub-forms with legends indicating the box they control. The main form has its `display` set to `block`, and its `text-align` set to `center`. The mini forms each have their `display` set to `inline-block`, their `text-align` set to `left`, their `width` set to `185px`, and their `height` allowed to default to `auto`. In this case, the tags for the forms intentionally do have some white-space between them (a line break), so in effect, each form behaves like a 1-letter word. As the window is re-sized, the containing form grows and shrinks as you would expect for a block-level element. The mini forms behave like words, and move nicely onto multiple lines as needed.
 
-![Inline-block 5 in a row](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-17-at-18.03.21-e1455732340709.png)  
-![inline-block 4 in a row](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-17-at-18.03.06-e1455732373506.png)  
-![inline-block 3 in a row](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-17-at-18.03.52-e1455732412851.png)
+![Inline-block 5 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.21-e1455732340709.png)  
+![inline-block 4 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.06-e1455732373506.png)  
+![inline-block 3 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.52-e1455732412851.png)
 
 ### `display: flex`
 
@@ -159,7 +159,7 @@ More Information on Flex Box:
 
 ## Demo
 
-The code for the demo can be downloaded [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs9.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs9.zip). Extract the files and save them to a folder called `pbs9` in your web server’s document root, and remember to start your server. You should then be able to see the demo at `http://localhost/pbs9/`. For completeness, the code for the two most important files is included below:
+The code for the demo can be downloaded [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs9.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs9.zip). Extract the files and save them to a folder called `pbs9` in your web server’s document root, and remember to start your server. You should then be able to see the demo at `http://localhost/pbs9/`. For completeness, the code for the two most important files is included below:
 
 ```XHTML
 <!DOCTYPE HTML>
@@ -400,7 +400,7 @@ img.podcast_logo{
 
 The resulting page should look something like:
 
-![PBS 9 Demo](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-18-at-17.57.42-e1455818354848.png)
+![PBS 9 Demo](../assets/pbs9/Screen-Shot-2016-02-18-at-17.57.42-e1455818354848.png)
 
 The demo for this instalment looks very similar to the one for the previous instalment, but the big different is that the over-all layout is now implemented using flex box instead of positioning. The `<div>` surrounding the main content and the sidebar has been set to `display: flex`, the main content has been set to `flex: 1`, and the sidebar has been set to a width of `200px`, and `flex: none`.
 

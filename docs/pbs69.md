@@ -2,7 +2,7 @@
 
 In the previous instalment we learned how to use Navs for creating navigation bars, and learned how to use Dropdowns to add expandable menus to our Navs. In this instalment we’ll meet Bootstrap’s ultimate navigation component, the Navbar. This is a powerful component designed to act as the menubar at the top of websites or web apps.
 
-You can [download this instalment’s ZIP file here.](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs69.zip).
+You can [download this instalment’s ZIP file here.](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip).
 
 # Matching Postcast Episode 578
 
@@ -55,9 +55,9 @@ I still have a single row, but instead of that row containing two cols, it now c
 
 The result looks like so:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-12-at-23.11.31.png)
+![](../assets/pbs69/Screenshot-2019-01-12-at-23.11.31.png)
 
-You’ll find the full code for my sample solution in the folder `pbs68-challenge-solution` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs69.zip).
+You’ll find the full code for my sample solution in the folder `pbs68-challenge-solution` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip).
 
 ## The Bootstrap Navbar
 
@@ -114,7 +114,7 @@ All you have to do is replace `COLLAPSIBLE_REGION_ID` with the actual ID of the 
 
 ### A Basic Collapsing Navbar
 
-Below is the code for a Navbar that will collapse for breakpoints smaller than medium and that contains just a single Nav consisting of two links, and a dropdown containing three additional links. You’ll find this example as the first Navbar in `pbs69a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs69.zip).
+Below is the code for a Navbar that will collapse for breakpoints smaller than medium and that contains just a single Nav consisting of two links, and a dropdown containing three additional links. You’ll find this example as the first Navbar in `pbs69a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip).
 
 Re-size the window to see the Navbar collapse into just a hamburger button at small sizes. Click the Hamburger to hide and show the Nav items on small screens.
 
@@ -155,15 +155,15 @@ The second element is the collapsible region of the Navbar, a `<div>` with `id="
 
 This is what the Navbar looks like un-expanded in collapsed mode:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-13-at-23.55.52.png)
+![](../assets/pbs69/Screenshot-2019-01-13-at-23.55.52.png)
 
 This is what it looks like expanded in collapsed mode:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-13-at-23.56.17.png)
+![](../assets/pbs69/Screenshot-2019-01-13-at-23.56.17.png)
 
 And finally, this is what it looks like in expanded mode:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-13-at-23.56.43.png)
+![](../assets/pbs69/Screenshot-2019-01-13-at-23.56.43.png)
 
 ### Branding Navbars
 
@@ -171,7 +171,7 @@ Because one of their primary roles is as a site-wide navigation bar, most Navbar
 
 You can use any tag to contain the brand as long as you give it the class `.nav-brand`, but the Bootstrap documentation warns that using tags other than `<a>` may require the use of additional utility classes to get the spacing to look right. Another good reason for using the `<a>` tag is that it’s extremely common to use the brand section of Navbars as links to a site’s front page.
 
-Generally speaking a Bootstrap brand really is as simple as a single `<a>` tag with the class `.navbar-brand` containing an image and/or some text. For example, here’s the code for the brand in the second example Navbar in `pbs69a.html` in this [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs69.zip):
+Generally speaking a Bootstrap brand really is as simple as a single `<a>` tag with the class `.navbar-brand` containing an image and/or some text. For example, here’s the code for the brand in the second example Navbar in `pbs69a.html` in this [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip):
 
 ```XHTML
 <a class="navbar-brand" href="http://www.bartbusschots.ie" target="_blank" rel="noopener">
@@ -180,11 +180,11 @@ Generally speaking a Bootstrap brand really is as simple as a single `<a>` tag w
 </a>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.03.10.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.03.10.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.03.19.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.03.19.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.03.33.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.03.33.png)
 
 Note that I chose to use the light style (`.navbar-light`) in conjunction with the light background (`.bg-light`) from Bootstrap’s colour utilities for this Navbar.
 
@@ -212,11 +212,11 @@ As an example, the third Navbar in `pbs69a.html` contains a tag line (_‘An Iri
 
 The tagline really is as simple as a `<span>` with the class `.navbar-text`.
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.06.12.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.06.12.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.06.23.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.06.23.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.06.36.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.06.36.png)
 
 ### Forms
 
@@ -258,15 +258,15 @@ As an example, let’s add a search form to our Navbar:
 
 This is the fourth sample Navbar in `pbs69a.html`.
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.09.49.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.09.49.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.09.56.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.09.56.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.10.14.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.10.14.png)
 
 Note that in order to get the Navbar to look good at all breakpoints I had to make a choice. At the medium breakpoint there was no enough room to contain everything in an expanded Navbar, so I had to choice to keep the Navbar collapsed for the medium breakpoint, or, to hide something. I chose to hide the tagline for just the medium breakpoint by giving it the additional classes `.d-md-none`, and `.d-lg-inline`.
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-14-at-00.12.14.png)
+![](../assets/pbs69/Screenshot-2019-01-14-at-00.12.14.png)
 
 ### A Note on Positioning Navbars
 

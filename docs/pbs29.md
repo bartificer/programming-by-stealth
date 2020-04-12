@@ -6,11 +6,11 @@ We’ll start by moving our JavaScript revision out of the PBS playground, and o
 
 We’ll then switch gears back to HTML forms, where we’ll learn about a very powerful technique for including scalable vector-based icons in your form elements. These very special icons are known as _glyph icons_, and while rolling your own is a significant undertaking, you don’t have to, because you can use icon sets created by others. We’ll learn about glyph icons using the free and open source glyph icon set from [Font Awesome](http://fontawesome.io/).
 
-You can download a ZIP file containing the sample solution to the previous challenge, and, the example HTML file from today’s examples [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/02/pbs29.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs29.zip).
+You can download a ZIP file containing the sample solution to the previous challenge, and, the example HTML file from today’s examples [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/02/pbs29.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs29.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_03.mp3
+# Matching Postcast Episode 474
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_03.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_03.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 474
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_03.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -45,7 +45,7 @@ The editor I’m describing is [Code Runner 2](https://coderunnerapp.com). It’
 
 It’s obviously easier to buy direct, then you won’t have to go through the conversion process, but if you have iTunes credit, the fact that you can use it and then convert is very useful.
 
-![Code Runner 2 Screen Shot](https://www.bartbusschots.ie/s/wp-content/uploads/2017/02/Screen-Shot-2017-02-03-at-16.47.48-e1486140559831.png)
+![Code Runner 2 Screen Shot](../assets/pbs29/Screen-Shot-2017-02-03-at-16.47.48-e1486140559831.png)
 
 ## Solution to PBS 28 Challenge
 

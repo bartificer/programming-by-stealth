@@ -6,9 +6,9 @@ The library we’ll be examining is [bartificer.linkToolkit.js](https://github.c
 
 We’ll be looking at the library from three points of view – the actual JavaScript code, the JSDoc comments, and the documentation produced from those comments, and, project management.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_11_22.mp3
+# Matching Postcast Episode 465
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_11_22.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_11_22.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 465
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_11_22.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

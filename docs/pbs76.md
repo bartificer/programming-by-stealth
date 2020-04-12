@@ -4,7 +4,7 @@ Having laid a very strong foundation in [the previous instalment](https://bartif
 
 We’ll start our journey into AJAX using more traditional JavaScript techniques, i.e. we’ll use callbacks to handle HTTP responses. As we’ll discover, this works very well for single AJAX requests, but the model really starts to get complicated when you have multiple inter-dependent requests. We won’t complicate things in this instalment though — we’ll start with just simple stand-alone requests this time.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/pbs76.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs76.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/pbs76.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs76.zip).
 
 # Matching Postcast Episode 590
 
@@ -278,7 +278,7 @@ The important subtlety to note is that the keys in each person’s `contact` obj
 
 Well, that was a lot of work, but we can finally see our first draft of our contact card:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/Screenshot-2019-04-18-at-10.44.08.png)
+![](../assets/pbs76/Screenshot-2019-04-18-at-10.44.08.png)
 
 ### Step 3 — Tweak the Template
 
@@ -286,7 +286,7 @@ That looks fine at the smallest break point, but it does start to look a bit rid
 
 That actually worked pretty well:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/Screenshot-2019-04-18-at-11.51.04.png)
+![](../assets/pbs76/Screenshot-2019-04-18-at-11.51.04.png)
 
 That did leave the very silly situation where there were things displayed that are obviously links, but were not actually clickable. I felt I couldn’t leave things there, so I made another tweak to my code.
 
@@ -389,11 +389,11 @@ I got a little carried away, and wasn’t happy to leave things there. I went on
 
 Basically, I wanted to achieve this:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/Screenshot-2019-04-18-at-03.35.19.png)
+![](../assets/pbs76/Screenshot-2019-04-18-at-03.35.19.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/Screenshot-2019-04-18-at-03.40.31.png)
+![](../assets/pbs76/Screenshot-2019-04-18-at-03.40.31.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/Screenshot-2019-04-18-at-12.25.13.png)
+![](../assets/pbs76/Screenshot-2019-04-18-at-12.25.13.png)
 
 ### Extra Credit 1 — Data Transformer Lookups
 

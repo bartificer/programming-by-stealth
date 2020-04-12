@@ -6,9 +6,9 @@ In this instalment we’re going to take our understanding of functions to the n
 
 Before we delve into anonymous functions, we’ll start by taking a deeper look at how JavaScript deals with function arguments.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_06_10.mp3
+# Matching Postcast Episode 442
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_06_10.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_06_10.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 442
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_06_10.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -16,7 +16,7 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## Our Playground
 
-For this instalment we will yet again be using our JavaScript playground. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
+For this instalment we will yet again be using our JavaScript playground. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
 
 ## PBS JavaScript Cheat-Sheet
 

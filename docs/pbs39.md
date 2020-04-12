@@ -6,11 +6,11 @@ While we won’t be continuing work on our Cellular Automata prototypes this tim
 
 Also, before we get stuck into new content I’ll be taking a small diversion to explain a slight change in my approach to HTML coding, and how that will affect the sample code you see for the remainder of this series.
 
-As usual, I’ve collected the example file for this instalment and the starting point for the challenge together into [a ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs39.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs39.zip).
+As usual, I’ve collected the example file for this instalment and the starting point for the challenge together into [a ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs39.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs39.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_15.mp3
+# Matching Postcast Episode 501
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_15.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_15.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 501
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_15.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -91,7 +91,7 @@ The following snippet from `pbs39.html` from this instalment’s ZIP file shows 
 
 If you try submit the form without entering a value in this text box while using Safari you’ll see the following:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/Screen-Shot-2017-09-15-at-00.11.02.png)
+![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.11.02.png)
 
 ### Length Requirements
 
@@ -106,7 +106,7 @@ The following snippet from `pbs39.html` shows a text area with both a minimum an
 
 In general browser will prevent users from entering more characters than `maxlength`. If you enter too few characters and try submit the form Safari shows the following error:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/Screen-Shot-2017-09-15-at-00.21.18.png)
+![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.21.18.png)
 
 ### Numeric Bounds
 
@@ -121,11 +121,11 @@ The following snippet from `pbs39.html` shows a numeric text area with a defined
 
 If you enter a non-numeric value and try submit the form Safari shows the following error:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/Screen-Shot-2017-09-15-at-00.24.38.png)
+![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.24.38.png)
 
 If you enter a number outside of the valid range Safari gives error messages of the following form:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/Screen-Shot-2017-09-15-at-00.25.56.png)
+![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.25.56.png)
 
 ### Text Patterns
 
@@ -142,7 +142,7 @@ The following snippet from `pbs39.html` shows a text area that requires a valid 
 
 While browsers can give very meaningful error messages when you use pre-fedinef text types like email or URL, they can’t be nearly as smart with generic patterns, hence, Safari shows the following very generic message when you enter and invalid value in the above text box and hit submit:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/Screen-Shot-2017-09-15-at-00.29.40.png)
+![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.29.40.png)
 
 ### Validation Example
 

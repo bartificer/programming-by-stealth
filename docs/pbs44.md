@@ -6,9 +6,9 @@ We’ll continue our exploration of ES6 today by looking at how function argumen
 
 There is no ZIP file for this instalment, instead, I’ve published my solution to the challenge from the previous instalment (which is also the starting point for the next challenge) as [a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS43-Challenge-Solution). You can download it using the big green button labeled _Clone or Download_.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_26.mp3
+# Matching Postcast Episode 511
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_26.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_26.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 511
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_26.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

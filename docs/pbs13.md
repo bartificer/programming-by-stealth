@@ -2,9 +2,9 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/) we got our first taste of JavaScript. We learned about variables, literal data types, and some basic string and arithmetic operators. In this instalment we’re going to focus on booleans. We’ll look at how non-boolean values get converted to booleans when needed (e.g. is `'boogers'` `true` or `false`?), we’ll learn about some comparison operators that result in boolean values, and we’ll learn about some logical operators. At that stage we’ll have all the knowledge we need to learn about our third fundamental programming concept – branching.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_12.mp3
+# Matching Postcast Episode 434
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_12.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_12.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 434
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_12.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -16,7 +16,7 @@ Like with the previous instalment, we’ll be working in our JavaScript playgrou
 
 The basic operation remains the same, but now when you click `Run` the output will appear at the bottom of the page instead of in a new window.
 
-You can download this code for this updated playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
+You can download this code for this updated playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
 
 ## Boolean Conversions
 

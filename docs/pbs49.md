@@ -4,13 +4,13 @@ In this instalment we’re going to continue to consolidate our understanding of
 
 We’ll also take some time to revise the basics of JavaScript objects.
 
-[The ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/02/pbs49.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs49.zip) contains my sample solution to the previous challenge.
+[The ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/02/pbs49.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs49.zip) contains my sample solution to the previous challenge.
 
 Note that this instalment is split over two podcast episodes, only one has been recorded to date.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3
+# Matching Postcast Episode 521
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3)
+Listen Along (Part 1 of 2): Chit Chat Accross the Pond Episode 521
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

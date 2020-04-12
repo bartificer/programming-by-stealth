@@ -2,11 +2,11 @@
 
 In this instalment it’s finally time to bring our Cellular Automaton prototypes to life by implementing Conway’s Game of Life. By the end of this instalment we’ll have reached a real milestone — our first web app! Granted, it won’t be a very feature-rich web app, but you have to start somewhere!
 
-As usual, I’ve collected the code files for this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs42.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs42.zip). As well as the ZIP file, I’ve also published [a tagged release of the bartificer.ca.js code on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-StartingPoint) which you’ll need for this instalment’s challenge.
+As usual, I’ve collected the code files for this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs42.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs42.zip). As well as the ZIP file, I’ve also published [a tagged release of the bartificer.ca.js code on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-StartingPoint) which you’ll need for this instalment’s challenge.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_29.mp3
+# Matching Postcast Episode 507
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_29.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_29.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 507
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_29.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -332,7 +332,7 @@ sampleCA.setState(function(){ return Math.random() < 0.5 ? true : false; });
 
 As you can see, this sets our automaton to a random state:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/Screen-Shot-2017-10-24-at-23.10.07-e1508883118385.png)
+![](../assets/pbs42/Screen-Shot-2017-10-24-at-23.10.07-e1508883118385.png)
 
 We should now update our constructor so it calls this function when passed an optional sixth argument. We just need to add the following to the end of the constructor:
 

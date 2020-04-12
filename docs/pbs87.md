@@ -4,7 +4,7 @@ In the previous instalment we started our redux and update of function objects i
 
 The instalment has a some-what strange structure because I felt it best to change my plans a little and extend the existing challenge by another week. Hopefully you won’t mind the slightly different flow of the sections compared to the norm.
 
-You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs87.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs87.zip). If you prefer, you can access this instalment’s resources directly at the following links:
+You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs87.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs87.zip). If you prefer, you can access this instalment’s resources directly at the following links:
 
 *   `pbs87a.html`:  
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/d5b05df809ead7deeb189618480d16ed1017efb5/instalmentResources/pbs87/pbs87a.html) or  

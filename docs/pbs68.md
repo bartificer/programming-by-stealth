@@ -2,7 +2,7 @@
 
 In this instalment we’ll get our first look at Bootstrap’s so-call _Nav_ component, a menu designed to facilitate navigation around a website, within a page, or within a web app. In the previous instalment we met Dropdowns for the first time, and saw how Dropdowns filled with buttons can be used within web app UIs. We ended by noting that Dropdowns come in two flavours, buttons and links. In this instalment we’ll learn how to use the link-flavour of Dropdowns within Navs. Finally, we’ll learn how to use Navs to create tabbed content regions within a web page or web app.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs68.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
 
 # Matching Postcast Episode 575
 
@@ -59,7 +59,7 @@ The key points to note are that the `<span>` that’s serving as the dropdown me
 
 We now have a visually functioning menu, and because both buttons in the dropdown have `type="submit"`, they both work to submit the form:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-15-at-10.27.24.png)
+![](../assets/pbs68/Screenshot-2018-12-15-at-10.27.24.png)
 
 The challenge did have one small twist, the message displayed when the form is submitted should tell the user how long they would be pretend logged in for. The current submit event handler on the form always shows the same message, regardless of which button was used to trigger the login.
 
@@ -134,7 +134,7 @@ Again, note the use of jQuery’s `.val()` function for reading the value from t
 
 The expected outcome would be an indefinitely login, but the actual outcome would be a 5 minute login, because the hidden field would still contain the value `5 minutes`!
 
-You can find the full code for my sample solution in the folder `pbs67-challenge-solution` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs68.zip).
+You can find the full code for my sample solution in the folder `pbs67-challenge-solution` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
 
 ## Basic Bootstrap Nav Bars
 
@@ -156,9 +156,9 @@ So, a basic nav really can be this simple:
 </nav>
 ```
 
-Note that you’ll find this example an all the others below in the file `pbs68a.html` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs68.zip).
+Note that you’ll find this example an all the others below in the file `pbs68a.html` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-16-at-11.03.44.png)
+![](../assets/pbs68/Screenshot-2018-12-16-at-11.03.44.png)
 
 A basic nav like this could almost be described as un-styled, it’s just a left-aligned horizontal list of links with very generous padding. You can add basic styling to your navs using the standard Bootstrap utility classes. The [flex utilities](http://getbootstrap.com/docs/4.1/utilities/flex/) are particularly relevant since Bootstrap navs are flex boxes!
 
@@ -172,7 +172,7 @@ Here’s a first practical example:
 </nav>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-16-at-11.05.21.png)
+![](../assets/pbs68/Screenshot-2018-12-16-at-11.05.21.png)
 
 In this case I made use of the [colour utilities](http://getbootstrap.com/docs/4.1/utilities/colors/) to set a background colour, the [border utilities](http://getbootstrap.com/docs/4.1/utilities/borders/) to add a border top and bottom, and the flex utilities to justify the links across the bar nicely.
 
@@ -201,7 +201,7 @@ Putting all that together, below is the markup for a simple justified nav includ
 </nav>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-16-at-11.07.56.png)
+![](../assets/pbs68/Screenshot-2018-12-16-at-11.07.56.png)
 
 ### Nav Tabs
 
@@ -216,7 +216,7 @@ Now that our links are doing double duty as both nav items and nav links we have
 </nav>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-16-at-11.08.46.png)
+![](../assets/pbs68/Screenshot-2018-12-16-at-11.08.46.png)
 
 ## List-based Navs
 
@@ -269,9 +269,9 @@ The menu should then be added into the nav item directly after the nav link. Sin
 </ul>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-16-at-11.14.12.png)
+![](../assets/pbs68/Screenshot-2018-12-16-at-11.14.12.png)
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-16-at-11.15.15.png)
+![](../assets/pbs68/Screenshot-2018-12-16-at-11.15.15.png)
 
 ## Bootstrap Tabbed Regions
 
@@ -317,7 +317,7 @@ That sounds very complicated, but it’s not actually that bad when you see it a
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/Screenshot-2018-12-16-at-11.23.15.png)
+![](../assets/pbs68/Screenshot-2018-12-16-at-11.23.15.png)
 
 ## A Challenge
 

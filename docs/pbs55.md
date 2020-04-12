@@ -4,11 +4,11 @@ In this instalment we’ll continue our exploration of Bootstrap, making a start
 
 It’s going to take us at least two instalments to look at Bootstrap content. We’ll make a start in this instalment by focusing on the most important classes related to the HTML elements Bootstrap’s documentation (somewhat confusingly IMO) bundles together under the sub-heading _Typography_ (under _Content_). Specifically that means headings, paragraphs, block quotations, and lists.
 
-You can [download the ZIP file for this instalment here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs55.zip).
+You can [download the ZIP file for this instalment here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode #549
+# Matching Postcast Episode 549
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode #549 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-549/)
+Listen along to this instalment on [episode 549 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-549/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_06_02.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -61,11 +61,11 @@ The key to making this work is to display the list itself as a flex row by addin
 </ul>
 ```
 
-You can find my full sample solution in the `pbs54-challengeSolution` folder in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs55.zip).
+You can find my full sample solution in the `pbs54-challengeSolution` folder in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip).
 
 ## Playground
 
-Like last time I’ve created an HTML document with some pre-created elements and empty class attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs55.zip) as `pbs55a.html`, and in [this interactive Bootply playground](https://www.bootply.com/tMgnvjSRCT#).
+Like last time I’ve created an HTML document with some pre-created elements and empty class attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip) as `pbs55a.html`, and in [this interactive Bootply playground](https://www.bootply.com/tMgnvjSRCT#).
 
 ```XHTML
 <!DOCTYPE HTML>
@@ -293,7 +293,7 @@ We can see this in action by displaying the list of links in the playground page
 
 Note that I centred the inlined list by applying the text-center utility class to the footer itself.
 
-I’ve included a version of the sandbox with the above examples added as `pbs55b.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs55.zip).
+I’ve included a version of the sandbox with the above examples added as `pbs55b.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip).
 
 ## A Challenge
 

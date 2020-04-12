@@ -4,11 +4,11 @@ In this instalment we’ll wrap up our look at new features added to JavaScript 
 
 Thanks to the power of the new class syntax introduced as part of ES6, we can now learn about two really important object oriented concepts which I had previously been avoiding because of how horrible the old syntax was. What we’ll be looking at are the very closely related concepts of inheritance and polymorphism.
 
-To illustrate the concepts, and to lay the ground work for this instalment’s challenge, we’ll be making our way through a worked example. You can find the code in this instalment’s ZIP file, which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/12/pbs47.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs47.zip).
+To illustrate the concepts, and to lay the ground work for this instalment’s challenge, we’ll be making our way through a worked example. You can find the code in this instalment’s ZIP file, which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/12/pbs47.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs47.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_06.mp3
+# Matching Postcast Episode 517
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_06.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_06.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 517
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_06.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

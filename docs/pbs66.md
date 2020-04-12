@@ -2,7 +2,7 @@
 
 Over the past few instalments we’ve been making our way though the various form-related features Bootstrap offers. We’ll round out that tour in this instalment with a look at how Bootstrap can help with form validation.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/11/pbs66.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs66.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/11/pbs66.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs66.zip).
 
 # Matching Postcast Episode 570
 
@@ -49,7 +49,7 @@ After all that I was left with the following simple markup:
 
 Which looks like:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-29-at-14.44.11.png)
+![](../assets/pbs66/Screenshot-2018-10-29-at-14.44.11.png)
 
 The second form needed much less work. I simply converted the four text boxes to input groups with single text add-ons front and back, and a single Font Awesome icon in each. I used the appends to signify whether or not the field applied to the sender of the receiver with the use of arrow icons, and the prepend to signify the expect value in the field with an icon for name, and another for email.
 
@@ -76,7 +76,7 @@ As an example, here’s the code for just the sender’s name field:
 
 The updated form now looks like this:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/Screenshot-2018-10-29-at-19.24.07.png)
+![](../assets/pbs66/Screenshot-2018-10-29-at-19.24.07.png)
 
 You can find my full sample solution in the `pbs65-challenge-solution` folder in [“>this instalment’s ZIP file](http://<a href=).
 

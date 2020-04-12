@@ -2,9 +2,9 @@
 
 Up until now we’ve only encountered very simplistic HTML tags, and we have ignored the fact that many HTML tags can specify attributes. In this instalment we’ll look at two tags that require attributes – those for inserting images into pages, and those for inserting links into pages. Before we can look at the two tags in question, we need to lay two pieces of ground-work – we need to discuss attributes in HTML tags, and we need to discuss URLs, and particularly the difference between relative and absolute URLs.
 
-# Matching Postcast Episode Chit chat Across the Pond Episode 418
+# Matching Postcast Episode 418
 
-Listen along to this instalment on [episode Chit chat Across the Pond Episode 418 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/12/ccatp-418/)
+Listen along to this instalment on [episode 418 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/12/ccatp-418/)
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2015_12_28.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -161,7 +161,7 @@ Be very careful about scaling images in this way – it’s very bandwidth ineff
 
 ### Worked Example:
 
-Because image files are required to make this example work, I’ve created a zip file containing both the HTML file and the referenced images. You can download it [here](https://www.bartbusschots.ie/s/wp-content/uploads/2015/12/pbs5a.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs5a.zip), and then place the three files contained in the zip file into a folder called `pbs5a` in your web server’s document root folder.
+Because image files are required to make this example work, I’ve created a zip file containing both the HTML file and the referenced images. You can download it [here](https://www.bartbusschots.ie/s/wp-content/uploads/2015/12/pbs5a.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs5a.zip), and then place the three files contained in the zip file into a folder called `pbs5a` in your web server’s document root folder.
 
 For simplicity I’m also including the content of `index.html` here:
 
@@ -189,7 +189,7 @@ some additional information about the image.</p>
 
 Once the files are in place, and your web server is started, you should be able to view the page at the URL `http://localhost/pbs5a/`, and it should look something like:
 
-![PBS Example 5a](https://www.bartbusschots.ie/s/wp-content/uploads/2015/12/Screen-Shot-2015-12-27-at-16.44.01-e1451234706706.png)
+![PBS Example 5a](../assets/pbs5/Screen-Shot-2015-12-27-at-16.44.01-e1451234706706.png)
 
 ## Links & Fragments/Anchors
 
@@ -225,7 +225,7 @@ To define a URL fragment with the name `section1` you would add the following ta
 
 ### Links and Anchors Example:
 
-Again, because the example involves multiple documents, I have zipped the files up and you can download them from [here](https://www.bartbusschots.ie/s/wp-content/uploads/2015/12/pbs5b.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs5b.zip). Extract the zip and copy the two files it contains to a folder called `pbs5b` in your web server’s document root.
+Again, because the example involves multiple documents, I have zipped the files up and you can download them from [here](https://www.bartbusschots.ie/s/wp-content/uploads/2015/12/pbs5b.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs5b.zip). Extract the zip and copy the two files it contains to a folder called `pbs5b` in your web server’s document root.
 
 For convenience, the contents of the two HTML files is included here:
 

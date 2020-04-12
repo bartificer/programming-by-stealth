@@ -6,9 +6,9 @@ We’ll finish the instalment by making a start on moving from JavaScript versio
 
 There’s no zip file for this instalment as such, instead, I’ve published [my sample solution as a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-Solution) instead. You can use the big green _clone or download_ button to either copy the code using GIT, or download it as a ZIP file.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_12.mp3
+# Matching Postcast Episode 509
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_12.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_12.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 509
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_12.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

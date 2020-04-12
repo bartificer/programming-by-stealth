@@ -4,7 +4,7 @@ The challenge set at the end of the previous instalment was to build a simple ti
 
 It would be a shame to go through an entire instalment without any new content though, so we also meet one very simple but very useful little Bootstrap component, the _Spinner_. Learning about the spinner sets us up nicely for a new challenge — two simple but important improvement to the timer web app we just built.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/02/pbs71.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs71.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/02/pbs71.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs71.zip).
 
 # Matching Postcast Episode 581
 

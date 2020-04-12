@@ -6,11 +6,11 @@ Re-usable code without documentation is all but useless, so, we’ll also learn 
 
 As a worked example, we’ll re-write our link fixer as an easily re-usable API, and while we’re at it we’ll also add in some extra functionality to make its behaviour more customisable, and hence, more useful to more people.
 
-The sample files used in this instalment, as well as some needed libraries, can be [downloaded as a ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs24.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs24.zip). The examples assume you’ll save the files within the zip in a folder named `pbs24` in the document root of your local web server.
+The sample files used in this instalment, as well as some needed libraries, can be [downloaded as a ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs24.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs24.zip). The examples assume you’ll save the files within the zip in a folder named `pbs24` in the document root of your local web server.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_28.mp3
+# Matching Postcast Episode 461
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_28.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_28.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 461
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_28.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

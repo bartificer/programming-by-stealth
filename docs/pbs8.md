@@ -2,9 +2,9 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2016/01/21/programming-by-stealth-7-of-x-more-css/) we learned about the CSS box model. Each HTML tag is represented as a box within the browser, and those boxes stack down the page, and inside each other to build up the web pages we see. We also learned how to use FireFox’s developer tools to actually see and inspect the boxes. In this instalment we’ll learn how to take one or more boxes out of the normal flow of the page, and position them elsewhere on the page.
 
-# Matching Postcast Episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_06.mp3
+# Matching Postcast Episode 424
 
-Listen along to this instalment on [episode http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_06.mp3 of the Chit Chat Across the Pond Podcast](http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_06.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 424
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_06.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -71,7 +71,7 @@ figure{
 
 As you can see in the screenshot below, this results in figures being centred regions 75% the width of the main content region of the page:
 
-![Example Use of Auto margins](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-03-at-10.59.42-e1454497285619.png)
+![Example Use of Auto margins](../assets/pbs8/Screen-Shot-2016-02-03-at-10.59.42-e1454497285619.png)
 
 ### Overflowing boxes
 
@@ -129,13 +129,13 @@ The second, preferable but still sub-optimal, solution is to set the `overflow` 
 
 You can see an example of this technique in use in the demo at the bottom of this instalment. The little business card in the top of the side bar is a box with a border and background, and it contains a floated image. Without setting the `overflow` to `auto`, it would look like this:
 
-![Overflowing Float Example](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-03-at-11.06.53.png)
+![Overflowing Float Example](../assets/pbs8/Screen-Shot-2016-02-03-at-11.06.53.png)
 
 Notice how the image is poking slightly outside the border, and how the padding has been completely lost around the bottom of the image. It just does not look right!
 
 However, by simply setting the `overflow` property of the yellow box to `auto`, we get the following, much more pleasing result:
 
-![Contained Float Example](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-03-at-11.09.21.png)
+![Contained Float Example](../assets/pbs8/Screen-Shot-2016-02-03-at-11.09.21.png)
 
 ### Positioned Boxes
 
@@ -181,7 +181,7 @@ In this example we have a page with four main components – the main content re
 
 The header and footer are unpositioned, as is the main content region. The div containing the entire central region is positioned relative, so it is show in it’s normal position, but it acts as the base of the coordinate system for absolutely positioned boxes with in. The main content is positioned normally, but with a `220px` left margin. This wide margin creates an empty space into which the side bar is then placed by positioning it absolutely.
 
-As usual, you can download a zip file with all the files needed for the example [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs8.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs8.zip). Extract these files and place them in a folder called `pbs8` in the document root of your web server, and of course, remember to start your web server. You should now be able to browse to the example at `http://localhost/pbs8/`.
+As usual, you can download a zip file with all the files needed for the example [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs8.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs8.zip). Extract these files and place them in a folder called `pbs8` in the document root of your web server, and of course, remember to start your web server. You should now be able to browse to the example at `http://localhost/pbs8/`.
 
 Below is the content of the HTML and CSS files:
 
@@ -471,7 +471,7 @@ span#author_name{
 
 The page should look something like:
 
-![PBS 8 Demo - Screenshot](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/Screen-Shot-2016-02-03-at-13.38.48-e1454506827534.png)
+![PBS 8 Demo - Screenshot](../assets/pbs8/Screen-Shot-2016-02-03-at-13.38.48-e1454506827534.png)
 
 ## Conclusions
 

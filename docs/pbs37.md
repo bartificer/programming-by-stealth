@@ -6,9 +6,9 @@ To remedy this I thought it would be useful to go through the entire cycle of do
 
 Below you’ll find the screencast embedded, and, links to the various tools mentioned. Myself and Allison have also recorded a podcast for this instalment. I share my screen with Allison, and we walk through all the same steps as I do in the screencast, but with Allison stopping me and asking all the questions you probably are as you watch the screencast. When published, that podcast will be linked into this post.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_07_07.mp3
+# Matching Postcast Episode 494
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_07_07.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_07_07.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 494
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_07_07.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

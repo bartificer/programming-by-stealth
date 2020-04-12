@@ -24,7 +24,7 @@ My sample solution completes both the original assignment and the bonus extra ch
 
 *   [View Solution in Browser](https://rawcdn.githack.com/bbusschots/pbs-resources/f4ba373772b77bf617629b723e1df87bd7a3441b/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
 *   [View Source](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs88/pbs85-challengeSolution/index.html)
-*   [Download ZIP](https://rawcdn.githack.com/bbusschots/pbs-resources/63ba5c524f9605c0df0663a3925e83e29d269f91/instalmentZips/pbs88.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs88.zip)
+*   [Download ZIP](https://rawcdn.githack.com/bbusschots/pbs-resources/63ba5c524f9605c0df0663a3925e83e29d269f91/instalmentZips/pbs88.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs88.zip)
 
 Examples throughout this instalment are intended to be run from the console on this page.
 

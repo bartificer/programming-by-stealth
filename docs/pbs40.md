@@ -4,11 +4,11 @@ At the end of the previous instalment I promised we were done with HTML form val
 
 Then, while doing her homework, Allison discovered another oversight that needs to be remedied before we move away from HTML forms – we need to look at how to support keyboard-only interactions. Why? In a word – accessibility. So, in the next instalment we’ll start by looking at the narrow case of supporting keyboard input in forms, but we’ll then move on and look at keyboard interactions a little more broadly, and we’ll learn how to add keyboard shortcuts to our web apps. This will come in useful when we do then finally move on to getting our cellular automata working the following instalment.
 
-As usual, I’ve collected all the files for this instalment into a single ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs40.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs40.zip).
+As usual, I’ve collected all the files for this instalment into a single ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs40.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs40.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_29.mp3
+# Matching Postcast Episode 503
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_29.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_29.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 503
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_29.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -321,7 +321,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
 
 This results in a form that looks like this:
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/Screen-Shot-2017-09-29-at-11.17.26-e1506680474620.png)
+![](../assets/pbs40/Screen-Shot-2017-09-29-at-11.17.26-e1506680474620.png)
 
 I don’t want to go through my solution line-by-line, but I do want to draw your attention to a few things.
 

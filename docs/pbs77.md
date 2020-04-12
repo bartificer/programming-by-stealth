@@ -2,7 +2,7 @@
 
 My plans for this instalment were to quickly demonstrate so-called _callback hell_, and then move on to the solution, JavaScript Promises, but in light of some listener feedback I changed my plans a little. There was some confusion in the community about what callbacks really are, so, now seemed like an opportune moment to spend a little time re-familiarising ourselves with some callback basics. This sets things up for a bit of a teaser-ending because we’ll get as far as demonstrating callback hell, but not as far as using Promises to get back out of hell, that will have to wait until the following instalment!
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs77.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs77.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs77.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs77.zip).
 
 # Matching Postcast Episode 592
 

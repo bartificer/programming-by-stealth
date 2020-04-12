@@ -4,11 +4,11 @@ We’ve now been introduced to two and a half of the four aspects of the Bootstr
 
 There’re more to Bootstrap’s support for responsive design than just the grid, so in the next instalment we’ll look back a little and discover that many of the bootstrap utilities and content classes also support responsive design. After that we’ll be ready to move on to the fourth and final aspect of Bootstrap, its collection of non-standard but commonly needed HTML elements, or _components_ in Bootstrap jargon.
 
-You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs58.zip).
+You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 555
+# Matching Postcast Episode 555
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 555 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-555/)
+Listen along to this instalment on [episode 555 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-555/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_07_14.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -30,7 +30,7 @@ Finally, I placed the equipment list and glossary next to each other on a final 
 
 One important subtlety I do want to draw your attention to is my sticky-top header. The only way to keep that working is to make the entire container sticky top, doing it on a per-row level will not work because the Bootstrap classes `sticky-top` and `row` are not compatible with each other.
 
-I’ve included my full recipe in the `pbs57-challengeSolution` in folder [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs58.zip).
+I’ve included my full recipe in the `pbs57-challengeSolution` in folder [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip).
 
 However, the focus of this challenge was the overall structure, and that’s easier to see with most of the page content removed:
 
@@ -121,7 +121,7 @@ The fourth range is named `lg`, for _large_, and is intended for laptops and des
 
 Finally, there’s `xl`, for _extra large_, which is intended for large-screened desktops. It’s defined as all viewports with a minimum width of 1200px.
 
-[![Bootstrap Breakpoints](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/Screen-Shot-2018-07-14-at-15.50.50.png)](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/Screen-Shot-2018-07-14-at-15.50.50.png)
+[![Bootstrap Breakpoints](../assets/pbs58/Screen-Shot-2018-07-14-at-15.50.50.png)](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/Screen-Shot-2018-07-14-at-15.50.50.png)
 
 The Bootstrap breakpoints with Screen Width on the X axis and Specificity on the Y.
 
@@ -171,7 +171,7 @@ Take this very basic HTML as a starting point:
 </div>
 ```
 
-(You’ll find a full page with this code in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs58.zip) as `pbs58a.html`.)
+(You’ll find a full page with this code in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip) as `pbs58a.html`.)
 
 This code gives us 3 equal width columns at all breakpoints because `col` implies `xs` which covers all viewports from 0px wide up.
 
@@ -203,7 +203,7 @@ Your code should now look like this:
 </div>
 ```
 
-(You’ll find the full file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs58.zip) as `pbs58b.html`.)
+(You’ll find the full file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip) as `pbs58b.html`.)
 
 Starting with your window very narrow you’ll get three vertically stacked columns. As you widen the window it will jump to two rows, one with one column, and one with two. As you widen the window more it will jump again into three equal-width columns before finally jumping to a wider middle region between two narrower sidebars.
 
@@ -241,7 +241,7 @@ We’ll examine this idea through a worked example — a relatively simple but v
 </div>
 ```
 
-(You’ll find the full file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs58.zip) as `pbs58c.html`.)
+(You’ll find the full file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip) as `pbs58c.html`.)
 
 As you can see we have a full-width header, followed by the main content with a side-bar each side, followed by a full-width footer. As it stands, this page is not responsive.
 
@@ -293,7 +293,7 @@ So, we now have a layout that meets best practice for assistive devices and SEO,
 </div>
 ```
 
-(You’ll find the full file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs58.zip) as `pbs58d.html`.)
+(You’ll find the full file in [the ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip) as `pbs58d.html`.)
 
 ## Challenge
 

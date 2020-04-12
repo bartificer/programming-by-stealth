@@ -4,7 +4,7 @@ In this instalment we’ll continue our recent focus on Bootstrap components pri
 
 Different notifications require a different UI, hence there being two components, Modal, and Toast. However, both are quite similar in the sense that you will most probably be triggering them via JavaScript. Unlike the other components we’ve seen so far, these will not be visible to the user when the page loads, they’ll make their presence felt at some later time in response to some kind of event.
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs70.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs70.zip).
 
 # Matching Postcast Episode 580
 
@@ -30,7 +30,7 @@ So, in summary, if you know what needs to be communicated at the point in time t
 
 ## The Demo Page
 
-Because both Modals and Toasts need to be triggered by some kind of event, my traditional practice of including a demo page (`pbs70b.html`) with a bunch of simple example code snippets in the instalment’s ZIP file won’t work. Instead, [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs70.zip) contains a demo page withe two web forms for generating alerts — one for creating Modals, and one for creating Toasts. We’ll work through that page’s code later in the instalment, but for now, you can use it to see both Modals and Toasts in action for yourself.
+Because both Modals and Toasts need to be triggered by some kind of event, my traditional practice of including a demo page (`pbs70b.html`) with a bunch of simple example code snippets in the instalment’s ZIP file won’t work. Instead, [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs70.zip) contains a demo page withe two web forms for generating alerts — one for creating Modals, and one for creating Toasts. We’ll work through that page’s code later in the instalment, but for now, you can use it to see both Modals and Toasts in action for yourself.
 
 I’ve also made a copy of this demo available online at [https://bartb.ie/pbsdemos/pbs70/pbs70b.html](https://bartb.ie/pbsdemos/pbs70/pbs70b.html).
 
@@ -101,7 +101,7 @@ Next, we need to trigger a Modal from a button. We can do that using Bootstrap�
 </button>
 ```
 
-You can see this modal in action in `pbs70a.html` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs70.zip).
+You can see this modal in action in `pbs70a.html` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs70.zip).
 
 ## Dismissing Modals
 
@@ -184,7 +184,7 @@ Finally, we can show our masterpiece with:
 $modal.modal('show');
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/Screenshot-2019-01-27-at-11.53.12.png)
+![](../assets/pbs70/Screenshot-2019-01-27-at-11.53.12.png)
 
 ## Customising Modals
 

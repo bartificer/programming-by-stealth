@@ -6,9 +6,9 @@ We’ll start by looking at a sample solution to the challenge set at the end of
 
 Before moving on to look at HTML buttons in detail, we’ll learn some new CSS selectors that are particularly useful for styling web forms.
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_20.mp3
+# Matching Postcast Episode 472
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_20.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_20.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 472
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_20.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -731,7 +731,7 @@ Buttons can also contain a `value` attribute. This attribute has no visible effe
 
 Buttons can be styled with CSS, and the CSS attribute selectors can be used to style different types of button differently. It’s common to use different colours for the different types of button, and, to use a bold font on submit buttons.
 
-In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2017/01/pbs28.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs28.zip) you’ll find just one HTML page, and a few images. Below is the code for the page, which contains nine buttons in three sets of three. First, un-styled examples of each of the three kinds of button, then styled examples of each kind of button, and finally, one of each kind of button where images are used to make the buttons easier to understand.
+In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2017/01/pbs28.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs28.zip) you’ll find just one HTML page, and a few images. Below is the code for the page, which contains nine buttons in three sets of three. First, un-styled examples of each of the three kinds of button, then styled examples of each kind of button, and finally, one of each kind of button where images are used to make the buttons easier to understand.
 
 ```XHTML
 <!DOCTYPE HTML>

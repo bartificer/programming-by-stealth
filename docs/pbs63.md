@@ -4,11 +4,11 @@ In this instalment we’ll continue our exploration for forms in Bootstrap, but 
 
 Having looked at basic form inputs in the previous instalment, and then buttons in this instalment, we’ll be ready to look at the different options Bootstrap provides for laying out forms beyond the default stacked layout we’ve seen to date.
 
-You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/pbs63.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs63.zip).
+You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/pbs63.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs63.zip).
 
-# Matching Postcast Episode Chit Chat Across the Pond Episode 564
+# Matching Postcast Episode 564
 
-Listen along to this instalment on [episode Chit Chat Across the Pond Episode 564 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/09/ccatp-564-bart-busschots-on-pbs-63/)
+Listen along to this instalment on [episode 564 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/09/ccatp-564-bart-busschots-on-pbs-63/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_09_23.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -310,7 +310,7 @@ This apparent secondary button is actually an <code>&lt;a&gt;</code> tag!
 <a class="btn btn-secondary" href="http://getbootstrap.com/docs/4.1/components/buttons/" taget="_blank" rel="noopener">More ...</a>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/Screen-Shot-2018-09-23-at-10.41.48.png)
+![](../assets/pbs63/Screen-Shot-2018-09-23-at-10.41.48.png)
 
 But, we can also render any button as a link by giving it the classes `btn` and `btn-link`:
 
@@ -319,7 +319,7 @@ This apparent link is actually a <code>&lt;button&gt;</code> tag!
 <button class="btn btn-link" id="btn_as_link">More ...</button>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/Screen-Shot-2018-09-23-at-10.36.21.png)
+![](../assets/pbs63/Screen-Shot-2018-09-23-at-10.36.21.png)
 
 ## Button Groups & Toolbars
 
@@ -338,7 +338,7 @@ Basic share links as a button group:
 </span>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/Screen-Shot-2018-09-23-at-11.27.30.png)
+![](../assets/pbs63/Screen-Shot-2018-09-23-at-11.27.30.png)
 
 ### Button Group Sizes
 
@@ -364,7 +364,7 @@ Share links with glyph icons as a small button group:
 </span>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/Screen-Shot-2018-09-23-at-11.31.37.png)
+![](../assets/pbs63/Screen-Shot-2018-09-23-at-11.31.37.png)
 
 ### Button Groups as Form Controls
 
@@ -429,7 +429,7 @@ As a contrived example, here’s the code for a simple text-formatting button to
 </div>
 ```
 
-![](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/Screen-Shot-2018-09-23-at-11.54.27.png)
+![](../assets/pbs63/Screen-Shot-2018-09-23-at-11.54.27.png)
 
 ## Final Thoughts
 

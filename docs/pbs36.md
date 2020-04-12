@@ -6,11 +6,11 @@ We’ll start on the HTML track where we move on from generic text input with si
 
 When we switch to the JavaScript track we’ll start by having a quick look at my sample solution to the previous instalment. Then, we’ll make a start on a JavaScript prototype to represent a Cellular Automaton together, which will set up the next assignment.
 
-I’ve zipped up my solution to the previous assignment, a sample file that accompanies this instalment, and the starting point for the next assignment which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/06/pbs36.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs36.zip).
+I’ve zipped up my solution to the previous assignment, a sample file that accompanies this instalment, and the starting point for the next assignment which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/06/pbs36.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs36.zip).
 
-# Matching Postcast Episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_06_25.mp3
+# Matching Postcast Episode 492
 
-Listen along to this instalment on [episode https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_06_25.mp3 of the Chit Chat Across the Pond Podcast](https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_06_25.mp3)
+Listen Along: Chit Chat Accross the Pond Episode 492
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_06_25.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

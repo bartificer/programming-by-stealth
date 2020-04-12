@@ -4,7 +4,7 @@ Finally, after much teasing, we get our first taste of JavaScript Promises! This
 
 So, we’re going to take it slow with promises. They will provide us with a way out of callback hell, but that path to salvation is unlikely to be obvious to you by the end of this instalment. It will take one or two more instalments until we get that far. All I can ask is that you please trust, me, how ever bumpy the journey gets, the destination is worth the struggle!
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs79.zip) or [here on GitHub](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentZips/pbs79.zip).
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs79.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs79.zip).
 
 # Matching Postcast Episode 595
 
