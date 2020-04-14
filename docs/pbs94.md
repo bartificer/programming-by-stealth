@@ -202,6 +202,8 @@ $OUT_TEXT.empty().append(goldPressedLatinum.as(Math.PI));
 $OUT_HTML.empty().append(goldPressedLatinum.asHTML(Math.PI));
 ```
 
+### Better Constructors with Default Values
+
 This first implementation is extremely demanding of the programmer, to create a currency they must specify a value for every property, there is no concept of a default. This is generally considered bad practice, so in general, you should write your constructors so they can default as many values as possible, ideally, returning a usable object even when passed no arguments at all.
 
 The file `ImaginaryCurrency2.js` defines an improved version of the class which is identical except that the constructor now supports default values for all the currency details:
@@ -303,6 +305,208 @@ $OUT_TEXT.empty().append(quatloo.as(Math.PI));
 
 This will print out `$3.14`, because the invalid value of `'-3'` was silently ignored and the default of `2` used instead.
 
-While we do want defaults when values are not passed at all, we also want to throw errors when invalid values are passed.
+### Even Better Constructors with Error Throwing
 
-LEFT OFF HERE
+While we do want defaults when values are not passed at all, we also want to throw errors when invalid values are passed. In the file `ImaginaryCurrency3.js` you'll find another improved implementation identical to the previous except for the constructor. Below is a snippet of the constructor's code showing the improved logic used for each piece of data:
+
+```js
+/**
+class ImaginaryCurrency{
+	//
+	// Define the Constructor
+	//
+	
+	 * @param {Object} [details={}] - a dictionary of initial values for the currency's properties. If passed, must be an object.
+	 * …
+	 * @param {number} [numDecimalPlaces=2] - the number of decimal places the currency usually displays. If present, must be a number greater than or equal to zero. The value will be coerced to an integer if possible.
+	 * @throws {TypeError} A Type Error is thrown when the details parameter is not an object, or, if any of the named properties are defined but of the wrong type. 
+	 * @throws {RangeError} A Range Error is thrown when any of the named properties of the passed details object have the correct type, but an invalid value.
+	 */
+	constructor(details){
+		// ensure details is a dictionary
+		if(typeof details === 'undefined'){
+			details = {};
+		}else{
+			if(typeof details !== 'object') throw new TypeError('details must be an object');
+		}
+		
+		// initialise all the data attributes
+		// validate any passed values, and use the default for unspecified values
+		if(typeof details.name === 'undefined'){
+			this.name = 'Imaginary Dollar';
+		}else{
+			if(typeof details.name === 'string'){
+				if(details.name.length > 0){
+					this.name = details.name;
+				}else{
+					throw new RangeError('details.name cannot be empty');
+				}
+			}else{
+				throw new TypeError("if passed, details.name must be a non-empty string");
+			}
+		}
+		
+		// …
+		
+		if(typeof details.numDecimalPlaces === 'undefined'){
+			this.numDecimalPlaces = 2;
+		}else{
+			// best-effort to convert the number of decimal places to a number
+			const numDecimalPlaces = parseInt(details.numDecimalPlaces);
+			if(isNaN(numDecimalPlaces)){
+				throw new TypeError('if passed, details.numDecimalPlaces must be an integer greater than or equal to one');
+			}else{
+				if(numDecimalPlaces >= 0){
+					this.numDecimalPlaces = numDecimalPlaces;
+				}else{
+					throw new RangeError('details.numDecimalPlaces cannot be less than zero');
+				}
+			}
+		}
+	}
+	
+	// …
+}
+```
+
+Notice that as well as updating the logic, the documentation comments at the top of the constructor were also updated to reflect the new error handling behaviour.
+
+The file `pbs94c.html` includes this improved imaginary currency class, so you can open that file in your favourite browser and use the JavaScript console to see our new error-handling code in action:
+
+```js
+// trigger a type error
+const oopsie1 = new ImaginaryCurrency('Monopoly Dollar');
+const oopsie2 = new ImaginaryCurrency({ name: true });
+
+// trigger a range error
+const oopsie3 = new ImaginaryCurrency({ name: '' });
+const oopsie4 = new ImaginaryCurrency({ numDecimalPlaces: -8 });
+```
+
+### Even Better Constructors Still with Multiple Argument Options
+
+Quite often one or two of the possible options are by far the most important. In those situations a common approach is to support two different sets of arguments, a list of up to three named arguments, or, a dictionary as the first argument.
+
+In our specific example, the two most important arguments are the name and description, so it would make sense for the following to work:
+
+```js
+const monopolyDollar = new ImaginaryCurrency('Monopoly Dollar', 'the currency from the board game Monopoly');
+```
+
+We can facilitate this by adding a little more intelligence into our constructor. You'll find an implementation of this concept in the file `ImaginaryCurrency4.js`.
+
+Rather than re-writing the entire constructor, I chose to detect the special case of the first argument being a string, and then transform the string arguments into an object, allowing the vast bulk of the constructor to remain the same as it was before:
+
+```js
+class ImaginaryCurrency{
+	//
+	// Define the Constructor
+	//
+	
+	/**
+	 * @signature Name & Description
+	 * @param {string} details - the currency's name. If passed, must be a non-empty string.
+	 * @param {string} [descHTML='an imaginary currency'] - the currency's description, including HTML tags. If passed, must be a non-empty string.
+	 * @throws {TypeError} A Type Error is thrown when the name or description are not strings. 
+	 * @throws {RangeError} A Range Error is thrown when the name or description are empty strings.
+	 * 
+	 * @signature Details
+	 * Same as before …
+	 */
+	constructor(details, descHTML){
+		// figure out which argument option was used
+		// ensure details will always be an object before it is processed
+		if(typeof details === 'undefined'){
+			details = {};
+		} else if(typeof details === 'string'){
+			if(details === ''){
+				throw new RangeError('the first argument cannot be an empty string');
+			}else{
+				details = { name: details};
+				if(typeof descHTML !== 'undefined'){
+					if(typeof descHTML === 'string'){
+						if(descHTML === ''){
+							throw new RangeError('the second argument cannot be an empty string');
+						}else{
+							details.descriptionHTML = descHTML
+						}
+					}else{
+						throw new RangeError('if passed, second argument must be a non-empty string');
+					}
+				}
+			}
+		}else if(typeof details !== 'object'){
+			throw new TypeError('if passed, first argument must be an object or a non-empty string');
+		}
+		
+		// Remainder of constructor un-altered
+		// …
+	}
+	
+	// …
+}
+```
+
+Note that in programmer jargon, when a function can accept multiple different arrangement of arguments it's said to have multiple *signatures*. This is a very common approach to writing functions, and we've see it many times in the jQuery library, for example, when the `.attr()` function is passed a single argument it returns the value of the given attribute, and when passed two arguments it sets the value. Developers would say that jQuery's `.attr()` function has two signatures.
+
+The file `pbs94d.html` imports this updated version of the `ImaginaryCurrency` class. We can use the JavaScript console to make use of the added signature like so:
+
+```js
+// create a monopoloy dollar object using the new signature
+const monopolyDollar = new ImaginaryCurrency('Monopoly Dollar', 'the currency from the Monopoly board game');
+
+// use the monopolyDollar
+$OUT_TEXT.append(monopolyDollar.describe());
+$OUT_HTML.append(monopolyDollar.describeHTML());
+
+// demonstrate that the original signature still works
+const dummyDollar = new ImaginaryCurrency({ name: 'Dummy Dollar' });
+$OUT_TEXT.empty().append(dummyDollar.describe());
+$OUT_HTML.empty().append(dummyDollar.describeHTML());
+```
+
+## The `instanceof` Operator
+
+Once you start creating your own classes you're likely to start writing functions that expect instances of your classes as arguments. To validate those arguments you'll need to test if the given value is a reference to an instance of one of your classes. You can do this using the `instanceof` operator. This operator will evaluate to a boolean, and has the following syntax:
+
+```js
+testObject instanceof SomeClass
+```
+
+If `testObject` is an instance of the class `SomeClass` then the above expression will evaluate to `true`, otherwise, it will evaluate to `false`.
+
+We can demonstrate this operator by executing the following on the JavaScript console on `pbs94d.html`:
+
+```js
+const imaginaryDollar = new ImaginaryCurrency();
+console.log(imaginaryDollar instanceof ImaginaryCurrency); // true
+console.log(imaginaryDollar instanceof Date); // false
+```
+
+## Naming Conventions for Classes
+
+One final point to note before wrapping up this instalment — by convention, **JavaScript classes are always named in so-called *CamelCase* with a leading capital**, hence my choice to name our example class `ImaginaryCurrency`.
+
+This is not a rule, but it is a very widely adopted convention, and as such I strongly recommend you treat it as a rule, it will make your code easier for others to understand and re-use.
+
+## Final Thoughts —  A Lot Done, but More to Do!
+
+We can now create classes which allow us to construct encapsulated objects as needed. 
+
+Throughout this instalment we've been steadily improving our example `ImaginaryCurrency` class. So far we've been focusing on improving the constructor, in the next instalment we'll shift our focus to the data encapsulated by instances of our class. At the moment our classes are still very brittle, we need to add a lot more data validation and error checking to get them more robust.
+
+For now, the following won't throw an error:
+
+```js
+const imaginaryDollar = new ImaginaryCurrency();
+imaginaryDollar.numDecimalPlaces = 'boogers';
+```
+
+But, it will stop our instance working properly:
+
+```js
+$OUT_TEXT.empty().append(imaginaryDollar.describe());
+$OUT_TEXT.empty().append(imaginaryDollar.as(Math.PI));
+```
+
+We need to make our data attributes as robust as our constructor, and the key to doing this efficiently are so-called *getters and setters*. Those will be the focus of the next instalment.
