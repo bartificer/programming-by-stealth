@@ -1,8 +1,8 @@
 # PBS 94 of X — Basic JavaScript OO with Class
 
-This instalment bring us to the end of a long series of instalments focusing on the many proverbial *hats* JavaScript makes objects wear. In JavaScript, just about everything is an object, including dictionaries, arrays, functions of all kinds, and regular expressions. Really, in JavaScript, if it's not a boolean, number, or string, it's an object. In fact, objects are so import in JavaScript that the language even provides wrapper objects for booleans, numbers, and strings so they can be interacted within object-like ways.
+This instalment bring us close to the end of a long series of instalments focusing on the many proverbial *hats* JavaScript makes objects wear. In JavaScript, just about everything is an object, including [dictionaries](https://bartificer.net/pbs84), [arrays](https://bartificer.net/pbs85), [functions](https://bartificer.net/pbs86) of [all kinds](https://bartificer.net/pbs87), and [regular expressions](https://bartificer.net/pbs91). In the browser the entire structure of web pages is also represented as a massive collection of objects — the so-called [DOM](https://bartificer.net/pbs88). Really, in JavaScript, if it's not a boolean, number, or string, it's an object. In fact, objects are so import in JavaScript that the language even provides [wrapper objects](https://bartificer.net/pbs90) for booleans, numbers, and strings so they can be interacted within object-like ways.
 
-We're now approaching the grand finale of this journey — the ability to define our own object classes. In the previous instalment we took the first, and vitally important, step on the journey — we learned about encapsulation. Encapsulation exists in all languages that can support object-oriented programming, and in JavaScript it's implemented with dictionaries. We saw how we could use a dictionary to encapsulate all the information and functions related to an imaginary currency, the Hoonyaker, in a single object. We then saw how creating a similar object for another imaginary currency, the Squid, was so similar that it actually involved copying-and-pasting all the property names and the entire contents of all the functions without editing a single character. The only thing that changed was the data. Obviously there had to be a better way, and of course, there is — the fundamental atom of the Object Oriented world-view, the class!
+We're now starting on the grand finale of this journey — the ability to define our own object classes. In the previous instalment we took the first, and vitally important, step on the journey — we learned about [encapsulation](https://bartificer.net/pbs93). We learned that encapsulation is a universal concept shared by all languages that support object-oriented programming, and that JavaScript uses dictionaries to implement it. We saw how we could use a dictionary to encapsulate all the information and functions related to an imaginary currency, the Hoonyaker, into a single object. We then saw how creating a similar object for another imaginary currency, the Squid, was so similar that it actually involved copying-and-pasting all the property names and the entire contents of all the functions without editing a single character. The only thing that changed was the data. Obviously there had to be a better way, and of course, there is — the fundamental atom of the Object Oriented world-view, the class!
 
 ## What are Classes?
 
@@ -12,23 +12,23 @@ We saw how encapsulation helped make our code easier to understand, maintain, re
 
 Once you start encapsulating your data and functions into objects you soon realise that, like the physical things all around us, objects in our computer code fall into related groups of similar things. An object representing one imaginary currency as as much like an object representing another as my bicycle is to yours!
 
-This is where the concept of a class comes in. A class defines the names of the pieces of data needed to represent a collection of related object, and, the functions that will operate on that data.
+This is where the concept of a class comes in. A class defines the names of the pieces of data needed to represent a collection of related objects, and, the functions that will operate on that data.
 
 In the case of imaginary currencies, a class could specify that all imaginary currencies have properties named `name`, `descriptionHTML`, `symbol`, `symbolHTML`, and `numDecimalPlaces`. The class could then define all the functions that all imaginary currency objects will contain, for example `describe()`, `describeHTML()`, `as()`, and `asHTML()`.
 
-And finally, the class must specify the mechanism for constructing objects based on a description. In other words, the class must provide a function for turning a list of data about an imaginary currency into an object that represents that imaginary currency. Quite wisely, computer scientists call these functions *constructors*.
+And finally, a class must specify the mechanism for constructing objects based on a description. In our hypothetical example words, our imaginary currency class would need to provide a function for turning a list of data about a specific imaginary currency into an object that represents that imaginary currency. Quite wisely, computer scientists call these functions *constructors*.
 
-The constructor for an imaginary currency class would need to accept a name, an HTML description, plain-text and HTML symbols, and a number of decimal places as arguments, and it would then use that data to build and return an object representing that imaginary currency.
+The constructor for an imaginary currency class would need to accept a name, an HTML description, plain-text & HTML symbols, and a number of decimal places as arguments. The constructor would then use that information to build and return an object representing that imaginary currency.
 
 ### What are Instances? Are they Objects? How are they Related to Classes?
 
 A very common source of confusion for people new to the OO philosophy is the distinction between the words *object*, *instance*, and *class*.
 
-In the OO world-view, **an object is a variable that encapsulates data and functions**.
+In the OO world-view, **an object is a data structure that encapsulates data and functions**. (In JavaScript that means a dictionary that encapsulates data and functions.)
 
-**If we have a class that represents an idea or thing, then every object constructed by that class is said to be an instance of that class.**
+**If we have a class that represents an idea or thing, then every object constructed by that class is said to be an *instance* of that class.**
 
-So, that means that **all instances of any class are objects**.
+So, that means that **all instances** of any class **are objects**.
 
 The way to think of it is that **a class represents an abstract concept, and instances represent specific manifestations of that concept**.
 
@@ -36,13 +36,13 @@ If we define a class to represent imaginary currencies, then each imaginary curr
 
 ### Two Kinds of Function — *Constructors* & *Instance Functions*
 
-Regardless of the specific programming language, when defining a class you'll be defining two distinct kinds of function — one or more *constructor functions*, or *constructors*, and an arbitrarily large number of *instance functions*.
+Regardless of the specific programming language, when defining a class you'll be defining two distinct kinds of function — one or more *constructor functions*, or *constructors*, and an arbitrarily number of *instance functions*.
 
-We know that classes are used to construct objects which are instances of that class. **The function (or functions) a class defines for the purpose of constructing instances are known as *constructor functions*, or more usually, simply *constructors***. Some programming languages allow a single class to define arbitrarily many constructors, which others mandate each class define exactly one constructor function.
+We know that classes are used as blueprints for objects that are instances of that class. **The function** (or functions) **a class defines for the purpose of constructing instances is** (or are) **known as *constructor functions*, or simply *constructors***. Some programming languages allow a single class to define arbitrarily many constructors, while others only allow classes to define a single constructor function.
 
 We know that instances of classes encapsulate data and functions. **The functions encapsulated into all instances of a class are known as *instance functions***. If a class defines 5 instance functions then every instance of that class will have those five functions encapsulated into it.
 
-> Those of you familiar with OO theory have probably noticed that I've not mentioned a third kind of function that classes can define — so-called *static functions*. That's not an omission, it's a conscious choice I've made in the interest of minimising confusion and focusing tightly on the most important principles.
+> Those of you familiar with OO theory have probably noticed that I've not mentioned a third kind of function that classes can define — so-called *static functions*. That's not an omission, it's a conscious choice I've made in the interest of minimising confusion and focusing tightly on the most important principles. We did actually look at static functions on our  first attempt at covering JavaScript classes back in [instalment 48](https://bartificer.net/pbs48).
 {: .aside}
 
 ### *Type* is just a Synonym for *Class*
@@ -63,18 +63,18 @@ First and foremost — **JavaScript classes define a single constructor function
 
 Under the hood, JavaScript has a *unique* implementation of OO. It has a certain elegance, but it's extremely esoteric, and it can be very confusing to those coming to JavaScript from more traditional OO languages like C++ or Java.
 
-Before the release of ES6 JavaScript programmers had no choice but to interact directly with JavaScript's unique implementation. There was no way to avoid knowing about the esoteric details if you wanted to write your own classes.
+Before the release of ES6 JavaScript programmers had no choice but to interact directly with JavaScript's unique implementation. There was no way to avoid knowing about the idiosyncratic details if you wanted to write your own classes.
 
-The single most significant change ES6 brought to the language was an abstraction layer over that esoteric implementation that allows developers to define classes without needing to look under the hood. Some scoffed at this change saying it was *'just syntactic sugar'* because nothing changed under the hood, but that totally misses the point IMO. The word *just* utterly misses the point — that layer of new syntax made JavaScript look like a normal OO language, making it infinitely easier to write your own classes, and infinitely less confusing for developers coming to JavaScript from other language, and, developers moving to other languages from JavaScript (like we will be in this series).
+The single most significant change ES6 brought to the language was an abstraction layer on top of JavaScript's unusual OO implementation relieved developers of the need to understand what's really going on under the hood. Developers can now use familiar keywords to define their classes. Some scoffed at this change saying it was *'just syntactic sugar'* because nothing changed under the hood. The word *just* utterly misses the point IMO — that layer of new syntax made JavaScript look like a normal OO language, making it infinitely easier to write your own classes, and infinitely less confusing for developers coming to JavaScript from other language. As an added bonus, it also made it easier for JavaScript developers who learned the new way of doing things to move to other languages, much like we'll shortly be doing in this series!
 
 It's very important to understand this history for two reasons:
 
-1. The internet has not forgotten about the pre-ES6 ways of doing things. When you search the web for answers to JavaScript OO questions, you will still find pages, tutorials, and articles describing the old, pre-ES6, way of doing things. This has the potential to really confuse you!
-2. Some of the under-the-hood terminology has leaked out into the jargon used by JavaScript developers, even when they are describing the post-ES6 world. The single biggest example of this is the word *prototype*. Deep down under the hood, in that place we'er not going, JavaScript implements OO concepts using *prototypes*. Before ES6 developers didn't just need to know that, they needed to understand it. Now we don't, but the world has seeped out into the JavaScript zeitgeist, so you'll still find it all over the web, even in descriptions of modern JavaScript. All you need to know is that, effectively, ***prototype* is used by some JavaScript developers as a synonym for *class***.
+1. The internet has not forgotten about the pre-ES6 ways of doing things. When you search the web for answers to JavaScript OO questions, you'll still find pages, tutorials, and articles describing the old, pre-ES6, way of doing things. This has the potential to really confuse you!
+2. Some of the under-the-hood terminology has leaked out into the jargon still used by JavaScript developers, even when they're describing the post-ES6 world. The single biggest example of this is the word *prototype*. Deep down under the hood, in that place we're not going, JavaScript implements OO concepts using *prototypes*. Before ES6 developers didn't just need to know that, they needed to understand it. Now we don't, but the world has seeped out into the JavaScript zeitgeist, so you'll still find it all over the web, even in descriptions of modern JavaScript. All you need to know is that, effectively, ***prototype* is used by some JavaScript developers as a synonym for *class***.
 
-So, when searching the web, know that any OO advice that does not use the key-word `class` is probably describing the pre-ES6 universe, and any time you see *prototype*, mentally replace it with *class*.
+So, when searching the web, know that any OO advice that doesn't use the key-word `class` is probably describing the pre-ES6 universe, and any time you see *prototype*, mentally replace it with *class*.
 
-Note that when this series began, ES6 was still new, and I made the decision not to adopt it within the series until it had wide-spread browser support. That means that when we first looked at objects starting way back in [instalment 17](https://bartificer.net/pbs17)  we did things the pre-ES6 way. The same is true of instalments [27](https://bartificer.net/pbs27), [28](https://bartificer.net/pbs28), [29](https://bartificer.net/pbs29), [30](https://bartificer.net/pbs30), and [31](https://bartificer.net/pbs31).
+Note that when this series began, ES6 was still new, and I made the decision not to adopt it within the series until it had wide-spread browser support. That means that when we first looked at object orientation starting way back in [instalment 17](https://bartificer.net/pbs17)  we did things the pre-ES6 way. The same is true of instalments [27](https://bartificer.net/pbs27), [28](https://bartificer.net/pbs28), [29](https://bartificer.net/pbs29), [30](https://bartificer.net/pbs30), and [31](https://bartificer.net/pbs31).
 
 Later in the series we did introduce the new ES6 approach to classes (instalments [46](https://bartificer.net/pbs46), [47](https://bartificer.net/pbs47) & [48](https://bartificer.net/pbs48)), but we did so from the point of view of transitioning from the old representation to the new, and I honestly don't think those instalments worked well. In this instalment we're going to start over from scratch and pretend the old way never existed 🙂
 
