@@ -17,7 +17,9 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 # Instalments
 
 > # Note
-> Most of the instalments linked below were automatically converted from HTML to markdown in April 2020. The conversion may not always be perfect, but all mistakes are slowly being fixed as they're noticed. Feel free to submit pull requests on GitHub if you find and fix any problems 🙂
+> Most of the instalments linked below were automatically converted from HTML to Markdown in April 2020. The conversion may not always be perfect, but all mistakes are slowly being fixed as they're noticed. Feel free to submit pull requests on GitHub if you find and fix any problems 🙂
+>
+> A big thank-you to NosillaCastaway [Helma van der Linden](https://github.com/hepabolu) for doing the hard work of scripting the automatic conversion to Markdown.
 {: .asside}
 
 * [PBS 1 — Introduction](./pbs1)
