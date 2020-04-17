@@ -47,7 +47,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 23 — Creating Elements with jQuery](./pbs23)
 * [PBS 24 — Creating a JavaScript API](./pbs24)
 * [PBS 25 — A Case Study (bartificer.linkToolkit.js)](./pbs25)
-* [PBS 26 – HTML Data Attributes with jQuery](./pbs26)
+* [PBS 26 — HTML Data Attributes with jQuery](./pbs26)
 * [PBS 27 — JS Prototype Revision \| HTML Forms](./pbs27)
 * [PBS 28 — JS Prototype Revision \| CSS Attribute Selectors & Buttons](./pbs28)
 * [PBS 29 — JS Prototype Revision \| Glyph Icons](./pbs29)
@@ -116,7 +116,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 92 — Currency Grid Challenge](./pbs92)
 * [PBS 93 — Encapsulation with JavaScript Objects](./pbs93)
 
-You'll find the notes for the other instalments at [bartb.ie/pbs](https://bartb.ie/pbs).
+You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
 # Related Contents
 
