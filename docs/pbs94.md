@@ -62,7 +62,7 @@ If we take our imaginary currency as an example, if we named that class `Imagina
 In an attempt to save your sanity, here's a quick summary of all the OO jargon you've had to absorb so far:
 
 | Term | Meaning |
-|:---:|:--- |
+|---:|:--- |
 | **Object** | A data structure that contains named pieces of data and functions. |
 | **Encapsulation** | The act of collecting the data and functions related to a concept or thing in an object. |
 | **Object Orientation** (OO) | A *paradigm* (or design philosophy) built around the concept of related groups of encapsulated objects. |
@@ -411,7 +411,7 @@ When writing any function it's possible to offer the users of your function some
 The jQuery API is replete with examples of this technique. Consider jQuery's `.css()` function — it supports the following three signatures:
 
 | Arguments (`{Type} Name`) | Resulting Behaviour | Example | 
-|:---:|--- |:--- |
+|---:|--- |:--- |
 | {string} propName  | Returns the value of the CSS property `propName`. | `console.log($('p').css('color'));` |
 | {string} propName, {*} newVal | Sets the value of the CSS property `propName` to `newVal`. | `$('p').css('color', 'purple');` |
 | {dictionary} newVals | Sets the CSS properties corresponding to the keys in `newVals` to their corresponding values. | `$('p').css({ color: 'orange', border: '1px solid red'});` |
