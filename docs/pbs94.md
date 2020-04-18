@@ -10,13 +10,13 @@ Object Orientation (OO) is a philosophy for building software, a way of thinking
 
 We saw how encapsulation helped make our code easier to understand, maintain, re-use, and share. Just encapsulation is already a big win over a plethora of independent variables and functions representing different concepts all mixed up together in the one name-space.
 
-Once you start encapsulating your data and functions into objects you soon realise that, like the physical things all around us, objects in our computer code fall into related groups of similar things. An object representing one imaginary currency as as much like an object representing another as my bicycle is to yours!
+Once you start encapsulating your data and functions into objects you soon realise that, like the physical things all around us, objects in our computer code fall into related groups of similar things. An object representing one imaginary currency is as much like an object representing another as my bicycle is to yours!
 
 This is where the concept of a class comes in. A class defines the names of the pieces of data needed to represent a collection of related objects, and, the functions that will operate on that data.
 
 In the case of imaginary currencies, a class could specify that all imaginary currencies have properties named `name`, `descriptionHTML`, `symbol`, `symbolHTML`, and `numDecimalPlaces`. The class could then define all the functions that all imaginary currency objects will contain, for example `describe()`, `describeHTML()`, `as()`, and `asHTML()`.
 
-And finally, a class must specify the mechanism for constructing objects based on a description. In our hypothetical example words, our imaginary currency class would need to provide a function for turning a list of data about a specific imaginary currency into an object that represents that imaginary currency. Quite wisely, computer scientists call these functions *constructors*.
+And finally, a class must specify the mechanism for constructing objects based on a description. In our hypothetical example, our imaginary currency class would need to provide a function for turning a list of data about a specific imaginary currency into an object that represents that imaginary currency. Quite wisely, computer scientists call these functions *constructors*.
 
 The constructor for an imaginary currency class would need to accept a name, an HTML description, plain-text & HTML symbols, and a number of decimal places as arguments. The constructor would then use that information to build and return an object representing that imaginary currency.
 
@@ -36,7 +36,7 @@ If we define a class to represent imaginary currencies, then each imaginary curr
 
 ### Two Kinds of Function — *Constructors* & *Instance Functions*
 
-Regardless of the specific programming language, when defining a class you'll be defining two distinct kinds of function — one or more *constructor functions*, or *constructors*, and an arbitrarily number of *instance functions*.
+Regardless of the specific programming language, when defining a class you'll be defining two distinct kinds of functions — one or more *constructor functions*, or *constructors*, and an arbitrarily number of *instance functions*.
 
 We know that classes are used as blueprints for objects that are instances of that class. **The function** (or functions) **a class defines for the purpose of constructing instances is** (or are) **known as *constructor functions*, or simply *constructors***. Some programming languages allow a single class to define arbitrarily many constructors, while others only allow classes to define a single constructor function.
 
@@ -47,7 +47,7 @@ We know that instances of classes encapsulate data and functions. **The function
 
 ### *Attribute* is a Fancy Name for a Piece of Encapsulated Data
 
-If a class encapsulates three pieces of data named `name`, `description`, and `symbol`, then developers would say that *'the class defines three attributes'*, and, that *'each instance of the class has three attributes'*. Developers will also use the word to describe specific pieces of encapsulated data, e.g. *'you should convert the `name` attribute to Title Case before using in as the section title'*.
+If a class encapsulates three pieces of data named `name`, `description`, and `symbol`, then developers would say that *'the class defines three attributes'*, and, that *'each instance of the class has three attributes'*. Developers will also use the word *attribute* to describe specific pieces of encapsulated data, e.g. *'you should convert the `name` attribute to Title Case before using in as the section title'*.
 
 ### *Type* is Just a Synonym for *Class*
 
@@ -67,7 +67,7 @@ In an attempt to save your sanity, here's a quick summary of all the OO jargon y
 | **Encapsulation** | The act of collecting the data and functions related to a concept or thing in an object. |
 | **Object Orientation** (OO) | A *paradigm* (or design philosophy) built around the concept of related groups of encapsulated objects. |
 | **Class** (or **Type**) | A definition that can be used to construct objects representing specific incarnations of a concept or thing. |
-| **Instance** | An encapsulated object built by a class that represents a specific incarnation of a concept or thing. |
+| **Instance** | An encapsulated object built by a class that represents specific incarnation of a concept or thing. |
 | **Constructor** | A function defined within a class that initialises instances of that class. |
 | **Attribute** | A piece of data data encapsulated within an instance. |
 | **Instance Function** | A function encapsulated within an instance. |
@@ -82,14 +82,14 @@ First and foremost — **JavaScript classes define a single constructor function
 
 Under the hood, JavaScript has a *unique* implementation of OO. It has a certain elegance, but it's extremely esoteric, and it can be very confusing to those coming to JavaScript from more traditional OO languages like C++ or Java.
 
-Before the release of ES6 JavaScript programmers had no choice but to interact directly with JavaScript's unique implementation. There was no way to avoid knowing about the idiosyncratic details if you wanted to write your own classes.
+Before the release of ES6, JavaScript programmers had no choice but to interact directly with JavaScript's unique implementation. There was no way to avoid knowing about the idiosyncratic details if you wanted to write your own classes.
 
-The single most significant change ES6 brought to the language was an abstraction layer on top of JavaScript's unusual OO implementation relieved developers of the need to understand what's really going on under the hood. Developers can now use familiar keywords to define their classes. Some scoffed at this change saying it was *'just syntactic sugar'* because nothing changed under the hood. The word *just* utterly misses the point IMO — that layer of new syntax made JavaScript look like a normal OO language, making it infinitely easier to write your own classes, and infinitely less confusing for developers coming to JavaScript from other language. As an added bonus, it also made it easier for JavaScript developers who learned the new way of doing things to move to other languages, much like we'll shortly be doing in this series!
+The single most significant change ES6 brought to the language was an abstraction layer on top of JavaScript's unusual OO implementation which relieved developers of the need to understand what's really going on under the hood. Developers can now use familiar keywords to define their classes. Some scoffed at this change saying it was *'just syntactic sugar'* because nothing changed under the hood. The word *just* utterly misses the point IMO — that layer of new syntax made JavaScript look like a normal OO language, making it infinitely easier to write your own classes, and infinitely less confusing for developers coming to JavaScript from other language. As an added bonus, it also made it easier for JavaScript developers who learned the new way of doing things to move to other languages, much like we'll shortly be doing in this series!
 
 It's very important to understand this history for two reasons:
 
 1. The internet has not forgotten about the pre-ES6 ways of doing things. When you search the web for answers to JavaScript OO questions, you'll still find pages, tutorials, and articles describing the old, pre-ES6, way of doing things. This has the potential to really confuse you!
-2. Some of the under-the-hood terminology has leaked out into the jargon still used by JavaScript developers, even when they're describing the post-ES6 world. The single biggest example of this is the word *prototype*. Deep down under the hood, in that place we're not going, JavaScript implements OO concepts using *prototypes*. Before ES6 developers didn't just need to know that, they needed to understand it. Now we don't, but the world has seeped out into the JavaScript zeitgeist, so you'll still find it all over the web, even in descriptions of modern JavaScript. All you need to know is that, effectively, ***prototype* is used by some JavaScript developers as a synonym for *class***.
+2. Some of the under-the-hood terminology has leaked out into the jargon still used by JavaScript developers, even when they're describing the post-ES6 world. The single biggest example of this is the word *prototype*. Deep down under the hood, in that place we're not going, JavaScript implements OO concepts using *prototypes*. Before ES6 developers didn't just need to know that, they needed to understand it. Now we don't, but the word has seeped out into the JavaScript zeitgeist, so you'll still find it all over the web, even in descriptions of modern JavaScript. All you need to know is that, effectively, ***prototype* is used by some JavaScript developers as a synonym for *class***.
 
 So, when searching the web, know that any OO advice that doesn't use the key-word `class` is probably describing the pre-ES6 universe, and any time you see *prototype*, mentally replace it with *class*.
 
@@ -126,7 +126,7 @@ class AClassName{
 }
 ```
 
-### Understanding `this` Within Classe Definitions
+### Understanding `this` Within Class Definitions
 
 Before we can start writing constructors and instance functions we need to re-visit the vitally important keyword `this`.
 
@@ -136,7 +136,7 @@ It's important to note that an instance function defined within a class will onl
 
 So, **when an instance function executes,  `this` will always be a reference to a specific instance of the class that defined the function**.
 
-Things are quite different within constructor functions. The reason for this is actually quite logical when you think about it — instance functions are intended to interact with the data they are encapsulated with, constructor functions are intended to initialise the data within a fresh instance object.
+Things are quite different within constructor functions. The reason is actually quite logical when you think about it — instance functions are intended to interact with the data they are encapsulated with, constructor functions are intended to initialise the data within a fresh instance object.
 
 Since the job of a constructor function is to build an instance object, you need a way of referencing the object that's under construction, and JavaScript chose to use the keyword `this` for that purpose.
 
@@ -202,10 +202,10 @@ const myInstanceObject = new NameOfClass(constructorArg1, constructorArg2);
 
 The file `pbs94a.html` includes the file `ImaginaryCurrency1.js`, so we can open that file in our browser and use the JavaScript console to create objects representing imaginary currencies.
 
-As a practical example, let's create an object representing the Bars of Gold-pressed Latinum the Ferengi in Star Trek are so fond of acquiring 🙂
+As a practical example, let's create an object representing the Bars of Gold-Pressed Latinum the Ferengi in Star Trek are so fond of acquiring 🙂
 
 ```js
-// create a Gold Pressed Latinum object
+// create a Gold-Pressed Latinum object
 const goldPressedLatinum = new ImaginaryCurrency({
 	name: 'Gold Pressed Latinum Bar',
 	descriptionHTML: 'a bar of Gold Pressed Latinum, a material that for inexplicable reasons can\'t be replicated even though pretty much anything else in the <a href="https://en.wikipedia.org/wiki/Star_Trek" target="_blank" rel="noopener">Star Trek</a> universe can',
@@ -223,7 +223,7 @@ $OUT_HTML.empty().append(goldPressedLatinum.asHTML(Math.PI));
 
 ### Better Constructors with Default Values
 
-The first implementation above is extremely demanding of the programmer — to create a currency they must specify a value for every property, there's no concept of a default. This is generally considered bad practice — you should usually write your constructors so they can default as many values as possible. If fact, if possible, you should write your classes so their constructor builds a usable object, even when pass no arguments at all!
+The first implementation above is extremely demanding of the programmer — to create a currency they must specify a value for every property, there's no concept of a default. This is generally considered bad practice — you should usually write your constructors so they can default as many values as possible. If fact, if possible, you should write your classes so their constructor builds a usable object, even when passed no arguments at all!
 
 The file `ImaginaryCurrency2.js` defines an improved version of the class which is identical to the first implmentation except that the constructor now supports default values for all the currency details:
 
@@ -236,7 +236,7 @@ class ImaginaryCurrency{
 	/**
 	 * @param {Object} [details={}] - a dictionary of initial values for the currency's properties.
 	 * @param {string} [details.name='Imaginary Dollar'] - the currency's name.
-	 * @param {string} [details.descriptionHTML='an imaginary currency'] - a discription of the currency, optionally including HTML tags.
+	 * @param {string} [details.descriptionHTML='an imaginary currency'] - a description of the currency, optionally including HTML tags.
 	 * @param {string} [details.symbol='$'] - a plain-text version of the currency's symbol.
 	 * @param {string} [details.symbolHTML='<i class="fas fa-dollar-sign mx-1" title="$" aria-hidden></i><span class="sr-only">$</span>'] - an HTML version of the currency's symbol.
 	 * @param {number} [numDecimalPlaces=2] - the number of decimal places the currency usually displays.
@@ -280,7 +280,7 @@ class ImaginaryCurrency{
 }
 ```
 
-Notice that for each data attribute the constructor checks to see if a valid value was passed — if one was it gets used, otherwise, a default value is used. Also notice the code makes a reasonable effort to coerce the number of decimal places into a valid value. Finally, notice that the [doc comments](https://bartificer.net/pbs37) above the function document the default values.
+Notice that for each data attribute the constructor checks to see if a valid value was passed — if one was, it gets used, otherwise a default value is used. Also notice the code makes a reasonable effort to coerce the number of decimal places into a valid value. Finally, notice that the [doc comments](https://bartificer.net/pbs37) above the function document the default values.
 
 The file `pbs94b.html` loads this improved class, so we can experiment with it by opening that file in our favourite browser and entering the following into the JavaScript Console:
 
@@ -295,7 +295,7 @@ $OUT_TEXT.empty().append(defaultyDollars.as(Math.PI));
 $OUT_HTML.empty().append(defaultyDollars.asHTML(Math.PI));
 ```
 
-In general developers will use a mix of default and custom values, so let's make use of our new support for defaults to create an object representing the Quatloo, the currency the aliens in the [Star Trek original series](https://en.wikipedia.org/wiki/Star_Trek:_The_Original_Series) episode [*The Gamesters of Triskelion*](https://en.wikipedia.org/wiki/The_Gamesters_of_Triskelion) used when betting on fights. Like many earth currencies, the Quatloo has two decimal places, which also happens to be the default provided by our improved `ImaginaryCurrency` class:
+In general developers will use a mix of default and custom values, so let's make use of our new support for defaults to create an object representing the Quatloo, the currency the aliens in the [Star Trek original series](https://en.wikipedia.org/wiki/Star_Trek:_The_Original_Series) episode [*The Gamesters of Triskelion*](https://en.wikipedia.org/wiki/The_Gamesters_of_Triskelion) used when betting on fights. Like many Earth currencies, the Quatloo has two decimal places, which also happens to be the default provided by our improved `ImaginaryCurrency` class:
 
 ```js
 // create the quatloo object
@@ -406,7 +406,7 @@ const oopsie4 = new ImaginaryCurrency({ numDecimalPlaces: -8 });
 
 ### Multi-Signature Constructors
 
-When writing any function it's possible to offer the users of your function some choices when it comes to the arguments your function will accept. This is an extremely commonly used technique, and the term developers you to describe each choice is a *signature*.
+When writing any function it's possible to offer the users of your function some choices when it comes to the arguments your function will accept. This is an extremely commonly used technique, and the term developers use to describe each choice is a *signature*.
 
 The jQuery API is replete with examples of this technique. Consider jQuery's `.css()` function — it supports the following three signatures:
 
@@ -445,7 +445,7 @@ As a concrete example, let's create a final version of the `ImaginaryCurrency` c
 
 Our existing code is built around the third signature, so that already works. The fact that we have an `if` statement that sets the details dictionary to an empty dictionary when no arguments are passed covers the first signature too. So the only question is, how do we add support for the second?
 
-As a general rule, you want to transform all signatures other than the one that expects a single dictionary into a dictionary, then write your code to process that dictionary. We can do that by testing the type of the arguments and building our dictionary appropriate. For the first signature that simply means creating an empty dictionary, for the second it means creating a dictionary that defines  `name`, and optionally also `descriptionHTML`.
+As a general rule, you want to transform all signatures (other than the one that expects a single dictionary) into a dictionary, then write your code to process that dictionary. We can do that by testing the type of the arguments and building our dictionary appropriately. For the first signature, that simply means creating an empty dictionary. For the second it means creating a dictionary that defines  `name`, and optionally also `descriptionHTML`.
 
 You can see this approach in `ImaginaryCurrency4.js`. Again, the class is entirely unchanged except for the constructor:
 
@@ -543,7 +543,7 @@ This is not a rule, but it is a very widely adopted convention, and as such I st
 
 We can now create classes which allow us to construct encapsulated objects as needed. 
 
-Throughout this instalment we've been steadily improving our example `ImaginaryCurrency` class. So far we've been focusing on improving the constructor, in the next instalment we'll shift our focus to the data encapsulated by instances of our class. At the moment our classes are still very brittle, we need to add a lot more data validation and error checking to make them more robust.
+Throughout this instalment we've been steadily improving our example `ImaginaryCurrency` class. So far we've been focusing on improving the constructor. In the next instalment, we'll shift our focus to the data encapsulated by instances of our class. At the moment our classes are still very brittle, we need to add a lot more data validation and error checking to make them more robust.
 
 For now, the following won't throw an error:
 
