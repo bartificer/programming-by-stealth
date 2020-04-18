@@ -45,13 +45,32 @@ We know that instances of classes encapsulate data and functions. **The function
 > Those of you familiar with OO theory have probably noticed that I've not mentioned a third kind of function that classes can define — so-called *static functions*. That's not an omission, it's a conscious choice I've made in the interest of minimising confusion and focusing tightly on the most important principles. We did actually look at static functions on our  first attempt at covering JavaScript classes back in [instalment 48](https://bartificer.net/pbs48).
 {: .aside}
 
-### *Type* is just a Synonym for *Class*
+### *Attribute* is a Fancy Name for a Piece of Encapsulated Data
+
+If a class encapsulates three pieces of data named `name`, `description`, and `symbol`, then developers would say that *'the class defines three attributes'*, and, that *'each instance of the class has three attributes'*. Developers will also use the word to describe specific pieces of encapsulated data, e.g. *'you should convert the `name` attribute to Title Case before using in as the section title'*.
+
+### *Type* is Just a Synonym for *Class*
 
 Regardless of the language, developers often use the word *type* to describe the class an object belongs to.
 
 If we take our imaginary currency as an example, if we named that class `ImaginaryCurrency`, then developers would describe instances of that class as having the *type* `ImaginaryCurrency`. So you might hear them say that *'the variable `hoonyaker` is of type `ImaginaryCurrency`'*, or *'the variables `hoonyaker` and `squid` have the same type'*.
 
 **When developers refer to *types*, they mean *classes***.
+
+## Object Orientation Jargon Buster
+
+In an attempt to save your sanity, here's a quick summary of all the OO jargon you've had to absorb so far:
+
+| Term | Meaning |
+|:---:|:--- |
+| **Object** | A data structure that contains named pieces of data and functions. |
+| **Encapsulation** | The act of collecting the data and functions related to a concept or thing in an object. |
+| **Object Orientation** (OO) | A *paradigm* (or design philosophy) built around the concept of related groups of encapsulated objects. |
+| **Class** (or **Type**) | A definition that can be used to construct objects representing specific incarnations of a concept or thing. |
+| **Instance** | An encapsulated object built by a class that represents a specific incarnation of a concept or thing. |
+| **Constructor** | A function defined within a class that initialises instances of that class. |
+| **Attribute** | A piece of data data encapsulated within an instance. |
+| **Instance Function** | A function encapsulated within an instance. |
 
 ## JavaScript's Implementation of OO
 
@@ -80,9 +99,9 @@ Later in the series we did introduce the new ES6 approach to classes (instalment
 
 ## Creating JavaScript Classes with the `class` Keyword
 
-The way ES6 changed everything was with the introduction to the language of a new keyword — `class`. Like we use the keyword `function` to define functions, we now use the keyword `class` to define classes.
+The way ES6 changed everything was with the introduction of a new keyword — `class`. Like we use the keyword `function` to define functions, we now use the keyword `class` to define classes.
 
-A JavaScript class creates a code block within which you define a constructor function and the instance functions. Unlike in many other languages, you don't define the class's data properties directly, you create them within the constructor.
+A JavaScript class creates a code block within which you define a constructor function and the instance functions. Unlike in many other languages, you don't define the class's attributes directly, you create them within the constructor.
 
 Big-picture-wise your code will look something like:
 
@@ -109,25 +128,25 @@ class AClassName{
 
 ### Understanding `this` Within Classe Definitions
 
-Before you start writing constructors and instance functions we need to re-visit the vitally important keyword `this`.
+Before we can start writing constructors and instance functions we need to re-visit the vitally important keyword `this`.
 
-We learned in the previous instalment that inside functions encapsulated within an object, the special variable `this` is a reference to the object that contains the function. We suggested mentally thinking of `this` as *'the object I belong to'*. This holds true for instance functions defined within classes because those effectively get encapsulated into every instance object constructed by the class. I say *effectively*, because if you insist on peering under the hood you'll see there's a little more to it than that, but there's absolutely no reason to confuse things with that kind of low-level implementation detail!
+We learned in the previous instalment that inside functions encapsulated within an object, the special variable `this` is a reference to the object containing the function. We suggested mentally thinking of `this` as *'the object I belong to'*. This holds true for instance functions defined within classes because those effectively get encapsulated into every instance object constructed by the class. (I say *effectively*, because if you insist on peering under the hood you'll see there's a little more to it than that, but there's absolutely no reason to confuse things with that kind of low-level implementation detail, so we won't 😉)
 
-It's important to note that an instance function defined within a class will only ever be executed through a specific instance object via the dot notation, e.g. `someObject.someInstanceFunction()`. In this example we would refer to someObject as *the calling object* or *the object that invoked the function*, or *the object on which the function was called*.
+It's important to note that an instance function defined within a class will only ever be executed on a specific instance via the dot notation, e.g. `someObject.someInstanceFunction()`. In this example we would refer to `someObject` as *the calling object* or *the object that invoked the function*, or *the object on which the function was called*.
 
 So, **when an instance function executes,  `this` will always be a reference to a specific instance of the class that defined the function**.
 
-Things are quite different within constructor functions. The reason for this is actually quite logical on deeper inspection — instance functions are intended to interact with the data they are encapsulated with, constructor functions are intended to build instance objects.
+Things are quite different within constructor functions. The reason for this is actually quite logical when you think about it — instance functions are intended to interact with the data they are encapsulated with, constructor functions are intended to initialise the data within a fresh instance object.
 
-Since the job of a constructor function is to build an instance object, you need a way of referencing the object that is under construction, and JavaScript chose to use the keyword `this` for that purpose.
+Since the job of a constructor function is to build an instance object, you need a way of referencing the object that's under construction, and JavaScript chose to use the keyword `this` for that purpose.
 
-So, **within constructors, `this` is a reference to the object under construction**.
+So, **within constructors, `this` is a reference to the instance object under construction**.
 
 ### A practical Example — A Basic `ImaginaryCurrency` Class
 
-Let's put all this theory into practice with a practical example. Building our our examples of the imagined Hoonyaker and Squid currencies from the previous instalment, let's create a class that can be used to construct objects representing any possible imagined currency.
+Let's put all this theory into practice with a practical example. Building on our examples of the imagined Hoonyaker and Squid currencies from [the previous instalment](https://bartificer.net/pbs93), let's create a class that can be used to create objects representing any possible imagined currency.
 
-The file `ImaginaryCurrency1.js` contains the code for this basic first implementation of the class replete with many comments. However, to more clearly see the structure, I've included a version of the code below with all comments removed:
+The file `ImaginaryCurrency1.js` contains the code for this basic first implementation of the class, replete with many comments. However, to more clearly see the structure, I've included a version of the code below with all comments removed:
 
 ```js
 class ImaginaryCurrency{
@@ -164,7 +183,7 @@ class ImaginaryCurrency{
 
 If you look at the code from `hoonyaker3.js` (and indeed `squid1.js`) from the previous instalment you'll see how similar this is in structure. Instead of defining our data attributes directly we now define them inside the constructor function, but their names remain un-changed. Also notice that the names and contents of all the functions remain the same too.
 
-Notice that I chose to write the constructor function in such a way that it expects to be passed the currency's details in a single argument named `details` that's a dictionary. To make it easy for users of the function to remember the property names, they're the same as those the class will use.
+Notice that I chose to write the constructor function in such a way that it expects to be passed the currency's details in a single dictionary argument named `details`. For simplicity, the constructor expects this dictionary to use the same property names that the class will provide.
 
 > # The Three-Argument 'Rule'
 > 
@@ -175,7 +194,7 @@ Notice that I chose to write the constructor function in such a way that it expe
 
 We've now defined a class, so how do we use it?
 
-In JavaScript we use a class's constructor function to create an instance of that class. We do this with the keyword `new` followed by a space, then name of the class followed by the arguments to be passed to the constructor function within parenthesis. I.e., something of the form:
+In JavaScript we use a class's constructor function to create an instance of that class. We do this with the keyword `new` followed by a space, then the name of the class followed by the arguments to be passed to the constructor function within parenthesis. I.e., something of the form:
 
 ```js
 const myInstanceObject = new NameOfClass(constructorArg1, constructorArg2);
@@ -204,9 +223,9 @@ $OUT_HTML.empty().append(goldPressedLatinum.asHTML(Math.PI));
 
 ### Better Constructors with Default Values
 
-This first implementation is extremely demanding of the programmer, to create a currency they must specify a value for every property, there is no concept of a default. This is generally considered bad practice, so in general, you should write your constructors so they can default as many values as possible, ideally, returning a usable object even when passed no arguments at all.
+The first implementation above is extremely demanding of the programmer — to create a currency they must specify a value for every property, there's no concept of a default. This is generally considered bad practice — you should usually write your constructors so they can default as many values as possible. If fact, if possible, you should write your classes so their constructor builds a usable object, even when pass no arguments at all!
 
-The file `ImaginaryCurrency2.js` defines an improved version of the class which is identical except that the constructor now supports default values for all the currency details:
+The file `ImaginaryCurrency2.js` defines an improved version of the class which is identical to the first implmentation except that the constructor now supports default values for all the currency details:
 
 ```js
 class ImaginaryCurrency{
@@ -261,7 +280,7 @@ class ImaginaryCurrency{
 }
 ```
 
-Notice that for each data attribute the constructor checks to see if a valid value was passed, and if it was it uses it, if not, it uses a default instead.t Also notice the code makes a reasonable effort to coerce the number of decimal places into a valid value. Finally notice that the doc comments document the default values.
+Notice that for each data attribute the constructor checks to see if a valid value was passed — if one was it gets used, otherwise, a default value is used. Also notice the code makes a reasonable effort to coerce the number of decimal places into a valid value. Finally, notice that the [doc comments](https://bartificer.net/pbs37) above the function document the default values.
 
 The file `pbs94b.html` loads this improved class, so we can experiment with it by opening that file in our favourite browser and entering the following into the JavaScript Console:
 
@@ -294,7 +313,7 @@ $OUT_TEXT.empty().append(quatloo.as(Math.PI));
 $OUT_HTML.empty().append(quatloo.asHTML(Math.PI));
 ```
 
-While this implementation is clearly more advanced, it's actually overly forgiving, resulting in the kind of silent error that will drive developers nuts!
+While this implementation is clearly more advanced, it's actually overly forgiving, resulting in the kind of silent errors that will drive developers nuts!
 
 Take this simple example:
 
@@ -307,7 +326,9 @@ This will print out `$3.14`, because the invalid value of `'-3'` was silently ig
 
 ### Even Better Constructors with Error Throwing
 
-While we do want defaults when values are not passed at all, we also want to throw errors when invalid values are passed. In the file `ImaginaryCurrency3.js` you'll find another improved implementation identical to the previous except for the constructor. Below is a snippet of the constructor's code showing the improved logic used for each piece of data:
+While we do want defaults when values are not passed at all, we also want to throw errors when invalid values are passed. In the file `ImaginaryCurrency3.js` you'll find another improved implementation, again, the only thing that's changed is the constructor.
+
+Below is a snippet of the constructor's code showing the improved logic used for each data attribute:
 
 ```js
 /**
@@ -383,19 +404,50 @@ const oopsie3 = new ImaginaryCurrency({ name: '' });
 const oopsie4 = new ImaginaryCurrency({ numDecimalPlaces: -8 });
 ```
 
-### Even Better Constructors Still with Multiple Argument Options
+### Multi-Signature Constructors
 
-Quite often one or two of the possible options are by far the most important. In those situations a common approach is to support two different sets of arguments, a list of up to three named arguments, or, a dictionary as the first argument.
+When writing any function it's possible to offer the users of your function some choices when it comes to the arguments your function will accept. This is an extremely commonly used technique, and the term developers you to describe each choice is a *signature*.
 
-In our specific example, the two most important arguments are the name and description, so it would make sense for the following to work:
+The jQuery API is replete with examples of this technique. Consider jQuery's `.css()` function — it supports the following three signatures:
 
-```js
-const monopolyDollar = new ImaginaryCurrency('Monopoly Dollar', 'the currency from the board game Monopoly');
-```
+| Arguments (`{Type} Name`) | Resulting Behaviour | Example | 
+|:---:|--- |:--- |
+| {string} propName  | Returns the value of the CSS property `propName`. | `console.log($('p').css('color'));` |
+| {string} propName, {*} newVal | Sets the value of the CSS property `propName` to `newVal`. | `$('p').css('color', 'purple');` |
+| {dictionary} newVals | Sets the CSS properties corresponding to the keys in `newVals` to their corresponding values. | `$('p').css({ color: 'orange', border: '1px solid red'});` |
 
-We can facilitate this by adding a little more intelligence into our constructor. You'll find an implementation of this concept in the file `ImaginaryCurrency4.js`.
+Any function can be written to support an arbitrary number of signatures, but for constructors a very common pattern is to support three signatures:
 
-Rather than re-writing the entire constructor, I chose to detect the special case of the first argument being a string, and then transform the string arguments into an object, allowing the vast bulk of the constructor to remain the same as it was before:
+1. No arguments.
+2. A list of up to 3 optional arguments for the three attribures most likely to need non-default values.
+3. A single dictionary defining as many attribute values as desired.
+
+As a concrete example, let's create a final version of the `ImaginaryCurrency` constructor that supports the following three signatures:
+
+1. No arguments, e.g.:
+	```js
+	const defCur = new ImaginaryCurrency();
+	```
+2. A name as the first argument, and optionally a description as the second, e.g.:
+	```js
+	const fancyDollar = new ImaginaryCurrency('Fancy Dollar');
+	const monopolyDollar = new ImaginaryCurrency('Monopoly Dollar', 'the currency from the board game Monopoly');
+	```
+3. A dictionary with some or all of `name`, `descriptionHTML`, `symbol`, `symbolHTML`, and `numDecimalPlaces` as the only argument.
+	```js
+	const quatloo = new ImaginaryCurrency({
+	name: 'Quatloo',
+	descriptionHTML: 'a currency from the planet <a href="https://memory-alpha.fandom.com/wiki/Triskelion" target="_blank" rel="noopener">Triskelion</a>',
+	symbol: '₸',
+	symbolHTML: '<i class="fas fa-tenge mx-1" title="₸" aria-hidden></i><span class="sr-only">₸</span>'
+});
+	```
+
+Our existing code is built around the third signature, so that already works. The fact that we have an `if` statement that sets the details dictionary to an empty dictionary when no arguments are passed covers the first signature too. So the only question is, how do we add support for the second?
+
+As a general rule, you want to transform all signatures other than the one that expects a single dictionary into a dictionary, then write your code to process that dictionary. We can do that by testing the type of the arguments and building our dictionary appropriate. For the first signature that simply means creating an empty dictionary, for the second it means creating a dictionary that defines  `name`, and optionally also `descriptionHTML`.
+
+You can see this approach in `ImaginaryCurrency4.js`. Again, the class is entirely unchanged except for the constructor:
 
 ```js
 class ImaginaryCurrency{
@@ -447,8 +499,6 @@ class ImaginaryCurrency{
 }
 ```
 
-Note that in programmer jargon, when a function can accept multiple different arrangement of arguments it's said to have multiple *signatures*. This is a very common approach to writing functions, and we've see it many times in the jQuery library, for example, when the `.attr()` function is passed a single argument it returns the value of the given attribute, and when passed two arguments it sets the value. Developers would say that jQuery's `.attr()` function has two signatures.
-
 The file `pbs94d.html` imports this updated version of the `ImaginaryCurrency` class. We can use the JavaScript console to make use of the added signature like so:
 
 ```js
@@ -487,13 +537,13 @@ console.log(imaginaryDollar instanceof Date); // false
 
 One final point to note before wrapping up this instalment — by convention, **JavaScript classes are always named in so-called *CamelCase* with a leading capital**, hence my choice to name our example class `ImaginaryCurrency`.
 
-This is not a rule, but it is a very widely adopted convention, and as such I strongly recommend you treat it as a rule, it will make your code easier for others to understand and re-use.
+This is not a rule, but it is a very widely adopted convention, and as such I strongly recommend you treat it as a rule. Abiding by language conventions like this will make your code easier for others to understand and re-use.
 
 ## Final Thoughts —  A Lot Done, but More to Do!
 
 We can now create classes which allow us to construct encapsulated objects as needed. 
 
-Throughout this instalment we've been steadily improving our example `ImaginaryCurrency` class. So far we've been focusing on improving the constructor, in the next instalment we'll shift our focus to the data encapsulated by instances of our class. At the moment our classes are still very brittle, we need to add a lot more data validation and error checking to get them more robust.
+Throughout this instalment we've been steadily improving our example `ImaginaryCurrency` class. So far we've been focusing on improving the constructor, in the next instalment we'll shift our focus to the data encapsulated by instances of our class. At the moment our classes are still very brittle, we need to add a lot more data validation and error checking to make them more robust.
 
 For now, the following won't throw an error:
 
