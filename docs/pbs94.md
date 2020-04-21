@@ -220,7 +220,7 @@ In JavaScript we use a class's constructor function to create an instance of tha
 const myInstanceObject = new NameOfClass(constructorArg1, constructorArg2);
 ```
 
-The file `pbs94a.html` includes the file `ImaginaryCurrency1.js`, so we can open that file in our browser and use the JavaScript console to create objects representing imaginary currencies.
+The file `pbs94a.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94a.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94a.html)) includes the file `ImaginaryCurrency1.js` ([source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/ImaginaryCurrency1.js)), so we can open that file in our browser and use the JavaScript console to create objects representing imaginary currencies.
 
 As a practical example, let's create an object representing the Bars of Gold-Pressed Latinum the Ferengi in Star Trek are so fond of acquiring 🙂
 
@@ -245,7 +245,7 @@ $OUT_HTML.empty().append(goldPressedLatinum.asHTML(Math.PI));
 
 The first implementation above is extremely demanding of the programmer — to create a currency they must specify a value for every property, there's no concept of a default. This is generally considered bad practice — you should usually write your constructors so they can default as many values as possible. If fact, if possible, you should write your classes so their constructor builds a usable object, even when passed no arguments at all!
 
-The file `ImaginaryCurrency2.js` defines an improved version of the class which is identical to the first implmentation except that the constructor now supports default values for all the currency details:
+The file `ImaginaryCurrency2.js` ([source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/ImaginaryCurrency2.js)) defines an improved version of the class which is identical to the first implementation except that the constructor now supports default values for all the currency details:
 
 ```js
 class ImaginaryCurrency{
@@ -302,7 +302,7 @@ class ImaginaryCurrency{
 
 Notice that for each data attribute the constructor checks to see if a valid value was passed — if one was, it gets used, otherwise a default value is used. Also notice the code makes a reasonable effort to coerce the number of decimal places into a valid value. Finally, notice that the [doc comments](https://bartificer.net/pbs37) above the function document the default values.
 
-The file `pbs94b.html` loads this improved class, so we can experiment with it by opening that file in our favourite browser and entering the following into the JavaScript Console:
+The file `pbs94b.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94b.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94b.html)) loads this improved class, so we can experiment with it by opening that file in our favourite browser and entering the following into the JavaScript Console:
 
 ```js
 // create an object with all the default values
@@ -346,7 +346,7 @@ This will print out `$3.14`, because the invalid value of `'-3'` was silently ig
 
 ### Even Better Constructors with Error Throwing
 
-While we do want defaults when values are not passed at all, we also want to throw errors when invalid values are passed. In the file `ImaginaryCurrency3.js` you'll find another improved implementation, again, the only thing that's changed is the constructor.
+While we do want defaults when values are not passed at all, we also want to throw errors when invalid values are passed. In the file `ImaginaryCurrency3.js` ([source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/ImaginaryCurrency3.js)) you'll find another improved implementation, again, the only thing that's changed is the constructor.
 
 Below is a snippet of the constructor's code showing the improved logic used for each data attribute:
 
@@ -412,7 +412,7 @@ class ImaginaryCurrency{
 
 Notice that as well as updating the logic, the documentation comments at the top of the constructor were also updated to reflect the new error handling behaviour.
 
-The file `pbs94c.html` includes this improved imaginary currency class, so you can open that file in your favourite browser and use the JavaScript console to see our new error-handling code in action:
+The file `pbs94c.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94c.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94c.html)) includes this improved imaginary currency class, so you can open that file in your favourite browser and use the JavaScript console to see our new error-handling code in action:
 
 ```js
 // trigger a type error
@@ -439,7 +439,7 @@ The jQuery API is replete with examples of this technique. Consider jQuery's `.c
 Any function can be written to support an arbitrary number of signatures, but for constructors a very common pattern is to support three signatures:
 
 1. No arguments.
-2. A list of up to 3 optional arguments for the three attribures most likely to need non-default values.
+2. A list of up to 3 optional arguments for the three attributes most likely to need non-default values.
 3. A single dictionary defining as many attribute values as desired.
 
 As a concrete example, let's create a final version of the `ImaginaryCurrency` constructor that supports the following three signatures:
@@ -467,7 +467,7 @@ Our existing code is built around the third signature, so that already works. Th
 
 As a general rule, you want to transform all signatures (other than the one that expects a single dictionary) into a dictionary, then write your code to process that dictionary. We can do that by testing the type of the arguments and building our dictionary appropriately. For the first signature, that simply means creating an empty dictionary. For the second it means creating a dictionary that defines  `name`, and optionally also `descriptionHTML`.
 
-You can see this approach in `ImaginaryCurrency4.js`. Again, the class is entirely unchanged except for the constructor:
+You can see this approach in `ImaginaryCurrency4.js` ([source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/ImaginaryCurrency4.js)). Again, the class is entirely unchanged except for the constructor:
 
 ```js
 class ImaginaryCurrency{
@@ -519,7 +519,7 @@ class ImaginaryCurrency{
 }
 ```
 
-The file `pbs94d.html` imports this updated version of the `ImaginaryCurrency` class. We can use the JavaScript console to make use of the added signature like so:
+The file `pbs94d.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94d.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94d.html)) imports this updated version of the `ImaginaryCurrency` class. We can use the JavaScript console to make use of the added signature like so:
 
 ```js
 // create a monopoloy dollar object using the new signature
