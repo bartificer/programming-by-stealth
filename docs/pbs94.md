@@ -220,7 +220,7 @@ In JavaScript we use a class's constructor function to create an instance of tha
 const myInstanceObject = new NameOfClass(constructorArg1, constructorArg2);
 ```
 
-The file `pbs94a.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94a.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94a.html)) includes the file `ImaginaryCurrency1.js` ([source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/ImaginaryCurrency1.js)), so we can open that file in our browser and use the JavaScript console to create objects representing imaginary currencies.
+The file `pbs94a.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94a.html)\|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94a.html)) includes the file `ImaginaryCurrency1.js` ([source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/ImaginaryCurrency1.js)), so we can open that file in our browser and use the JavaScript console to create objects representing imaginary currencies.
 
 As a practical example, let's create an object representing the Bars of Gold-Pressed Latinum the Ferengi in Star Trek are so fond of acquiring 🙂
 
@@ -302,7 +302,7 @@ class ImaginaryCurrency{
 
 Notice that for each data attribute the constructor checks to see if a valid value was passed — if one was, it gets used, otherwise a default value is used. Also notice the code makes a reasonable effort to coerce the number of decimal places into a valid value. Finally, notice that the [doc comments](https://bartificer.net/pbs37) above the function document the default values.
 
-The file `pbs94b.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94b.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94b.html)) loads this improved class, so we can experiment with it by opening that file in our favourite browser and entering the following into the JavaScript Console:
+The file `pbs94b.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94b.html)\|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94b.html)) loads this improved class, so we can experiment with it by opening that file in our favourite browser and entering the following into the JavaScript Console:
 
 ```js
 // create an object with all the default values
@@ -412,7 +412,7 @@ class ImaginaryCurrency{
 
 Notice that as well as updating the logic, the documentation comments at the top of the constructor were also updated to reflect the new error handling behaviour.
 
-The file `pbs94c.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94c.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94c.html)) includes this improved imaginary currency class, so you can open that file in your favourite browser and use the JavaScript console to see our new error-handling code in action:
+The file `pbs94c.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94c.html)\|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94c.html)) includes this improved imaginary currency class, so you can open that file in your favourite browser and use the JavaScript console to see our new error-handling code in action:
 
 ```js
 // trigger a type error
@@ -519,7 +519,7 @@ class ImaginaryCurrency{
 }
 ```
 
-The file `pbs94d.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94d.html)|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94d.html)) imports this updated version of the `ImaginaryCurrency` class. We can use the JavaScript console to make use of the added signature like so:
+The file `pbs94d.html` ([view](https://rawcdn.githack.com/bartificer/programming-by-stealth/8bf8423266b72250bdd32f78297270ce1ccc9af6/instalmentResources/pbs94/pbs94d.html)\|[source](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs94/pbs94d.html)) imports this updated version of the `ImaginaryCurrency` class. We can use the JavaScript console to make use of the added signature like so:
 
 ```js
 // create a monopoloy dollar object using the new signature
