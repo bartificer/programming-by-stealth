@@ -4,6 +4,26 @@ This instalment bring us close to the end of a long series of instalments focusi
 
 We're now starting on the grand finale of this journey — the ability to define our own object classes. In the previous instalment we took the first, and vitally important, step on the journey — we learned about [encapsulation](https://bartificer.net/pbs93). We learned that encapsulation is a universal concept shared by all languages that support object-oriented programming, and that JavaScript uses dictionaries to implement it. We saw how we could use a dictionary to encapsulate all the information and functions related to an imaginary currency, the Hoonyaker, into a single object. We then saw how creating a similar object for another imaginary currency, the Squid, was so similar that it actually involved copying-and-pasting all the property names and the entire contents of all the functions without editing a single character. The only thing that changed was the data. Obviously there had to be a better way, and of course, there is — the fundamental atom of the Object Oriented world-view, the class!
 
+## Instalment Resources
+
+This instalment uses 8 example files:
+
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/6c167e0084499e5528fd5343c3a5a0f944d0ab77/instalmentZips/pbs94.zip)
+* [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs94)
+* View the four HTML files in your browser:
+	* [`pbs94a.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/b5728482ea9931cd9a947261dfb1d5f4e2756f1a/instalmentResources/pbs94/pbs94a.html)
+	* [`pbs94b.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/b5728482ea9931cd9a947261dfb1d5f4e2756f1a/instalmentResources/pbs94/pbs94b.html)
+	* [`pbs94c.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/b5728482ea9931cd9a947261dfb1d5f4e2756f1a/instalmentResources/pbs94/pbs94c.html)
+	* [`pbs94d.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/b5728482ea9931cd9a947261dfb1d5f4e2756f1a/instalmentResources/pbs94/pbs94d.html)
+
+## Matching Podcast Episode
+
+Listen along to this instalment on [episode 635 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/04/ccatp-635/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_18.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_18.mp3" >Download the MP3</a>
+
 ## What are Classes?
 
 Object Orientation (OO) is a philosophy for building software, a way of thinking about the world, and how we should handle information, and the functions that transform that information. Computer Scientists use the fancy term *paradigm*, but really, it's just a mental model. The previous instalment was dedicated to the first of two fundamental concepts in OO, *encapsulation*. There is great value in bundling a collection of data, and all the functions that transform that data, into a single object.
