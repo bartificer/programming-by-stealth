@@ -16,7 +16,7 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 Using a loop of your choice, print the 12 times tables from 12 times 1 up to and including 12 times 12.
 
-Show/Hide Solution
+### Solution
 
   
 
@@ -28,8 +28,7 @@ for(var i = 1; i <= 12; i++){
 
   
 
-  
-\[crayon-5e92ea8c19413958788911/\]  
+    
 
 ## Challenge 2 – The Fibonacci Series
 
@@ -45,7 +44,7 @@ Build up your solution in the following way:
     2.  Add this new value to the end of the `fibonacci` array.
 3.  Print the Fibonacci series, one element per line, by converting the `fibonacci` array into a string separated by newline characters.
 
-Show/Hide Solution
+### Solution
 
   
 
@@ -60,8 +59,7 @@ pbs.say(fibonacci.join('\n'));
 
   
 
-  
-\[crayon-5e92ea8c1941f017094414/\]  
+    
 
 ## Challenge 3 – FizzBuzz
 
@@ -69,7 +67,7 @@ This is a total cliché, and very common as an interview question. It tests if a
 
 Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number, and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.
 
-Show/Hide Solution
+### Solution
 
   
 
@@ -95,8 +93,7 @@ for(var i = 1; i <= 100; i++){
 
   
 
-  
-\[crayon-5e92ea8c19422697065548/\]  
+    
 
 ## Challenge 4 – Factorial
 
@@ -148,10 +145,9 @@ if(theInputs.length > 0){
 
   
 
-  
-\[crayon-5e92ea8c19424362586073/\]  
+    
 
-Show/Hide Recursive Solution
+### Recursive Solution
 
   
 
@@ -190,8 +186,7 @@ if(theInputs.length > 0){
 
   
 
-  
-\[crayon-5e92ea8c1942d602593368/\]  
+    
 
 ## Challenge 5 – Complex Numbers
 
@@ -205,7 +200,7 @@ Build up your solution in the following way:
     2.  In the constructor, Initialise a key named `_real` to the value 0.
     3.  Also Initialise a key named `_imaginary` to the value 0.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -221,14 +216,14 @@ Build up your solution in the following way:
     }
     ```
     
-    \[crayon-5e92ea8c1942f850991273/\]
+ 
     
 2.  Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
     
     1.  If no arguments are passed, the function should return the current value of the `_real` key.
     2.  If there is a first argument, make sure it’s a number. If it’s not, throw an error. If it is, set it as the value of the `_real` key, and return a reference to the current object (i.e. `this`). (This will enable a technique known as _function chaining_, which we’ll see in action shortly.)
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -257,11 +252,11 @@ Build up your solution in the following way:
     };
     ```
     
-    \[crayon-5e92ea8c19431592177935/\]
+  
     
 3.  Create a similar accessor function for the imaginary part of the complex number, and name it `imaginary`.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -290,7 +285,7 @@ Build up your solution in the following way:
     };
     ```
     
-    \[crayon-5e92ea8c19434805731442/\]
+
     
 4.  Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
     
@@ -301,7 +296,7 @@ Build up your solution in the following way:
     5.  If only the imaginary part is zero, return just the real part as a string.
     6.  If only the real part is zero, return just the imaginary part as a string followed by the letter `i`.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -359,7 +354,7 @@ Build up your solution in the following way:
     };
     ```
     
-    \[crayon-5e92ea8c19436067037838/\]
+    
     
 5.  Test what you have so far with the following code:
     
@@ -398,7 +393,7 @@ Build up your solution in the following way:
     3.  A string of the form `(a + bi)` or `(a - bi)` where `a` is a positive or negative number, and `b` is a positive number.
     4.  An object with the prototype `ComplexNumber`.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -454,7 +449,7 @@ Build up your solution in the following way:
     }
     ```
     
-    \[crayon-5e92ea8c1943a632564795/\]
+    
     
 7.  Test the parse function you just created with the following code:
     
@@ -490,7 +485,7 @@ Build up your solution in the following way:
     
 8.  Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code, instead, update the constructor function to check if there are one or two arguments, and if there are, call the `parse` function with the appropriate arguments.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -517,7 +512,7 @@ Build up your solution in the following way:
     }
     ```
     
-    \[crayon-5e92ea8c1943f791035274/\]
+    
     
 9.  Test your updated constructor with the following code:
     
@@ -542,7 +537,7 @@ Build up your solution in the following way:
     
 10.  Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -565,11 +560,11 @@ Build up your solution in the following way:
     }
     ```
     
-    \[crayon-5e92ea8c19443218608154/\]
+    
     
 11.  In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -592,13 +587,13 @@ Build up your solution in the following way:
     }
     ```
     
-    \[crayon-5e92ea8c19445159876039/\]
+    
     
 12.  Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
     
     `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     // -- Function --
@@ -627,11 +622,11 @@ Build up your solution in the following way:
     };
     ```
     
-    \[crayon-5e92ea8c19446149765823/\]
+    
     
 13.  Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vica-versa_.
     
-    Show/Hide Partial Solution
+    ### Partial Solution
     
     ```JavaScript
     ComplexNumber.prototype.conjugateOf = function(){
@@ -645,7 +640,7 @@ Build up your solution in the following way:
     };
     ```
     
-    \[crayon-5e92ea8c19448362743496/\]
+    
     
 14.  Test your arithmetic functions with the following code:
     
@@ -683,7 +678,7 @@ Build up your solution in the following way:
     ```
     
 
-Show/Hide Completed Prototype
+### Completed Prototype
 
   
 
@@ -953,4 +948,3 @@ ComplexNumber.prototype.conjugateOf = function(){
   
 
   
-\[crayon-5e92ea8c1944b977740916/\]
