@@ -218,7 +218,7 @@ In other words, **if you don’t specify a handler, the data or error gets passe
 
 We now know rejections that are not explicitly dealt with by a callback will continue to ripple down promise chains all the way to the end. What happens when we get to the end of the chain and we still haven’t provided a callback for dealing with the rejection (either by passing a second argument to `.then()` or a single argument to `.catch()`)?
 
-The answer is that JavaScript gets cranky! The exact level of crankiness will be determined by the context in which you’re using JavaScript (web browser, comand-line, server-side, in-app etc.), but in all cases it’s considered a no-no, you need to handle your rejections!
+The answer is that JavaScript gets cranky! The exact level of crankiness will be determined by the context in which you’re using JavaScript (web browser, command-line, server-side, in-app etc.), but in all cases it’s considered a no-no, you need to handle your rejections!
 
 If you want to respond differently to rejections at different points of the chain you should pass a second argument to `.then()` at that point in the chain. I.e., you should do something like:
 

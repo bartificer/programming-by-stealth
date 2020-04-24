@@ -282,7 +282,7 @@ var x = (4 + 5) * (6 - 7);
 
 Secondly, many JavaScript keywords make use of parentheses – e.g. `if`, `while`, `for`, and `function`.
 
-Finally, if a pair of parentheses containing zero or more coma-separated arguments appears directly after a name or value that is not a keyword, JavaScript will try to execute what ever is to the left of the parenthesis as a function, using the values between the parentheses as arguments to that function, e.g.:
+Finally, if a pair of parentheses containing zero or more comma-separated arguments appears directly after a name or value that is not a keyword, JavaScript will try to execute what ever is to the left of the parenthesis as a function, using the values between the parentheses as arguments to that function, e.g.:
 
 ```JavaScript
 console.log('test');
