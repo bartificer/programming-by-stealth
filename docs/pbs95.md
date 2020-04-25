@@ -88,5 +88,187 @@ The constructor would never have let us set the number of decimal places to an e
 
 ## *Getters & Setters* — Functions in Disguise!
 
-The concept of *getters & setters* is not unique to JavaScript, but it's also far from ubiquitous. Some languages have them, but many, including PHP,  don't.
+The concept of *getters & setters* is not unique to JavaScript, but it's also far from ubiquitous. Some languages have them, but many (including PHP) don't.
 
+Both getters and setters are functions masquerading as data attributes. From the point of view of the programmer writing the class a getter is a function that returns as value and takes no arguments, and a setter is a function that takes exactly one argument, and does not return a value. Meanwhile, from the point of view of a programmer using a class with getters and setters, they behave as data attributes with super-powers.
+
+Without knowing it, we have been interacting with getters and setters when using built-in classes. As an example, we think of `Math.PI` as a data attribute because we simply use it like any other variable. We don't treat `Math.PI` like a function, if we did, we would write `Math.PI()`, we treat it like a variable that someone else happened to define on our behalf and add to the global scope. If we wanted to simulate the behaviour we would do something like:
+
+```js
+var NaiveMath = { PI: Math.PI };
+console.log(`Naive π is ${NaiveMath.PI} and real π is ${Math.PI}`);
+```
+
+Unsurprisingly, this will log:
+
+ ```
+ Naive π is 3.141592653589793 and real π is 3.141592653589793
+ ```
+
+Now let's try to be evil 😈
+
+```js
+NaiveMath.PI = 4;
+Math.PI = 4;
+```
+
+Neither of the above lines will throw an error, so you would assume both have had the same effect, so let's test that assumption:
+
+```
+console.log(`Naive π is ${NaiveMath.PI} and real π is ${Math.PI}`);
+```
+
+You would probably expect this to log:
+
+```
+Naive π is 4 and real π is 4
+```
+
+But that's not what happens! What actually gets logged is:
+
+```
+Naive π is 4 and real π is 3.141592653589793
+```
+
+The data attribute `Math.PI` has a superpower — it appears to be immutable. How is that possible? If you were to peek under the hood what you would find is that Math.PI is actually a function not a data attribute, but it's being disguised using a JavaScript *getter*!
+
+We'll look at the getter and setter syntax in detail in a moment, but for now, let's quickly prove that `Math.PI` is not magical because it's part of a built-in object, it's just using a standard language feature that we're free to use in our code too. Here's a `SmartMath` object written using a getter which behaves just like the native `Math` object:
+
+```js
+const SmartMath = {
+    get PI(){ return Math.PI; }
+};
+console.log(`Smart π is ${SmartMath.PI} and real π is ${Math.PI}`);
+```
+
+As you probably expect, this logs:
+
+```
+Smart π is 3.141592653589793 and real π is 3.141592653589793
+```
+
+Now let's try be evil agian:
+
+```js
+SmartMath.PI = 4;
+Math.PI = 4;
+```
+
+Again, no errors thrown, so, have we actually altered a fundamental constant of the universe? Nope!
+
+```js
+console.log(`Smart π is ${SmartMath.PI} and real π is ${Math.PI}`);
+```
+
+Even after we apparently changed both `PI` attributes to four, the above still logs:
+
+```
+Smart π is 3.141592653589793 and real π is 3.141592653589793
+```
+
+We've produced what appears to be a data attribute with super-powers!
+
+### Getters & Setters are Can be Used in Any Encapsulated Object
+
+JavaScript getters and setters pre-date ES6, and hence, pre-date the `class` keyword. They can be used within any encapsulated object.
+
+However, in this instalment we've only going to look at their use in class definitions.
+
+## Robust JavaScript Class Attributes with Getters and Setters
+
+Getters and setters have all kinds of uses in JavaScript, but we're going to use them first and foremost to protect our classes' data attributes.
+
+When I first introduced the concept of encapsulation I mentioned that in some languages encapsulation provides access control to data attributes, but that JavaScript is not one of those languages. Protection of attributes is what we're trying to achieve, but the language does support that, so we have to make do with an approximation which combines the power of getters and setters with a commonly accepted convention.
+
+### Though Shalt Pretend Underscores Bestow Invisibility!
+
+Since JavaScript does not support actual access control to data attributes or instance functions, a near-universally accepted convention has emerged — the authors of JavaScript classes name attributes and functions not intended for direct access by users of their classes with names pre-fixed with the underscore character. They also omit all such attributes and functions from their API documentation. This means that unless you read the source of third party libraries, you'll never know that they contain a whole bunch of *private* attributes and functions who's names all start with underscores.
+
+**If you want JavaScript classes written by others to behave reliably when you use them, never ever access any attribute or call any instance function with a name starting with an underscore.**
+
+Conversely, **when writing your own classes, always mark data attributes and instance functions that you want others to avoid directly accessing or calling by naming them with a leading underscore**.
+
+### Creating Attributes with Getters & Setters
+
+To add a single attribute with the potential to develop superpowers to a class you need three things:
+
+1. A *'private'* data attribute to store the sanitised value.
+2. A *getter* to publish the value of the attribute.
+3. A *setter* to intelligently update the value of the attribute.
+
+Let's demonstrate the concept with a very simple class, one to represent a circle:
+
+```js
+class Circle{
+    constructor(radius=1){
+        const radiusNumber = parseFloat(radius);
+        if(isNaN(radiusNumber)){
+            throw new TypeError('radius must be a number greater than or equal to zero');
+        }
+        if(radiusNumber < 0){
+            throw new RangeError('radius cannot be negative');
+        }
+        this._radius = radiusNumber;
+    }
+    
+    get radius(){
+        return this._radius;
+    }
+    
+    set radius(radius){
+        this._radius = radius;
+    }
+}
+```
+
+To users of the class, the `radius` attribute behaves like any other attribute:
+
+```
+const circle1 = new Circle(5);
+console.log(`radius=${circle1.radius}`);
+circle1.radius = 3;
+console.log(`radius=${circle1.radius}`);
+
+// output:
+// -------
+// radius=5
+// radius=3
+```
+
+Note that this attribute has not developed any superpowers yet:
+
+```
+const circle2 = new Circle();
+console.log(`radius=${circle2.radius}`);
+circle2.radius = '😈';
+console.log(`radius=${circle2.radius}`);
+// output:
+// -------
+// radius=1
+// radius=😈
+```
+
+Let's add the needed super powers by simply moving the data validation code from the constructor to the setter:
+
+```js
+class Circle{
+    constructor(radius=1){
+        this.radius = radius;
+    }
+    
+    get radius(){
+        return this._radius;
+    }
+    
+    set radius(radius){
+        const radiusNumber = parseFloat(radius);
+        if(isNaN(radiusNumber)){
+            throw new TypeError('radius must be a number greater than or equal to zero');
+        }
+        if(radiusNumber < 0){
+            throw new RangeError('radius cannot be negative');
+        }
+        this._radius = radiusNumber;
+    }
+}
+```
