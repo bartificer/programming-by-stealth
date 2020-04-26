@@ -303,7 +303,7 @@ console.log(`Before:\n${usDateStr}\n\nAfter:\n${euDateStr}`);
 
 The final `String` instance function I want to highlight is `.split()`. This function splits a string into an array of strings based on a delimiter which is passed as an argument. That delimiter can be a string, but it can also be a regular expression object.
 
-When parsing input from users or a remote data source there's often subtle variations in the format that your code should take into account. For example, if you ask users for a coma-separated list of items will they add a space after the coma or not?
+When parsing input from users or a remote data source there's often subtle variations in the format that your code should take into account. For example, if you ask users for a comma-separated list of items will they add a space after the comma or not?
 
 The following example will split a string on a comma followed by zero or more spaces:
 
