@@ -10,7 +10,7 @@ Note that this instalment is split over two podcast episodes, only one has been 
 
 # Matching Podcast Episode 521
 
-Listen Along (Part 1 of 2): Chit Chat Accross the Pond Episode 521
+Listen Along (Part 1 of 2): Chit Chat Across the Pond Episode 521
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

@@ -4,7 +4,7 @@ Continuing our look at CSS, in this instalment we’ll start by looking at how t
 
 # Matching Podcast Episode 428
 
-Listen Along: Chit Chat Accross the Pond Episode 428
+Listen Along: Chit Chat Across the Pond Episode 428
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_04.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

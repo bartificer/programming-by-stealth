@@ -14,7 +14,7 @@ In the next instalment we’ll finally be ready to move on to some more differen
 
 # Matching Podcast Episode 476
 
-Listen Along: Chit Chat Accross the Pond Episode 476
+Listen Along: Chit Chat Across the Pond Episode 476
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_17.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

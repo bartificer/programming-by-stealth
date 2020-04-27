@@ -10,7 +10,7 @@ As usual, I’ve collected the example file for this instalment and the starting
 
 # Matching Podcast Episode 501
 
-Listen Along: Chit Chat Accross the Pond Episode 501
+Listen Along: Chit Chat Across the Pond Episode 501
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_15.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

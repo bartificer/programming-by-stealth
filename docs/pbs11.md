@@ -6,7 +6,7 @@ Remember – tables are for one thing, and one thing only – **displaying tabul
 
 # Matching Podcast Episode 430
 
-Listen Along: Chit Chat Accross the Pond Episode 430
+Listen Along: Chit Chat Across the Pond Episode 430
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_17.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

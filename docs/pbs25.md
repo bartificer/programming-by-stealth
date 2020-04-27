@@ -8,7 +8,7 @@ We’ll be looking at the library from three points of view – the actual JavaS
 
 # Matching Podcast Episode 465
 
-Listen Along: Chit Chat Accross the Pond Episode 465
+Listen Along: Chit Chat Across the Pond Episode 465
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_11_22.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

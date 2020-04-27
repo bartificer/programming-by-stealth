@@ -8,7 +8,7 @@ There is no ZIP file for this instalment, instead, I’ve published my solution 
 
 # Matching Podcast Episode 511
 
-Listen Along: Chit Chat Accross the Pond Episode 511
+Listen Along: Chit Chat Across the Pond Episode 511
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_26.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

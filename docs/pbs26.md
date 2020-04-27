@@ -10,7 +10,7 @@ As usual I’ve packaged all the files needed for the worked example into a ZIP 
 
 # Matching Podcast Episode 467
 
-Listen Along: Chit Chat Accross the Pond Episode 467
+Listen Along: Chit Chat Across the Pond Episode 467
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_12_10.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

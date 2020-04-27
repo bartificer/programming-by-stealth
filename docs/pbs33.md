@@ -10,7 +10,7 @@ All code files used in this instalment are contained in a single ZIP file which 
 
 # Matching Podcast Episode 482
 
-Listen Along: Chit Chat Accross the Pond Episode 482
+Listen Along: Chit Chat Across the Pond Episode 482
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_14.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

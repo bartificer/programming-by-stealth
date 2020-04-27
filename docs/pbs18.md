@@ -10,7 +10,7 @@ We also need to look at how JavaScript handles regular expressions, and finally,
 
 # Matching Podcast Episode 446
 
-Listen Along: Chit Chat Accross the Pond Episode 446
+Listen Along: Chit Chat Across the Pond Episode 446
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_07_08.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

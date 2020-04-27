@@ -8,7 +8,7 @@ We’ll only be covering the basics of the class keyword in this instalment. In 
 
 # Matching Podcast Episode 516
 
-Listen Along: Chit Chat Accross the Pond Episode 516
+Listen Along: Chit Chat Across the Pond Episode 516
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_21.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

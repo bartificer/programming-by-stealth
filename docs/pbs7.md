@@ -4,7 +4,7 @@ In this instalment we’ll build on our basic understanding of CSS from previous
 
 # Matching Podcast Episode 422
 
-Listen Along: Chit Chat Accross the Pond Episode 422
+Listen Along: Chit Chat Across the Pond Episode 422
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_22.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

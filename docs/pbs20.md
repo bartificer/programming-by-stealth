@@ -6,7 +6,7 @@ A key point to note is that HTML, CSS, and JavaScript are all so-called client-s
 
 # Matching Podcast Episode 453
 
-Listen Along: Chit Chat Accross the Pond Episode 453
+Listen Along: Chit Chat Across the Pond Episode 453
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_02.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

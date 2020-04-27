@@ -4,7 +4,7 @@ In [the previous instalment](https://www.bartbusschots.ie/s/2016/02/03/programmi
 
 # Matching Podcast Episode 426
 
-Listen Along: Chit Chat Accross the Pond Episode 426
+Listen Along: Chit Chat Across the Pond Episode 426
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_19.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

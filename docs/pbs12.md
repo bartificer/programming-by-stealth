@@ -6,7 +6,7 @@ Learning the basics of JavaScript, and learning how to connect JavaScript into t
 
 # Matching Podcast Episode 432
 
-Listen Along: Chit Chat Accross the Pond Episode 432
+Listen Along: Chit Chat Across the Pond Episode 432
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_01.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

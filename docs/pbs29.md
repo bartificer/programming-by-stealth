@@ -10,7 +10,7 @@ You can download a ZIP file containing the sample solution to the previous chall
 
 # Matching Podcast Episode 474
 
-Listen Along: Chit Chat Accross the Pond Episode 474
+Listen Along: Chit Chat Across the Pond Episode 474
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_02_03.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

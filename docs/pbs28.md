@@ -8,7 +8,7 @@ Before moving on to look at HTML buttons in detail, we’ll learn some new CSS s
 
 # Matching Podcast Episode 472
 
-Listen Along: Chit Chat Accross the Pond Episode 472
+Listen Along: Chit Chat Across the Pond Episode 472
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_20.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

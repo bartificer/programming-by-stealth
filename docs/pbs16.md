@@ -8,7 +8,7 @@ Before we delve into anonymous functions, we’ll start by taking a deeper look 
 
 # Matching Podcast Episode 442
 
-Listen Along: Chit Chat Accross the Pond Episode 442
+Listen Along: Chit Chat Across the Pond Episode 442
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_06_10.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

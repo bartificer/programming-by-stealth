@@ -10,7 +10,7 @@ I’ve zipped up my solution to the previous assignment, a sample file that acco
 
 # Matching Podcast Episode 492
 
-Listen Along: Chit Chat Accross the Pond Episode 492
+Listen Along: Chit Chat Across the Pond Episode 492
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_06_25.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

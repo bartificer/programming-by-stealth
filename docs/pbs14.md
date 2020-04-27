@@ -6,7 +6,7 @@ Arrays store a list of related data in a single variable, and loops allow us to 
 
 # Matching Podcast Episode 438
 
-Listen Along: Chit Chat Accross the Pond Episode 438
+Listen Along: Chit Chat Across the Pond Episode 438
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_05_13.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

@@ -10,7 +10,7 @@ You can download my solution to the challenge set in the previous instalment, an
 
 # Matching Podcast Episode 480
 
-Listen Along: Chit Chat Accross the Pond Episode 480
+Listen Along: Chit Chat Across the Pond Episode 480
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_15.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

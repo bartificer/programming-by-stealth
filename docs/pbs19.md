@@ -6,7 +6,7 @@ These challenges are designed to be run in the [PBS JavaScript Playground](https
 
 # Matching Podcast Episode 449
 
-Listen Along: Chit Chat Accross the Pond Episode 449
+Listen Along: Chit Chat Across the Pond Episode 449
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_08_08.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -186,15 +186,13 @@ Build up your solution in the following way:
     }
     ```
     
- 
-    
 2.  Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
     
     1.  If no arguments are passed, the function should return the current value of the `_real` key.
     2.  If there is a first argument, make sure it’s a number. If it’s not, throw an error. If it is, set it as the value of the `_real` key, and return a reference to the current object (i.e. `this`). (This will enable a technique known as _function chaining_, which we’ll see in action shortly.)
-    
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : An accessor function for the real part of the complex number

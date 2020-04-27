@@ -6,7 +6,7 @@ As usual, I’ve collected the code files for this instalment into a ZIP file wh
 
 # Matching Podcast Episode 507
 
-Listen Along: Chit Chat Accross the Pond Episode 507
+Listen Along: Chit Chat Across the Pond Episode 507
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_29.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

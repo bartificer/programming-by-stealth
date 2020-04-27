@@ -12,7 +12,7 @@ There’s just one sample file associated with this instalment, and it’s avail
 
 # Matching Podcast Episode 505
 
-Listen Along: Chit Chat Accross the Pond Episode 505
+Listen Along: Chit Chat Across the Pond Episode 505
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_13.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

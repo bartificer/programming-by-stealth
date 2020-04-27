@@ -8,7 +8,7 @@ As usual, I’ve collected the code referenced in this instalment into a ZIP fil
 
 # Matching Podcast Episode 484
 
-Listen Along: Chit Chat Accross the Pond Episode 484
+Listen Along: Chit Chat Across the Pond Episode 484
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_30.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

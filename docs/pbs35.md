@@ -10,7 +10,7 @@ As usual, I’ve created a ZIP file with the files for this instalment, includin
 
 # Matching Podcast Episode 487
 
-Listen Along: Chit Chat Accross the Pond Episode 487
+Listen Along: Chit Chat Across the Pond Episode 487
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_05_19.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

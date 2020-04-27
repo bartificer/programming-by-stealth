@@ -8,7 +8,7 @@ As usual, I’ve collected all the files for this instalment into a single ZIP f
 
 # Matching Podcast Episode 503
 
-Listen Along: Chit Chat Accross the Pond Episode 503
+Listen Along: Chit Chat Across the Pond Episode 503
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_29.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

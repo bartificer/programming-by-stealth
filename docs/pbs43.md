@@ -8,7 +8,7 @@ There’s no zip file for this instalment as such, instead, I’ve published [my
 
 # Matching Podcast Episode 509
 
-Listen Along: Chit Chat Accross the Pond Episode 509
+Listen Along: Chit Chat Across the Pond Episode 509
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_12.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

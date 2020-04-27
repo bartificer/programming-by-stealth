@@ -8,7 +8,7 @@ You can download a ZIP file containing the code files for this instalment [here]
 
 # Matching Podcast Episode 478
 
-Listen Along: Chit Chat Accross the Pond Episode 478
+Listen Along: Chit Chat Across the Pond Episode 478
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_03_01.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

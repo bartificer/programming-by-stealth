@@ -10,7 +10,7 @@ The sample files used in this instalment, as well as some needed libraries, can 
 
 # Matching Podcast Episode 461
 
-Listen Along: Chit Chat Accross the Pond Episode 461
+Listen Along: Chit Chat Across the Pond Episode 461
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_28.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

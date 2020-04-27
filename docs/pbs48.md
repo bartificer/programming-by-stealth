@@ -6,7 +6,7 @@ I had initially planned to return to our Cellular Automata classes and Conway’
 
 # Matching Podcast Episode 519
 
-Listen Along: Chit Chat Accross the Pond Episode 519
+Listen Along: Chit Chat Across the Pond Episode 519
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_20.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

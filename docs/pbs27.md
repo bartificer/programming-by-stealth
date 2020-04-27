@@ -6,7 +6,7 @@ The code for the examples in this instalment has been collected into a single ZI
 
 # Matching Podcast Episode 470
 
-Listen Along: Chit Chat Accross the Pond Episode 470
+Listen Along: Chit Chat Across the Pond Episode 470
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_02.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

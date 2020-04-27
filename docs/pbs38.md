@@ -4,7 +4,7 @@ Since this is the first instalment back after our summer hiatus, it seems like a
 
 # Matching Podcast Episode 500
 
-Listen Along: Chit Chat Accross the Pond Episode 500
+Listen Along: Chit Chat Across the Pond Episode 500
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_01.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

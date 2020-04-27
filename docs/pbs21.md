@@ -8,7 +8,7 @@ For this instalment we’ll still be using the Javascript console on the [PBS du
 
 # Matching Podcast Episode 455
 
-Listen Along: Chit Chat Accross the Pond Episode 455
+Listen Along: Chit Chat Across the Pond Episode 455
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_16.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

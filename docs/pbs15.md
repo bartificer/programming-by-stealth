@@ -6,7 +6,7 @@ A function is a collection of statements that is given a name so it can be easil
 
 # Matching Podcast Episode 440
 
-Listen Along: Chit Chat Accross the Pond Episode 440
+Listen Along: Chit Chat Across the Pond Episode 440
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_05_27.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

@@ -14,7 +14,7 @@ There are four examples in this instalment, and a starting-point for the challen
 
 # Matching Podcast Episode 459
 
-Listen Along: Chit Chat Accross the Pond Episode 459
+Listen Along: Chit Chat Across the Pond Episode 459
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_10_13.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 

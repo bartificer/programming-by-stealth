@@ -8,7 +8,7 @@ To illustrate the concepts, and to lay the ground work for this instalment’s c
 
 # Matching Podcast Episode 517
 
-Listen Along: Chit Chat Accross the Pond Episode 517
+Listen Along: Chit Chat Across the Pond Episode 517
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_06.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
