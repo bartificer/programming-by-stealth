@@ -20,7 +20,7 @@ The challenge set at the end of [the previous instalment](https://bartificer.net
 
 I always say there is no single correct answer to these challenges, but that really couldn’t be more true here — we’re all starting off with a different starting point, and we all have different opinions on how we want our recipe laid out, so we’re all going to produce wildly different final pages. I’m including my sample solution as an additional worked example more than anything else.
 
-I chose to group my display heading and lead paragraph together into a single container, and to use the HTML5 symantic `<header>` tag to do so. I decided to place the two elements (the display header and the lead) into a single row, and to give the majority of the space to the display header, and just 3 atomic columns to the lead paragraph next to it.
+I chose to group my display heading and lead paragraph together into a single container, and to use the HTML5 semantic `<header>` tag to do so. I decided to place the two elements (the display header and the lead) into a single row, and to give the majority of the space to the display header, and just 3 atomic columns to the lead paragraph next to it.
 
 I then chose to group the remainder of the page into a second container, and I used the HTML5 semantic `<main>` tag for that. For this container I decided to use multiple rows rather than a single one.
 

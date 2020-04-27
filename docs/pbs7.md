@@ -143,7 +143,7 @@ To build the box for an element, start with the content region itself. Around th
 
 ![The CSS Box Model](../assets/pbs7/Screen-Shot-2016-01-15-at-16.06.11.png)
 
-The boxes for block-level tags stretch to the full width of the the content area of the tag they are contained within, and stack one against the other, with the boxes touching each other. The body tag’s box extends to the edges of the content area of the browser window or tab they are appearing in.
+The boxes for block-level tags stretch to the full width of the content area of the tag they are contained within, and stack one against the other, with the boxes touching each other. The body tag’s box extends to the edges of the content area of the browser window or tab they are appearing in.
 
 ## Styling the Boxes
 

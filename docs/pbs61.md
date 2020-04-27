@@ -94,7 +94,7 @@ The next step was to add an event handler for the add button (this is done insid
 // add an event handler to the Add button
 $('#alert_btn').click(function(){
   // build an alert
-  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the textbox!");
+  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the text box!");
   $a.addClass(`alert alert-${$('#alert_style_sel').val()}`);
 
   // inject a dismiss button
@@ -115,13 +115,13 @@ $('#alert_btn').click(function(){
 
 Most of this code is very similar to that in `pbs60b.html`, but the two notable differences are where the code extracts the values from the text box and dropdown.
 
-To get at the value of the textbox I used:
+To get at the value of the text box I used:
 
 ```JavaScript
-$('#alert_text_tb').val() || "A sample Alert — enter text in the textbox!"
+$('#alert_text_tb').val() || "A sample Alert — enter text in the text box!"
 ```
 
-Remember, when you pass jQuery a CSS selector as a single string argument is searches the entire document for elements matching that selector. In this case that would be exactly one thing, the text box with the ID `alert_text_tb`. I then call jQuery’s `.val()` function on that text box to get at the value. If there is no value, I default to the string `"A sample Alert — enter text in the textbox!"`.
+Remember, when you pass jQuery a CSS selector as a single string argument is searches the entire document for elements matching that selector. In this case that would be exactly one thing, the text box with the ID `alert_text_tb`. I then call jQuery’s `.val()` function on that text box to get at the value. If there is no value, I default to the string `"A sample Alert — enter text in the text box!"`.
 
 The other important line of code is the one that sets the style of the alert based on the dropdown:
 

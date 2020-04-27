@@ -206,11 +206,11 @@ chained promise resolved with: true
 
 ## Passthrough by Default
 
-At each point in a promise chain there could be a callback defining what to do if the original promise resolved, and what to do if it rejected. Both callbacks are optional, so what happens if you omit one? What will the chained promise resolve to or reject with?
+At each point in a promise chain, there could be a callback defining what to do if the original promise resolved, and what to do if it rejected. Both callbacks are optional, so what happens if you omit one? What will the chained promise resolve to or reject with?
 
 There are two scenarios at play here — the original promise rejected and the call to `.then()` only passed one argument, so there is no callback specified to handle rejection. Or, the original promise resolved, and the call was to `.catch()` rather than to `.then()`, so there is no callback specified to handle resolution.
 
-In both cases `.then()` and `.catch()` do the sensible thing — they simply pass the value or the error through un-altered. So, in the first scenario the chained promise resolves to the same value the original resolved to, and in the second scenario the chained promise rejects with the same error the original rejected with.
+In both cases `.then()` and `.catch()` do the sensible thing — they simply pass the value or the error through un-altered. So, in the first scenario, the chained promise resolves to the same value the original resolved to, and in the second scenario, the chained promise rejects with the same error the original rejected with.
 
 In other words, **if you don’t specify a handler, the data or error gets passed through un-altered**.
 

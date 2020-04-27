@@ -102,7 +102,7 @@ We’ve seen the basic form, `text-ALIGN` where `ALIGN` is the desired alignment
 
 Horizontally Scrolling Tables
 
-We’ve seen that we can make tables horizontally scrollable by wrapping them in another element and giving that element the class `table-responsive`. There are breakpoint aware variants, but they are the rare exception to Bootstrap’s generally consistency. These breakpoints apply in the opposite direction, not breakpoint and up, but **breakpoint and down**, and the breakpoints are added at the end, not as the the second part of the class name. The classes take the form `table-responsive-BP`. Bearing their inverse nature in mind, this means that `table-responsive-md` will make the table horizontally scrollable on medium-width windows **and narrower**. While this isn’t consistent, it is actually sensible, and much more likely to be useful in the real world!
+We’ve seen that we can make tables horizontally scrollable by wrapping them in another element and giving that element the class `table-responsive`. There are breakpoint aware variants, but they are the rare exception to Bootstrap’s generally consistency. These breakpoints apply in the opposite direction, not breakpoint and up, but **breakpoint and down**, and the breakpoints are added at the end, not as the second part of the class name. The classes take the form `table-responsive-BP`. Bearing their inverse nature in mind, this means that `table-responsive-md` will make the table horizontally scrollable on medium-width windows **and narrower**. While this isn’t consistent, it is actually sensible, and much more likely to be useful in the real world!
 
 ### Worked Example
 

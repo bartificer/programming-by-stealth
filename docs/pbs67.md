@@ -38,7 +38,7 @@ For the login form I decided to use full custom Bootstrap validation with popove
 
 The fist step in accomplishing this is disabling the standard HTML5 form validation messages by adding the `novalidate` attribute to the relevant `<form>` tag.
 
-Next, I added a `<div>` that will serve as a tooltip with a validation message when ever the form is validated and found to be invalid invalid tooltip into the input group. This `<div>` needs to be added inside the input group but not as the first or last element. I added it after the inputs but before the `input-group-append`.
+Next, I added a `<div>` that will serve as a tooltip with a validation message whenever the form is validated and found to be invalid. Invalid tooltip into the input group. This `<div>` needs to be added inside the input group but not as the first or last element. I added it after the inputs but before the `input-group-append`.
 
 The documentation clearly states that the tooltip must be contained within an HTML element with CSS `position` property `relative`. I achieved this by adding an inline style to the input group itself to set its `position` to `relative`.
 

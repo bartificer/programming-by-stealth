@@ -286,7 +286,7 @@ Something you often need to do in web apps is make it clear to the user that som
 
 The Bootstrap _Spinner_ component exists to fulfil this role. A spinner is an animated icon that moves in such a way as to suggest on-going activity. Bootstrap provides two flavours of spinner that it names _Border_, and _Growing_. You can see both in the file `pbs71a.html` in this instalment’s ZIP file.
 
-You create a spinner giving any tag of your choice either the class `.spinner-border` or `.spinner-grow`. That’s all you **need** to do, but you **should** do more! To aid accessibility you should give your spinner the ARIA role `status`, and you should add some screen-reader-only text inside the spinner describing the the icon is indicating, usually _‘loading …’_.
+You create a spinner giving any tag of your choice either the class `.spinner-border` or `.spinner-grow`. That’s all you **need** to do, but you **should** do more! To aid accessibility you should give your spinner the ARIA role `status`, and you should add some screen-reader-only text inside the spinner describing the icon is indicating, usually _‘loading …’_.
 
 When you make a tag a spinner it will become an inline block element (unless you add the spinner inside a flexbox). For that reason I like to use the generic inline tag `<span>`, but you’ll see many examples that use `<div>`, and you really could use any tag you like.
 

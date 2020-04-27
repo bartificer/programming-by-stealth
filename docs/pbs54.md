@@ -27,7 +27,7 @@ I chose to use the colour, margin, padding, and border utility classes to style 
 
 I also used the colour utilities to mark the entire description as secondary, the heading for the instructions as primary, and the important note on salting the cucumber as `text-danger`. I also used the alignment and font utilities for marking up the quotation from the great American chef Julia Child.
 
-When it came to adding in the requested extra HTML elements I chose to add the bulleted list as as list of required equipment, to quote the great Julia Child for my block quote, to convert my existing image into full-blown figure, and to add a glossary as a definition list.
+When it came to adding in the requested extra HTML elements I chose to add the bulleted list as a list of required equipment, to quote the great Julia Child for my block quote, to convert my existing image into full-blown figure, and to add a glossary as a definition list.
 
 ## Playground
 

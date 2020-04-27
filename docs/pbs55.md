@@ -43,7 +43,7 @@ The third part of the challenge was to adjust the width of the ingredients table
 </table>
 ```
 
-The last prescriptive part of the challenge called for the creation of a list of needed equipment as a bulleted list, and the the display of this list as a flex row with icons from any source of your choosing.
+The last prescriptive part of the challenge called for the creation of a list of needed equipment as a bulleted list, and the display of this list as a flex row with icons from any source of your choosing.
 
 I chose to use the latest free version of the [” rel=”noopener” target=”\_blank”>Font Awesome](http://
 

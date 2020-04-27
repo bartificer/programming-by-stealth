@@ -85,7 +85,7 @@ QUnit.test('.equals()', (a)=>{
 
 ### Part 2 — Re-factor the `bartificer.ca.Automaton` constructor
 
-The first step in refactoring the constructor is to convert the renderFn argument from required to optional by adding a default render function that renders _truthy_ states as green, and _falsey_ states as red.
+The first step in refactoring the constructor is to convert the renderFn argument from required to optional by adding a default render function that renders _truthy_ states as green, and _falsy_ states as red.
 
 This is simply a matter of changing this section of the constructor:
 
@@ -762,7 +762,7 @@ Again, I updated the test suite for the `.step()` function so it checks that coe
 
 ## A Final Example — Multiple Different CAs
 
-While we’ve focused on Conway’s Game of Life, that is not the only CA in town. Firstly, there are a myriad of simple variations of the Game of Life where you keep the concept of two states, but change the number of neighbours needed to be born or to die, together, all these rule sets are are known the _Life_ class of CAs, [you can see man of them described here](http://www.mirekw.com/ca/rullex_life.html). We’ll implement one of these, the so-called _Maze Rule_.
+While we’ve focused on Conway’s Game of Life, that is not the only CA in town. Firstly, there are a myriad of simple variations of the Game of Life where you keep the concept of two states, but change the number of neighbours needed to be born or to die, together, all these rule sets are known the _Life_ class of CAs, [you can see man of them described here](http://www.mirekw.com/ca/rullex_life.html). We’ll implement one of these, the so-called _Maze Rule_.
 
 But of course, there’s no need to limit yourself to just two states! To prove that point we’ll implement the best known of the three-state rules, _Brian’s Brain_.
 

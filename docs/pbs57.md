@@ -251,7 +251,7 @@ It’s inside this full-width column that takes up the entire second row of the 
 
 Let’s go ahead and create that inner container now.
 
-This container has no semantic meaning, so again, we should use a `<div>` with the class `container`. By default, containers have a padding. This is usually desirable, not not in this specific situation. With the padding in place the contents of our inner grid will appear off-set from the content contained in the outer grid, and we don’t want that. We can very easily remove the un-wanted padding by adding the Bootstrap utility class `p-0` to the inner container.
+This container has no semantic meaning, so again, we should use a `<div>` with the class `container`. By default, containers have a padding. This is usually desirable, but not in this specific situation. With the padding in place the contents of our inner grid will appear off-set from the content contained in the outer grid, and we don’t want that. We can very easily remove the un-wanted padding by adding the Bootstrap utility class `p-0` to the inner container.
 
 We now have a container without a row, so let’s open another `<div>` with the class `row` directly inside the inner container.
 

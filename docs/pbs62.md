@@ -99,7 +99,7 @@ You need to add a listener for this event to the alert as you build it, so this 
 ```JavaScript
 $('#alert_btn').click(function(){
   // build an alert
-  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the textbox!");
+  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the text box!");
   $a.addClass(`alert alert-${$('#alert_style_sel').val()}`);
 
   // inject a dismiss button

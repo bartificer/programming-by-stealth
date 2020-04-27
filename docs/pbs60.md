@@ -264,7 +264,7 @@ $(function(){
 });
 ```
 
-### Interacting with Alerts Programatically
+### Interacting with Alerts Programmatically
 
 Bootstrap’s jQuery plugins will generally provide functionality to programmatically do what ever a human can do with the relevant component. In the case of dismissible alerts that means dismissing the alert.
 
@@ -302,7 +302,7 @@ Create a blank HTML page and that imports the Bootstrap CSS and JavaScript funct
 
 Add a text box into which the user can type some text, and a dropdown list with an entry for each of the Bootstrap alert styles (`alert-primary`, `alert-secondary` …).
 
-Add a button that will create a new dismissible alert with the text from the textbox and the style selected in the dropdown.
+Add a button that will create a new dismissible alert with the text from the text box and the style selected in the dropdown.
 
 Add a button to delete all the alerts.
 

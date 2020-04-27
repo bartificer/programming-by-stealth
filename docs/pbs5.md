@@ -116,7 +116,7 @@ This is where relative URLs come in. They allow HTML to specify URLs relative to
 
 A HTML tag attribute has a name and a value. Only officially defined attribute names should be used, and the values should meet the requirements defined in the specification. Some attributes can have any arbitrary value, including no value at all, while others must contain a URL, or a number, or some other specific type of information.
 
-Attributres are specified within opening and void tags only. They go after the name of the tag, and the name and value are separated by an `=` character. The value must be contained within a pair of `"` characters. Tags can specify multiple attributes.
+Attributes are specified within opening and void tags only. They go after the name of the tag, and the name and value are separated by an `=` character. The value must be contained within a pair of `"` characters. Tags can specify multiple attributes.
 
 The generic form of a tag with two attributes would be:
 

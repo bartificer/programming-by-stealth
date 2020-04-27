@@ -284,7 +284,7 @@ Explainer.staticFn();
 // static name = 'the explainer class'
 ```
 
-Notice that the call to the static function is an indirect call, and that the thing to the left of the the `.` (dot/period) operator is the class/prototype itself (`Explainer`). This means that when the function `staticFn()` executes, its `this` placeholder will be a reference to `Explainer`, hence, `this.staticName` is a placeholder for `Explainer.staticName`.
+Notice that the call to the static function is an indirect call, and that the thing to the left of the `.` (dot/period) operator is the class/prototype itself (`Explainer`). This means that when the function `staticFn()` executes, its `this` placeholder will be a reference to `Explainer`, hence, `this.staticName` is a placeholder for `Explainer.staticName`.
 
 What happens if we try to call an instance function in a static context:
 

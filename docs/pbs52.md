@@ -41,7 +41,7 @@ For now, this is all we have to do to start using Bootstrap 4:
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     ```
 
-3.  ### Include the Bootrap 4 CSS
+3.  ### Include the Bootstrap 4 CSS
 
     You could download the Bootstrap CSS and include your own copy, but by far the easiest thing to do is to load it from the officially supported content distribution network (CDN) by adding the following into the `head` section of the HTML page:
 

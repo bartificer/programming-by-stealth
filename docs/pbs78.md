@@ -149,7 +149,7 @@ A good example would be a popover explaining a text box that’s only visible wh
 <input type="text" class="form-control" data-toggler="popover" data-trigger="focus" data-content="Enter Some Text!">
 ```
 
-One of the annoying things about the default click trigger is that you have to click on the element that the popover belongs to to get rid of it. It would be much more convenient to be able to click anywhere on the page to dismiss it! With a little trickery you can achieve this by using an `<a>` tag (the docs insist it will not work reliably with `<button>` tags) **without an `href` attribute** and **with a `tabindex` attribute** combined with the `focus` trigger and the Bootstrap button classes (`.btn` plus `.btn-primary` or similar):
+One of the annoying things about the default click trigger is that you have to click on the element that the popover belongs to, to get rid of it. It would be much more convenient to be able to click anywhere on the page to dismiss it! With a little trickery you can achieve this by using an `<a>` tag (the docs insist it will not work reliably with `<button>` tags) **without an `href` attribute** and **with a `tabindex` attribute** combined with the `focus` trigger and the Bootstrap button classes (`.btn` plus `.btn-primary` or similar):
 
 ```XHTML
 <a class="btn btn-secondary btn-sm" data-toggler="popover" data-trigger="focus" title="A Dismissable Popover" data-content="Click anywhere on the page to make me go away!" tabindex="0">

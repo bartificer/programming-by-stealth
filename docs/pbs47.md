@@ -656,7 +656,7 @@ Using the code in the `pbs471-v2` folder in this instalment’s ZIP file as your
 1.  Create a new class `Chicken` which extends `Animal`. Use the emojis of your choice for the needed icons, and use a sensible string for the sound.
 2.  Add a web form which allows users to add animals to the farm. The form should enable the user to add arbitrarily many animals of each species.
 3.  Create a new class `EggLayer` which extends `Animal`, and re-factor both the `Duck` and `Chicken` classes to extend this new class rather than `Animal`.
-4.  Override the `.getProduce()` function in the `EggLayer` class so it returns an egg emoji if, and only if, it’s been at least 100 seconds since the last time an egg was was produced by that specific egg layer (**Hint:** google JavaScript’s built-in `Date.now()` function).
+4.  Override the `.getProduce()` function in the `EggLayer` class so it returns an egg emoji if, and only if, it’s been at least 100 seconds since the last time an egg was produced by that specific egg layer (**Hint:** google JavaScript’s built-in `Date.now()` function).
 
 ## Final Thoughts
 
