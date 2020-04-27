@@ -102,7 +102,7 @@ This is where relative URLs come in. They allow HTML to specify URLs relative to
 
     A relative URL of `My+Other+File.html` on a page with the URL `http://localhost/My+Folder/My+File.html` is interpreted as `http://localhost/My+Folder/My+Other+File.html`
 
-    URLs relative to the path can use `..` to represent the parent folder, so a relative URL of `../Some+File.html` on a page with the the URL `http://localhost/My+Folder/My+File.html` is interpreted as `http://localhost/Some+File.html`
+    URLs relative to the path can use `..` to represent the parent folder, so a relative URL of `../Some+File.html` on a page with the URL `http://localhost/My+Folder/My+File.html` is interpreted as `http://localhost/Some+File.html`
 
 2.  **URLs relative to the host** – URLs that are relative to the host start with a `/`. The URL scheme, host, and port are assumed to be the same as the current URL, the path, query string, and fragment are taken from the relative URL.
 

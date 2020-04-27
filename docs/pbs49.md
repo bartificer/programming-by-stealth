@@ -784,7 +784,7 @@ bartificer.ca.State = class{
 
 That looks like a lot of code, but really, most of it’s JSDoc comments. On closer inspection all we really have is a class with two private instance properties (`._value` & `._label`), a pair of matching read-only accessor instance functions (`.value()` & `.label()`), a constructor, and the customary `.toString()` and `.clone()` instance functions.
 
-I also added tests for this new class to the test suite, but I won’t clutter this post by copying-and-pasting them here, they’re available via the GitHub repo.
+I also added tests for this new class to the test suite, but I won’t clutter this post by copying-and-pasting them here, they’re available via the GitHub repository.
 
 Now that we’ve created this class to represent a state, we need to update the `isCellState()` function so it only considers instances of `bartificer.ca.State` to be valid states:
 

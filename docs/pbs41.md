@@ -423,4 +423,4 @@ Update the web form you created in the previous challenge in the following ways:
 
 ## Final Thoughts
 
-We now have a good grounding in HTML forms, so we’re finally ready to return to our aellular automata prototypes and bring them to life as a web app.
+We now have a good grounding in HTML forms, so we’re finally ready to return to our cellular automata prototypes and bring them to life as a web app.

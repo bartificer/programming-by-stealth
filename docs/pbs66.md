@@ -183,13 +183,13 @@ My solution relies on using Bootstrap’s `.was-validated`, `.is-valid`, `.is-in
 
 Big-picture-wise the code is architected as follows:
 
-*   A `<div>` with an ID has been added after each input that needs validation. This `<div>` will be used to display any needed feedback.
-*   There is a validation function for each text box that sets the `.is-valid` or `.is-invalid` class  
-    as appropriate, updates any matching validation messages, and returns `true` if the value was found to be valid, and `false` otherwise
-*   The validation functions are configured as handlers for the `input` event on their relevant text boxes.
-*   The checkbox related to the URL field has the URL field’s validation function attached to its `change` hander.
-*   The form as a whole has a submit handler that calls each validation function and enables form-wide validation by adding `.was-validated` to the form as a whole.
-*   As a courtesy to the user, the submit handler also focuses the first invalid element in the form.
+- A `<div>` with an ID has been added after each input that needs validation. This `<div>` will be used to display any needed feedback.
+- There is a validation function for each text box that sets the `.is-valid` or `.is-invalid` class
+  as appropriate, updates any matching validation messages, and returns `true` if the value was found to be valid, and `false` otherwise
+- The validation functions are configured as handlers for the `input` event on their relevant text boxes.
+- The checkbox related to the URL field has the URL field’s validation function attached to its `change` handler.
+- The form as a whole has a submit handler that calls each validation function and enables form-wide validation by adding `.was-validated` to the form as a whole.
+- As a courtesy to the user, the submit handler also focuses the first invalid element in the form.
 
 You can see the full source in `pbs66d.html`, but I want to draw your attention to some specific examples.
 

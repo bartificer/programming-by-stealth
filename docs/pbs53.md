@@ -187,7 +187,7 @@ Bootstrap also provides a number of very obviously named utility CSS classes for
 *   **Font Properties**: `font-weight-bold`, `font-weight-normal`, `font-weight-light`, `font-italic` & `text-monospace`
 *   **Text Transformations**: `text-lowercase`, `text-uppercase` & `text-capitalize`
 
-Let’s finish off the quotation in our dummy page by aligning the author to the right and bolding it, and making the quotation italic and light:
+Let’s finish off the quotation in our dummy page by aligning the author to the right and making it bold, and making the quotation italic and light:
 
 ```XHTML
 <blockquote class="text-muted bg-light border rounded p-2 m-3 ml-5">

@@ -238,7 +238,7 @@ In general there is no need to apply additional styles to lists, but Bootstrap d
 
 In the previous instalment, and in the challenge solution at the start of this instalment, I mentioned that setting the display of list items to block to hide bullets was a hack, and that we’d learn better ways to control lists later. This is that later 🙂
 
-Bootstrap allows us to remove the bullets from adding the class `list-unstyled` to the `<ul>` tag. Nots that this class only affects list items that are direct children of that tag, nested lists are not affected, which can be very useful when marking up sidebars on websites.
+Bootstrap allows us to remove the bullets from adding the class `list-unstyled` to the `<ul>` tag. Note that this class only affects list items that are direct children of that tag, nested lists are not affected, which can be very useful when marking up sidebars on websites.
 
 We can see this in action by removing the bullets from the list of other recommended poems in our playground:
 

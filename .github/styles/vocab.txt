@@ -13,6 +13,7 @@ breakpoint
 callouts
 cdnjs
 config
+const
 destructured
 destructuring
 doctype
@@ -36,6 +37,7 @@ html
 http
 https
 infinitum
+inlined
 interdependencies
 interoperate
 iterable
@@ -65,13 +67,16 @@ pbsdemos
 poofed
 prepends
 Quatloo
+raison
 rawcdn
 sanitisation
 screenreader
 scrollable
 Scrollbars
 Smultron
+spacebar
 specificities
+strikethrough
 syntaxes
 thenable
 thenables
