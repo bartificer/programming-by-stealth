@@ -81,16 +81,16 @@ If we take our imaginary currency as an example, if we named that class `Imagina
 
 In an attempt to save your sanity, here's a quick summary of all the OO jargon you've had to absorb so far:
 
-| Term | Meaning |
-|---:|:--- |
-| **Object** | A data structure that contains named pieces of data and functions. |
-| **Encapsulation** | The act of collecting the data and functions related to a concept or thing in an object. |
-| **Object Orientation** (OO) | A *paradigm* (or design philosophy) built around the concept of related groups of encapsulated objects. |
-| **Class** (or **Type**) | A definition that can be used to construct objects representing specific incarnations of a concept or thing. |
-| **Instance** | An encapsulated object built by a class that represents a specific incarnation of a concept or thing. |
-| **Constructor** | A function defined within a class that initialises instances of that class. |
-| **Attribute** | A piece of data data encapsulated within an instance. |
-| **Instance Function** | A function encapsulated within an instance. |
+|                        Term | Meaning                                                                                                      |
+| --------------------------: | :----------------------------------------------------------------------------------------------------------- |
+|                  **Object** | A data structure that contains named pieces of data and functions.                                           |
+|           **Encapsulation** | The act of collecting the data and functions related to a concept or thing in an object.                     |
+| **Object Orientation** (OO) | A _paradigm_ (or design philosophy) built around the concept of related groups of encapsulated objects.      |
+|     **Class** (or **Type**) | A definition that can be used to construct objects representing specific incarnations of a concept or thing. |
+|                **Instance** | An encapsulated object built by a class that represents a specific incarnation of a concept or thing.        |
+|             **Constructor** | A function defined within a class that initialises instances of that class.                                  |
+|               **Attribute** | A piece of data encapsulated within an instance.                                                             |
+|       **Instance Function** | A function encapsulated within an instance.                                                                  |
 
 ## JavaScript's Implementation of OO
 
@@ -206,7 +206,7 @@ If you look at the code from `hoonyaker3.js` (and indeed `squid1.js`) from the p
 Notice that I chose to write the constructor function in such a way that it expects to be passed the currency's details in a single dictionary argument named `details`. For simplicity, the constructor expects this dictionary to use the same property names that the class will provide.
 
 > # The Three-Argument 'Rule'
-> 
+>
 > As a general rule, if a function needs more than three arguments you should refactor it to accept a single dictionary argument with named values.
 {: .aside}
 
@@ -370,7 +370,7 @@ class ImaginaryCurrency{
 		}else{
 			if(typeof details !== 'object') throw new TypeError('details must be an object');
 		}
-		
+
 		// initialise all the data attributes
 		// validate any passed values, and use the default for unspecified values
 		if(typeof details.name === 'undefined'){
@@ -386,9 +386,9 @@ class ImaginaryCurrency{
 				throw new TypeError("if passed, details.name must be a non-empty string");
 			}
 		}
-		
+
 		// …
-		
+
 		if(typeof details.numDecimalPlaces === 'undefined'){
 			this.numDecimalPlaces = 2;
 		}else{
@@ -405,7 +405,7 @@ class ImaginaryCurrency{
 			}
 		}
 	}
-	
+
 	// …
 }
 ```
@@ -430,11 +430,11 @@ When writing any function it's possible to offer the users of your function some
 
 The jQuery API is replete with examples of this technique. Consider jQuery's `.css()` function — it supports the following three signatures:
 
-| Arguments (`{Type} Name`) | Resulting Behaviour | Example | 
-|---:|--- |:--- |
-| {string} propName  | Returns the value of the CSS property `propName`. | `console.log($('p').css('color'));` |
-| {string} propName, {*} newVal | Sets the value of the CSS property `propName` to `newVal`. | `$('p').css('color', 'purple');` |
-| {dictionary} newVals | Sets the CSS properties corresponding to the keys in `newVals` to their corresponding values. | `$('p').css({ color: 'orange', border: '1px solid red'});` |
+|      Arguments (`{Type} Name`) | Resulting Behaviour                                                                           | Example                                                    |
+| -----------------------------: | --------------------------------------------------------------------------------------------- | :--------------------------------------------------------- |
+|              {string} propName | Returns the value of the CSS property `propName`.                                             | `console.log($('p').css('color'));`                        |
+| {string} propName, {\*} newVal | Sets the value of the CSS property `propName` to `newVal`.                                    | `$('p').css('color', 'purple');`                           |
+|           {dictionary} newVals | Sets the CSS properties corresponding to the keys in `newVals` to their corresponding values. | `$('p').css({ color: 'orange', border: '1px solid red'});` |
 
 Any function can be written to support an arbitrary number of signatures, but for constructors a very common pattern is to support three signatures:
 
@@ -559,9 +559,9 @@ One final point to note before wrapping up this instalment — by convention, **
 
 This is not a rule, but it is a very widely adopted convention, and as such I strongly recommend you treat it as a rule. Abiding by language conventions like this will make your code easier for others to understand and re-use.
 
-## Final Thoughts —  A Lot Done, but More to Do!
+## Final Thoughts — A Lot Done, but More to Do!
 
-We can now create classes which allow us to construct encapsulated objects as needed. 
+We can now create classes which allow us to construct encapsulated objects as needed.
 
 Throughout this instalment we've been steadily improving our example `ImaginaryCurrency` class. So far we've been focusing on improving the constructor. In the next instalment, we'll shift our focus to the data encapsulated by instances of our class. At the moment our classes are still very brittle, we need to add a lot more data validation and error checking to make them more robust.
 
@@ -579,4 +579,4 @@ $OUT_TEXT.empty().append(imaginaryDollar.describe());
 $OUT_TEXT.empty().append(imaginaryDollar.as(Math.PI));
 ```
 
-We need to make our data attributes as robust as our constructor, and the key to doing this efficiently are so-called *getters and setters*. Those will be the focus of the next instalment.
+We need to make our data attributes as robust as our constructor, and the key to doing this efficiently are so-called _getters and setters_. Those will be the focus of the next instalment.

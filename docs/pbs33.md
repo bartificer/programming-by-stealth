@@ -757,7 +757,7 @@ Now that we have our tests written, we can finish our implementation of the `pbs
 
 This implementation passes all our tests.
 
-> ### Asside – the JavaScript `.slice()` Function
+> ### Aside – the JavaScript `.slice()` Function
 >
 > Notice that the function makes use of the `.slice()` function from the `Array` prototype. I know Allison has been using this function in her code for some time, but it’s not one we’ve ever discussed as part of the series.
 >

@@ -74,7 +74,7 @@ function showToast(t, msg){
 
 In the previous instalment we learned how to use so-called Mustache sections to show include or exclude content depending on whether or not a given variable in the view had a _truthy_ value. We also saw how we could use sections to loop parts of a template multiple times.
 
-A section to be included if the the view variable `boogers` has a _truthy_ value (and is not an array) would start with `{{#boogers}}` and end with `{{/boogers}}`. Similarly, a section to be shown only if `boogers` is neither an array nor a `truthy` value would start with `{{^boogers}}` and end with `{{/boogers}}`. Finally, if our view contained an array named `boogerList` we could repeat a section of the template once for each value in the array by starting the section with `{{#boogerList}}` and ending it with `{{/boogerList}}`.
+A section to be included if the view variable `boogers` has a _truthy_ value (and is not an array) would start with `{{#boogers}}` and end with `{{/boogers}}`. Similarly, a section to be shown only if `boogers` is neither an array nor a `truthy` value would start with `{{^boogers}}` and end with `{{/boogers}}`. Finally, if our view contained an array named `boogerList` we could repeat a section of the template once for each value in the array by starting the section with `{{#boogerList}}` and ending it with `{{/boogerList}}`.
 
 Last time we described the view variables (`boogers` and `boogerList` in this case) as _controlling_ the sections. The official term for these section-controlling variables in the Mustache documentation is _section key_. I.e., in the above examples, the section keys were `boogers` and `boogerList`.
 
@@ -298,7 +298,7 @@ In this instalment’s ZIP file you’ll find a folder named `pbs74-challenge-st
 
 Note that this file imports jQuery, Bootstrap, Mustache, and FontAwesome 5.
 
-Near the top of the file you’ll find a `<script>` tag with the ID `pbs74_view_data`. This is an embedded JSON string containing the data to be rendered. At the top level of the object you’ll find objects representing myself and Allison, and an object mapping contact mechanisms to to the CSS classes for FontAwesome 5 icons.
+Near the top of the file you’ll find a `<script>` tag with the ID `pbs74_view_data`. This is an embedded JSON string containing the data to be rendered. At the top level of the object you’ll find objects representing myself and Allison, and an object mapping contact mechanisms to the CSS classes for FontAwesome 5 icons.
 
 Your challenge, should you choose to accept it 😉, is to build a contact listing for both myself and Allison. Your solution should have the following properties/features:
 

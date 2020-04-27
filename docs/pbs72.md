@@ -79,7 +79,7 @@ const startTimer = function(){
 };
 ```
 
-The form’s submit hander can then be updated to simply become:
+The form’s submit handler can then be updated to simply become:
 
 ```JavaScript
 // add a submit handler to the timer form
@@ -123,7 +123,7 @@ const $btn = $('#timer_btn');
 The I added the click handler:
 
 ```JavaScript
-// add a click hander to the timer button
+// add a click handler to the timer button
 $btn.click(function(){
   startTimer();
 });
@@ -242,10 +242,10 @@ To fix this I updated the $formControls utility variable so it no longer include
 const $formControls = $('input, textarea', $form);
 ```
 
-Finally, we can now update the click hander on the button to start or stop the timer as appropriate:
+Finally, we can now update the click handler on the button to start or stop the timer as appropriate:
 
 ```JavaScript
-// add a click hander to the timer button
+// add a click handler to the timer button
 $btn.click(function(){
   // start or stop as appropriate
   if(RUNNING){

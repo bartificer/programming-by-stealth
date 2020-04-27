@@ -134,13 +134,13 @@ $(function(){
   // get a reference to the form for quick access
   const $form = $('#support_fm');
 
-  // add event handlers to activate the Bootstap validation styles
+  // add event handlers to activate the Bootstrap validation styles
   // when the form is first interacted with
-  const enableBootstapValiationStyles = function(){
+  const enableBootstrapValiationStyles = function(){
     $form.addClass('was-validated');
   };
-  $form.submit(enableBootstapValiationStyles);
-  $('input', $form).on('invalid', enableBootstapValiationStyles);
+  $form.submit(enableBootstrapValiationStyles);
+  $('input', $form).on('invalid', enableBootstrapValiationStyles);
 
   // add a submit hander to the form
   $form.submit(function(){
@@ -151,7 +151,7 @@ $(function(){
 
 The additional code first saves a reference to a jQuery object representing the form to a variable named `$form`.
 
-Next the code defines a function named `enableBootstapValiationStyles()` which simply adds the class `.was-validated` to the form.
+Next the code defines a function named `enableBootstrapValiationStyles()` which simply adds the class `.was-validated` to the form.
 
 Finally, the additional codes adds this function as a handler for the form’s `submit` event, and as a handler to each input within the form’s `invalid` event.
 

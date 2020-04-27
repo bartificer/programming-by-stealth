@@ -126,7 +126,7 @@ Browsers will automatically follow redirects, so JavaScript developers generally
 
 `4**` — Client Errors
 
-As JavaScript developers we hope not see many of these errors because the browser constructs the requests for us, so unless there’s a nasty bug in our browsers, we should never see status codes like `400 Bad Request`. However, there are two two client errors we are likely to encounter from time to time — the infamous `404 Not Found`, and th frustrating `403 Forbidden`.
+As JavaScript developers we hope not see many of these errors because the browser constructs the requests for us, so unless there’s a nasty bug in our browsers, we should never see status codes like `400 Bad Request`. However, there are two client errors we are likely to encounter from time to time — the infamous `404 Not Found`, and the frustrating `403 Forbidden`.
 
 `5**` — Server Errors
 

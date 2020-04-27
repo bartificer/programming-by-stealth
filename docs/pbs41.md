@@ -137,7 +137,7 @@ $('#rating_ipt').val(1).change(); // set thumbs up
 $('#rating_ipt').val('').change(); // blank the rating
 ```
 
-Notice that because we are altering the value programatically, we have to explicitly invoke the change hander we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
+Notice that because we are altering the value programmatically, we have to explicitly invoke the change hander we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
 
 ### Making the UI Work with a Mouse and Touch
 

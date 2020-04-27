@@ -137,7 +137,7 @@ As a simple example, the following login form is horizontal for all but the smal
 
 ![](../assets/pbs64/Screenshot-2018-10-03-at-11.22.49.png)
 
-I do want to draw your attention to one subtle detail in this form that makes use of a Bootstrap grid feature we’ve not seen before — the `offset-sm-3` class on the `<div>` acting as a `col` for the button. This is an example of Bootstap’s offsetting classes, which you can [read more about in the Bootstrap docs](http://getbootstrap.com/docs/4.1/layout/grid/#offsetting-columns). What it means is that at breakpoints from small up the column for the button will be shifted to the right by three grid columns.
+I do want to draw your attention to one subtle detail in this form that makes use of a Bootstrap grid feature we’ve not seen before — the `offset-sm-3` class on the `<div>` acting as a `col` for the button. This is an example of Bootstrap’s offsetting classes, which you can [read more about in the Bootstrap docs](http://getbootstrap.com/docs/4.1/layout/grid/#offsetting-columns). What it means is that at breakpoints from small up the column for the button will be shifted to the right by three grid columns.
 
 ## Grid-based Forms
 

@@ -11,7 +11,7 @@ Out of the box, all versions of HTML, even HTML 5, have some significant short-c
 *   There are no simple tags for facilitating responsive design (same page displayed differently depending on screen resolution).
 *   Some basic elements and behaviours common to many web pages are not provided.
 
-Bootstap aims to solve all these shortcomings using a combination of mostly CSS combined with a little JavaScript.
+Bootstrap aims to solve all these shortcomings using a combination of mostly CSS combined with a little JavaScript.
 
 # Matching Podcast Episode 531
 

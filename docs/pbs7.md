@@ -401,7 +401,7 @@ In FireFox, you’ll find the various developer tools under `Tools`, `Web Develo
 
 For today, what we want is the web inspector (`Tools`, `Web Developer`, `Inspector`):
 
-![FireFox Developer Tools Web Inspectror](../assets/pbs7/Screen-Shot-2016-01-19-at-17.02.56-e1453223192795.png)
+![FireFox Developer Tools Web Inspector](../assets/pbs7/Screen-Shot-2016-01-19-at-17.02.56-e1453223192795.png)
 
 This will add new interface to the bottom of the browser window with two panes – one showing the HTML tags in the document, and one showing info about the currently selected tag. To see a tag’s box, just hover over it in the right pane, to see its properties, click on it. In the left pane, where the properties are shown, there are tabs to control what properties you see. The two that are of interest to use at the moment are Rules, which show all the CSS definitions in our stylesheets that apply to the selected tag, and Computed, which shows the rules that have been applied to the tag when all the cascading of styles and calculations of specificity have been done.
 

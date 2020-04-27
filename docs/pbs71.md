@@ -16,7 +16,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 70 Challenge Solution
 
-The challenge set at the end of the previous instalment was to create a simplistic timer web app. The app would consist of a form where the user can enter a number of minutes and a message, and a button to start a timer that will display the message in a modal dialogue when the requested number of minutes have elapsed. Every minute between starting the timer and the final modal a toast dialogue should appear telling the user how long is left. To stop multiple timers being started at once, the form should be disabled while a timer is running. There was bonus credit for creating Toast notifications that did not dismiss automatically, and then dismissing them programatically when the timer ended.
+The challenge set at the end of the previous instalment was to create a simplistic timer web app. The app would consist of a form where the user can enter a number of minutes and a message, and a button to start a timer that will display the message in a modal dialogue when the requested number of minutes have elapsed. Every minute between starting the timer and the final modal a toast dialogue should appear telling the user how long is left. To stop multiple timers being started at once, the form should be disabled while a timer is running. There was bonus credit for creating Toast notifications that did not dismiss automatically, and then dismissing them programmatically when the timer ended.
 
 You’ll find my full solution in this instalment’s ZIP file in the folder `pbs70-challenge-solution`.
 
@@ -317,7 +317,7 @@ You can control the colour of your spinners using Bootstrap’s text colour util
 
 ### Aligning Spinners
 
-Something you’ll often want to do is centre-align a spinner. Since spinners are inline block elements they behave just like text, so you can centre them like you would any piece of text using Boostrap’s utility classes. Below is an example from `pbs71a.html`:
+Something you’ll often want to do is centre-align a spinner. Since spinners are inline block elements they behave just like text, so you can centre them like you would any piece of text using Bootstrap’s utility classes. Below is an example from `pbs71a.html`:
 
 ```XHTML
 <p class="text-center">

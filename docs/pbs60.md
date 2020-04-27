@@ -154,7 +154,7 @@ We’ll use alerts to illustrate the three most common JavaScript interactions w
 
 1.  Adding new Bootstrap components to a page dynamically and initialising them.
 2.  Responding to user interactions with a Bootstrap component.
-3.  Interacting with a Bootstrap component programatically.
+3.  Interacting with a Bootstrap component programmatically.
 
 Let’s work through these three things with a worked example. You’ll find the full source code in the file `pbs60b.html` in the ZIP file. Note that because this file loads remote JavaScript libraries, you’ll need to copy the folder into your local web server like we did in the previous JavaScript instalments.
 
@@ -266,7 +266,7 @@ $(function(){
 
 ### Interacting with Alerts Programatically
 
-Bootstrap’s jQuery plugins will generally provide functionality to programatically do what ever a human can do with the relevant component. In the case of dismissible alerts that means dismissing the alert.
+Bootstrap’s jQuery plugins will generally provide functionality to programmatically do what ever a human can do with the relevant component. In the case of dismissible alerts that means dismissing the alert.
 
 The way Bootstrap plugins work is that when you invoke them on an HTML element with no arguments they initialise that element with the given plugin, then, you can interact with the newly initialised elements by calling the plugin on them again, but with the thing you want to do passed as the first argument. So, if we had a reference to an initialised alert stored in a variable named `$a` we could close it with `$a.alert("close");`.
 
@@ -310,6 +310,6 @@ Add a button to delete all the alerts.
 
 The most important thing to take out of this instalment is not the details of how the alert component works, but the concept of how components work in general. They are generic components consisting of both CSS and JavaScript which can be added to your web pages or web apps to save you re-inventing the proverbial wheel.
 
-Bootstap minimises the amount of JavaScript code you need to write through the clever use of HTML data attributes, but for those who want to use JavaScript, Bootstrap exposes its functionality through a suite of jQuery plugins.
+Bootstrap minimises the amount of JavaScript code you need to write through the clever use of HTML data attributes, but for those who want to use JavaScript, Bootstrap exposes its functionality through a suite of jQuery plugins.
 
 I suggest reading [the Bootstrap documentation for the alert component](http://getbootstrap.com/docs/4.1/components/alerts/). Hopefully you can now see how the descriptions on that page map to the reality in the browser, and, to the code in the worked example.

@@ -793,7 +793,7 @@ x.y = 5; // no error
 x.z = 6; // also no error
 ```
 
-## Asside — Function Hoisting
+## Aside — Function Hoisting
 
 Since we’ve now mentioned the concept of hoisting, I should point out that variables aren’t the only things that get hoisted in JavaScript, function declarations do too, and that hasn’t changed in ES6.
 

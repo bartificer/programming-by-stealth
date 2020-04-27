@@ -141,7 +141,7 @@ In this instalment we’ll focus on the web app UI variant, i.e. Bootstrap Dropd
 
 Before we narrow our focus to button-based Bootstrap Dropdowns, let’s look at the big-picture design, because that remains consistent between variants.
 
-Firstly, Bootstap Dropdown components require the Bootstrap JavaScript libraries be loaded.
+Firstly, Bootstrap Dropdown components require the Bootstrap JavaScript libraries be loaded.
 
 Dropdowns consist of two related parts; a _toggle_, and a _menu_ containing _menu items_. The entire dropdown (toggle and menu) must be contained within another Bootstrap component that supports dropdowns, and as we’ll see, quite a few of them do!
 

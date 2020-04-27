@@ -113,7 +113,7 @@ It is possible to prevent some of these behaviours, but we’re not going to cov
 
 As we’ve seen, you can trigger a modal without having to write any JavaScript using Bootstrap’s Toggle plugin, but that’s not the most common use case for Modals. Instead, Modals are usually triggered via an event handler.
 
-Like with other Bootstrap components, the Boostrap JavaScript contains a jQuery plugin for controlling Modals. This plugin has the same name as the component, i.e. modal, and provides two particularly important actions, `show`, and `hide`. Like with all jQuery plugins, you invoke the Bootstrap Modal jQuery plugin by calling the function with the plugins name on a jQuery object and passing the action as a string as the first argument.
+Like with other Bootstrap components, the Bootstrap JavaScript contains a jQuery plugin for controlling Modals. This plugin has the same name as the component, i.e. modal, and provides two particularly important actions, `show`, and `hide`. Like with all jQuery plugins, you invoke the Bootstrap Modal jQuery plugin by calling the function with the plugins name on a jQuery object and passing the action as a string as the first argument.
 
 For example, you can paste the following into a JavaScript console on `pbs70a.html` to show the Modal:
 
@@ -204,7 +204,7 @@ The exact width a Modal will have depends on its content and the current width o
 
 You can use the _Width_ dropdown in the Modal generator form in `pbs70b.html` to see the what the different widths look like.
 
-## Bootstap Toast Notifications
+## Bootstrap Toast Notifications
 
 While it is possible to use Bootstrap Toast components in the same ways we use Modals above, that’s generally not the best approach because you can, usually will, have the possibility of multiple Toasts being displayed at the same time. Toasts have been specifically designed to support multiple notifications being visible at the same time, and if you set things up correctly, they’ll even stack nicely by default.
 
@@ -331,7 +331,7 @@ $toast.toast('show');
 
 You can see a real-world example in `pbs70b.html` where the code reads the values for the title and body from the text box and text area in the form.
 
-## Asside — Reminder: Don’t Re-Invent the Wheel!
+## Aside — Reminder: Don’t Re-Invent the Wheel!
 
 If you look at the source code for pbs70b.html you’ll notice I made use of two additional open source libraries. Rather than writing my own random glop generator I made use of a nice simple open source one published to GitHub named [lorem-ipsum-js](https://github.com/fffilo/lorem-ipsum-js).
 

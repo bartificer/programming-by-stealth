@@ -32,7 +32,7 @@ Back in instalment 74 I set a challenge to use Mustache templates to build a fle
 
 In PBS 75 I offered a tip to help with the challenge, and in that tip I suggested building the template before building your view objects, so I’m going to follow my own advice in this sample solution.
 
-But before starting any real work, I needed to do a little house-keeping. I started by updating the jumobtron text to better describe the page:
+But before starting any real work, I needed to do a little house-keeping. I started by updating the jumbotron text to better describe the page:
 
 ```XHTML
 <header class="container mt-5">
