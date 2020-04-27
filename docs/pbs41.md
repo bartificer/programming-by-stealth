@@ -137,14 +137,14 @@ $('#rating_ipt').val(1).change(); // set thumbs up
 $('#rating_ipt').val('').change(); // blank the rating
 ```
 
-Notice that because we are altering the value programmatically, we have to explicitly invoke the change hander we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
+Notice that because we are altering the value programmatically, we have to explicitly invoke the change handler we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
 
 ### Making the UI Work with a Mouse and Touch
 
 The next step is to add a click handler to both buttons – because we have added data attributes containing the values represented by the faux-buttons to the spans themselves, we can add the identical handler to both. The handler simply updates the value in the hidden input, and calls the change handler, just like we did from the console:
 
 ```JavaScript
-// add click handers to the thumbs up and down buttons
+// add click handlers to the thumbs up and down buttons
 $('span#rating_ui > span').click(function(){
   $('#rating_ipt').val($(this).data('rating')).change();
 });
@@ -263,7 +263,7 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
                 }
             });
 
-            // add click handers to the thumbs up and down buttons
+            // add click handlers to the thumbs up and down buttons
             $('span#rating_ui > span').click(function(){
                 $('#rating_ipt').val($(this).data('rating')).change();
             });

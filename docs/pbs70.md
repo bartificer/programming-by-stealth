@@ -22,7 +22,7 @@ Alerts are designed to draw a user’s attention to something that’s known at 
 
 The key thing to remember is that Alerts were designed for delivering information when the page or interface loads, not at some random later time.
 
-As its name suggests, the Bootstrap _Modal_ component provides an implementation of a so-called _modal dialogue_. By definition, a modal dialogue is something that takes over the full screen and prevents you interacting with any part of the app/page other than that dialogue. They are, by design, very disruptive and intrusive, and are designed for situation where things can’t continue until the user deals with some event, perhaps by simply confirming that they’ve received some information, or by choosing some kind of response. Basically, modals for for communications important things that the user must be forced to see, confirm, or choose.
+As its name suggests, the Bootstrap _Modal_ component provides an implementation of a so-called _modal dialogue_. By definition, a modal dialogue is something that takes over the full screen and prevents you interacting with any part of the app/page other than that dialogue. They are, by design, very disruptive and intrusive, and are designed for situations where things can’t continue until the user deals with some event, perhaps by simply confirming that they’ve received some information, or by choosing some kind of response. Basically, modals are for communicating important things that the user must be forced to see, confirm, or choose.
 
 In terms of notifications, modals are quite the sledge hammer, hence the need for a more subtle type of notification. That’s where Bootstrap’s _Toast_ component comes in. These notifications are inspired by push notifications on smart phones and are designed to appear, stay for some amount of time, and then disappear.
 
@@ -44,7 +44,7 @@ Because you can only have one Modal at a time, and because the markup for Modals
 
 ### The Simplest Modal
 
-In my experience, I almost exclusively want to trigger Modals with JavaScript, but there is one scenario where I can see a use for triggering a Modal using jQuery’s data-toggle attribute on a button — to show/hide a lengthy piece of text (like perhaps a privacy policy) in a way that doesn’t waste too much screen realestate.
+In my experience, I almost exclusively want to trigger Modals with JavaScript, but there is one scenario where I can see a use for triggering a Modal using jQuery’s data-toggle attribute on a button — to show/hide a lengthy piece of text (like perhaps a privacy policy) in a way that doesn’t waste too much screen real estate.
 
 Let’s use that example scenario to learn how to build modals.
 

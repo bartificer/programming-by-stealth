@@ -183,11 +183,11 @@ Let’s put this all together into a simple sample HTML page that contains some 
 
 ### Click Events
 
-After the document ready event, the next most commonly used event type is a mouse click. If you want something to happen when a user clicks on a specific HTML element, you attach a click hander to that HTML element. The jQuery function for doing this is `.click()`.
+After the document ready event, the next most commonly used event type is a mouse click. If you want something to happen when a user clicks on a specific HTML element, you attach a click handler to that HTML element. The jQuery function for doing this is `.click()`.
 
 To set a function to execute when an object is clicked, pass a callback as the first argument to `.click()`. When a user clicks on the element and triggers the callback, jQuery will ensure that a reference to the DOM object representing the element is available through the special `this` variable. Like we saw in the previous instalment when looking at the `.filter()` function’s use of callbacks, we can convert this basic DOM object into a jQuery object by passing it to the `$()` function, so a jQuery representation of the clicked-on element is available within the callback via `$(this)`.
 
-As an example, let’s add a click hander to all paragraphs that toggles a class `.highlighted` on and off:
+As an example, let’s add a click handler to all paragraphs that toggles a class `.highlighted` on and off:
 
 ```JavaScript
 // add a click event handler to define toggle the highlighting of paragraphs

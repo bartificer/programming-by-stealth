@@ -204,7 +204,7 @@ The next thing that happens as the function `initClickCounter()` executes is tha
 
 The inner function is only defined here, not executed. However, notice that it makes use of the variable `counter`, which exists in the outer function’s scope. It does not declare this variable (no `var` in front of it), so it does not have its own copy, it is instead reaching up into its containing scope to access it. It can do this because a copy of the outer function’s scope is permanently added to the inner function using JavaScript’s _closure_ mechanism. The inner function does not get a copy of the variable, it gets a reference to it.
 
-The last thing that happens when the outer function executes is that it adds the inner function to all paragraphs as a click hander.
+The last thing that happens when the outer function executes is that it adds the inner function to all paragraphs as a click handler.
 
 Once the outer function finishes executing, the inner function has still not been executed even once, it has only been declared, and added as a click handler. Were it not for closures, the variable `counter` would have vanished into the ether when the outer function finished executing, but it has not – the inner function retains a reference to it.
 
@@ -363,7 +363,7 @@ For added context, let’s create a full web page that uses our simple API to ge
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
 
-    // add an event hander to call helloWorld each time a paragraph is clicked
+    // add an event handler to call helloWorld each time a paragraph is clicked
     $(function(){
     	$('p').click(pbs.helloWorld);
     });

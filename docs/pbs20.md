@@ -304,7 +304,7 @@ When working with jQuery, you generally start by asking jQuery to query the DOM 
 
 jQuery objects contain a large number of functions, and when invoked, these functions will operate on all the HTML elements the object represents.
 
-Philosophically, jQuery likes to keep function names short, and, it likes to use the same function to query and alter a value, or to add and execute an event hander.
+Philosophically, jQuery likes to keep function names short, and, it likes to use the same function to query and alter a value, or to add and execute an event handler.
 
 As a quick example, we can get the current `href` attribute of all `a` tags in the dummy page by executing the following in the console:
 

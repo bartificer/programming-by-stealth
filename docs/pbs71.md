@@ -389,7 +389,7 @@ Let’s start with the first approach. The markup is quite simple:
 
 Note that because in this case the spinner will be the only thing visible in the button once the button is clicked I do have to include the screen-reader-only text inside the spinner. I also chose to use a small spinner because I think that looks better.
 
-With the markup in place we need to add a click hander that will hide the text, show the spinner and disable the button. We do this inside the document ready event handler:
+With the markup in place we need to add a click handler that will hide the text, show the spinner and disable the button. We do this inside the document ready event handler:
 
 ```JavaScript
 $('#spinner_btn_1').click(function(){
@@ -449,7 +449,7 @@ Since the spinner is purely decorative in this scenario it has not screen-reader
 With the markup in place we can add the event handler. Like in our previous example, in the real world the re-enabling would be done in a separate event handler, but in this case we’re using a 3 second timeout set within the click handler:
 
 ```JavaScript
-// add a click hander to the second spinner button
+// add a click handler to the second spinner button
 $('#spinner_btn_2').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
 

@@ -99,7 +99,7 @@ I also added an event handler to show a standard browser alert box when the form
 ```JavaScript
 // a document ready handler
 $(function(){
-  // add a submit hander to the form
+  // add a submit handler to the form
   $('#support_fm').submit(function(){
     window.alert("Your donation was not submitted because this is a dummy form, but thanks all the same, it's the thought that counts :)");
   });
@@ -142,7 +142,7 @@ $(function(){
   $form.submit(enableBootstrapValiationStyles);
   $('input', $form).on('invalid', enableBootstrapValiationStyles);
 
-  // add a submit hander to the form
+  // add a submit handler to the form
   $form.submit(function(){
   window.alert("Your donation was not submitted because this is a dummy form, but thanks all the same, it's the thought that counts :)");
   });
@@ -161,11 +161,11 @@ Remember, when you pass the `$()` function a CSS selector as the first argument 
 
 The final step is to take full control and remove the standard HTML5 UI completely, and replace it with custom Bootstrap UI. The first thing we have to do to enable this is tell HTML5 not to show its built-in validation messages by adding the flag attribute `novalidate` to the `<form>`. Doing this will not prevent the browser from doing the validation, so the `:valid` and `:invalid` pseudo-classes will continue to exist and be updated, but it will prevent the browser from showing validation feedback, and even invalid forms will now submit.
 
-Before we look at what Bootstrap has to offer us, we need to remind ourselves of some jQuery, because we’ve now taken responsibility for preventing form submission when there are validation errors. The jQuery way of achieving that goal is to call the `.stopPropagation()` function on the jQuery event object representing the `submit` event. The first argument passed to an event hander in JavaScript is always the relevant jQuery event object, so we simply need to name the first argument to our submit handler and then call `.stopPropagation()` on that name. For clarity I’ll be using the name `event` in my example, but you really could choose anything.
+Before we look at what Bootstrap has to offer us, we need to remind ourselves of some jQuery, because we’ve now taken responsibility for preventing form submission when there are validation errors. The jQuery way of achieving that goal is to call the `.stopPropagation()` function on the jQuery event object representing the `submit` event. The first argument passed to an event handler in JavaScript is always the relevant jQuery event object, so we simply need to name the first argument to our submit handler and then call `.stopPropagation()` on that name. For clarity I’ll be using the name `event` in my example, but you really could choose anything.
 
 The other thing we need to remind ourselves of is how to tell if an input is in a valid or invalid state using jQuery. We can do this by combining jQuery’s `.is()` function with the HTML5 `:valid` or `:invalid` CSS pseudo-classes. As an example, if you load pbs66d.html into your favourite browser and enable the JavaScript console you can use that to query the validation state of the first name text box with: `$('#name_first_tb').is(':valid')`.
 
-With those two piece of jQuery knowledge fresh in our minds agin, let’s now look at the tools Bootstrap provides us.
+With those two piece of jQuery knowledge fresh in our minds again, let’s now look at the tools Bootstrap provides us.
 
 Because Bootstrap’s default behaviour is to only show form validity styling when the form has the class `.was-validated`, by default either all the fields within a form get styled, or none. That’s not always the desired behaviour, so Bootstrap also provides the classes `.is-valid` & `.is-invalid` which can be applied to individual form elements to cause them to show their styling regardless of the presence or absence of `.was-validated` on their containing `<form>`.
 
@@ -331,12 +331,12 @@ $url.on('input', validateURL);
 $plug.on('change', validateURL);
 ```
 
-Finally, there is the form submission event hander. This handler first enables validation feedback on the entire form. Next it calls all the validation functions to determine whether or not the form as a whole should be considered valid, and then it either blocks form submission, or pretend-submits the form (since it’s a dummy form). As a courtesy to users, the handler also focuses the first invalid field when there is one.
+Finally, there is the form submission event handler. This handler first enables validation feedback on the entire form. Next it calls all the validation functions to determine whether or not the form as a whole should be considered valid, and then it either blocks form submission, or pretend-submits the form (since it’s a dummy form). As a courtesy to users, the handler also focuses the first invalid field when there is one.
 
 The code is quite short and straightforward:
 
 ```JavaScript
-// add a submit hander to the form
+// add a submit handler to the form
 $form.submit(function(event){
   // always enable bootstrap validation styles
   $form.addClass('was-validated');

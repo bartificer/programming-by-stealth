@@ -212,7 +212,7 @@ The following shows a menu set to drop right:
 
 When you look at menus in the apps you use you’ll see they contain more than just menu items, they also contain additional un-clickable items that add context like dividers, section headings, and help text.
 
-To add a divider in a menu simply add an empty tag of your choice (usually a `<div>`) as a sibling to the buttons with with the class `.dropdown-divider`.
+To add a divider in a menu simply add an empty tag of your choice (usually a `<div>`) as a sibling to the buttons with the class `.dropdown-divider`.
 
 To add a heading add a tag of your choice (again, usually a `<div>`) which contains the heading text and has the class `.dropdown-header`.
 
@@ -220,7 +220,7 @@ Finally, to add some help text add a tag of your choice (usually a `<p>`) contai
 
 Here’s a sample menu using all three of the above:
 
-```undefined
+```html
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" id="fancyDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
     Share …

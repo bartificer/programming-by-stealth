@@ -18,7 +18,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge set at the end of the previous instalment was to improve upon the alter-generator form we’ve been working on over the past few instalments. You could use your solution to the previous challenge as your starting point, or you could use my sample solution instead.
 
-The first part of the challenge was to transform the form into a properly marked up Bootstrap form complete with all the appropriate ARIA attributes to make the form accessible. There was very little to do here, and it was all simple by-the-book markup, so I don’t think theres any need to dwell on it. This is the form I ended up with at this point in the challenge:
+The first part of the challenge was to transform the form into a properly marked up Bootstrap form complete with all the appropriate ARIA attributes to make the form accessible. There was very little to do here, and it was all simple by-the-book markup, so I don’t think there's any need to dwell on it. This is the form I ended up with at this point in the challenge:
 
 ```XHTML
 <fieldset class="col form" role="form" aria-labelledby="create_fm_desc">
@@ -190,7 +190,7 @@ The next part of the challenge was to add a group of radio buttons to allow the 
 
 Note that I chose to use an inline button group.
 
-Next the click hander for the button to create alerts needed to be updated to read the chosen icon from the radio group, and, to create and insert the appropriate icon.
+Next the click handler for the button to create alerts needed to be updated to read the chosen icon from the radio group, and, to create and insert the appropriate icon.
 
 Reading the value from a radio group is something we haven’t done in a while, so let’s remind ourselves how we do that with jQuery. What we need to do is query the document for the one member of the radio group that is selected, and then read out its value. Let’s break that down — first we’ll need all inputs with the name `alert_icon_rb`. The CSS selector for that is:
 
@@ -254,7 +254,7 @@ $('#alert_btn').click(function(){
 });
 ```
 
-The penultimate part of the challenge was to have the form reset to its default state when the alert is created. The easiest way to do this is to call the form’s `.reset()` function as the last line in the click handler. I gave my form the ID `create_fm`, so I can get a reference to a jQuery object representing the form with `$('#create_fm')`. This gets me a jQuery object, not the form’s raw object in the DOM. But, I need the DOM object because `.reset()` is a DOM function, not a jQuery function. I can do that with jQuery’s `.get()` function. Putting it all together the very end of my click hander now becomes:
+The penultimate part of the challenge was to have the form reset to its default state when the alert is created. The easiest way to do this is to call the form’s `.reset()` function as the last line in the click handler. I gave my form the ID `create_fm`, so I can get a reference to a jQuery object representing the form with `$('#create_fm')`. This gets me a jQuery object, not the form’s raw object in the DOM. But, I need the DOM object because `.reset()` is a DOM function, not a jQuery function. I can do that with jQuery’s `.get()` function. Putting it all together the very end of my click handler now becomes:
 
 ```JavaScript
 // reset the form

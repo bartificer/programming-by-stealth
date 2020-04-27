@@ -232,7 +232,7 @@ $(function(){
 
 ### Event Handlers
 
-When Bootstrap components allow users to interact with them they generally provide matching event handers. While it looks a little odd at first, the events are generally named `EVENT.bs.PLUGIN` (`bs` for Bootstrap).
+When Bootstrap components allow users to interact with them they generally provide matching event handlers. While it looks a little odd at first, the events are generally named `EVENT.bs.PLUGIN` (`bs` for Bootstrap).
 
 In the case of dismissible alerts, the obvious event to listen for is the alert being dismissed, and Bootstrap provides just such an event, which it has named `close.bs.alert` (notice how it follows the naming convention, `close` is the event, followed by `.bs.` followed by the plugin name, `alert`).
 
