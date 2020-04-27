@@ -141,7 +141,7 @@ However, by simply setting the `overflow` property of the yellow box to `auto`, 
 
 Another way to remove boxes from the normal flow of the page and move them elsewhere is by setting the `position` property.
 
-The default value for this property is `static` – that is to say, the tag is either rendered in the normal flow of the page, or floated. A box with a `position` of `static` is said to be _unpositioned_, and conversely, a box with a `position` other than `static` is said to be _positioned_.
+The default value for this property is `static` – that is to say, the tag is either rendered in the normal flow of the page or floated. A box with a `position` of `static` is said to be _unpositioned_, and conversely, a box with a `position` other than `static` is said to be _positioned_.
 
 Tags with their `position` set to `fixed` are taken out of the normal flow of the document, and placed above the boxes that remain within the normal flow, and positioned relative to the browser window.
 

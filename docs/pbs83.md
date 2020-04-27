@@ -56,7 +56,7 @@ loadTemplates('gameMessage', 'guesses', 'guessPopover', 'gameWon', 'gameGrid', '
 );
 ```
 
-Notice the standard promise handling — passing `.then()` two callbacks, the first to execute when all goes well, and the the second when there is an error. Note that without the comments at the top of each callback it would not be at all obvious which part of that code is dealing with success, and which is doing the error handling, it’s just two anonymous functions as callbacks.
+Notice the standard promise handling — passing `.then()` two callbacks, the first to execute when all goes well, and the second when there is an error. Note that without the comments at the top of each callback it would not be at all obvious which part of that code is dealing with success, and which is doing the error handling, it’s just two anonymous functions as callbacks.
 
 Let’s go ahead and re-factor the code to use `await` instead:
 

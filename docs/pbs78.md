@@ -24,7 +24,7 @@ You’ll find the full code for my sample solution in this instalment’s ZIP fi
 
 ### Building Blocks
 
-A point I hoped this ver open-ended challenge would highlight is just how many virtual building blocks we’ve amassed in the past 77 instalments. My first step in developing a solution was to decide on the building blocks I’d deploy. It was a given that I’d use jQuery and Bootstrap, but which of the many Bootstrap components we’ve met to date would I use?
+A point I hoped this very open-ended challenge would highlight is just how many virtual building blocks we’ve amassed in the past 77 instalments. My first step in developing a solution was to decide on the building blocks I’d deploy. It was a given that I’d use jQuery and Bootstrap, but which of the many Bootstrap components we’ve met to date would I use?
 
 After quite a bit of experimentation, I ended up using all of the following to build my game:
 

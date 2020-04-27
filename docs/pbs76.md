@@ -433,7 +433,7 @@ Notice the first part of the RE is identical to what we had before. It matches t
 
 We then match the string `'stackoverflow.com/users/'`, remembering to escape the `/` characters with `\/`, and using the character class `[.]` to represent an actual period symbol. Remember, were it not in the character class the `.` would mean _‘any single character’_. Then we match one or more digits followed by a `/` with `/\d+\/`. Next comes the really important part — the capture group for the username: `(.+)`. Remember, `.` means _‘any character’_, `+` means _‘one or more’_, and parenthesis create a capture group, so we are capturing one or more of any character, and storing that value in the first capture group, which we can access in the replacement string as `$1`. We don’t want to include the trailing ?tab=profile in the capture group, so we have to match that outside the parentheses. Because `?` means _‘zero or one’_ I use the character class `[?]` to match the actual question mark symbol, and `$` means `'end of string'`. Finally, the replacement string (second argument to `.replace()`)is simply `'$1'`, i.e. the contents of the first (and only) capture group.
 
-Putting it all together I created two lookup tables, one defining functions for transforming the raw values (the keys from from `data.people.allison.contact` and `data.people.bart.contact`) into URLs, and one for transforming them into meaningful text for the links. I added my lookup tables into the `data` object for easy access:
+Putting it all together I created two lookup tables, one defining functions for transforming the raw values (the keys from `data.people.allison.contact` and `data.people.bart.contact`) into URLs, and one for transforming them into meaningful text for the links. I added my lookup tables into the `data` object for easy access:
 
 ```JavaScript
 // inject helper functions for generating pretty values
@@ -531,7 +531,7 @@ Note that I’ve made the icon large using the `h1` Bootstrap utility class.
 
 Also note that the existence of the `icon` partial has saved me from some code duplication.
 
-We’re now ready to make the flex container switch from vertical stacking to horizontal stacking from the `md` breakpoint up. We do this by adding the Bootrap flex utilit class `flex-md-row`. To allow any icons with long text to flow onto a possible extra row if needed we add `flex-md-wrap`, and to align the items nicely we add `justify-content-md-between`.
+We’re now ready to make the flex container switch from vertical stacking to horizontal stacking from the `md` breakpoint up. We do this by adding the Bootstrap flex utility class `flex-md-row`. To allow any icons with long text to flow onto a possible extra row if needed we add `flex-md-wrap`, and to align the items nicely we add `justify-content-md-between`.
 
 We’re almost there, but we still need to centre the icons and text, and also centre the heading containing the person’s name. We can do all this with the responsive Bootstrap utility class `text-md-center`.
 

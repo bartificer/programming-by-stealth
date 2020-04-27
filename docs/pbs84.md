@@ -150,7 +150,7 @@ console.log(`dailySales['mon'].profit evaluates to: ${dailySales['mon'].profit}`
 console.log(`dailySales.mon['profit'] evaluates to: ${dailySales.mon['profit']}`);
 ```
 
-To facilitate more human-friendly outputs, `pbs84a.html` defines a better version of the array of day abbrevations. This array stores a list of dictionaries, one for each day of the week. Each of those dictionaries defines two keys, `name`, and `abbr`. The values for the `name` key are the human-friendly names of the days, and the values for the `abbr` key are the abbreviations:
+To facilitate more human-friendly outputs, `pbs84a.html` defines a better version of the array of day abbreviations. This array stores a list of dictionaries, one for each day of the week. Each of those dictionaries defines two keys, `name`, and `abbr`. The values for the `name` key are the human-friendly names of the days, and the values for the `abbr` key are the abbreviations:
 
 ```JavaScript
 const days = [

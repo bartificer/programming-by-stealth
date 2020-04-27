@@ -46,7 +46,7 @@ var REJECTED_CB = function(val){
 }
 ```
 
-Thirdly, the file provides a function named `promisedConfirm()`. This function imitates the standard `window.confirm()` function but uses a nice Bootstrap Modal, and immediately returns a promise rather than waiting waiting for the user to respond like `window.confirm()` does. _Note that this is a utility function defined within the file, not a standard JavaScript, jQuery, or Bootstrap function._
+Thirdly, the file provides a function named `promisedConfirm()`. This function imitates the standard `window.confirm()` function but uses a nice Bootstrap Modal, and immediately returns a promise rather than waiting for the user to respond like `window.confirm()` does. _Note that this is a utility function defined within the file, not a standard JavaScript, jQuery, or Bootstrap function._
 
 The function accepts up to three arguments:
 
@@ -610,7 +610,7 @@ You may or may not like this syntax, but it sure seems a lot less hellish to me!
 
 ## A Challenge
 
-Update a version of the number guessing game described in challenge set in instalment 79 as described below. You can use your own solution to that challenge, or my sample sample solution as included in the ZIP file for instalment 80.
+Update a version of the number guessing game described in challenge set in instalment 79 as described below. You can use your own solution to that challenge, or my sample solution as included in the ZIP file for instalment 80.
 
 Firstly, update the code that fetches the random number via AJAX to use a promise.
 
