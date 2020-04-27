@@ -4,7 +4,7 @@ In [the previous instalment](https://bartificer.net/pbs73) we got our first look
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/03/pbs74.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs74.zip).
 
-# Matching Postcast Episode 587
+# Matching Podcast Episode 587
 
 Listen along to this instalment on [episode 587 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/03/ccatp-587/)
 
@@ -44,27 +44,27 @@ Then it was just a matter of updating my `showToast()` function so it loaded the
 function showToast(t, msg){
   // fetch a copy of the template string
   const toastTpl = $('#toast_tpl').html();
-		
+
   // build a view object
   const toastView = {
     title: t,
     message: msg
   }
-		
+
   // build a toast from the template with the view
   const $toast = $(Mustache.render(toastTpl, toastView));
-		
+
   // add the toast to the toast rack
   $('#toast_rack').append($toast);
-		
+
   // initialise the toast plugin on the toast
   $toast.toast({ autohide: false });
-		
+
   // add an event handler to automatically delete the toast when it hides
   $toast.on('hidden.bs.toast', function(){
     $(this).remove();
   });
-		
+
   // finally show the toast
   $toast.toast('show');
 }

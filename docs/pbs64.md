@@ -4,7 +4,7 @@ In the previous few instalments we’ve been learning about Bootstrap forms. We 
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs64.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs64.zip).
 
-# Matching Postcast Episode 566
+# Matching Podcast Episode 566
 
 Listen along to this instalment on [episode 566 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/10/ccatp-566/)
 
@@ -180,20 +180,19 @@ Rather than working with an empty page for this challenge, we’ll use the final
 Which ever recipe you choose to use as your starting point, add the following:
 
 1.  A footer containing a small inline form to allow an imaginary admin to log in.
-    
+
     The form should provide a text box for the username, a password field, and a login button.
-    
+
     When the user clicks the login button they should get a message letting them know that the form is just a dummy form, and that it’s impossible to actually log in.
-    
+
 2.  A form for sharing the recipe with a friend. This form should allow the user to enter the following information:
-    
+
     1.  Sender name and email address
     2.  Recipient name and email address
     3.  A message
     4.  A Send Button
-    
+
     When the user submits the form it should let them know the form doesn’t actually do anything.
-    
 
 When you’re finished, your entire recipe page, including these two new forms, should be well behaved, readable, and usable at all breakpoints.
 

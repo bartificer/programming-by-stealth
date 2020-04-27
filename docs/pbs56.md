@@ -6,7 +6,7 @@ In the next instalment we’ll move on to the most powerful aspect of Bootstrap,
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip).
 
-# Matching Postcast Episode 551
+# Matching Podcast Episode 551
 
 Listen along to this instalment on [episode 551 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-551/)
 

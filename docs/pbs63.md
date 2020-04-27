@@ -6,7 +6,7 @@ Having looked at basic form inputs in the previous instalment, and then buttons 
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/pbs63.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs63.zip).
 
-# Matching Postcast Episode 564
+# Matching Podcast Episode 564
 
 Listen along to this instalment on [episode 564 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/09/ccatp-564-bart-busschots-on-pbs-63/)
 
@@ -23,14 +23,14 @@ The first part of the challenge was to transform the form into a properly marked
 ```XHTML
 <fieldset class="col form" role="form" aria-labelledby="create_fm_desc">
   <legend id="create_fm_desc">Create Alerts</legend>
-            
+
   <form action="javascript:void(0);" id="create_fm">
-            
+
   <div class="form-group">
     <label for="alert_text_tb">Alert Text</label>
     <input type="text" class="form-control" id="alert_text_tb" placeholder="The text for your alert">
   </div>
-            
+
   <div class="form-group">
     <label for="alert_style_sel">Alert Style</label>
     <select class="form-control" id="alert_style_sel">
@@ -44,14 +44,14 @@ The first part of the challenge was to transform the form into a properly marked
       <option value="dark">Dark</option>
     </select>
   </div>
-            
+
   <div class="form-group">
     <button class="btn btn-primary form-control" id="alert_btn">
       Add Alert
       <span class="badge badge-light" id="counter_badge"></span>
     </button>
   </div>
-            
+
   <div class="form-group">
     <button class="btn btn-danger form-control" id="close_btn">Close All Alerts</button>
   </div>
@@ -79,37 +79,37 @@ The markup is by the book:
 </div>
 ```
 
-Updating the click handler for the create button is also quite straight forward, we use the same jQuery functions used in our starting code to query the document for the values from the form, build an alert from those values, and inject the newly created alert into the document, we just call those  
+Updating the click handler for the create button is also quite straight forward, we use the same jQuery functions used in our starting code to query the document for the values from the form, build an alert from those values, and inject the newly created alert into the document, we just call those
 same functions more often to query the form for two values rather than one:
 
 ```JavaScript
 $('#alert_btn').click(function(){
   // build an empty alert
   const $a = $('<div>').addClass(`alert alert-${$('#alert_style_sel').val()}`);
-        
+
   // build and inject the title
   const $title = $('<h4>').addClass('alert-heading');
   $title.text($('#alert_title_tb').val() || "A sample Alert");
   $a.append($title);
-        
+
   // build and inject the body
   $body = $('<p>').text($('#alert_body_ta').val() || "Enter text in the text area!");
   $a.append($body);
-        
+
   // inject a dismiss button
   $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
-        
+
   // tell Bootstrap to treat our new alert as an alert
   $a.alert();
-        
+
   // add a listener to the alert's closed event to update the counter
   $a.on('closed.bs.alert', function(){
     updateCounter();
   });
-        
+
   // inject it into the page
   $('#insert_here').append($a);
-        
+
   // update the counter
   updateCounter();
 });
@@ -126,39 +126,39 @@ The markup for this checkbox was again, by the book:
 </div>
 ```
 
-The JavaScript is also quite straightforward. Basically, I use jQuery’s `$()` function to  
+The JavaScript is also quite straightforward. Basically, I use jQuery’s `$()` function to
 query the document for the checkbox, then use jQuery’s `.prop()` function to test whether or not the checkbox has the `checked` property. I can then use that value in `if()` statement wrapped around the code for injecting the close button:
 
 ```undefined
 $('#alert_btn').click(function(){
   // build an empty alert
   const $a = $('<div>').addClass(`alert alert-${$('#alert_style_sel').val()}`);
-        
+
   // build and inject the title
   const $title = $('<h4>').addClass('alert-heading');
   $title.text($('#alert_title_tb').val() || "A sample Alert");
   $a.append($title);
-        
+
   // build and inject the body
   $body = $('<p>').text($('#alert_body_ta').val() || "Enter text in the text area!");
   $a.append($body);
-        
+
   // inject a dismiss button if required
   if($('#add_close_btn_cb').prop('checked')){
     $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
   }
-        
+
   // tell Bootstrap to treat our new alert as an alert
   $a.alert();
-        
+
   // add a listener to the alert's closed event to update the counter
   $a.on('closed.bs.alert', function(){
     updateCounter();
   });
-        
+
   // inject it into the page
   $('#insert_here').append($a);
-        
+
   // update the counter
   updateCounter();
 });
@@ -216,39 +216,39 @@ Putting it all together, my click handler now looks like this:
 $('#alert_btn').click(function(){
     // build an empty alert
     const $a = $('<div>').addClass(`alert alert-${$('#alert_style_sel').val()}`);
-        
+
     // build the title
     const $title = $('<h4>').addClass('alert-heading');
     $title.text($('#alert_title_tb').val() || "A sample Alert");
-        
+
     // inject the icon into the title
     const $icon = $('<i aria-hidden>').addClass('fa mr-2');
     $icon.addClass($('input[name=alert_icon_rb]:checked').val());
     $title.prepend($icon);
-        
+
     // inject the title with icon into the alert
     $a.append($title);
-        
+
     // build and inject the body
     $body = $('<p>').text($('#alert_body_ta').val() || "Enter text in the text area!");
     $a.append($body);
-        
+
     // inject a dismiss button if required
     if($('#add_close_btn_cb').prop('checked')){
       $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
     }
-        
+
     // tell Bootstrap to treat our new alert as an alert
     $a.alert();
-        
+
     // add a listener to the alert's closed event to update the counter
     $a.on('closed.bs.alert', function(){
       updateCounter();
   });
-        
+
   // inject it into the page
   $('#insert_here').append($a);
-        
+
   // update the counter
   updateCounter();
 });

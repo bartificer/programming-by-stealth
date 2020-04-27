@@ -6,7 +6,7 @@ To remedy this I thought it would be useful to go through the entire cycle of do
 
 Below you’ll find the screencast embedded, and, links to the various tools mentioned. Myself and Allison have also recorded a podcast for this instalment. I share my screen with Allison, and we walk through all the same steps as I do in the screencast, but with Allison stopping me and asking all the questions you probably are as you watch the screencast. When published, that podcast will be linked into this post.
 
-# Matching Postcast Episode 494
+# Matching Podcast Episode 494
 
 Listen Along: Chit Chat Accross the Pond Episode 494
 

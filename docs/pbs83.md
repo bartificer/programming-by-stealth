@@ -6,7 +6,7 @@ It’s important to stress that while we’re wrapping up our exploration of Boo
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs83.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs83.zip).
 
-# Matching Postcast Episode 610
+# Matching Podcast Episode 610
 
 Listen along to this instalment on [episode 610 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/10/ccatp-610/)
 
@@ -70,7 +70,7 @@ try{
   ));
   console.log('failed to load templates with error', err);
 }
-			
+
 // reset the game
 resetGame();
 ```
@@ -87,16 +87,16 @@ So, rather than marking the entire function as async, we just want to make part 
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
-			
+
   // blank and hide the modal
   $MODAL.modal('hide');
   $MODAL_CONTENT.empty();
-			
+
   // set the game UI to the loading spinner & empty $GAME_MESSAGE_CONTAINER & $GUESSES_DISPLAY
   $GAME_INTERFACE.html(SPINNER_HTML);
   $GAME_MESSAGE_CONTAINER = null;
   $GUESSES_DISPLAY = null;
-			
+
   // fetch a random number via AJAX
   $.ajax({
     url: 'https://bartbusschots.ie/utils/fakerWS/numberBetween/1/text',
@@ -111,15 +111,15 @@ function resetGame(){
     function(rn){ // resolved
       // save the random number
       RANDOM_NUMBER = rn;
-									
+
       // blank the guesses
       GUESSES = [];
       MIN_POSSIBLE_GUESS = MIN;
       MAX_POSSIBLE_GUESS = MAX;
-									
+
       // reset the game UI
       resetGameUI();
-									
+
       // game on!
       GAME_ON = true;
     },
@@ -140,16 +140,16 @@ Now let’s replace the AJAX call and its `.then()` with an async IIFE that make
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
-			
+
   // blank and hide the modal
   $MODAL.modal('hide');
   $MODAL_CONTENT.empty();
-			
+
   // set the game UI to the loading spinner & empty $GAME_MESSAGE_CONTAINER & $GUESSES_DISPLAY
   $GAME_INTERFACE.html(SPINNER_HTML);
   $GAME_MESSAGE_CONTAINER = null;
   $GUESSES_DISPLAY = null;
-			
+
   // switch to async for the remainder of the function
   (async ()=>{
     try{
@@ -164,15 +164,15 @@ function resetGame(){
         cache: false,
         dataType: 'text'
       });
-					
+
       // blank the guesses
       GUESSES = [];
       MIN_POSSIBLE_GUESS = MIN;
       MAX_POSSIBLE_GUESS = MAX;
-									
+
       // reset the game UI
       resetGameUI();
-									
+
       // game on!
       GAME_ON = true;
     }catch(err){
@@ -224,33 +224,33 @@ The easiest way to illustrate Cards in use is with an example. As a first exampl
 <div class="card" style="width: 300px;">
   <!-- A Card header -->
   <h2 class="card-header h4">A Card Header</h2>
-					
+
   <!-- A regular Card image -->
   <img src="PBS-Logo.png" class="card-img" alt="The PBS Logo" title="A card image">
-					
+
   <!-- A Card body -->
   <div class="card-body">
-					
+
     <!-- A Card title -->
     <h3 class="card-title h5">A Card Title</h3>
-						
+
     <!-- A Card sub-title -->
     <h4 class="card-subtitle h6 text-muted">A Card Subtitle</h4>
-						
+
     <!-- Regular Card text -->
     <p class="card-text">This is some card text. It's really not very exiting in any way.</p>
-						
+
     <!-- A Card link -->
     <a href="" class="card-link">A Card Link</a>
   </div>
-					
+
   <!-- A Card list -->
   <ul class="list-group list-group-flush">
     <li class="list-group-item">List Item 1</li>
     <li class="list-group-item">Second List Item</li>
     <li class="list-group-item">Another item in a list</li>
   </ul>
-					
+
   <!-- A Card footer -->
   <div class="card-footer text-muted">A Card Footer</div>
 </div>
@@ -267,33 +267,33 @@ Since a Card can have either a header, or, an image cap on top, and, either a fo
 ```XHTML
 <!-- The Card -->
 <div class="card" style="width: 300px;">
-				
+
   <!-- The top image cap -->
   <img src="NC-Logo.png" class="card-img-top" alt="The NosillaCast Logo" title="A card image">
-					
+
   <!-- A Card body -->
   <div class="card-body">
-					
+
     <!-- A Card title -->
     <h3 class="card-title h5">A Card Title</h3>
-						
+
     <!-- A Card sub-title -->
     <h4 class="card-subtitle h6 text-muted">A Card Subtitle</h4>
-						
+
     <!-- Some regular Card text -->
     <p class="card-text">This is some card text. It's really not very exiting in any way.</p>
-						
+
     <!-- A Card link -->
     <a href="" class="card-link">A Card Link</a>
   </div>
-					
+
   <!-- A Card list -->
   <ul class="list-group list-group-flush">
     <li class="list-group-item">List Item 1</li>
     <li class="list-group-item">Second List Item</li>
     <li class="list-group-item">Another item in a list</li>
   </ul>
-					
+
   <!-- The bottom image cap -->
   <img src="Podfeet-Footer.png" class="card-img-top" alt="Podfeet Icons">
 </div>

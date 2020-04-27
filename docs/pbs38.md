@@ -2,7 +2,7 @@
 
 Since this is the first instalment back after our summer hiatus, it seems like a good time to pause and take stock. I want to look back to revise what we’ve learned to far, and, to look forward to where I want to take this series next.
 
-# Matching Postcast Episode 500
+# Matching Podcast Episode 500
 
 Listen Along: Chit Chat Accross the Pond Episode 500
 
@@ -158,61 +158,60 @@ strong.vip{
 ```
 
 1.  How many CSS statements does the snippet contain?
-    
+
     Answer
-    
+
     four
-    
+
     four
-    
+
 2.  How many CSS declarations does the snippet contain?
-    
+
     Answer
-    
+
     five – one in each of the first three statements, and two in the last.
-    
+
     five – one in each of the first three statements, and two in the last.
-    
+
 3.  What is `color`?
-    
+
     Answer
-    
+
     a style property
-    
+
     a style property
-    
+
 4.  What is `bold`?
-    
+
     Answer
-    
+
     a value
-    
+
     a value
-    
+
 5.  If the CSS snippet above were the sum total of all the CSS applied to an HTML document, what colour would text in a paragraph be?
-    
+
     Answer
-    
+
     gray
-    
+
     gray
-    
+
 6.  If the CSS snippet above were the sum total of all the CSS applied to an HTML document, what colour would strong text in a paragraph be, and why?
-    
+
     Answer
-    
+
     green, because the `p strong` selector has more specificity than the `strong` selector.
-    
+
     green, because the `p strong` selector has more specificity than the `strong` selector.
-    
+
 7.  If the CSS snippet above were the sum total of all the CSS applied to an HTML document, what colour would strong text in a paragraph be if the strong element had the class `vip`, and why?
-    
+
     Answer
-    
+
     red, because the `strong.vip` selector has more specificity than the `p strong` selector because classes out-rank element names, even when there are two element names up against just one class.
-    
+
     red, because the `strong.vip` selector has more specificity than the `p strong` selector because classes out-rank element names, even when there are two element names up against just one class.
-    
 
 ## JavaScript
 
@@ -280,49 +279,49 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
       }
     };
     ```
-    
+
     1.  What will be the output from: `console.log(x['a'])`?
-        
+
         Answer
-        
+
         `b`
-        
+
         `b`
-        
+
     2.  What will be the output from: `console.log(x.a)`?
-        
+
         Answer
-        
+
         `b`
-        
+
         `b`
-        
+
     3.  What will be the output from: `console.log(x.c.length)`?
-        
+
         Answer
-        
+
         `4`
-        
+
         `4`
-        
+
     4.  What will be the output from: `console.log(x['c'][3].length)`?
-        
+
         Answer
-        
+
         `2`
-        
+
         `2`
-        
+
     5.  What will be the output from: `x.j()`?
-        
+
         Answer
-        
+
         `h`
-        
+
         `h`
-        
+
 2.  What will the following code snippet print to the console, and why?
-    
+
     ```JavaScript
     var x = 4;
     function doSomething(){
@@ -332,15 +331,15 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
     console.log(x);
     doSomething();
     ```
-    
+
     Answer
-    
+
     4 and then 5, because while the function is declared before the first `console.log`, it is not called until after the first `console.log`, and it will not execute until it is run.
-    
+
     4 and then 5, because while the function is declared before the first `console.log`, it is not called until after the first `console.log`, and it will not execute until it is run.
-    
+
 3.  What will the following code snippet print to the console, and why?
-    
+
     ```JavaScript
     var x = 4;
     function doSomething(x){
@@ -349,30 +348,29 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
     console.log(x);
     doSomething(5);
     ```
-    
+
     Answer
-    
+
     4 and then 5, because the `x` within the function is the value passed as the first argument when the function is called, it is effectively declared within the function, so for all code within the function, `x` refers to the first argument, not the completely un-related globally scoped variable with the same name.
-    
+
     4 and then 5, because the `x` within the function is the value passed as the first argument when the function is called, it is effectively declared within the function, so for all code within the function, `x` refers to the first argument, not the completely un-related globally scoped variable with the same name.
-    
+
 4.  What will the following code snippet print to the console, and why?
-    
+
     ```JavaScript
     var x = 4;
-    
+
     (function(){
       var x = 5;
       console.log(x);
     })();
     ```
-    
+
     Answer
-    
+
     5, because the `x` declared in the function’s scope replaced the `x` declared outside the function for all statements within the function.
-    
+
     5, because the `x` declared in the function’s scope replaced the `x` declared outside the function for all statements within the function.
-    
 
 ### jQuery
 

@@ -6,7 +6,7 @@ Different notifications require a different UI, hence there being two components
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs70.zip).
 
-# Matching Postcast Episode 580
+# Matching Podcast Episode 580
 
 Listen along to this instalment on [episode 580 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/01/ccatp580/)
 

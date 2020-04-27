@@ -6,7 +6,7 @@ That changes in this instalment when we make a start on Bootstrap’s final aspe
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/pbs60.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs60.zip).
 
-# Matching Postcast Episode 558
+# Matching Podcast Episode 558
 
 Listen along to this instalment on [episode 558 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/08/ccatp-558/)
 
@@ -176,10 +176,10 @@ $(function(){
     // build an alert
     const $a = $('<div>').text("Well done, you added an alert!");
     $a.addClass('alert alert-success');
-        
+
     // ...
   });
-    
+
   // ...
 });
 ```
@@ -217,13 +217,13 @@ $(function(){
     // build an alert
     const $a = $('<div>').text("Well done, you added an alert!");
     $a.addClass('alert alert-success');
-        
+
     // inject a dismiss button
     $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
-        
+
     // tell Bootstrap to treat our new alert as an alert
     $a.alert();
-              
+
     // inject it into the page
     $('#insert_here').append($a);
   });
@@ -246,18 +246,18 @@ $(function(){
     // build an alert
     const $a = $('<div>').text("Well done, you added an alert!");
     $a.addClass('alert alert-success');
-        
+
     // inject a dismiss button
     $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
-        
+
     // tell Bootstrap to treat our new alert as an alert
     $a.alert();
-        
+
     // add a listener to the alert's close event
     $a.on('close.bs.alert', function(){
       console.log('an alert was closed!');
     });
-        
+
     // inject it into the page
     $('#insert_here').append($a);
   });
@@ -276,7 +276,7 @@ To see this in action, let’s add an event handler for the button to close all 
 // add a document ready handler
 $(function(){
   // ...
-    
+
   // add an event handler to the close button
   $('#closeBtn').click(function(){
     // query for all alerts in our container

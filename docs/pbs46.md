@@ -6,7 +6,7 @@ Finally, we’ll make a start on my personal favourite new feature in ES6 — cl
 
 We’ll only be covering the basics of the class keyword in this instalment. In the next instalment we’ll take things up a notch when we finally explore the concept of _polymorphism_, the heart and soul of object oriented programming.
 
-# Matching Postcast Episode 516
+# Matching Podcast Episode 516
 
 Listen Along: Chit Chat Accross the Pond Episode 516
 
@@ -29,7 +29,7 @@ function dummyBasicTypesExcept(){
     for(let i = 0; i < arguments.length; i++){
         exclude_lookup[arguments[i]] = true;
     }
-    
+
     // build the list of type names not excluded
     const ans = [];
     Object.keys(DUMMY_BASIC_TYPES).sort().forEach(function(tn){
@@ -37,7 +37,7 @@ function dummyBasicTypesExcept(){
             ans.push(tn); // save the type name if not excluded
         }
     });
-    
+
     // return the calculated list
     return ans;
 }
@@ -54,7 +54,7 @@ function dummyBasicTypesExcept(...excludeTypes){
     excludeTypes.forEach(function(et){
         exclude_lookup[et] = true;
     });
-    
+
     // build the list of type names not excluded
     const ans = [];
     Object.keys(DUMMY_BASIC_TYPES).sort().forEach(function(tn){
@@ -62,7 +62,7 @@ function dummyBasicTypesExcept(...excludeTypes){
             ans.push(tn); // save the type name if not excluded
         }
     });
-    
+
     // return the calculated list
     return ans;
 }
@@ -101,12 +101,12 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
     // check the number of parameters
     if(arguments.length >= 1){
         // at least one parameter was passed - validate and store it
-            
+
         // make sure the first parameter is a callback
         if(typeof fn !== 'function'){
             throw new TypeError('if present, the first parameter must be a callback');
         }
-            
+
         // store the callback
         this._generationChange.push(fn);
     }else{
@@ -115,7 +115,7 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
             this._generationChange[i]();
         }
     }
-        
+
     // return a reference to self
     return this;
 };
@@ -128,12 +128,12 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
     // check the number of parameters
     if(arguments.length >= 1){
         // at least one parameter was passed - validate and store it
-            
+
         // make sure the first parameter is a callback
         if(typeof fn !== 'function'){
             throw new TypeError('if present, the first parameter must be a callback');
         }
-            
+
         // store the callback
         this._generationChange.push(fn);
     }else{
@@ -142,7 +142,7 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
             genChangeCB();
         }
     }
-        
+
     // return a reference to self
     return this;
 };
@@ -295,30 +295,30 @@ As an example, let’s look at the `.start()` instance function from the `bartif
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-       
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     const self = this;
     const autoStepFn = function(){
         if(self._autoStepID){
             // take a step
             self.step();
-               
+
             // set a fresh timeout - CAUTION: recursive code!
             self._autoStepID = window.setTimeout(autoStepFn, self.autoStepIntervalMS());
         }
     };
-        
+
     // set the ball rolling
     this._autoStepID = window.setTimeout(autoStepFn, this.autoStepIntervalMS());
-        
+
     // return a reference to self
     return this;
 };
@@ -332,29 +332,29 @@ With arrow functions we can simplify this code to:
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-       
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     const autoStepFn = ()=>{
         if(this._autoStepID){
             // take a step
             this.step();
-               
+
             // set a fresh timeout - CAUTION: recursive code!
             this._autoStepID = window.setTimeout(autoStepFn, this.autoStepIntervalMS());
         }
     };
-        
+
     // set the ball rolling
     this._autoStepID = window.setTimeout(autoStepFn, this.autoStepIntervalMS());
-        
+
     // return a reference to self
     return this;
 };
@@ -458,7 +458,7 @@ class Booger{
             this.colour(colour);
         }
     }
-    
+
     /**
      * Get or set the booger's colour.
      *
@@ -476,7 +476,7 @@ class Booger{
         }
         return this._colour;
     }
-    
+
     /**
      * Generate a string representation of the booger.
      *
@@ -485,7 +485,7 @@ class Booger{
     toString(){
     	return 'a ' + this._colour + ' booger';
     }
-    
+
     /**
      * Get a list of synonyms for boogers.
      *
@@ -546,7 +546,7 @@ The same is true of the `class` keyword, which comes in handy when working with 
 var bartificer = bartificer ? bartificer : {};
 ((bartificer, undefined)=>{
     bartificer.demo = {};
-    
+
     bartificer.demo.Booger = class{
         constructor(colour){
             this._colour = 'green';
@@ -554,7 +554,7 @@ var bartificer = bartificer ? bartificer : {};
                 this.colour(colour);
             }
         }
-        
+
         colour(colour){
             if(arguments.length >= 1){
                 if(typeof colour !== 'string'){
@@ -564,11 +564,11 @@ var bartificer = bartificer ? bartificer : {};
             }
             return this._colour;
         }
-            
+
         toString(){
         	return 'a ' + this._colour + ' booger';
         }
-        
+
         static synonyms(){
         	return ['snot', 'bogie', 'nasal mucus'];
         };

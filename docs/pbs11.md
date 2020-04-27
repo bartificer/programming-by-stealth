@@ -4,7 +4,7 @@ Finally, after many months of making Allison wait, it’s time to look at tables
 
 Remember – tables are for one thing, and one thing only – **displaying tabular data**!
 
-# Matching Postcast Episode 430
+# Matching Podcast Episode 430
 
 Listen Along: Chit Chat Accross the Pond Episode 430
 

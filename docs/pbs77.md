@@ -4,7 +4,7 @@ My plans for this instalment were to quickly demonstrate so-called _callback hel
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs77.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs77.zip).
 
-# Matching Postcast Episode 592
+# Matching Podcast Episode 592
 
 Listen along to this instalment on [episode 592 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/05/ccatp-592/)
 
@@ -40,7 +40,7 @@ Now let’s look at another function definition:
 function doSomethingRandom(someFn){
   // generate a random number
   const randNum = Math.ceil(Math.random()*100);
-		
+
   // call the passed function with the random number
   someFn(randNum);
 }
@@ -330,9 +330,10 @@ In other words, our document ready handler now does the following:
 
 1.  Initialise some helper variables and helper functions.
 2.  Make an AJAX call to fetch the JSON data, and within that request’s `success` handler/callback do the following:
+
     1.  Build the view objects from the data.
     2.  Make an AJAX call to fetch the template, and within that request’s `success` handler/callback do the following:
-        
+
         1.  Look through the view objects, rendering the template for each and appending the resulting contact cards into the appropriate Bootstrap grid row.
 
 Since the code for this success handler is quite long, I’ve not included it directly into the post, you’ll find it in `pbs76-challenge-solution/extraCredit-1-Series.html` in this instalment’s ZIP file.
@@ -365,10 +366,10 @@ Next, let’s define the function for rendering the contact cards:
 const renderContactCards = function(){
   // make sure the view objects are ready
   if(people.length < 1) return;
-			
+
   // make sure the template is ready
   if(contactCardTpl.length < 1) return;
-			
+
   // render the contact cards
   for(const person of people){
     $contactCardHolder.append(Mustache.render(
@@ -386,11 +387,12 @@ You’ll notice that the document ready handler now does the following:
 
 1.  Initialise some helper variables and helper functions.
 2.  Make an AJAX call to fetch the JSON data, and within that request’s `success` handler/callback do the following:
-    
+
     1.  Build the view objects from the data.
     2.  Try render the contact cards.
+
 3.  Make an AJAX call to fetch the template, and within that request’s `success` handler/callback do the following:
-    
+
     1.  Look through the view objects, rendering the template for each and appending the resulting contact cards into the appropriate Bootstrap grid row.
     2.  Try render the contact cards.
 

@@ -13,7 +13,7 @@ Out of the box, all versions of HTML, even HTML 5, have some significant short-c
 
 Bootstap aims to solve all these shortcomings using a combination of mostly CSS combined with a little JavaScript.
 
-# Matching Postcast Episode 531
+# Matching Podcast Episode 531
 
 Listen along to this instalment on [episode 531 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/03/ccatp-531/)
 
@@ -30,25 +30,24 @@ While the full Bootstrap 4 feature set requires JavaScript, the basic Bootstrap 
 For now, this is all we have to do to start using Bootstrap 4:
 
 1.  ### Use the HTML 5 doctype
-    
+
     Bootstrap won’t behave consistently across browsers if the page doesn’t use the HTML 5 doctype. Since that’s the only doctype we’ve learned about in this series, that’s not going to be a problem for us 🙂
-    
+
 2.  ### Set the Responsive Viewport Meta Tag
-    
+
     Again, for cross-browser consistency, the Bootstrap documentation makes it clear that the following tag should be added to the `head` section of any HTML page that uses Bootstrap:
-    
+
     ```XHTML
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     ```
-    
+
 3.  ### Include the Bootrap 4 CSS
-    
+
     You could download the Bootstrap CSS and include your own copy, but by far the easiest thing to do is to load it from the officially supported content distribution network (CDN) by adding the following into the `head` section of the HTML page:
-    
+
     ```XHTML
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     ```
-    
 
 ### A Basic Bootstrap Template
 
@@ -59,11 +58,11 @@ For now, you can use this as a template for HTML pages that use Bootstrap:
 <html>
 <head>
     <meta charset="utf-8" />
-    
+
     <!-- Include Bootstrap 4 CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <title></title>
 </head>
 <body>

@@ -4,7 +4,7 @@ This will be the penultimate instalment of our introduction to Bootstrap forms. 
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs65.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs65.zip).
 
-# Matching Postcast Episode 568
+# Matching Podcast Episode 568
 
 Listen along to this instalment on [episode 568 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/10/ccatp-568/)
 

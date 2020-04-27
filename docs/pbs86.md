@@ -10,7 +10,7 @@ You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/5ddb3466abe64963a57daf09692b366fa845e483/instalmentResources/pbs86/pbs86a.html) or  
     [View Source](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs86/pbs86a.html)
 
-# Matching Postcast Episode 615
+# Matching Podcast Episode 615
 
 Listen along to this instalment on [episode 615 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/ccatp-615)
 

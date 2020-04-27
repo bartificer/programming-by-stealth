@@ -13,7 +13,7 @@ You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/d5b05df809ead7deeb189618480d16ed1017efb5/instalmentResources/pbs87/pbs87b.html) or  
     [View Source](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs87/pbs87b.html)
 
-# Matching Postcast Episode 615
+# Matching Podcast Episode 615
 
 Listen along to this instalment on [episode 615 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/ccatp-615)
 
@@ -334,7 +334,7 @@ This UI is brought to life in the document ready handler by creating an infinite
 ```JavaScript
 // create an infinite RNG generator object
 const rngObj = rng();
-		
+
 // add a click handler to the randon number button
 $('#rng_btn').click(function(){
   $('#rng_tb').val(rngObj.next().value).select();
@@ -362,13 +362,13 @@ function* accumulator(initVal){
   // otherwise start at zero
   const initValNum = Number(initVal); // force to number
   let balance = initValNum ? initValNum : 0;
-		
+
   // keep updating the balance for ever
   while(true){
     // yield the current balance and accept an increment
     const incBy = yield balance;
     const incByNum = Number(incBy); // force to number
-			
+
     // if a valid increment was passed to next(), apply it
     if(incByNum){
       balance += incByNum;
@@ -441,13 +441,13 @@ The code to bring this basic UI to life is entirely contained within the documen
 ```JavaScript
 // variable to store the accumulartor generator object
 let accumulatorGenObj = null;
-		
+
 // add event handlers to the accumulator UI
 // and when done, call the reset event
 $('#accumulator_fm').on('reset', function(){
   // create a new accumulator generator object
   accumulatorGenObj = accumulator();
-			
+
   // call .next() once to get the accumulator to
   // yield its initial balance
   accumulatorGenObj.next();
@@ -456,7 +456,7 @@ $('#accumulator_fm').on('reset', function(){
   let incBy = $('#accumulator_inc_tb').val();
   if(!incBy) incBy = 0;
   const newTotal = accumulatorGenObj.next(incBy).value;
-			
+
   // update the display
   $('#accumulator_out_tb').val(newTotal);
 }).trigger('reset');
@@ -499,25 +499,25 @@ function* fibonacci(){
   // variable for the previous state
   // set to zero per the rules
   let prev = 0;
-		
+
   // yield the first value in the series
   yield prev;
-		
+
   // variable for the current state
   // set to 1 per th rules
   let cur = 1;
-		
+
   // yield the second value in the series
   yield cur;
-		
+
   // keep calculating the next value for ever
   while(true){
     // calcualte the next value
     const newVal = cur + prev;
-			
+
     // update the previous value
     prev = cur;
-			
+
     // update and yield the current value
     cur = newVal;
     yield cur;
@@ -587,10 +587,10 @@ First, I declared some variables in the document ready event handler’s scope t
 ```JavaScript
 // load the template for rendering a number in the series
 const fibNumTpl = $('#fib_num_tpl').html();
-		
+
 // variable to store the Fibonacci generator object
 let fibGenObj = null;
-		
+
 // variables for storing the needed page elements
 const $fibOut = $('#fib_out');
 ```
@@ -603,21 +603,21 @@ Next, I added reset and submit handlers to the form, and triggered the reset han
 $('#fib_fm').on('reset', function(){
   // create a new accumulator generator object
   fibGenObj = fibonacci();
-			
+
   // empty the output area
   $fibOut.empty();
-			
+
   // step to the first value
   $(this).trigger('submit');
 }).on('submit', function(){
   // get the next value in the sequence
   const newVal = fibGenObj.next().value;
-			
+
   // generate the markup for the new value
   const newValHTML = Mustache.render(fibNumTpl, {
     num: numeral(newVal).format('0,0')
   });
-			
+
   // un-highlight the previous value
   $('.fib_val.fib_val_current', $fibOut)
     .removeClass('badge-primary fib_val_current')

@@ -4,7 +4,7 @@ In the previous instalment we started our exploration of Bootstrap with a look a
 
 [The ZIP file for this instalment can be downloaded here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs54.zip).
 
-# Matching Postcast Episode 537
+# Matching Podcast Episode 537
 
 Listen along to this instalment on [episode 537 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/05/ccatp-537//)
 
@@ -38,40 +38,40 @@ Like last time I’ve created an HTML document with some pre-created elements an
 <html>
 <head>
     <meta charset="utf-8" />
-        
+
     <!-- Include Bootstrap 4 CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        
+
     <title>PBS 54 Dummy Page</title>
 </head>
 <body>
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12">
-        
+
             <!-- Start of Dummy Content -->
-            
+
             <div class="">
               If this page used cookies this notification would let you know that, but it doesn't, so it doesn't!
             </div>
-            
+
             <h1 class="">PBS 54 — Dummy Page</h1>
-                        
+
             <p class="">This page has some HTML elements that you can add Bootstrap 4 CSS utility classes to so you can see them in action</p>
-            
+
             <p class="">When you look at the source for this page you'll notice empty class attributes in the HTML tags just waiting for you to add some Bootstrap class names into!</p>
-            
+
             <p>Below is one of my favourite poems, I hope you enjoy it!</p>
-            
+
             <blockquote class="">
                 <h2 class="">Lines Written on a Seat on the Grand Canal, Dublin</h2>
-                
+
                 <aside class="">
                   <h3 class="">Note:</h3>
                   <p class="">Kavanagh got his wish — he is comemorated with a bench that has a statue of him setting on it next to the Royal Canal in Dublin city. Passers by can sit next to Kavanagh on his bench and ponder the view, perhaps with these lines running aroun in their heads.</p>
                 </aside>
-                
+
                 <p class="">"Erected to the memory of Mrs. Dermot O'Brien"</p>
 
                 <p class="">O commemorate me where there is water,<br>
@@ -88,10 +88,10 @@ Like last time I’ve created an HTML document with some pre-created elements an
                 And other far-flung towns mythologies.<br>
                 O commemorate me with no hero-courageous<br>
                 Tomb - just a canal-bank seat for the passer-by.</p>
-                
+
                 <p class="">Patrick Kavanagh</p>
             </blockquote>
-            
+
             <nav class="">
                 <ul class="">
                     <li class="">
@@ -105,7 +105,7 @@ Like last time I’ve created an HTML document with some pre-created elements an
                     </li>
                 </ul>
             </nav>
-            
+
             <!-- End of Dummy Content -->
         </div>
     </div>
@@ -216,12 +216,12 @@ As a practical example, let’s float the aside within the poem to the right by 
 ```XHTML
 <blockquote class="clearfix w-75 m-auto border rounded p-3">
   <h2 class="">Lines Written on a Seat on the Grand Canal, Dublin</h2>
-                
+
   <aside class="w-25 float-right text-muted bg-light border rounded p-2 m-3">
     <h3 class="d-inline">Note:</h3>
     <p class="d-inline">Kavanagh got his wish ...</p>
   </aside>
-                
+
   <p class="">"Erected to the memory of ...</p>
 </blockquote>
 ```
@@ -304,40 +304,40 @@ Putting all the examples above together we get the following final version of ou
 <html>
 <head>
     <meta charset="utf-8" />
-        
+
     <!-- Include Bootstrap 4 CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        
+
     <title>PBS 54 Dummy Page</title>
 </head>
 <body>
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12">
-        
+
             <!-- Start of Dummy Content -->
-            
+
             <div class="sticky-top bg-danger text-white p-1 rounded m-1">
               If this page used cookies this notification would let you know that, but it doesn't, so it doesn't!
             </div>
-            
+
             <h1 class="">PBS 54 — Dummy Page</h1>
-                        
+
             <p class="">This page has some HTML elements that you can add Bootstrap 4 CSS utility classes to so you can see them in action</p>
-            
+
             <p class="">When you look at the source for this page you'll notice empty class attributes in the HTML tags just waiting for you to add some Bootstrap class names into!</p>
-            
+
             <p>Below is one of my favourite poems, I hope you enjoy it!</p>
-            
+
             <blockquote class="clearfix w-75 m-auto border rounded p-3">
                 <h2 class="">Lines Written on a Seat on the Grand Canal, Dublin</h2>
-                
+
                 <aside class="w-25 float-right text-muted bg-light border rounded p-2 m-3">
                   <h3 class="d-inline">Note:</h3>
                   <p class="d-inline">Kavanagh got his wish — he is comemorated with a bench that has a statue of him setting on it next to the Royal Canal in Dublin city. Passers by can sit next to Kavanagh on his bench and ponder the view, perhaps with these lines running aroun in their heads.</p>
                 </aside>
-                
+
                 <p class="">"Erected to the memory of Mrs. Dermot O'Brien"</p>
 
                 <p class="">O commemorate me where there is water,<br>
@@ -354,10 +354,10 @@ Putting all the examples above together we get the following final version of ou
                 And other far-flung towns mythologies.<br>
                 O commemorate me with no hero-courageous<br>
                 Tomb - just a canal-bank seat for the passer-by.</p>
-                
+
                 <p class="">Patrick Kavanagh</p>
             </blockquote>
-            
+
             <nav class="">
                 <ul class="d-flex flex-row justify-content-around">
                     <li class="d-block">
@@ -371,7 +371,7 @@ Putting all the examples above together we get the following final version of ou
                     </li>
                 </ul>
             </nav>
-            
+
             <!-- End of Dummy Content -->
         </div>
     </div>

@@ -8,7 +8,7 @@ Bootstrap does not just use breakpoints within the grid though. Some of the Boot
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs59.zip).
 
-# Matching Postcast Episode 556
+# Matching Podcast Episode 556
 
 Listen along to this instalment on [episode 556 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-556/)
 

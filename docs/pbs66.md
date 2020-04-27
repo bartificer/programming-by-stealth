@@ -4,7 +4,7 @@ Over the past few instalments we’ve been making our way though the various for
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/11/pbs66.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs66.zip).
 
-# Matching Postcast Episode 570
+# Matching Podcast Episode 570
 
 Listen along to this instalment on [episode 570 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/11/ccatp-570/)
 
@@ -133,7 +133,7 @@ The relevant changes from `pbs66b.html` are the removal of `class="was-validated
 $(function(){
   // get a reference to the form for quick access
   const $form = $('#support_fm');
-        
+
   // add event handlers to activate the Bootstap validation styles
   // when the form is first interacted with
   const enableBootstapValiationStyles = function(){
@@ -141,7 +141,7 @@ $(function(){
   };
   $form.submit(enableBootstapValiationStyles);
   $('input', $form).on('invalid', enableBootstapValiationStyles);
-        
+
   // add a submit hander to the form
   $form.submit(function(){
   window.alert("Your donation was not submitted because this is a dummy form, but thanks all the same, it's the thought that counts :)");
@@ -238,7 +238,7 @@ const validateNames = function(){
   }else{
     $lname.removeClass('is-valid').addClass('is-invalid');
   }
-            
+
   // show or hide the error message as appropriate
   if($fname.is(':valid') && $lname.is(':valid')){
     $('#name_vf').hide();
@@ -269,13 +269,13 @@ const validateAmount = function(){
   if($amount.is(':valid')){
     // update the per-element validation styling
     $amount.removeClass('is-invalid').addClass('is-valid');
-                
+
     // update the validation message
     let msg = `Thank you for your ${$amount.val() > 5 ? 'generous' : 'kind'} support 🙂`;
     $('#amount_vf').removeClass('invalid-feedback').addClass('valid-feedback').text(msg).show();
     return true;
   }
-            
+
   // default to the invalid case
   $amount.removeClass('is-valid').addClass('is-invalid');
   $('#amount_vf').removeClass('valid-feedback').addClass('invalid-feedback').text('Please enter a positive whole number').show();
@@ -309,7 +309,7 @@ const validateTwitter = function(){
     }
     return true;
   }
-            
+
   // default to the invalid case
   $twitter.removeClass('is-valid').addClass('is-invalid');
   $('#twitter_vf').removeClass('valid-feedback').addClass('invalid-feedback').text("Please enter your Twitter handle without the leading @, or lever this field blank").show();
@@ -340,14 +340,14 @@ The code is quite short and straightforward:
 $form.submit(function(event){
   // always enable bootstrap validation styles
   $form.addClass('was-validated');
-            
+
   // validate the fields
   let allOK = true;
   if(!validateNames()) allOK = false;
   if(!validateAmount()) allOK = false;
   if(!validateTwitter()) allOK = false;
   if(!validateURL()) allOK = false;
-            
+
   // if all was OK, pretend submit, otherwise focus the first invalid element and stop the submit
   if(allOK){
     window.alert("Your donation was not submitted because this is a dummy form, but thanks all the same, it's the thought that counts :)");

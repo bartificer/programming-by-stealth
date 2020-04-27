@@ -6,7 +6,7 @@ We’ll finish the instalment by making a start on moving from JavaScript versio
 
 There’s no zip file for this instalment as such, instead, I’ve published [my sample solution as a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-Solution) instead. You can use the big green _clone or download_ button to either copy the code using GIT, or download it as a ZIP file.
 
-# Matching Postcast Episode 509
+# Matching Podcast Episode 509
 
 Listen Along: Chit Chat Accross the Pond Episode 509
 
@@ -64,7 +64,7 @@ Like the other instance variables that already exist in the prototype, these var
  * @default
  */
 this._autoStepID = 0;
-        
+
 /**
  * The number of milliseconds between automated steps.
  * @private
@@ -101,10 +101,10 @@ I’v chosen to store the delay between automatic steps as a whole number of mil
 function isIntervalMS(ms){
     // make sure we got a number
     if(typeof ms !== 'number') return false;
-        
+
     // make sure we have a whole number
     if(!String(ms).match(/^\d+$/)) return false;
-        
+
     // return based on the size relative to zero
     return ms > 0 ? true : false;
 };
@@ -130,7 +130,7 @@ bartificer.ca.Automaton.prototype.autoStepIntervalMS = function(ms){
         }
         this._autoStepMS = ms;
     }
-        
+
     // always return the current auto step interval
     return this._autoStepMS;
 };
@@ -142,18 +142,18 @@ Again, we’ve added new functionality to our prototype, so, we need to update o
 QUnit.test('.autoStepIntervalMS()', function(a){
     var mustThrow = dummyBasicTypesExcept('num');
     a.expect(7 + mustThrow.length);
-            
+
     var ca = new bartificer.ca.Automaton($('<div></div>'), 5, 5, function(s){ return s + 1; }, function(){ });
-            
+
     // make sure the accessor exists
     a.strictEqual(typeof ca.autoStepIntervalMS, 'function', 'function exists');
-            
+
     // check that the getter fetches the default value
     a.strictEqual(ca.autoStepIntervalMS(), 500, 'get mode returns expected default value');
-            
+
     // set a new valid interval and make sure we get it back
     a.strictEqual(ca.autoStepIntervalMS(100), 100, 'successfully set a new interval');
-            
+
     // make sure all the disallowed basic types throw an error
     mustThrow.forEach(function(tn){
         var t = DUMMY_BASIC_TYPES[tn];
@@ -165,7 +165,7 @@ QUnit.test('.autoStepIntervalMS()', function(a){
             'interval cannot be ' + t.desc
         );
     });
-        
+
     // make sure non-integers throw an error
     a.throws(
         function(){
@@ -174,7 +174,7 @@ QUnit.test('.autoStepIntervalMS()', function(a){
         TypeError,
         'interval cannot be a non-integer'
     );
-        
+
     // make sure negative numbers throw an error
     a.throws(
         function(){
@@ -183,7 +183,7 @@ QUnit.test('.autoStepIntervalMS()', function(a){
         TypeError,
         'interval cannot be negative'
     );
-        
+
     // make sure zero throws an error
     a.throws(
         function(){
@@ -192,7 +192,7 @@ QUnit.test('.autoStepIntervalMS()', function(a){
         TypeError,
         'interval cannot be zero'
     );
-        
+
     // make sure one doesn't throw an error
     a.ok(ca.autoStepIntervalMS(1), 'interval can be one');
 });
@@ -216,30 +216,30 @@ Now that we have the instance variables and accessors we need to store the data 
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-        
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     var self = this;
     var autoStepFn = function(){
         if(self._autoStepID){
             // take a step
             self.step();
-                
+
             // set a fresh timeout - CAUTION: recursive code!
             self._autoStepID = window.setTimeout(autoStepFn, self.autoStepIntervalMS());
         }
     };
-        
+
     // set the ball rolling
     this._autoStepID = window.setTimeout(autoStepFn, this.autoStepIntervalMS());
-    
+
     // return a reference to self
     return this;
 };
@@ -260,13 +260,13 @@ So, let’s resolve that obvious shortcoming by implementing `.stop()`:
 bartificer.ca.Automaton.prototype.stop = function(){
     // if we're not stepping, just do nothing
     if(!this._autoStepID) return this;
-        
+
     // stop the timeout
     window.clearTimeout(this._autoStepID);
-        
+
     // blank the stored timeout ID
     this._autoStepID = 0;
-        
+
     // return a reference to self
     return this;
 };
@@ -341,13 +341,13 @@ Again, we need to add a test for this function to our test suite:
 ```JavaScript
 QUnit.test('.generation()', function(a){
     a.expect(3);
-            
+
     // make sure the accessor exists
     a.strictEqual(typeof this.ca1.generation, 'function', 'function exists');
-            
+
     // make sure the accessor returns the correct value
     a.strictEqual(this.ca1.generation(), 0, 'returns the expected value');
-                
+
     // make sure attempts to set a value throw an Error
     a.throws(
         function(){ this.ca1.generation(5); },
@@ -378,21 +378,21 @@ We should now add a test to verify that generation counting is working as expect
 ```JavaScript
 QUnit.test('Generation Counting', function(a){
     a.expect(3);
-        
+
     var ca = new bartificer.ca.Automaton($('<div></div>'), 3, 3, function(){ return true; }, function(){}, true);
-        
+
     // make sure the count starts at zero
     a.strictEqual(ca.generation(), 0, 'Automaton starts at generation zero');
-        
+
     // step forward three times
     ca.step().step().step();
-        
+
     // make sure the generation is now three
     a.strictEqual(ca.generation(), 3, 'generation correctly incremented');
-        
+
     // set to a new state
     ca.setState(true);
-        
+
     // make sure the counter was re-set to zero
      a.strictEqual(ca.generation(), 0, 'Setting new state re-sets the generation to zero');
 });
@@ -442,12 +442,12 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
     // check the number of parameters
     if(arguments.length >= 1){
         // at least one parameter was passed - validate and store it
-            
+
         // make sure the first parameter is a callback
         if(typeof fn !== 'function'){
             throw new TypeError('if present, the first parameter must be a callback');
             }
-            
+
         // store the callback
         this._generationChange.push(fn);
     }else{
@@ -456,7 +456,7 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
             this._generationChange[i]();
         }
     }
-        
+
     // return a reference to self
     return this;
 };
@@ -474,15 +474,15 @@ Now that we have this functionality implemented, we need to add a test for it to
 QUnit.test('Generation Change Event Handling', function(a){
     var mustThrow = dummyBasicTypesExcept('fn', 'undef');
     a.expect(mustThrow.length + 6);
-        
+
     var ca = new bartificer.ca.Automaton($('<div></div>'), 3, 3, function(){ return true; }, function(){}, true);
-        
+
     // make sure the function exists
     a.ok(typeof ca.generationChange === 'function', 'the .generationChange() function exists');
-        
+
     // make sure running the function with no parameters when there are no registered handlers does not throw an error
     a.ok(ca.generationChange(), 'execution when no handlers are added does not throw an error');
-        
+
     // make sure adding handlers works
     var cb1Execed = false;
     var cb2Execed = false;
@@ -491,7 +491,7 @@ QUnit.test('Generation Change Event Handling', function(a){
     ca.generationChange(cb1);
     ca.generationChange(cb2);
     a.deepEqual(ca._generationChange, [cb1, cb2], 'callbacks successfully registered');
-        
+
     // check parameter validation
     mustThrow.forEach(function(tn){
         var t = DUMMY_BASIC_TYPES[tn];
@@ -503,24 +503,24 @@ QUnit.test('Generation Change Event Handling', function(a){
             "generation change callback can't be " + t.desc
         );
     });
-        
+
     // make sure direct execution of all callbacks works
     ca.generationChange();
     a.ok(cb1Execed && cb2Execed, 'direct execution of generation change callbacks works as expected');
-        
+
     // make sure execution via the step function works
     cb1Execed = false;
     cb2Execed = false;
     ca.step();
     a.ok(cb1Execed && cb2Execed, '.step() calls the generation change callbacks');
-        
+
     // make sure execution via .setState() works
     cb1Execed = false;
     cb2Execed = false;
     ca.setState(true);
     a.ok(cb1Execed && cb2Execed, '.setState() calls the generation change callbacks');
 
-    
+
     // make sure a reference to self is returne for function chaining
     a.strictEqual(ca.generationChange(), ca, 'returns reference to self when executing registered callbacks');
     a.strictEqual(ca.generationChange(function(){}), ca, 'returns reference to self when adding a callback');
@@ -728,9 +728,9 @@ let msg = "I'm a global!";
 // declare a function with a local variable with the same name
 function fn(){
     console.log(msg);
-    
+
     // a new code block, hence a new scope
-    { 
+    {
         let msg = "now I'm local!";
         console.log(msg);
     }

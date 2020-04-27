@@ -6,7 +6,7 @@ The library we’ll be examining is [bartificer.linkToolkit.js](https://github.c
 
 We’ll be looking at the library from three points of view – the actual JavaScript code, the JSDoc comments, and the documentation produced from those comments, and, project management.
 
-# Matching Postcast Episode 465
+# Matching Podcast Episode 465
 
 Listen Along: Chit Chat Accross the Pond Episode 465
 
@@ -30,7 +30,7 @@ Let’s start by looking at how the library is used right here on this site. If 
   $(function(){
   	// add rel=noopener to all links with a target of _blank on the entire page
     bartificer.linkToolkit.noopenerFix();
-  
+
     // externalise all external links in the content region
     bartificer.linkToolkit.autoExternalise(
       $('#contentmiddle'),

@@ -2,7 +2,7 @@
 
 Up until now we’ve only encountered very simplistic HTML tags, and we have ignored the fact that many HTML tags can specify attributes. In this instalment we’ll look at two tags that require attributes – those for inserting images into pages, and those for inserting links into pages. Before we can look at the two tags in question, we need to lay two pieces of ground-work – we need to discuss attributes in HTML tags, and we need to discuss URLs, and particularly the difference between relative and absolute URLs.
 
-# Matching Postcast Episode 418
+# Matching Podcast Episode 418
 
 Listen along to this instalment on [episode 418 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/12/ccatp-418/)
 
@@ -99,19 +99,18 @@ If all URL specifications were absolute, they would need to be changed each time
 This is where relative URLs come in. They allow HTML to specify URLs relative to the URL of the currently loaded page. Exactly what part of the URL they are relative to is determined by the first character of the relative URL. We will look at three variants of relative URLs:
 
 1.  **URLs relative to the path** – URLs that do not start with a URL scheme, a `/`, a `?`, or a `#` are interpreted as being relative to the current URL path. I.e. the URL scheme, host, and port are assumed to remain the same, and the remainder of the URL is re-calculated based on the relative URL.
-    
+
     A relative URL of `My+Other+File.html` on a page with the URL `http://localhost/My+Folder/My+File.html` is interpreted as `http://localhost/My+Folder/My+Other+File.html`
-    
+
     URLs relative to the path can use `..` to represent the parent folder, so a relative URL of `../Some+File.html` on a page with the the URL `http://localhost/My+Folder/My+File.html` is interpreted as `http://localhost/Some+File.html`
-    
+
 2.  **URLs relative to the host** – URLs that are relative to the host start with a `/`. The URL scheme, host, and port are assumed to be the same as the current URL, the path, query string, and fragment are taken from the relative URL.
-    
+
     A relative URL of `/My+Other+Folder/` on a page with the URL `http://localhost/My+Folder/` is interpreted as `http://localhost/My+Other+Folder/`.
-    
+
 3.  **Local Fragments** – URLs that start with a `#` are interpreted as being references to fragments within the current page. That means the URL scheme, host, port, path, and query string are preserved.
-    
+
     The relative URL `#section1` on a page with the URL `http://localhost/My+File.html` is interpreted as `http://localhost/My+File.html#section1`. Note that the same relative URL on a page with the URL `http://localhost/My+File.html#section2` will also be interpreted as `http://localhost/My+File.html#section1`.
-    
 
 ## HTML Tag Attributes
 

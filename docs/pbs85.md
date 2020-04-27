@@ -13,7 +13,7 @@ You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/d52db74056e78a9e298a691c716b487c93db910f/instalmentResources/pbs85/pbs83-challengeSolution/index.html) or  
     [View Source](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs85/pbs83-challengeSolution/index.html)
 
-# Matching Postcast Episode 613
+# Matching Podcast Episode 613
 
 Listen along to this instalment on [episode 613 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/ccatp-613/)
 
@@ -73,7 +73,7 @@ Because JavaScript arrays are all instances of the built-in `Array` class, they 
 Note that these examples are intended to be run from the JavaScript console on the file `pbs85a.html` from this instalment’s zip file. The examples make use of an array named days defined within that files global scope as follows:
 
 ```JavaScript
-var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];	
+var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 ```
 
 OK, let’s look at the actual examples now:
@@ -322,7 +322,7 @@ async function buildCurrencyCard(curCode){
   if(!curCode.match(/^[A-Z]{3}$/)){
     throw new TypeError(`Invalid country code: ${curCode}`);
   }
-		
+
   // fetch the data for the currency
   const curData = await $.ajax({ // could throw Error
     url: CURRENCY_API_URL,
@@ -333,7 +333,7 @@ async function buildCurrencyCard(curCode){
     }
   });
   console.debug(`received currency data for '${curCode}': `, curData);
-		
+
   // build the view for the card
   const cardView = {
     base: {
@@ -351,7 +351,7 @@ async function buildCurrencyCard(curCode){
     });
   }
   console.debug('generated view:', cardView);
-		
+
   // generate and return the HTML
   return Mustache.render(CURRENCY_CARD_TPL, cardView);
 }

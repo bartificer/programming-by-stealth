@@ -6,7 +6,7 @@ Since objects are so ubiquitous in JavaScript I want to start there, and I want 
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs84.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs84.zip).
 
-# Matching Postcast Episode 611
+# Matching Podcast Episode 611
 
 Listen along to this instalment on [episode 611 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/10/ccatp-611/)
 

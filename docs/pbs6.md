@@ -4,7 +4,7 @@ We have now learned enough HTML to encode basic page content, marking things as 
 
 In the bad old days, HTML pages were styled by adding attributes directly into the HTML tags. This was very time-consuming, and it greatly reduced the re-usability of the HTML markup. Those attributes still exist in the HTML spec, but we have completely ignored them, and will continue to do so for the entire series. This is not the bad old days, so we now have access to a much better solution – _Cascading Style Sheets_, or CSS.
 
-# Matching Postcast Episode 420
+# Matching Podcast Episode 420
 
 Listen Along: Chit Chat Accross the Pond Episode 420
 
@@ -97,7 +97,7 @@ CSS_PROPERTY_NAME: CSS_PROPERTY_VALUE;
 
 ```
 
-You can get a full list of all valid CSS property names, the values they expect, and the versions of CSS they were introduced with at [this link](http://www.w3schools.com/cssref/ "W3Schools CSS Properties Reference"). Consider that link a useful reference, not a tutorial! We will look at many of the most commonly used and important CSS properties over the next few instalments.
+You can get a full list of all valid CSS property names, the values they expect, and the versions of CSS they were introduced with at [this link](http://www.w3schools.com/cssref/ 'W3Schools CSS Properties Reference'). Consider that link a useful reference, not a tutorial! We will look at many of the most commonly used and important CSS properties over the next few instalments.
 
 ### CSS Selectors
 
@@ -121,7 +121,7 @@ The CSS property for specifying text colour is simply `color` (spelled the Ameri
 
 Colour Names
 
-The CSS specification includes a large list of named colours, all the obvious ones like `Red`, `Green`, `Blue`, `Yellow`, `Purple`, `Black`, `White` etc. are there, but the list is much more extensive, and includes more unusual colours like `CornflowerBlue` and `DarkOliveGreen`. You can find a full list of all the supported names with samples of the colours [here](http://www.w3schools.com/cssref/css_colornames.asp "CSS Colour List from W3 Schools").
+The CSS specification includes a large list of named colours, all the obvious ones like `Red`, `Green`, `Blue`, `Yellow`, `Purple`, `Black`, `White` etc. are there, but the list is much more extensive, and includes more unusual colours like `CornflowerBlue` and `DarkOliveGreen`. You can find a full list of all the supported names with samples of the colours [here](http://www.w3schools.com/cssref/css_colornames.asp 'CSS Colour List from W3 Schools').
 
 HTML Colour Codes (HEX)
 

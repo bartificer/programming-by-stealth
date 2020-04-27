@@ -6,7 +6,7 @@ As we learned last time, Bootstrap can be thought of as consisting of four separ
 
 You can [download the ZIP file for this instalment here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs53.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs53.zip).
 
-# Matching Postcast Episode 535
+# Matching Podcast Episode 535
 
 Listen along to this instalment on [episode 535 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/05/ccatp-535/)
 
@@ -31,31 +31,31 @@ You can use the HTML page below (also in [the instalment’s ZIP file](http://<a
 <html>
 <head>
     <meta charset="utf-8" />
-        
+
     <!-- Include Bootstrap 4 CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
+
     <title>PBS 53 Dummy Page</title>
 </head>
 <body>
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12">
-        
+
             <!-- Start of Dummy Content -->
-            
+
             <h1 class="">PBS 53 — Dummy Page</h1>
-                        
+
             <p class="">This page has some HTML elements that you can add Bootstrap 4 CSS utility classes to so you can see them in action</p>
-            
+
             <p class="">When you look at the source for this page you'll notice empty class attributes in the HTML tags just waiting for you to add some Bootstrap class names into!</p>
-                        
+
             <blockquote class="">
                 <p class="">'pretend I said something really witty and clever'</p>
                 <p class=""><a href="http://bartb.ie/" target="_blank" rel="noopener">Bart Busschots</a></p>
             </blockquote>
-            
+
             <!-- End of Dummy Content -->
         </div>
     </div>
@@ -119,7 +119,7 @@ Adding borders is something you’ll want to do quite often, so Bootstrap provid
 The most common thing to want to do is to add a border to all four sides of an element, and Bootstrap makes this very easy with the simply named utility class `border`! So, to add a border to a paragraph you would simply do something like:
 
 ```XHTML
-<p class="border">I'm a bordered paragraph!</p> 
+<p class="border">I'm a bordered paragraph!</p>
 ```
 
 If you only want to add a border to specific side you can use one or more of the utility CSS classes `border-top`, `border-right`, `border-bottom` & `border-left`.

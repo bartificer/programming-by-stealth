@@ -8,7 +8,7 @@ We’ll also take some time to revise the basics of JavaScript objects.
 
 Note that this instalment is split over two podcast episodes, only one has been recorded to date.
 
-# Matching Postcast Episode 521
+# Matching Podcast Episode 521
 
 Listen Along (Part 1 of 2): Chit Chat Accross the Pond Episode 521
 
@@ -42,12 +42,12 @@ This function is a little longer, but not much more complicated. They key is tha
 speciesInventory(){
     // start with an empty object
     const ans = {};
-        
+
     // loop through all the animals in the farm and tally their species
     for(const a of this._animals){
         // get the species
         const s = a.species();
-            
+
         // check if we've met this species before
         if(ans[s]){
             // we have met this species before, so increment the count
@@ -57,7 +57,7 @@ speciesInventory(){
             ans[s] = 1;
         }
      }
-        
+
     // return the head count
      return ans;
 }
@@ -76,11 +76,11 @@ constructor($container, ...animals){
     $container.append($('<div>').addClass('farm_pasture'));
     $container.append($('<div>').addClass('farm_shed'));
     $container.append($('<div>').addClass('farm_inventory'));
-        
+
     // initialise the animals
     this._animals = [];
     for(const a of animals){ this.addAnimal(a) ; }
-        
+
     // start trying to collect produce
     this.collectProduce();
     this._productionInterval = window.setInterval(
@@ -100,11 +100,11 @@ This involves calling the function from part 3, and then using jQuery to build a
 addAnimal(a){
     // store the animal
     this._animals.push(a);
-        
+
     // add the animal to the DOM
     a.$dom().data('animalObj', a);
     $('.farm_pasture', this._$container).append(a.$dom());
-        
+
     // render the current inventory
     const $inventory = $('.farm_inventory', this._$container).empty();
     const $ul = $('<ul>');
@@ -308,7 +308,7 @@ Looping over an object means looping through each of the keys it contains. If yo
 const myObj = {
     x: 'y',
     a: 42,
-    boogers: false 
+    boogers: false
 };
 
 for(const k in myObj){
@@ -330,7 +330,7 @@ Explicitly, this is what you need to do:
 const myObj = {
     x: 'y',
     a: 42,
-    boogers: false 
+    boogers: false
 };
 
 // extract the keys
@@ -359,7 +359,7 @@ In the real world we would never write the whole process out so explicitly, we w
 const myObj = {
     x: 'y',
     a: 42,
-    boogers: false 
+    boogers: false
 };
 
 // loop over the sorted keys
@@ -379,7 +379,7 @@ for(const k of Object.keys(myObj).sort()){
 What will the following code snippets output to the console?
 
 1.  What will the value of `midTotal` be at the end of this code snippet?
-    
+
     ```JavaScript
     const salesData = {
       mon: 10,
@@ -392,24 +392,24 @@ What will the following code snippets output to the console?
     };
     const midTotal = salesData.mon + salesData.tue + salesData.wed;
     ```
-    
+
     Click to show Answer
-    
+
     `31` (`10 + 12 + 9`)
-    
+
     `31` (`10 + 12 + 9`)
-    
+
 2.  What will the value of z be at the end of this code snippet?
-    
+
     ```JavaScript
     const x = {y: 'x', x: 'boogers'};
     const z = x[x.y];
     ```
-    
+
     Click to show Answer
-    
+
     Answer: `boogers`
-    
+
     ```
     // Explanation:
     const z = x[x.y];
@@ -421,11 +421,11 @@ What will the following code snippets output to the console?
     // x['x'] == 'boogers'
     //  ↓
     const z = 'boogers';
-    
+
     ```
-    
+
     Answer: `boogers`
-    
+
     ```
     // Explanation:
     const z = x[x.y];
@@ -437,11 +437,11 @@ What will the following code snippets output to the console?
     // x['x'] == 'boogers'
     //  ↓
     const z = 'boogers';
-    
+
     ```
-    
+
 3.  What will the following snippet write to the console?
-    
+
     ```JavaScript
     const stuff = 'thingy';
     const whatchamagig = {
@@ -450,15 +450,15 @@ What will the following code snippets output to the console?
     };
     console.log(whatchamagig['stuff']);
     ```
-    
+
     Click to show Answer
-    
+
     `what?`
-    
+
     `what?`
-    
+
 4.  What will the following snippet write to the console?
-    
+
     ```JavaScript
     const stuff = 'thingy';
     const thingy = 'huh?';
@@ -470,11 +470,11 @@ What will the following code snippets output to the console?
     };
     console.log(whatchamagig[thingy]);
     ```
-    
+
     Click to show Answer
-    
+
     Answer: `undefined`
-    
+
     ```
     // Explanation:
     console.log(whatchamagig[thingy]);
@@ -487,11 +487,11 @@ What will the following code snippets output to the console?
     //  |
     //  V
     console.log(undefined);
-    
+
     ```
-    
+
     Answer: `undefined`
-    
+
     ```
     // Explanation:
     console.log(whatchamagig[thingy]);
@@ -504,11 +504,11 @@ What will the following code snippets output to the console?
     //  |
     //  V
     console.log(undefined);
-    
+
     ```
-    
-5.  What will the value of `yokie` be after this snippet executes?  
-    
+
+5.  What will the value of `yokie` be after this snippet executes?
+
     ```JavaScript
     const whatchamagig = {
     	stuff: 'what?',
@@ -517,11 +517,11 @@ What will the following code snippets output to the console?
     };
     const yokie = whatchamagig[whatchamagig.stuff.replace(/[?]/, '') + 'sit'].thingamabob;
     ```
-    
+
     Click to show Answer
-    
+
     `huh?`
-    
+
     ```
     // Explanation:
     const yokie = whatchamagig[whatchamagig.stuff.replace(/[?]/, '') + 'sit'].thingamabob;
@@ -545,11 +545,11 @@ What will the following code snippets output to the console?
     // { thingamabob: 'huh?' }.thingamabob == 'huh?'
     //  ↓
     const yokie = 'huh?';
-    
+
     ```
-    
+
     `huh?`
-    
+
     ```
     // Explanation:
     const yokie = whatchamagig[whatchamagig.stuff.replace(/[?]/, '') + 'sit'].thingamabob;
@@ -573,11 +573,11 @@ What will the following code snippets output to the console?
     // { thingamabob: 'huh?' }.thingamabob == 'huh?'
     //  ↓
     const yokie = 'huh?';
-    
+
     ```
-    
+
 6.  What does the following snippet write to the console?
-    
+
     ```JavaScript
     const stuff = 'whatsit';
     const thingy = 'yoke';
@@ -589,11 +589,11 @@ What will the following code snippets output to the console?
     };
     console.log(whatchamagig[stuff][whatsit]);
     ```
-    
+
     Click to show Answer
-    
+
     `srsly?`
-    
+
     ```
     // Explanation:
     console.log(whatchamagig[stuff][whatsit]);
@@ -613,11 +613,11 @@ What will the following code snippets output to the console?
     // { thingamabob: 'huh?', yoke: 'srsly?' }['yoke'] == 'srsly?'
     //  ↓
     console.log('srsly?');
-    
+
     ```
-    
+
     `srsly?`
-    
+
     ```
     // Explanation:
     console.log(whatchamagig[stuff][whatsit]);
@@ -637,9 +637,8 @@ What will the following code snippets output to the console?
     // { thingamabob: 'huh?', yoke: 'srsly?' }['yoke'] == 'srsly?'
     //  ↓
     console.log('srsly?');
-    
+
     ```
-    
 
 ## Worked Example — Improving Our Cellular Automata with more Classes
 
@@ -674,7 +673,7 @@ function isPrimitiveValue(v){
     if(vType === 'string') return true;
     return false;
 }
-    
+
 /**
  * Test if a given value is a string that's not empty.
  *
@@ -700,7 +699,7 @@ We can now make use of these functions when writing our simple `bartificer.ca.St
  * A prototype to represent a cell state. A state consists of a value and a
  * label.
  */
-bartificer.ca.State = class{        
+bartificer.ca.State = class{
     /**
      * The constuctor expects to be passed a value and a label.
      *
@@ -717,7 +716,7 @@ bartificer.ca.State = class{
         if(!isNonEmptyString(label)){
             throw new TypeError('the label for a state must be a string, and must be at least one character long');
         }
-            
+
         /**
          * The state's value.
          *
@@ -725,7 +724,7 @@ bartificer.ca.State = class{
          * @type {PrimitiveValue}
          */
         this._value = value;
-            
+
         /**
          * The state's label.
          *
@@ -734,7 +733,7 @@ bartificer.ca.State = class{
          */
         this._label = label;
     }
-        
+
     /**
      * Get the state's value.
      *
@@ -748,7 +747,7 @@ bartificer.ca.State = class{
         }
         return this._value;
     }
-        
+
     /**
      * Get the state's label.
      *
@@ -762,7 +761,7 @@ bartificer.ca.State = class{
         }
         return this._label;
     }
-        
+
     /**
      * Get a string representation of the state.
      *
@@ -771,7 +770,7 @@ bartificer.ca.State = class{
     toString(){
         return `${this._label} (${this._value})`;
     }
-       
+
     /**
      * Generate a clone of this instance.
      *
@@ -826,7 +825,7 @@ function renderRedGreen($td, s){
         $td.css('background-color', '#ff9999');
     }
 }
-        
+
 // an initialisation function to randomly set each cell to alive or dead
 function randomState(){
      return Math.random() < 0.5 ? alive : dead;
@@ -843,17 +842,17 @@ function lifeStep(currentState, neighbourStates){
     // apply the rules based on the current state
     if(currentState.value() == true){
         // currently alive - apply rules 1 to 3
-                
+
         // rule 1
         if(numLiveNeighbours < 2) return dead;
-                
+
         // rule 3
         if(numLiveNeighbours > 3) return dead;
     }else{
         // currently dead - apply rule 4
         if(numLiveNeighbours === 3) return alive;
     }
-            
+
     // default to no change (incorporates rule 2)
     return currentState;
 }

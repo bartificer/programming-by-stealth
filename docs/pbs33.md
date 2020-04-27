@@ -8,7 +8,7 @@ The tool we’ll be looking at to implement our JavaScript test suites is [QUnit
 
 All code files used in this instalment are contained in a single ZIP file which you can download [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs33.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs33.zip).
 
-# Matching Postcast Episode 482
+# Matching Podcast Episode 482
 
 Listen Along: Chit Chat Accross the Pond Episode 482
 
@@ -30,13 +30,13 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 <head>
 	<meta charset="utf-8" />
 	<title>PBS 32 Challenge</title>
-	
+
 	<!-- Import the jQuery library -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	
+
 	<!-- Import our Date & Time prototypes -->
 	<script src="./pbs.datetime.js" type="text/javascript"></script>
-	
+
 	<!-- Add event handlers to our page -->
 	<script type="text/javascript">
 		// the DOM ready event handler
@@ -47,21 +47,21 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 				$hours.append($('<option>').text(h < 10 ? '0' + h : h).val(h));
 			}
 			$('option[value="0"]', $hours).prop('selected', true);
-			
+
 			// add the options for the minute select
 			var $mins = $('#min_sel');
 			for(var m = 0; m <= 59; m += 5){
 				$mins.append($('<option>').text(m < 10 ? '0' + m : m).val(m));
 			}
 			$('option[value="0"]', $mins).prop('selected', true);
-			
+
 			// add the options to the day select
 			var $days = $('#day_sel');
 			for(var d = 1; d <= 31; d++){
 				$days.append($('<option>').text(d).val(d));
 			}
 			$('option[value="1"]', $days).prop('selected', true);
-			
+
 			// add the options to the month select
 			var month_abbrev_lookup = {
 				1: 'Jan',
@@ -82,23 +82,23 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 				$months.append($('<option>').text(month_abbrev_lookup[m]).val(m));
 			}
 			$('option[value="1"]', $months).prop('selected', true);
-			
+
 			// add the options to the year select
 			var $years = $('#year_sel');
 			for(var y = 2000; y <= 2100; y++){
 				$years.append($('<option>').text(y).val(y));
 			}
 			$('option[value="2000"]', $years).prop('selected', true);
-			
+
 			// add a click  handler to the button
 			$('#render_btn').click(function(){
 				// assume there will be no error, so blank the error message
 				var $error = $('#error_out');
 				$error.text('').hide();
-				
+
 				// create a date object
 				var dt = new pbs.DateTime();
-				
+
 				// try set it to the value represented by the form
 				try{
 					var d = new pbs.Date();
@@ -113,7 +113,7 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 					$('#dates_list dd').text('???');
 					return;
 				}
-				
+
 				// render the date
 				$('#inter_out').text(dt.toString());
 				$('#eur12_out').text(dt.european12Hour());
@@ -123,24 +123,24 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 			}).click();
 		});
 	</script>
-	
+
 	<!-- Define local styles -->
 	<style type="text/css">
 		/* Use Helvetica as the default font */
 		body {
 			font-family: Helvetica, Arial, sans;
 		}
-		
+
 		/* Hide labels for ARIA-only from the browser */
 		.aria-only {
 			display: none;
 		}
-		
+
 		/* Make headers bold */
 		legend, dt {
 			font-weight: bold;
 		}
-		
+
 		/* Style the formatted dates */
 		#dates_list dd {
 			color: DimGrey;
@@ -149,7 +149,7 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 		#dates_list #eng_out {
 			font-family: cursive;
 		}
-		
+
 		/* style errors */
 		#error_out {
 			color: DarkRed;
@@ -167,7 +167,7 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 <form action="javascript:void();" id="dt_fm">
 <fieldset role="form" aria-labelledby="dt_fm_desc">
 	<legend id="dt_fm_desc">Date/Time Renderer</legend>
-	
+
 	<ul>
 		<li role="group" aria-labelledby="dt_time_lbl">
 			<label id="dt_time_lbl">Time: </label>
@@ -179,7 +179,7 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 		</li>
 		<li role="group" aria-labelledby="dt_date_lbl">
 			<label id="dt_date_lbl">Date:</label>
-			<label for="day_sel" class="aria-only">Day of Month</label>	
+			<label for="day_sel" class="aria-only">Day of Month</label>
 			<select id="day_sel"></select>
 			<label for="month_sel" class="aria-only">Month</label>
 			<select id="month_sel"></select>
@@ -189,7 +189,7 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 	</ul>
 
 	<p><button type="button" id="render_btn">Render Date &amp; Time</button></p>
-	
+
 	<div id="error_out"></div>
 	<dl id="dates_list">
 	  <dt>International (ISO8601) Format:</dt>
@@ -278,13 +278,13 @@ Tests whether the callback `blockFn` throws the `expected` error. You can accept
 Let’s work through a simple practical example – let’s develop a very basic API that collects together a few maths functions using the following specification:
 
 > The API should be named `pbs.math`, and should provide the following functions:
-> 
+>
 > `factorial(n)`
-> 
+>
 > The function should return the factorial of `n` (the first argument) as an integer. The function should throw a new `Error` if `n` is not a positive integer. You’ll find a [definition of factorials on Wikipedia](https://en.wikipedia.org/wiki/Factorial).
-> 
+>
 > `fibonacciSeries(n)`
-> 
+>
 > The function should return the fibonacci series up to and possibly including `n` as an array of integers. The function should throw an error if `n` is not a number, and return an empty array if `n` has a value below 0. You should use the modern variant of the sequence which uses `[0, 1]` as the starting point for the series. You’ll find a [definition of the Fibonacci Series on Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).
 
 We’ll start with by creating the following three blank files (paths relative to the base folder for the project):
@@ -301,10 +301,10 @@ Remember, with TDD you shouldn’t write code until you’ve defined some tests 
 <head>
     <meta charset="utf-8" />
     <title>pbs.math.js Test Suite</title>
-    
+
     <!-- load the QUnit style sheet from the jQuery CDN -->
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/qunit/qunit-2.3.0.css" />
-    
+
     <!-- load the API to be tested -->
     <script type="text/javascript" src="../pbs.math.js"></script>
 </head>
@@ -359,7 +359,7 @@ OK – let’s refresh our test runner (`test/index.html`) and see what we get:
 
 As expected, we see a big red error message (since we haven’t added anything into `pbs.math.js` yet, not even the namespace declaration). But, look a little closer and you might notice something unexpected – the summary says:
 
-> 1 tests completed in 4 milliseconds, with 1 failed, 0 skipped, and 0 todo.  
+> 1 tests completed in 4 milliseconds, with 1 failed, 0 skipped, and 0 todo.
 > 0 assertions of 1 passed, 1 failed.
 
 The first line is fine, we do indeed only have one test. But the second line, that looks odd – it says 0 assertions of 1 passed. But there are two assertions in the test, what gives?
@@ -376,7 +376,7 @@ QUnit.test( "namespaces exist", function( assert ) {
 
 If you save the file and re-refresh the test suite you’ll now see the expected summary:
 
-> 1 tests completed in 4 milliseconds, with 1 failed, 0 skipped, and 0 todo.  
+> 1 tests completed in 4 milliseconds, with 1 failed, 0 skipped, and 0 todo.
 > 0 assertions of 2 passed, 2 failed.
 
 OK – now that our tests are working as we want, we can finally start writing some code for our API. We need to start with the boiler-plate to set up our name spaces. Let’s start by setting up just the `pbs` namespace. Use the following as the initial content of `pbs.math.js`:
@@ -419,7 +419,7 @@ var pbs = pbs ? pbs : {};
 
 After saving `pbs.math.js`, refresh your test runner to see the current result of all your tests. All the evil red should have vanished from the interface, and the summary should read something like:
 
-> 1 tests completed in 2 milliseconds, with 0 failed, 0 skipped, and 0 todo.  
+> 1 tests completed in 2 milliseconds, with 0 failed, 0 skipped, and 0 todo.
 > 2 assertions of 2 passed, 0 failed.
 
 Below that you will find a small subtle blue line with a 1 before it followed by the title of our only test, followed by 2 within parentheses. The number in parentheses is the number of assertions in the test. To save on space as your test suite grows, QUnit minimises passing tests. You can expand them out by clicking on the title of the test. When you do that you see the two assertions with a green bar in front of them, indicating they both passed.
@@ -511,7 +511,7 @@ Let’s add the stub of our function to our API, and include the code for argume
     //
     // -- define the functions --
     //
-    
+
     // -- Function --
     // Purpose    : Calculate the factorial of a given number
     // Returns    : An integer
@@ -538,13 +538,13 @@ Append the following to the file `test/pbs.math.test.js`:
 ```JavaScript
 QUnit.test("inputs to pbs.math.factorial() give expected outputs", function(assert){
     assert.expect(2);
-    
+
     // check the lowest valid number
     assert.strictEqual(pbs.math.factorial(0), 1, 'the factorial of 0 is 1');
-    
+
     // check a larger valid number
     assert.strictEqual(pbs.math.factorial(5), 120, 'the factorial of 5 is 120');
-    
+
     // no maximum, so no need to test the upper bound of the valid range
 });
 ```
@@ -572,12 +572,12 @@ Below is the updated version of the `pbs.math.factorial()` function in `pbs.math
             throw new Error('invalid first argument - must be a positive integer (>= 0)');
         }
         var intN = parseInt(n); // force to typeof number
-        
+
         // short-circuit the trivial answers
         if(intN == 0 || intN == 1){
             return 1;
         }
-        
+
         // do the calculation
         var ans = intN;
         var ctr = intN - 1; // initialise a counter to one less than n
@@ -585,7 +585,7 @@ Below is the updated version of the `pbs.math.factorial()` function in `pbs.math
             ans *= ctr; // multiply the answer by the counter
             ctr--; // decrement the counter
         }
-        
+
         // return the answer
         return ans;
     };
@@ -684,22 +684,22 @@ Append the following to `test/pbs.math.test.js`:
 ```JavaScript
 QUnit.test("inputs to pbs.math.fibonacciSeries() give expected outputs", function(assert){
     assert.expect(5);
-    
+
     // check a number below zero - should return an empty array
     assert.deepEqual(pbs.math.fibonacciSeries(-42), [], '-42 evaluates to an empty array');
-    
+
     // check that 0 returns [0] - we have implmented the modern alogrithm not the classical one
     assert.deepEqual(pbs.math.fibonacciSeries(0), [0], 'the series up to 0 evaluates to [0]');
-    
+
     // check that 1 returns [0, 1] - the start of the classical algorythm
     assert.deepEqual(pbs.math.fibonacciSeries(1), [0, 1], 'the series up to 1 evaluates to [0, 1]');
-    
+
     // check a larger valid number that is in the series
     assert.deepEqual(pbs.math.fibonacciSeries(8), [0, 1, 1, 2, 3, 5, 8], 'the series up to 8 is [0, 1, 1, 2, 3, 5, 8]');
-    
+
     // check a larger valid number that is not in the series
     assert.deepEqual(pbs.math.fibonacciSeries(25.6), [0, 1, 1, 2, 3, 5, 8, 13, 21], 'the series up to 25.6 is [0, 1, 1, 2, 3, 5, 8, 13, 21]');
-    
+
     // no maximum, so no need to test the upper bound of the valid range
 });
 ```
@@ -726,7 +726,7 @@ Now that we have our tests written, we can finish our implementation of the `pbs
         if(typeof n !== 'number'){
             throw new Error('invalid first argument - must be a number');
         }
-        
+
         // short-circuit the trivial values of the series so we can be sure there
         // are always two previous values to add together get the next value later
         if(n < 0){
@@ -738,18 +738,18 @@ Now that we have our tests written, we can finish our implementation of the `pbs
         if(n < 2){
             return [0, 1];
         }
-        
+
         // do the calculation
         var ans = [0, 1]; // start with the two seed values of the modern algorythm
         while(ans.slice(-1)[0] <= n){ // while the value of the last item in the ans array is <= n
             var lastTwo = ans.slice(-2);
             ans.push(lastTwo[0] + lastTwo[1]); // append the sum of the last two values to the ans array
         }
-        
+
         // because we check before we calculate, we have gone one calculation too far,
         // so remove the last value from the array
         ans.pop();
-        
+
         // return the answer
         return ans;
     };
@@ -758,13 +758,13 @@ Now that we have our tests written, we can finish our implementation of the `pbs
 This implementation passes all our tests.
 
 > ### Asside – the JavaScript `.slice()` Function
-> 
+>
 > Notice that the function makes use of the `.slice()` function from the `Array` prototype. I know Allison has been using this function in her code for some time, but it’s not one we’ve ever discussed as part of the series.
-> 
+>
 > What this function does is return a sub-set, or slice, of an array. You can use no arguments at all, in which case you’ll get the whole array back.
-> 
+>
 > If you choose to pass it, the first argument will be interpreted as your starting point – use a value of 0 to begin at the start of the array. Positive integer values will move the starting array index forward, so `.slice(2)` will exclude the first three items of the array from the result (remember, arrays are zero-indexed). You can also use negative numbers to work from the back of the array forwards when defining your start point. The last element in the array is considered to be at index -1. The returned array is still in the normal forward order. So, `.slice(-3)` returns the last three elements in the array in the same order they were originally present in the array.
-> 
+>
 > Finally, if you choose to pass it, the second argument sets the index **before** which to stop the returned array at. So, `.slice(1, 3)` returns the second and third elements of the array (those at indexes 1 & 2). You can also use negative indexes in the second argument. To slice everything but the first and last elements, you could use `.slice(1, -1)`. If you don’t specify and second argument, the length of the array is used, i.e. the slice runs to the end of the array.
 
 So far, because we’ve been working on quite simplistic code, there has been no need to do any refactoring at the end of any of our cycles. This time though, there is some room for refactoring, though it’s in the test code, not the API itself.
@@ -805,7 +805,7 @@ QUnit.module('pbs.math.factorial()', {}, function(){
     QUnit.test('function exists', function(assert){
         assert.strictEqual(typeof pbs.math.factorial, 'function', 'function exists');
     });
-    
+
     QUnit.test('invalid arguments throw Errors', function(assert){
         assert.expect(9);
         assert.throws(
@@ -872,16 +872,16 @@ QUnit.module('pbs.math.factorial()', {}, function(){
             'throws Error when called with a negative integer number'
         );
     });
-    
+
     QUnit.test('inputs give expected outputs', function(assert){
         assert.expect(2);
-        
+
         // check the lowest valid number
         assert.strictEqual(pbs.math.factorial(0), 1, 'the factorial of 0 is 1');
-        
+
         // check a larger valid number
         assert.strictEqual(pbs.math.factorial(5), 120, 'the factorial of 5 is 120');
-        
+
         // no maximum, so no need to test the upper bound of the valid range
     });
 });
@@ -890,7 +890,7 @@ QUnit.module('pbs.math.fibonacciSeries()', {}, function(){
     QUnit.test('function exists', function(assert){
         assert.strictEqual(typeof pbs.math.fibonacciSeries, 'function', 'function exists');
     });
-    
+
     QUnit.test('invalid arguments throw Errors', function(assert){
         assert.expect(7);
         assert.throws(
@@ -943,25 +943,25 @@ QUnit.module('pbs.math.fibonacciSeries()', {}, function(){
             'throws Error when called with a function object'
         );
     });
-    
+
     QUnit.test('inputs give expected outputs', function(assert){
         assert.expect(5);
-        
+
         // check a number below zero - should return an empty array
         assert.deepEqual(pbs.math.fibonacciSeries(-42), [], '-42 evaluates to an empty array');
-        
+
         // check that 0 returns [0] - we have implmented the modern alogrithm not the classical one
         assert.deepEqual(pbs.math.fibonacciSeries(0), [0], 'the series up to 0 evaluates to [0]');
-        
+
         // check that 1 returns [0, 1] - the start of the classical algorythm
         assert.deepEqual(pbs.math.fibonacciSeries(1), [0, 1], 'the series up to 1 evaluates to [0, 1]');
-        
+
         // check a larger valid number that is in the series
         assert.deepEqual(pbs.math.fibonacciSeries(8), [0, 1, 1, 2, 3, 5, 8], 'the series up to 8 is [0, 1, 1, 2, 3, 5, 8]');
-        
+
         // check a larger valid number that is not in the series
         assert.deepEqual(pbs.math.fibonacciSeries(25.6), [0, 1, 1, 2, 3, 5, 8, 13, 21], 'the series up to 25.6 is [0, 1, 1, 2, 3, 5, 8, 13, 21]');
-        
+
         // no maximum, so no need to test the upper bound of the valid range
     });
 });
@@ -975,7 +975,7 @@ Within our source code we now have our tests sorted into nice clear groupings. B
 
 Let’s have a more detailed look at the test runner now that we have a pretty full-featured test suite. Between the title of the test suite and the output of the tests is a toolbar, marked in red on the screenshot below:
 
-[![](../assets/pbs33/Screen-Shot-2017-04-14-at-15.24.32-300x103.png)  
+[![](../assets/pbs33/Screen-Shot-2017-04-14-at-15.24.32-300x103.png)
 Click to Enlarge](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-14-at-15.24.32.png)
 
 The first thing I want to draw your attention to is the drop-down at the right of the tool bar labeled _Module_. Using this dropdown we can instruct QUnit to only run the tests for a given sub-set of modules, allowing us to cut down on clutter as we focus on specific parts of our code.

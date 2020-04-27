@@ -8,7 +8,7 @@ Now that we know about objects, we need to re-visit the `arguments` object prese
 
 We also need to look at how JavaScript handles regular expressions, and finally, we need to introduce the concept of exception handling.
 
-# Matching Postcast Episode 446
+# Matching Podcast Episode 446
 
 Listen Along: Chit Chat Accross the Pond Episode 446
 
@@ -41,7 +41,7 @@ function Quotation(q, b, n){
   // store the quotation and name
   this._quote = String(q); // force to a string
   this._by = String(b); // force to a string
-  
+
   // if provided, store the note
   this._note = undefined;
   if(typeof n !== 'undefined'){
@@ -58,7 +58,7 @@ Quotation.prototype.quote = function(){
   if(arguments.length > 0){
     this._quote = String(arguments[0]);
   }
-  
+
   // always return the current value
   return this._quote;
 };
@@ -72,7 +72,7 @@ Quotation.prototype.by = function(){
   if(arguments.length > 0){
     this._by = String(arguments[0]);
   }
-  
+
   // always return the current value
   return this._by;
 };
@@ -92,7 +92,7 @@ Quotation.prototype.note = function(){
       this._note = String(arguments[0]);
     }
   }
-  
+
   // always return the current value
   return this._note;
 };
@@ -122,7 +122,7 @@ Quotation.prototype.toString = function(){
 function RandomQuoter(){
   // initialise the quotation list
   this._quotes = [];
-  
+
   // let the setter deal with any arguments
   // convert them to a traditional array first
   var argArray = [];
@@ -139,7 +139,7 @@ function RandomQuoter(){
 RandomQuoter.prototype.empty = function(){
   // blank the array of quotes
   this._quotes = [];
-  
+
   // return a reference to self to enable function chaining
   return this;
 };
@@ -162,7 +162,7 @@ RandomQuoter.prototype.add = function(){
       argsToProcess[i] = arguments[i];
     }
   }
-  
+
   // add all valid quotes received
   var self = this; // grab a reference to this for use in callback
   argsToProcess.forEach(function(q){
@@ -171,7 +171,7 @@ RandomQuoter.prototype.add = function(){
       self._quotes.push(q);
     }
   });
-  
+
   // return a reference to self to enable function chaining
   return this;
 };
@@ -574,12 +574,12 @@ function factorial(n){
   if(!String(n).match(/^\d+$/)){
     throw new Error('factorial must be called with a positive integer number as the first argument');
   }
-  
+
   // the factorial of 0 or 1 is 1, so return 1 if appropriate
   if(n <= 1){
     return 1;
   }
-  
+
   // return n times the factorial of n - 1 (i.e. recurse)
   return n * factorial(n - 1);
 }
@@ -624,12 +624,12 @@ function factorial(n){
   if(!String(n).match(/^\d+$/)){
     throw new Error('factorial must be called with a positive integer number as the first argument');
   }
-  
+
   // the factorial of 0 or 1 is 1, so return 1 if appropriate
   if(n <= 1){
     return 1;
   }
-  
+
   // return n times the factorial of n - 1 (i.e. recurse)
   return n * factorial(n - 1);
 }

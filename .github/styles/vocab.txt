@@ -1,2 +1,9 @@
+boolean
+booleans
+destructuring
+getters
+Hoonyaker
 Komodo
+Lodash
+Quatloo
 Smultron

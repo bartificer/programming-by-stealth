@@ -4,9 +4,9 @@ For boring real-life reasons this instalment is a bit of an intermission. In the
 
 What we’re going to do in this instalment is focus entirely on my sample solution to the challenge set at the end of the previous instalment, which I’ve used as an opportunity to demonstrate two new tools to add to our programming tool belt — the micro-checking library [is.js](http://is.js.org/), and [Bootstrap Popovers](https://getbootstrap.com/docs/4.3/components/popovers/).
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs78.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs78.zip).  
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs78.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs78.zip).
 
-# Matching Postcast Episode 593
+# Matching Podcast Episode 593
 
 Listen along to this instalment on [episode 593 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/05/ccatp-593/)
 
@@ -217,7 +217,7 @@ try{
 }catch(err){
   bodyHTML = '<p class="text-danger">Template Error</p>'
 }
-			
+
 // initialise the popover plugin on the element
 $e.popover({
   trigger: 'manual',

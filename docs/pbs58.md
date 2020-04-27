@@ -6,7 +6,7 @@ There’re more to Bootstrap’s support for responsive design than just the gri
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip).
 
-# Matching Postcast Episode 555
+# Matching Podcast Episode 555
 
 Listen along to this instalment on [episode 555 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-555/)
 
@@ -62,7 +62,7 @@ However, the focus of this challenge was the overall structure, and that’s eas
           <!-- ... -->
        </tbody>
       </table>
-      
+
       <aside class="border border-info rounded p-2">
         <h2 class="text-info d-inline-block align-middle">Did you Know?</h2>
         <p class="text-muted d-inline">The Cucumber is...</p>
@@ -74,7 +74,7 @@ However, the focus of this challenge was the overall structure, and that’s eas
         <figcaption class="figure-caption">The finished product fresh out of the oven!</figcaption>
       </figure>
       <h2>Instructions</h2>
-      
+
       <ol>
         <li>
           <p>Wash the cucumber ...</p>
@@ -86,7 +86,7 @@ However, the focus of this challenge was the overall structure, and that’s eas
   <div class="row">
     <section class="col-6">
       <h2>Required Equipment</h2>
-      
+
       <ul class="list-unstyled d-flex flex-row justify-content-between text-center my-3 mx-0 p-0">
         <li>
           <p><span class="fas fa-clipboard fa-5x"></span></p>

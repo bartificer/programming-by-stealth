@@ -4,7 +4,7 @@ In the previous instalment we got our first introduction to the concept of _prom
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/06/pbs80.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs80.zip).
 
-# Matching Postcast Episode 597
+# Matching Podcast Episode 597
 
 Listen along to this instalment on [episode 597 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/07/ccatp-602/)
 
@@ -351,23 +351,23 @@ To work around this limitation I’ve written a very simple PHP proxy script whi
 **For this proxy script to work you’ll need to access `php80a.html` via a web server that supports PHP, like MAMP.**
 
 > ### Aside
-> 
+>
 > In case you’re curious and you’d like to see another language in action, this is the code for the proxy script:
-> 
+>
 > ```PHP
 > <?php
 > # Set the MIME-Type to text/plain
 > header('Content-Type: text/plain');
-> 
+>
 > # build the URL
 > $url = 'http://wttr.in/'.urlencode($_REQUEST['city']).'?format=3';
 > $url .= $_REQUEST['units'] == 'f' ? '&u' : '&c';
-> 
+>
 > # fetch and output the URL
 > echo file_get_contents($url);
 > ```
-> 
-> Apart from the fact that comments start with # instead of //, that strings are concatenated with . instead of +, and that variable names all start with a $, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable [C programming language](https://en.wikipedia.org/wiki/C_(programming_language)).
+>
+> Apart from the fact that comments start with # instead of //, that strings are concatenated with . instead of +, and that variable names all start with a \$, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable [C programming language](<https://en.wikipedia.org/wiki/C_(programming_language)>).
 
 ### Some Helper Variables & Utility Functions
 

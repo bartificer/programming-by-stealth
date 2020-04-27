@@ -8,7 +8,7 @@ Finally, the challenge set at the end of this instalment will also combine our p
 
 You can download my solution to the challenge set in the previous instalment, and all the code samples for this instalment in a single ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs32.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs32.zip).
 
-# Matching Postcast Episode 480
+# Matching Podcast Episode 480
 
 Listen Along: Chit Chat Accross the Pond Episode 480
 
@@ -31,26 +31,26 @@ var pbs = pbs ? pbs : {};
 	//
 
 	// ...
-	
+
 	//
 	// === Define Time prototype ===
 	//
-	
+
 	// ...
-	
+
 	// add static function for checking if arbitrarily many times are the same
 	pbs.Time.areEqual = function(){
 		// if we don't have at least two arguments, they can't possibly be equal
 		if(arguments.length < 2){
 			return false;
 		}
-		
+
 		// if the first argument is not a pbs.Time, they can't all possibly be equal times
 		var firstT = arguments[0];
 		if(!(firstT instanceof pbs.Time)){
 			return false;
 		}
-		
+
 		// if we got here, check the first time against all the others, if a single one is
 		// not equal, return false
 		for(var i = 1; i < arguments.length; i++){
@@ -58,24 +58,24 @@ var pbs = pbs ? pbs : {};
 				return false;
 			}
 		}
-		
+
 		// if we made it here, all the arguments must be equal
 		return true;
 	};
-	
+
 	//
 	// === Define Date prototype ===
 	//
-	
+
 	// ...
-	
+
 	// add the static function isLeapYear
 	pbs.Date.isLeapYear = function(y){
 		// make sure we were passed a plausible year
 		if(!isValidInteger(y)){
 			throw new TypeError('the year must be an integer');
 		}
-		
+
 		// figure out if the year is a leapyear or not
 		if(y % 4 === 0){
 			// year is divisible by 4, so might be a leap year
@@ -89,20 +89,20 @@ var pbs = pbs ? pbs : {};
 				return true;
 			}
 		}
-		
+
 		// if we got here, the year is not a leap year
 		return false;
 	};
-	
+
 	// add the static function leapYearsBetween
 	pbs.Date.leapYearsBetween = function(y1, y2){
 		// make sure both years are at least sane
 		if(!(isValidInteger(y1) && isValidInteger(y2))){
 			throw new TypeError('both years must be an integers');
 		}
-		
+
 		var ans = []; // an empty array
-		
+
 		// figure out where to start and end the loop
 		var startYear = 0;
 		var endYear = 0;
@@ -113,31 +113,31 @@ var pbs = pbs ? pbs : {};
 			startYear = y2;
 			endYear = y1;
 		}
-		
+
 		// loop through all the years in the range, and save the leap years
 		for(var y = startYear; y <= endYear; y++){
 			if(pbs.Date.isLeapYear(y)){
 				ans.push(y);
 			}
 		}
-		
+
 		// return the leap years
 		return ans;
 	};
-	
+
 	// add static function for comparing arbirarily many Dates
 	pbs.Date.areEqual = function(){
 		// if we don't have at least two arguments, they can't possibly be equal
 		if(arguments.length < 2){
 			return false;
 		}
-		
+
 		// if the first argument is not a pbs.Date, they can't all possibly be equal dates
 		var firstD = arguments[0];
 		if(!(firstD instanceof pbs.Date)){
 			return false;
 		}
-		
+
 		// if we got here, check the first date against all the others, if a single one is
 		// not equal, return false
 		for(var i = 1; i < arguments.length; i++){
@@ -145,30 +145,30 @@ var pbs = pbs ? pbs : {};
 				return false;
 			}
 		}
-		
+
 		// if we made it here, all the arguments must be equal
 		return true;
 	};
-	
+
 	//
 	// === Define DateTime prototype ===
 	//
-	
+
 	// ...
-	
+
 	// add static function for comparing arbirarily many DateTimes
 	pbs.DateTime.areEqual = function(){
 		// if we don't have at least two arguments, they can't possibly be equal
 		if(arguments.length < 2){
 			return false;
 		}
-			
+
 		// if the first argument is not a pbs.DateTime, they can't all possibly be equal dates
 		var firstDT = arguments[0];
 		if(!(firstDT instanceof pbs.DateTime)){
 			return false;
 		}
-			
+
 		// if we got here, check the first DateTime against all the others, if a single one is
 		// not equal, return false
 		for(var i = 1; i < arguments.length; i++){
@@ -176,7 +176,7 @@ var pbs = pbs ? pbs : {};
 				return false;
 			}
 		}
-			
+
 		// if we made it here, all the arguments must be equal
 		return true;
 	};
@@ -363,10 +363,10 @@ $('#render_btn').click(function(){
   // assume there will be no error, so blank the error message
   var $error = $('#error_out');
   $error.text('').hide();
-				
+
   // create a date object
   var d = new pbs.Date();
-		
+
   // try set it to the value represented by the form
   try{
     d.year($years.val());
@@ -378,7 +378,7 @@ $('#render_btn').click(function(){
     $('#dates_list dd').text('???');
     return;
   }
-				
+
   // render the date
   $('#inter_out').text(d.international());
   $('#eur_out').text(d.european());
@@ -419,9 +419,9 @@ What day of the Week would you like Tacos?
 The user sees the contents of the `<option>` tags, while the value part of the name-value pair is determined by the `value` attribute on the selected option.
 
 > ### Aside:
-> 
+>
 > A quick note for those of you using the CodeRunner editor, if you set the execution language to HTML (the dropdown next to the run button, not the syntax highlighting setting), you can _‘run’_ HTML directly in the CodeRunner console as shown in this screenshot:
-> 
+>
 > ![HTML in CodeRunner](../assets/pbs32/Screen-Shot-2017-03-13-at-01.08.24-e1489367406400.png)
 
 By default, the first option in a dropdown is automatically selected, but you can have any option be the default by adding the attribute `selected="selected"` to the `<option>` tag of your choice.
@@ -484,7 +484,7 @@ The file `pbs32b.html` in this instalment’s ZIP file contains a sample form wi
 	<ul>
 		<li>
 			<label>
-				I would like to eat Tacos every 
+				I would like to eat Tacos every
 				<select name="taco_day" id="taco_day_sel">
 					<option value="1">Monday</option>
 					<option value="2">Tuesday</option>
@@ -611,7 +611,7 @@ $(function(){
     $days.append($('<option>').text(d).val(d));
   }
   $('option[value="1"]', $days).prop('selected', true);
-			
+
   // add the options to the month select
   var month_abbrev_lookup = {
     1: 'Jan',
@@ -632,7 +632,7 @@ $(function(){
     $months.append($('<option>').text(month_abbrev_lookup[m]).val(m));
   }
   $('option[value="1"]', $months).prop('selected', true);
-			
+
   // add the options to the year select
   var $years = $('#year_sel');
   for(var y = 2000; y <= 2100; y++){

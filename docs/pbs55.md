@@ -6,7 +6,7 @@ It’s going to take us at least two instalments to look at Bootstrap content. W
 
 You can [download the ZIP file for this instalment here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip).
 
-# Matching Postcast Episode 549
+# Matching Podcast Episode 549
 
 Listen along to this instalment on [episode 549 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-549/)
 
@@ -72,34 +72,34 @@ Like last time I’ve created an HTML document with some pre-created elements an
 <html>
 <head>
     <meta charset="utf-8" />
-        
+
     <!-- Include Bootstrap 4 CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        
+
     <title>PBS 55 Dummy Page</title>
 </head>
 <body>
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12">
-        
+
             <!-- Start of Dummy Content -->
-            
+
             <h1 class="">Patrick Kavanagh <small class="">Irish Poet</small></h1>
-                        
+
             <p class="">Patrick Kavanagh is the most famous poet to come from the Irish county of Monaghan. He was born in 1904, and died in 1967.</p>
-            
+
             <p class="">The poem below is one of my favourites, I hope you enjoy it!</p>
-            
+
             <blockquote class="">
                 <h2 class="">Lines Written on a Seat on the Grand Canal, Dublin</h2>
-                
+
                 <aside class="">
                   <h1 class="">Note:</h1>
                   <p class="">Kavanagh got his wish — he is comemorated with a bench that has a statue of him setting on it next to the Royal Canal in Dublin city. Passers by can sit next to Kavanagh on his bench and ponder the view, perhaps with these lines running aroun in their heads.</p>
                 </aside>
-                
+
                 <p class="">"Erected to the memory of Mrs. Dermot O'Brien"</p>
 
                 <p class="">O commemorate me where there is water,<br>
@@ -116,18 +116,18 @@ Like last time I’ve created an HTML document with some pre-created elements an
                 And other far-flung towns mythologies.<br>
                 O commemorate me with no hero-courageous<br>
                 Tomb - just a canal-bank seat for the passer-by.</p>
-                
+
                 <footer class="">Patrick Kavanagh</footer>
             </blockquote>
-            
+
             <h2 class="">Other Kavanagh Poems I Recommend</h2>
-            
+
             <ul class="">
                 <li class=""><a href="https://www.poemhunter.com/poem/canal-bank-walk/">Canal Bank Walk</a></li>
                 <li class=""><a href="https://www.poemhunter.com/poem/stony-grey-soil/">Stony Grey Soil</a></li>
                 <li class=""><a href="https://www.poemhunter.com/poem/a-christmas-childhood/">A Christmas Childhood</a></li>
             </ul>
-            
+
             <footer class="">
                 <ul class="">
                   <li class="">
@@ -141,7 +141,7 @@ Like last time I’ve created an HTML document with some pre-created elements an
                   </li>
                 </ul>
             </footer>
-            
+
             <!-- End of Dummy Content -->
         </div>
     </div>
@@ -200,11 +200,11 @@ We can see the effect of both of these things in our playground:
 ```XHTML
 <blockquote class="blockquote">
   <h2 class="">Lines Written on a Seat on the Grand Canal, Dublin</h2>
-                
+
   <!-- ... -->
-  
+
   <p class="">O commemorate me ...</p>
-                
+
   <footer class="blockquote-footer">Patrick Kavanagh</footer>
 </blockquote>
 ```
@@ -219,11 +219,11 @@ This changes the fonts, but doesn’t highlight the box itself in any way. You c
     <h1 class="h5 d-inline text-info">Note:</h1>
     <p class="d-inline">Kavanagh got ...</p>
   </aside>
-                
+
   <p class="lead">"Erected to the memory of Mrs. Dermot O'Brien"</p>
 
   <p class="">O commemorate me ...</p>
-                
+
   <footer class="blockquote-footer">Patrick Kavanagh</footer>
 </blockquote>
 ```

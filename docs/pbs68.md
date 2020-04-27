@@ -4,7 +4,7 @@ In this instalment we’ll get our first look at Bootstrap’s so-call _Nav_ com
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
 
-# Matching Postcast Episode 575
+# Matching Podcast Episode 575
 
 Listen along to this instalment on [episode 575 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/12/ccatp-575/)
 

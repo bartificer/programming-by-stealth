@@ -4,7 +4,7 @@ In the previous instalments we experimented with jQuery using the web console on
 
 This instalment includes a number of examples. You can copy-and-paste the code out of the page, but for convenience I’ve zipped up all the files and you can [download them here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/pbs22.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs22.zip).
 
-# Matching Postcast Episode 457
+# Matching Podcast Episode 457
 
 Listen Along: Chit Chat Accross the Pond Episode 457
 
@@ -19,17 +19,16 @@ The challenge was simply to write a JQuery command to set the `target` of all li
 There is no one solution to a problem like this, so below are two different correct solutions.
 
 1.  The first approach is to use the CSS containment selector (space) to limit the results to just `a` elements within the `main` element:
-    
+
     ```JavaScript
     $('main a').attr('target', '_blank')
     ```
-    
+
 2.  The second approach is to use the optional second argument to the `$` function to limit the search to the `main` element:
-    
+
     ```JavaScript
     $('a', $('main')).attr('target', '_blank')
     ```
-    
 
 ## Embedding JavaScript in Web Pages
 
@@ -55,7 +54,7 @@ When used without an `src` attribute, the `script` tags expects the JavaScript c
 
 ```XHTML
 <script type="text/javascript">
-  
+
   // your JavaScript code goes here
 
 </script>
@@ -154,18 +153,18 @@ Let’s put this all together into a simple sample HTML page that contains some 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 22 - Example 1</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
   // add an anonymous function for fixing the links to the DOM ready event
   $(function(){
   	$('a').attr('target', '_blank').attr('rel', 'noopener');
   });
-  
+
 </script>
 </head>
 <body>
@@ -217,13 +216,13 @@ Again, let’s put it all together in a full HTML page (`pbs22b.html` in the ZIP
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 22 - Example 2</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-    
+
     // initialise the page - executed when the DOM is ready
     $(function(){
       // add a click event handler to define toggle the highlighting of paragraphs
@@ -231,18 +230,18 @@ Again, let’s put it all together in a full HTML page (`pbs22b.html` in the ZIP
         $(this).toggleClass('highlighted');
       });
     });
-  
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /* define the style for highlighted elements */
     .highlighted{
     	background-color: yellow;
     	font-weight: bold;
     }
-    
+
   </style>
 </head>
 <body>
@@ -251,8 +250,8 @@ Again, let’s put it all together in a full HTML page (`pbs22b.html` in the ZIP
 
 <p>Click on any paragraph, including this one to toggle higlighting on and off.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit 
-vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit
+vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna
 lectus. Curabitur eu libero id lacus egestas finibus id sit amet dui. Phasellus
 ornare maximus tortor, vel porta dui dapibus a. Class aptent taciti sociosqu ad
 litora torquent per conubia nostra, per inceptos himenaeos. Duis mollis at dui
@@ -260,14 +259,14 @@ et molestie. Etiam pharetra gravida lectus, vitae viverra ante condimentum a.
 Nam elit turpis, dictum quis dapibus nec, porttitor non nibh. Vivamus eleifend
 arcu et turpis rutrum eleifend. Nunc aliquam egestas blandit.</p>
 
-<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis 
-ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi. 
+<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis
+ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi.
 Vestibulum eget quam vel magna pellentesque egestas id non massa. Suspendisse in
 ante a dui dictum vehicula. Vivamus dignissim sagittis quam in vulputate. Donec
-eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at 
+eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at
 placerat tempus, felis nisi cursus nisi, ac gravida lectus justo non ex. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque odio
-pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla 
+pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla
 permentum. Nulla sem velit, posuere rutrum aliquet vitae, fringilla at orci.</p>
 
 <p>Sed at risus augue. Cras nec vulputate augue, interdum mollis metus. Quisque
@@ -312,13 +311,13 @@ You can see it in context in this full example (`pbs22c.html` in the zip file):
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 22 - Example 3</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-    
+
     // initialise the page - executed when the DOM is ready
     $(function(){
       // set a timeout to run in 5 seconds
@@ -329,7 +328,7 @@ You can see it in context in this full example (`pbs22c.html` in the zip file):
         5000
       );
     });
-  
+
   </script>
 </head>
 <body>
@@ -371,13 +370,13 @@ You can see how this works in context in the file `pbs22d.html` in the zip file:
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 22 - Example 4</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-    
+
     // initialise the page - executed when the DOM is ready
     $(function(){
       // set an interval that will toggle the class every 3 seconds
@@ -388,18 +387,18 @@ You can see how this works in context in the file `pbs22d.html` in the zip file:
     	3000
   	  );
     });
-  
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /* define the style for highlighted elements */
     .highlighted{
     	background-color: yellow;
     	font-weight: bold;
     }
-    
+
   </style>
 </head>
 <body>
@@ -408,8 +407,8 @@ You can see how this works in context in the file `pbs22d.html` in the zip file:
 
 <p>Watch as the paragraphs toggle highlighting every three seconds.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit 
-vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit
+vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna
 lectus. Curabitur eu libero id lacus egestas finibus id sit amet dui. Phasellus
 ornare maximus tortor, vel porta dui dapibus a. Class aptent taciti sociosqu ad
 litora torquent per conubia nostra, per inceptos himenaeos. Duis mollis at dui
@@ -417,14 +416,14 @@ et molestie. Etiam pharetra gravida lectus, vitae viverra ante condimentum a.
 Nam elit turpis, dictum quis dapibus nec, porttitor non nibh. Vivamus eleifend
 arcu et turpis rutrum eleifend. Nunc aliquam egestas blandit.</p>
 
-<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis 
-ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi. 
+<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis
+ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi.
 Vestibulum eget quam vel magna pellentesque egestas id non massa. Suspendisse in
 ante a dui dictum vehicula. Vivamus dignissim sagittis quam in vulputate. Donec
-eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at 
+eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at
 placerat tempus, felis nisi cursus nisi, ac gravida lectus justo non ex. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque odio
-pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla 
+pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla
 permentum. Nulla sem velit, posuere rutrum aliquet vitae, fringilla at orci.</p>
 
 <p>Sed at risus augue. Cras nec vulputate augue, interdum mollis metus. Quisque
@@ -448,26 +447,26 @@ Let’s put everything we’ve learned today together into a single exercise. Pl
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 22 - Challenge</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-    
+
     // INSERT YOUR CODE HERE
-  
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /* define the style for highlighted elements */
     .highlighted{
     	background-color: yellow;
     	font-weight: bold;
     }
-    
+
   </style>
 </head>
 <body>
@@ -478,8 +477,8 @@ Let’s put everything we’ve learned today together into a single exercise. Pl
 paragraph and all paragraphs should highlight and then un-highlight at one
 second intervals. Clicking any paragraph again should stop that happening.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit 
-vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit
+vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna
 lectus. Curabitur eu libero id lacus egestas finibus id sit amet dui. Phasellus
 ornare maximus tortor, vel porta dui dapibus a. Class aptent taciti sociosqu ad
 litora torquent per conubia nostra, per inceptos himenaeos. Duis mollis at dui
@@ -487,14 +486,14 @@ et molestie. Etiam pharetra gravida lectus, vitae viverra ante condimentum a.
 Nam elit turpis, dictum quis dapibus nec, porttitor non nibh. Vivamus eleifend
 arcu et turpis rutrum eleifend. Nunc aliquam egestas blandit.</p>
 
-<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis 
-ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi. 
+<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis
+ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi.
 Vestibulum eget quam vel magna pellentesque egestas id non massa. Suspendisse in
 ante a dui dictum vehicula. Vivamus dignissim sagittis quam in vulputate. Donec
-eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at 
+eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at
 placerat tempus, felis nisi cursus nisi, ac gravida lectus justo non ex. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque odio
-pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla 
+pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla
 permentum. Nulla sem velit, posuere rutrum aliquet vitae, fringilla at orci.</p>
 
 <p>Sed at risus augue. Cras nec vulputate augue, interdum mollis metus. Quisque

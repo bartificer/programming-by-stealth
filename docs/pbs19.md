@@ -4,7 +4,7 @@ While recording [instalment 18](https://www.bartbusschots.ie/s/2016/07/06/pbs-18
 
 These challenges are designed to be run in the [PBS JavaScript Playground](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/). You may also find the [PBS JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) helpful.
 
-# Matching Postcast Episode 449
+# Matching Podcast Episode 449
 
 Listen Along: Chit Chat Accross the Pond Episode 449
 
@@ -18,17 +18,11 @@ Using a loop of your choice, print the 12 times tables from 12 times 1 up to and
 
 ### Solution
 
-  
-
 ```JavaScript
 for(var i = 1; i <= 12; i++){
   pbs.say('12 x ' + i + ' = ' + (12 * i));
 }
 ```
-
-  
-
-    
 
 ## Challenge 2 – The Fibonacci Series
 
@@ -46,8 +40,6 @@ Build up your solution in the following way:
 
 ### Solution
 
-  
-
 ```JavaScript
 var fibonacci = [0, 1];
 while(fibonacci[fibonacci.length -1] < 1000000){
@@ -57,10 +49,6 @@ while(fibonacci[fibonacci.length -1] < 1000000){
 pbs.say(fibonacci.join('\n'));
 ```
 
-  
-
-    
-
 ## Challenge 3 – FizzBuzz
 
 This is a total cliché, and very common as an interview question. It tests if a programmer understands programming basics like loops and conditionals.
@@ -68,8 +56,6 @@ This is a total cliché, and very common as an interview question. It tests if a
 Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number, and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.
 
 ### Solution
-
-  
 
 ```JavaScript
 for(var i = 1; i <= 100; i++){
@@ -91,10 +77,6 @@ for(var i = 1; i <= 100; i++){
 }
 ```
 
-  
-
-    
-
 ## Challenge 4 – Factorial
 
 Write a function to calculate the factorial of an arbitrary number. Name the function `factorial`. It’s only possible to calculate the factorial of a whole number greater than or equal to zero. If an invalid input is passed, return `NaN`.
@@ -106,8 +88,6 @@ You can write your solution either using a loop of your choice, or, using recurs
 Test your function by calculating the factorial of the inputs in the PBS playground. If no inputs are set, print a message telling the user to enter numbers into the inputs.
 
 Show/Hide Iterative Solution
-
-  
 
 ```JavaScript
 // -- Function --
@@ -121,13 +101,13 @@ function factorial(n){
   if(!String(n).match(/^\d+$/)){
     return NaN
   }
-  
+
   // calculate the solution
   var ans = 1;
   for(var i = 1; i <= n; i++){
     ans *= i;
   }
-      
+
   // return the solution
   return ans;
 }
@@ -143,13 +123,7 @@ if(theInputs.length > 0){
 }
 ```
 
-  
-
-    
-
 ### Recursive Solution
-
-  
 
 ```JavaScript
 // -- Function --
@@ -163,12 +137,12 @@ function factorial(n){
   if(!String(n).match(/^\d+$/)){
     return NaN
   }
-  
+
   // break out of the recursive loop if n is 0
   if(n == 0){
     return 1;
   }
-  
+
   // make the recursive call
   return n * factorial(n - 1);
 }
@@ -184,10 +158,6 @@ if(theInputs.length > 0){
 }
 ```
 
-  
-
-    
-
 ## Challenge 5 – Complex Numbers
 
 Build a prototype to represent a complex number. In case you’re a little rusty on the details, [this page offers a really nice explanation of complex numbers](https://www.mathsisfun.com/numbers/complex-numbers.html). The prototype should be named `ComplexNumber`.
@@ -195,13 +165,13 @@ Build a prototype to represent a complex number. In case you’re a little rusty
 Build up your solution in the following way:
 
 1.  Define a constructor function for your prototype (it must be named the same as the prototype we are building, i.e. `ComplexNumber`).
-    
+
     1.  For now, the constructor will not take any arguments.
     2.  In the constructor, Initialise a key named `_real` to the value 0.
     3.  Also Initialise a key named `_imaginary` to the value 0.
-    
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : Constructor function for the ComplexNumber prototype
@@ -238,26 +208,24 @@ Build up your solution in the following way:
       if(arguments.length == 0){
         return this._real;
       }
-      
+
       // otherwise, validate the first argument
       if(isNaN(r)){
         throw new Error('Type missmatch - number required');
       }
-      
+
       // store the new value
       this._real = r;
-      
+
       // return a reference to the current object
       return this;
     };
     ```
-    
-  
-    
+
 3.  Create a similar accessor function for the imaginary part of the complex number, and name it `imaginary`.
-    
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : An accessor function for the imaginary part of the complex number
@@ -271,33 +239,31 @@ Build up your solution in the following way:
       if(arguments.length == 0){
         return this._imaginary;
       }
-      
+
       // otherwise, validate the first argument
       if(isNaN(i)){
         throw new Error('Type missmatch - number required');
       }
-      
+
       // store the new value
       this._imaginary = i;
-      
+
       // return a reference to the current object
       return this;
     };
     ```
-    
 
-    
-4.  Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
-    
+4)  Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
+
     1.  In the general case, where both real and imaginary parts are non-zero, return a string of the following form: `'(2 + 3i)'`. If the imaginary number is negative, change the `+` to a `-`.
     2.  If the imaginary part is exactly 1, just show it as `i`.
     3.  If either of the parts are equal to zero, omit the parentheses.
     4.  If the real and imaginary parts are both zero, just return the string `'0'`.
     5.  If only the imaginary part is zero, return just the real part as a string.
     6.  If only the real part is zero, return just the imaginary part as a string followed by the letter `i`.
-    
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : Render a complex number as a string
@@ -322,18 +288,18 @@ Build up your solution in the following way:
           ans += Math.abs(this._imaginary);
         }
         ans += 'i)'; // append the i and end the final perens
-        
+
         // return the assembled answer
         return ans;
       }
-      
+
       // if we got here, we are a special case, so deal with each possible one in turn
-      
+
       // deal with the case where both are zero
       if(this._real == 0 && this._imaginary == 0){
         return '0';
       }
-      
+
       // deal with the case where only the real part is zero
       if(this._real == 0){
         var ans = ''; // start with an empty string
@@ -348,33 +314,31 @@ Build up your solution in the following way:
         ans += 'i'; // append the i
         return ans;
       }
-      
+
       // if we got here, then the imaginary part must be zero
       return String(this._real); // force to a string
     };
     ```
-    
-    
-    
+
 5.  Test what you have so far with the following code:
-    
+
     ```JavaScript
     //
     // === Test the toString() and Accessor functions ===
     //
-    
+
     // create a complex number, set its values, and print it
     var cn1 = new ComplexNumber(); // construct a ComplexNumbr object
     cn1.real(2); // set the real part to 2
     cn1.imaginary(3); // set the imaginary part to 3
     pbs.say(cn1.toString()); // print it
-    
+
     // create a second complex number, using 'function chianing' to do it all at once
     // NOTE: function chaining is only possible becuase both accessor functions return
     //       the special value this when they are used as setters.
     var cn2 = (new ComplexNumber()).real(2).imaginary(-4);
     pbs.say(cn2);
-    
+
     // create some more complex number, but don't bother to save them, just print them
     pbs.say((new ComplexNumber()).real(-5.5).imaginary(1));
     pbs.say((new ComplexNumber()).real(7).imaginary(-1));
@@ -385,16 +349,16 @@ Build up your solution in the following way:
     pbs.say((new ComplexNumber()).imaginary(1));
     pbs.say((new ComplexNumber()).imaginary(4.7));
     ```
-    
+
 6.  Add a function named `parse` to the `ComplexNumber` prototype to update the value stored in the calling complex number object. This function should allow the new value be specified in a number of different ways. The following should all work:
-    
+
     1.  Two numbers as arguments – first the real part, then the imaginary part.
     2.  An array of two numbers as a single argument – the first element in the array being the real part, the second the imaginary part.
     3.  A string of the form `(a + bi)` or `(a - bi)` where `a` is a positive or negative number, and `b` is a positive number.
     4.  An object with the prototype `ComplexNumber`.
-    
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : Set the value of a complex number object
@@ -443,13 +407,11 @@ Build up your solution in the following way:
         // the arguments are not valid, so whine
         throw new Error('invalid arguments');
       }
-      
+
       // return a reference to the object
       return this;
     }
     ```
-    
-    
     
 7.  Test the parse function you just created with the following code:
     
@@ -457,18 +419,18 @@ Build up your solution in the following way:
     //
     // === Test the Parse() function ===
     //
-    
+
     var cn3 = new ComplexNumber(); // construct a ComplexNumbr object
     pbs.say(cn3.toString());
-    
+
     // test the two-number form
     cn3.parse(2, 4);
     pbs.say(cn3.toString());
-    
+
     // test the one array form
     cn3.parse([-3, 5.5]);
     pbs.say(cn3.toString());
-    
+
     // test the one string form
     cn3.parse("(2 + 6i)");
     pbs.say(cn3.toString());
@@ -476,7 +438,7 @@ Build up your solution in the following way:
     pbs.say(cn3.toString());
     cn3.parse("(-2.76 + 6.2i)");
     pbs.say(cn3.toString());
-    
+
     // test the one complex number object form
     var cn4 = (new ComplexNumber()).real(3).imaginary(4);
     cn3.parse(cn4);
@@ -486,7 +448,7 @@ Build up your solution in the following way:
 8.  Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code, instead, update the constructor function to check if there are one or two arguments, and if there are, call the `parse` function with the appropriate arguments.
     
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : Constructor function for the ComplexNumber prototype
@@ -502,7 +464,7 @@ Build up your solution in the following way:
       // set the default values on all data keys
       this._real = 0;
       this._imaginary = 0;
-      
+
       // if there were arguments, deal with them
       if(arguments.length == 1){
         this.parse(arguments[0]);
@@ -511,25 +473,23 @@ Build up your solution in the following way:
       }
     }
     ```
-    
-    
-    
+
 9.  Test your updated constructor with the following code:
-    
+
     ```JavaScript
     //
     // === Test the Updated Constructor ===
     //
-    
+
     // test the two-number form
     pbs.say( (new ComplexNumber(1, 2)).toString() );
-    
+
     // test the one array form
     pbs.say( (new ComplexNumber([2, 3])).toString() );
-    
+
     // test the one string form
     pbs.say( (new ComplexNumber("(2 - 6i)")).toString() );
-    
+
     // test the one complex number object form
     var cn5 = new ComplexNumber(-2, -4);
     pbs.say( (new ComplexNumber(cn5)).toString() );
@@ -537,8 +497,9 @@ Build up your solution in the following way:
     
 10.  Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
     
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : Add another complex number to the object
@@ -550,22 +511,21 @@ Build up your solution in the following way:
       if(!(cn instanceof ComplexNumber)){
          throw new Error('invalid arguments');
       }
-      
+
       // do the maths
       this._real += cn.real();
       this._imaginary += cn.imaginary();
-      
+
       // return a reference to the object
       return this;
     }
     ```
     
-    
-    
 11.  In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
     
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : Subtract another complex number from the object
@@ -577,24 +537,23 @@ Build up your solution in the following way:
       if(!(cn instanceof ComplexNumber)){
          throw new Error('invalid arguments');
       }
-      
+
       // do the maths
       this._real -= cn.real();
       this._imaginary -= cn.imaginary();
-      
+
       // return a reference to the object
       return this;
     }
     ```
     
-    
-    
 12.  Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
     
+
     `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
-    
+
     ### Partial Solution
-    
+
     ```JavaScript
     // -- Function --
     // Purpose    : Sultiply another complex number into the object
@@ -606,81 +565,76 @@ Build up your solution in the following way:
       if(!(cn instanceof ComplexNumber)){
          throw new Error('invalid arguments');
       }
-      
+
       // split out the a, b, c & d parts for the rule
       var a = this.real();
       var b = this.imaginary();
       var c = cn.real();
       var d = cn.imaginary();
-      
+
       // calcualte and store the results
       this._real = (a * c) - (b * d);
       this._imaginary = (a * d) + (b * c);
-      
+
       // return a reference to the object
       return this;
     };
     ```
     
-    
-    
 13.  Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vica-versa_.
     
+
     ### Partial Solution
-    
+
     ```JavaScript
     ComplexNumber.prototype.conjugateOf = function(){
       // if the imaginary part is positive, make a new CN with a negative version
       if(this.imaginary() &gt; 0){
         return new ComplexNumber(this.real(), 0 - this.imaginary());
       }
-      
+
       // otherwise, the imaginary part was negative or 0, so use the absolute value
       return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
     };
     ```
     
-    
-    
 14.  Test your arithmetic functions with the following code:
     
+
     ```JavaScript
     //
     // === Test the Arithmentic Functions ===
     //
-    
+
     // create a complex number to manipulate
     var myCN = new ComplexNumber(1, 2);
     pbs.say(myCN);
-    
+
     // add 4 + 2i to our number
     myCN.add(new ComplexNumber(4, 2));
     pbs.say(myCN);
-    
+
     // subtract 2 + i from our number
     myCN.subtract(new ComplexNumber(2, 1));
     pbs.say(myCN);
-    
+
     // set the value to 3 + 2i
     myCN.parse(3, 2);
-    
+
     // multiply by 1 + 7i
     myCN.multiplyBy(new ComplexNumber(1, 7));
     pbs.say(myCN.toString()); // should be -11 + 23i
-    
+
     // get the conjugate
     myCN = myCN.conjugateOf();
     pbs.say(myCN.toString());
-    
+
     // get the conjugate again
     myCN = myCN.conjugateOf();
     pbs.say(myCN.toString());
     ```
-    
 
 ### Completed Prototype
-
-  
 
 ```JavaScript
 //
@@ -701,7 +655,7 @@ function ComplexNumber(){
   // set the default values on all data keys
   this._real = 0;
   this._imaginary = 0;
-  
+
   // if there were arguments, deal with them
   if(arguments.length == 1){
     this.parse(arguments[0]);
@@ -722,15 +676,15 @@ ComplexNumber.prototype.real = function(r){
   if(arguments.length == 0){
     return this._real;
   }
-  
+
   // otherwise, validate the first argument
   if(isNaN(r)){
     throw new Error('Type missmatch - number required');
   }
-  
+
   // store the new value
   this._real = r;
-  
+
   // return a reference to the current object
   return this;
 };
@@ -747,15 +701,15 @@ ComplexNumber.prototype.imaginary = function(i){
   if(arguments.length == 0){
     return this._imaginary;
   }
-  
+
   // otherwise, validate the first argument
   if(isNaN(i)){
     throw new Error('Type missmatch - number required');
   }
-  
+
   // store the new value
   this._imaginary = i;
-  
+
   // return a reference to the current object
   return this;
 };
@@ -783,18 +737,18 @@ ComplexNumber.prototype.toString = function(){
       ans += Math.abs(this._imaginary);
     }
     ans += 'i)'; // append the i and end the final perens
-    
+
     // return the assembled answer
     return ans;
   }
-  
+
   // if we got here, we are a special case, so deal with each possible one in turn
-  
+
   // deal with the case where both are zero
   if(this._real == 0 && this._imaginary == 0){
     return '0';
   }
-  
+
   // deal with the case where only the real part is zero
   if(this._real == 0){
     var ans = ''; // start with an empty string
@@ -809,7 +763,7 @@ ComplexNumber.prototype.toString = function(){
     ans += 'i'; // append the i
     return ans;
   }
-  
+
   // if we got here, then the imaginary part must be zero
   return String(this._real); // force to a string
 };
@@ -861,7 +815,7 @@ ComplexNumber.prototype.parse = function(){
     // the arguments are not valid, so whine
     throw new Error('invalid arguments');
   }
-  
+
   // return a reference to the object
   return this;
 };
@@ -876,11 +830,11 @@ ComplexNumber.prototype.add = function(cn){
   if(!(cn instanceof ComplexNumber)){
      throw new Error('invalid arguments');
   }
-  
+
   // do the maths
   this._real += cn.real();
   this._imaginary += cn.imaginary();
-  
+
   // return a reference to the object
   return this;
 };
@@ -895,11 +849,11 @@ ComplexNumber.prototype.subtract = function(cn){
   if(!(cn instanceof ComplexNumber)){
      throw new Error('invalid arguments');
   }
-  
+
   // do the maths
   this._real -= cn.real();
   this._imaginary -= cn.imaginary();
-  
+
   // return a reference to the object
   return this;
 };
@@ -914,17 +868,17 @@ ComplexNumber.prototype.multiplyBy = function(cn){
   if(!(cn instanceof ComplexNumber)){
      throw new Error('invalid arguments');
   }
-  
+
   // split out the a, b, c & d parts for the rule
   var a = this.real();
   var b = this.imaginary();
   var c = cn.real();
   var d = cn.imaginary();
-  
+
   // calcualte and store the results
   this._real = (a * c) - (b * d);
   this._imaginary = (a * d) + (b * c);
-  
+
   // return a reference to the object
   return this;
 };
@@ -939,12 +893,8 @@ ComplexNumber.prototype.conjugateOf = function(){
   if(this.imaginary() > 0){
     return new ComplexNumber(this.real(), 0 - this.imaginary());
   }
-  
+
   // otherwise, the imaginary part was negative or 0, so use the absolute value
   return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
 };
 ```
-
-  
-
-  

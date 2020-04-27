@@ -8,7 +8,7 @@ Finally, we’ll make a start on what will be an on-going project. The idea is t
 
 As usual, I’ve created a ZIP file with the files for this instalment, including a sample HTML page that demonstrates text input in action, and the files that make up the starting point for this instalment’s challenge which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/pbs35.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs35.zip).
 
-# Matching Postcast Episode 487
+# Matching Podcast Episode 487
 
 Listen Along: Chit Chat Accross the Pond Episode 487
 
@@ -43,15 +43,15 @@ QUnit.module('markExternal()', {}, function(){
     QUnit.test('function exists', function(a){
         a.strictEqual(typeof bartificer.linkToolkit.markExternal, 'function', 'has type function');
     });
-    
+
     QUnit.test('default options', function(a){
         var ids_must_have_icon = ['rl_tb_nr', 'al_tb_nr', 'as_tb_nr', 'ab_tb_nr', 'ap_tb_nr', 'ap_tb_rf', 'ap_tb_ro', 'ap_tb_r2', 'ap_tb_nr_in'];
         var ids_no_target = ['rl_nt_nr', 'al_nt_nr', 'as_nt_nr', 'ab_nt_nr', 'ap_nt_nr'];
         a.expect(ids_must_have_icon.length + ids_no_target.length + 5);
-        
+
         // call the function on the fixture with the default options
         bartificer.linkToolkit.markExternal($('#qunit-fixture'));
-        
+
         // make sure there was an icon added after each of the links with a target
         // of _blank that does not have one of the relevant ignore classes
         ids_must_have_icon.forEach(function(aId){
@@ -63,7 +63,7 @@ QUnit.module('markExternal()', {}, function(){
                 'an image was added after the link: ' + $a.text()
             );
         });
-        
+
         // make sure no icon was added after any of the links with a target of _blank
         ids_no_target.forEach(function(aId){
             var $a = $('#' + aId); // the link
@@ -74,7 +74,7 @@ QUnit.module('markExternal()', {}, function(){
                 'no image was added after the link: ' + $a.text()
             );
         });
-        
+
         // make sure the links with the appropriate ignore classes were ignored
         a.equal(
             $('img', $('#ap_tb_nr_ib').parent()).length,
@@ -86,7 +86,7 @@ QUnit.module('markExternal()', {}, function(){
             0,
             'no icon added after link with class "bartificer-markExternal-ignore"'
         );
-        
+
         // make sure the icons have the expected attributes
         var $sampleIcon = $('li a + img', $('#qunit-fixture')).first();
         a.ok(
@@ -104,17 +104,17 @@ QUnit.module('markExternal()', {}, function(){
             'generated icons have the expected title'
         );
     });
-    
+
     QUnit.test('option iconSrc', function(a){
         // a custom image URL to use for the icons
         var customIconSrc = 'externalIcon.png'; // does not need to exist for the test to work
-        
+
         // call the function on the fixture with the relevant option set
         bartificer.linkToolkit.markExternal(
             $('#qunit-fixture'),
             { iconSrc: customIconSrc }
         );
-        
+
         // make sure the icons have the custom source URL
         a.equal(
             $('li a + img', $('#qunit-fixture')).first().attr('src'),
@@ -122,23 +122,23 @@ QUnit.module('markExternal()', {}, function(){
             'generated icons have the expected custom source URL'
         );
     });
-    
+
     QUnit.test('option iconExternal=false', function(a){
         a.expect(2);
-        
+
         // call the function on the fixture with the relevant option set
         bartificer.linkToolkit.markExternal(
             $('#qunit-fixture'),
             { iconExternal: false }
         );
-        
+
         // make sure an icon was added inside a sample link
         a.equal(
             $('img', $('#rl_tb_nr')).length, // the number of images inside the link
             1, // there should be exactly one image in the link
             'icon added inside the link'
         );
-        
+
         // make sure no icon was added after the link
         a.equal(
             $('a + img', $('#rl_tb_nr').parent()).length, // the number of images after links in the list item
@@ -146,19 +146,19 @@ QUnit.module('markExternal()', {}, function(){
             'no icon added after the link'
         );
     });
-    
+
     QUnit.test('option iconClasses', function(a){
         // the classes to add
         var extraIconClasses = ['testc1', 'testc2', 'testc3'];
-        
+
         a.expect(extraIconClasses.length + 1);
-        
+
         // call the function on the fixture with the relevant option set
         bartificer.linkToolkit.markExternal(
             $('#qunit-fixture'),
             { iconClasses: extraIconClasses.join(' ') }
         );
-        
+
         // make sure each of the classes was added
         var $sampleIcon = $('li a + img', $('#qunit-fixture')).first();
         extraIconClasses.forEach(function(c){
@@ -167,23 +167,23 @@ QUnit.module('markExternal()', {}, function(){
                 'Genereated icons have the additonal class: ' + c
             );
         });
-        
+
         // make sure the default class was also added
         a.ok(
             $sampleIcon.is('.bartificer-externalLink'),
             'standard class added as well as extra classes'
         );
     });
-    
+
     QUnit.test('option altText', function(a){
         var customAltText = 'dummy alt text';
-        
+
         // call the function on the fixture with the relevant option set
         bartificer.linkToolkit.markExternal(
             $('#qunit-fixture'),
             { altText: customAltText }
         );
-        
+
         // make sure the icons have the custom alt text
         a.equal(
             $('li a + img', $('#qunit-fixture')).first().attr('alt'),
@@ -191,16 +191,16 @@ QUnit.module('markExternal()', {}, function(){
             'generated icons have the expected alt text'
         );
     });
-    
+
     QUnit.test('option titleText', function(a){
         var customTitleText = 'dummy title text';
-        
+
         // call the function on the fixture with the relevant option set
         bartificer.linkToolkit.markExternal(
             $('#qunit-fixture'),
             { titleText: customTitleText }
         );
-        
+
         // make sure the icons have the custom title
         a.equal(
             $('li a + img', $('#qunit-fixture')).first().attr('title'),
@@ -246,13 +246,13 @@ When it comes to testing the options it’s generally not so much about testing 
 ```JavaScript
 QUnit.test('option altText', function(a){
     var customAltText = 'dummy alt text';
-        
+
     // call the function on the fixture with the relevant option set
     bartificer.linkToolkit.markExternal(
         $('#qunit-fixture'),
         { altText: customAltText }
     );
-        
+
     // make sure the icons have the custom alt text
     a.equal(
         $('li a + img', $('#qunit-fixture')).first().attr('alt'),
@@ -281,20 +281,20 @@ Note that the containment and after selectors are also central to the test for t
 ```JavaScript
 QUnit.test('option iconExternal=false', function(a){
     a.expect(2);
-        
+
     // call the function on the fixture with the relevant option set
     bartificer.linkToolkit.markExternal(
         $('#qunit-fixture'),
         { iconExternal: false }
     );
-        
+
     // make sure an icon was added inside a sample link
     a.equal(
         $('img', $('#rl_tb_nr')).length, // the number of images inside the link
         1, // there should be exactly one image in the link
         'icon added inside the link'
     );
-        
+
     // make sure no icon was added after the link
     a.equal(
         $('a + img', $('#rl_tb_nr').parent()).length, // the number of images after links in the list item
@@ -314,7 +314,7 @@ Before we move away from JavaScript I briefly want to mention another useful fea
 
 Tests marked as todo are not run, but they also don’t vanish from the test runner’s output, as shown by the following screenshot (a sneak-peak at this instalment’s challenge starting point):
 
-[![](../assets/pbs35/Screen-Shot-2017-05-18-at-01.25.04-234x300.png)  
+[![](../assets/pbs35/Screen-Shot-2017-05-18-at-01.25.04-234x300.png)
 Click to See Full Size](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-01.25.04.png)
 
 ## Basic Text Input in HTML
@@ -429,10 +429,10 @@ Let’s put it all together with a simple example form that uses one of each kin
 <head>
     <meta charset="utf-8" />
     <title>PBS 35 - Text Input Example</title>
-    
+
     <!-- Load jQuery from their CDN -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    
+
     <!-- Add an event handler for the button -->
     <script type="text/javascript">
         $(function(){

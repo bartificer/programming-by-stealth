@@ -6,7 +6,7 @@ Our initial introduction to jQuery was very superficial, now, it’s time to div
 
 For this instalment we’ll still be using the Javascript console on the [PBS dummy page](https://www.bartbusschots.ie/pbsdemos/pbs-dummyPage/). From the next instalment on, we’ll be embedding our JavaScript directly into our web pages, so this will be the last time we use the dummy page.
 
-# Matching Postcast Episode 455
+# Matching Podcast Episode 455
 
 Listen Along: Chit Chat Accross the Pond Episode 455
 

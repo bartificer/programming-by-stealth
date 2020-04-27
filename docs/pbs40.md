@@ -6,7 +6,7 @@ Then, while doing her homework, Allison discovered another oversight that needs 
 
 As usual, I’ve collected all the files for this instalment into a single ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs40.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs40.zip).
 
-# Matching Postcast Episode 503
+# Matching Podcast Episode 503
 
 Listen Along: Chit Chat Accross the Pond Episode 503
 
@@ -26,10 +26,10 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
 <head>
     <meta charset="utf-8">
     <title>PBS 39 Challenge - Movie Entry Form</title>
-    
+
     <!-- Import the jQuery API -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
-    
+
     <!-- Add the jQuery event handlers to bring the form to life -->
     <script type="text/javascript">
         // add a document ready event handler
@@ -38,7 +38,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
             $('#submit_btn').click(function(){
                 $('#output').val('');
             });
-            
+
             // add a submission event handler to the form to render
             // the serialised form data to the ouput area
             $('#movie_entry_fm').submit(function(){
@@ -46,7 +46,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
             });
         });
     </script>
-    
+
     <!-- Style the form elements -->
     <style type="text/css">
         /* Set the default fonts */
@@ -58,7 +58,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-weight: lighter;
         }
-        
+
         /* two-column region using flexbox */
         div.twocols{
             display: flex;
@@ -77,7 +77,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
         div.twocols > *:last-child{
             padding-right: 0px;
         }
-        
+
         /* Style Fieldsets & Legends */
         fieldset fieldset{
             border-style: dashed;
@@ -95,19 +95,19 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
         fieldset fieldset fieldset legend{
             font-size: 14pt;
         }
-        
+
         /* make text areas full-width */
         textarea{
             width: 100%;
         }
-        
+
         /* Style form instructions */
         .instructions{
             font-style: italic;
             color: DimGrey;
             font-weight: lighter;
         }
-        
+
         /* a class for inline lists */
         ul.inlined{
             padding-left: 0px;
@@ -117,12 +117,12 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
             list-style-type: none;
             white-space: nowrap;
         }
-    
+
         /* Mark required fields with a yellow background */
         input:required, textarea:required{
             background-color: lightyellow;
         }
-    
+
         /* Mark text fields with invalid data with a red border and text */
         input:invalid, textarea:invalid{
             color: darkred;
@@ -130,22 +130,22 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
             border-width: 1px;
             border-style: solid;
         }
-        
+
         /* Highlight the label for checked checkboxes */
         input:checked + label{
             font-weight: bold;
         }
-        
+
         /* style the output area */
         #output{
             font-family: monospace;
         }
-        
+
         /* Custom styling for the basics input group */
         label[for="year_tb"], label[for="rating_sel"]{
             display: none;
         }
-        
+
         /* Custom styling for the meta input group */
         #meta_fs > ul{
             display: flex;
@@ -162,7 +162,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
         #genre_fs > ul > li{
             margin-right: 0.5em;
         }
-        
+
         /* custom styling for the creators input group */
         #creators_fs > ul{
             padding-left: 0px;
@@ -179,10 +179,10 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
 <form action="javascript:void(0);" id="movie_entry_fm">
 <fieldset role="form" aria-labelledby="movie_entry_fm_desc">
     <legend id="movie_entry_fm_desc">Movie Details</legend>
-    
+
     <fieldset id="basics_fs" role="group" aria-labelledby="basics_fs_desc">
       <legend id="basics_fs_desc">Basics</legend>
-    
+
       <ul class="inlined">
         <li>
             <label for="title_tb">Title</label>
@@ -205,10 +205,10 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
         </li>
       </ul>
     </fieldset>
-    
+
     <fieldset id="meta_fs" role="group" aria-labelledby="meta_fs_desc">
         <legend id="meta_fs_desc">Meta Data</legend>
-        
+
         <ul>
             <li>
                 <fieldset id="genre_fs" role="group" aria-labelledby="genre_fs_desc">
@@ -277,13 +277,13 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
             </li>
           </ul>
     </fieldset>
-    
+
     <div class="twocols">
         <div>
             <fieldset id="creators_fs" role="group" aria-labelledby="creators_fs_desc">
                 <legend id="creators_fs_desc">Creators</legend>
                 <p class="instructions">Enter the name(s) of the creators, one per line.</p>
-                <ul>   
+                <ul>
                     <li>
                         <label for="exec_producers_ta">Executive Producer(s)</label><br>
                         <textarea id="exec_producers_ta" name="exec_producers" required rows=3></textarea>
@@ -299,7 +299,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
                 </ul>
             </fieldset>
         </div>
-    
+
         <div>
             <fieldset id="cast_fs" role="group" aria-labelledby="cast_fs_desc">
                 <legend id="cast_fs_desc"><label for="cast_ta">Cast</label></legend>
@@ -308,7 +308,7 @@ Because the assignment was so open-ended, everyone’s solution is going to be v
             </fieldset>
         </div>
     </div>
-    
+
     <p><button type="submit" id="submit_btn">Submit!</button></p>
     <p>Submitted Data:</p>
     <textarea id="output" disabled></textarea>
@@ -336,14 +336,14 @@ This snippet from my sample solution illustrates my use of field sets:
 ```XHTML
 <fieldset role="form" aria-labelledby="movie_entry_fm_desc">
   <legend id="movie_entry_fm_desc">Movie Details</legend>
-    
+
   <fieldset id="basics_fs" role="group" aria-labelledby="basics_fs_desc">
     <legend id="basics_fs_desc">Basics</legend>
-  
+
     <!-- ... lots more code here ... -->
 
   </fieldset>
-    
+
   <fieldset id="meta_fs" role="group" aria-labelledby="meta_fs_desc">
     <legend id="meta_fs_desc">Meta Data</legend>
 
@@ -381,9 +381,9 @@ Here is a snippet of the HTML for my genre section:
       <input type="checkbox" id="genre_animated_cb" name="genre" value="animated">
       <label for="genre_animated_cb">Animated</label>
     </li>
-      
+
     <!-- ... lots more genres here ... -->
-      
+
     <li>
       <input type="checkbox" id="genre_thriller_cb" name="genre" value="thriller">
       <label for="genre_thriller_cb">Thriller</label>
@@ -419,7 +419,7 @@ As well as changing how something is displayed, you can also choose not to displ
 ```XHTML
 <fieldset id="basics_fs" role="group" aria-labelledby="basics_fs_desc">
   <legend id="basics_fs_desc">Basics</legend>
-    
+
   <ul class="inlined">
     <li>
       <label for="title_tb">Title</label>
@@ -532,16 +532,16 @@ Let’s start by adding validation to the cast text box. What we need to ensure 
 function validateCastList(){
     // convert the DOM object to a jQuery object
     var $cast = $(this);
-            
+
     // get the current content of the text area
     var castString = $cast.val();
-            
+
     // if the text area is empty, set an error message and return
     if(castString === ''){
         $cast.get(0).setCustomValidity('Enter at least one cast member');
         return false;
     }
-            
+
     // split the cast into lines and validate each
     // if even one line fails - set an error message and return
     var castLines = castString.split('\n');
@@ -552,7 +552,7 @@ function validateCastList(){
             return false;
         }
     }
-            
+
     // if we got here, all is well so mark as valid
     $cast.get(0).setCustomValidity('');
     return true;
@@ -568,7 +568,7 @@ $(function(){
     $('#submit_btn').click(function(){
         $('#output').text('');
     });
-            
+
     // add a submission event handler to the form to render
     // the serialised form data to the ouput area
     $('#movie_entry_fm').submit(function(){
@@ -586,13 +586,13 @@ $(function(){
     $('#submit_btn').click(function(){
         $('#output').text('');
     });
-            
+
     // add a submission event handler to the form to render
     // the serialised form data to the ouput area
     $('#movie_entry_fm').submit(function(){
             $('#output').text($(this).serialize());
     });
-            
+
     // add an event handler to validate the cast each time a key is pressed
     // and call it once to get it set correctly initially
     $('#cast_ta').keyup(validateCastList).keyup();
@@ -619,13 +619,13 @@ function validateGenres(){
     // build a jQuery object that references all the genre checkboxes
     // note they all have the same name and are contained within the same fieldset
     var $genres = $('#genre_fs input[name="genre"]');
-            
+
     // make sure at least one is checked, or mark the first as invalid and return
     if($genres.filter(':checked').length < 1){
         $genres.get(0).setCustomValidity('Select at least one genre');
         return false;
     }
-            
+
     // if we got here all is well, so mark the first checkbox as valid
     $genres.get(0).setCustomValidity('');
     return true;
@@ -641,17 +641,17 @@ $(function(){
     $('#submit_btn').click(function(){
         $('#output').text('');
     });
-            
+
     // add a submission event handler to the form to render
     // the serialised form data to the ouput area
     $('#movie_entry_fm').submit(function(){
         $('#output').text($(this).serialize());
     });
-            
+
     // add an event handler to validate the cast each time a key is pressed
     // and call it once to get it set correctly initially
     $('#cast_ta').keyup(validateCastList).keyup();
-            
+
     // add an event handler to validate the geners each time any genre is
     // checked or un-checked and call it once to get it set correctly
     $('#genre_fs input[name="genre"]').change(validateGenres).first().change();

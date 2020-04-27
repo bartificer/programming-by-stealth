@@ -4,7 +4,7 @@ Having wrapped up our introduction to Mustache templates we’re going to spend 
 
 AJAX is a mechanism for making a HTTP requests via JavaScript, so before we’re ready to learn about AJAX we need to take the time to learn about the HTTP protocol itself. Unless you understand the mechanics and the terminology of HTTP, AJAX-related documentation simply won’t make any sense.
 
-# Matching Postcast Episode 589
+# Matching Podcast Episode 589
 
 Listen along to this instalment on [episode 589 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/04/ccatp-589/)
 
@@ -197,7 +197,7 @@ bart-imac2018:~ bart$ curl -v --data-urlencode d1=val1 --data-urlencode d2=val2 
 > Cookie: c1=cookie; c2=monster
 > Content-Length: 15
 > Content-Type: application/x-www-form-urlencoded
-> 
+>
 * upload completely sent off: 15 out of 15 bytes
 < HTTP/1.1 200 OK
 < Server: nginx/1.12.2
@@ -206,7 +206,7 @@ bart-imac2018:~ bart$ curl -v --data-urlencode d1=val1 --data-urlencode d2=val2 
 < Transfer-Encoding: chunked
 < Connection: keep-alive
 < X-Powered-By: PHP/5.6.39
-< 
+<
 # Client
 - IP:                          46.7.114.231
 - Browser (User Agent String): curl/7.54.0

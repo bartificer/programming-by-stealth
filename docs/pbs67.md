@@ -4,7 +4,7 @@ In this instalment we’ll start a two-part look at the Bootstrap Dropdown compo
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs67.zip).
 
-# Matching Postcast Episode 573
+# Matching Podcast Episode 573
 
 Listen along to this instalment on [episode 573 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/12/ccatp-573/)
 
@@ -68,10 +68,10 @@ const $loginForm = $('#login_fm');
 const validateLoginForm = function(){
   // always enable validation UI
   $loginForm.addClass('was-validated');
-    
+
   // figure out if both inputs are valid or not
   const allOK = $('input:valid', $loginForm).length === 2;
-    
+
   // update the UI as appropriate
   if(allOK){
     $('#login_invalid').hide();
@@ -80,7 +80,7 @@ const validateLoginForm = function(){
     $('#login_invalid').show();
     $('button[type=submit]', $loginForm).prop('disabled', true);
   }
-    
+
   // return whether or not all is well
   return allOK;
 };

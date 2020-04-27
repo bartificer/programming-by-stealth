@@ -2,7 +2,7 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2016/02/03/programming-by-stealth-8-of-x-css-positioning/) we learned how to group multiple HTML tags together to define regions within a page, and then how to move those regions around by floating them, or positioning them explicitly. We’ll start this instalment with a little revision – there was a lot to digest last time! While re-visiting the layout from last time, we’ll also look at some of its limitations, and then we’ll move on to look at the CSS `display` property, how it can be used to alter layouts, and, how we can use it to improve on our demo layout.
 
-# Matching Postcast Episode 426
+# Matching Podcast Episode 426
 
 Listen Along: Chit Chat Accross the Pond Episode 426
 
@@ -123,8 +123,8 @@ Raises or lowers the inline block by a percentage of the line-height. Positive p
 
 Displaying items as `inline-block` can be used to make a line of fixed-width items behave nicely as the page re-sizes. You can see this in action in the CSS Playground web app used earlier in the instalment. The main form headed with the legend _Control Panel_ contains sub-forms with legends indicating the box they control. The main form has its `display` set to `block`, and its `text-align` set to `center`. The mini forms each have their `display` set to `inline-block`, their `text-align` set to `left`, their `width` set to `185px`, and their `height` allowed to default to `auto`. In this case, the tags for the forms intentionally do have some white-space between them (a line break), so in effect, each form behaves like a 1-letter word. As the window is re-sized, the containing form grows and shrinks as you would expect for a block-level element. The mini forms behave like words, and move nicely onto multiple lines as needed.
 
-![Inline-block 5 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.21-e1455732340709.png)  
-![inline-block 4 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.06-e1455732373506.png)  
+![Inline-block 5 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.21-e1455732340709.png)
+![inline-block 4 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.06-e1455732373506.png)
 ![inline-block 3 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.52-e1455732412851.png)
 
 ### `display: flex`

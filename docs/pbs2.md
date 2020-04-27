@@ -8,7 +8,7 @@ Before we dive into the specifics, I want to take a moment to explain the larger
 
 We’ll be moving on to CSS once we finish describing HTML. Until we get CSS, the web pages we create will look exceptional plain and frankly boring, but don’t worry, we’ll move on to CSS soon enough, and then you can really let your creative juices fly!
 
-# Matching Postcast Episode 409
+# Matching Podcast Episode 409
 
 Listen along to this instalment on [episode 409 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/10/ccatp-409-bart-pbs2/)
 

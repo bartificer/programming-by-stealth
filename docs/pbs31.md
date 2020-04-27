@@ -6,7 +6,7 @@ Switching our focus on HTML forms, we’ll look at some important form-specific 
 
 You can download a ZIP file containing the code files for this instalment [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs31.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs31.zip).
 
-# Matching Postcast Episode 478
+# Matching Podcast Episode 478
 
 Listen Along: Chit Chat Accross the Pond Episode 478
 
@@ -31,13 +31,13 @@ var pbs = pbs ? pbs : {};
 	//
 
 	// .....
-	
+
 	//
 	// === Define Time protoype (Part 1) ===
 	//
-	
+
 	// .....
-	
+
 	// define comparison functions
 	pbs.Time.prototype.equals = function(obj){
 		if(typeof obj !== 'object'){
@@ -53,7 +53,7 @@ var pbs = pbs ? pbs : {};
 		if(!(typeof obj === 'object' && obj instanceof pbs.Time)){
 			return NaN;
 		}
-		
+
 		// check if the hours are different
 		if(this._hours < obj._hours){
 			return -1;
@@ -61,7 +61,7 @@ var pbs = pbs ? pbs : {};
 		if(this._hours > obj._hours){
 			return 1;
 		}
-		
+
 		// if we got here, the hours are the same, so check the minutes
 		if(this._minutes < obj._minutes){
 			return -1;
@@ -69,7 +69,7 @@ var pbs = pbs ? pbs : {};
 		if(this._minutes > obj._minutes){
 			return 1;
 		}
-		
+
 		// if we got here, the hours and minutes are the same, so check the seconds
 		if(this._seconds < obj._seconds){
 			return -1;
@@ -77,7 +77,7 @@ var pbs = pbs ? pbs : {};
 		if(this._seconds > obj._seconds){
 			return 1;
 		}
-		
+
 		// if we got here the two times are equal, so return 0
 		return 0;
 	};
@@ -87,13 +87,13 @@ var pbs = pbs ? pbs : {};
 	pbs.Time.prototype.isAfter = function(obj){
 		return this.compareTo(obj) === 1;
 	}
-	
+
 	//
 	// === Define the Date Prototype ===
 	//
-	
+
 	// .....
-	
+
 	// define comparison functions
 	pbs.Date.prototype.equals = function(obj){
 		if(typeof obj !== 'object'){
@@ -109,7 +109,7 @@ var pbs = pbs ? pbs : {};
 		if(!(typeof obj === 'object' && obj instanceof pbs.Date)){
 			return NaN;
 		}
-		
+
 		// check if the years are different
 		if(this._year < obj._year){
 			return -1;
@@ -117,7 +117,7 @@ var pbs = pbs ? pbs : {};
 		if(this._year > obj._year){
 			return 1;
 		}
-		
+
 		// if we got here, the years are the same, so check the months
 		if(this._month < obj._month){
 			return -1;
@@ -125,7 +125,7 @@ var pbs = pbs ? pbs : {};
 		if(this._month > obj._month){
 			return 1;
 		}
-		
+
 		// if we got here, the years and months are the same, so check the days
 		if(this._day < obj._day){
 			return -1;
@@ -133,7 +133,7 @@ var pbs = pbs ? pbs : {};
 		if(this._day > obj._day){
 			return 1;
 		}
-		
+
 		// if we got here the two dates are equal, so return 0
 		return 0;
 	};
@@ -143,13 +143,13 @@ var pbs = pbs ? pbs : {};
 	pbs.Date.prototype.isAfter = function(obj){
 		return this.compareTo(obj) === 1;
 	}
-	
+
 	//
 	// === Define the DateTime Prototype ===
 	//
-	
+
 	// .....
-	
+
 	// define comparison functions
 	pbs.DateTime.prototype.equals = function(obj){
 		if(typeof obj !== 'object'){
@@ -165,19 +165,19 @@ var pbs = pbs ? pbs : {};
 		if(!(typeof obj === 'object' && obj instanceof pbs.DateTime)){
 			return NaN;
 		}
-		
+
 		// check if the dates are different
 		var dateCompare = this._date.compareTo(obj._date);
 		if(dateCompare !== 0){
 			return dateCompare;
 		}
-		
+
 		// if we got here, the dates are the same, so check the times
 		var timeCompare = this._time.compareTo(obj._time);
 		if(timeCompare !== 0){
 			return timeCompare;
 		}
-		
+
 		// if we got here the two date times are equal, so return 0
 		return 0;
 	};
@@ -294,7 +294,7 @@ pbs.Date.isLeapYear = function(y){
       return true;
     }
   }
-	
+
   // if we got here, the year is not a leap year
   return false;
 };
@@ -359,7 +359,7 @@ function isValidateDMYCombo(d, m, y){
       numDaysInMonth = 29;
     }
   }
-		
+
   // return based on wheather or not the days are valid
   return d <= numDaysInMonth ? true : false;
 }

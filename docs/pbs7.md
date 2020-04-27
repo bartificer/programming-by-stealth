@@ -2,7 +2,7 @@
 
 In this instalment we’ll build on our basic understanding of CSS from previous instalment. We’ll start with some new CSS selectors, in the process, introduce two new HTML tag attributes, then we’ll move on to the CSS box model. Each HTML tag is represented in the page as a box, and all those boxes can be manipulated with CSS.
 
-# Matching Postcast Episode 422
+# Matching Podcast Episode 422
 
 Listen Along: Chit Chat Accross the Pond Episode 422
 

@@ -6,7 +6,7 @@ We’ll start our journey into AJAX using more traditional JavaScript techniques
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/pbs76.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs76.zip).
 
-# Matching Postcast Episode 590
+# Matching Podcast Episode 590
 
 Listen along to this instalment on [episode 590 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/04/ccatp-590/)
 
@@ -152,11 +152,11 @@ To actually see the template and partials in action I now needed to write a docu
 $(function(){
   // fetch the contact card template
   const contactTpl = $('#contact_card_tpl').html();
-		
+
   // fetch the data from the json  string
   data = JSON.parse($('#pbs74_view_data').text());
-		
-		
+
+
   // build the view objects
   const people = [];
   for(const uname of Object.keys(data.people).sort()){
@@ -179,7 +179,7 @@ $(function(){
   }
   //console.log('generated view objects:', people);
   //window.alert('generated view objects:\n' + JSON.stringify(people, null, 2));
-		
+
   // render the contact cards
   const $contactCardHolder = $('#contact_cards');
   for(const person of people){
@@ -652,7 +652,7 @@ const myAjaxRequest = $.ajax({
     // This callback is executed after .success or .error
     // First arg is the jqXHR object representing the AJAX request.
     // Second arg is the HTTP status string.
-    
+
     // ...
   }
 }); // returns a jqXHR object representing the AJAX request

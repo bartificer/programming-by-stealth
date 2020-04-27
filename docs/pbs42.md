@@ -4,7 +4,7 @@ In this instalment it’s finally time to bring our Cellular Automaton prototype
 
 As usual, I’ve collected the code files for this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs42.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs42.zip). As well as the ZIP file, I’ve also published [a tagged release of the bartificer.ca.js code on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-StartingPoint) which you’ll need for this instalment’s challenge.
 
-# Matching Postcast Episode 507
+# Matching Podcast Episode 507
 
 Listen Along: Chit Chat Accross the Pond Episode 507
 
@@ -44,22 +44,22 @@ The first change I made was to add a star rating field:
 // add a change handler to the hidden rating input
 $('#avg_rating_hipt').change(function(){
     var $hipt = $(this);
-                
+
     // read the value form the hidden input
     var starRating = $hipt.val();
     if(starRating < 0 || starRating > 5) starRating = 0;
-                
+
     // render each star as appropriate
     for(var s = 1; s <= 5; s++){
         var $star = $('#avg_rating_' + s);
-                        
+
         // render the star as full or outline as appropriate
         if(s <= starRating){
             $star.removeClass('fa-star-o').addClass('fa-star');
         }else{
             $star.removeClass('fa-star').addClass('fa-star-o');
         }
-                        
+
         // mark the star as checked for ARIA as appropriate
         if(s == starRating){
             $star.attr('aria-checked', true);
@@ -68,16 +68,16 @@ $('#avg_rating_hipt').change(function(){
         }
     }
 }).change();
-            
+
 // add a click handler to the rating UI
 $('span', $('#avg_rating_ui')).click(function(){
     // read the rating from the data attribute
     var starRating = $(this).data('stars');
-                    
+
     // save the rating into the hidden form input and call the change handler
     $('#avg_rating_hipt').val(starRating).change();
 });
-            
+
 // add keyboard support to the rating UI
 $('span', $('#avg_rating_ui')).keypress(function(e){
     // only respond to the spacebar
@@ -202,19 +202,19 @@ function validateAutomatonState(s, rows, cols){
                 }
             }
             }
-                
+
         // if we made it here without throwing an error, the state is valid
         isValid = true;
     }else if(typeof s === 'function'){
         isValid = true;
     }
-            
+
     // throw an eror if we got here and don't have a valid value
     if(!isValid){
         throw new TypeError('must be a valid cell state (boolean, number, or string), an array of valid cell states with the same dimensions as the automaton, or a callback');
     }
 };
-    
+
 /**
  * Test if a given value is a valid state for an automaton as a whole, i.e.
  * a single cell state, an array of cell states with the correct
@@ -280,7 +280,7 @@ We now know everything needed to implement the function:
 bartificer.ca.Automaton.prototype.setState = function(newState){
     // validate the new state
     validateAutomatonState(newState, this.rows(), this.cols());
-       
+
     // set the next state for every cell
     for(var x = 0; x < this.cols(); x++){
         for(var y = 0; y < this.rows(); y++){
@@ -297,16 +297,16 @@ bartificer.ca.Automaton.prototype.setState = function(newState){
             }else{
                 // should be impossible!
                 throw new TypeError('invalid state');
-            }    
+            }
 
             // advance the cell to its new state
             this.cell(x, y).advance();
-                    
+
             // render the new state
             this._renderFn(this.cell(x, y).$td(), this.cell(x, y).state());
         }
     }
-       
+
     // return a reference to self
     return this;
 };
@@ -395,7 +395,7 @@ QUnit.test('.setState()', function(a){
     var allCellsOK = true;
     var x, y;
     var ca = new bartificer.ca.Automaton($div, r, c, sFn, rFn, true);
-        
+
     // test when given a single state
     ca.setState('boogers');
     for(x = 0; x < c && allCellsOK; x++){
@@ -404,7 +404,7 @@ QUnit.test('.setState()', function(a){
         }
     }
     a.ok(allCellsOK, 'single initial state correctly applied to all cells');
-      
+
     // test when given a grid of states
     var initStates = [
         [1, 2, 3],
@@ -419,9 +419,9 @@ QUnit.test('.setState()', function(a){
         }
     }
     a.ok(allCellsOK, '2D array of initial states correctly applied to all cells');
-        
+
     // test when given a callback
-    ca.setState(function(x, y){    
+    ca.setState(function(x, y){
         return x + ', ' + y;
     });
     allCellsOK = true;
@@ -439,7 +439,7 @@ Now that we know this much of the code is working we should update our sample pa
 ```JavaScript
 // a globally scoped variable to hold the automaton object
 var sampleCA;
-        
+
 // a render function to render live cells green and dead cells red
 function renderRedGreen($td, s){
     // render a true state as green, and false as red
@@ -449,12 +449,12 @@ function renderRedGreen($td, s){
         $td.css('background-color', 'Red');
     }
 }
-        
+
 // an initialisation function to randomly set each cell to true or false
 function randomBoolean(){
     return Math.random() < 0.5 ? true : false;
 }
-        
+
 // add a document ready event handler
 $(function(){
     // use the constructor to build an automaton
@@ -465,7 +465,7 @@ $(function(){
         renderRedGreen, // pass our red/green render function
         randomBoolean // initialise each cell to a random boolean
     );
-            
+
     // log the generated automaton object so we can have a look inside
     // it look at it with the JavaScript console if we want
     console.log(sampleCA);
@@ -502,10 +502,10 @@ In order to calculate the next state of any given cell we need to call the step 
 bartificer.ca.Automaton.prototype.cellNeighbourStates = function(x, y){
     // validate the coordinates by getting a reference to the cell
     this.cell(x, y);
-        
+
     // initialise the array
     var ans = [];
-        
+
     // calculate each neighbour state one by one
     ans[0] = y >= 1 ? this.cellState(x, y - 1) : null; // 12 oclock
     ans[1] = x + 1 < this.cols() && y >= 1 ? this.cellState(x + 1, y - 1) : null;
@@ -515,7 +515,7 @@ bartificer.ca.Automaton.prototype.cellNeighbourStates = function(x, y){
     ans[5] = x >= 1 && y + 1 < this.rows() ? this.cellState(x - 1, y + 1) : null;
     ans[6] = x >= 1 ? this.cellState(x - 1, y) : null; // 9 oclock
     ans[7] = x >= 1 && y >= 1 ? this.cellState(x - 1, y - 1) : null;
-        
+
     // return the array
     return ans;
 };
@@ -526,10 +526,10 @@ I think you’ll agree there is a lot of room for error in the body of this func
 ```JavaScript
 QUnit.test('.cellNeighbourStates()', function(a){
     a.expect(6);
-                
+
     // make sure the accessor exists
     a.strictEqual(typeof this.ca1.cellNeighbourStates, 'function', 'function exists');
-                
+
     // build a CA to test against
     var stateArray = [
         [1,  6, 11, 16],
@@ -544,10 +544,10 @@ QUnit.test('.cellNeighbourStates()', function(a){
     // 11 12 13 14 15
     // 16 17 18 19 20
     var ca = new bartificer.ca.Automaton($('<div></div>'), 4, 5, this.sFn, this.rFn, stateArray);
-                
+
     // check an internal cell
     a.deepEqual(ca.cellNeighbourStates(3, 2), [9, 10, 15, 20, 19, 18, 13, 8], 'internal cell OK');
-                
+
     // check the four corners
     a.deepEqual(ca.cellNeighbourStates(0, 0), [null, null, 2, 7, 6, null, null, null], 'top-left corner OK');
     a.deepEqual(ca.cellNeighbourStates(4, 0), [null, null, null, null, 10, 9, 4, null], 'top-right corner OK');
@@ -571,15 +571,15 @@ bartificer.ca.Automaton.prototype.step = function(){
         for(y = 0; y < this.rows(); y++){
             // get a reference to the current cell
             var c = this.cell(x, y);
-            
+
             // calculate the nexty state
             var ns = this._stepFn(c.state(), this.cellNeighbourStates(x, y));
-                
+
             // set the cell's next state to the newly calculated value
             c.nextState(ns);
         }
     }
-       
+
     // finally move each cell forward into its next state and re-render it
     for(x = 0; x < this.cols(); x++){
         for(y = 0; y < this.rows(); y++){
@@ -587,7 +587,7 @@ bartificer.ca.Automaton.prototype.step = function(){
             this._renderFn(this.cell(x, y).$td(), this.cell(x, y).state());
         }
     }
-        
+
     // return a reference to self
     return this;
 };
@@ -598,7 +598,7 @@ Before we go any further, let’s create a QUnit test for our new function:
 ```JavaScript
 QUnit.test('.step()', function(a){
     a.expect(1);
-                
+
     // create a CA with a step function that increments the state by 1
     var stateArrayPre = [
         [1,  6, 11, 16, 21],
@@ -615,10 +615,10 @@ QUnit.test('.step()', function(a){
         [6, 11, 16, 21, 26]
     ];
     var ca = new bartificer.ca.Automaton($('<div></div>'), 5, 5, function(s){ return s + 1; }, function(){ }, stateArrayPre);
-                
+
     // step the CA
     ca.step();
-                
+
     // make sure each state was incremented by 1
     var allOK = true;
     for(var x = 0; x < 5; x++){
@@ -662,21 +662,21 @@ function lifeStep(currentState, neighbourStates){
     neighbourStates.forEach(function(s){
         if(s == true) numLiveNeighbours++;
     });
-            
+
     // apply the rules based on the current state
     if(currentState == true){
         // currently alive - apply rules 1 to 3
-             
+
         // rule 1
         if(numLiveNeighbours < 2) return false;
-                
+
         // rule 3
         if(numLiveNeighbours > 3) return false;
     }else{
         // currently dead - apply rule 4
         if(numLiveNeighbours === 3) return true;
     }
-            
+
     // default to no change (incorporates rule 2)
     return currentState;
 }
@@ -736,18 +736,18 @@ Now that our sample page implements Conway’s Game of Life, it makes sense to t
 <head>
     <meta charset="utf-8" />
     <title>bartificer.ca.Automaton Demo - Conway's Game of Life</title>
-    
+
     <!-- Load jQuery 3 from the official CDN -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
+
     <!-- load the bartificer.ca API from GitHub -->
     <script type="text/javascript" src="https://cdn.rawgit.com/bbusschots/bartificer_ca_js/PBS42-Challenge-StartingPoint/lib/bartificer.ca.js"></script>
-    
+
     <!-- Add the JavaScript code to initialise a Cellular Automaton -->
     <script type="text/javascript">
         // a globally scoped variable to hold the automaton object
         var sampleCA;
-        
+
         // a render function to render live cells green and dead cells red
         function renderRedGreen($td, s){
             // render a true state as green, and false as red
@@ -757,12 +757,12 @@ Now that our sample page implements Conway’s Game of Life, it makes sense to t
                 $td.css('background-color', 'Red');
             }
         }
-        
+
         // an initialisation function to randomly set each cell to true or false
         function randomBoolean(){
             return Math.random() < 0.5 ? true : false;
         }
-        
+
         // a step function that implements Conway's game of life
         function lifeStep(currentState, neighbourStates){
             // calcualte the number of live neighbours
@@ -770,25 +770,25 @@ Now that our sample page implements Conway’s Game of Life, it makes sense to t
             neighbourStates.forEach(function(s){
                 if(s == true) numLiveNeighbours++;
             });
-            
+
             // apply the rules based on the current state
             if(currentState == true){
                 // currently alive - apply rules 1 to 3
-                
+
                 // rule 1
                 if(numLiveNeighbours < 2) return false;
-                
+
                 // rule 3
                 if(numLiveNeighbours > 3) return false;
             }else{
                 // currently dead - apply rule 4
                 if(numLiveNeighbours === 3) return true;
             }
-            
+
             // default to no change (incorporates rule 2)
             return currentState;
         }
-        
+
         // add a document ready event handler
         $(function(){
             // use the constructor to build an automaton
@@ -799,18 +799,18 @@ Now that our sample page implements Conway’s Game of Life, it makes sense to t
                 renderRedGreen, // pass our red/green render function
                 randomBoolean // initialise each cell to a random boolean
             );
-            
+
             // log the geneated automaton object so we can have a look inside
             // it in the JavaScript console if we want
             console.log(sampleCA);
-            
+
             // add a click handler to the step button
             $('#step1_btn').click(function(){
                 sampleCA.step();
             });
         });
     </script>
-    
+
     <!-- Stype the Automaton -->
     <style type="text/css">
         /* style the cells in the automaton */

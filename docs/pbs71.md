@@ -6,7 +6,7 @@ It would be a shame to go through an entire instalment without any new content t
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/02/pbs71.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs71.zip).
 
-# Matching Postcast Episode 581
+# Matching Podcast Episode 581
 
 Listen along to this instalment on [episode 581 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/02/ccatp-581/)
 
@@ -74,10 +74,10 @@ const $mins = $('#timer_min_rg');
 $mins.on('input', function(){
   // get the current number of minutes
   const mins = $mins.val();
-			
+
   // update the display of the current value
   $('.duration_display').text(mins);
-			
+
   // hide or show all plural-only and singular-only elements
   if(mins > 1){
     $('.plural_only').show();
@@ -160,19 +160,19 @@ With the house-keeping out of the way we’re now ready to tackle the big one �
 $form.on('submit', function(){
   // if the timer is already running do nothing
   if(RUNNING) return false;
-			
+
   // mark the timer as running
   RUNNING = true;
-			
+
   // disable the form
   $formControls.prop('disabled', true);
-			
+
   // start the main timeout
   const mins = $mins.val();
   mainTimerID = window.setTimeout(function(){
     // DESCRIBE THIS LATER
   }, mins * 1000 * 60);
-			
+
   // if needed, start the toast interval
   let minsLeft = mins - 1;
   if(minsLeft > 1){
@@ -196,10 +196,10 @@ if(minsLeft > 1){
       `${minsLeft} Minute${minsLeft > 1 ? 's' : ''} Left`,
       `${minsGone} minute${minsGone > 1 ? 's' : ''} down, ${minsLeft} to go!`
     );
-					
+
     // decrement the minutes left
     minsLeft--;
-					
+
     // if we're the last toast, end ourselves
     if(minsLeft === 0){
       window.clearInterval(toastIntervalID);
@@ -216,28 +216,28 @@ You’ll notice that to help keep the code maintainable, I wrote a separate func
 function showToast(t, msg){
   // create an empty toast
   const $toast = $('<div>').addClass('toast').attr('role', 'status').attr('aria-atomic', true);
-		
+
   // create a title for the toast and append it
   const $title = $('<div>').addClass('toast-header');
   $title.append($('<strong>').text(t));
   $toast.append($title);
-		
+
   // create a body for the toast and append it
   const $body = $('<div>').addClass('toast-body');
   $body.text(msg);
   $toast.append($body);
-		
+
   // add the toast to the toast rack
   $('#toast_rack').append($toast);
-		
+
   // initialise the toast plugin on the toast
   $toast.toast({ autohide: false });
-		
+
   // add an event handler to automatically delete the toast when it hides
   $toast.on('hidden.bs.toast', function(){
     $(this).remove();
   });
-		
+
   // finally show the toast
   $toast.toast('show');
 }
@@ -257,17 +257,17 @@ const mins = $mins.val();
   mainTimerID = window.setTimeout(function(){
     // hide any toasts
     $('.toast').toast('hide');
-				
+
     // populate the modal
     const msg = $msg.val() || '🙊';
     $('#message_display').text(msg);
-				
+
     // display the Modal
     $modal.modal('show');
-				
+
     // re-enable the form
     $formControls.prop('disabled', false);
-				
+
     // mark execution as completed
     RUNNING = false;
     mainTimerID = null;
@@ -394,13 +394,13 @@ With the markup in place we need to add a click hander that will hide the text, 
 ```JavaScript
 $('#spinner_btn_1').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
-			
+
   // hide the text
   $('.button_text', $btn).hide(250);
-			
+
   // show the spinner
   $('.spinner-border', $btn).removeClass('d-none');
-			
+
   // disable the button
   $btn.prop('disabled', true);
 });
@@ -411,24 +411,24 @@ In a real-world situation some other event handler would be responsible for re-e
 ```JavaScript
 $('#spinner_btn_1').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
-			
+
   // hide the text
   $('.button_text', $btn).hide(250);
-			
+
   // show the spinner
   $('.spinner-border', $btn).removeClass('d-none');
-			
+
   // disable the button
   $btn.prop('disabled', true);
-			
+
   // start a timeout to re-enable the button after 3 seconds
   window.setTimeout(function(){
     // show the text
     $('.button_text', $btn).show(250);
-				
+
     // hide the spinner
     $('.spinner-border', $btn).addClass('d-none');
-				
+
     // re-enable the button
     $btn.prop('disabled', false);
   }, 1000 * 3);
@@ -452,26 +452,26 @@ With the markup in place we can add the event handler. Like in our previous exam
 // add a click hander to the second spinner button
 $('#spinner_btn_2').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
-			
+
   // replace the text
   $textSpan = $('.button_text', $btn); // get a reference to the span with the text
   const originalText = $textSpan.text(); // save the original so we can restore it
   $textSpan.text('Waiting…');
-			
+
   // show the spinner
   $('.spinner-border', $btn).removeClass('d-none');
-			
+
   // disable the button
   $btn.prop('disabled', true);
-			
+
   // start a timeout to re-enable the button after 3 seconds
   window.setTimeout(function(){
     // put the text back
     $textSpan.text(originalText);
-				
+
     // hide the spinner
     $('.spinner-border', $btn).addClass('d-none');
-				
+
     // re-enable the button
     $btn.prop('disabled', false);
   }, 1000 * 3);

@@ -4,7 +4,7 @@ At this stage we’ve learned about five key components to any programming langu
 
 A function is a collection of statements that is given a name so it can be easily re-used. We’ve already used functions, but without knowing that’s what we’ve been doing.
 
-# Matching Postcast Episode 440
+# Matching Podcast Episode 440
 
 Listen Along: Chit Chat Accross the Pond Episode 440
 
@@ -47,19 +47,19 @@ As an example, let’s write a function to calculate the factorial of a number, 
 function factorial(n){
   // convert n to an integer number
   n = parseInt(n);
-  
+
   // validate n
   if(isNaN(n) || n < 1){
     // n is invalid, so return NaN
     return NaN;
   }
-  
+
   // do the calculation
   var ans = 1;
   for(var i = n; i > 1; i--){
     ans *= i;
   }
-  
+
   // return the answer
   return ans;
 }
@@ -102,7 +102,7 @@ pbs.say('x in the global scope has the value ' + x);
 dummyFn();
 
 // double the globally scoped x
-x *= 2; 
+x *= 2;
 pbs.say('x in the global scope has been doubled to ' + x);
 
 // call the function to print the value of its local x again

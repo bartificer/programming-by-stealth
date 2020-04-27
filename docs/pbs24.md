@@ -8,7 +8,7 @@ As a worked example, we’ll re-write our link fixer as an easily re-usable API,
 
 The sample files used in this instalment, as well as some needed libraries, can be [downloaded as a ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs24.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs24.zip). The examples assume you’ll save the files within the zip in a folder named `pbs24` in the document root of your local web server.
 
-# Matching Postcast Episode 461
+# Matching Podcast Episode 461
 
 Listen Along: Chit Chat Accross the Pond Episode 461
 
@@ -28,75 +28,75 @@ Below is my solution. As always, I want to stress that there are an infinity of 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 23 - Assignment</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Import the URI.js Library -->
   <script type="text/javascript" src="contrib/URI-1.18.1.js"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
     // save the data URL for the new window icon into a variable for easy access
     var newWindowIconURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAg9JREFUeNqkU89rE0EYfbubjZu4pLWSipfGqlQpelARb7YgHhTBgwfRRVCKepSCRYoHLyJi/wM96KW5CR48qYfmUKjStMGghZY2irHNNptoStptsj/Gb6Z0cRs95cGbGXbe9775Zr+RGGNoBxE+nLv9EYqiiA89PQfELEnSBHHgX0GUNPNidO9gYPA3THMFup6AqqrPj6TUgYe3ki0GNx4VA2N552aj0UClUiZa6U+fy8adx4tYrTohTb1eR8iAMf+K53lLRLbNTt1nutYcX/xuoWRthgzW1mqhenD66rulyVmL+b4fcHauys5ce89mvv5iHNNfKmx5dUOsSc8nESuG/ktvRNZmsymYn7fYxbsfWJaCOKgUxjXnh0SgWG8byFt1O3BdFxSMb8UaXr5ewJN7x9F/MI6pXAnG/Qkk90RR+FEzjJGM0O+4A1kYVH/bmJwxcf3CPiQ7PGTzJTwYm8az4T7SSPB9KT2VswxaZ0IGiqLBcTwsmxs40RdHV0JF0Wxg/O1PjA4dwrHDHVgp+6SL8Q5JEwdDjRSN6nR8D8nOXSSSsL7JkF+wcfNyCt1dKm8qoeFwXYWSrYc7UdMSdEQVsVgEns/IwMHZU93Q40og5JotJOgOai0Ghdy833vyaAwR+jOp/RpkWQpE2TlbaFrNghJ2jzx9ZY8Bdu9/3kyBa6jhWjakdl+jjDbxR4ABAPjFI5E3WpRkAAAAAElFTkSuQmCC';
-    
+
     // define a function to transform all external links as desired
     function fixExternalLinks(){
     	// create a URI object representing the page's URL
     	var pageURI = new URI();
-    	
+
     	// loop through all links and transform each if external
     	$('a').each(function(){
     		var $a = $(this);
-    		
+
     		// create a URI object representing this link
     		var aURI = $a.uri();
-    		
+
     		// if the link is realative, don't continue
     		if(aURI.is('relative')){
     			return;
     		}
-    		
+
     		// check the domains - if they don't match, the link is external
     		if(pageURI.hostname() != aURI.hostname()){
     			// set the attributes as required
     			$a.attr('target', '_blank').attr('rel', 'noopener');
-    			
+
     			//create an icon
     			var $icon = $('<img />').attr('src', newWindowIconURL).attr('alt', 'External Link Icon');
     			$icon.attr('title', 'Link Opens in New Tab');
     			$icon.addClass('externalLinkIcon');
-    			
+
     			//inject the icon into the DOM just after the link
     			$a.after($icon);
     		}
     	});
     }
-    
+
     // call the function when the DOM becomes ready
     $(fixExternalLinks);
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /*
      * Style Links
      */
-     
+
     /* make all links bold so they stand out better */
     a{
     	font-weight: bold;
     }
-    
+
     /* style the external link icon */
     img.externalLinkIcon{
     	vertical-align: middle;
     	margin-left: 1px;
     	margin-right: 1px;
     }
-    
+
   </style>
 </head>
 <body>
@@ -160,32 +160,32 @@ We could add this into a page as shown below:
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 24 - Example 1</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
     // define a function to initialise a click counter
     function initClickCounter(){
     	// define a variable in the outer function
     	var counter = 0;
-    	
+
     	// define an inner function that uses the above variable
     	var incrementCounter = function(){
     		// increment the counter (accessed via the closure)
     		counter++;
     		window.alert("counter = " + counter);
     	}
-    	
+
     	// add the inner function as a click handler to all paragraphs
     	$('p').click(incrementCounter);
     }
-    
+
     // call the counter initialising function when the DOM becomes ready
     $(initClickCounter);
-    
+
   </script>
 </head>
 <body>
@@ -353,21 +353,21 @@ For added context, let’s create a full web page that uses our simple API to ge
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 24 - Example 1</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Import our HelloWorld API -->
   <script type="text/javascript" src="pbs.helloWorld.js"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-    
+
     // add an event hander to call helloWorld each time a paragraph is clicked
     $(function(){
     	$('p').click(pbs.helloWorld);
     });
-    
+
   </script>
 </head>
 <body>
@@ -592,30 +592,30 @@ Rather than starting with a blank canvas, start with the following two files (`p
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 24 - Assignment</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Import the moment.js & moment-timezone.js libraries -->
   <script type="text/javascript" src="contrib/moment.min.js"></script>
   <script type="text/javascript" src="contrib/moment-timezone-with-data.js"></script>
-  
+
   <!-- Import our renderClock API -->
   <script type="text/javascript" src="pbs.renderClock.js"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
   	// when the DOM loads, render our clock
   	$(function(){
   		pbs.renderClock($('#clock'), 'Europe/Dublin');
   	});
-    
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /* style the clock */
     #clock{
     	font-weight: bold;
@@ -627,7 +627,7 @@ Rather than starting with a blank canvas, start with the following two files (`p
     	color: lightgreen;
     	font-family: monospace;
     }
-    
+
   </style>
 </head>
 <body>
@@ -666,7 +666,7 @@ var pbs = pbs ? pbs : {};
 
   /**
   * Converts a given span into a clock showing the current time in a given time zone.
-  * 
+  *
   * **NOTE** this function should not be called before the DOM is ready.
   * @param {jQuery} $span - a jQuery object representing the span to be converted into a clock.
   * This argument must be a jQuery representing exactly one element, and that element must be a span.
@@ -681,14 +681,14 @@ var pbs = pbs ? pbs : {};
     if(!(typeof $span === 'object' && $span instanceof jQuery && $span.length === 1 && $span.is('span'))){
     	throw new Error('the first argument must be a jQuery object representing exactly one span element');
     }
-    
+
     //
     // YOUR CODE HERE
     //
-    
+
     // add an interval to update the clock
     setInterval(renderTime, 60 * 1000);
-    
+
     // return the span
     return $span;
   };

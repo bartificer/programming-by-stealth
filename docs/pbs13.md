@@ -2,7 +2,7 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/) we got our first taste of JavaScript. We learned about variables, literal data types, and some basic string and arithmetic operators. In this instalment we’re going to focus on booleans. We’ll look at how non-boolean values get converted to booleans when needed (e.g. is `'boogers'` `true` or `false`?), we’ll learn about some comparison operators that result in boolean values, and we’ll learn about some logical operators. At that stage we’ll have all the knowledge we need to learn about our third fundamental programming concept – branching.
 
-# Matching Postcast Episode 434
+# Matching Podcast Episode 434
 
 Listen Along: Chit Chat Accross the Pond Episode 434
 
@@ -301,7 +301,7 @@ if(isNaN(inputNum)){
   }else{
     ans += 'ODD';
   }
-  
+
   // print the answer
   pbs.say(ans);
 }

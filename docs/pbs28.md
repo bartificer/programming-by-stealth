@@ -6,7 +6,7 @@ We’ll start by looking at a sample solution to the challenge set at the end of
 
 Before moving on to look at HTML buttons in detail, we’ll learn some new CSS selectors that are particularly useful for styling web forms.
 
-# Matching Postcast Episode 472
+# Matching Podcast Episode 472
 
 Listen Along: Chit Chat Accross the Pond Episode 472
 
@@ -25,14 +25,14 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
   //
   // === Define Time protoype (Part 1) ===
   //
-  
+
   // the constructor
   pbs.Time = function(h, m, s){
     // init data with default values
     this._hours = 0;
     this._minutes = 0;
     this._seconds = 0;
-    
+
     // process any args that were passed
     if(typeof h !== 'undefined'){
       this.hours(h);
@@ -44,7 +44,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
       this.seconds(s);
     }
   };
-  
+
   // the accessor methods
   pbs.Time.prototype.hours = function(h){
     if(arguments.length === 0){
@@ -76,7 +76,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
     this._seconds = s;
     return this;
   };
-  
+
   // add functions
   pbs.Time.prototype.time12 = function(){
     var ans = '';
@@ -115,21 +115,21 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
     ans += this._seconds;
     return ans;
   };
-  
+
   // define a toString function
   pbs.Time.prototype.toString = pbs.Time.prototype.time24;
-  
+
   //
   // === Define Date protoype (Part 2) ===
   //
-  
+
   // the constructor
   pbs.Date = function(d, m, y){
     // init data with default values
     this._day = 1;
     this._month = 1;
     this._year = 1970;
-    
+
     // deal with any passed args
     if(typeof d !== 'undefined'){
       this.day(d);
@@ -141,7 +141,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
       this.year(y);
     }
   };
-  
+
   // the accessor methods
   pbs.Date.prototype.day = function(d){
     if(arguments.length === 0){
@@ -173,7 +173,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
     this._year = y;
     return this;
   };
-  
+
   // define needed functions
   pbs.Date.prototype.american = function(){
     var ans = '';
@@ -202,7 +202,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
     }
     return ans;
   };
-  
+
   // provide a toString
   pbs.Date.prototype.toString = function(){
     var ans = '';
@@ -217,17 +217,17 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
     ans += this._day;
     return ans;
   };
-  
+
   //
   // === Define DateTime protoype (Part 3) ===
   //
-  
+
   // the constructor
   pbs.DateTime = function(d, t){
     // init data with defaults
     this._date = new pbs.Date();
     this._time = new pbs.Time();
-    
+
     // deal with any args that were passed
     if(typeof d !== 'undefined'){
       this.date(d);
@@ -236,7 +236,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
       this.time(t);
     }
   };
-    
+
   // accessor methods
   pbs.DateTime.prototype.date = function(d){
     if(arguments.length === 0){
@@ -258,7 +258,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
     this._time = t;
     return this;
   };
-  
+
   // define functions
   pbs.DateTime.prototype.american12Hour = function(){
     return this._date.american() + ' ' + this._time.time12();
@@ -272,7 +272,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
   pbs.DateTime.prototype.european24Hour = function(){
     return this._date.european() + ' ' + this._time.time24();
   };
-  
+
   // provide a toString
   pbs.DateTime.prototype.toString = function(){
     return this._date.toString() + ' ' + this._time.toString();
@@ -353,17 +353,17 @@ function isValidInteger(v, lbound, ubound){
   if(!String(v).match(/^-?\d+$/)){
     return false;
   }
-    
+
   // if a lower bound was passed, check it
   if(typeof lbound === 'number' && v < lbound){
     return false;
    }
-    
+
   // if an upper bound was passed, check it
   if(typeof ubound === 'number' && v > ubound){
     return false;
    }
-    
+
   // if we got here all is well
   return true;
 }
@@ -476,7 +476,7 @@ function isValidateDMYCombo(d, m, y){
       numDaysInMonth = 29;
     }
   }
-  
+
   // return based on wheather or not the days are valid
   return d <= numDaysInMonth ? true : false;
 }
@@ -744,18 +744,18 @@ In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uplo
     button.pbs[type="reset"]{
     	color: dimgrey;
     }
-    
+
     /* make the text on ordinary buttons blue */
     button.pbs[type="button"]{
     	color: DarkBlue;
     }
-    
+
     /* bold the text on submit buttons and make it dark green */
     button.pbs[type="submit"]{
     	font-weight: bold;
     	color: DarkGreen;
     }
-    
+
     /* style images within buttons */
    button.pbs img{
    	height: 0.9em;

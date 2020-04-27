@@ -2,7 +2,7 @@
 
 Continuing our look at CSS, in this instalment we’ll start by looking at how to style lists, then we’ll move on to look at some more CSS selectors, and we’ll finish with an introduction to a new CSS concept – pseudo-classes.
 
-# Matching Postcast Episode 428
+# Matching Podcast Episode 428
 
 Listen Along: Chit Chat Accross the Pond Episode 428
 

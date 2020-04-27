@@ -6,7 +6,7 @@ In case you hadn’t guessed yet, I’m not going to pick a single computer lang
 
 In order to help bring everyone along, I’m also not going to go from zero to real programming in one go. The plan is to sneak up on programming in small steps – hence the title of the series. We will be using computer languages from the start, but initially, they won’t be programming languages. Also, in order to be as inclusive as possible, I’m going to avoid vendor-specific languages – that means no Apple Script, no VB Script, no Objective C, and no C# (pronounced ‘see-sharp’ BTW). Instead, I’m going to use the most universal platform of all – the world wide web. We’re going to sneak up on programming by learning to create web pages.
 
-# Matching Postcast Episode 407
+# Matching Podcast Episode 407
 
 Listen along to this instalment on [episode 407 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2015/10/ccatp-407/)
 

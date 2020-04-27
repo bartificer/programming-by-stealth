@@ -12,7 +12,7 @@ We’ll be working towards our first truly practical assignment in the series �
 
 There are four examples in this instalment, and a starting-point for the challenge. I’ve gathered them, and the other files they depend on, into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs23.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs23.zip). It’s assumed that you’ll extract this ZIP file and place the five HTML files and one folder it contains into a folder named `pbs23` in your local web server’s htdocs folder. The folder is particularly important because it contains a copy of the URI.js library, and if it’s not in the same folder as `pbs23d.html` and `pbs23-assignment.html`, those pages won’t work.
 
-# Matching Postcast Episode 459
+# Matching Podcast Episode 459
 
 Listen Along: Chit Chat Accross the Pond Episode 459
 
@@ -36,16 +36,16 @@ Below is my solution to the assignment. Just a reminder that when it comes to pr
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 22 - Challenge</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-    
+
     // a globally scoped variable to hold the interval ID
     var blinkIntervalID = 0;
-    
+
     // a function to turn blinking on or off (toggle it)
     function toggleBlinking(){
     	if(blinkIntervalID == 0){
@@ -62,24 +62,24 @@ Below is my solution to the assignment. Just a reminder that when it comes to pr
     		blinkIntervalID = 0;
     	}
     }
-    
+
     // initialise event handlers when the DOM loads
     $(function(){
     	// add a click handler to all paragraphs
     	$('p').click(toggleBlinking);
     });
-  
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /* define the style for highlighted elements */
     .highlighted{
     	background-color: yellow;
     	font-weight: bold;
     }
-    
+
   </style>
 </head>
 <body>
@@ -90,8 +90,8 @@ Below is my solution to the assignment. Just a reminder that when it comes to pr
 paragraph and all paragraphs should highlight and then un-highlight at one
 second intervals. Clicking any paragraph again should stop that happening.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit 
-vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit
+vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna
 lectus. Curabitur eu libero id lacus egestas finibus id sit amet dui. Phasellus
 ornare maximus tortor, vel porta dui dapibus a. Class aptent taciti sociosqu ad
 litora torquent per conubia nostra, per inceptos himenaeos. Duis mollis at dui
@@ -99,14 +99,14 @@ et molestie. Etiam pharetra gravida lectus, vitae viverra ante condimentum a.
 Nam elit turpis, dictum quis dapibus nec, porttitor non nibh. Vivamus eleifend
 arcu et turpis rutrum eleifend. Nunc aliquam egestas blandit.</p>
 
-<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis 
-ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi. 
+<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis
+ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi.
 Vestibulum eget quam vel magna pellentesque egestas id non massa. Suspendisse in
 ante a dui dictum vehicula. Vivamus dignissim sagittis quam in vulputate. Donec
-eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at 
+eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at
 placerat tempus, felis nisi cursus nisi, ac gravida lectus justo non ex. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque odio
-pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla 
+pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla
 permentum. Nulla sem velit, posuere rutrum aliquet vitae, fringilla at orci.</p>
 
 <p>Sed at risus augue. Cras nec vulputate augue, interdum mollis metus. Quisque
@@ -200,25 +200,25 @@ Putting it all together, we get the following full HTML page (`pbs23a.html` in t
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 23 - Example 1</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
     // Inject the character count when the DOM becomes ready
     $(function(){
     	var numChars = $('p').text().length;
     	var $aside = $('<aside />').text('(the paragraphs above contain ' + numChars + ' characters)');
     	$('body').append($aside);
     });
-    
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /* Style the aside */
     aside{
     	color: dimgray;
@@ -230,8 +230,8 @@ Putting it all together, we get the following full HTML page (`pbs23a.html` in t
 
 <h1>Some Paragraphs</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit 
-vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit
+vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna
 lectus. Curabitur eu libero id lacus egestas finibus id sit amet dui. Phasellus
 ornare maximus tortor, vel porta dui dapibus a. Class aptent taciti sociosqu ad
 litora torquent per conubia nostra, per inceptos himenaeos. Duis mollis at dui
@@ -239,14 +239,14 @@ et molestie. Etiam pharetra gravida lectus, vitae viverra ante condimentum a.
 Nam elit turpis, dictum quis dapibus nec, porttitor non nibh. Vivamus eleifend
 arcu et turpis rutrum eleifend. Nunc aliquam egestas blandit.</p>
 
-<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis 
-ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi. 
+<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis
+ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi.
 Vestibulum eget quam vel magna pellentesque egestas id non massa. Suspendisse in
 ante a dui dictum vehicula. Vivamus dignissim sagittis quam in vulputate. Donec
-eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at 
+eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at
 placerat tempus, felis nisi cursus nisi, ac gravida lectus justo non ex. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque odio
-pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla 
+pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla
 permentum. Nulla sem velit, posuere rutrum aliquet vitae, fringilla at orci.</p>
 
 <p>Sed at risus augue. Cras nec vulputate augue, interdum mollis metus. Quisque
@@ -291,20 +291,20 @@ Below is a full web page so you can see the snippet in context (`pbs23b.html` in
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 23 - Example 2</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
     // Inject the character counts when the DOM becomes ready
     $(function(){
     	// do the over-all count first so the per-paragraph count messages don't throw the overall count off
     	var numChars = $('p').text().length;
     	var $aside = $('<aside />').addClass('char_count').text('(the paragraphs above contain a total of ' + numChars + ' characters)');
     	$('body').append($aside);
-    	
+
     	// now add a count to each paragraph
     	$('p').each(function(){
     		var $p = $(this);
@@ -313,12 +313,12 @@ Below is a full web page so you can see the snippet in context (`pbs23b.html` in
   			$p.append($count);
   		});
     });
-    
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /* Style the counts */
     .char_count{
     	color: dimgray;
@@ -330,8 +330,8 @@ Below is a full web page so you can see the snippet in context (`pbs23b.html` in
 
 <h1>Some Paragraphs</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit 
-vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit
+vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna
 lectus. Curabitur eu libero id lacus egestas finibus id sit amet dui. Phasellus
 ornare maximus tortor, vel porta dui dapibus a. Class aptent taciti sociosqu ad
 litora torquent per conubia nostra, per inceptos himenaeos. Duis mollis at dui
@@ -339,14 +339,14 @@ et molestie. Etiam pharetra gravida lectus, vitae viverra ante condimentum a.
 Nam elit turpis, dictum quis dapibus nec, porttitor non nibh. Vivamus eleifend
 arcu et turpis rutrum eleifend. Nunc aliquam egestas blandit.</p>
 
-<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis 
-ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi. 
+<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis
+ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi.
 Vestibulum eget quam vel magna pellentesque egestas id non massa. Suspendisse in
 ante a dui dictum vehicula. Vivamus dignissim sagittis quam in vulputate. Donec
-eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at 
+eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at
 placerat tempus, felis nisi cursus nisi, ac gravida lectus justo non ex. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque odio
-pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla 
+pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla
 permentum. Nulla sem velit, posuere rutrum aliquet vitae, fringilla at orci.</p>
 
 <p>Sed at risus augue. Cras nec vulputate augue, interdum mollis metus. Quisque
@@ -437,23 +437,23 @@ Again, we can put this all together into a full web page as follows (`pbs23c.htm
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 23 - Example 3</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
     // save the data URL for the counter icon into a variable for easy access
     var countIconURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA61pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcFJpZ2h0czpNYXJrZWQ9IkZhbHNlIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InV1aWQ6NzBDQkJENjFFODMxREYxMTlCMjJGQkJBMDE3QTBERTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTBBRDY1NzBCM0I4MTFFMDg1ODhFM0I2RkYzOTlFNUMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTBBRDY1NkZCM0I4MTFFMDg1ODhFM0I2RkYzOTlFNUMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTlFNTY2ODQ4OEIzRTAxMUFGRDI4NzU4Q0FBOEM2NEEiIHN0UmVmOmRvY3VtZW50SUQ9InV1aWQ6NzBDQkJENjFFODMxREYxMTlCMjJGQkJBMDE3QTBERTkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz48FcfDAAAB20lEQVR42mL8//8/AyWAiYFCwBhaX+8LpKWIVH/i758/F//8+cMAwr9//2ZgAQpIr21pmU6M7uCamkwo8yLcC0CTmP4Bw+HPv39gvGnzZoaz584x3Lp9m2Hp0qVwcRBeA7QIqN4aqM8A2QDGvyAD/v4F47t37jBISEoyPH/xgkFGTg4u/hdkCJBe19ExFWzI//9gQ1iA/mACmX7v3j2G1cuXg02dPXMm3Nk/fv5ksLazYzhz4QLDxWvXGPS1tBg29vRM8crPzwMawsT059cv5j9AF4hLSzPklJQwfPv2DYU2trBg+Ac06O2nTwyCQkKMIPrbr18MWyZOnPTn9287ll+/foFdsHfXLobD+/aBbW2oqIDTMSkpDEoqKgyqysoMz1+9+i8pJsbAysbG4JScXMzIyHiY5ffPn2ADLOztGX4CTQYBTV1dhnlTpjBUtLSA+d+B3hAWFGQQFxVl4OHmZnCIiSkFa2ZjO8v0C+qFX8AAOn/mDIOAiAjD9atXGSRlZcFiMPwNaAgXULNNWFgFMNwOAVPwaXAgfv74kY2FhYWBi4uLoaShAWca4OXhYTB0d69jZmY+yMXDcwomzvLu9evnqmZm7USleyam/UKioidQkvKAZyaKDQAIMACsfPvDGV7GigAAAABJRU5ErkJggg==';
-  
+
     // Inject the character counts when the DOM becomes ready
     $(function(){
     	// do the over-all count first so the per-paragraph count messages don't throw the overall count off
     	var numChars = $('p').text().length;
     	var $aside = $('<aside />').addClass('char_count').text('(the paragraphs above contain a total of ' + numChars + ' characters)');
     	$('body').append($aside);
-    	
+
     	// now add a count to each paragraph
     	$('p').each(function(){
     		var $p = $(this);
@@ -464,27 +464,27 @@ Again, we can put this all together into a full web page as follows (`pbs23c.htm
     		$p.append($count);
     	});
     });
-    
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /*
      * Style the counts
      */
-     
+
     /* apply the basics to all counts */
     .char_count{
     	color: dimgray;
     	font-style: italic;
     }
-    
+
     /* stop the count spans from splitting over multiple lines */
     span.char_count{
     	white-space: nowrap
     }
-    
+
     /* style the count icons */
     span.char_count img{
     	vertical-align: middle;
@@ -497,8 +497,8 @@ Again, we can put this all together into a full web page as follows (`pbs23c.htm
 
 <h1>Some Paragraphs</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit 
-vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia velit
+vitae ultrices tempor. Curabitur auctor facilisis tincidunt. Aenean id urna
 lectus. Curabitur eu libero id lacus egestas finibus id sit amet dui. Phasellus
 ornare maximus tortor, vel porta dui dapibus a. Class aptent taciti sociosqu ad
 litora torquent per conubia nostra, per inceptos himenaeos. Duis mollis at dui
@@ -506,14 +506,14 @@ et molestie. Etiam pharetra gravida lectus, vitae viverra ante condimentum a.
 Nam elit turpis, dictum quis dapibus nec, porttitor non nibh. Vivamus eleifend
 arcu et turpis rutrum eleifend. Nunc aliquam egestas blandit.</p>
 
-<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis 
-ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi. 
+<p>Ut tempor lacus sed lorem luctus commodo. Fusce id mollis nisl, quis
+ultricies augue. Nullam porttitor elementum tincidunt. Nulla facilisi.
 Vestibulum eget quam vel magna pellentesque egestas id non massa. Suspendisse in
 ante a dui dictum vehicula. Vivamus dignissim sagittis quam in vulputate. Donec
-eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at 
+eget gravida nulla. Sed ut dignissim risus. Suspendisse faucibus, quam at
 placerat tempus, felis nisi cursus nisi, ac gravida lectus justo non ex. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque odio
-pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla 
+pretium urna egestas, eget porta arcu gravida. Donec mattis elit eget fringilla
 permentum. Nulla sem velit, posuere rutrum aliquet vitae, fringilla at orci.</p>
 
 <p>Sed at risus augue. Cras nec vulputate augue, interdum mollis metus. Quisque
@@ -585,7 +585,7 @@ function markExternalLinks(){
   $links.each(function(){
     // save a reference to the link being examined
     var $a = $(this); // the link being tested
-    
+
     // create a URI object representing the URL being linked to
     var aURI = $a.uri();
 
@@ -610,70 +610,70 @@ You can see this function in action in the full web page shown below (`pbs23d.ht
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 23 - Example 4</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Import the URI.js Library -->
   <script type="text/javascript" src="contrib/URI-1.18.1.js"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-    
+
     // define a function to mark external links as external
     function markExternalLinks(){
     	// create a jQuery object representing all links
     	var $links = $('a');
-    	
+
     	// create a URI object representing the URL of the page
     	var pageURI = new URI();
-    	
+
     	// loop through each link to check whether or not it is external
     	$links.each(function(){
     		// save a reference to the link being examined
     		var $a = $(this); // the link being tested
-    		
+
     		// create a URI object representing the URL being linked to
     		var aURI = $a.uri();
-    		
+
     		// check if the link is relative - if it is, return - definitely not external
     		if(aURI.is('relative')){
     			return;
     		}
-    		
+
     		// check if the domains match - if not, definitely external
     		if(pageURI.hostname() != aURI.hostname()){
     			$a.addClass('external');
     		}
     	});
     }
-  
+
     // call the function when the the DOM becomes ready
     $(markExternalLinks);
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /*
      * Style Links
      */
-     
+
     /* make all links bold so they stand out better */
     a{
     	font-weight: bold;
     }
-    
+
     /* assume links are local */
     a:active, a:link, a:visited, a:hover{
     	color: darkgreen;
     }
-    
+
     /* style external links */
     a.external:active, a.external:link, a.external:visited, a.external:hover{
     	color: darkred;
     }
-    
+
   </style>
 </head>
 <body>
@@ -710,37 +710,37 @@ Using a slightly altered version of the fourth example (`pbs23-assignment.html` 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 23 - Assignment</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Import the URI.js Library -->
   <script type="text/javascript" src="contrib/URI-1.18.1.js"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
     // save the data URL for the new window icon into a variable for easy access
     var newWindowIconURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAg9JREFUeNqkU89rE0EYfbubjZu4pLWSipfGqlQpelARb7YgHhTBgwfRRVCKepSCRYoHLyJi/wM96KW5CR48qYfmUKjStMGghZY2irHNNptoStptsj/Gb6Z0cRs95cGbGXbe9775Zr+RGGNoBxE+nLv9EYqiiA89PQfELEnSBHHgX0GUNPNidO9gYPA3THMFup6AqqrPj6TUgYe3ki0GNx4VA2N552aj0UClUiZa6U+fy8adx4tYrTohTb1eR8iAMf+K53lLRLbNTt1nutYcX/xuoWRthgzW1mqhenD66rulyVmL+b4fcHauys5ce89mvv5iHNNfKmx5dUOsSc8nESuG/ktvRNZmsymYn7fYxbsfWJaCOKgUxjXnh0SgWG8byFt1O3BdFxSMb8UaXr5ewJN7x9F/MI6pXAnG/Qkk90RR+FEzjJGM0O+4A1kYVH/bmJwxcf3CPiQ7PGTzJTwYm8az4T7SSPB9KT2VswxaZ0IGiqLBcTwsmxs40RdHV0JF0Wxg/O1PjA4dwrHDHVgp+6SL8Q5JEwdDjRSN6nR8D8nOXSSSsL7JkF+wcfNyCt1dKm8qoeFwXYWSrYc7UdMSdEQVsVgEns/IwMHZU93Q40og5JotJOgOai0Ghdy833vyaAwR+jOp/RpkWQpE2TlbaFrNghJ2jzx9ZY8Bdu9/3kyBa6jhWjakdl+jjDbxR4ABAPjFI5E3WpRkAAAAAElFTkSuQmCC';
-    
+
     //
     // --- YOUR CODE HERE ---
     //
-    
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
-    
+
     /*
      * Style Links
      */
-     
+
     /* make all links bold so they stand out better */
     a{
     	font-weight: bold;
     }
-    
+
   </style>
 </head>
 <body>

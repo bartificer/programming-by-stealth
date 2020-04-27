@@ -6,7 +6,7 @@ As this is the last instalment before the hiatus we’ll use it to wrap up our w
 
 The final code for the worked example is included in [this instalment’s ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/03/pbs51.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs51.zip).
 
-# Matching Postcast Episode 530
+# Matching Podcast Episode 530
 
 Listen along to this instalment on [episode 530 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/03/ccatp-530/)
 
@@ -56,10 +56,10 @@ We get started with a quick and easy little function. Since this is an instance 
 equals(obj){
     // if not State instance, return false
     if(!(obj instanceof bartificer.ca.State)) return false;
-            
+
     // if the values and labels are not the same, return false
     if(this.value() !== obj.value() || this.label() !== obj.label()) return false;
-            
+
     // if we got here all is well, so return true
     return true;
 }
@@ -124,7 +124,7 @@ Now we’re ready to collapse all the optional arguments into a single object. T
  * `bartificer-ca-container` will be added to the conainer, and the
  * generated table will have the class `bartificer-ca-automaton` added.
  * The table. A reference to the constructed object will be added to
- * both the container and the table as the data attribute 
+ * both the container and the table as the data attribute
  * `data-bartificer-object` (`bartificerObject` from JavaScipt's point
  * of view).
  *
@@ -164,7 +164,7 @@ constructor($container, rows, cols, stepFn, opts){
     if(!isJQuerySingleContainer($container)){
         throw new TypeError('the first argument must be a jQuery object representing exactly one valid container element');
     }
-        
+
     if(!isGridDimension(rows)){
         throw new TypeError('the second argument must be a valid grid dimension');
     }
@@ -198,24 +198,24 @@ constructor($container, rows, cols, stepFn, opts){
     if(typeof opts.initialState !== 'undefined' && !isAutomatonState(opts.initialState, rows, cols)){
         throw new TypeError("if present, the 'initialState' option must be a bartificer.ca.State object, an array of state objects with the same dimensions as the automaton, or, a callback");
     }
-        
+
     // make sure the container has not been initialised into an Automaton already
     if($container.hasClass('bartificer-ca-container') || $container.data('bartificerObject')){
         throw new Error('cannot use the same container to represent multiple cellular automata');
     }
-        
+
     // initialise the container
     $container.empty().addClass('bartificer-ca-container').data('bartificerObject', this);
-        
+
     // save the passed properties
-        
+
     /**
      * A jQuery object representing the container for the automaton.
      * @private
      * @type {jQuerySingleContainer}
      */
     this._$container = $container;
-        
+
     /**
      * The number of rows in the automaton. This property is forced to be a
      * number before being stored.
@@ -223,15 +223,15 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {GridDimension}
      */
     this._rows = parseInt(rows); // force to number
-        
+
     /**
      * The number of columns in the automaton. This property is forced to be a
      * number before being stored.
      * @private
-     * @type {GridDimension} 
+     * @type {GridDimension}
      */
     this._cols = parseInt(cols); // force to number
-        
+
     /**
      * The callback used to calculate the next state of each cell each time
      * the automaton steps forward.
@@ -239,7 +239,7 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {stepFunction}
      */
     this._stepFn = stepFn;
-        
+
     /**
      * The callback used to style a given cell so it represents the
      * appropriate state.
@@ -247,14 +247,14 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {renderFunction}
      */
     this._renderFn = opts.renderFunction;
-        
+
     /**
      * The genreation counter.
      * @private
      * @type {number}
      */
     this._generation = 0;
-        
+
     /**
      * The callbacks to execute when ever the generation changes.
      * @private
@@ -262,7 +262,7 @@ constructor($container, rows, cols, stepFn, opts){
      * @default
      */
     this._generationChange = [];
-        
+
     /**
      * The ID of the timeout for the next automatic step, or zero if there
      * is no running timeout (the automaton is not in automatic mode).
@@ -271,7 +271,7 @@ constructor($container, rows, cols, stepFn, opts){
      * @default
      */
     this._autoStepID = 0;
-        
+
     /**
      * The number of milliseconds between automated steps.
      * @private
@@ -279,9 +279,9 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {number}
      */
     this._autoStepMS = 500;
-        
+
     // initialise the grid and table
-        
+
     /**
      * A 2D array of bartificer.ca.Cell objects representing the cells in
      * the automaton.
@@ -292,7 +292,7 @@ constructor($container, rows, cols, stepFn, opts){
     for(let x = 0; x < this._cols; x++){
         this._grid[x] = [];
     }
-        
+
     /**
      * A jQuery object representing the table that represents the automaton.
      * @private
@@ -300,7 +300,7 @@ constructor($container, rows, cols, stepFn, opts){
      */
     this._$table = $('<table></table>').addClass('bartificer-ca-automaton');
     this._$table.data('bartificerObject', this);
-        
+
     // actually build the table and grid together
     const $tbody = $('<tbody></tbody>');
     for(let y = 0; y < this._rows; y++){
@@ -313,11 +313,11 @@ constructor($container, rows, cols, stepFn, opts){
         }
         $tbody.append($row); // add the row into the table body
     }
-        
+
     // inject the table into the DOM
     this._$table.append($tbody); // add the table body into the table
     this._$container.append(this._$table); // add the table into the container
-        
+
     // initialise the state if the initialState option was passed
     if(typeof opts.initialState !== 'undefined'){
         this.setState(opts.initialState);
@@ -361,7 +361,7 @@ Below is my updated constructor with the changes highlighted:
  * `bartificer-ca-container` will be added to the conainer, and the
  * generated table will have the class `bartificer-ca-automaton` added.
  * The table. A reference to the constructed object will be added to
- * both the container and the table as the data attribute 
+ * both the container and the table as the data attribute
  * `data-bartificer-object` (`bartificerObject` from JavaScipt's point
  * of view).
  *
@@ -405,7 +405,7 @@ constructor($container, rows, cols, stepFn, opts){
     if(!isJQuerySingleContainer($container)){
         throw new TypeError('the first argument must be a jQuery object representing exactly one valid container element');
     }
-        
+
     if(!isGridDimension(rows)){
         throw new TypeError('the second argument must be a valid grid dimension');
     }
@@ -453,24 +453,24 @@ constructor($container, rows, cols, stepFn, opts){
            if(!isCellState(cs)) throw new TypeError(statesMsg);
         }
     }
-        
+
     // make sure the container has not been initialised into an Automaton already
     if($container.hasClass('bartificer-ca-container') || $container.data('bartificerObject')){
         throw new Error('cannot use the same container to represent multiple cellular automata');
     }
-        
+
     // initialise the container
     $container.empty().addClass('bartificer-ca-container').data('bartificerObject', this);
-        
+
     // save the passed properties
-        
+
     /**
      * A jQuery object representing the container for the automaton.
      * @private
      * @type {jQuerySingleContainer}
      */
     this._$container = $container;
-        
+
     /**
      * The number of rows in the automaton. This property is forced to be a
      * number before being stored.
@@ -478,15 +478,15 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {GridDimension}
      */
     this._rows = parseInt(rows); // force to number
-        
+
     /**
      * The number of columns in the automaton. This property is forced to be a
      * number before being stored.
      * @private
-     * @type {GridDimension} 
+     * @type {GridDimension}
      */
     this._cols = parseInt(cols); // force to number
-        
+
     /**
      * The callback used to calculate the next state of each cell each time
      * the automaton steps forward.
@@ -494,7 +494,7 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {stepFunction}
      */
     this._stepFn = stepFn;
-        
+
     /**
      * The callback used to style a given cell so it represents the
      * appropriate state.
@@ -502,21 +502,21 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {renderFunction}
      */
     this._renderFn = opts.renderFunction;
-            
+
     /**
      * The set of allowed states for cells within this automaton.
      * @private
      * @type {bartificer.ca.State[]}
      */
     this._cellStates = [];
-            
+
     /**
      * A lookup table of allowed cell states by value.
      * @private
      * @type {object}
      */
     this._statesByValue = {};
-            
+
     // store the allowed states and make sure no two have the same value
     for(const cs of opts.cellStates){
         if(typeof this._statesByValue[cs.value()] === 'undefined'){ // duplicate check
@@ -527,14 +527,14 @@ constructor($container, rows, cols, stepFn, opts){
             throw new TypeError(statesMsg); // duplicate - throw error
         }
     }
-        
+
     /**
      * The genreation counter.
      * @private
      * @type {number}
      */
     this._generation = 0;
-        
+
     /**
      * The callbacks to execute when ever the generation changes.
      * @private
@@ -542,7 +542,7 @@ constructor($container, rows, cols, stepFn, opts){
      * @default
      */
     this._generationChange = [];
-        
+
     /**
      * The ID of the timeout for the next automatic step, or zero if there
      * is no running timeout (the automaton is not in automatic mode).
@@ -551,7 +551,7 @@ constructor($container, rows, cols, stepFn, opts){
      * @default
      */
     this._autoStepID = 0;
-        
+
     /**
      * The number of milliseconds between automated steps.
      * @private
@@ -559,9 +559,9 @@ constructor($container, rows, cols, stepFn, opts){
      * @type {number}
      */
     this._autoStepMS = 500;
-        
+
     // initialise the grid and table
-        
+
     /**
      * A 2D array of bartificer.ca.Cell objects representing the cells in
      * the automaton.
@@ -572,7 +572,7 @@ constructor($container, rows, cols, stepFn, opts){
     for(let x = 0; x < this._cols; x++){
         this._grid[x] = [];
     }
-        
+
     /**
      * A jQuery object representing the table that represents the automaton.
      * @private
@@ -580,7 +580,7 @@ constructor($container, rows, cols, stepFn, opts){
      */
     this._$table = $('<table></table>').addClass('bartificer-ca-automaton');
     this._$table.data('bartificerObject', this);
-        
+
     // actually build the table and grid together
     const $tbody = $('<tbody></tbody>');
     for(let y = 0; y < this._rows; y++){
@@ -593,11 +593,11 @@ constructor($container, rows, cols, stepFn, opts){
         }
         $tbody.append($row); // add the row into the table body
     }
-        
+
     // inject the table into the DOM
     this._$table.append($tbody); // add the table body into the table
     this._$container.append(this._$table); // add the table into the container
-        
+
     // initialise the state if the initialState option was passed
     if(typeof opts.initialState !== 'undefined'){
         this.setState(opts.initialState);
@@ -682,7 +682,7 @@ At this stage our automaton can store a set of allowed states, but it doesn’t 
 ```JavaScript
 // calculate the next state
 let ns = this._stepFn(c.state(), this.cellNeighbourStates(x, y));
-                
+
 // set the cell's next state to the newly calculated value
 c.nextState(ns);
 ```
@@ -698,7 +698,7 @@ nextState(ns){
         }
         this._nextState = ns;
     }
-        
+
     // always return the current next state
     return this._nextState;
 }
@@ -727,20 +727,20 @@ step(){
         for(let y = 0; y < this.rows(); y++){
             // get a reference to the current cell
             let c = this.cell(x, y);
-                
+
             // calculate the next state
             let ns = this._stepFn(c.state(), this.cellNeighbourStates(x, y));
-                    
+
             // coerce the next state if needed and possible
             if(!isCellState(ns) && this.hasState(ns)){
                 ns = this.stateFromValue(ns);
             }
-                
+
             // set the cell's next state to the newly calculated value
             c.nextState(ns);
         }
     }
-        
+
     // next move each cell forward into its next state and re-render it
     for(let x = 0; x < this.cols(); x++){
         for(let y = 0; y < this.rows(); y++){
@@ -748,11 +748,11 @@ step(){
             this._renderFn(this.cell(x, y).$td(), this.cell(x, y).state());
         }
     }
-       
+
     // finally, increment the generation counter
     this._generation++;
     this.generationChange();
-        
+
     // return a reference to self
     return this;
 }
@@ -774,13 +774,13 @@ Let’s start with a basic HTML 5 page that loads jQuery and our bartificer.ca p
 <head>
     <meta charset="utf-8" />
     <title>bartificer.ca.Automaton Demo - 3 CAs</title>
-    
+
     <!-- Load jQuery 3 from the official CDN -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
+
     <!-- load the bartificer.ca API from GitHub (via RawGit CDN) -->
     <script type="text/javascript" src="https://cdn.rawgit.com/bbusschots/bartificer_ca_js/PBS49-Challenge-Solution/lib/bartificer.ca.js"></script>
-    
+
     <!-- Initialise the CAs -->
     <script type="text/javascript">
         // the jQuery Doument Ready Handler
@@ -788,7 +788,7 @@ Let’s start with a basic HTML 5 page that loads jQuery and our bartificer.ca p
             // Create CAs here
         });
     </script>
-    
+
     <!-- Style the Automata -->
     <style type="text/css">
         table.bartificer-ca-automaton{
@@ -807,10 +807,10 @@ Let’s start with a basic HTML 5 page that loads jQuery and our bartificer.ca p
 
 <h2>Conway's Game of Life</h2>
 <div id="life_container"></div>
-    
+
 <h2>The Maze Rule</h2>
 <div id="maze_container"></div>
-    
+
 <h2>Brian's Brain</h2>
 <div id="brain_container"></div>
 
@@ -857,21 +857,21 @@ function lifeStep(currentState, neighbourStates){
     neighbourStates.forEach(function(s){
         if(s !== null && s.value() == true) numLiveNeighbours++;
     });
-            
+
     // apply the rules based on the current state
     if(currentState.value() == true){
         // currently alive - apply rules 1 to 3
-                
+
         // rule 1
         if(numLiveNeighbours < 2) return false;
-                
+
         // rule 3
         if(numLiveNeighbours > 3) return false;
     }else{
         // currently dead - apply rule 4
         if(numLiveNeighbours === 3) return true;
     }
-            
+
     // default to no change (incorporates rule 2)
     return currentState;
 }
@@ -890,7 +890,7 @@ We’re now ready to create the Game of Life CA and set it running. Because the 
 ```JavaScript
 // declare variables to hold references to the CAs
 let lifeCA;
-        
+
 // the jQuery Doument Ready Handler
 $(function(){
     //
@@ -906,7 +906,7 @@ $(function(){
             initialState: randomAliveness // initialise each cell to be randomly alive or dead
         }
     );
-            
+
     //
     // Start the three CAs running
     //
@@ -931,14 +931,14 @@ function mazeStep(currentState, neighbourStates){
     neighbourStates.forEach(function(s){
         if(s !== null && s.value() == true) numLiveNeighbours++;
     });
-            
+
     // apply the rules based on the current state
     if(currentState.value() == true){
         // currently alive, die unless 1-5 live neighbours
         if(numLiveNeighbours >= 1 || numLiveNeighbours <= 5) return true;
         return false;
     }
-            
+
     // currently dead - stay that way unless 3 live neighbours
     if(numLiveNeighbours === 3) return true;
     return false;
@@ -951,7 +951,7 @@ We can then create our second CA similarly to the first:
 // declare variables to hold references to the CAs
 let lifeCA;
 let mazeCA;
-        
+
 // the jQuery Doument Ready Handler
 $(function(){
     //
@@ -977,7 +977,7 @@ $(function(){
             initialState: randomAliveness // initialise each cell to be randomly alive or dead
         }
     );
-            
+
     //
     // Start the three CAs running
     //
@@ -1018,22 +1018,22 @@ Now, the set of rules (i.e. the step function):
 ```JavaScript
 function brainStep(currentState, neighbourStates){
     // decide what to do based on the current state
-            
+
     // if firing, move to recharing
     if(currentState.value() === 1) return 2;
-            
+
     // if recharing move to ready
     if(currentState.value() === 2) return 0;
-            
+
     // if we got here we are ready, so figure out how many neighbours are firing
     let numFiringNeighbours = 0;
     neighbourStates.forEach(function(s){
         if(s !== null && s.value() === 1) numFiringNeighbours++;
     });
-            
+
     // if we have exactly two firing neighbours, fire!
     if(numFiringNeighbours === 2) return 1;
-            
+
     // otherwise, remain ready
     return 0;
 }
@@ -1068,7 +1068,7 @@ And now, we’re ready to add our final CA:
 // declare variables to hold references to the CAs
 // ...
 let brainCA;
-        
+
 // the jQuery Doument Ready Handler
 $(function(){
     //
@@ -1085,7 +1085,7 @@ $(function(){
             initialState: randomBrainState // initialise each cell to be in a random brain state
         }
     );
-            
+
     //
     // Start the three CAs running
     //

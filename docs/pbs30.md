@@ -12,7 +12,7 @@ We’ll finish by creating a final, fully accessible, button complete with a pre
 
 In the next instalment we’ll finally be ready to move on to some more different form inputs, specifically, checkboxes and radio buttons.
 
-# Matching Postcast Episode 476
+# Matching Podcast Episode 476
 
 Listen Along: Chit Chat Accross the Pond Episode 476
 
@@ -31,28 +31,28 @@ var pbs = pbs ? pbs : {};
 	//
 	// ==== Define Needed Helper Functions ===
 	//
-	
+
 	// A function for validating integer inputs
 	function isValidInteger(v, lbound, ubound){
 		// first and foremost, make sure we have an integer
 		if(!String(v).match(/^-?\d+$/)){
 			return false;
 		}
-		
+
 		// if a lower bound was passed, check it
 		if(typeof lbound === 'number' && v < lbound){
 			return false;
 		}
-		
+
 		// if an upper bound was passed, check it
 		if(typeof ubound === 'number' && v > ubound){
 			return false;
 		}
-		
+
 		// if we got here all is well
 		return true;
 	}
-	
+
 	// a data structure to help validate days of the month
 	var daysInMonthLookup = {};
 	daysInMonthLookup[1] = 31;
@@ -67,7 +67,7 @@ var pbs = pbs ? pbs : {};
 	daysInMonthLookup[10] = 31;
 	daysInMonthLookup[11] = 30;
 	daysInMonthLookup[12] = 31;
-	
+
 	// helper function to validate a given combination of day, month, and year
 	function isValidateDMYCombo(d, m, y){
 		// figure out how many days are allowed in the curreny month
@@ -92,34 +92,34 @@ var pbs = pbs ? pbs : {};
 				numDaysInMonth = 29;
 			}
 		}
-		
+
 		// return based on wheather or not the days are valid
 		return d <= numDaysInMonth ? true : false;
 	}
-	
+
 	// helper function to convert integers to zero-padded strings
 	function intToPaddedString(i, len){
 		// take note of whethere or not the original number was negative
 		var isNegative = i < 0 ? true : false;
-		
+
 		// convert the absolute value of the number to a string
 		var ans = String(Math.abs(i));
-		
+
 		// add any needed padding if a sane length was provided
 		if(typeof len === 'number' && len > 0){
 			while(ans.length < len){
 				ans = '0' + ans;
 			}
 		}
-		
+
 		// pre-fix the minus sign if needed
 		if(isNegative){
 			ans = '-' + ans;
 		}
-		
+
 		return ans;
 	}
-	
+
 	// a helper function to get the two-letter ordinal suffix for any integer
 	function toOrdinalString(n){
 		if(n === 1){
@@ -133,7 +133,7 @@ var pbs = pbs ? pbs : {};
 		}
 		return 'th';
 	}
-	
+
 	// a lookup table to convert month numbers into English names
 	var monthNameLookup = {};
 	monthNameLookup[1] = 'January';
@@ -148,18 +148,18 @@ var pbs = pbs ? pbs : {};
 	monthNameLookup[10] = 'October';
 	monthNameLookup[11] = 'November';
 	monthNameLookup[12] = 'December';
-	
+
 	//
 	// === Define Time protoype (Part 1) ===
 	//
-	
+
 	// the constructor
 	pbs.Time = function(h, m, s){
 		// init data with default values
 		this._hours = 0;
 		this._minutes = 0;
 		this._seconds = 0;
-		
+
 		// process any args that were passed
 		if(typeof h !== 'undefined'){
 			this.hours(h);
@@ -171,7 +171,7 @@ var pbs = pbs ? pbs : {};
 			this.seconds(s);
 		}
 	};
-	
+
 	// the accessor methods
 	pbs.Time.prototype.hours = function(h){
 		if(arguments.length === 0){
@@ -203,7 +203,7 @@ var pbs = pbs ? pbs : {};
 		this._seconds = s;
 		return this;
 	};
-	
+
 	// add functions
 	pbs.Time.prototype.time12 = function(){
 		var ans = '';
@@ -221,26 +221,26 @@ var pbs = pbs ? pbs : {};
 	pbs.Time.prototype.time24 = function(){
 		return '' + intToPaddedString(this._hours, 2) + ':' + intToPaddedString(this._minutes, 2) + ':' + intToPaddedString(this._seconds, 2);
 	};
-	
+
 	// define a toString function
 	pbs.Time.prototype.toString = pbs.Time.prototype.time24;
-	
+
 	// define a clone function
 	pbs.Time.prototype.clone = function(){
 		return new pbs.Time(this._hours, this._minutes, this._seconds);
 	};
-	
+
 	//
 	// === Define Date protoype (Part 2) ===
 	//
-	
+
 	// the constructor
 	pbs.Date = function(d, m, y){
 		// init data with default values
 		this._day = 1;
 		this._month = 1;
 		this._year = 1970;
-		
+
 		// deal with any passed args
 		if(typeof d !== 'undefined'){
 			this.day(d);
@@ -252,7 +252,7 @@ var pbs = pbs ? pbs : {};
 			this.year(y);
 		}
 	};
-	
+
 	// the accessor methods
 	pbs.Date.prototype.day = function(d){
 		if(arguments.length === 0){
@@ -296,36 +296,36 @@ var pbs = pbs ? pbs : {};
 		this._year = y;
 		return this;
 	};
-	
+
 	// define needed functions
 	pbs.Date.prototype.international = function(y, m, d){
 		if(arguments.length === 0){
 			// we are in 'get' mode
 			return intToPaddedString(this._year, 4) + '-' + intToPaddedString(this._month, 2) + '-' + intToPaddedString(this._day, 2);
 		}
-		
+
 		// if we got here we are in 'set' mode
-			
+
 		// validate the three pieces of data
 		if(!(isValidInteger(d, 1, 31) && isValidInteger(m, 1, 12) && isValidInteger(y))){
 			throw new TypeError('invalid date information - must be three integers');
 		}
-			
+
 		// force the three pieces of data to be numbers and not strings
 		d = parseInt(d);
 		m = parseInt(m);
 		y = parseInt(y);
-			
+
 		// test the combination is valid
 		if(!isValidateDMYCombo(d, m, y)){
 			throw new Error('invalid day, month, year combination');
 		}
-			
+
 		// set the three pieces of data
 		this._day = d;
 		this._month = m;
 		this._year = y;
-		
+
 		// return a refernce to self
 		return this;
 	};
@@ -341,7 +341,7 @@ var pbs = pbs ? pbs : {};
 			}
 			return ans;
 		}
-		
+
 		// if we got here we are in 'set' mode
 		return this.international(y, m, d); // avoid needless duplication
 	};
@@ -357,7 +357,7 @@ var pbs = pbs ? pbs : {};
 			}
 			return ans;
 		}
-		
+
 		// if we got here we are in 'set' mode
 		return this.international(y, m, d); // avoid needless duplication
 	};
@@ -371,25 +371,25 @@ var pbs = pbs ? pbs : {};
 		}
 		return ans;
 	};
-	
+
 	// provide a toString
 	pbs.Date.prototype.toString = pbs.Date.prototype.international;
-	
+
 	// define a clone function
 	pbs.Date.prototype.clone = function(){
 		return new pbs.Date(this._day, this._month, this._year);
 	};
-	
+
 	//
 	// === Define DateTime protoype (Part 3) ===
 	//
-	
+
 	// the constructor
 	pbs.DateTime = function(d, t){
 		// init data with defaults
 		this._date = new pbs.Date();
 		this._time = new pbs.Time();
-		
+
 		// deal with any args that were passed
 		if(typeof d !== 'undefined'){
 			this.date(d);
@@ -398,7 +398,7 @@ var pbs = pbs ? pbs : {};
 			this.time(t);
 		}
 	};
-		
+
 	// accessor methods
 	pbs.DateTime.prototype.date = function(d){
 		if(arguments.length === 0){
@@ -420,7 +420,7 @@ var pbs = pbs ? pbs : {};
 		this._time = t.clone();
 		return this;
 	};
-	
+
 	// define functions
 	pbs.DateTime.prototype.american12Hour = function(){
 		return this._date.american() + ' ' + this._time.time12();
@@ -434,12 +434,12 @@ var pbs = pbs ? pbs : {};
 	pbs.DateTime.prototype.european24Hour = function(){
 		return this._date.european() + ' ' + this._time.time24();
 	};
-	
+
 	// provide a toString
 	pbs.DateTime.prototype.toString = function(){
 		return this._date.toString() + ' ' + this._time.toString();
 	};
-	
+
 	// define a clone function
 	pbs.DateTime.prototype.clone = function(){
 		return new pbs.DateTime(this._date, this._time);
@@ -557,7 +557,7 @@ pbs.Time.prototype.compareTo = function(obj){
   if(!(typeof obj === 'object' && obj instanceof pbs.Time)){
     return NaN;
   }
-    
+
   // check if the hours are different
   if(this._hours < obj._hours){
     return -1;
@@ -565,7 +565,7 @@ pbs.Time.prototype.compareTo = function(obj){
   if(this._hours > obj._hours){
     return 1;
   }
-    
+
   // if we got here, the hours are the same, so check the minutes
   if(this._minutes < obj._minutes){
     return -1;
@@ -573,7 +573,7 @@ pbs.Time.prototype.compareTo = function(obj){
   if(this._minutes > obj._minutes){
     return 1;
   }
-    
+
   // if we got here, the hours and minutes are the same, so check the seconds
   if(this._seconds < obj._seconds){
     return -1;
@@ -581,7 +581,7 @@ pbs.Time.prototype.compareTo = function(obj){
   if(this._seconds > obj._seconds){
     return 1;
   }
-    
+
   // if we got here the two times are equal, so return 0
   return 0;
 };

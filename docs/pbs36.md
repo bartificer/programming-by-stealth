@@ -8,7 +8,7 @@ When we switch to the JavaScript track we’ll start by having a quick look at m
 
 I’ve zipped up my solution to the previous assignment, a sample file that accompanies this instalment, and the starting point for the next assignment which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/06/pbs36.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs36.zip).
 
-# Matching Postcast Episode 492
+# Matching Podcast Episode 492
 
 Listen Along: Chit Chat Accross the Pond Episode 492
 
@@ -80,23 +80,23 @@ At this point we have a UI that looks right, but it does absolutely nothing! To 
 
 ```JavaScript
 // document ready event handler
-$(function(){            
+$(function(){
     // add a click handler to the stars UI
     $('span', $('#stars_ui')).click(function(){
         // read the rating from the data attribute
         var starRating = $(this).data('stars');
-        
+
         // render each star as appropriate
         for(var s = 1; s <= 5; s++){
             var $star = $('#stars_' + s);
-            
+
             // render the star as full or outline as appropriate
             if(s <= starRating){
                 $star.removeClass('fa-star-o').addClass('fa-star');
             }else{
                 $star.removeClass('fa-star').addClass('fa-star-o');
             }
-            
+
             // mark the star as checked for ARIA as appropriate
             if(s == starRating){
                 $star.attr('aria-checked', true);
@@ -104,7 +104,7 @@ $(function(){
                 $star.attr('aria-checked', false);
             }
         }
-        
+
         // save the rating into the hidden form input
         $('#stars_input').val(starRating);
     });
@@ -190,7 +190,7 @@ bartificer.ca.Automaton = function($container, rows, cols, stepFn, renderFn, s){
     this._cols = parseInt(cols); // force to number
     this._stepFn = stepFn;
     this._renderFn = renderFn;
-    
+
     // initialise the grid and table
     this._grid = [];
     for(x = 0; x < this._cols; x++){
@@ -316,18 +316,18 @@ Putting it all together, and adding some comments, we get the following HTML pag
 <head>
     <meta charset="utf-8" />
     <title>bartificer.ca.Automaton Demo</title>
-    
+
     <!-- Load jQuery 3 from the official CDN -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
+
     <!-- load the bartificer.ca API -->
     <script type="text/javascript" src="./lib/bartificer.ca.js"></script>
-    
+
     <!-- Add the JavaScript code to initialise a Cellular Automaton -->
     <script type="text/javascript">
         // a globally scoped variable to hold the automaton object
         var sampleCA;
-        
+
         // add a document ready event handler
         $(function(){
             // use the constructor to build an automaton
@@ -338,13 +338,13 @@ Putting it all together, and adding some comments, we get the following HTML pag
                 function($td){ $td.css('background-color', 'Green') }, // always render as green
                 true // set the initial state of all cells to true
             );
-            
+
             // log the geneated automaton object so we can have a look inside
             // it look at it with the JavaScript console if we want
             console.log(sampleCA);
         });
     </script>
-    
+
     <!-- Stype the Automaton -->
     <style type="text/css">
         /* style the cells in the automaton */

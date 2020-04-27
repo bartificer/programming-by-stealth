@@ -4,7 +4,7 @@ With this instalment we’re starting into a whole new phase of the series. We�
 
 Learning the basics of JavaScript, and learning how to connect JavaScript into the browser environment are two very different tasks, so, we’re going to separate them. We’ll start by learning some JavaScript fundamentals in a JavaScript playground I’ve created. Only when we know enough JavaScript for the mechanics of the browser’s JavaScript integration to make sense will we move tackle the so-called DOM, and the browser event model.
 
-# Matching Postcast Episode 432
+# Matching Podcast Episode 432
 
 Listen Along: Chit Chat Accross the Pond Episode 432
 

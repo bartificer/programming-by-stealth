@@ -6,7 +6,7 @@ I’ve been trying to find the perfect moment to insert this topic into the seri
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/02/pbs72.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs72.zip).
 
-# Matching Postcast Episode 583
+# Matching Podcast Episode 583
 
 Listen along to this instalment on [episode 583 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/02/ccatp-583/)
 
@@ -27,34 +27,34 @@ Before starting to add new functionality I started by re-factoring my solution t
 const startTimer = function(){
   // if the timer is already running do nothing
   if(RUNNING) return false;
-			
+
   // mark the timer as running
   RUNNING = true;
-			
+
   // disable the form
   $formControls.prop('disabled', true);
-			
+
   // start the main timeout
   const mins = $mins.val();
   mainTimerID = window.setTimeout(function(){
     // hide any toasts
     $('.toast').toast('hide');
-				
+
     // populate the modal
     const msg = $msg.val() || '🙊';
     $('#message_display').text(msg);
-				
+
     // display the Modal
     $modal.modal('show');
-				
+
     // re-enable the form
     $formControls.prop('disabled', false);
-				
+
     // mark execution as completed
     RUNNING = false;
     mainTimerID = null;
   }, mins * 1000 * 60);
-  
+
   // if needed, start the toast interval
   let minsLeft = mins - 1;
   if(minsLeft > 1){
@@ -65,17 +65,17 @@ const startTimer = function(){
         `${minsLeft} Minute${minsLeft > 1 ? 's' : ''} Left`,
         `${minsGone} minute${minsGone > 1 ? 's' : ''} down, ${minsLeft} to go!`
       );
-					
+
       // decrement the minutes left
       minsLeft--;
-					
+
       // if we're the last toast, end ourselves
       if(minsLeft === 0){
         window.clearInterval(toastIntervalID);
         toastIntervalID = null;
       }
     }, 1000 * 60);
-  }	
+  }
 };
 ```
 
@@ -95,7 +95,7 @@ Next I broke the code for enabling and disabling the form out into stand-alone f
 const disableForm = function(){
   $formControls.prop('disabled', true);
 };
-		
+
 // a helper function to enable the form
 const enableForm = function(){
   $formControls.prop('disabled', false);
@@ -140,22 +140,22 @@ To do this I updated the `disableForm()` and `enableForm()` functions as shown:
 const disableForm = function(){
   // disable the form elements
   $formControls.prop('disabled', true);
-			
+
   // hide everything with the not_running_only class
   $('.not_running_only').addClass('d-none');
-			
+
   // show everything with the running_only class
   $('.running_only').removeClass('d-none');
 };
-		
+
 // a helper function to enable the form
 const enableForm = function(){
   // enable the form elements
   $formControls.prop('disabled', false);
-			
+
   // show everything with the not_running_only class
   $('.not_running_only').removeClass('d-none');
-			
+
   // hide everything with the running_only class
   $('.running_only').addClass('d-none');
 };
@@ -178,28 +178,28 @@ At this stage we have a working solution to the first part of the challenge — 
 const disableForm = function(){
   // disable the form elements
   $formControls.prop('disabled', true);
-			
+
   // hide everything with the not_running_only class
   $('.not_running_only').addClass('d-none');
-			
+
   // show everything with the running_only class
   $('.running_only').removeClass('d-none');
-			
+
   // change the button to red
   $btn.removeClass('btn-success').addClass('btn-danger');
 };
-		
+
 // a helper function to enable the form
 const enableForm = function(){
   // enable the form elements
   $formControls.prop('disabled', false);
-			
+
   // show everything with the not_running_only class
   $('.not_running_only').removeClass('d-none');
-			
+
   // hide everything with the running_only class
   $('.running_only').addClass('d-none');
-			
+
   // change the button to green
   $btn.removeClass('btn-danger').addClass('btn-success');
 };
@@ -212,10 +212,10 @@ Let’s tackle the final part of the challenge now, giving users the ability to 
 const stopTimer = function(){
   // if the timer is not running, do nothing
   if(!RUNNING) return false;
-			
+
   // mark the timer as not running
   RUNNING = false;
-			
+
   // cancel any running timeouts
   if(toastIntervalID){
     window.clearInterval(toastIntervalID);
@@ -225,10 +225,10 @@ const stopTimer = function(){
     window.clearTimeout(mainTimerID);
     mainTimerID = null;
   }
-			
+
   // hide any toasts
   $('.toast').toast('hide');
-			
+
   // enable the form
   enableForm();
 };
@@ -252,7 +252,7 @@ $btn.click(function(){
     stopTimer();
   }else{
     startTimer();
-  } 
+  }
 });
 ```
 
@@ -262,11 +262,11 @@ At this stage we have a working solution, but it would benefit form a little re-
 mainTimerID = window.setTimeout(function(){
   // stop the timer
   stopTimer();
-				
+
   // populate the modal
   const msg = $msg.val() || '🙊';
   $('#message_display').text(msg);
-				
+
   // display the Modal
   $modal.modal('show');
 }, mins * 1000 * 60);
@@ -392,29 +392,29 @@ Before we start, this is how the code currently builds up the toast:
 $('#toast_generate_btn').click(function(){
   // creat an empty toast
   const $toast = $('<div>').addClass('toast').attr('role', 'status').attr('aria-atomic', true);
-			
+
   // create a title for the toast and append it
   const $title = $('<div>').addClass('toast-header');
   const titleText = $('#toast_title_tb').val() ? $('#toast_title_tb').val() : ipsum.sentence(1, 3).replace(/[.]$/, '').toTitleCase();
   $title.append($('<strong>').text(titleText));
   $toast.append($title);
-			
+
   // create a body for the toast and append it
   const $body = $('<div>').addClass('toast-body');
   $body.text($('#toast_body_ta').val() ? $('#toast_body_ta').val() : ipsum.paragraph(10, 20));
   $toast.append($body);
-			
+
   // add the toast to the toast rack
   $('#toast_rack').append($toast);
-			
+
   // initialise the toast plugin on the toast
   $toast.toast({delay: 3000});
-			
+
   // add an event handler to automatically delete the toast when it hides
   $toast.on('hidden.bs.toast', function(){
     $(this).remove();
   });
-			
+
   // finally show the toast
   $toast.toast('show');
 });
@@ -449,18 +449,18 @@ $('#toast_generate_btn').click(function(){
   $('.toast-header strong', $toast).text(titleText);
   const bodyText = $('#toast_body_ta').val() ? $('#toast_body_ta').val() : ipsum.paragraph(10, 20);
   $('.toast-body', $toast).text(bodyText);
-			
+
   // add the toast to the toast rack
   $('#toast_rack').append($toast);
-			
+
   // initialise the toast plugin on the toast
   $toast.toast({delay: 3000});
-			
+
   // add an event handler to automatically delete the toast when it hides
   $toast.on('hidden.bs.toast', function(){
     $(this).remove();
   });
-			
+
   // finally show the toast
   $toast.toast('show');
 });

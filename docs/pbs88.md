@@ -4,7 +4,7 @@ We’re nearing the end of our series-within-a-series re-capping the many prover
 
 This instalment will have a slightly unusual structure, we’ll use my sample solution to the challenge set at the end of [instalment 85](https://bartificer.net/pbs85) to illustrate some of the core concepts.
 
-# Matching Postcast Episode 619
+# Matching Podcast Episode 619
 
 Listen along to this instalment on [episode 619 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/ccatp-619)
 
@@ -174,17 +174,17 @@ In the sample solution the Mustache templating engine is used to build complex H
 ```JavaScript
 // generate the HTML
 const cardHTML = Mustache.render(TEMPLATES.currencies.displayCard, cardView);
-			
+
 // convert the HTML to a jQuery object
 const $card = $(cardHTML);
-			
+
 // …
 
 // add a click handler to the close button
 $('button.close', $card).click(function(){
   // hide the card
   $curCol.hide();
-				
+
   // update the add card select
   updateAddCardSelectOptions();
 });
@@ -374,16 +374,16 @@ const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
 // if the card has already been loaded, just show it and exit
 if($curCol.data('loaded')){
   console.debug(`card for '${curCode}' already loaded, so just showing it`);
-			
+
   // show the col
   $curCol.show();
-			
+
   // focus the card
   $curCol.children('.card').focus();
-			
+
   // update the select in the add card form
   updateAddCardSelectOptions();
-			
+
   // end the function
   return;
 }
