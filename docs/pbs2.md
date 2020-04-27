@@ -20,7 +20,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Since we’re using HTML to markup text, the vast majority of a HTML document is plain text. We use so-called _HTML tags_ to add context to that text. In general, tags come in matched pairs – an opening tag, and a closing tag. The content between matching opening and closing tags is said to be _contained_ within the tag. An opening tag takes the form of the name of a tag between chevrons, and a closing tag takes the form of the name with a forward slash pre-fixed between chevrons.
 
-For example, the `p` tag is used to define a paragraph, it’s opened with `<p>`, and closed with `</p>`. The text for the paragraph goes inbetween the opening and closing tags. The following example shows the markup for a one-line paragraph:
+For example, the `p` tag is used to define a paragraph, it’s opened with `<p>`, and closed with `</p>`. The text for the paragraph goes in between the opening and closing tags. The following example shows the markup for a one-line paragraph:
 
 ```XHTML
 <p>This is a one-line paragraph!</p>

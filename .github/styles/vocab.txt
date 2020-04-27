@@ -111,6 +111,7 @@ tooltips
 truthy
 unary
 uncomment
+undefinedness
 underpopulation
 unencapsulated
 unformatted

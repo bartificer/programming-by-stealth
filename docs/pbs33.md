@@ -986,7 +986,7 @@ Next to that dropdown is a text box labeled _Filter_, this allows us to show onl
 
 ![QUnit Filter Text Box](../assets/pbs33/Screen-Shot-2017-04-14-at-15.39.14.png)
 
-Finally, the tool bar contains a collection of three checkboxes:
+Finally, the toolbar contains a collection of three checkboxes:
 
 _Hide passed tests_
 
