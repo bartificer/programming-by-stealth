@@ -253,7 +253,7 @@ for(const rn of myGeneratorObj){
 }
 ```
 
-There is of course no need to create a separate variable, so we can collapse this down down like so:
+There is of course no need to create a separate variable, so we can collapse this down like so:
 
 ```JavaScript
 // iterate over 5 random numbers and print them
@@ -327,7 +327,7 @@ To make this example a little more real-world, `pbs87a.html` contains a web UI f
 </div>
 ```
 
-This is basically just a Bootstap card containing a bootstrap form consisting of a button to generate a random number, and a text box to show it. The key points to note are that the button has the ID `rng_btn`, and the text box has the ID `rng_tb`.
+This is basically just a Bootstrap card containing a bootstrap form consisting of a button to generate a random number, and a text box to show it. The key points to note are that the button has the ID `rng_btn`, and the text box has the ID `rng_tb`.
 
 This UI is brought to life in the document ready handler by creating an infinite RNG generator object and adding a click handler to the button:
 

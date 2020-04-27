@@ -288,7 +288,7 @@ function sumAll(){
 }
 ```
 
-(Note that `arguments` is actually a so-called _itrerable_, which is why `for...of` works on `arguments` objects. We’ll be looking at iterables in the next instalment)
+(Note that `arguments` is actually a so-called _iterable_, which is why `for...of` works on `arguments` objects. We’ll be looking at iterables in the next instalment)
 
 ### Default Argument Values
 
@@ -349,7 +349,7 @@ When it comes to functions provided by the `Function` prototype there are a few 
 
 Firstly, the `Function` prototype defines a pair of functions (`.apply()` & `.call()`) which allow a specific function to be called with a specified value for the special `this` variable. It’s this functionality that enables third-party APIs like jQuery to ensure that the value of `this` is a reference to the appropriate DOM object within its many callbacks and functions.
 
-Secondly, the function `.bind()` can be used to programatically create shortcut functions. These are functions that call existing functions with hard-coded arguments. Again, this is the kind of thing API writers make use of more than regular developers.
+Secondly, the function `.bind()` can be used to programmatically create shortcut functions. These are functions that call existing functions with hard-coded arguments. Again, this is the kind of thing API writers make use of more than regular developers.
 
 Finally, you can get the code for any user-created (not built-in) JavaScript function as a string with `.toString()`. This might be useful when building error messages that relate to callbacks.
 

@@ -1,6 +1,6 @@
 # PBS 85 of X — Objects as Arrays in JavaScript (Redux & Update)
 
-There are many programming concepts that are common to the vast majority of programming languages, but each language implements these concepts in their own unique and special way. In JavaScript, objects are used to implement many concepts. I like to think of JavaScript objects as a single language feature that wears many hats. In [the previous instalment](https://bartificer.net/pbs84) we focused on one of these hats, JavaScript’s use of objects to implement dictionaries. In this instalment we’ll look at another hat JavaScript objets get to wear — arrays. As with the previous instalment, this instalment will be a mixture of consolidated reminders of things we’ve met before, and of some new features added to arrays in more recent versions of the JavaScript language.
+There are many programming concepts that are common to the vast majority of programming languages, but each language implements these concepts in their own unique and special way. In JavaScript, objects are used to implement many concepts. I like to think of JavaScript objects as a single language feature that wears many hats. In [the previous instalment](https://bartificer.net/pbs84) we focused on one of these hats, JavaScript’s use of objects to implement dictionaries. In this instalment we’ll look at another hat JavaScript objects get to wear — arrays. As with the previous instalment, this instalment will be a mixture of consolidated reminders of things we’ve met before, and of some new features added to arrays in more recent versions of the JavaScript language.
 
 We’ll also look at a sample solution to the challenge set at the end of instalment 83, but unusually, we’ll do that after our look at arrays.
 
@@ -39,7 +39,7 @@ As mentioned in the introduction, JavaScript uses objects to implement the array
 
 So, in Javascript, arrays are objects of type `Array`.
 
-The `Array` prototype adds just one proprty of note to arrays — `.length`. JavaScript defines an array’s length as one greater than the highest index that contains a value, or zero if the array contains no values. So, if you have an array with 10 values indexed from zero to nine, then that array’s `.length` will be 10, but an array with a single value at index 9 will also have a `.length` of 10.
+The `Array` prototype adds just one property of note to arrays — `.length`. JavaScript defines an array’s length as one greater than the highest index that contains a value, or zero if the array contains no values. So, if you have an array with 10 values indexed from zero to nine, then that array’s `.length` will be 10, but an array with a single value at index 9 will also have a `.length` of 10.
 
 ### Creating Arrays with Array Literals
 

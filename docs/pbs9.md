@@ -46,7 +46,7 @@ Although we haven’t been explicit about it, we have already encountered a tag 
 
 As an example, let’s imagine we want to make a modern-day version of an Egyptian cartouche – a group of pictograms surrounded by a rounded border that should never be split across multiple lines. Rather than using a series of ancient pictograms, we will use a two-by-two grid of images of modern emoji. (If you’re not familiar with cartouches, [this Wikipedia page](https://en.wikipedia.org/wiki/Cartouche) might be of interest to you.)
 
-The HTML markup is simply a `<span>` with the class `cartouche` containing four image tags, with a line break (`<br />`) after the second image. Unfortunately, to avoid extra space appearing between the images within the cartouche, there can’t be any white space between the relevant HTML tags, and that includes newline characters. You can obviously do this by putting the entire contents of the cartouche span onto a single line, but it will be very very long, and not east to read. To get around this, two interesting ‘hacks’ are often used. The first technique is to insert a line break just before closing each tag, that way the the empty space is not between the HTML tags:
+The HTML markup is simply a `<span>` with the class `cartouche` containing four image tags, with a line break (`<br />`) after the second image. Unfortunately, to avoid extra space appearing between the images within the cartouche, there can’t be any white space between the relevant HTML tags, and that includes newline characters. You can obviously do this by putting the entire contents of the cartouche span onto a single line, but it will be very very long, and not easy to read. To get around this, two interesting ‘hacks’ are often used. The first technique is to insert a line break just before closing each tag, that way the empty space is not between the HTML tags:
 
 ```XHTML
 <span class="cartouche"
@@ -133,7 +133,7 @@ A new concept known as flex boxes was added to CSS 3 to help make layouts more r
 
 This instalment’s demo re-creates the same two-column layout using a CSS 3 flex box, and the resulting layout is much more robust. It looks the same, but behaves just as nicely regardless of which column is the tallest.
 
-Flex boxes are very powerful, and hence, very complex. It would take us two or even three entire instalments to cover every detail of flex boxes. We’re not going to to do that – instead, we’ll just look at the basics, and link out to some helpful resources should you find yourself needing to control more aspects of your flex boxes.
+Flex boxes are very powerful, and hence, very complex. It would take us two or even three entire instalments to cover every detail of flex boxes. We’re not going to do that – instead, we’ll just look at the basics, and link out to some helpful resources should you find yourself needing to control more aspects of your flex boxes.
 
 To use flex box, you need a containing element to hold the boxes that will be flexibly sized. This is known as a flex container. Any box can be turned into a flex container by setting its `display` property to `flex`. All direct children of this container are now flex items.
 

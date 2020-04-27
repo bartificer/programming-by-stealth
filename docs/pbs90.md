@@ -35,7 +35,7 @@ This one level of indirection has two very significant implications.
 > The code snippets in this instalment can be run in the JavaScript console on any web page (including this one), but you'll need to refresh the page between snippets to avoid errors about re-declaring variables.
 {: class="notice"}
 
-Consider this simple code code snippet:
+Consider this simple code snippet:
 
 ```js
 let x = 4; // a primitive value
@@ -105,11 +105,13 @@ The following snippet compiles and runs just fine:
 ```js
 console.log([1, 2].toString());
 ```
+
 But the following generates an error:
 
 ```js
 console.log(42.toString());
 ```
+
 Why? Because all objects have a property named `toString` that is a reference to a function (they get this from JavaScript's built-in `Object` prototype). Literals on the other hand can't have properties, so `42.toString()` is nonsense.
 
 We can also add any property we like to an object and retrieve its value later:
@@ -196,11 +198,11 @@ The class also provides static properties representing special numbers, specific
 
 The class also provides four useful static testing functions:
 
-| Static Function | Description |
-| :---: | :--- |
-| `Number.isNaN()` | Test if a given value is the special number representing non-numbers (*is not-a-number*). |
-| `Number.isFinite()` | Is the number anything but infinity or `NaN`? |
-| `Number.isInteger()` | Is a given value an integer? |
+|     Static Function      | Description                                                                                      |
+| :----------------------: | :----------------------------------------------------------------------------------------------- |
+|     `Number.isNaN()`     | Test if a given value is the special number representing non-numbers (_is not-a-number_).        |
+|   `Number.isFinite()`    | Is the number anything but infinity or `NaN`?                                                    |
+|   `Number.isInteger()`   | Is a given value an integer?                                                                     |
 | `Number.isSafeInteger()` | Is the number an integer within the range `Number.MIN_SAFE_INTEGER` to `Number.MAX_SAFE_INTEGER` |
 
 ## The `String` Class
@@ -213,21 +215,21 @@ The only instance property provided by the class is `.length`, and there are no 
 
 There are no static functions of note, but many very useful instance functions, including the list below.
 
-| Function | Description |
-| :---: | :--- |
-| `.match()` | Test a string against a regular expression. |
-| `.replace()` | Replace all instances of a pattern within a string with a replacement string. |
-| `.split()` | Split a string into an array based on a delimiter of some kind. |
-| `.toLowerCase()` | Return a new string with all letters converted to lower case. |
-| `.toUpperCase()` | Return a new string with all letters converted to upper case. |
-| `.trim()` | Return a new string with all trailing and leading white space removed. |
+|     Function     | Description                                                                   |
+| :--------------: | :---------------------------------------------------------------------------- |
+|    `.match()`    | Test a string against a regular expression.                                   |
+|   `.replace()`   | Replace all instances of a pattern within a string with a replacement string. |
+|    `.split()`    | Split a string into an array based on a delimiter of some kind.               |
+| `.toLowerCase()` | Return a new string with all letters converted to lower case.                 |
+| `.toUpperCase()` | Return a new string with all letters converted to upper case.                 |
+|    `.trim()`     | Return a new string with all trailing and leading white space removed.        |
 
 ## Auto-boxing of String Literals
 
 One of the many useful improvements brought by ES6 is the introduction of auto-boxing for string literals. Even in ES6 the two boolean literals `true` and `false` are not auto-boxed, and neither are numbers, but string literals are. This allows us to take very useful shortcuts like:
 
 ```js
-const words = "some words in a sentence".split(' ');
+const words = 'some words in a sentence'.split(' ');
 ```
 
 ## Final Thoughts

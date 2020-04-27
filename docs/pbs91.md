@@ -71,27 +71,27 @@ Firstly, special characters are escaped with a backslash character (`\`).
 
 Secondly, while there are a total of six possible flags (as of ES2018), there are three particularly important ones:
 
-| flag | Meaning |
-| :--: | --- |
-| `g` | Perform a **global** search. This flag alters the behaviour or many functions that use regular expressions, the details will be in the documentation for the function in question. |
-| `i` | Perform as **case-insensitive** search. |
-| `m` | Perform a multi-line search, i.e. interpret `^` as *start of line* instead of *start of string*, and `$` as *end of line* instead of *end of string*. | 
+| flag | Meaning                                                                                                                                                                            |
+| :--: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `g`  | Perform a **global** search. This flag alters the behaviour or many functions that use regular expressions, the details will be in the documentation for the function in question. |
+| `i`  | Perform as **case-insensitive** search.                                                                                                                                            |
+| `m`  | Perform a multi-line search, i.e. interpret `^` as _start of line_ instead of _start of string_, and `$` as _end of line_ instead of _end of string_.                              |
 
 ### Character Classes
 
-PCRE provides us with many codes for specifying a single occurrence of a given special character, or a single individual character from a related group of characters.  The table below is far from an exhaustive list, but it covers the ones you're most likely to need regularly.
+PCRE provides us with many codes for specifying a single occurrence of a given special character, or a single individual character from a related group of characters. The table below is far from an exhaustive list, but it covers the ones you're most likely to need regularly.
 
-| Character Descriptor | Meaning |
-| :---: | :--- |
-| `.` | Any one character. |
-| `\d` | Any digit. |
-| `\w` | Any word character (a to z, A to Z, 0 to 9, and underscore). |
-| `\s` | any blank space character. |
-| `\D` | any character that's not a digit. |
-| `\W` | any non-word character. |
-| `\S` | any non-space character. |
-| `\t` | a tab character. |
-| `\n` | a newline character. |
+| Character Descriptor | Meaning                                                      |
+| :------------------: | :----------------------------------------------------------- |
+|         `.`          | Any one character.                                           |
+|         `\d`         | Any digit.                                                   |
+|         `\w`         | Any word character (a to z, A to Z, 0 to 9, and underscore). |
+|         `\s`         | any blank space character.                                   |
+|         `\D`         | any character that's not a digit.                            |
+|         `\W`         | any non-word character.                                      |
+|         `\S`         | any non-space character.                                     |
+|         `\t`         | a tab character.                                             |
+|         `\n`         | a newline character.                                         |
 
 As well as supporting many pre-defined character classes, PCRE also lets us define our own by listing the contents of our desired class within square brackets. For example, the character class to match any single un-accented lower-case western vowel is `[aeiou]`.
 
@@ -103,24 +103,24 @@ Finally, we can negate our entire character class by starting it with the carat 
 
 PCRE also gives us a number of position indicators to help us anchor our pattern within a string. Again, the table below is not exhaustive.
 
-| Position Indicator | Meaning |
-| :---: | :--- |
-| `^` | the start of the string (or of a line with the `m` flag). |
-| `$` | the end of the string (or of a line with the `m` flag). |
-| `\b` | a word boundary (start or end of a word). |
+| Position Indicator | Meaning                                                   |
+| :----------------: | :-------------------------------------------------------- |
+|        `^`         | the start of the string (or of a line with the `m` flag). |
+|        `$`         | the end of the string (or of a line with the `m` flag).   |
+|        `\b`        | a word boundary (start or end of a word).                 |
 
 ### Quantity Specifiers
 
 As well as allowing us to specify which characters we want where, PCRE also allows us to specify how often parts of the pattern should repeat. Again, not an exhaustive list, but some of the common PCRE quantity specifiers are shown in the table below.
 
-| Quantity Specifier | Meaning | Example |
-| :---: | :--- | : -- |
-| `|` | or | `/cat|dog/` *cat or dog*
-| `?` | zero or one of … | `/https?/` *http optionally followed by an s* |
-| `*` | zero or more of … | `/a*/` *any number of a characters, including none* |
-| `+` | one or more of … | `/a+/` *one or more a characters* | 
-| `{n}` | exactly `n` of … | `/b{2}/` *two b characters* |
-| `{x, y}` | between `x` and `y` (inclusive) of … | `/\d{1,3}/` *one, two, or three digits* |
+| Quantity Specifier | Meaning                              | Example                                             |
+| :----------------: | :----------------------------------- | :-------------------------------------------------- |
+|        `|`         | or                                   | `/cat|dog/` _cat or dog_                            |
+|        `?`         | zero or one of …                     | `/https?/` _http optionally followed by an s_       |
+|        `*`         | zero or more of …                    | `/a*/` _any number of a characters, including none_ |
+|        `+`         | one or more of …                     | `/a+/` _one or more a characters_                   |
+|       `{n}`        | exactly `n` of …                     | `/b{2}/` _two b characters_                         |
+|      `{x, y}`      | between `x` and `y` (inclusive) of … | `/\d{1,3}/` _one, two, or three digits_             |
 
 ### Groupings (Capturing & Non-Capturing)
 
@@ -136,7 +136,7 @@ Non-capturing groups allow us to group parts of an RE together without them bein
 
 ## The RegExp Class
 
-JavaScript represents regular expressions with the built-in class `RegExp`.  For full documentation of all properties and functions [see the class's page on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
+JavaScript represents regular expressions with the built-in class `RegExp`. For full documentation of all properties and functions [see the class's page on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
 
 We're going to confine our look at this class to just two functions — those that encapsulate the two most common use-cases for regular expressions — validation, and parsing.
 
@@ -193,7 +193,7 @@ const timeParseRE = /^(\d{2}):(\d{2}):(\d{2})$/;
 
 Given this RE, we can use the `.exec()` instance function from the `RegExp` class to parse a given string. This function takes the string to parse as an argument, and has many possible return values depending on both the RE flags and whether or not the string matched the RE.
 
-Let's start by assuming the RE does does not have the global (`g`) flag set (as is the case with our example). In this scenario `.exec()` will return one of two things — if the RE does not match it will return `null`, and if it does match it will return an array. Assuming a match, the first element in the array (i.e. the *zeroth* element) will be the full matched string. This will be followed by the matched values for each capture group in the RE, so, the first capture group will be at position 1, the second at position 2, etc..
+Let's start by assuming the RE does not have the global (`g`) flag set (as is the case with our example). In this scenario `.exec()` will return one of two things — if the RE does not match it will return `null`, and if it does match it will return an array. Assuming a match, the first element in the array (i.e. the _zeroth_ element) will be the full matched string. This will be followed by the matched values for each capture group in the RE, so, the first capture group will be at position 1, the second at position 2, etc..
 
 Given our example RE above we can see this in action:
 
