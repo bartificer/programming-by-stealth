@@ -400,7 +400,7 @@ QUnit.test('Generation Counting', function(a){
 
 Now that our prototype can count its generations, how do we show that count in the UI?
 
-A good prototype is generic and re-usable, so we absolutely don’t want to hard-code the counter UI into the `bartificer.ca.Automaton` prototype. What we need is functionality to allow developers using the prototype to pass the the prototype a callback that the prototype will then promise to execute each time the generation changes. In other words, we need to add basic support for events.
+A good prototype is generic and re-usable, so we absolutely don’t want to hard-code the counter UI into the `bartificer.ca.Automaton` prototype. What we need is functionality to allow developers using the prototype to pass the prototype a callback that the prototype will then promise to execute each time the generation changes. In other words, we need to add basic support for events.
 
 Let’s start by adding another instance variable to the `bartificer.ca.Automaton` prototype to store a reference to the function to execute when ever the generation changes. Mind you — why only add support for a single callback? Why not allow developers to add as many listeners as they like to our generation change event? How? With an array!
 

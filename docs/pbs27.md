@@ -98,7 +98,7 @@ if(typeof optionDetails[optName].onChange === 'function'){
 }
 ```
 
-Within the `.option()` function, where the above code snippet exists, `this` is a reference to the clock object who’s option is being altered. By passing `this` as the first argument to `.call()`, the `this` variable within the callback also becomes a reference to the clock who’s option is is being updated.
+Within the `.option()` function, where the above code snippet exists, `this` is a reference to the clock object who’s option is being altered. By passing `this` as the first argument to `.call()`, the `this` variable within the callback also becomes a reference to the clock who’s option is being updated.
 
 ## Introducing Web Forms
 

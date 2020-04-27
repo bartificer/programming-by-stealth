@@ -22,7 +22,7 @@ To that end, this revision post is going to stick at a high level, and then prov
 
 HTML is a markup language for specifying what different elements that make up a document are. This is a paragraph, this is a list, this is an image, and so on and so forth. There have been a number of versions of the HTML language released, we’ve been learning the latest of those, HTML 5.
 
-An HTML document consists of nested elements which are described using tags. Elements come in two flavours – those that contain content, and those that don’t. Those that contain content are marked up be wrapping the content between matching opening and closing tags tags like so:
+An HTML document consists of nested elements which are described using tags. Elements come in two flavours – those that contain content, and those that don’t. Those that contain content are marked up by wrapping the content between matching opening and closing tags like so:
 
 ```XHTML
 <h1>A Top-level Heading</h1>
@@ -52,53 +52,52 @@ The majority of HTML elements fall into two main categories – _block-level ele
 #### Quick Quiz
 
 1.  Why is the following snippet invalid HTML?
-    
+
     ```XHTML
     <p>This paragraph contains <strong>some text that is bold <em>and some that is bold and italic</strong>, and some that is just italic</em>.</p>
     ```
-    
+
     Answer
-    
+
     The HTML elements are not nested within one another – the `em` element is both inside and outside the `strong` element, which is not permitted by the HTML 5 spec.
-    
+
     The HTML elements are not nested within one another – the `em` element is both inside and outside the `strong` element, which is not permitted by the HTML 5 spec.
-    
+
 2.  Consider the following HTML snippet:
-    
+
     ```XHTML
     <p>Please visit <a href="http://bartb.ie/" target="_blank" title="Bart's Site">my home page</a>, thanks!</p>
     ```
-    
-    1.  Which element is the block-level element? And which the inline element?  
-        
+
+    1.  Which element is the block-level element? And which the inline element?
+
         Answer
-        
+
         The `p` element is the block-level element, and the `a` element the inline one.
-        
+
         The `p` element is the block-level element, and the `a` element the inline one.
-        
+
     2.  What’s the content of the `a` element?
-        
+
         Answer
-        
+
         `my home page`
-        
+
         `my home page`
-        
+
     3.  What’s the value of the `a` element’s `title` attribute?
-        
+
         Answer
-        
+
         `Bart's Site`
-        
+
         `Bart's Site`
-        
 
 ## CSS
 
-By default HTML is rendered very plainly with only very basic formatting. To give an HTML document some character and a look, we need to use CSS. Like with HTML, there have been a number of versions of the CSS language released, we’ve been using the latest, CSS 3.
+By default, HTML is rendered very plainly with only very basic formatting. To give an HTML document some character and a look, we need to use CSS. Like with HTML, there have been a number of versions of the CSS language released, we’ve been using the latest, CSS 3.
 
-Every element in an HTML document has many _style properties_ associated with it, e.g. `font-size`, `color`, `font-family`, `border`, and many many many more. CSS allows us to specify values for these properties using _declarations_. We group these declarations into _declaration blocks_, and apply them selectively to the elements that make up a document using _selectors_.
+Every element in an HTML document has many _style properties_ associated with it, e.g. `font-size`, `color`, `font-family`, `border`, and many many many more. CSS allows us to specify values for these properties using _declarations_. We group these declarations into _declaration blocks_ and apply them selectively to the elements that make up a document using _selectors_.
 
 Consider the example below:
 
@@ -269,7 +268,7 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
 #### Quick Quiz
 
 1.  Given the following code snippet:
-    
+
     ```undefined
     var x = {
       a: 'b',

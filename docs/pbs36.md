@@ -2,7 +2,7 @@
 
 In [the previous instalment](https://bartificer.net/pbs35) we took at first look at text input in HTML, and we made a start on a new project – building a set of JavaScript prototypes for creating [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton) so we can implement [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). In this instalment we’ll continue down both of those paths. Later in the project the two paths will finally merge when we use web forms to build a UI around our game of life.
 
-We’ll start on the HTML track where we move on from generic text input with single and multi-line basic text boxes to some more specific types of text input, including some nice new input types that HTML 5 brought to the table. This will set up up to learn about HTML 5 form validation in the next instalment.
+We’ll start on the HTML track where we move on from generic text input with single and multi-line basic text boxes to some more specific types of text input, including some nice new input types that HTML 5 brought to the table. This will set us up to learn about HTML 5 form validation in the next instalment.
 
 When we switch to the JavaScript track we’ll start by having a quick look at my sample solution to the previous instalment. Then, we’ll make a start on a JavaScript prototype to represent a Cellular Automaton together, which will set up the next assignment.
 
@@ -18,7 +18,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## More HTML Text Inputs
 
-In this series we’ve already seen the `<input>` tag used to create three distinct form inputs, depending on the value specified for the `type` attribute. We used the `<input>` tags with `type="checkbox"` to create checkboxs, with `type="radio"` to create radio buttons within radio sets, and `type="text"` to create a basic single-line text box. It turns out we’ve only just scraped the surface, the `<input>` tag is very versatile indeed, and can be used to create even more different form elements.
+In this series we’ve already seen the `<input>` tag used to create three distinct form inputs, depending on the value specified for the `type` attribute. We used the `<input>` tags with `type="checkbox"` to create checkboxes, with `type="radio"` to create radio buttons within radio sets, and `type="text"` to create a basic single-line text box. It turns out we’ve only just scraped the surface, the `<input>` tag is very versatile indeed, and can be used to create even more different form elements.
 
 We’ll start with some inputs that have been around for a long time, and then move on to some cool new input types brought to the party by HTML 5. In theory HTML 5 should have brought even more cool input types along, but alas, browser support remains extremely patchy. Hopefully things will improve quickly, and we’ll have proper browser support for things like colour and date pickers, both of which are defined within the HTML 5 spec. Just for the record, Apple in particular are behind on their HTML 5 implementation in Safari – Chrome and Firefox are both ahead, as is Microsoft’s new Edge browser.
 
@@ -26,9 +26,9 @@ Just to note that all of the input types we’ll discus today can be interacted 
 
 ### Invisible Inputs
 
-Probably the most confusing input type is `hidden`, which does exactly what it sounds like it does – create a completely invisible form element! Despite the fact that you can’t see them, inputs with with `type="hidden"` exist within the form, and will be submitted as part of the form data. These sound useless, but are actually very useful, and have a long history of being very useful.
+Probably the most confusing input type is `hidden`, which does exactly what it sounds like it does – create a completely invisible form element! Despite the fact that you can’t see them, inputs with `type="hidden"` exist within the form, and will be submitted as part of the form data. These sound useless, but are actually very useful, and have a long history of being very useful.
 
-In the early days of the web when forms were only used to send data to servers, hidden inputs provided a way of retaining state between page loads on browsers that were too primitive to support cookies, or, where users had disable cookies. You can’t have a multi-page form without state being retained in some way, so hidden form inputs served a very important function on the early web.
+In the early days of the web when forms were only used to send data to servers, hidden inputs provided a way of retaining state between page loads on browsers that were too primitive to support cookies, or, where users had to disable cookies. You can’t have a multi-page form without state being retained in some way, so hidden form inputs served a very important function on the early web.
 
 In our modern JavaScript world hidden form fields are used differently, but are no less useful. They provide a nice mechanism for bridging the gap between fancy JavaScript-powered custom user interface elements, and web forms.
 

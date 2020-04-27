@@ -599,7 +599,7 @@ $(function(){
 });
 ```
 
-Notice that we make use of function chaining to first add a listener to the keyup event on the text area, then, to trigger the keyup event on the text area. Let’s break the last line up into pieces and follow it through.
+Notice that we make use of function chaining to first add a listener to the `keyup` event on the text area, then, to trigger the `keyup` event on the text area. Let’s break the last line up into pieces and follow it through.
 
 Firstly, `$('#cast_ta')` is a call to the jQuery function with a CSS selector string as the only argument. This will evaluate to a jQuery object that represents the DOM element with ID `cast_ta`.
 

@@ -312,7 +312,7 @@ Having added the test suite, and fixed the bugs, I decided to publish a new rele
 
 Before we move away from JavaScript I briefly want to mention another useful feature in the QUnit testing framework. You can write tests for code that you’re not working on yet by using the function `todo` instead of `test`. It really is as simple as replacing `QUnit.test` with `QUnit.todo`. This will keep the test disabled until you’re ready for it. When you want to enable the test, just change `QUnit.todo` back to `QUnit.test`.
 
-Tests marked as todo are not run, but they also don’t vanish from the test runner’s output, as shown by the following screenshot (a sneak-peak at this instalment’s challenge starting point):
+Tests marked as `todo` are not run, but they also don’t vanish from the test runner’s output, as shown by the following screenshot (a sneak-peak at this instalment’s challenge starting point):
 
 [![](../assets/pbs35/Screen-Shot-2017-05-18-at-01.25.04-234x300.png)
 Click to See Full Size](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-01.25.04.png)
@@ -512,10 +512,10 @@ This folder contains a full test suite for the `bartificer.ca.Cell` prototype. T
 
 Using what we’ve learned about prototypes (culminating in the nine-step recipe in [instalment 31](https://bartificer.net/pbs31)), the test suite, and the provided developer documentation for the `bartificer.ca.Cell` prototype (specifically the file `docs-dev/bartificer.ca.Cell.html`), write a working version of the `bartificer.ca.Cell` prototype. You’ll know your code is correct when all the tests pass!
 
-Note that I’ve marked all but the first test as todo, so you’ll need to change the tests from `QUnit.todo` to `QUnit.test` to enable them as your solution develops.
+Note that I’ve marked all but the first test as `todo`, so you’ll need to change the tests from `QUnit.todo` to `QUnit.test` to enable them as your solution develops.
 
 ## Final Thoughts
 
-In this instalment we’ve learned how to use QUnit’s todo feature to effectively disable tests until we’re ready for them to be run, we’ve learned how to do basic text input on the web, and, we’ve made a start on what I hope will be a fun new JavaScript project.
+In this instalment we’ve learned how to use QUnit’s `todo` feature to effectively disable tests until we’re ready for them to be run, we’ve learned how to do basic text input on the web, and, we’ve made a start on what I hope will be a fun new JavaScript project.
 
 In the next instalment we’ll learn about more specific kinds of text input on the web, and we’ll continue work on our new JavaScript project.

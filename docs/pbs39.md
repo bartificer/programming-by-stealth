@@ -47,7 +47,7 @@ The exact details of how the browser presents the validation errors to the user 
 
 ### The `:valid` & `:invalid` CSS Pseudo-classes
 
-Let’s start with the simplest aspect of form validation, the two CSS pseudo classes provided to facilitate styling based on validation state. If a form element is in the _valid_ state then the CSS pseudo-class `:valid` will apply to that element. Similarly, if a form element is in the _invalid_ state, the CSS pseudo-class `:invalid` will apply to to that element.
+Let’s start with the simplest aspect of form validation, the two CSS pseudo classes provided to facilitate styling based on validation state. If a form element is in the _valid_ state then the CSS pseudo-class `:valid` will apply to that element. Similarly, if a form element is in the _invalid_ state, the CSS pseudo-class `:invalid` will apply to that element.
 
 By default, browsers don’t render invalid elements any differently to how they render valid elements. It’s entirely up to the developer to decide whether and how to distinguish the display of valid and invalid elements on a page.
 
