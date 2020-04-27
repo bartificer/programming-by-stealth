@@ -249,7 +249,7 @@ else
 }
 ```
 
-There are also more or less _cuddled_ variants to all these styles, that is to say, more more or less optional white space included. The canoncical K&R style is less cuddled than what I use (has more white space):
+There are also more or less _cuddled_ variants to all these styles, that is to say, more or less optional white space included. The canonical K&R style is less cuddled than what I use (has more white space):
 
 ```JavaScript
 if ( parseInt( pbs.input( 1 ) ) % 2 == 0 ) {

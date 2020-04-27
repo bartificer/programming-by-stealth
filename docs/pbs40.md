@@ -360,7 +360,7 @@ This snippet from my sample solution illustrates my use of field sets:
 
 When designing a form, the first thing you need to do is figure out what information you want to extract from the user.
 
-Once you have a list of pieces of information, you need to go through that list item by item and decide which of the many possible form elements would work best. Don’t assume there will be a one-to-one mapping between the data you want and form elements. Sometimes you’ll use many form elements to capture one piece of information. E.g. it make make sense to use multiple drop-down-lists to collect date information. Ultimately, it’s about choosing the form elements that will make it as easy as possible for the users to instinctively do the right thing, and as hard as possible to do the wrong thing.
+Once you have a list of pieces of information, you need to go through that list item by item and decide which of the many possible form elements would work best. Don’t assume there will be a one-to-one mapping between the data you want and form elements. Sometimes you’ll use many form elements to capture one piece of information. E.g. it makes sense to use multiple drop-down-lists to collect date information. Ultimately, it’s about choosing the form elements that will make it as easy as possible for the users to instinctively do the right thing, and as hard as possible to do the wrong thing.
 
 ### Always Remember that Markup and Presentation are Loosely Coupled
 
@@ -455,7 +455,7 @@ label[for="year_tb"], label[for="rating_sel"]{
 }
 ```
 
-Finally, notice that I used CSS’s flex box feature to lay out the form. We covered flex box way way way back in [instalment 9](https://www.bartbusschots.ie/s/2016/02/19/programming-by-stealth-9-of-x-more-css-positioning/).
+Finally, notice that I used CSS’s flex box feature to lay out the form. We covered flexbox way way way back in [instalment 9](https://www.bartbusschots.ie/s/2016/02/19/programming-by-stealth-9-of-x-more-css-positioning/).
 
 ### Validation Shortcomings
 
@@ -605,7 +605,7 @@ Firstly, `$('#cast_ta')` is a call to the jQuery function with a CSS selector st
 
 Next, the `.keyup()` function gets called on the jQuery object with a callback as the only argument. This results in the callback being registered as an event handler on the text area for the `keyup` event. As [the official jQuery documentation shows](https://api.jquery.com/keyup/), the `.keyup()` function returns a reference to the object it was called on, so our line so far still evaluates to the same jQuery object representing the same text area.
 
-Finally, we call the `.keyup()` function on the jQuery object again, but this time with no arguments. This triggers the keyup event, executing our event handler. This is important, because if we don’t trigger the event at least once, the form will not be in a consistent state when the page loads.
+Finally, we call the `.keyup()` function on the jQuery object again, but this time with no arguments. This triggers the `keyup` event, executing our event handler. This is important, because if we don’t trigger the event at least once, the form will not be in a consistent state when the page loads.
 
 OK – we now have custom validation on the cast list.
 

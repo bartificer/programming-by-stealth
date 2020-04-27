@@ -232,7 +232,7 @@ Firstly, you can see that in the constructor for the `RandomQuoter` (starting on
 
 Secondly, within the `.add()` function in the `RandomQuoter`, I need to access a property of a `RandomQuoter` object from within a callback. To enable this, I had to create an alias to `this` (at line 124), which, following convention, I named `self`.
 
-Finally, I wrote the `.empty()` and `.add()` functions in the `RandomQuoter` prototype in such a way that they can be chained together. That is to say, you can can call `.empty()` and `.add()` one after the other by appending the function calls together. You can see this in action on line 185. This is only possible because both of those functions return a reference to `this` (lines 115 & 147). This very commonly used technique is referred to as _function chaining_.
+Finally, I wrote the `.empty()` and `.add()` functions in the `RandomQuoter` prototype in such a way that they can be chained together. That is to say, you can call `.empty()` and `.add()` one after the other by appending the function calls together. You can see this in action on line 185. This is only possible because both of those functions return a reference to `this` (lines 115 & 147). This very commonly used technique is referred to as _function chaining_.
 
 ## The `arguments` Keyword Re-visited
 

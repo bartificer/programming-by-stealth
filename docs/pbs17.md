@@ -186,7 +186,7 @@ Thanks to JSON, plain objects have become a big thing in JavaScript, but they ar
 
 Philosophically, object oriented programming is about bundling data and the code that manipulates that data, into a single entity. For example, in JavaScript the `.forEach()` function comes bundled with an array, giving you the data, and a function for manipulating that data, all contained in a single object.
 
-When you add a function to an object, that function can access the object it belongs to with the keyword `this`. When you see `this`, mentally think of it as `"the object this function belongs to"`. `this` allows a function attached to an object to access the data within the object, and, to invoke other functions are are also attached to the object.
+When you add a function to an object, that function can access the object it belongs to with the keyword `this`. When you see `this`, mentally think of it as `"the object this function belongs to"`. `this` allows a function attached to an object to access the data within the object, and, to invoke other functions that are also attached to the object.
 
 We’ll start with a really simple example – an object to represent a counter.
 

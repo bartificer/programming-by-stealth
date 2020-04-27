@@ -33,7 +33,7 @@ var pbs = pbs ? pbs : {};
 	// .....
 
 	//
-	// === Define Time protoype (Part 1) ===
+	// === Define Time prototype (Part 1) ===
 	//
 
 	// .....
@@ -218,9 +218,9 @@ Our prototypes are now pretty complete – they have constructors, accessors, va
 
 The functions we have written to build out our prototypes can be divided into three categories:
 
-*   There are the un-published private helper functions which are not really part of the prototypes, but rather, are utility functions used by the functions that do make up the prototype to avoid needless code reuse. When I say _unpublished_, I mean they are not available in the global scope.
-*   Constructors – the published functions that build instances of our protoypes
-*   All the other functions that make up our prototypes. We have not explicitly stated it before, but those functions all have something in common, they are all so-called _instance functions_ (or _instance methods_).
+- There are the un-published private helper functions which are not really part of the prototypes, but rather, are utility functions used by the functions that do make up the prototype to avoid needless code reuse. When I say _unpublished_, I mean they are not available in the global scope.
+- Constructors – the published functions that build instances of our prototypes
+- All the other functions that make up our prototypes. We have not explicitly stated it before, but those functions all have something in common, they are all so-called _instance functions_ (or _instance methods_).
 
 What does it mean to be an instance function? As the name suggests, instance functions are functions that are written to be called **on instances** of a prototype.
 

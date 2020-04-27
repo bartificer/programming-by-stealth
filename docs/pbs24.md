@@ -557,7 +557,7 @@ The challenge this time is to create a first-pass at an API for rendering a cloc
 
 At the moment, the most powerful looking open source JavaScript library for manipulating dates is [Moment.js](http://momentjs.com), and it has an extension specifically for manipulating timezones. The two JavaScript files needed to use `Moment.js`‘s timezone features are included in the contrib folder within the zip file.
 
-As we did with with URI.js, this is merely a sampler of what Moment.js can do, focusing on the features we need to achieve our goal. This is not a tutorial on Moment.js. You can find the full documentation at [momentjs.com/docs](http://momentjs.com/docs/).
+As we did with URI.js, this is merely a sampler of what Moment.js can do, focusing on the features we need to achieve our goal. This is not a tutorial on Moment.js. You can find the full documentation at [momentjs.com/docs](http://momentjs.com/docs/).
 
 We can create a moment object representing the current time in a given timezone as follows:
 

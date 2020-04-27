@@ -355,6 +355,6 @@ Test `inputTransformer()` by calling it with an anonymous function that squares 
 
 ## Conclusions
 
-Because of how JavaScript has been integrated into HTML documents, it’s impossible to overstate the importance of anonymous functions and callbacks. If you’ve come to this series with knowledge of more traditional languages like C or Java, you may well be having a harder time of things than those coming to the series with no pre-existing knowledge. This way of working with functions is very different to how you would normally work in in other languages.
+Because of how JavaScript has been integrated into HTML documents, it’s impossible to overstate the importance of anonymous functions and callbacks. If you’ve come to this series with knowledge of more traditional languages like C or Java, you may well be having a harder time of things than those coming to the series with no pre-existing knowledge. This way of working with functions is very different to how you would normally work in other languages.
 
 At this stage we’ve learned almost all the basic building blocks we need to move out of the playground and into the browser proper – we’ve learned about variables, operators, branching, arrays, loops, and functions. In the process we’ve touched on, but never explained, objects. That’s the next thing we need to do. Then, we’ll look at some built-in objects and functions provided by JavaScript.

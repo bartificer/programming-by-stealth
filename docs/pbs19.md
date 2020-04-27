@@ -26,7 +26,7 @@ for(var i = 1; i <= 12; i++){
 
 ## Challenge 2 – The Fibonacci Series
 
-Write code to print out the Fibbonaci series of numbers, stopping after the numbers go above 1,000,000 (you may print one number that is above 1,000,000, but no more).
+Write code to print out the Fibonacci series of numbers, stopping after the numbers go above 1,000,000 (you may print one number that is above 1,000,000, but no more).
 
 The first two numbers in the series are 0 and 1, after that, the next number in the series is the sum of the previous two numbers.
 
@@ -185,9 +185,9 @@ Build up your solution in the following way:
       this._imaginary = 0;
     }
     ```
-    
+
 2.  Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
-    
+
     1.  If no arguments are passed, the function should return the current value of the `_real` key.
     2.  If there is a first argument, make sure it’s a number. If it’s not, throw an error. If it is, set it as the value of the `_real` key, and return a reference to the current object (i.e. `this`). (This will enable a technique known as _function chaining_, which we’ll see in action shortly.)
 
@@ -410,9 +410,9 @@ Build up your solution in the following way:
       return this;
     }
     ```
-    
+
 7.  Test the parse function you just created with the following code:
-    
+
     ```JavaScript
     //
     // === Test the Parse() function ===
@@ -442,9 +442,9 @@ Build up your solution in the following way:
     cn3.parse(cn4);
     pbs.say(cn3.toString());
     ```
-    
+
 8.  Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code, instead, update the constructor function to check if there are one or two arguments, and if there are, call the `parse` function with the appropriate arguments.
-    
+
     ### Partial Solution
 
     ```JavaScript
@@ -492,9 +492,9 @@ Build up your solution in the following way:
     var cn5 = new ComplexNumber(-2, -4);
     pbs.say( (new ComplexNumber(cn5)).toString() );
     ```
-    
-10.  Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
-    
+
+10. Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
+
 
     ### Partial Solution
 
@@ -518,9 +518,9 @@ Build up your solution in the following way:
       return this;
     }
     ```
-    
-11.  In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
-    
+
+11. In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
+
 
     ### Partial Solution
 
@@ -544,9 +544,9 @@ Build up your solution in the following way:
       return this;
     }
     ```
-    
-12.  Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
-    
+
+12. Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
+
 
     `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
 
@@ -578,9 +578,9 @@ Build up your solution in the following way:
       return this;
     };
     ```
-    
-13.  Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vica-versa_.
-    
+
+13. Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vica-versa_.
+
 
     ### Partial Solution
 
@@ -595,9 +595,9 @@ Build up your solution in the following way:
       return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
     };
     ```
-    
-14.  Test your arithmetic functions with the following code:
-    
+
+14. Test your arithmetic functions with the following code:
+
 
     ```JavaScript
     //

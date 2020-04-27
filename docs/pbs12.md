@@ -40,7 +40,7 @@ pbs.say("Hello World!");
 
 (This code is pre-populated into the code region by default)
 
-To run this simple little script click the `Run` botton. A new window will pop up with one line of output – the string _Hello World!_.
+To run this simple little script click the `Run` button. A new window will pop up with one line of output – the string _Hello World!_.
 
 ## JavaScript Basics
 
