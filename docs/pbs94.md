@@ -339,7 +339,7 @@ Take this simple example:
 
 ```js
 const woopsie = new ImaginaryCurrency({numDecimalPlaces: '-3'});
-$OUT_TEXT.empty().append(quatloo.as(Math.PI));
+$OUT_TEXT.empty().append(woopsie.as(Math.PI));
 ```
 
 This will print out `$3.14`, because the invalid value of `'-3'` was silently ignored and the default of `2` used instead.
