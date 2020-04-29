@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+				
+	<!-- Include Bootstrap 4 CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<!-- Include Font Awesome 5 -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	
+	<title>PBS 95b — Example 2, An Improved Circle Class</title>
+</head>
+<body>
+
+<!-- The Page Heading (a NavBar) -->
+<header class="navbar navbar-dark bg-dark navbar-expand-sm">
+	<h1 class="navbar-brand">
+		<img src="data://image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAIAAAC0Ujn1AAAEq2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjMwIgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iMzAiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgdGlmZjpJbWFnZVdpZHRoPSIzMCIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMzAiCiAgIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiCiAgIHRpZmY6WFJlc29sdXRpb249IjcyLjAiCiAgIHRpZmY6WVJlc29sdXRpb249IjcyLjAiCiAgIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiCiAgIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIKICAgeG1wOk1vZGlmeURhdGU9IjIwMTktMTEt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" class="border rounded" width="30" height="30" alt="">
+		PBS 94a
+	</h1>
+	<h2 class="navbar-text h5">Example 1 — An Improved Circle Class</h2>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header_nav" aria-controls="header_nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<nav class="collapse navbar-collapse justify-content-end" id="header_nav">
+		<ul class="navbar-nav">
+			 <li class="nav-item">
+				<a class="nav-link" href="https://bartb.ie/pbs" target="_blank" rel="noopener">PBS Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://bartb.ie/pbsindex" target="_blank" rel="noopener">PBS Index</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<!-- The main page body -->
+<main class="container my-3">
+	<div class="row">
+		<div class="col">
+			<p class="lead text-muted">The sample code for the second example class in instalment 95 of the <a href="https://bartb.ie/pbs" target="_blank" rel="noopener">Programming by Stealth series</a>.</p>
+		</div>
+	</div>
+	<section class="row">
+		<div class="col">
+			<p>This page is intended to be interacted with via the JavaScript console.</p>
+			
+			<h1 class="h4">Plain Text Output</h1>
+			<div class="card m-5 bg-light">
+				<div class="card-body">
+					<pre><code id="out_text"></code></pre>
+				</div>
+			</div>
+			
+			<h1 class="h4">HTML Output</h1>
+			<div class="card m-5 bg-light">
+				<div class="card-body">
+					<p class="card-text" id="out_html"></p>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+
+<!-- Include Bootstrap JavaScript from CDNs -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- Include Numeral.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<!-- Include the Circle class -->
+<script src="./Circle2.js"></script>
+
+<!-- This Page's Local JavaScript Code -->
+<script type="text/javascript">
+	//
+	// Define global variables for examples
+	//
+	
+	// accessor variables for output areas
+	// will be populated by the document ready handler
+	var $OUT_TEXT = null;
+	var $OUT_HTML = null;
+	
+	//
+	// Document ready handler
+	//
+	$(function(){
+		// initialise the global variables for the output areas
+		$OUT_TEXT = $('#out_text');
+		$OUT_HTML = $('#out_html');
+	});
+</script>
+
+</body>
+</html>

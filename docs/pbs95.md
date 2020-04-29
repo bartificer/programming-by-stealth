@@ -196,7 +196,7 @@ To add a single attribute with the potential to develop superpowers to a class y
 2. A *getter* to publish the value of the attribute.
 3. A *setter* to intelligently update the value of the attribute.
 
-Let's demonstrate the concept with a very simple class, one to represent a circle:
+Let's demonstrate the concept with a very simple class, one to represent a circle. You'll find a version of the code for this class with comments in the file `Circle1.js`, but I've included it below without comments to help show the structure.
 
 ```js
 class Circle{
@@ -221,7 +221,9 @@ class Circle{
 }
 ```
 
-To users of the class, the `radius` attribute behaves like any other attribute:
+Notice that the syntax for the getter is just like that of an instance function that takes no arguments, but pre-fixed with the keyword `get`. Similarly, the syntax for the setter is like that for an instance function that takes one argument, but pre-fixed with the keyword `set`.
+
+To users of the class, the `radius` attribute behaves like any other data attribute:
 
 ```
 const circle1 = new Circle(5);
@@ -248,7 +250,7 @@ console.log(`radius=${circle2.radius}`);
 // radius=😈
 ```
 
-Let's add the needed super powers by simply moving the data validation code from the constructor to the setter:
+Let's add the needed super powers by simply moving the data validation code from the constructor to the setter. You'll find the code for this updated version of the class in the file `Circle2.js`:
 
 ```js
 class Circle{
@@ -272,3 +274,45 @@ class Circle{
     }
 }
 ```
+
+Notice that the entire body of the original constructor has been moved to the setter, and the entire constructor has been replaced by a simple call to the setter.
+
+This simple re-structuring of the code has made the class much more robust, and ensures that the identical data validation code is always applied to the radius, regardless of whether it was passed as an argument to the constructor or set later.
+
+We can now see that our attribute has gained the desired superpowers:
+
+```
+const myCircle = new Circle();
+console.log(`radius=${myCircle.radius}`);
+myCircle.radius = '😈'; // throws an error!
+```
+
+## Derived Data Attributes with Getters & Setters
+
+It's not unusual for a class to need to represent two pieces of data that are directly related to each other. Circles have a radius and a diameter, and one is always twice the other. You could leave it to users of your class to know the relationship, and, to add the maths to do the conversion into their code, but that doesn't seem very user-friendly. You could also add a function to calculate and return the diameter, and even one to set the radius based on a diameter. You could achieve that end by adding the following instance function to the `Circle` class:
+
+```js
+diameter(d){
+  // if no args were passed, return the current diameter
+  if(arguments.length === 0) return 2 * this.radius;
+  
+  // otherwise set the radius to half the diameter
+  this.radius = d/2;
+}
+```
+
+This would work, but users of your class would need to remember that `radius` is a data attribute, but `diameter()` is an instance function. Your users would need to write code something like this:
+
+```js
+const myCircle = new Circle();
+myCircle.radius = 5;
+console.log(`radius=${myCircle.radius} & diameter=${myCircle.diameter()}`);
+myCircle.diameter(6);
+console.log(`radius=${myCircle.radius} & diameter=${myCircle.diameter()}`);
+```
+
+Notice that the code has to threat the radius like it's a data attribute, i.e. `myCircle.radius` to get the value, and `myCircle.radius = newValue` to set the value. But, the code has to treat the diameter as a two-signature function. To get the current diameter we have to use `myCircle.diameter()`, and to set it, myCircle.diameter(newValue).
+
+What we have here is an opportunity or getters and setters to shine!
+
+// LEFT OFF HERE!!!
