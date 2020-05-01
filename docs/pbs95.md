@@ -315,4 +315,37 @@ Notice that the code has to threat the radius like it's a data attribute, i.e. `
 
 What we have here is an opportunity or getters and setters to shine!
 
-// LEFT OFF HERE!!!
+```js
+set diameter(diameter){
+  const diameterNumber = parseFloat(diameter);
+  if(isNaN(diameterNumber)){
+    throw new TypeError('diameter must be a number greater than or equal to zero');
+  }
+  if(diameterNumber < 0){
+    throw new RangeError('diameter cannot be negative');
+  }
+  if(diameterNumber === 0){
+    this._radius = 0; // avoid divide-by-zero error
+  }else{
+    this._radius = diameterNumber / 2;
+  }
+}
+```
+
+We can do something similar for the other derived properties of a circle like the circumference and the area. You'll find all three derived attributes implemented with getters and setters in `circle3.js`, and you can interact with these attributes using the JavaScript console on `pbs95c.html`:
+
+```js
+const c1 = new Circle();
+c1.diameter = 4;
+console.log(`a circle with a diameter of 4 has a radius of ${c1.radius}, a circumference of ${c1.circumference}, and an area of ${c1.area}`);
+
+const c2 = new Circle();
+c2.circumference = 4;
+console.log(`a circle with a circumference of 4 has a radius of ${c2.radius}, a diameter of ${c2.diameter}, and an area of ${c2.area}`);
+
+const c3 = new Circle();
+c3.area = 4;
+console.log(`a circle with an area of 4 has a radius of ${c3.radius}, a diameter of ${c3.diameter}, and a circumference of ${c3.circumference}`);
+```
+
+// TO DO — Read-only atttributes — polite & Vocal

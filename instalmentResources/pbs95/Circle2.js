@@ -13,7 +13,7 @@ class Circle{
 	}
 	
 	//
-	// Define naive getters and setters for the radius
+	// Define getters and setters for the radius
 	//
 	
 	/**
