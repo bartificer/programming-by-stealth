@@ -1,4 +1,4 @@
-# PBS 94 of X — Better JavaScript Class Attributes
+# PBS 95 of X — Better JavaScript Class Attributes
 
 This is the third instalment of our step-by-step introduction to Object Oriented (OO) programming, and OO in JavaScript in particular. We started by looking at the foundation upon which OO is built — encapsulation. Encapsulation allows us to combine all the data and functions related to a concept or thing into a single object.  In the previous instalment we looked at how we can use classes to construct arbitrarily many similar objects. In effect, a class represents a concept or thing in the abstract, and each object constructed by that class is a concrete example of the concept or thing. To illustrate this point we created a class to represent imaginary currencies, and then used it to built objects representing the Ferengi Bar of Gold-pressed Latinum the Quatloo, both from the Star Trek universe.
 
@@ -325,6 +325,10 @@ What we have here is an opportunity or getters and setters to shine!
 Multiple pairs of getters and setters can update the value of the same *'private'* data attribute! In this case, we can add a second set of getters and setters named `diameter` to apply the appropriate math and then update the _radius *'private'* data attribute:
 
 ```js
+get diameter(){
+  return this._radius * 2;
+}
+
 set diameter(diameter){
   const diameterNumber = parseFloat(diameter);
   if(isNaN(diameterNumber)){
@@ -397,7 +401,7 @@ set π(pi){
 ```
 
 > Note that JavaScript is fully UTF-8 aware, so you can use symbols (and even emoji) in/as variable names! To illustrate this point I named my Pi attribute `π` 🙂
-{.aside}
+{: .aside}
 
 Now let's see what happens when we try change the value of the `π` data attribute:
 
@@ -412,7 +416,7 @@ So, should your classes provide forgiving but dishonest read-only attributes lik
 
 ## Final Thoughts — Where This Series is Going
 
-We've now covered everything I had planned to cover in this third attempt at explaining OO programming in JavaScript. Because I was so afraid of failing to explain this concept a third time, my plan was to completely ignore two of the fundamental concepts of object-oriented programming — class attributes and function, and inheritance. Since this third attempt has been a success, I'd like to round out our exploration of JavaScript with two additional OO instalments, one of class attributes and functions, and one on inheritance. As well as giving a more rounded understanding of JavaScript, this will also better prepare us for the up-coming move to PHP, because PHP's classes support both of these features too.
+We've now covered everything I had planned to cover in this third attempt at explaining OO programming in JavaScript. Because I was so afraid of failing to explain this concept a third time, my plan was to completely ignore two of the fundamental concepts of object-oriented programming — class attributes and functions, and inheritance. Since this third attempt has been a success, I'd like to round out our exploration of JavaScript with two additional OO instalments, one of class attributes and functions, and one on inheritance. As well as giving a more rounded understanding of JavaScript, this will also better prepare us for the up-coming move to PHP, because PHP's classes support both of these features too.
 
 The next instalment will be built around my sample solution to the challenge set in PBS XX. That instalment will set a new challenge, so the following two instalments will round out our look at OO Programming JavaScript, then we'll finish our JavaScript series with a final challenge solution instalment.
 
