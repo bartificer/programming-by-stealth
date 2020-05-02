@@ -348,4 +348,54 @@ c3.area = 4;
 console.log(`a circle with an area of 4 has a radius of ${c3.radius}, a diameter of ${c3.diameter}, and a circumference of ${c3.circumference}`);
 ```
 
-// TO DO — Read-only atttributes — polite & Vocal
+## Read-Only Data Attributes with Getters & Setters — Be Assertive or Tell White Lies?
+
+We'll end this instalment by circling back to where we started, and taking another look at read-only data attributes.
+
+The file `circle4.js` contains an updated version of our `Circle` class that has two read-only attributes added, one representing the value of π the object will use in its calculations, and one containing a credit for the class author. The getters and setters have all been updated to use this local value for π rather than `Math.PI`.
+
+For the credit I chose to take the same approach Math.PI does, and silently ignore assignments to the read-only attribute. This is done by providing a getter, but no matching setter:
+
+```js
+get classAuthor(){
+  return 'Bart Busschots of Bartificer Creations at https://bartificer.net/';
+}
+```
+
+ We can interact with this updated version of the class using the JavaScript console on the file `pbs95d.html`:
+ 
+ ```js
+ const c1 = new Circle();
+ console.log(`The Circle class is by ${c1.classAuthor}`);
+ c1.classAuthor = 'pesky plagerist';
+ console.log(`The Circle class is by ${c1.classAuthor}`);
+ ```
+ 
+ I refer to this approach as being a kind of programming *white lie*. Why a lie? Because an assignment operator was executed and it neither assigned a value, nor, threw an error.  The assignment operator is supposed to assign, but it didn't, and it was silent about that fact — that's dishonest! I call it a *white lie* because in an example like this, it really doesn't matter that the assignment was silently ignored.
+ 
+If the attempted assignment is consequential, is it still OK to silently ignore the assignment attempt? I would argue that it's not, because it could easily to to confusion by those using your class, and, it can lead to some extremely frustrating and difficult to track down bugs — what developer assumes that an operator as fundamental as the assignment operator could silently fail to do it's one and only job?
+
+The implementation of the read-only PI property illustrates a more assertive alternative approach, don't omit the setter, define one that always throws an error:
+
+```js
+get π(){
+  return 3.1415;
+}
+	
+set π(pi){
+  throw new Error('π is a read-only attribute');
+}
+```
+
+Note that JavaScript is fully UTF-8 aware, so you can use symbols (and even emoji) in variable names!
+
+Now let's see what happens when we try change the value of π:
+
+```js
+const c2 = new Circle();
+c2.π = 3.14; // throws an error!
+```
+
+As you'll see, the attempt to change π throws an error.
+
+My advice would be that attempts to change consequential read-only attributes should result in an error being thrown, but it's acceptable to silently ignore changes to inconsequential read-only attributes.
