@@ -8,6 +8,26 @@ There is of course more to classes than their constructor functions, so we ended
 
 This instalment is entirely dedicated to giving our classes better data attributes through a very powerful JavaScript feature — *getters and setters*.
 
+## Instalment Resources
+
+This instalment uses 8 example files:
+
+* [Download ZIP File – TBD](TBD)
+* [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs95)
+* View the four HTML files in your browser:
+	* [`pbs95a.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95a.html)
+  * [`pbs95b.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95b.html)
+  * [`pbs95c.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95c.html)
+  * [`pbs95d.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95d.html)
+
+  ## Matching Podcast Episode
+
+Listen along to this instalment on [episode 637 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/05/ccatp-637/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_02.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_02.mp3" >Download the MP3</a>
+
 ## The Problem to be Solved
 
 As we've already described, the final implementation of the `ImaginaryCurrency` class from the previous instalment (`ImaginaryCurrency4.js`) implements a best-practices constructor that's  both flexible and robust.
