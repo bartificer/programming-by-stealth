@@ -12,7 +12,7 @@ This instalment is entirely dedicated to giving our classes better data attribut
 
 This instalment uses 8 example files:
 
-* [Download ZIP File – TBD](TBD)
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/768996abb5fcc057af01b0593ab50c8a4af6149d/instalmentZips/pbs95.zip)
 * [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs95)
 * View the four HTML files in your browser:
 	* [`pbs95a.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95a.html)
