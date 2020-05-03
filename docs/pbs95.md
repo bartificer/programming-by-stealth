@@ -1,4 +1,4 @@
-# PBS 94 of X — Better JavaScript Class Attributes
+# PBS 95 of X — Better JavaScript Class Attributes
 
 This is the third instalment of our step-by-step introduction to Object Oriented (OO) programming, and OO in JavaScript in particular. We started by looking at the foundation upon which OO is built — encapsulation. Encapsulation allows us to combine all the data and functions related to a concept or thing into a single object.  In the previous instalment we looked at how we can use classes to construct arbitrarily many similar objects. In effect, a class represents a concept or thing in the abstract, and each object constructed by that class is a concrete example of the concept or thing. To illustrate this point we created a class to represent imaginary currencies, and then used it to built objects representing the Ferengi Bar of Gold-pressed Latinum the Quatloo, both from the Star Trek universe.
 
@@ -114,7 +114,7 @@ The constructor would never have let us set the number of decimal places to an e
 
 The concept of *getters & setters* is not unique to JavaScript, but it's also far from ubiquitous. Some languages have them, but many (including PHP) don't.
 
-Both getters and setters are functions masquerading as data attributes. From the point of view of the programmer writing the class a getter is a function that takes no arguments and returns a value, and a setter is a function that takes exactly one argument, and doesn't return a value. But, from the point of view of a programmer using a class with getters and setters, each pair behaves like a single data attribute, but not just any data attribute, a data attribute with super-powers 🙂
+Both getters and setters are functions masquerading as data attributes. From the point of view of the programmer _writing_ the class, a getter is a function that takes no arguments and returns a value, and a setter is a function that takes exactly one argument, and doesn't return a value. But, from the point of view of a programmer _using_ a class with getters and setters, each pair behaves like a single data attribute, but not just any data attribute, a data attribute with super-powers 🙂
 
 Without knowing it, we've been interacting with getters and setters when using built-in JavaScript classes. As an example, we think of `Math.PI` as a data attribute because we simply use it like any other variable. We don't treat `Math.PI` like a function, if we did, we would write `Math.PI()`! No, we treat `Math.PI` like a variable that someone else happened to define for us and make available to us in the global scope. If we wanted to simulate the behaviour we could do something like:
 
@@ -196,13 +196,13 @@ We've produced what appears to be a data attribute with super-powers!
 
 JavaScript getters and setters pre-date ES6, and hence, pre-date the `class` keyword. They can be used within any encapsulated object.
 
-However, in this instalment we've only going to look at their use in class definitions.
+However, in this instalment we're only going to look at their use in class definitions.
 
 ## Robust JavaScript Class Attributes with Getters and Setters
 
 Getters and setters have all kinds of uses in JavaScript, but we're going to use them first and foremost to protect our classes' data attributes.
 
-When I first introduced the concept of encapsulation I mentioned that in some languages encapsulation provides access control to data attributes, but that JavaScript is not one of those languages. Protection of attributes is what we're trying to achieve, but the language doesn't support that, so we have to make do with an approximation 🙁 We can come close to true access control by combining the power of JavaScript getters and setters with a commonly accepted convention.
+When I first introduced the concept of encapsulation I mentioned that in some languages, encapsulation provides access control to data attributes, but that JavaScript is not one of those languages. Protection of attributes is what we're trying to achieve, but the language doesn't support that, so we have to make do with an approximation 🙁 We can come close to true access control by combining the power of JavaScript getters and setters with a commonly accepted convention.
 
 ### Though Shalt Pretend Underscores Bestow Invisibility!
 
@@ -316,7 +316,7 @@ We've now solved the obvious shortcoming we ended the previous instalment descri
 
 ### Derived Data Attributes with Getters & Setters
 
-It's not unusual for a class to need to represent two pieces of data that are directly related to each other. Circles have a radius and a diameter, and one is always twice the other. You could leave it to users of your class to know that relationship, and, to add the maths to do the conversion into their code, but that doesn't seem very user-friendly. What's the point of writing a circle class at all if it can't handle the math! One approach to adding the math to the class might be to add functions to calculate and return the diameter, and to set the radius based on a given diameter. You could do this with two separate instance functions named something like `.getDiameter()` and `.setDiameter()`, but you could also use a single function with two signatures. Below is an example a single function which performs both tasks. You could add this into the `Circle` class as an instance function:
+It's not unusual for a class to need to represent two pieces of data that are directly related to each other. Circles have a radius and a diameter, and one is always twice the other. You could leave it to users of your class to know that relationship, and, to add the maths to do the conversion into their code, but that doesn't seem very user-friendly. What's the point of writing a circle class at all if it can't handle the math! One approach to adding the math to the class might be to add functions to calculate and return the diameter, and to set the radius based on a given diameter. You could do this with two separate instance functions named something like `.getDiameter()` and `.setDiameter()`, but you could also use a single function with two signatures. Below is an example of a single function which performs both tasks. You could add this into the `Circle` class as an instance function:
 
 ```js
 diameter(d){
@@ -338,13 +338,17 @@ myCircle.diameter(6);
 console.log(`radius=${myCircle.radius} & diameter=${myCircle.diameter()}`);
 ```
 
-Notice that the code has to threat the radius like it's a data attribute, i.e. `myCircle.radius` to get the value, and `myCircle.radius = newValue` to set the value. But, the code has to treat the diameter as a two-signature function. To get the current diameter we have to use `myCircle.diameter()`, and to set it, myCircle.diameter(newValue).
+Notice that the code has to treat the radius like it's a data attribute, i.e. `myCircle.radius` to get the value, and `myCircle.radius = newValue` to set the value. But, the code has to treat the diameter as a two-signature function. To get the current diameter we have to use `myCircle.diameter()`, and to set it, myCircle.diameter(newValue).
 
 What we have here is an opportunity or getters and setters to shine!
 
 Multiple pairs of getters and setters can update the value of the same *'private'* data attribute! In this case, we can add a second set of getters and setters named `diameter` to apply the appropriate math and then update the _radius *'private'* data attribute:
 
 ```js
+get diameter(){
+  return this._radius * 2;
+}
+
 set diameter(diameter){
   const diameterNumber = parseFloat(diameter);
   if(isNaN(diameterNumber)){
@@ -381,9 +385,9 @@ console.log(`a circle with an area of 4 has a radius of ${c3.radius}, a diameter
 
 We'll end this instalment by circling back to where we started, and taking another look at read-only data attributes. The initial example used a getter to add a read-only attribute to an encapsulated object, now let's look at how to use getters and setters to add read-only attributes to classes.
 
-The file `Circle4.js` contains an updated version of our `Circle` class with two read-only attributes added. The first additional attribute represents the the value of π the instance functions will use for their calculations, and the second adds a credit for the class author. Also note that the getters and setters for all the derived attributes have been updated to use the class's new read-only π attribute rather than `Math.PI`.
+The file `Circle4.js` contains an updated version of our `Circle` class with two read-only attributes added. The first additional attribute represents the value of π the instance functions will use for their calculations, and the second adds a credit for the class author. Also note that the getters and setters for all the derived attributes have been updated to use the class's new read-only π attribute rather than `Math.PI`.
 
-For the credit I chose to take the same approach `Math.PI` does, and silently ignore attempts to assignment a new value to the read-only attribute. This is done by providing a getter, but no matching setter:
+For the credit I chose to take the same approach `Math.PI` does, and silently ignore attempts to assign a new value to the read-only attribute. This is done by providing a getter, but no matching setter:
 
 ```js
 get classAuthor(){
@@ -402,7 +406,7 @@ get classAuthor(){
  
  I think of this approach as being a kind of programming *white lie*. Why a lie? Because if you look at the code above, an assignment operator was executed but it neither assigned a value, nor, threw an error.  The assignment operator is supposed to assign, but it didn't, and it was silent about that fact — that's dishonest! I call it a *white lie* because in an example like this, it really doesn't matter that the assignment was silently ignored.
  
-If the attempted assignment is consequential, i.e. an attempt is made to alter an attribute who's value is expected to have an effect on the class's behaviour, is it still OK to silently ignore the assignment attempt? I would argue that it's not, because it could easily confuse users of the class. And worse still, this kind of white lie can lead to some extremely frustrating and difficult to track down bugs. When you're debuging code, how often do you even consider the idea that an assignment can silently fail? I think most programmers implicitly assume that an operator as fundamental as the assignment operator will always do its job, or, throw an error if it can't. I really don't think most programmers expect assignments to silently fail to assign!
+If the attempted assignment is consequential, i.e. an attempt is made to alter an attribute who's value is expected to have an effect on the class's behaviour, is it still OK to silently ignore the assignment attempt? I would argue that it's not, because it could easily confuse users of the class. And worse still, this kind of white lie can lead to some extremely frustrating and difficult to track down bugs. When you're debugging code, how often do you even consider the idea that an assignment can silently fail? I think most programmers implicitly assume that an operator as fundamental as the assignment operator will always do its job, or, throw an error if it can't. I really don't think most programmers expect assignments to silently fail to assign!
 
 My implementation of the read-only PI property in `Circle4.js` illustrates a more assertive alternative approach — don't omit the setter, define one that always throws an error instead:
 
@@ -417,7 +421,7 @@ set π(pi){
 ```
 
 > Note that JavaScript is fully UTF-8 aware, so you can use symbols (and even emoji) in/as variable names! To illustrate this point I named my Pi attribute `π` 🙂
-{.aside}
+{: .aside}
 
 Now let's see what happens when we try change the value of the `π` data attribute:
 
@@ -432,9 +436,9 @@ So, should your classes provide forgiving but dishonest read-only attributes lik
 
 ## Final Thoughts — Where This Series is Going
 
-We've now covered everything I had planned to cover in this third attempt at explaining OO programming in JavaScript. Because I was so afraid of failing to explain this concept a third time, my plan was to completely ignore two of the fundamental concepts of object-oriented programming — class attributes and function, and inheritance. Since this third attempt has been a success, I'd like to round out our exploration of JavaScript with two additional OO instalments, one of class attributes and functions, and one on inheritance. As well as giving a more rounded understanding of JavaScript, this will also better prepare us for the up-coming move to PHP, because PHP's classes support both of these features too.
+We've now covered everything I had planned to cover in this third attempt at explaining OO programming in JavaScript. Because I was so afraid of failing to explain this concept a third time, my plan was to completely ignore two of the fundamental concepts of object-oriented programming — class attributes and functions, and inheritance. Since this third attempt has been a success, I'd like to round out our exploration of JavaScript with two additional OO instalments, one of class attributes and functions, and one on inheritance. As well as giving a more rounded understanding of JavaScript, this will also better prepare us for the up-coming move to PHP, because PHP's classes support both of these features too.
 
-The next instalment will be built around my sample solution to the challenge set in PBS XX. That instalment will set a new challenge, so the following two instalments will round out our look at OO Programming JavaScript, then we'll finish our JavaScript series with a final challenge solution instalment.
+The next instalment will be built around my sample solution to the challenge set in PBS 92. That instalment will set a new challenge, so the following two instalments will round out our look at OO Programming JavaScript, then we'll finish our JavaScript series with a final challenge solution instalment.
 
 So far in this series we've looked at HTML, CSS, and JavaScript. Together three three languages provide the client-side of the internet — HTML defines that structure of webpages, CSS their visual style, and JavaScript brings them to life. The world wide web is built around a client-server model, so the languages we've looked at are literally only half of the story, what about the server side? That's where PHP comes in. While there are only three prominent client-side languages, just about any language can be used on the server side. Believe it or not, you can write server-side web code in shell script, or even with Windows Batch files! So while I could pick literally any language for our move to the server (including JavaScript), I've chosen the one that's most popular in the open-source world, PHP.
 
