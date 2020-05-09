@@ -8,7 +8,7 @@ Before we dive into the specifics, I want to take a moment to explain the larger
 
 We’ll be moving on to CSS once we finish describing HTML. Until we get CSS, the web pages we create will look exceptional plain and frankly boring, but don’t worry, we’ll move on to CSS soon enough, and then you can really let your creative juices fly!
 
-# Matching Postcast Episode 409
+# Matching Podcast Episode 409
 
 Listen along to this instalment on [episode 409 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/10/ccatp-409-bart-pbs2/)
 
@@ -20,7 +20,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Since we’re using HTML to markup text, the vast majority of a HTML document is plain text. We use so-called _HTML tags_ to add context to that text. In general, tags come in matched pairs – an opening tag, and a closing tag. The content between matching opening and closing tags is said to be _contained_ within the tag. An opening tag takes the form of the name of a tag between chevrons, and a closing tag takes the form of the name with a forward slash pre-fixed between chevrons.
 
-For example, the `p` tag is used to define a paragraph, it’s opened with `<p>`, and closed with `</p>`. The text for the paragraph goes inbetween the opening and closing tags. The following example shows the markup for a one-line paragraph:
+For example, the `p` tag is used to define a paragraph, it’s opened with `<p>`, and closed with `</p>`. The text for the paragraph goes in between the opening and closing tags. The following example shows the markup for a one-line paragraph:
 
 ```XHTML
 <p>This is a one-line paragraph!</p>

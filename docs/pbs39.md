@@ -8,9 +8,9 @@ Also, before we get stuck into new content I’ll be taking a small diversion to
 
 As usual, I’ve collected the example file for this instalment and the starting point for the challenge together into [a ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs39.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs39.zip).
 
-# Matching Postcast Episode 501
+# Matching Podcast Episode 501
 
-Listen Along: Chit Chat Accross the Pond Episode 501
+Listen Along: Chit Chat Across the Pond Episode 501
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_15.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -30,7 +30,7 @@ You can browse the code online, or, you can click the big green download button 
 
 Up until now, I’ve been reluctant to give up my old XHTML habits. All the HTML we’ve written in the series has been valid HTML5, but only because HTML5 is back-wards compatible with XHTML in some ways. I’ve been insisting on closing empty tags, quoting all attribute values, and giving boolean attributes explicit values. In other words, I’ve been writing things like `<br />` and `<option value="4" selected="selected">Four</option>`.
 
-Not anymore – over our little summer hiatus I’ve decided it’s time to get with the times and fully embrace the more concise HTML5 syntax. So, from now on I’ll be writing my empty tags without the trailing `/`, I won’t be quoting attribute values religiously, and I won’t be giving values to boolean attributes. In other words, from now on I’ll be writing things like  
+Not anymore – over our little summer hiatus I’ve decided it’s time to get with the times and fully embrace the more concise HTML5 syntax. So, from now on I’ll be writing my empty tags without the trailing `/`, I won’t be quoting attribute values religiously, and I won’t be giving values to boolean attributes. In other words, from now on I’ll be writing things like
 `<br>` and `<option value=4 selected>Four</option>`.
 
 ## HTML5 Form Validation
@@ -47,7 +47,7 @@ The exact details of how the browser presents the validation errors to the user 
 
 ### The `:valid` & `:invalid` CSS Pseudo-classes
 
-Let’s start with the simplest aspect of form validation, the two CSS pseudo classes provided to facilitate styling based on validation state. If a form element is in the _valid_ state then the CSS pseudo-class `:valid` will apply to that element. Similarly, if a form element is in the _invalid_ state, the CSS pseudo-class `:invalid` will apply to to that element.
+Let’s start with the simplest aspect of form validation, the two CSS pseudo classes provided to facilitate styling based on validation state. If a form element is in the _valid_ state then the CSS pseudo-class `:valid` will apply to that element. Similarly, if a form element is in the _invalid_ state, the CSS pseudo-class `:invalid` will apply to that element.
 
 By default, browsers don’t render invalid elements any differently to how they render valid elements. It’s entirely up to the developer to decide whether and how to distinguish the display of valid and invalid elements on a page.
 
@@ -154,10 +154,10 @@ The code below is included in this instalment’s zip file as `pbs39.html`.
 <head>
     <meta charset="utf-8">
     <title>PBS 39 - HTML5 Form Validation</title>
-    
+
     <!-- Import the jQuery API -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
-    
+
     <!-- Add the jQuery event handlers to bring the form to life -->
     <script type="text/javascript">
         // add a document ready event handler
@@ -166,7 +166,7 @@ The code below is included in this instalment’s zip file as `pbs39.html`.
             $('#submit_btn').click(function(){
                 $('#output').text('');
             });
-            
+
             // add a submission event handler to the form to render
             // the serialised form data to the ouput area
             $('#pbs39_fm').submit(function(){
@@ -174,14 +174,14 @@ The code below is included in this instalment’s zip file as `pbs39.html`.
             });
         });
     </script>
-    
+
     <!-- Style the form elements -->
     <style type="text/css">
         /* Mark required fields with a yellow background */
         input:required{
             background-color: lightyellow;
         }
-    
+
         /* Mark text fields with invalid data with a red border and text */
         input:invalid, textarea:invalid{
             color: darkred;
@@ -189,7 +189,7 @@ The code below is included in this instalment’s zip file as `pbs39.html`.
             border-width: 1px;
             border-style: solid;
         }
-        
+
     </style>
 </head>
 <body>

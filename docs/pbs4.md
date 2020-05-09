@@ -2,7 +2,7 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2015/11/05/programming-by-stealth-part-3-of-x-html-block-elements/) we introduced the concept of block-level tags, and inline tags. Block level tags define blocks of text like headers, paragraphs and lists, and starting a new block-level tag generally starts a new line in the page. Inline tags on the other hand effect a part of a block, and opening an inline tag generally doesn’t start a new line. In the previous instalment we looked at some of the most important block-level tags, in this instalment we’ll look at some of the most common inline tags.
 
-# Matching Postcast Episode 413
+# Matching Podcast Episode 413
 
 Listen along to this instalment on [episode 413 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/11/ccatp-413/)
 

@@ -4,9 +4,9 @@ I had initially planned to return to our Cellular Automata classes and Conway’
 
 [The ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/01/pbs48.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs48.zip) contains my sample solution to the challenge set at the end of [the previous instalment](https://bartificer.net/pbs47), the starting point for the next challenge, and a JavaScript file containing all the example code snippets that appear in this instalment.
 
-# Matching Postcast Episode 519
+# Matching Podcast Episode 519
 
-Listen Along: Chit Chat Accross the Pond Episode 519
+Listen Along: Chit Chat Across the Pond Episode 519
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_20.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -92,7 +92,7 @@ $(function(){
         new Turkey(),
         new Chicken()
     );
-    
+
     // add click handlers to the buttons
     $('#add_cow_btn').click(()=>{ bartFarm.addAnimal(new Cow()) });
     $('#add_duck_btn').click(()=>{ bartFarm.addAnimal(new Duck()) });
@@ -134,7 +134,7 @@ class EggLayer extends Animal{
     constructor(i, e, s){
         super(i, e, s);
     }
-    
+
     getProduce(){
         return '🥚';
     }
@@ -151,7 +151,7 @@ class EggLayer extends Animal{
         super(i, e, s);
         this._lastEggAt = false;
     }
-    
+
     getProduce(){
         return '🥚';
     }
@@ -170,7 +170,7 @@ class EggLayer extends Animal{
         super(i, e, s);
         this._lastEggAt = false;
     }
-    
+
     getProduce(){
         const nowUTS = Math.floor(Date.now() / 1000);
         const secsSinceLastEgg = nowUTS - this._lastEggAt;
@@ -255,12 +255,12 @@ class Explainer{
 		// initialise an instance variable
 		this.instanceName = n ? n : 'Jane Doe';
 	}
-	
+
 	// add an instance function
 	instanceFn(){
 		console.log(`instance name = '${this.instanceName}'`);
 	}
-	
+
 	// add a static function
 	static staticFn(){
 		console.log(`static name = '${this.staticName}'`);
@@ -284,7 +284,7 @@ Explainer.staticFn();
 // static name = 'the explainer class'
 ```
 
-Notice that the call to the static function is an indirect call, and that the thing to the left of the the `.` (dot/period) operator is the class/prototype itself (`Explainer`). This means that when the function `staticFn()` executes, its `this` placeholder will be a reference to `Explainer`, hence, `this.staticName` is a placeholder for `Explainer.staticName`.
+Notice that the call to the static function is an indirect call, and that the thing to the left of the `.` (dot/period) operator is the class/prototype itself (`Explainer`). This means that when the function `staticFn()` executes, its `this` placeholder will be a reference to `Explainer`, hence, `this.staticName` is a placeholder for `Explainer.staticName`.
 
 What happens if we try to call an instance function in a static context:
 
@@ -339,12 +339,12 @@ class BetterExplainer{
 		// set an instance property named myName
 		this.myName = n ? n : 'Jane Doe';
 	}
-	
+
 	// an instance function to log the instance's name
 	logMyName(){
 		console.log(`instance name is '${this.myName}'`);
 	}
-	
+
 	// a static function to log the class's name
 	static logMyName(){
 		console.log(`static name is '${this.myName}'`);
@@ -423,12 +423,12 @@ class EvenBetterExplainer{
 		// set an instance property named myName
 		this.myName = n ? n : 'Jane Doe';
 	}
-		
+
 	// an instance function to log the instance's name
 	logMyName(){
 		console.log(`instance name is '${this.myName}'`);
 	}
-		
+
 	// a static function to log the class's name
 	static logClassName(){
 		console.log(`my class name is '${this.name}'`);
@@ -484,17 +484,17 @@ class BestExplainer{
 		// set an instance property named myName
 		this.myName = n ? n : 'Jane Doe';
 	}
-		
+
 	// an instance function to log the instance's name
 	logMyName(){
 		console.log(`instance name is '${this.myName}'`);
 	}
-	
+
 	// an instance function to log the instance's class
 	logClassName(){
 		console.log(`${this.myName} is an instance of the class '${this.constructor.name}'`);
 	}
-		
+
 	// a static function to log the class's name
 	static logClassName(){
 		console.log(`my class name is '${this.name}'`);
@@ -541,45 +541,44 @@ For your convenience I’ve collected all the above snippets together into a sin
 To better understand the difference between instance and static functions, let’s look at some built-in JavaScript functions we’ve been using throughout this series and try figure out which kind they are:
 
 1.  `.reverse()`, e.g. `let myArray = [1, 2, 3]; console.log(myArray.reverse());`
-    
+
     Instance or Static?
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
-    
+
 2.  `.test()`, e.g. `let myRE = /\bbooger(s)?\b/gi; console.log(myRE.test('I like boogers!'));`
-    
+
     Instance or Static?
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `RegExp`
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `RegExp`
-    
+
 3.  `.from()`, e.g. `let myArray = Array.from(arguments);`
-    
+
     Instance or Static?
-    
+
     **Static** — because the thing on the left of the `.` is the built-in class `Array`
-    
+
     **Static** — because the thing on the left of the `.` is the built-in class `Array`
-    
+
 4.  `.toUpperCase()`, e.g. `let myString = 'boogers'; console.log(myString.toUpperCase());`
-    
+
     Instance or Static?
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `String`
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `String`
-    
+
 5.  `.push()`, e.g. `let myArray = [1, 2, 3]; myArray.push(4);`
-    
+
     Instance or Static?
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
-    
+
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
-    
 
 ### Static or not?
 

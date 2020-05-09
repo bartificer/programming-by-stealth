@@ -8,7 +8,7 @@ Bootstrap does not just use breakpoints within the grid though. Some of the Boot
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs59.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs59.zip).
 
-# Matching Postcast Episode 556
+# Matching Podcast Episode 556
 
 Listen along to this instalment on [episode 556 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-556/)
 
@@ -102,7 +102,7 @@ We’ve seen the basic form, `text-ALIGN` where `ALIGN` is the desired alignment
 
 Horizontally Scrolling Tables
 
-We’ve seen that we can make tables horizontally scrollable by wrapping them in another element and giving that element the class `table-responsive`. There are breakpoint aware variants, but they are the rare exception to Bootstrap’s generally consistency. These breakpoints apply in the opposite direction, not breakpoint and up, but **breakpoint and down**, and the breakpoints are added at the end, not as the the second part of the class name. The classes take the form `table-responsive-BP`. Bearing their inverse nature in mind, this means that `table-responsive-md` will make the table horizontally scrollable on medium-width windows **and narrower**. While this isn’t consistent, it is actually sensible, and much more likely to be useful in the real world!
+We’ve seen that we can make tables horizontally scrollable by wrapping them in another element and giving that element the class `table-responsive`. There are breakpoint aware variants, but they are the rare exception to Bootstrap’s generally consistency. These breakpoints apply in the opposite direction, not breakpoint and up, but **breakpoint and down**, and the breakpoints are added at the end, not as the second part of the class name. The classes take the form `table-responsive-BP`. Bearing their inverse nature in mind, this means that `table-responsive-md` will make the table horizontally scrollable on medium-width windows **and narrower**. While this isn’t consistent, it is actually sensible, and much more likely to be useful in the real world!
 
 ### Worked Example
 

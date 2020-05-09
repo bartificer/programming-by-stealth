@@ -4,7 +4,7 @@ In this instalment we’ll get our first look at Bootstrap’s so-call _Nav_ com
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
 
-# Matching Postcast Episode 575
+# Matching Podcast Episode 575
 
 Listen along to this instalment on [episode 575 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/12/ccatp-575/)
 
@@ -128,7 +128,7 @@ $loginForm.submit(function(e){
 
 Again, note the use of jQuery’s `.val()` function for reading the value from the hidden field and then using it to adjust the message. Also notice that the function always empties the hidden field at the end by calling `.val()` with an empty string as the only argument. This is important because otherwise the duration would be unexpectedly sticky, and the form would have a bug. Imagine that line was missing, and the user took the following steps:
 
-1.  Clicked the 5 minute login button before entering a username and/or password, resulting a a validation error
+1.  Clicked the 5 minute login button before entering a username and/or password, resulting in a validation error
 2.  Entered a username and password
 3.  Clicked the default login button
 

@@ -2,9 +2,9 @@
 
 In this instalment we’ll build on our basic understanding of CSS from previous instalment. We’ll start with some new CSS selectors, in the process, introduce two new HTML tag attributes, then we’ll move on to the CSS box model. Each HTML tag is represented in the page as a box, and all those boxes can be manipulated with CSS.
 
-# Matching Postcast Episode 422
+# Matching Podcast Episode 422
 
-Listen Along: Chit Chat Accross the Pond Episode 422
+Listen Along: Chit Chat Across the Pond Episode 422
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_22.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -143,7 +143,7 @@ To build the box for an element, start with the content region itself. Around th
 
 ![The CSS Box Model](../assets/pbs7/Screen-Shot-2016-01-15-at-16.06.11.png)
 
-The boxes for block-level tags stretch to the full width of the the content area of the tag they are contained within, and stack one against the other, with the boxes touching each other. The body tag’s box extends to the edges of the content area of the browser window or tab they are appearing in.
+The boxes for block-level tags stretch to the full width of the content area of the tag they are contained within, and stack one against the other, with the boxes touching each other. The body tag’s box extends to the edges of the content area of the browser window or tab they are appearing in.
 
 ## Styling the Boxes
 
@@ -401,7 +401,7 @@ In FireFox, you’ll find the various developer tools under `Tools`, `Web Develo
 
 For today, what we want is the web inspector (`Tools`, `Web Developer`, `Inspector`):
 
-![FireFox Developer Tools Web Inspectror](../assets/pbs7/Screen-Shot-2016-01-19-at-17.02.56-e1453223192795.png)
+![FireFox Developer Tools Web Inspector](../assets/pbs7/Screen-Shot-2016-01-19-at-17.02.56-e1453223192795.png)
 
 This will add new interface to the bottom of the browser window with two panes – one showing the HTML tags in the document, and one showing info about the currently selected tag. To see a tag’s box, just hover over it in the right pane, to see its properties, click on it. In the left pane, where the properties are shown, there are tabs to control what properties you see. The two that are of interest to use at the moment are Rules, which show all the CSS definitions in our stylesheets that apply to the selected tag, and Computed, which shows the rules that have been applied to the tag when all the cascading of styles and calculations of specificity have been done.
 

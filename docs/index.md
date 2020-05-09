@@ -116,6 +116,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 92 — Currency Grid Challenge](./pbs92)
 * [PBS 93 — Encapsulation with JavaScript Objects](./pbs93)
 * [PBS 94 — Basic JavaScript OO with Class](./pbs94)
+* [PBS 95 — Better JavaScript Class Attributes](./pbs95)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 

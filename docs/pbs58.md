@@ -6,7 +6,7 @@ There’re more to Bootstrap’s support for responsive design than just the gri
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/07/pbs58.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs58.zip).
 
-# Matching Postcast Episode 555
+# Matching Podcast Episode 555
 
 Listen along to this instalment on [episode 555 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/07/ccatp-555/)
 
@@ -20,7 +20,7 @@ The challenge set at the end of [the previous instalment](https://bartificer.net
 
 I always say there is no single correct answer to these challenges, but that really couldn’t be more true here — we’re all starting off with a different starting point, and we all have different opinions on how we want our recipe laid out, so we’re all going to produce wildly different final pages. I’m including my sample solution as an additional worked example more than anything else.
 
-I chose to group my display heading and lead paragraph together into a single container, and to use the HTML5 symantic `<header>` tag to do so. I decided to place the two elements (the display header and the lead) into a single row, and to give the majority of the space to the display header, and just 3 atomic columns to the lead paragraph next to it.
+I chose to group my display heading and lead paragraph together into a single container, and to use the HTML5 semantic `<header>` tag to do so. I decided to place the two elements (the display header and the lead) into a single row, and to give the majority of the space to the display header, and just 3 atomic columns to the lead paragraph next to it.
 
 I then chose to group the remainder of the page into a second container, and I used the HTML5 semantic `<main>` tag for that. For this container I decided to use multiple rows rather than a single one.
 
@@ -62,7 +62,7 @@ However, the focus of this challenge was the overall structure, and that’s eas
           <!-- ... -->
        </tbody>
       </table>
-      
+
       <aside class="border border-info rounded p-2">
         <h2 class="text-info d-inline-block align-middle">Did you Know?</h2>
         <p class="text-muted d-inline">The Cucumber is...</p>
@@ -74,7 +74,7 @@ However, the focus of this challenge was the overall structure, and that’s eas
         <figcaption class="figure-caption">The finished product fresh out of the oven!</figcaption>
       </figure>
       <h2>Instructions</h2>
-      
+
       <ol>
         <li>
           <p>Wash the cucumber ...</p>
@@ -86,7 +86,7 @@ However, the focus of this challenge was the overall structure, and that’s eas
   <div class="row">
     <section class="col-6">
       <h2>Required Equipment</h2>
-      
+
       <ul class="list-unstyled d-flex flex-row justify-content-between text-center my-3 mx-0 p-0">
         <li>
           <p><span class="fas fa-clipboard fa-5x"></span></p>

@@ -4,7 +4,7 @@ In this instalment we finish our exploration of promises with a look at the two 
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/09/pbs82.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs82.zip).
 
-# Matching Postcast Episode 609
+# Matching Podcast Episode 609
 
 Listen along to this instalment on [episode 609 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/09/ccatp-609/)
 
@@ -82,15 +82,15 @@ $(function(){
   $MODAL = $('#theModal');
   $MODAL_CONTENT = $('.modal-content', $MODAL);
   $GAME_INTERFACE = $('#mainGameInterface');
-			
+
   // save the spinner HTML for later re-use
   SPINNER_HTML = $GAME_INTERFACE.html();
-			
+
   // add a click handler to the quit button
   $('#quitBtn').click(function(){
     quitGame();
   });
-			
+
   // load the templates and if successful, reset the game
   loadTemplates('gameMessage', 'guesses', 'guessPopover', 'gameWon', 'gameGrid', 'confirmQuit').then(
     function(){
@@ -343,7 +343,7 @@ We now need to wait for them all to finish before returning all the numbers in a
 // wait for all the promoises to resolve
 // (promises all running in parallel)
 const randNums = await Promise.all(randNumPromises);
-		
+
 // return the random numbers
 return randNums;
 ```
@@ -361,25 +361,25 @@ async function randomNumOfRandomNums(){
       arg2: 5 // max value of random num
     }
   };
-		
+
   // Get the number of random numbers to fetch
   const numRandNums = await $.ajax(ajaxConf);
-		
+
   // -- get the appropriate number of random numbers --
-		
+
   // update the ajax config to set max val to 100
   ajaxConf.data.arg2 = 100;
-		
+
   // build the needed number of promises
   const randNumPromises = [];
   while(randNumPromises.length < numRandNums){
     randNumPromises.push($.ajax(ajaxConf));
   }
-		
+
   // wait for all the promoises to resolve
   // (promises all running in parallel)
   const randNums = await Promise.all(randNumPromises);
-		
+
   // return the random numbers
   return randNums;
 }
@@ -428,7 +428,7 @@ try{
     method: 'GET',
     dataType: 'json'
   });
-			
+
   // store and report the city
   city = geoData.city;
   console.log(`successfully to geolocated to "${city}"`, geoData);
@@ -475,7 +475,7 @@ async function fetchWeather(){
       method: 'GET',
       dataType: 'json'
     });
-			
+
     // store and report the city
     city = geoData.city;
     console.log(`successfully to geolocated to "${city}"`, geoData);
@@ -484,7 +484,7 @@ async function fetchWeather(){
     outputMessage(`Failed to geolocate you 🙁, using default city "${city}"`, 'warning');
     console.log('geolocation error', err);
   }
-		
+
   // get the weather
   try{
     const weather = await $.ajax({

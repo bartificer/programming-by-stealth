@@ -2,9 +2,9 @@
 
 Continuing our look at CSS, in this instalment we’ll start by looking at how to style lists, then we’ll move on to look at some more CSS selectors, and we’ll finish with an introduction to a new CSS concept – pseudo-classes.
 
-# Matching Postcast Episode 428
+# Matching Podcast Episode 428
 
-Listen Along: Chit Chat Accross the Pond Episode 428
+Listen Along: Chit Chat Across the Pond Episode 428
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_03_04.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -36,7 +36,7 @@ Lower-case letters like a, b, c, d, etc.
 
 `lower-roman`
 
-Lower-case roman numberals like i, ii, iii, iv, etc.
+Lower-case roman numerals like i, ii, iii, iv, etc.
 
 `upper-alpha` or `upper-latin`
 
@@ -44,7 +44,7 @@ Upper-case letters like A, B, C, D, etc.
 
 `upper-roman`
 
-Upper-case roman numberals like I, II, III, IV, etc.
+Upper-case roman numerals like I, II, III, IV, etc.
 
 There are also non-western numbering systems available including `hebrew`, `armenian`, and a number of Chinese numbering styles.
 

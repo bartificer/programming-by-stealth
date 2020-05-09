@@ -12,7 +12,7 @@ This instalment is entirely dedicated to giving our classes better data attribut
 
 This instalment uses 8 example files:
 
-* [Download ZIP File – TBD](TBD)
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/768996abb5fcc057af01b0593ab50c8a4af6149d/instalmentZips/pbs95.zip)
 * [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs95)
 * View the four HTML files in your browser:
 	* [`pbs95a.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95a.html)
@@ -204,7 +204,7 @@ Getters and setters have all kinds of uses in JavaScript, but we're going to use
 
 When I first introduced the concept of encapsulation I mentioned that in some languages, encapsulation provides access control to data attributes, but that JavaScript is not one of those languages. Protection of attributes is what we're trying to achieve, but the language doesn't support that, so we have to make do with an approximation 🙁 We can come close to true access control by combining the power of JavaScript getters and setters with a commonly accepted convention.
 
-### Though Shalt Pretend Underscores Bestow Invisibility!
+### Thou Shalt Pretend Underscores Bestow Invisibility!
 
 Since JavaScript does not support actual access control to data attributes or instance functions, a near-universally accepted convention has emerged — the authors of JavaScript classes name attributes and functions not intended for direct access by users of their classes with names pre-fixed with the underscore character. They also omit all such attributes and functions from their API documentation. This means that unless you read the source of third party libraries, you'll never know that they contain a whole bunch of *'private'* attributes and functions who's names all start with underscores.
 

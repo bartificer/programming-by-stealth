@@ -6,9 +6,9 @@ In this instalment we’re going to take our understanding of functions to the n
 
 Before we delve into anonymous functions, we’ll start by taking a deeper look at how JavaScript deals with function arguments.
 
-# Matching Postcast Episode 442
+# Matching Podcast Episode 442
 
-Listen Along: Chit Chat Accross the Pond Episode 442
+Listen Along: Chit Chat Across the Pond Episode 442
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_06_10.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -37,22 +37,22 @@ function avg(a){
   if(!(a instanceof Array)){
     return NaN;
   }
-  
+
   // check that the array is not empty - if it is, return NaN
   // this is required to avoid a divide by zero error later in the function
   if(!a.length){ // 0 evaluates to false
     return NaN;
   }
-  
+
   // calcualte the sum of all the values in the array
   var aSum = 0;
   for(var i = 0; i < a.length; i++){
     aSum += parseFloat(a[i]); // convert strings to numbers before adding
   }
-  
+
   // calcuate the average by dividing the sum by the amount of numbers
   var ans = aSum / a.length;
-  
+
   // return the average
   return ans;
 }
@@ -127,13 +127,13 @@ function incrementor(n, i){
   if(isNaN(n)){
     return NaN;
   }
-  
+
   // deal with the optional incrementor
   var inc = 1; // the default value
   if(!isNaN(i)){
     inc = i;
   }
-  
+
   // increment and return
   return n + inc;
 }
@@ -171,13 +171,13 @@ function product(){
   if(arguments.length == 0){
     return 0;
   }
-  
+
   // loop over the arguments
   var ans = 1;
   for(var i = 0; i < arguments.length; i++){
     ans = ans * arguments[i];
   }
-  
+
   // return the final answer
   return ans;
 }
@@ -268,7 +268,7 @@ function arrayApply(a, fn){
     pbs.say('ERROR - arrayApply called without a function as the second argument - doing nothing');
     return; // just leave the function
   }
-  
+
   // apply the function to all emements of the array
   for(var i = 0; i < a.length; i++){
     a[i] = fn(a[i]);
@@ -308,7 +308,7 @@ function arrayApply(a, fn){
     pbs.say('ERROR - arrayApply called without a function as the second argument - doing nothing');
     return; // just leave the function
   }
-  
+
   // apply the function to all emements of the array
   for(var i = 0; i < a.length; i++){
     a[i] = fn(a[i]);
@@ -355,6 +355,6 @@ Test `inputTransformer()` by calling it with an anonymous function that squares 
 
 ## Conclusions
 
-Because of how JavaScript has been integrated into HTML documents, it’s impossible to overstate the importance of anonymous functions and callbacks. If you’ve come to this series with knowledge of more traditional languages like C or Java, you may well be having a harder time of things than those coming to the series with no pre-existing knowledge. This way of working with functions is very different to how you would normally work in in other languages.
+Because of how JavaScript has been integrated into HTML documents, it’s impossible to overstate the importance of anonymous functions and callbacks. If you’ve come to this series with knowledge of more traditional languages like C or Java, you may well be having a harder time of things than those coming to the series with no pre-existing knowledge. This way of working with functions is very different to how you would normally work in other languages.
 
 At this stage we’ve learned almost all the basic building blocks we need to move out of the playground and into the browser proper – we’ve learned about variables, operators, branching, arrays, loops, and functions. In the process we’ve touched on, but never explained, objects. That’s the next thing we need to do. Then, we’ll look at some built-in objects and functions provided by JavaScript.

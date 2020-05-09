@@ -6,7 +6,7 @@ In the next instalment we’ll move on to the most powerful aspect of Bootstrap,
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip).
 
-# Matching Postcast Episode 551
+# Matching Podcast Episode 551
 
 Listen along to this instalment on [episode 551 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-551/)
 
@@ -283,4 +283,4 @@ For this challenge we’ll continue to improve the recipe we’ve been building 
 
 ## Final Thoughts
 
-We’ve now covered two of Bootstrap’s four aspects — the utility classes, and the content classes. Next we’ll move on to the layout classes. Bootstrap’s layout engine is very powerful, and it has a lot of features, so unsurprisingly, it will take us a few instalments to make our way through it. When we’re done we’ll be able to lay our our pages just the way we want, and in such a way that they’ll look great on any screen. Bootstrap doesn’t just do layouts, it does responsive layouts!
+We’ve now covered two of Bootstrap’s four aspects — the utility classes, and the content classes. Next we’ll move on to the layout classes. Bootstrap’s layout engine is very powerful, and it has a lot of features, so unsurprisingly, it will take us a few instalments to make our way through it. When we’re done we’ll be able to lay out our pages just the way we want, and in such a way that they’ll look great on any screen. Bootstrap doesn’t just do layouts, it does responsive layouts!

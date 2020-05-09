@@ -1,12 +1,12 @@
 # PBS 45 of x – ES6 Arrays & Strings
 
-We’ll start this instalment be re-visting the question of when to use `let` and when to use `const` for variable declarations. My initial advice was to default to using `let`, but based on some great feedback from the the community, I’ve changed my mind, and will be defaulting to `const` going forward. I’ll explain why I changed my mind.
+We’ll start this instalment be re-visting the question of when to use `let` and when to use `const` for variable declarations. My initial advice was to default to using `let`, but based on some great feedback from the community, I’ve changed my mind, and will be defaulting to `const` going forward. I’ll explain why I changed my mind.
 
 Next we’ll have a quick look at my sample solution to the challenge set at the end of the previous instalment, before moving on to some new material. Specifically, we’ll look at some of the ways in which ES6 has improved arrays and strings.
 
-# Matching Postcast Episode 514
+# Matching Podcast Episode 514
 
-Listen Along: Chit Chat Accross the Pond Episode 514
+Listen Along: Chit Chat Across the Pond Episode 514
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_12_11.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -30,22 +30,22 @@ This was the original function before converting to ES6:
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-       
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     var self = this;
     var autoStepFn = function(){
     if(self._autoStepID){
         // take a step
         self.step();
-                
+
         // set a fresh timeout - CAUTION: recursive code!
         self._autoStepID = window.setTimeout(autoStepFn, self.autoStepIntervalMS());
     }
@@ -58,22 +58,22 @@ My sample solution changed this function to:
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-       
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     let self = this;
     let autoStepFn = function(){
     if(self._autoStepID){
         // take a step
         self.step();
-                
+
         // set a fresh timeout - CAUTION: recursive code!
         self._autoStepID = window.setTimeout(autoStepFn, self.autoStepIntervalMS());
     }
@@ -86,22 +86,22 @@ But Allison changed the function to:
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-       
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     const self = this;
     const autoStepFn = function(){
     if(self._autoStepID){
         // take a step
         self.step();
-                
+
         // set a fresh timeout - CAUTION: recursive code!
         self._autoStepID = window.setTimeout(autoStepFn, self.autoStepIntervalMS());
     }

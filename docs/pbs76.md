@@ -6,7 +6,7 @@ We’ll start our journey into AJAX using more traditional JavaScript techniques
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/04/pbs76.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs76.zip).
 
-# Matching Postcast Episode 590
+# Matching Podcast Episode 590
 
 Listen along to this instalment on [episode 590 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/04/ccatp-590/)
 
@@ -32,7 +32,7 @@ Back in instalment 74 I set a challenge to use Mustache templates to build a fle
 
 In PBS 75 I offered a tip to help with the challenge, and in that tip I suggested building the template before building your view objects, so I’m going to follow my own advice in this sample solution.
 
-But before starting any real work, I needed to do a little house-keeping. I started by updating the jumobtron text to better describe the page:
+But before starting any real work, I needed to do a little house-keeping. I started by updating the jumbotron text to better describe the page:
 
 ```XHTML
 <header class="container mt-5">
@@ -88,7 +88,7 @@ Some key points to note:
 2.  The `<nav>` is a full-width Bootstrap grid column (`col-12`), has medium bottom margin (`mb-3`), and a medium small padding (`p-2`).
 3.  Each card consists of two top-level elements:
     1.  A top-level title (`<h1>`) containing the person’s first name `{{{name.first}}}`. Semantically this is the top level heading within the `<nav>`, so `<h1>` is the appropriate tag, but, it will look much too big, so note the use of Bootstrap’s `h5` utility tag to render it smaller.
-    2.  A flex container (`d-flex`) containing a Mustache loop over an array named `contactMethods`. The assignment explicitly required Bootrap’s flex utilities be used. By default flex boxes display horizontally, but they can also stack items vertically, and that’s a much better fit here, hence the use of `flex-column`.
+    2.  A flex container (`d-flex`) containing a Mustache loop over an array named `contactMethods`. The assignment explicitly required Bootstrap’s flex utilities be used. By default flex boxes display horizontally, but they can also stack items vertically, and that’s a much better fit here, hence the use of `flex-column`.
 4.  Each contact item within the card is represented by a `div`. Remember that by virtue of being direct children of a flex container, these `<div>`s are flex items. I gave each contact item a small amount of padding (`p1`).
 5.  Each contact item contains two `span`s, one for the icon, and one for the text (`{{value}}`). Note that the icon is rendered with a partial named `icon`.
 6.  To ensure all the text aligns nicely I converted the `span`s containing the icons into inline blocks with `d-inline-block`, and gave them a fixed width of one and a half characters with the inline style attribute `style="width: 1.5em;"`. The reason for converting the `span`s from their default `inline` display to `inline-block` is so that they have a `width` property.
@@ -152,11 +152,11 @@ To actually see the template and partials in action I now needed to write a docu
 $(function(){
   // fetch the contact card template
   const contactTpl = $('#contact_card_tpl').html();
-		
+
   // fetch the data from the json  string
   data = JSON.parse($('#pbs74_view_data').text());
-		
-		
+
+
   // build the view objects
   const people = [];
   for(const uname of Object.keys(data.people).sort()){
@@ -179,7 +179,7 @@ $(function(){
   }
   //console.log('generated view objects:', people);
   //window.alert('generated view objects:\n' + JSON.stringify(people, null, 2));
-		
+
   // render the contact cards
   const $contactCardHolder = $('#contact_cards');
   for(const person of people){
@@ -433,7 +433,7 @@ Notice the first part of the RE is identical to what we had before. It matches t
 
 We then match the string `'stackoverflow.com/users/'`, remembering to escape the `/` characters with `\/`, and using the character class `[.]` to represent an actual period symbol. Remember, were it not in the character class the `.` would mean _‘any single character’_. Then we match one or more digits followed by a `/` with `/\d+\/`. Next comes the really important part — the capture group for the username: `(.+)`. Remember, `.` means _‘any character’_, `+` means _‘one or more’_, and parenthesis create a capture group, so we are capturing one or more of any character, and storing that value in the first capture group, which we can access in the replacement string as `$1`. We don’t want to include the trailing ?tab=profile in the capture group, so we have to match that outside the parentheses. Because `?` means _‘zero or one’_ I use the character class `[?]` to match the actual question mark symbol, and `$` means `'end of string'`. Finally, the replacement string (second argument to `.replace()`)is simply `'$1'`, i.e. the contents of the first (and only) capture group.
 
-Putting it all together I created two lookup tables, one defining functions for transforming the raw values (the keys from from `data.people.allison.contact` and `data.people.bart.contact`) into URLs, and one for transforming them into meaningful text for the links. I added my lookup tables into the `data` object for easy access:
+Putting it all together I created two lookup tables, one defining functions for transforming the raw values (the keys from `data.people.allison.contact` and `data.people.bart.contact`) into URLs, and one for transforming them into meaningful text for the links. I added my lookup tables into the `data` object for easy access:
 
 ```JavaScript
 // inject helper functions for generating pretty values
@@ -531,7 +531,7 @@ Note that I’ve made the icon large using the `h1` Bootstrap utility class.
 
 Also note that the existence of the `icon` partial has saved me from some code duplication.
 
-We’re now ready to make the flex container switch from vertical stacking to horizontal stacking from the `md` breakpoint up. We do this by adding the Bootrap flex utilit class `flex-md-row`. To allow any icons with long text to flow onto a possible extra row if needed we add `flex-md-wrap`, and to align the items nicely we add `justify-content-md-between`.
+We’re now ready to make the flex container switch from vertical stacking to horizontal stacking from the `md` breakpoint up. We do this by adding the Bootstrap flex utility class `flex-md-row`. To allow any icons with long text to flow onto a possible extra row if needed we add `flex-md-wrap`, and to align the items nicely we add `justify-content-md-between`.
 
 We’re almost there, but we still need to centre the icons and text, and also centre the heading containing the person’s name. We can do all this with the responsive Bootstrap utility class `text-md-center`.
 
@@ -652,7 +652,7 @@ const myAjaxRequest = $.ajax({
     // This callback is executed after .success or .error
     // First arg is the jqXHR object representing the AJAX request.
     // Second arg is the HTTP status string.
-    
+
     // ...
   }
 }); // returns a jqXHR object representing the AJAX request

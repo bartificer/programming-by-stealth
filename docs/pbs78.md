@@ -4,9 +4,9 @@ For boring real-life reasons this instalment is a bit of an intermission. In the
 
 What we’re going to do in this instalment is focus entirely on my sample solution to the challenge set at the end of the previous instalment, which I’ve used as an opportunity to demonstrate two new tools to add to our programming tool belt — the micro-checking library [is.js](http://is.js.org/), and [Bootstrap Popovers](https://getbootstrap.com/docs/4.3/components/popovers/).
 
-You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs78.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs78.zip).  
+You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs78.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs78.zip).
 
-# Matching Postcast Episode 593
+# Matching Podcast Episode 593
 
 Listen along to this instalment on [episode 593 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/05/ccatp-593/)
 
@@ -24,7 +24,7 @@ You’ll find the full code for my sample solution in this instalment’s ZIP fi
 
 ### Building Blocks
 
-A point I hoped this ver open-ended challenge would highlight is just how many virtual building blocks we’ve amassed in the past 77 instalments. My first step in developing a solution was to decide on the building blocks I’d deploy. It was a given that I’d use jQuery and Bootstrap, but which of the many Bootstrap components we’ve met to date would I use?
+A point I hoped this very open-ended challenge would highlight is just how many virtual building blocks we’ve amassed in the past 77 instalments. My first step in developing a solution was to decide on the building blocks I’d deploy. It was a given that I’d use jQuery and Bootstrap, but which of the many Bootstrap components we’ve met to date would I use?
 
 After quite a bit of experimentation, I ended up using all of the following to build my game:
 
@@ -149,7 +149,7 @@ A good example would be a popover explaining a text box that’s only visible wh
 <input type="text" class="form-control" data-toggler="popover" data-trigger="focus" data-content="Enter Some Text!">
 ```
 
-One of the annoying things about the default click trigger is that you have to click on the element that the popover belongs to to get rid of it. It would be much more convenient to be able to click anywhere on the page to dismiss it! With a little trickery you can achieve this by using an `<a>` tag (the docs insist it will not work reliably with `<button>` tags) **without an `href` attribute** and **with a `tabindex` attribute** combined with the `focus` trigger and the Bootstrap button classes (`.btn` plus `.btn-primary` or similar):
+One of the annoying things about the default click trigger is that you have to click on the element that the popover belongs to, to get rid of it. It would be much more convenient to be able to click anywhere on the page to dismiss it! With a little trickery you can achieve this by using an `<a>` tag (the docs insist it will not work reliably with `<button>` tags) **without an `href` attribute** and **with a `tabindex` attribute** combined with the `focus` trigger and the Bootstrap button classes (`.btn` plus `.btn-primary` or similar):
 
 ```XHTML
 <a class="btn btn-secondary btn-sm" data-toggler="popover" data-trigger="focus" title="A Dismissable Popover" data-content="Click anywhere on the page to make me go away!" tabindex="0">
@@ -217,7 +217,7 @@ try{
 }catch(err){
   bodyHTML = '<p class="text-danger">Template Error</p>'
 }
-			
+
 // initialise the popover plugin on the element
 $e.popover({
   trigger: 'manual',
