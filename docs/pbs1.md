@@ -42,7 +42,7 @@ The little icons in the top-right show whether or not the web and DB servers are
 
 I like to re-configure MAMP to use the industry standard ports for the web and DB servers (80 and 3306). You do this by clicking `Preferences`, then selecting the `Ports` tab, and then clicking on the button `Set Web & MySQL ports to 80 & 3306`.
 
-![Configure MAMP](../assets/pbs1/Screen-Shot-2015-10-09-at-4.19.40-p.m.-e1444404044353.png)  
+![Configure MAMP](../assets/pbs1/Screen-Shot-2015-10-09-at-4.19.40-p.m.-e1444404044353.png)
 ![MAMP - set ports](../assets/pbs1/Screen-Shot-2015-10-09-at-4.21.25-p.m.-e1444404176176.png)
 
 Any of the web server packages mentioned will map a given folder on your hard drive to the URL `http://localhost/`. In MAMP you can see which folder is in use by going to the `Web Server` tab in the `Preferences` window. On the Mac the default is `Macintosh HD:Applications:MAMP:htdocs`. The documentation for the other products will tell you where their so-called _Document Root_ is located.
