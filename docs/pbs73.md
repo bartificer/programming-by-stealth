@@ -4,7 +4,7 @@ In [the previous instalment](https://bartificer.net/pbs72) we took our first loo
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/03/pbs73.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs73.zip).
 
-# Matching Postcast Episode 585
+# Matching Podcast Episode 585
 
 Listen along to this instalment on [episode 585 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/03/ccatp-585/)
 
@@ -41,22 +41,22 @@ With that done it was just a matter of updating my `showToast()` function to mak
 function showToast(t, msg){
   // clone the toast template
   const $toast = $(document.importNode($('#toast_tpl').get(0).content, true).children);
-		
+
   // inject the title & message
   $('.toast-header strong', $toast).text(t);
   $('.toast-body', $toast).text(msg);
-		
+
   // add the toast to the toast rack
   $('#toast_rack').append($toast);
-		
+
   // initialise the toast plugin on the toast
   $toast.toast({ autohide: false });
-		
+
   // add an event handler to automatically delete the toast when it hides
   $toast.on('hidden.bs.toast', function(){
     $(this).remove();
   });
-		
+
   // finally show the toast
   $toast.toast('show');
 }
@@ -325,7 +325,7 @@ You can see both a loop over an array of strings, and a loop over an array of ob
       <li>{{.}}</li>
     {{/languages}}
   </ul>
-	
+
   <p>{{name.first}} produces the following podcasts:</p>
   <ul>
     {{#podcasts}}

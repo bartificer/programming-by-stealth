@@ -8,9 +8,9 @@ Finally, as a practical worked example, we’ll build a better clock API for All
 
 As usual I’ve packaged all the files needed for the worked example into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/12/pbs26.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs26.zip).
 
-# Matching Postcast Episode 467
+# Matching Podcast Episode 467
 
-Listen Along: Chit Chat Accross the Pond Episode 467
+Listen Along: Chit Chat Across the Pond Episode 467
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_12_10.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -46,7 +46,7 @@ var pbs = pbs ? pbs : {};
 
   /**
   * Converts a given span into a clock showing the current time in a given time zone.
-  * 
+  *
   * **NOTE** this function should not be called before the DOM is ready.
   * @param {jQuery} $span - a jQuery object representing the span to be converted into a clock.
   * This argument must be a jQuery representing exactly one element, and that element must be a span.
@@ -61,43 +61,43 @@ var pbs = pbs ? pbs : {};
     if(!(typeof $span === 'object' && $span instanceof jQuery && $span.length === 1 && $span.is('span'))){
     	throw new Error('the first argument must be a jQuery object representing exactly one span element');
     }
-    
+
     // initialise the span
     $span.empty();
-    
+
     // create and inject spans for the components of the time
     var $hours = $('<span />').addClass('pbs-hours');
     var $separator = $('<span />').addClass('pbs-separator').text(':');
     var $minutes = $('<span />').addClass('pbs-minutes');
     $span.append($hours).append($separator).append($minutes);
-    
+
     // create a local function to render the current time, then call it immediately
     var renderTime = function(){
     	// create a moment object representing the current time in our desired timezone
     	var now = moment().tz(tz);
-    	
+
     	// set the hours and minutes
     	$hours.text(now.format('HH'));
     	$minutes.text(now.format('mm'));
     }
     renderTime();
-    
+
     // add an interval to blink the cursor
     var doFade = true; // a toggle to keep track of whether or fade in or out
     setInterval(
     	function(){
     		// fade in or out
     		$separator.fadeTo(250, doFade ? 0 : 1);
-    			
+
     		// update the toggle
     		doFade = !doFade;
     	},
     	1000
     );
-    
+
     // add an interval to update the clock
     setInterval(renderTime, 60 * 1000);
-    
+
     // return the span
     return $span;
   };
@@ -896,33 +896,33 @@ You can see the API in use in `pbs26.html`:
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS 26 - World Clocks Example</title>
-  
+
   <!-- Import the jQuery Library -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Import the moment.js & moment-timezone.js libraries -->
   <script type="text/javascript" src="contrib/moment.min.js"></script>
   <script type="text/javascript" src="contrib/moment-timezone-with-data.js"></script>
-  
+
   <!-- Import the pbs.WorldClock API -->
   <script type="text/javascript" src="lib/pbs.WorldClock.js"></script>
-  
+
   <!-- Own Scripts for this page -->
   <script type="text/javascript">
-  
+
   	// when the DOM loads, turn the span with the ID clock1 into a clock
   	$(function(){
   		new pbs.WorldClock($('#clock1'), 'Europe/Dublin');
   	});
-    
+
   </script>
-  
+
   <!-- custom styles for this page -->
   <style type="text/css">
     /*
      * Style the clocks
      */
-    
+
     /* styles common to both defaults */
     .pbs-worldclock{
     	font-weight: bold;
@@ -932,7 +932,7 @@ You can see the API in use in `pbs26.html`:
     	color: lightgreen;
     	font-family: monospace;
     }
-    
+
     /* styles for the inline example */
     #clock1{
     	display: inline-block;
@@ -941,7 +941,7 @@ You can see the API in use in `pbs26.html`:
     	border-width: 1px;
     	border-radius: 3px;
     }
-    
+
     /* styles for the block level example */
     #clock2{
     	display: block;

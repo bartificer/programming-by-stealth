@@ -2,9 +2,9 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/) we got our first taste of JavaScript. We learned about variables, literal data types, and some basic string and arithmetic operators. In this instalment we’re going to focus on booleans. We’ll look at how non-boolean values get converted to booleans when needed (e.g. is `'boogers'` `true` or `false`?), we’ll learn about some comparison operators that result in boolean values, and we’ll learn about some logical operators. At that stage we’ll have all the knowledge we need to learn about our third fundamental programming concept – branching.
 
-# Matching Postcast Episode 434
+# Matching Podcast Episode 434
 
-Listen Along: Chit Chat Accross the Pond Episode 434
+Listen Along: Chit Chat Across the Pond Episode 434
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_04_12.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -249,7 +249,7 @@ else
 }
 ```
 
-There are also more or less _cuddled_ variants to all these styles, that is to say, more more or less optional white space included. The canoncical K&R style is less cuddled than what I use (has more white space):
+There are also more or less _cuddled_ variants to all these styles, that is to say, more or less optional white space included. The canonical K&R style is less cuddled than what I use (has more white space):
 
 ```JavaScript
 if ( parseInt( pbs.input( 1 ) ) % 2 == 0 ) {
@@ -301,7 +301,7 @@ if(isNaN(inputNum)){
   }else{
     ans += 'ODD';
   }
-  
+
   // print the answer
   pbs.say(ans);
 }

@@ -2,15 +2,15 @@
 
 In [the previous instalment](https://bartificer.net/pbs35) we took at first look at text input in HTML, and we made a start on a new project – building a set of JavaScript prototypes for creating [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton) so we can implement [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). In this instalment we’ll continue down both of those paths. Later in the project the two paths will finally merge when we use web forms to build a UI around our game of life.
 
-We’ll start on the HTML track where we move on from generic text input with single and multi-line basic text boxes to some more specific types of text input, including some nice new input types that HTML 5 brought to the table. This will set up up to learn about HTML 5 form validation in the next instalment.
+We’ll start on the HTML track where we move on from generic text input with single and multi-line basic text boxes to some more specific types of text input, including some nice new input types that HTML 5 brought to the table. This will set us up to learn about HTML 5 form validation in the next instalment.
 
 When we switch to the JavaScript track we’ll start by having a quick look at my sample solution to the previous instalment. Then, we’ll make a start on a JavaScript prototype to represent a Cellular Automaton together, which will set up the next assignment.
 
 I’ve zipped up my solution to the previous assignment, a sample file that accompanies this instalment, and the starting point for the next assignment which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/06/pbs36.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs36.zip).
 
-# Matching Postcast Episode 492
+# Matching Podcast Episode 492
 
-Listen Along: Chit Chat Accross the Pond Episode 492
+Listen Along: Chit Chat Across the Pond Episode 492
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_06_25.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -18,7 +18,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## More HTML Text Inputs
 
-In this series we’ve already seen the `<input>` tag used to create three distinct form inputs, depending on the value specified for the `type` attribute. We used the `<input>` tags with `type="checkbox"` to create checkboxs, with `type="radio"` to create radio buttons within radio sets, and `type="text"` to create a basic single-line text box. It turns out we’ve only just scraped the surface, the `<input>` tag is very versatile indeed, and can be used to create even more different form elements.
+In this series we’ve already seen the `<input>` tag used to create three distinct form inputs, depending on the value specified for the `type` attribute. We used the `<input>` tags with `type="checkbox"` to create checkboxes, with `type="radio"` to create radio buttons within radio sets, and `type="text"` to create a basic single-line text box. It turns out we’ve only just scraped the surface, the `<input>` tag is very versatile indeed, and can be used to create even more different form elements.
 
 We’ll start with some inputs that have been around for a long time, and then move on to some cool new input types brought to the party by HTML 5. In theory HTML 5 should have brought even more cool input types along, but alas, browser support remains extremely patchy. Hopefully things will improve quickly, and we’ll have proper browser support for things like colour and date pickers, both of which are defined within the HTML 5 spec. Just for the record, Apple in particular are behind on their HTML 5 implementation in Safari – Chrome and Firefox are both ahead, as is Microsoft’s new Edge browser.
 
@@ -26,9 +26,9 @@ Just to note that all of the input types we’ll discus today can be interacted 
 
 ### Invisible Inputs
 
-Probably the most confusing input type is `hidden`, which does exactly what it sounds like it does – create a completely invisible form element! Despite the fact that you can’t see them, inputs with with `type="hidden"` exist within the form, and will be submitted as part of the form data. These sound useless, but are actually very useful, and have a long history of being very useful.
+Probably the most confusing input type is `hidden`, which does exactly what it sounds like it does – create a completely invisible form element! Despite the fact that you can’t see them, inputs with `type="hidden"` exist within the form, and will be submitted as part of the form data. These sound useless, but are actually very useful, and have a long history of being very useful.
 
-In the early days of the web when forms were only used to send data to servers, hidden inputs provided a way of retaining state between page loads on browsers that were too primitive to support cookies, or, where users had disable cookies. You can’t have a multi-page form without state being retained in some way, so hidden form inputs served a very important function on the early web.
+In the early days of the web when forms were only used to send data to servers, hidden inputs provided a way of retaining state between page loads on browsers that were too primitive to support cookies, or, where users had to disable cookies. You can’t have a multi-page form without state being retained in some way, so hidden form inputs served a very important function on the early web.
 
 In our modern JavaScript world hidden form fields are used differently, but are no less useful. They provide a nice mechanism for bridging the gap between fancy JavaScript-powered custom user interface elements, and web forms.
 
@@ -80,23 +80,23 @@ At this point we have a UI that looks right, but it does absolutely nothing! To 
 
 ```JavaScript
 // document ready event handler
-$(function(){            
+$(function(){
     // add a click handler to the stars UI
     $('span', $('#stars_ui')).click(function(){
         // read the rating from the data attribute
         var starRating = $(this).data('stars');
-        
+
         // render each star as appropriate
         for(var s = 1; s <= 5; s++){
             var $star = $('#stars_' + s);
-            
+
             // render the star as full or outline as appropriate
             if(s <= starRating){
                 $star.removeClass('fa-star-o').addClass('fa-star');
             }else{
                 $star.removeClass('fa-star').addClass('fa-star-o');
             }
-            
+
             // mark the star as checked for ARIA as appropriate
             if(s == starRating){
                 $star.attr('aria-checked', true);
@@ -104,7 +104,7 @@ $(function(){
                 $star.attr('aria-checked', false);
             }
         }
-        
+
         // save the rating into the hidden form input
         $('#stars_input').val(starRating);
     });
@@ -190,7 +190,7 @@ bartificer.ca.Automaton = function($container, rows, cols, stepFn, renderFn, s){
     this._cols = parseInt(cols); // force to number
     this._stepFn = stepFn;
     this._renderFn = renderFn;
-    
+
     // initialise the grid and table
     this._grid = [];
     for(x = 0; x < this._cols; x++){
@@ -316,18 +316,18 @@ Putting it all together, and adding some comments, we get the following HTML pag
 <head>
     <meta charset="utf-8" />
     <title>bartificer.ca.Automaton Demo</title>
-    
+
     <!-- Load jQuery 3 from the official CDN -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
+
     <!-- load the bartificer.ca API -->
     <script type="text/javascript" src="./lib/bartificer.ca.js"></script>
-    
+
     <!-- Add the JavaScript code to initialise a Cellular Automaton -->
     <script type="text/javascript">
         // a globally scoped variable to hold the automaton object
         var sampleCA;
-        
+
         // add a document ready event handler
         $(function(){
             // use the constructor to build an automaton
@@ -338,13 +338,13 @@ Putting it all together, and adding some comments, we get the following HTML pag
                 function($td){ $td.css('background-color', 'Green') }, // always render as green
                 true // set the initial state of all cells to true
             );
-            
+
             // log the geneated automaton object so we can have a look inside
             // it look at it with the JavaScript console if we want
             console.log(sampleCA);
         });
     </script>
-    
+
     <!-- Stype the Automaton -->
     <style type="text/css">
         /* style the cells in the automaton */

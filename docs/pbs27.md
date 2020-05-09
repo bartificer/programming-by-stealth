@@ -4,9 +4,9 @@ In this instalment we’ll make a start on a large topic which we have intention
 
 The code for the examples in this instalment has been collected into a single ZIP file which you can download [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/12/pbs27.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs27.zip).
 
-# Matching Postcast Episode 470
+# Matching Podcast Episode 470
 
-Listen Along: Chit Chat Accross the Pond Episode 470
+Listen Along: Chit Chat Across the Pond Episode 470
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_01_02.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -98,7 +98,7 @@ if(typeof optionDetails[optName].onChange === 'function'){
 }
 ```
 
-Within the `.option()` function, where the above code snippet exists, `this` is a reference to the clock object who’s option is being altered. By passing `this` as the first argument to `.call()`, the `this` variable within the callback also becomes a reference to the clock who’s option is is being updated.
+Within the `.option()` function, where the above code snippet exists, `this` is a reference to the clock object who’s option is being altered. By passing `this` as the first argument to `.call()`, the `this` variable within the callback also becomes a reference to the clock who’s option is being updated.
 
 ## Introducing Web Forms
 
@@ -116,10 +116,10 @@ To get the ball rolling on user input, let’s create a simple web page containi
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS27 - Example 1a (BAD Form)</title>
-  
+
   <!-- include jQuery -->
   <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- add our local scripts -->
   <script type="text/javascript">
     // add an event handler to the button when the DOM becomes ready
@@ -127,10 +127,10 @@ To get the ball rolling on user input, let’s create a simple web page containi
     	$('#hello_button').click(function(){
     		// create a new paragraph that says hello
     		var $hello = $('<p />');
-    		
+
     		// set the text of the paragraph using the value of the text box
     		$hello.text('Hello there ' + $('#hello_name').val() + '!');
-    		
+
     		// append the paragraph to the end of the page
     		$('#hellos_region').append($hello);
     	});
@@ -194,10 +194,10 @@ Given what we’ve just learned, let’s update our first form so its `form` tag
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS27 - Example 1b (Better Form)</title>
-  
+
   <!-- include jQuery -->
   <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- add our local scripts -->
   <script type="text/javascript">
     // add an event handler to the button when the DOM becomes ready
@@ -205,10 +205,10 @@ Given what we’ve just learned, let’s update our first form so its `form` tag
     	$('#hello_button').click(function(){
     		// create a new paragraph that says hello
     		var $hello = $('<p />');
-    		
+
     		// set the text of the paragraph using the value of the text box
     		$hello.text('Hello there ' + $('#hello_name').val() + '!');
-    		
+
     		// append the paragraph to the end of the page
     		$('#hellos_region').append($hello);
     	});
@@ -256,10 +256,10 @@ Let’s put it all together and create a final, good, version of our first form:
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>PBS27 - Example 1c (GOOD Form)</title>
-  
+
   <!-- include jQuery -->
   <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- add our local scripts -->
   <script type="text/javascript">
     // add an event handler to the button when the DOM becomes ready
@@ -267,10 +267,10 @@ Let’s put it all together and create a final, good, version of our first form:
     	$('#hello_button').click(function(){
     		// create a new paragraph that says hello
     		var $hello = $('<p />');
-    		
+
     		// set the text of the paragraph using the value of the text box
     		$hello.text('Hello there ' + $('#hello_name').val() + '!');
-    		
+
     		// append the paragraph to the end of the page
     		$('#hellos_region').append($hello);
     	});
@@ -352,7 +352,7 @@ pbs.Name = function(fn, ln){
   // initialise all data with default values
   this._firstName = 'John';
   this._lastName = 'Doe';
-  
+
   // if any arguments were passed, use the accesor
   // functions to set the values
   if(typeof fn !== 'undefined'){
@@ -372,15 +372,15 @@ pbs.Name.prototype.firstName = function(fn){
   if(arguments.length === 0){
     return this._firstName;
   }
-  
+
   // otherwise, validate the data before setting
   if(!(typeof fn === 'string' && fn.length > 0)){
     throw new Error('A first name must be non-empty string');
   }
-  
+
   // set the value
   this._firstName = fn;
-  
+
   // return a reference to self to facilitate function chaining
   return this;
 };
@@ -440,7 +440,7 @@ Putting it all together, we get the following code for running within the playgr
     // initialise all data with default values
     this._firstName = 'John';
     this._lastName = 'Doe';
-    
+
     // if any arguments were passed, use the accesor
     // functions to set the values
     if(typeof fn !== 'undefined'){
@@ -450,22 +450,22 @@ Putting it all together, we get the following code for running within the playgr
       this.lastName(ln);
     }
   };
-  
+
   // The accessor methods
   pbs.Name.prototype.firstName = function(fn){
     // if we are a getter, return the current value
     if(arguments.length === 0){
       return this._firstName;
     }
-    
+
     // otherwise, validate the data before setting
     if(!(typeof fn === 'string' && fn.length > 0)){
       throw new Error('A first name must be non-empty string');
     }
-    
+
     // set the value
     this._firstName = fn;
-    
+
     // return a reference to self to facilitate function chaining
     return this;
   };
@@ -479,7 +479,7 @@ Putting it all together, we get the following code for running within the playgr
     this._lastName = ln;
     return this;
   };
-  
+
   // implement needed functions
   pbs.Name.prototype.fullName = function(){
     return this._firstName + ' ' + this._lastName;
@@ -487,7 +487,7 @@ Putting it all together, we get the following code for running within the playgr
   pbs.Name.prototype.initials = function(){
     return this._firstName.charAt(0).toUpperCase() + '.' + this._lastName.charAt(0).toUpperCase() + '.';
   };
-  
+
   // provide a toString() method
   pbs.Name.prototype.toString = pbs.Name.prototype.fullName;
 })(pbs);

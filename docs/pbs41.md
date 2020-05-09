@@ -10,9 +10,9 @@ Finally, we’ll wrap up with a handy reference table summarising the most impor
 
 There’s just one sample file associated with this instalment, and it’s available for download as a ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs41.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs41.zip).
 
-# Matching Postcast Episode 505
+# Matching Podcast Episode 505
 
-Listen Along: Chit Chat Accross the Pond Episode 505
+Listen Along: Chit Chat Across the Pond Episode 505
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_10_13.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -96,13 +96,13 @@ The first step to bringing our custom UI to life is to add a change handler to t
 $('#rating_ipt').change(function(){
   var $rating = $(this);
   var curVal = $rating.val();
-                
+
   // make sure the current value is valid - otherwise, blank it
   if(!curVal.match(/^[-]?1$/)){
     curVal = '';
     $rating.val(curVal);
   }
-  
+
   // render the thumbs down icon as appropriate
   var $down = $('#rating_down');
   if(curVal == -1){
@@ -114,7 +114,7 @@ $('#rating_ipt').change(function(){
     $down.addClass('fa-thumbs-o-down');
     $down.attr('aria-checked', false);
   }
-  
+
   // render the thumbs up icon as appropriate
   var $up = $('#rating_up');
   if(curVal == 1){
@@ -137,14 +137,14 @@ $('#rating_ipt').val(1).change(); // set thumbs up
 $('#rating_ipt').val('').change(); // blank the rating
 ```
 
-Notice that because we are altering the value programatically, we have to explicitly invoke the change hander we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
+Notice that because we are altering the value programmatically, we have to explicitly invoke the change handler we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
 
 ### Making the UI Work with a Mouse and Touch
 
 The next step is to add a click handler to both buttons – because we have added data attributes containing the values represented by the faux-buttons to the spans themselves, we can add the identical handler to both. The handler simply updates the value in the hidden input, and calls the change handler, just like we did from the console:
 
 ```JavaScript
-// add click handers to the thumbs up and down buttons
+// add click handlers to the thumbs up and down buttons
 $('span#rating_ui > span').click(function(){
   $('#rating_ipt').val($(this).data('rating')).change();
 });
@@ -204,40 +204,40 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
 <head>
     <meta charset="utf-8">
     <title>PBS 41 - Quick Review Form</title>
-        
+
     <!-- Import the jQuery API -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
-    
+
     <!-- Import Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/9437c02941.css">
-        
+
     <!-- Add the jQuery event handlers to bring the form to life -->
     <script type="text/javascript">
-                
+
         // add a document ready event handler
         $(function(){
             // add a click handler to the submit button to blank the output area
             $('#submit_btn').click(function(){
                 $('#output').val('');
             });
-                        
+
             // add a submission event handler to the form to render
             // the serialised form data to the ouput area
             $('#quick_review_fm').submit(function(){
                 $('#output').val($(this).serialize());
             });
-            
+
             // add a change handler to the rating hidden input
             $('#rating_ipt').change(function(){
                 $rating = $(this);
                 var curVal = $rating.val();
-                
+
                 // make sure the current value is valid - otherwise, blank it
                 if(!curVal.match(/^[-]?1$/)){
                     curVal = '';
                     $rating.val(curVal);
                 }
-                
+
                 // render the thumbs down icon as appropriate
                 var $down = $('#rating_down');
                 if(curVal == -1){
@@ -249,7 +249,7 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
                     $down.addClass('fa-thumbs-o-down');
                     $down.attr('aria-checked', false);
                 }
-                
+
                 // render the thumbs up icon as appropriate
                 var $up = $('#rating_up');
                 if(curVal == 1){
@@ -262,12 +262,12 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
                     $up.attr('aria-checked', false);
                 }
             });
-            
-            // add click handers to the thumbs up and down buttons
+
+            // add click handlers to the thumbs up and down buttons
             $('span#rating_ui > span').click(function(){
                 $('#rating_ipt').val($(this).data('rating')).change();
             });
-            
+
             // add a keypress handler to the thumbs up and down buttons
             $('span#rating_ui > span').keypress(function(e){
                 // only respond to the spacebar
@@ -276,14 +276,14 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
                     e.stopPropagation(); // stop the event bubbling
                 }
             });
-            
+
             // add a reset handler for the rating
             $('#rating_ipt').closest('form').on('reset', function(){
                 $('#rating_ipt').val('').change();
             });
         });
     </script>
-        
+
     <!-- Style the form elements -->
     <style type="text/css">
         /* Set the default fonts */
@@ -295,7 +295,7 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-weight: lighter;
         }
-                
+
         /* Style Fieldsets & Legends */
         fieldset fieldset{
             border-style: dashed;
@@ -313,24 +313,24 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
         fieldset fieldset fieldset legend{
             font-size: 14pt;
         }
-                
+
         /* make text areas full-width */
         textarea{
             width: 100%;
         }
-                
+
         /* Style form instructions */
         .instructions{
             font-style: italic;
             color: DimGrey;
             font-weight: lighter;
         }
-        
+
         /* Mark required fields with a yellow background */
         input:required, textarea:required{
             background-color: lightyellow;
         }
-        
+
         /* Mark text fields with invalid data with a red border and text */
         input:invalid, textarea:invalid{
             color: darkred;
@@ -338,12 +338,12 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
             border-width: 1px;
             border-style: solid;
         }
-                
+
         /* style the output area */
         #output{
             font-family: monospace;
         }
-        
+
         /* Style the Ratings UI */
         span#rating_ui > span {
             cursor: pointer;
@@ -360,7 +360,7 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
 <form action="javascript:void(0);" id="quick_review_fm">
 <fieldset role="form" aria-labelledby="quick_review_fm_desc">
     <legend id="quick_review_fm_desc">Quick Review</legend>
-        
+
     <ul>
         <li>
             <label for="comments_ta">Comments</label><br>
@@ -375,7 +375,7 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
             <input type="hidden" name="rating" id="rating_ipt">
         </li>
     </ul>
-    
+
     <p><button type="submit" id="submit_btn">Submit!</button> <button type="reset">Reset</button></p>
     <p>Submitted Data:</p>
     <textarea id="output" disabled></textarea>
@@ -390,12 +390,12 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
 
 Before we finish with forms, I want take a final look at event form-related event handlers, and give you some guidance for which to use on what elements.
 
-| Element | Event(s) | Usage |
-| --- | --- | --- |
-| `<form>` | `submit` & `reset` | If the form contains elements with custom validations, they should be re-evaluated by handlers tied to both of these events. If the form contains custom UI elements, there should be a `reset` handler to ensure the custom element resets properly. |
-| `<button>` | `click` | Use this handler to attach an action to a button. |
-| `<input type=checkbox>`, `<input type=radio>` & `<select>` | `change` | If custom validation is needed on any of these elements it should be attached to this handler. |
-| `<input type=text>` & `<textarea>` | `input` | If custom validation is needed on text fields it should be attached to this handler. |
+| Element                                                    | Event(s)           | Usage                                                                                                                                                                                                                                                 |
+| ---------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<form>`                                                   | `submit` & `reset` | If the form contains elements with custom validations, they should be re-evaluated by handlers tied to both of these events. If the form contains custom UI elements, there should be a `reset` handler to ensure the custom element resets properly. |
+| `<button>`                                                 | `click`            | Use this handler to attach an action to a button.                                                                                                                                                                                                     |
+| `<input type=checkbox>`, `<input type=radio>` & `<select>` | `change`           | If custom validation is needed on any of these elements it should be attached to this handler.                                                                                                                                                        |
+| `<input type=text>` & `<textarea>`                         | `input`            | If custom validation is needed on text fields it should be attached to this handler.                                                                                                                                                                  |
 
 Note that in the previous instalment we used the `keyup` event for text inputs rather than the `input` event suggested here. That was the old way of doing things, and as listener Jill pointed out, that event has significant short-comings — not all text comes from typing! Text fields can auto-complete, and users can paste with the mouse, and in those scenarios, the `keyup` event will not fire. Thankfully the newer `input` event will fire in those scenarios because it fires on all input, regardless of the source.
 
@@ -423,4 +423,4 @@ Update the web form you created in the previous challenge in the following ways:
 
 ## Final Thoughts
 
-We now have a good grounding in HTML forms, so we’re finally ready to return to our aellular automata prototypes and bring them to life as a web app.
+We now have a good grounding in HTML forms, so we’re finally ready to return to our cellular automata prototypes and bring them to life as a web app.

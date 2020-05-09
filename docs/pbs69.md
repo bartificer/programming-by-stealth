@@ -4,7 +4,7 @@ In the previous instalment we learned how to use Navs for creating navigation ba
 
 You can [download this instalment’s ZIP file here.](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip).
 
-# Matching Postcast Episode 578
+# Matching Podcast Episode 578
 
 Listen along to this instalment on [episode 578 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/01/ccatp573/)
 
@@ -38,7 +38,7 @@ I re-structured it to replace the two cols with a single col containing two tabb
       <a class="nav-item nav-link active" id="equipment_tab" data-toggle="tab" href="#equipment_pane" role="tab" aria-controls="equipment_pane" aria-selected="true">Required Equipment</a>
       <a class="nav-item nav-link" id="glossary_tab" data-toggle="tab" href="#glossary_pane" role="tab" aria-controls="glossary_pane" aria-selected="false">Glossary</a>
     </nav>
-      
+
     <div class="tab-content border border-top-0 rounded-bottom px-3">
       <section class="tab-pane active" id="equipment_pane" role="tabpanel" aria-labelledby="equipment-tab">
         <!-- Required Equipment here -->
@@ -124,7 +124,7 @@ Re-size the window to see the Navbar collapse into just a hamburger button at sm
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1_content" aria-controls="navbar1_content" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-				
+
   <!-- The main body of the bar (will collapse into hamburger) -->
   <div id="navbar1_content" class="collapse navbar-collapse">
     <ul class="navbar-nav">
@@ -202,7 +202,7 @@ As an example, the third Navbar in `pbs69a.html` contains a tag line (_‘An Iri
 <div id="navbar3_content" class="collapse navbar-collapse">
   <!-- The Tagline -->
   <span class="navbar-text">An Irish Voice Online</span>
-					
+
   <!-- The Nav -->
   <ul class="navbar-nav ml-auto">
     <!-- ... -->
@@ -228,10 +228,10 @@ As an example, let’s add a search form to our Navbar:
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #86b50d;" id="navbar4">
   <!-- The 'hamburger' -->
   <!-- ... --->
-				
+
   <!-- The Brand -->
-  <!-- ... --->				
-		
+  <!-- ... --->
+
   <!-- The main body of the bar (will collapse into hamburger) -->
   <div id="navbar4_content" class="collapse navbar-collapse">
     <!-- The Tagline -->
@@ -239,7 +239,7 @@ As an example, let’s add a search form to our Navbar:
 
     <!-- The Nav -->
     <!-- ... -->
-					
+
     <!-- The Search Form -->
     <span role="form" class="form-inline">
       <span class="input-group input-group-sm">

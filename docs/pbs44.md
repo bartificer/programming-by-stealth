@@ -6,9 +6,9 @@ We’ll continue our exploration of ES6 today by looking at how function argumen
 
 There is no ZIP file for this instalment, instead, I’ve published my solution to the challenge from the previous instalment (which is also the starting point for the next challenge) as [a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS43-Challenge-Solution). You can download it using the big green button labeled _Clone or Download_.
 
-# Matching Postcast Episode 511
+# Matching Podcast Episode 511
 
-Listen Along: Chit Chat Accross the Pond Episode 511
+Listen Along: Chit Chat Across the Pond Episode 511
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_11_26.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -61,15 +61,15 @@ bartificer.ca.Automaton.prototype.step = function(){
         for(y = 0; y < this.rows(); y++){
             // get a reference to the current cell
             var c = this.cell(x, y);
-                
+
             // calculate the next state
             var ns = this._stepFn(c.state(), this.cellNeighbourStates(x, y));
-                
+
             // set the cell's next state to the newly calculated value
             c.nextState(ns);
         }
     }
-        
+
     // next move each cell forward into its next state and re-render it
     for(x = 0; x < this.cols(); x++){
         for(y = 0; y < this.rows(); y++){
@@ -77,11 +77,11 @@ bartificer.ca.Automaton.prototype.step = function(){
             this._renderFn(this.cell(x, y).$td(), this.cell(x, y).state());
         }
     }
-        
+
     // finally, increment the generation counter
     this._generation++;
     this.generationChange();
-        
+
     // return a reference to self
     return this;
 };
@@ -103,15 +103,15 @@ bartificer.ca.Automaton.prototype.step = function(){
         for(let y = 0; y < this.rows(); y++){
             // get a reference to the current cell
             let c = this.cell(x, y);
-              
+
             // calculate the next state
             let ns = this._stepFn(c.state(), this.cellNeighbourStates(x, y));
-                
+
             // set the cell's next state to the newly calculated value
             c.nextState(ns);
         }
     }
-     
+
     // next move each cell forward into its next state and re-render it
     for(let x = 0; x < this.cols(); x++){
         for(let y = 0; y < this.rows(); y++){
@@ -119,11 +119,11 @@ bartificer.ca.Automaton.prototype.step = function(){
             this._renderFn(this.cell(x, y).$td(), this.cell(x, y).state());
         }
     }
-        
+
     // finally, increment the generation counter
     this._generation++;
     this.generationChange();
-        
+
     // return a reference to self
     return this;
 };
@@ -180,13 +180,13 @@ function product(){
     if(arguments.length == 0){
         return 0;
     }
-  
+
     // loop over the arguments
     var ans = 1;
     for(var i = 0; i < arguments.length; i++){
         ans = ans * arguments[i];
     }
-  
+
     // return the final answer
     return ans;
 }
@@ -212,11 +212,11 @@ function product(...n){
     if(n.length === 0){
         return 0;
     }
-  
+
     // loop over the numbers
     let ans = 1;
     n.forEach(function(num){ ans *= num; });
-  
+
     // return the final answer
     return ans;
 }
@@ -315,15 +315,15 @@ for(let tla in tlaLib){
 The example above uses a plain object (`tlaLib`), but things get a little more complicated when looping over prototyped objects. Why? Because prototyped objects can contain both _instance properties_ and _static properties_.
 
 > ### Revision — Instance -v- Static Properties
-> 
+>
 > Prototyped objects can have two distinct kinds of property — those that belong to the instance itself, and those that belong to the prototype.
-> 
+>
 > Each instance of a prototype has its own separate copy of each instance property, hence the name.
-> 
+>
 > Properties that belong to the prototype itself are different. There’s just a single copy of those properties that all instances share. We’ve been referring to these as _static properties_, but you may also see them referred to as _prototype properties_, or even _class properties_).
-> 
+>
 > The following simple prototype contains one of each kind of property:
-> 
+>
 > ```JavaScript
 > // declare a simple prototype with:
 > // One instance property (colour),
@@ -333,40 +333,40 @@ The example above uses a plain object (`tlaLib`), but things get a little more c
 > }
 > Booger.prototype.aka = 'Bogey';
 > ```
-> 
+>
 > We can create two instances of this prototype with the following:
-> 
+>
 > ```JavaScript
 > // create two Boogers
 > let bogey1 = new Booger();
 > let bogey2 = new Booger('yellow');
 > ```
-> 
+>
 > Each of these instances has their own copy of the instance property `colour`, as demonstrated by the following code snippet:
-> 
+>
 > ```JavaScript
 > // show both colours
 > console.log(bogey1.colour); // green
 > console.log(bogey2.colour); // yellow
-> 
+>
 > // change the colour of bogey1
 > bogey1.colour = 'white';
-> 
+>
 > // show both colours again
 > console.log(bogey1.colour); // white
 > console.log(bogey2.colour); // yellow
 > ```
-> 
+>
 > However, both instances share a reference to the single static property `aka`, as illustrated by the following:
-> 
+>
 > ```JavaScript
 > // show both aka properties
 > console.log(bogey1.aka); // Bogey
 > console.log(bogey2.aka); // Bogey
-> 
+>
 > // change the static aka property
 > Booger.prototype.aka = 'Snot';
-> 
+>
 > // show both aka properties
 > console.log(bogey1.aka); // Snot
 > console.log(bogey2.aka); // Snot

@@ -1,6 +1,6 @@
 # PBS 92 of X — Currency Grid Solution
 
-In this instalment we'll be describing my sample solution to the challenge set at the end of [PBS 89](https://bartificer.net/pbs89). 
+In this instalment we'll be describing my sample solution to the challenge set at the end of [PBS 89](https://bartificer.net/pbs89).
 
 ## Matching Podcast Episode
 
@@ -165,11 +165,11 @@ I made the judgement that my code had evolved in complexity to the point that it
 
 The first thing I did was take the JavaScript out of the HTML file and move it into a pair of separate JavaScript files which I then included into the HTML using `<script>` tags with an `src` attribute. I chose to move the currencies data structure into one file, and all the rest of the JavaScript into another.
 
-My logic was simple — I wanted to be able to use tabs within my code editor to quickly jump between the HTML templates in the HTML file, the currencies data structure in `currencyData.js`, and the JavaScript that actually implements the app's functionality in `index.js`. Switching tabs is just so much quicker and easier than scrolling up and down, so this simple moving around of the code would make my life that little bit easer while working to add the grid.
+My logic was simple — I wanted to be able to use tabs within my code editor to quickly jump between the HTML templates in the HTML file, the currencies data structure in `currencyData.js`, and the JavaScript that actually implements the app's functionality in `index.js`. Switching tabs is just so much quicker and easier than scrolling up and down, so this simple moving around of the code would make my life that little bit easier while working to add the grid.
 
 #### Functions for Everything
 
-The next step I chose to take was to break the long chunks of code in my event handlers into well named functions. This makes the event handlers much easier to read, and potentially facilitates code-reuse. 
+The next step I chose to take was to break the long chunks of code in my event handlers into well named functions. This makes the event handlers much easier to read, and potentially facilitates code-reuse.
 
 To illustrate the legibility concept, let's look at my finished input handler for the toggles for turning on or off currencies:
 

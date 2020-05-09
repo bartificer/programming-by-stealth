@@ -6,9 +6,9 @@ The library we’ll be examining is [bartificer.linkToolkit.js](https://github.c
 
 We’ll be looking at the library from three points of view – the actual JavaScript code, the JSDoc comments, and the documentation produced from those comments, and, project management.
 
-# Matching Postcast Episode 465
+# Matching Podcast Episode 465
 
-Listen Along: Chit Chat Accross the Pond Episode 465
+Listen Along: Chit Chat Across the Pond Episode 465
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_11_22.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -30,7 +30,7 @@ Let’s start by looking at how the library is used right here on this site. If 
   $(function(){
   	// add rel=noopener to all links with a target of _blank on the entire page
     bartificer.linkToolkit.noopenerFix();
-  
+
     // externalise all external links in the content region
     bartificer.linkToolkit.autoExternalise(
       $('#contentmiddle'),
@@ -91,7 +91,7 @@ This test page is designed to be run from localhost. To play with it, download t
 
 To make management of the project easier, I use the Node Package Manager, `npm` to install all the needed dependencies for building the various outputs, and to define and run the various build tasks. The configuration for NPM is stored in the file `package.json`.
 
-This is a very simple project, so there are actually no dependencies for the code itself, only for some development tasks. Hence, the project file only defines two dependencies, and both are listed as dev dependencies. The two dependencies are are JSDoc, for generating the documentation, and the [Minami JSDoc theme](https://www.npmjs.com/package/minami).
+This is a very simple project, so there are actually no dependencies for the code itself, only for some development tasks. Hence, the project file only defines two dependencies, and both are listed as dev dependencies. The two dependencies are JSDoc, for generating the documentation, and the [Minami JSDoc theme](https://www.npmjs.com/package/minami).
 
 Being a pure JavaScript library, there is no code to compile, so there are actually very few build tasks – just two in fact, one to generate the public documentation, and one to generate the developer documentation. The commands to carry out these two tasks are defined in the `scripts` section of the file.
 
