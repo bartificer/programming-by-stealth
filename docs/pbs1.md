@@ -18,7 +18,7 @@ The plan is to sneak up on programming in small steps – hence the title of the
 Also, in order to be as inclusive as possible, I’m going to avoid vendor-specific languages – that means no Apple Script, no VB Script, no Objective C, and no C# (pronounced ‘see-sharp’ BTW).
 Instead, I’m going to use the most universal platform of all – the world wide web. We’re going to sneak up on programming by learning to create web pages.
 
-#### Matching Podcast Episode 407
+## Matching Podcast Episode 407
 
 Listen along to this instalment on [episode 407 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2015/10/ccatp-407/)
 
@@ -50,7 +50,7 @@ I’ll be using the free version of MAMP. MAMP comes with the various servers ne
 It’s this controller app that you’ll be using to manage the server apps.
 On the Mac the controller apps is called `MAMP`, and you’ll find it in the `MAMP` folder in the `Applications` folder.
 
-When you first launch MAMP it will try to strong-arm you into using MAMP Pro, don’t give in! My advice is to un-check the checkbox to check for MAMP Pro, and then click the `Launch MAMP` button.
+When you first launch MAMP it will try to strong-arm you into using MAMP Pro, don’t give in! My advice is to uncheck the checkbox to check for MAMP Pro, and then click the `Launch MAMP` button.
 
 ![Avoid MAMP Pro](../assets/pbs1/Screen-Shot-2015-10-09-at-4.13.31-p.m.-e1444403735573.png)
 
@@ -58,9 +58,9 @@ This is what the current version of the MAMP controller app looks like when it l
 
 ![MAMP App](../assets/pbs1/Screen-Shot-2015-10-09-at-4.16.58-p.m.-e1444403862205.png)
 
-The little icons in the top-right show whether or not the web and DB servers are running.
+The little icons in the top right corner show whether or not the web and DB servers are running.
 
-I like to re-configure MAMP to use the industry standard ports for the web and DB servers (80 and 3306).
+I like to reconfigure MAMP to use the industry standard ports for the web and DB servers (80 and 3306).
 You do this by clicking `Preferences`, then selecting the `Ports` tab, and then clicking on the button `Set Web & MySQL ports to 80 & 3306`.
 
 ![Configure MAMP](../assets/pbs1/Screen-Shot-2015-10-09-at-4.19.40-p.m.-e1444404044353.png)
@@ -114,5 +114,5 @@ Note that if you’ve not configured your web server to use port 80, you’ll ne
 ## Final Thoughts
 
 We’ve now laid the ground work to start on our journey towards programming.
-In the next instalment we’ll start learning about the Hyper Text Markup Language, or HTML, which instructs as web browser how to present information to users.
-This is not a programming language as-such, but a mark-up language. HTML will serve as a gentle introduction to the idea of using formally defined rules of grammar to tell a computer what we mean.
+In the next instalment we’ll start learning about the Hyper Text Markup Language, or HTML, which instructs a web browser on how to present information to users.
+This is not a programming language as such, but a markup language. HTML will serve as a gentle introduction to the idea of using formally defined rules of grammar to tell a computer what we mean.
