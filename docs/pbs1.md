@@ -88,7 +88,7 @@ Then, using your programming editor of choice, create a file called `index.html`
 
 Add the following content to the file:
 
-```XHTML
+```html
 <!DOCTYPE html>
 <html>
 <head>
