@@ -36,15 +36,15 @@ All these parts are composed into a URL as follows – the underlined sections a
       <u>scheme</u>
       ://
       <u>host</u>
-      </strong>
-      :
-      <u>port</u>
-      <strong>/</strong>
-      <u>path</u>
-      ?
-      <u>query</u>
-      #
-      <u>fragment</u>
+    </strong>
+    :
+    <u>port</u>
+    <strong>/</strong>
+    <u>path</u>
+    ?
+    <u>query</u>
+    #
+    <u>fragment</u>
 </ul>
 
 In code as:
@@ -136,7 +136,7 @@ Attributes are specified within opening and void tags only. They go after the na
 
 The generic form of a tag with two attributes would be:
 
-```XHTML
+```html
 <tag_name name1="value 1" name2="value 2">Tag contents</tag_name>
 ```
 
@@ -180,7 +180,7 @@ Because image files are required to make this example work, I’ve created a zip
 
 For simplicity I’m also including the content of `index.html` here:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -218,7 +218,7 @@ To add a link to a page, use the `<a>` tag with the `href` attribute. The conten
 
 The basic form of a link looks like this:
 
-```XHTML
+```html
 <a href="a_url">the link text</a>
 ```
 
@@ -234,7 +234,7 @@ Anchors are created using the `<a>` tag with the `name` attribute. When creating
 
 To define a URL fragment with the name `section1` you would add the following tag into the document just before the header for section 1:
 
-```XHTML
+```html
 <a name="section1"></a>
 ```
 
@@ -244,7 +244,7 @@ Again, because the example involves multiple documents, I have zipped the files 
 
 For convenience, the contents of the two HTML files is included here:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -332,7 +332,7 @@ sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </html>
 ```
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
