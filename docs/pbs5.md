@@ -31,7 +31,8 @@ A so-called _absolute URL_ is a complete URL, and it specifies a number of parts
 
 All these parts are composed into a URL as follows – the underlined sections are placeholders, and the bold sections are required for valid absolute URLs:
 
-<code><ul {list-style-type: none}>
+<code>
+<ul {list-style-type: none}>
     <strong>
       <u>scheme</u>
       ://
@@ -152,13 +153,13 @@ Using CSS, it is possible to make images behave in different ways. So we’ll re
 `<img />` tags require two attributes, and there is a third optional one that I also want to mention:
 
 <dl>
-<dt>`src`</dt>
+<dt><code>src</code></dt>
 <dd>The URL of the image to include (can be relative or absolute)</dd>
 
-<dt>`alt`</dt>
-<dd>Alternative text describing this image. This is the text that will replace the image in text-only browsers and screen readers for the visually impaired. The attribute is not technically required, but leaving it out is exceptionally bad form; so consider it required. Also, be sure to always use useful alt text – _‘logo’_ is useless alt text _‘Podfeet Logo’_ is useful alt text.</dd>
+<dt><code>alt</code></dt>
+<dd>Alternative text describing this image. This is the text that will replace the image in text-only browsers and screen readers for the visually impaired. The attribute is not technically required, but leaving it out is exceptionally bad form; so consider it required. Also, be sure to always use useful alt text – <em>‘logo’</em> is useless alt text. <em>‘Podfeet Logo’</em> is useful alt text.</dd>
 
-<dt>`title`</dt>
+<dt><code>title</code></dt>
 <dd>This optional attribute can be used to specify text that should be displayed as a tooltip when the user hovers their mouse over the image. This is not the same thing as alt text. It exists to allow extra info for users be specified, not to tell screen readers what the image is. All images should have alt text, but only images need titles.</dd>
 </dl>
 
