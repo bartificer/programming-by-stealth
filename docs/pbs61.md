@@ -6,7 +6,7 @@ While many, probably most, Bootstrap components either require JavaScript to fun
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/08/pbs61.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs61.zip).
 
-# Matching Postcast Episode 561
+# Matching Podcast Episode 561
 
 Listen along to this instalment on [episode 561 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/08/ccatp-561/)
 
@@ -48,14 +48,14 @@ I started by building a form to gather the needed information:
 ```XHTML
 <fieldset class="col" role="form" aria-labelledby="create_fm_desc">
   <legend id="create_fm_desc">Create Alerts</legend>
-            
+
   <form class="form" action="javascript:void(0);" id="create_fm">
-            
+
   <p class="form-group">
     <label for="alert_text_tb">Alert Text</label>
     <input type="text" class="form-control" id="alert_text_tb" placeholder="The text for your alert">
   </p>
-            
+
   <p class="form-group">
     <label for="alert_style_sel">Alert Style</label>
     <select class="form-control" id="alert_style_sel">
@@ -69,7 +69,7 @@ I started by building a form to gather the needed information:
       <option value="dark">Dark</option>
     </select>
   </p>
-            
+
   <p>
     <button class="btn btn-primary" id="alert_btn">Add Alert</button>
     <button class="btn btn-danger" id="close_btn">Close All Alerts</button>
@@ -94,20 +94,20 @@ The next step was to add an event handler for the add button (this is done insid
 // add an event handler to the Add button
 $('#alert_btn').click(function(){
   // build an alert
-  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the textbox!");
+  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the text box!");
   $a.addClass(`alert alert-${$('#alert_style_sel').val()}`);
-        
+
   // inject a dismiss button
   $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
-        
+
   // tell Bootstrap to treat our new alert as an alert
   $a.alert();
-        
+
   // add a listener to the alert's close event
   $a.on('close.bs.alert', function(){
     console.log('an alert was closed!');
   });
-        
+
   // inject it into the page
   $('#insert_here').append($a);
 });
@@ -115,13 +115,13 @@ $('#alert_btn').click(function(){
 
 Most of this code is very similar to that in `pbs60b.html`, but the two notable differences are where the code extracts the values from the text box and dropdown.
 
-To get at the value of the textbox I used:
+To get at the value of the text box I used:
 
 ```JavaScript
-$('#alert_text_tb').val() || "A sample Alert — enter text in the textbox!"
+$('#alert_text_tb').val() || "A sample Alert — enter text in the text box!"
 ```
 
-Remember, when you pass jQuery a CSS selector as a single string argument is searches the entire document for elements matching that selector. In this case that would be exactly one thing, the text box with the ID `alert_text_tb`. I then call jQuery’s `.val()` function on that text box to get at the value. If there is no value, I default to the string `"A sample Alert — enter text in the textbox!"`.
+Remember, when you pass jQuery a CSS selector as a single string argument is searches the entire document for elements matching that selector. In this case that would be exactly one thing, the text box with the ID `alert_text_tb`. I then call jQuery’s `.val()` function on that text box to get at the value. If there is no value, I default to the string `"A sample Alert — enter text in the text box!"`.
 
 The other important line of code is the one that sets the style of the alert based on the dropdown:
 
@@ -205,4 +205,4 @@ The file `pbs61b.html` in the ZIP file contains a sampling of some different bad
 
 ## Final Thoughts
 
-In this instalment we took a little breather from JavaScript/jQuery, but next time we’ll be back to using all three of the the stands that make up the internet’s backbone (HTML, CSS & JavaScript) when we look at some more commonly used Bootstrap components.
+In this instalment we took a little breather from JavaScript/jQuery, but next time we’ll be back to using all three of the stands that make up the internet’s backbone (HTML, CSS & JavaScript) when we look at some more commonly used Bootstrap components.

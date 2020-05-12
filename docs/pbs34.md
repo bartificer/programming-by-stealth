@@ -6,9 +6,9 @@ Wrapping up our brief detour into testing a QUnit leaves us free to move back to
 
 As usual, I’ve collected the code referenced in this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs34.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs34.zip).
 
-# Matching Postcast Episode 484
+# Matching Podcast Episode 484
 
-Listen Along: Chit Chat Accross the Pond Episode 484
+Listen Along: Chit Chat Across the Pond Episode 484
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_30.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -40,10 +40,10 @@ If you look at my QUnit test runner (`test/index.html`), you’ll see how easy i
 <head>
 	<meta charset="utf-8" />
 	<title>PBS Date &amp; Time Prototypes Test Suite</title>
-	
+
 	<!-- load the QUnit style sheet from the jQuery CDN -->
 	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/qunit/qunit-2.3.0.css" />
-	
+
 	<!-- load the API to be tested -->
 	<script type="text/javascript" src="../pbs.datetime.js"></script>
 </head>
@@ -107,7 +107,7 @@ To make these basic type checks easier, I created another global variable named 
 
 ```JavaScript
 DUMMY_BASIC_TYPES = {
-  undef: DUMMY_DATA.undef, 
+  undef: DUMMY_DATA.undef,
   bool: DUMMY_DATA.bool,
   num: DUMMY_DATA.num,
   str: DUMMY_DATA.str,
@@ -136,7 +136,7 @@ function dummyBasicTypesExcept(){
     for(var i = 0; i < arguments.length; i++){
         exclude_lookup[arguments[i]] = true;
     }
-    
+
     // build the list of type names not excluded
     var ans = [];
     Object.keys(DUMMY_BASIC_TYPES).sort().forEach(function(tn){
@@ -144,7 +144,7 @@ function dummyBasicTypesExcept(){
             ans.push(tn); // save the type name if not excluded
         }
     });
-    
+
     // return the calculated list
     return ans;
 }
@@ -181,7 +181,7 @@ QUnit.test('hours validation (via constructor & .hours() accessor)', function(a)
       'accessor .hours() does not allow hours to be ' + basic_type.desc
     );
   });
-            
+
   // make sure invalid numbers throw
   a.throws(
     function(){
@@ -228,7 +228,7 @@ QUnit.test('hours validation (via constructor & .hours() accessor)', function(a)
     Error,
     'accessor .hours() does not allow hours to be greater than 23'
   );
-            
+
   // make sure valid extremes do not throw
   a.ok((function(){ var t = new pbs.Time(0); return true; })(), 'constructor allows hours 0 (min valid value)');
   a.ok((function(){ var t = new pbs.Time(); t.hours(0); return true; })(), '.hours() accessor allows hours 0 (min valid value)');
@@ -379,7 +379,7 @@ QUnit.testStart(function() {
         }
     };
     DUMMY_BASIC_TYPES = {
-        undef: DUMMY_DATA.undef, 
+        undef: DUMMY_DATA.undef,
         bool: DUMMY_DATA.bool,
         num: DUMMY_DATA.num,
         str: DUMMY_DATA.str,
@@ -446,7 +446,7 @@ QUnit.module(
   {
     before: function(){ // prep sample objects for use in all tests
       this.tmn = new pbs.Time(0, 0, 0);
-      this.tam = new pbs.Time(3, 4, 5);    
+      this.tam = new pbs.Time(3, 4, 5);
       this.tn = new pbs.Time(12, 0, 0);
       this.tpm = new pbs.Time(15, 4, 5);
     }
@@ -460,7 +460,7 @@ QUnit.module(
       a.equal(this.tn.toString(), '12:00:00', 'Noon renders correctly');
       a.equal(this.tpm.toString(), '15:04:05', 'PM time renders correctly');
     });
-            
+
     // test the 12 hour format
     QUnit.test('.time12()', function(a){
       a.expect(4);
@@ -469,7 +469,7 @@ QUnit.module(
       a.equal(this.tn.time12(), '12:00:00PM', 'Noon renders correctly');
       a.equal(this.tpm.time12(), '3:04:05PM', 'PM time renders correctly');
     });
-            
+
     // test the 24 hour format
     QUnit.test('.time24()', function(a){
       a.expect(4);
@@ -503,20 +503,20 @@ We’ll start with a blank `test.js`, and a basic `index.html` that imports the 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <title>bartificer.linkToolkit.js QUnit Test Runner</title>
-  
+
   <!-- Load the QUnit CSS from the jQuery CDN -->
   <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.2.css" />
-  
+
   <!-- Load jQuery from their CDN -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  
+
   <!-- Load URI.js from a CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.18.3/URI.min.js" integrity="sha256-F0EBsZw531Ic566O5qfXoMLeSRgH2lkS5GYuUn+jkiY=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.18.3/jquery.URI.min.js" integrity="sha256-oXQ7kOcuQWuS1Haoc7SRvZm/Vid3a8Kf+jAvtUSJrqE=" crossorigin="anonymous"></script>
-  
+
   <!-- Load bartificer.linkToolkit.js -->
   <script type="text/javascript" src="../lib/bartificer.linkToolkit.js"></script>
-  
+
   <style type="text/css">
     /* Style External link icons */
     img.bartificer-externalLink{
@@ -575,11 +575,11 @@ The most critical function within the API is `bartificer.linkToolkit.isLocalUrl(
 QUnit.module('isLocalUrl()', {}, function(){
     // create a short alias for the function being tested
     var isLocalUrl = bartificer.linkToolkit.isLocalUrl;
-    
+
     QUnit.test('function exists', function(a){
         a.strictEqual(typeof isLocalUrl, 'function', 'has type function');
     });
-    
+
     QUnit.test('default behaviour', function(a){
         a.equal(isLocalUrl(''), true, 'empty string is a relative URL');
         a.equal(isLocalUrl(42), true, 'a number is considered a relative URL');
@@ -601,12 +601,12 @@ QUnit.module('isLocalUrl()', {}, function(){
         a.equal(isLocalUrl({boogers: 'snot'}), false, 'a plain object is not considered a local URL');
         a.equal(isLocalUrl(function(){}), false, 'a callback is not considered a local URL');
     });
-    
+
     QUnit.test('the subDomainsLocal option', function(a){
         a.equal(isLocalUrl('http://www.localhost/a.html', {subDomainsLocal: true}), true, 'a subdomain of localhost is considered local when subDomainsLocal is set to true');
         a.equal(isLocalUrl('http://www.localhost/a.html', {subDomainsLocal: false}), false, 'a subdomain of localhost is considered local when subDomainsLocal is set to false');
     });
-    
+
     QUnit.test('the localDomains option', function(a){
         a.equal(
             isLocalUrl('http://bartb.ie/a.html', {localDomains: ['bartb.ie']}),
@@ -684,11 +684,11 @@ QUnit.module('noopenerFix()', {}, function(){
     QUnit.test('function exists', function(a){
         a.strictEqual(typeof bartificer.linkToolkit.noopenerFix, 'function', 'has type function');
     });
-    
+
     QUnit.test('default options', function(a){
         // call the function on the fixture with the default options
         bartificer.linkToolkit.noopenerFix($('#qunit-fixture'));
-        
+
         // make sure the links without a target were ignored as expected
         a.equal(
             $('#rl_nt_nr').attr('rel'),
@@ -710,7 +710,7 @@ QUnit.module('noopenerFix()', {}, function(){
             undefined,
             'no rel added to an absolute link to an external domain without a target'
         );
-        
+
         // make sure local links with a target were also ignored
         a.equal(
             $('#rl_tb_nr').attr('rel'),
@@ -727,7 +727,7 @@ QUnit.module('noopenerFix()', {}, function(){
             undefined,
             'no rel added to an absolute link to a subdomain of localhost with a target'
         );
-        
+
         // make sure external links with a target but with the ignore classes are also ignored
         a.equal(
             $('#ap_tb_nr_ib').attr('rel'),
@@ -739,28 +739,28 @@ QUnit.module('noopenerFix()', {}, function(){
             undefined,
             'no rel added to an absolute link to an external domain with a target but with the class bartificer-noopener-ignore'
         );
-        
+
         // make sure a rel of nooperer was added to an external link without an existing rel
         a.equal(
             $('#ap_tb_nr').attr('rel'),
             'noopener',
             'rel set to noopener on an absolute link to an external domain with a target'
         );
-        
+
         // make sure the rel was not doubled up on an external link with an existing rel of noopener
         a.equal(
             $('#ap_tb_ro').attr('rel'),
             'noopener',
             'rel left unchanged on an absolute link to an external domain with a target that already had rel="noopener"'
         );
-        
+
         // make sure the rel was not doubled up on an external link with an existing rel of noopener and nofollow
         a.equal(
             $('#ap_tb_r2').attr('rel'),
             'noopener nofollow',
             'rel left unchanged on an absolute link to an external domain with a target that already had rel="noopener nofollow"'
         );
-        
+
         // make sure the rel was appended to when it existed but was not noopener
         a.equal(
             $('#ap_tb_rf').attr('rel'),
@@ -768,11 +768,11 @@ QUnit.module('noopenerFix()', {}, function(){
             'rel correctly appended on an absolute link to an external domain with a target that already had rel="nofollow"'
         );
     });
-    
+
     QUnit.test('option ignoreLocalLinks=false', function(a){
         // call the function on the fixture with the ignoreLocalLinks option set to false
         bartificer.linkToolkit.noopenerFix($('#qunit-fixture'), {ignoreLocalLinks: false});
-        
+
         // make sure the local links with a target had their rel set
         a.equal(
             $('#rl_tb_nr').attr('rel'),
@@ -785,7 +785,7 @@ QUnit.module('noopenerFix()', {}, function(){
             'rel set to noopener on absolute link to localhost with a target'
         );
     });
-    
+
     QUnit.test('options ignoreLocalLinks=true & subDomainsLocal=true', function(a){
         // call the function on the fixture with the options to be tested
         bartificer.linkToolkit.noopenerFix(
@@ -795,7 +795,7 @@ QUnit.module('noopenerFix()', {}, function(){
                 subDomainsLocal: true
             }
         );
-        
+
         // make sure the link to a subdomain of localhost with a target did not get their rel set
         a.equal(
             $('#as_tb_nr').attr('rel'),
@@ -803,14 +803,14 @@ QUnit.module('noopenerFix()', {}, function(){
             'rel not set on absolute link to a subdomain of localhost with a target'
         );
     });
-    
+
     QUnit.test('option ignoreDomains', function(a){
         // call the function on the fixture with the ignoreDomains option
         bartificer.linkToolkit.noopenerFix(
             $('#qunit-fixture'),
             { ignoreDomains: ['bartb.ie', 'podfeet.com'] }
         );
-        
+
         // make sure links to the ignored domains did not get their rel set
         a.equal(
             $('#ab_tb_nr').attr('rel'),
@@ -834,7 +834,7 @@ The ZIP file for this assignment contains the test suite for this API up to this
 
 ## Assignment
 
-We’ve just just finished writing the tests for the [`isLocalUrl()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.isLocalUrl) and [noopenerFix()](https://bartificer.net/pbs34) functions. Either starting from scratch, or, using the code in this instalment’s ZIP file as a starting point, write tests for some more of the functions in the [`bartificer.linkToolkit`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix) API. I would suggest starting with the function [`markExternal()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.markExternal).
+We’ve just finished writing the tests for the [`isLocalUrl()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.isLocalUrl) and [noopenerFix()](https://bartificer.net/pbs34) functions. Either starting from scratch, or, using the code in this instalment’s ZIP file as a starting point, write tests for some more of the functions in the [`bartificer.linkToolkit`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix) API. I would suggest starting with the function [`markExternal()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.markExternal).
 
 ## Final Thoughts (And Two Book Recommendations)
 

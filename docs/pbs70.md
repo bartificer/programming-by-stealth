@@ -6,7 +6,7 @@ Different notifications require a different UI, hence there being two components
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs70.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs70.zip).
 
-# Matching Postcast Episode 580
+# Matching Podcast Episode 580
 
 Listen along to this instalment on [episode 580 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/01/ccatp580/)
 
@@ -22,7 +22,7 @@ Alerts are designed to draw a user’s attention to something that’s known at 
 
 The key thing to remember is that Alerts were designed for delivering information when the page or interface loads, not at some random later time.
 
-As its name suggests, the Bootstrap _Modal_ component provides an implementation of a so-called _modal dialogue_. By definition, a modal dialogue is something that takes over the full screen and prevents you interacting with any part of the app/page other than that dialogue. They are, by design, very disruptive and intrusive, and are designed for situation where things can’t continue until the user deals with some event, perhaps by simply confirming that they’ve received some information, or by choosing some kind of response. Basically, modals for for communications important things that the user must be forced to see, confirm, or choose.
+As its name suggests, the Bootstrap _Modal_ component provides an implementation of a so-called _modal dialogue_. By definition, a modal dialogue is something that takes over the full screen and prevents you interacting with any part of the app/page other than that dialogue. They are, by design, very disruptive and intrusive, and are designed for situations where things can’t continue until the user deals with some event, perhaps by simply confirming that they’ve received some information, or by choosing some kind of response. Basically, modals are for communicating important things that the user must be forced to see, confirm, or choose.
 
 In terms of notifications, modals are quite the sledge hammer, hence the need for a more subtle type of notification. That’s where Bootstrap’s _Toast_ component comes in. These notifications are inspired by push notifications on smart phones and are designed to appear, stay for some amount of time, and then disappear.
 
@@ -44,7 +44,7 @@ Because you can only have one Modal at a time, and because the markup for Modals
 
 ### The Simplest Modal
 
-In my experience, I almost exclusively want to trigger Modals with JavaScript, but there is one scenario where I can see a use for triggering a Modal using jQuery’s data-toggle attribute on a button — to show/hide a lengthy piece of text (like perhaps a privacy policy) in a way that doesn’t waste too much screen realestate.
+In my experience, I almost exclusively want to trigger Modals with JavaScript, but there is one scenario where I can see a use for triggering a Modal using jQuery’s data-toggle attribute on a button — to show/hide a lengthy piece of text (like perhaps a privacy policy) in a way that doesn’t waste too much screen real estate.
 
 Let’s use that example scenario to learn how to build modals.
 
@@ -113,7 +113,7 @@ It is possible to prevent some of these behaviours, but we’re not going to cov
 
 As we’ve seen, you can trigger a modal without having to write any JavaScript using Bootstrap’s Toggle plugin, but that’s not the most common use case for Modals. Instead, Modals are usually triggered via an event handler.
 
-Like with other Bootstrap components, the Boostrap JavaScript contains a jQuery plugin for controlling Modals. This plugin has the same name as the component, i.e. modal, and provides two particularly important actions, `show`, and `hide`. Like with all jQuery plugins, you invoke the Bootstrap Modal jQuery plugin by calling the function with the plugins name on a jQuery object and passing the action as a string as the first argument.
+Like with other Bootstrap components, the Bootstrap JavaScript contains a jQuery plugin for controlling Modals. This plugin has the same name as the component, i.e. modal, and provides two particularly important actions, `show`, and `hide`. Like with all jQuery plugins, you invoke the Bootstrap Modal jQuery plugin by calling the function with the plugins name on a jQuery object and passing the action as a string as the first argument.
 
 For example, you can paste the following into a JavaScript console on `pbs70a.html` to show the Modal:
 
@@ -204,7 +204,7 @@ The exact width a Modal will have depends on its content and the current width o
 
 You can use the _Width_ dropdown in the Modal generator form in `pbs70b.html` to see the what the different widths look like.
 
-## Bootstap Toast Notifications
+## Bootstrap Toast Notifications
 
 While it is possible to use Bootstrap Toast components in the same ways we use Modals above, that’s generally not the best approach because you can, usually will, have the possibility of multiple Toasts being displayed at the same time. Toasts have been specifically designed to support multiple notifications being visible at the same time, and if you set things up correctly, they’ll even stack nicely by default.
 
@@ -331,7 +331,7 @@ $toast.toast('show');
 
 You can see a real-world example in `pbs70b.html` where the code reads the values for the title and body from the text box and text area in the form.
 
-## Asside — Reminder: Don’t Re-Invent the Wheel!
+## Aside — Reminder: Don’t Re-Invent the Wheel!
 
 If you look at the source code for pbs70b.html you’ll notice I made use of two additional open source libraries. Rather than writing my own random glop generator I made use of a nice simple open source one published to GitHub named [lorem-ipsum-js](https://github.com/fffilo/lorem-ipsum-js).
 

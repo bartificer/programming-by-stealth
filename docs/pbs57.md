@@ -8,7 +8,7 @@ Going from zero to responsive design would be a big leap, so we’re going to br
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip).
 
-# Matching Postcast Episode 553
+# Matching Podcast Episode 553
 
 Listen along to this instalment on [episode 553 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-553//)
 
@@ -87,11 +87,11 @@ The following simple demo (`pbs57a.html` in [the ZIP file](https://www.bartbussc
 <html>
 <head>
     <meta charset="utf-8" />
-        
+
     <!-- Include Bootstrap 4 CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        
+
     <title>PBS 57 A — Container Demo</title>
 </head>
 <body>
@@ -136,11 +136,11 @@ The following would be a very common arrangement — two side bars with explicit
 <html>
 <head>
     <meta charset="utf-8" />
-        
+
     <!-- Include Bootstrap 4 CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        
+
     <title>PBS 57 B — Three-Column Layout Demo</title>
 </head>
 <body>
@@ -236,11 +236,11 @@ It’s inside this full-width column that takes up the entire second row of the 
   <div class="row">
     <header class="col-12">
       <h1 class="display-1">Ireland Votes <small class="text-muted">May 2018</small></h1>
-        
+
       <p class="lead">On the 25<sup>th</sup> of May 2018 the people of Ireland voted in a referendum on whether or not to accept the 36<sup>th</sup> amendment to their constitution. <a href="https://en.wikipedia.org/wiki/Thirty-sixth_Amendment_of_the_Constitution_Bill_2018" target="_blank" rel="noopener">Read More ...</a></p>
     </header>
   </div>
-        
+
   <main class="row">
     <div class="col-12">
       <!-- REST OF PAGE HERE -->
@@ -251,7 +251,7 @@ It’s inside this full-width column that takes up the entire second row of the 
 
 Let’s go ahead and create that inner container now.
 
-This container has no semantic meaning, so again, we should use a `<div>` with the class `container`. By default, containers have a padding. This is usually desirable, not not in this specific situation. With the padding in place the contents of our inner grid will appear off-set from the content contained in the outer grid, and we don’t want that. We can very easily remove the un-wanted padding by adding the Bootstrap utility class `p-0` to the inner container.
+This container has no semantic meaning, so again, we should use a `<div>` with the class `container`. By default, containers have a padding. This is usually desirable, but not in this specific situation. With the padding in place the contents of our inner grid will appear off-set from the content contained in the outer grid, and we don’t want that. We can very easily remove the un-wanted padding by adding the Bootstrap utility class `p-0` to the inner container.
 
 We now have a container without a row, so let’s open another `<div>` with the class `row` directly inside the inner container.
 
@@ -290,7 +290,7 @@ You’ll find the full source for the finished laided-out page in [the ZIP file]
         ...
       </header> <!-- close only col in 1st row in outer container-->
     </div> <!-- close 1st row in outer container-->
-        
+
     <main class="row"> <!-- open 2nd row in outer container-->
       <div class="col-12"> <!-- open only col in 2nd row in outer container-->
         <div class="container p-0"> <!-- open inner container -->
@@ -298,23 +298,23 @@ You’ll find the full source for the finished laided-out page in [the ZIP file]
             <div class="col"> <!-- open 1st col in 1st row of inner container -->
               ...
             </div> <!-- close 1st col in 1st row of inner container -->
-          
+
             <aside class="col-4"> <!-- open 2nd col in 1st row of inner container -->
               ...
             </aside> <!-- close 2nd col in 1st row of inner container -->
           </div> <!-- close 1st row in inner container -->
-          
+
           <section class="row"> <!-- open 2nd row in inner container -->
             <div class="col-12"> <!-- open only col in 2nd row of inner container -->
               ...
             </div> <!-- close only col in 2nd row of inner container -->
           </section> <!-- close 2nd row in inner container -->
-          
+
           <div class="row"> <!-- open 3rd row in inner container -->
             <section class="col"> <!-- open 1st col in 3rd row of inner container -->
               ...
             </section> <!-- close 1st col in 3rd row of inner container -->
-          
+
             <section class="col"> <!-- open 2nd col in 3rd row of inner container -->
               ...
             </section> <!-- close 2nd col in 3rd row of inner container -->

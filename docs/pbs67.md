@@ -4,7 +4,7 @@ In this instalment we’ll start a two-part look at the Bootstrap Dropdown compo
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs67.zip).
 
-# Matching Postcast Episode 573
+# Matching Podcast Episode 573
 
 Listen along to this instalment on [episode 573 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/12/ccatp-573/)
 
@@ -38,7 +38,7 @@ For the login form I decided to use full custom Bootstrap validation with popove
 
 The fist step in accomplishing this is disabling the standard HTML5 form validation messages by adding the `novalidate` attribute to the relevant `<form>` tag.
 
-Next, I added a `<div>` that will serve as a tooltip with a validation message when ever the form is validated and found to be invalid invalid tooltip into the input group. This `<div>` needs to be added inside the input group but not as the first or last element. I added it after the inputs but before the `input-group-append`.
+Next, I added a `<div>` that will serve as a tooltip with a validation message whenever the form is validated and found to be invalid. Invalid tooltip into the input group. This `<div>` needs to be added inside the input group but not as the first or last element. I added it after the inputs but before the `input-group-append`.
 
 The documentation clearly states that the tooltip must be contained within an HTML element with CSS `position` property `relative`. I achieved this by adding an inline style to the input group itself to set its `position` to `relative`.
 
@@ -68,10 +68,10 @@ const $loginForm = $('#login_fm');
 const validateLoginForm = function(){
   // always enable validation UI
   $loginForm.addClass('was-validated');
-    
+
   // figure out if both inputs are valid or not
   const allOK = $('input:valid', $loginForm).length === 2;
-    
+
   // update the UI as appropriate
   if(allOK){
     $('#login_invalid').hide();
@@ -80,7 +80,7 @@ const validateLoginForm = function(){
     $('#login_invalid').show();
     $('button[type=submit]', $loginForm).prop('disabled', true);
   }
-    
+
   // return whether or not all is well
   return allOK;
 };
@@ -111,7 +111,7 @@ The other line within the validation function I want draw attention to is this o
 $('button[type=submit]', $loginForm).prop('disabled', false);
 ```
 
-Again, this is a call to jQuery’s `$()` function with two arguments, a CSS selector and a jQuery object, but in this case, the selector uses the CSS Attribute selector which we’ve not seen in quite some time. Within a CSS selector square brackets are used to match on an HTML attribute, so, the CSS selector `button[type=submit]` queries for <button> tags with their `type` attribute set to `submit`. So, the call to the `$()` function will return a jQuery object representing the submit button within the login form. We then use jQuery’s `.prop()` function to set the value of the button’s `disabled` property.
+Again, this is a call to jQuery’s `$()` function with two arguments, a CSS selector and a jQuery object, but in this case, the selector uses the CSS Attribute selector which we’ve not seen in quite some time. Within a CSS selector square brackets are used to match on an HTML attribute, so, the CSS selector `button[type=submit]` queries for `<button>` tags with their `type` attribute set to `submit`. So, the call to the `$()` function will return a jQuery object representing the submit button within the login form. We then use jQuery’s `.prop()` function to set the value of the button’s `disabled` property.
 
 With the validation function declared the code then goes on to add a new submit handler for the login form. Since we have taken full control of validation, we need to either do what ever we want to do on submission, or, detect validation errors and prevent submission. The submit handler uses the validation function to determine whether or not to proceed, and then either pops up a message to tell the user their form would have been submitted if it were real, or, it blocks the submit.
 
@@ -141,7 +141,7 @@ In this instalment we’ll focus on the web app UI variant, i.e. Bootstrap Dropd
 
 Before we narrow our focus to button-based Bootstrap Dropdowns, let’s look at the big-picture design, because that remains consistent between variants.
 
-Firstly, Bootstap Dropdown components require the Bootstrap JavaScript libraries be loaded.
+Firstly, Bootstrap Dropdown components require the Bootstrap JavaScript libraries be loaded.
 
 Dropdowns consist of two related parts; a _toggle_, and a _menu_ containing _menu items_. The entire dropdown (toggle and menu) must be contained within another Bootstrap component that supports dropdowns, and as we’ll see, quite a few of them do!
 
@@ -212,7 +212,7 @@ The following shows a menu set to drop right:
 
 When you look at menus in the apps you use you’ll see they contain more than just menu items, they also contain additional un-clickable items that add context like dividers, section headings, and help text.
 
-To add a divider in a menu simply add an empty tag of your choice (usually a `<div>`) as a sibling to the buttons with with the class `.dropdown-divider`.
+To add a divider in a menu simply add an empty tag of your choice (usually a `<div>`) as a sibling to the buttons with the class `.dropdown-divider`.
 
 To add a heading add a tag of your choice (again, usually a `<div>`) which contains the heading text and has the class `.dropdown-header`.
 
@@ -220,7 +220,7 @@ Finally, to add some help text add a tag of your choice (usually a `<p>`) contai
 
 Here’s a sample menu using all three of the above:
 
-```undefined
+```html
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" id="fancyDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
     Share …

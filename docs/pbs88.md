@@ -4,7 +4,7 @@ We’re nearing the end of our series-within-a-series re-capping the many prover
 
 This instalment will have a slightly unusual structure, we’ll use my sample solution to the challenge set at the end of [instalment 85](https://bartificer.net/pbs85) to illustrate some of the core concepts.
 
-# Matching Postcast Episode 619
+# Matching Podcast Episode 619
 
 Listen along to this instalment on [episode 619 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/ccatp-619)
 
@@ -96,7 +96,7 @@ For example, within the function for updating the enabled/disabled state of the 
 
 ### Altering Elements with jQuery
 
-Having selected one or more elements within a page, the next logical thing to do is to alter them. JQuery provides many functions for doing this, for example, `.attr()` allows us to read and write write attribute values, `.prop()` allows us to read and write element properties, and `.addClass()` & `.removeClass()` allow us to change the CSS classes assigned to an element.
+Having selected one or more elements within a page, the next logical thing to do is to alter them. JQuery provides many functions for doing this, for example, `.attr()` allows us to read and write attribute values, `.prop()` allows us to read and write element properties, and `.addClass()` & `.removeClass()` allow us to change the CSS classes assigned to an element.
 
 Within the sample solution, you can see the use of .prop() to both read and alter properties in the following snippet from the function for enabling and disabling options within the currency selection in the form for adding new cards (`updateAddCardSelectOptions()`):
 
@@ -147,7 +147,7 @@ There are two common groups of metaphors used to describe the DOM and moving wit
 
 At the top level our document contains a header and the main content. The header contains just a heading, and the main content contains two sections. Each section contains a heading and some content. The first section has a paragraph and an un-ordered list with two list items, and the second has two paragraphs.
 
-The first groups of metaphors are directional. As you move from the `<body>` into the top-level elements and then into the elements within those elements you are said to be heading _down_ into the hierarchy. Moving in this direction will be described as heading _deeper_ into the DOM. Conversely, if you’re at one of the list items then moving to the list or the section or the main is descrived as moving _up_ the DOM. The section is _higher_ in the DOM than the list which is _higher_ than the list item.
+The first groups of metaphors are directional. As you move from the `<body>` into the top-level elements and then into the elements within those elements you are said to be heading _down_ into the hierarchy. Moving in this direction will be described as heading _deeper_ into the DOM. Conversely, if you’re at one of the list items then moving to the list or the section or the main is described as moving _up_ the DOM. The section is _higher_ in the DOM than the list which is _higher_ than the list item.
 
 The second group of metaphors are familial. We can describe the un-ordered list as being the _parent_ of the list items. We can also reverse than and say that the list items are _children_ of the list. The two sections can be described as _siblings_ within the main, and the two list items as _siblings_ within the list. The metaphor can be stretched over multiple generations too — all elements nested within the first section are _descendants_ of that section, and all the containing elements between the list items and the `<body>` tag are _ancestors_ of the list items. Something to watch out for is that the plural _parents_ is often used as a synonym for _ancestors_. If you see _parent_ (singular) then it refers to the directly containing element, but if you see _parents_ (plural) it refers to **all** the containing elements. So, the parent of the list items is the list, but the parents are the list, the section, and the main.
 
@@ -165,7 +165,7 @@ In the sample solution the checkbox for each toggle switch is contained within s
 
 As well as searching, testing, altering, and navigating the existing DOM elements, jQuery can be used to create and insert new elements.
 
-To create a new element simply pass some HTML code as a string to the `$()` function as the only argument. This will create the element in a kind of limbo where it exists as a JavaScript variable, but isn’t part of the document yet. We can interact with it in this form though, we we can apply jQuery functions to the element before we make it visible on the page by inserting it into the DOM.
+To create a new element simply pass some HTML code as a string to the `$()` function as the only argument. This will create the element in a kind of limbo where it exists as a JavaScript variable, but isn’t part of the document yet. We can interact with it in this form though, we can apply jQuery functions to the element before we make it visible on the page by inserting it into the DOM.
 
 It’s also important to note that you can create arbitrarily many arbitrarily deeply nested elements with a single call to the `$()` function by passing it complex HTML.
 
@@ -174,17 +174,17 @@ In the sample solution the Mustache templating engine is used to build complex H
 ```JavaScript
 // generate the HTML
 const cardHTML = Mustache.render(TEMPLATES.currencies.displayCard, cardView);
-			
+
 // convert the HTML to a jQuery object
 const $card = $(cardHTML);
-			
+
 // …
 
 // add a click handler to the close button
 $('button.close', $card).click(function(){
   // hide the card
   $curCol.hide();
-				
+
   // update the add card select
   updateAddCardSelectOptions();
 });
@@ -217,7 +217,7 @@ JQuery also provides convenient shortcuts for commonly used event handlers like 
 
 ## Function Chaining
 
-Function chaining is a very important JavaScript concept to master. It’s useful in general, but it’s especially useful when working with APIs that are are designed around the concept, like jQuery.
+Function chaining is a very important JavaScript concept to master. It’s useful in general, but it’s especially useful when working with APIs that are designed around the concept, like jQuery.
 
 Remember that we can think of functions as black boxes that accept zero or more inputs and can produce an output.
 
@@ -266,7 +266,7 @@ In the special case where a function call returns an object, another function ca
 
 That sounds complicated, but you’ll recognise a function chain because it will take the form: `functName1().functionName2()`.
 
-Note that you can chain as many function calls as you like, so you can just keep repeating this pattern _ad infinitum_. Note that if any any point in the chain a function returns something other than an object, the chain will break with a JavaScript error!
+Note that you can chain as many function calls as you like, so you can just keep repeating this pattern _ad infinitum_. Note that if any point in the chain a function returns something other than an object, the chain will break with a JavaScript error!
 
 E.g. the following chain will throw an error because `Math.random()` returns a number, not an object:
 
@@ -374,16 +374,16 @@ const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
 // if the card has already been loaded, just show it and exit
 if($curCol.data('loaded')){
   console.debug(`card for '${curCode}' already loaded, so just showing it`);
-			
+
   // show the col
   $curCol.show();
-			
+
   // focus the card
   $curCol.children('.card').focus();
-			
+
   // update the select in the add card form
   updateAddCardSelectOptions();
-			
+
   // end the function
   return;
 }

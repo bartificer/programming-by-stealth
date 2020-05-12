@@ -6,9 +6,9 @@ Thanks to the power of the new class syntax introduced as part of ES6, we can no
 
 To illustrate the concepts, and to lay the ground work for this instalment’s challenge, we’ll be making our way through a worked example. You can find the code in this instalment’s ZIP file, which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/12/pbs47.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs47.zip).
 
-# Matching Postcast Episode 517
+# Matching Podcast Episode 517
 
-Listen Along: Chit Chat Accross the Pond Episode 517
+Listen Along: Chit Chat Across the Pond Episode 517
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_01_06.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -66,13 +66,13 @@ QUnit.module(
     ()=>{
         QUnit.test('.$td()', function(a){
             a.expect(3);
-            
+
             // make sure the accessor exists
             a.strictEqual(typeof this.c1.$td, 'function', 'function exists');
-            
+
             // make sure the accessor returns the correct value
             a.strictEqual(this.c1.$td(), this.$td, 'returns the expected value');
-                
+
             // make sure attempts to set a value throw an Error
             a.throws(
                 ()=>{ this.c1.$td($('<td></td>')); },
@@ -132,30 +132,30 @@ The `self` example is more interesting, and can be found in the `bartificer.ca.A
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-        
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     const self = this;
     const autoStepFn = function(){
         if(self._autoStepID){
             // take a step
             self.step();
-                
+
             // set a fresh timeout - CAUTION: recursive code!
             self._autoStepID = window.setTimeout(autoStepFn, self.autoStepIntervalMS());
        }
     };
-        
+
     // set the ball rolling
     this._autoStepID = window.setTimeout(autoStepFn, this.autoStepIntervalMS());
-        
+
     // return a reference to self
     return this;
 };
@@ -169,29 +169,29 @@ The reason we have to declare `self` is so we can access the outer function’s 
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
-        
+
     // if we were passed an interval, set it
     if(arguments.length >= 1){
         this.autoStepIntervalMS(ms); // could throw an error
     }
-        
+
     // take one step
     this.step();
-        
+
     // define a callback to automatically take a step
     const autoStepFn = ()=>{
         if(this._autoStepID){
             // take a step
             this.step();
-                
+
             // set a fresh timeout - CAUTION: recursive code!
             this._autoStepID = window.setTimeout(autoStepFn, self.autoStepIntervalMS());
         }
     };
-        
+
     // set the ball rolling
     this._autoStepID = window.setTimeout(autoStepFn, this.autoStepIntervalMS());
-        
+
     // return a reference to self
     return this;
 };
@@ -262,11 +262,11 @@ class Creature{
         this._name = typeof n === 'string' ? n : 'Bob';
         this._numLegs = parseInt(l) === l ? l : 4;
     }
-    
+
     toString(){
         return `a ${this._numLegs} legged animal named '${this._name}'`;
     }
-    
+
     pairsOfShoesNeeded(){
         return Math.ceil(this._numLegs / 2);
     }
@@ -332,11 +332,11 @@ class Creature{
         this._name = typeof n === 'string' ? n : 'Bob';
         this._numLegs = parseInt(l) === l ? l : 4;
     }
-    
+
     toString(){
         return `a ${this._numLegs} legged animal named '${this._name}'`;
     }
-    
+
     pairsOfShoesNeeded(){
         return Math.ceil(this._numLegs / 2);
     }
@@ -347,7 +347,7 @@ class Centipede extends Creature{
     constructor(n){
         super(n, 100);
     }
-    
+
     toString(){
         return `a centipede named '${this._name}'`;
     }
@@ -356,7 +356,7 @@ class Millipede extends Creature{
     constructor(n){
         super(n, 1000);
     }
-    
+
     toString(){
         return `a millipede named '${this._name}'`;
     }
@@ -400,10 +400,10 @@ Let’s start with a very quick look at `pbs47a-v1/index.html`:
 <head>
     <meta charset="utf-8" />
     <title>PBS 47 — Polymorphism Demo</title>
-    
+
     <!-- Import jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
+
     <!-- Import the JavaScript for this Example -->
     <script type="text/javascript" src="pbs47a.js"></script>
 </head>
@@ -440,11 +440,11 @@ class Farm{
         this._$container = $container.empty();
         $container.append($('<div>').addClass('farm_pasture'));
         $container.append($('<div>').addClass('farm_shed'));
-        
+
         // initialise the animals
         this._animals = [];
         for(const a of animals){ this.addAnimal(a) ; }
-        
+
         // start trying to collect produce
         this.collectProduce();
         this._productionInterval = window.setInterval(
@@ -452,13 +452,13 @@ class Farm{
             30 * 1000 // 30 seconds
         );
     }
-    
+
     addAnimal(a){
         this._animals.push(a);
         a.$dom().data('animalObj', a);
         $('.farm_pasture', this._$container).append(a.$dom());
     }
-    
+
     collectProduce(){
         for(const a of this._animals){
             const p = a.getProduce();
@@ -493,9 +493,9 @@ class Animal{
         this._icon = isSigleEmoji(i) ? i : '🥚';
         this._eats = isSigleEmoji(e) ? e :'❓';
         this._says = typeof s === 'string' && s.length ? s : '???';
-        
+
         // initialise the DOM rendering
-        
+
         // start with the outter div
         this._$dom = $('<div>').css({
             display: 'inline-block',
@@ -504,7 +504,7 @@ class Animal{
             height: '80px',
             margin: '10px'
         });
-        
+
         // add an icon for the animal
         const $icon = $('<span>').addClass('animal-icon').text(this._icon);
         $icon.css({
@@ -516,7 +516,7 @@ class Animal{
         });
         $icon.click(()=>{ this.makeNoise() });
         this._$dom.append($icon);
-        
+
         // add the speech bubble (hidden)
         const $bubble = $('<span>').addClass('animal-speech-bubble').text('🗨');
         $bubble.css({
@@ -536,7 +536,7 @@ class Animal{
             width: '30px'
         }));
         this._$dom.append($bubble);
-        
+
         // add the food icon
         const $food = $('<span>').addClass('animal-food-icon').text(this._eats);
         $food.css({
@@ -547,9 +547,9 @@ class Animal{
         });
         this._$dom.append($food);
     }
-    
+
     $dom(){ return this._$dom; }
-    
+
     makeNoise(){
         if(!this._noiseTimeout){
             const $bubble = $('.animal-speech-bubble', this._$dom);
@@ -557,7 +557,7 @@ class Animal{
             this._noiseTimeout = window.setTimeout(()=>{ this._noiseTimeout = 0; $bubble.hide() }, 1000);
         }
     }
-    
+
     getProduce(){
         return ''; // default to delivering no produce
     }
@@ -611,7 +611,7 @@ class Turkey extends Animal{
     constructor(){
         super('🦃', '🌽', 'Gobble!');
     }
-    
+
     makeNoise(){
         if(!this._double_timeout){
             super.makeNoise();
@@ -640,7 +640,7 @@ class Cow extends Animal{
     constructor(){
         super('🐄', '🌾', 'Moo!');
     }
-    
+
     getProduce(){
         return '🥛';
     }
@@ -656,7 +656,7 @@ Using the code in the `pbs471-v2` folder in this instalment’s ZIP file as your
 1.  Create a new class `Chicken` which extends `Animal`. Use the emojis of your choice for the needed icons, and use a sensible string for the sound.
 2.  Add a web form which allows users to add animals to the farm. The form should enable the user to add arbitrarily many animals of each species.
 3.  Create a new class `EggLayer` which extends `Animal`, and re-factor both the `Duck` and `Chicken` classes to extend this new class rather than `Animal`.
-4.  Override the `.getProduce()` function in the `EggLayer` class so it returns an egg emoji if, and only if, it’s been at least 100 seconds since the last time an egg was was produced by that specific egg layer (**Hint:** google JavaScript’s built-in `Date.now()` function).
+4.  Override the `.getProduce()` function in the `EggLayer` class so it returns an egg emoji if, and only if, it’s been at least 100 seconds since the last time an egg was produced by that specific egg layer (**Hint:** google JavaScript’s built-in `Date.now()` function).
 
 ## Final Thoughts
 

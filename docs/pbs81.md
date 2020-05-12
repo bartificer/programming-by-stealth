@@ -4,7 +4,7 @@ So far in our exploration of promises we’ve learned the core concept — a pro
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/07/pbs81.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs81.zip).
 
-# Matching Postcast Episode 597
+# Matching Podcast Episode 597
 
 Listen along to this instalment on [episode 597 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/06/ccatp-597/)
 
@@ -24,26 +24,26 @@ The only change I needed to make was to alter the AJAX request for a random numb
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
-			
+
   // blank and hide the modal
   // …
-			
+
   // set the game UI to the loading spinner & empty $GAME_MESSAGE_CONTAINER & $GUESSES_DISPLAY
   // …
-			
+
   // fetch a random number via AJAX
   $.ajax({
     // …
     success: function(rn){
       // save the random number
       RANDOM_NUMBER = rn;
-					
+
       // blank the guesses
       // …
-					
+
       // reset the game UI
       resetGameUI();
-					
+
       // game on!
       GAME_ON = true;
     },
@@ -104,16 +104,16 @@ Putting it all together, my finished `resetGame()` function looks like this:
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
-			
+
   // blank and hide the modal
   $MODAL.modal('hide');
   $MODAL_CONTENT.empty();
-			
+
   // set the game UI to the loading spinner & empty $GAME_MESSAGE_CONTAINER & $GUESSES_DISPLAY
   $GAME_INTERFACE.html(SPINNER_HTML);
   $GAME_MESSAGE_CONTAINER = null;
   $GUESSES_DISPLAY = null;
-			
+
   // fetch a random number via AJAX
   $.ajax({
     url: 'https://bartbusschots.ie/utils/fakerWS/numberBetween/1/text',
@@ -128,15 +128,15 @@ function resetGame(){
     function(rn){ // resolved
       // save the random number
       RANDOM_NUMBER = rn;
-									
+
       // blank the guesses
       GUESSES = [];
       MIN_POSSIBLE_GUESS = MIN;
       MAX_POSSIBLE_GUESS = MAX;
-									
+
       // reset the game UI
       resetGameUI();
-									
+
       // game on!
       GAME_ON = true;
     },

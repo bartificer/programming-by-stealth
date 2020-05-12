@@ -4,9 +4,9 @@ After six instalments, it’s finally time to bring our JavaScript knowledge int
 
 A key point to note is that HTML, CSS, and JavaScript are all so-called client-side technologies. It’s the web browser doing the work, not the web server. The web server simply delivers the HTML, CSS, and JavaScript code to the browser as text, just like you type it, and the browser then interprets that code and turns it into the web page you see and interact with.
 
-# Matching Postcast Episode 453
+# Matching Podcast Episode 453
 
-Listen Along: Chit Chat Accross the Pond Episode 453
+Listen Along: Chit Chat Across the Pond Episode 453
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_09_02.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -33,7 +33,7 @@ As always, I want to stress that there are an infinity of possible correct solut
 function IP(ip){
   // default to 0.0.0.0
   this._ip = [0, 0, 0, 0];
-  
+
   // if we were passed an argument, try set it
   if(ip){
     this.parse(ip);
@@ -49,7 +49,7 @@ function IP(ip){
 // Throws     : An Error on invalid arguments
 IP.prototype.parse = function(ip){
   var newIP = [];
-  
+
   // see if we got an array or a string - save to newIP
   if(ip instanceof Array){
     // we got an array, so save it directly
@@ -61,7 +61,7 @@ IP.prototype.parse = function(ip){
     // we got an invalid value, throw an Error
     throw new Error('Invalid IP: ' + ip);
   }
-  
+
   // make sure the array is all valid
   if(newIP.length != 4){
     throw new Error('Invalid IP: ' + ip);
@@ -70,16 +70,16 @@ IP.prototype.parse = function(ip){
     // first force the quad to an integer
     quad = parseInt(quad)
     newIP[i] = quad;
-    
+
     // then make sure it is in the valid range
     if(quad < 0 || quad > 255){
       throw new Error('Invalid IP: ' + ip);
     }
   });
-  
+
   // if we got here, the new IP is valid, so save it
   this._ip = newIP;
-  
+
   // return a reference to self
   return this;
 };
@@ -121,7 +121,7 @@ function Subnet(ip, c){
   if(!(typeof c === 'string' && c.match(/^[ABC]$/i))){ // case insensitive match
     throw new Error('Not a Subnet Class: ' + c);
   }
-  
+
   // store the data
   this._ip = ip;
   this._class = c.toUpperCase(); // force upper case
@@ -135,10 +135,10 @@ function Subnet(ip, c){
 Subnet.prototype.toString = function(){
   // start with the IP
   var ans = this._ip.toString();
-  
+
   // append the / and the first 255
   ans += '/255.';
-  
+
   // append the appropriate middle bit of the mask
   if(this._class == 'A'){
     ans += '0.0';
@@ -147,10 +147,10 @@ Subnet.prototype.toString = function(){
   }else{
     ans += '255.255';
   }
-  
+
   // append the end of the mask
   ans += '.0';
-  
+
   // return the string
   return  ans;
 };
@@ -166,28 +166,28 @@ Subnet.prototype.test = function(ip){
   if(!(ip instanceof IP)){
     return false;
   }
-  
+
   // get the internal ip and the one to test as arrays
   var netIP = this._ip.toArray();
   var testIP = ip.toArray();
-  
+
   // test that the appropriate parts of the quad match
-  
+
   // first bit always has to match
   if(testIP[0] != netIP[0]){
     return false;
   }
-  
+
   // second bit needs for match for B & C only
   if((this._class == 'B' || this._class == 'C') && testIP[1] != netIP[1]){
     return false;
   }
-  
+
   // third bit needs to match for C only
   if(this._class == 'C' && testIP[2] != netIP[2]){
     return false;
   }
-  
+
   // if we got here, all is well, so return true
   return true;
 };
@@ -202,10 +202,10 @@ if(pbs.inputs().length > 0){
   try{
     // create a subnet object from inputs 1 & 2
     var subnet = new Subnet(new IP(pbs.input(1)), pbs.input(2));
-    
+
     // create an IP object from input 3
     var testIP = new IP(pbs.input(3));
-    
+
     // test if the IP is in the subnet
     if(subnet.test(testIP)){
       pbs.say(testIP.toString() + ' IS in the subnet ' + subnet.toString());
@@ -304,7 +304,7 @@ When working with jQuery, you generally start by asking jQuery to query the DOM 
 
 jQuery objects contain a large number of functions, and when invoked, these functions will operate on all the HTML elements the object represents.
 
-Philosophically, jQuery likes to keep function names short, and, it likes to use the same function to query and alter a value, or to add and execute an event hander.
+Philosophically, jQuery likes to keep function names short, and, it likes to use the same function to query and alter a value, or to add and execute an event handler.
 
 As a quick example, we can get the current `href` attribute of all `a` tags in the dummy page by executing the following in the console:
 

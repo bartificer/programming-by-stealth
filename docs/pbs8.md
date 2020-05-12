@@ -2,9 +2,9 @@
 
 In [the previous instalment](https://www.bartbusschots.ie/s/2016/01/21/programming-by-stealth-7-of-x-more-css/) we learned about the CSS box model. Each HTML tag is represented as a box within the browser, and those boxes stack down the page, and inside each other to build up the web pages we see. We also learned how to use FireFox’s developer tools to actually see and inspect the boxes. In this instalment we’ll learn how to take one or more boxes out of the normal flow of the page, and position them elsewhere on the page.
 
-# Matching Postcast Episode 424
+# Matching Podcast Episode 424
 
-Listen Along: Chit Chat Accross the Pond Episode 424
+Listen Along: Chit Chat Across the Pond Episode 424
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_06.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -141,7 +141,7 @@ However, by simply setting the `overflow` property of the yellow box to `auto`, 
 
 Another way to remove boxes from the normal flow of the page and move them elsewhere is by setting the `position` property.
 
-The default value for this property is `static` – that is to say, the tag is either rendered in the normal flow of the page, or floated. A box with a `position` of `static` is said to be _unpositioned_, and conversely, a box with a `position` other than `static` is said to be _positioned_.
+The default value for this property is `static` – that is to say, the tag is either rendered in the normal flow of the page or floated. A box with a `position` of `static` is said to be _unpositioned_, and conversely, a box with a `position` other than `static` is said to be _positioned_.
 
 Tags with their `position` set to `fixed` are taken out of the normal flow of the document, and placed above the boxes that remain within the normal flow, and positioned relative to the browser window.
 

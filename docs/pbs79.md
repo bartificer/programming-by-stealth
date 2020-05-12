@@ -6,7 +6,7 @@ So, we’re going to take it slow with promises. They will provide us with a way
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/05/pbs79.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs79.zip).
 
-# Matching Postcast Episode 595
+# Matching Podcast Episode 595
 
 Listen along to this instalment on [episode 595 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/05/ccatp-595/)
 
@@ -33,15 +33,15 @@ These variables need to be re-set each time the game is reset, so I updated the 
 success: function(rn){
   // save the random number
   RANDOM_NUMBER = rn;
-					
+
   // blank the guesses
   GUESSES = [];
   MIN_POSSIBLE_GUESS = MIN;
   MAX_POSSIBLE_GUESS = MAX;
-					
+
   // reset the game UI
   resetGameUI();
-					
+
   // game on!
   GAME_ON = true;
 }
@@ -52,7 +52,7 @@ The next step was to update my `guessNumber()` function to update these global v
 ```JavaScript
 // figure out what direction we're wrong
 const tooLow = num < RANDOM_NUMBER ? true : false;
-				
+
 // update the lowest/highest possible guesses
 const prevMinPos = MIN_POSSIBLE_GUESS;
 const prevMaxPos = MAX_POSSIBLE_GUESS;
@@ -100,23 +100,23 @@ The second part is to show the user how they compared to the binary search algor
 ```JavaScript
 function binarySearch(){
   const guesses = [];
-			
+
   // start the range of possible guesses at the extremes of the grid
   let min = MIN;
   let max = MAX;
-			
+
   // guess the half way point until the answer is found
   let g;
   do{
     // guess the half way point and save
     g = Math.round((min + max) / 2);
     guesses.push(g);
-				
+
     // update min or max as appropriate
     if(g < RANDOM_NUMBER) min = g + 1;
     if(g > RANDOM_NUMBER) max = g - 1;
   }while(g != RANDOM_NUMBER);
-			
+
   // return all the guesses
   return guesses;
 }
@@ -201,7 +201,7 @@ To make the examples easier to read, `pbs79a.html` defines some global variables
 ```JavaScript
 // the JS Faker web service on www.bartbusschots.ie
 var FAKERWS_BASE = 'https://www.bartbusschots.ie/utils/fakerWS/';
-	
+
 // utility variables for an AJAX call to get a randomly generated
 // fake corporate record
 var CORP_REC_URL = `${FAKERWS_BASE}records.php`;

@@ -1,10 +1,10 @@
 # PBS 65 of X — Bootstrap Input Groups
 
-This will be the penultimate instalment of our introduction to Bootstrap forms. Today we’ll be looking at a really useful Bootstrap component for making form inputs clearer for the user, more powerful, and prettier. In the next instalment we’ll finish off with Bootstraps forms for the moment with a look at Boostrap’s built-in form validation features.
+This will be the penultimate instalment of our introduction to Bootstrap forms. Today we’ll be looking at a really useful Bootstrap component for making form inputs clearer for the user, more powerful, and prettier. In the next instalment we’ll finish off with Bootstraps forms for the moment with a look at Bootstrap’s built-in form validation features.
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs65.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs65.zip).
 
-# Matching Postcast Episode 568
+# Matching Podcast Episode 568
 
 Listen along to this instalment on [episode 568 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/10/ccatp-568/)
 

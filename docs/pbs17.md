@@ -2,9 +2,9 @@
 
 At this stage in the series we have made very good progress towards understanding the core JavaScript language. However, there is still one very important piece missing – objects. We have mentioned them in passing in almost every instalment, and each time, we put them off until later. We finally remedy that in this instalment.
 
-# Matching Postcast Episode 444
+# Matching Podcast Episode 444
 
-Listen Along: Chit Chat Accross the Pond Episode 444
+Listen Along: Chit Chat Across the Pond Episode 444
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_06_24.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -31,16 +31,16 @@ function inputTransformer(fn){
     pbs.say('inputTransformer() called with invalid args - requires a function reference as the first argument');
     return;
   }
-  
+
   // get a reference to the inputs
   var theInputs = pbs.inputs();
-  
+
   // if there were no inputs, print a message and return
   if(theInputs.length < 1){
     pbs.say('add a value to at least one input to transform it');
     return;
   }
-  
+
   // loop through the inputs
   theInputs.forEach(function(ipt){
     pbs.say(ipt + ' becomes ' + fn(ipt));
@@ -186,7 +186,7 @@ Thanks to JSON, plain objects have become a big thing in JavaScript, but they ar
 
 Philosophically, object oriented programming is about bundling data and the code that manipulates that data, into a single entity. For example, in JavaScript the `.forEach()` function comes bundled with an array, giving you the data, and a function for manipulating that data, all contained in a single object.
 
-When you add a function to an object, that function can access the object it belongs to with the keyword `this`. When you see `this`, mentally think of it as `"the object this function belongs to"`. `this` allows a function attached to an object to access the data within the object, and, to invoke other functions are are also attached to the object.
+When you add a function to an object, that function can access the object it belongs to with the keyword `this`. When you see `this`, mentally think of it as `"the object this function belongs to"`. `this` allows a function attached to an object to access the data within the object, and, to invoke other functions that are also attached to the object.
 
 We’ll start with a really simple example – an object to represent a counter.
 
@@ -260,7 +260,7 @@ As a simple example, let’s convert our bespoke counter above into a prototype 
 function Counter(){ // constructor has name of prototype being created
   // default the counter to zero
   this._count = 0;
-  
+
   // if a value was passed, use it as the initial value of the counter
   if(arguments.length){
     this.count(arguments[0]); // validation done inside the function
@@ -287,7 +287,7 @@ Counter.prototype.count = function(){
         this._count = newCount;
       }
   }
-  
+
   // always return the count
   return this._count;
 };
@@ -352,10 +352,10 @@ This sounds more complicated than it is – let’s illustrate the technique wit
 function GuessingGame(){
   // pick a random number between 1 and 10, and store it
   this._value = Math.floor(Math.random() * 10) + 1;
-  
+
   // store whether or not the game is over
   this._over = false;
-  
+
   // store whether or not the game has been won
   this._won = false;
 }
@@ -374,13 +374,13 @@ GuessingGame.prototype.guess = function(g){
   }else{
     guesses[0] = g; // not an array, so store in element 0
   }
-  
+
   // if the game is over, say so and leave
   if(this._over){
     pbs.say("Sorry - the game is over - too later to guess now!");
     return false;
   }
-  
+
   // loop through the guesses
   var self = this; // alias this for use in callback
   var guessedRight = false;
@@ -401,7 +401,7 @@ GuessingGame.prototype.guess = function(g){
       }
     }
   });
-  
+
   // return how we did
   return guessedRight;
 };
@@ -420,11 +420,11 @@ GuessingGame.prototype.quit = function(){
     }
     return this;
   }
-  
+
   // end the game and reveal the answer
   this._over = true;
   pbs.say("Game Over - the secret number was " + this._value);
-  
+
   // return a reference to self
   return this;
 };
@@ -442,7 +442,7 @@ if(guesses.length == 0){
   pbs.say('Try guess a number between 1 and 10 (inclusive) - enter your guesses in the inputs');
 }else{
   var gotIt = myGame.guess(guesses);
-  
+
   // if we didn't guess right, quit so we see the answer
   if(!gotIt){
     myGame.quit();
@@ -467,7 +467,7 @@ We can use this operator to test any variable against any prototype, including p
 function Counter(){
   // default the counter to zero
   this._count = 0;
-  
+
   // if a value was passed, use it as the initial value of the counter
   // (assuming it is valid)
   if(arguments.length){
@@ -495,7 +495,7 @@ Counter.prototype.count = function(){
       this._count = newCount;
     }
   }
-  
+
   // always return the count
   return this._count;
 };

@@ -2,13 +2,13 @@
 
 In the previous instalment we introduced HTML, learned about HTML tags in the abstract, and looked at a basic template for all HTML pages. Over the next few instalments we’ll be working our way through the common HTML tags.
 
-There are two major types of HTML tags, block-level tags, and inline tags, though it should be noted that there is a much less common third type which is a hybrid of the two, referred to as inline-block. For now, we’ll be ignoring these odd-balls.
+There are two major types of HTML tags, block-level tags, and inline tags, though it should be noted that there is a much less common third type which is a hybrid of the two, referred to as inline-block. For now, we’ll be ignoring these oddballs.
 
-Block level tags define regions of content – things like titles, paragraphs, lists, list items, and so on. Inline tags affect parts of a block – for example, a few words within a paragraph can be marked for emphasis. With practice the distinction will be comes obvious, especially when we get to the more advanced aspects of CSS, but the different in type can be confusing. A handy way of remembering the difference is that opening a new block-level tag will always start a new line on your page.
+Block level tags define regions of content – things like titles, paragraphs, lists, list items, and so on. Inline tags affect parts of a block – for example, a few words within a paragraph can be marked for emphasis. With practice the distinction will become obvious, especially when we get to the more advanced aspects of CSS, but the difference in type can be confusing. A handy way of remembering the difference is that opening a new block-level tag will always start a new line on your page.
 
 In this instalment we’ll start with some of the most common block-level tags.
 
-# Matching Postcast Episode 411
+## Matching Podcast Episode 411
 
 Listen along to this instalment on [episode 411 of the Chit Chat Across the Pond Podcast](http://www.podfeet.com/blog/2015/11/ccatp-411/)
 
@@ -18,9 +18,9 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## Headings
 
-There are six heading tags in HTML – `<h1>`, `<h2>` … `<h6>`, with `<h1>` being top-level heading, `<h2>` a sub-heading, `<h3>` a sub-sub heading, and so on.
+There are six heading tags in HTML – `<h1>`, `<h2>` … `<h6>`, with `<h1>` being top-level heading, `<h2>` a sub-heading, `<h3>` a sub-sub-heading, and so on.
 
-As a general rule, pages generally have just one top-level heading, a few sub-headings, and perhaps the odd sub-sub heading, you’ll very rarely need to use the higher-numbered heading tags. Search engines use heading tags to help them understand what a page is about.
+As a general rule, pages generally have just one top-level heading, a few sub-headings, and perhaps the odd sub-sub-heading. You’ll very rarely need to use the higher-numbered heading tags. Search engines use heading tags to help them understand what a page is about.
 
 No other block-level tags should be contained within heading tags, but inline tags can be (not that that is often desired).
 
@@ -32,17 +32,17 @@ No other block-level tags should be contained within paragraph tags, but inline 
 
 ## Lists
 
-There are three types of list within HTML, bulleted lists, numbered lists, and definition lists.
+There are three types of list within HTML: bulleted lists, numbered lists, and definition lists.
 
-### Bulleted Lists – AKA Un-Ordered Lists
+### Bulleted Lists – AKA Unordered Lists
 
-A bulleted list is defined by the `<ul>` tag – this stands for _un-ordered list_.
+A bulleted list is defined by the `<ul>` tag – this stands for _unordered list_.
 
 Each block of bulleted text should be contained within `<li>` tags – this stands for _list item_.
 
 `<ul>` tags should only contain `<li>` tags. `<li>` tags can contain other block-level tags, including other lists to create nested lists, as well as inline tags.
 
-```XHTML
+```html
 <ul>
   <li>The first item in a bulleted list</li>
   <li>The second item in a bulleted list</li>
@@ -53,13 +53,13 @@ Each block of bulleted text should be contained within `<li>` tags – this stan
 
 A numbered list is defined by the `<ol>` tag – this stands for _ordered list_.
 
-Like with bulleted lists, each block of text in the list should be contained within `<li>` tags. Note that the browser viewing the page takes care of the actual numbers. This makes it very easy to re-organise the list without getting the numbers out of order.
+As with bulleted lists, each block of text in the list should be contained within `<li>` tags. Note that the browser viewing the page takes care of the actual numbers. This makes it very easy to reorganise the list without getting the numbers out of order.
 
 Again, like with `<ul>`, `<ol>` tags should only contain `<li>` tags.
 
 Example:
 
-```XHTML
+```html
 <ol>
   <li>The first item in a numbered list</li>
   <li>The second item in a numbered list</li>
@@ -76,10 +76,10 @@ If multiple terms have the same definition, you can have a number of consecutive
 
 `<dl>` tags should only contain `<dt>` and `<dd>` tags, `<dt>` tags should only contain inline tags, and `<ds>` tags can contain any other tags, including block-level tags.
 
-```XHTML
+```html
 <dl>
   <dt>HTML</dt>
-  <dd>The Hyper-Text Markup Language is a computer language for defining the content of a web page.</dd>
+  <dd>The Hyper Text Markup Language is a computer language for defining the content of a web page.</dd>
   <dt>CSS</dt>
   <dd>Cascading Style Sheets are used to define how a HTML web page looks.</dd>
 </dl>
@@ -89,7 +89,7 @@ If multiple terms have the same definition, you can have a number of consecutive
 
 Because `<li>` and `<dd>` tags can contain any other tags, lists can be inserted into list items to create nested lists. A nested list can contain a mixture of all the different list types.
 
-```XHTML
+```html
 <ul>
   <li>
     This top-level bulleted list item contains a numbered list:
@@ -117,7 +117,7 @@ The `<blockquote>` tag is designed to mark a block of text as being some form of
 
 Block quotes can contain both block and inline tags, including other block quotes.
 
-```XHTML
+```html
 <blockquote>
   <h2>Extract from "Lines Written on a Seat on the Grand Canal, Dublin"</h2>
 
@@ -137,7 +137,7 @@ Let’s finish with a final working example.
 
 Start by adding a folder called `pbs3` to the document root of your web server. In there, create a file called `index.html` with the following contents:
 
-```XHTML
+```html
 <!DOCTYPE html>
 <html>
 <head>

@@ -4,9 +4,9 @@ At this stage we’ve learned about three of the key components common to just a
 
 Arrays store a list of related data in a single variable, and loops allow us to apply the same action over and over again. To process an arbitrarily long array, you need some kind of iteration, and loops are the simplest way of achieving that.
 
-# Matching Postcast Episode 438
+# Matching Podcast Episode 438
 
-Listen Along: Chit Chat Accross the Pond Episode 438
+Listen Along: Chit Chat Across the Pond Episode 438
 
 <audio controls src="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_05_13.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -247,7 +247,7 @@ if(rawInputs.length){
   for(var i = 0; i < rawInputs.length; i++){
     prod *= parseInt(rawInputs[i]);
   }
-  
+
   // build a string representing the raw inputs nicely
   var inputString = '';
   for(var i = 0; i < rawInputs.length; i++){
@@ -262,11 +262,11 @@ if(rawInputs.length){
         inputString += ', ';
       }
     }
-    
+
     // add the value
     inputString += rawInputs[i];
   }
-  
+
   // print the answer
   pbs.say("The integer product of " + inputString + " is " + prod);
 }else{

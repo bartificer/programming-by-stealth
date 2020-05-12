@@ -4,7 +4,7 @@ In the previous instalment we got our first introduction to the concept of _prom
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/06/pbs80.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs80.zip).
 
-# Matching Postcast Episode 597
+# Matching Podcast Episode 597
 
 Listen along to this instalment on [episode 597 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/07/ccatp-602/)
 
@@ -46,7 +46,7 @@ var REJECTED_CB = function(val){
 }
 ```
 
-Thirdly, the file provides a function named `promisedConfirm()`. This function imitates the standard `window.confirm()` function but uses a nice Bootstrap Modal, and immediately returns a promise rather than waiting waiting for the user to respond like `window.confirm()` does. _Note that this is a utility function defined within the file, not a standard JavaScript, jQuery, or Bootstrap function._
+Thirdly, the file provides a function named `promisedConfirm()`. This function imitates the standard `window.confirm()` function but uses a nice Bootstrap Modal, and immediately returns a promise rather than waiting for the user to respond like `window.confirm()` does. _Note that this is a utility function defined within the file, not a standard JavaScript, jQuery, or Bootstrap function._
 
 The function accepts up to three arguments:
 
@@ -206,11 +206,11 @@ chained promise resolved with: true
 
 ## Passthrough by Default
 
-At each point in a promise chain there could be a callback defining what to do if the original promise resolved, and what to do if it rejected. Both callbacks are optional, so what happens if you omit one? What will the chained promise resolve to or reject with?
+At each point in a promise chain, there could be a callback defining what to do if the original promise resolved, and what to do if it rejected. Both callbacks are optional, so what happens if you omit one? What will the chained promise resolve to or reject with?
 
 There are two scenarios at play here — the original promise rejected and the call to `.then()` only passed one argument, so there is no callback specified to handle rejection. Or, the original promise resolved, and the call was to `.catch()` rather than to `.then()`, so there is no callback specified to handle resolution.
 
-In both cases `.then()` and `.catch()` do the sensible thing — they simply pass the value or the error through un-altered. So, in the first scenario the chained promise resolves to the same value the original resolved to, and in the second scenario the chained promise rejects with the same error the original rejected with.
+In both cases `.then()` and `.catch()` do the sensible thing — they simply pass the value or the error through un-altered. So, in the first scenario, the chained promise resolves to the same value the original resolved to, and in the second scenario, the chained promise rejects with the same error the original rejected with.
 
 In other words, **if you don’t specify a handler, the data or error gets passed through un-altered**.
 
@@ -351,23 +351,23 @@ To work around this limitation I’ve written a very simple PHP proxy script whi
 **For this proxy script to work you’ll need to access `php80a.html` via a web server that supports PHP, like MAMP.**
 
 > ### Aside
-> 
+>
 > In case you’re curious and you’d like to see another language in action, this is the code for the proxy script:
-> 
+>
 > ```PHP
 > <?php
 > # Set the MIME-Type to text/plain
 > header('Content-Type: text/plain');
-> 
+>
 > # build the URL
 > $url = 'http://wttr.in/'.urlencode($_REQUEST['city']).'?format=3';
 > $url .= $_REQUEST['units'] == 'f' ? '&u' : '&c';
-> 
+>
 > # fetch and output the URL
 > echo file_get_contents($url);
 > ```
-> 
-> Apart from the fact that comments start with # instead of //, that strings are concatenated with . instead of +, and that variable names all start with a $, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable [C programming language](https://en.wikipedia.org/wiki/C_(programming_language)).
+>
+> Apart from the fact that comments start with # instead of //, that strings are concatenated with . instead of +, and that variable names all start with a \$, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable [C programming language](<https://en.wikipedia.org/wiki/C_(programming_language)>).
 
 ### Some Helper Variables & Utility Functions
 
@@ -610,7 +610,7 @@ You may or may not like this syntax, but it sure seems a lot less hellish to me!
 
 ## A Challenge
 
-Update a version of the number guessing game described in challenge set in instalment 79 as described below. You can use your own solution to that challenge, or my sample sample solution as included in the ZIP file for instalment 80.
+Update a version of the number guessing game described in challenge set in instalment 79 as described below. You can use your own solution to that challenge, or my sample solution as included in the ZIP file for instalment 80.
 
 Firstly, update the code that fetches the random number via AJAX to use a promise.
 

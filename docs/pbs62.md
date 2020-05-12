@@ -8,7 +8,7 @@ We’ll start our exploration of forms very simply, but bear in mind that what w
 
 You can [Download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/09/pbs62.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs62.zip).
 
-# Matching Postcast Episode 563
+# Matching Podcast Episode 563
 
 Listen along to this instalment on [episode 563 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/09/ccatp-563/)
 
@@ -78,7 +78,7 @@ Putting it all together produces the following function:
 function updateCounter(){
   // get the latest count
   const numAlerts = $('#insert_here .alert').length;
-    
+
   // either write the count, or empty the badge if there are no alerts
   if(numAlerts > 0){
     $('#counter_badge').text(numAlerts);
@@ -99,23 +99,23 @@ You need to add a listener for this event to the alert as you build it, so this 
 ```JavaScript
 $('#alert_btn').click(function(){
   // build an alert
-  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the textbox!");
+  const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the text box!");
   $a.addClass(`alert alert-${$('#alert_style_sel').val()}`);
-        
+
   // inject a dismiss button
   $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
-  
+
   // tell Bootstrap to treat our new alert as an alert
   $a.alert();
-        
+
   // add a listener to the alert's closed event to update the counter
   $a.on('closed.bs.alert', function(){
     updateCounter();
   });
-        
+
   // inject it into the page
   $('#insert_here').append($a);
-        
+
   // update the counter
   updateCounter();
 });
@@ -162,7 +162,7 @@ In our example the form takes up an entire column in the grid layout, so the con
   <div class="row justify-content-center">
     <fieldset class="col col-md-8 col-lg-6 form" role="form" aria-labelledby="feedback_fm_desc">
       <legend id="feedback_fm_desc">Feedback</legend>
-                        
+
       <form action="javascript:void(0);" id="feedback_fm">
 
       <!-- FORM UI GOES HERE -->

@@ -1,6 +1,6 @@
 # PBS 85 of X — Objects as Arrays in JavaScript (Redux & Update)
 
-There are many programming concepts that are common to the vast majority of programming languages, but each language implements these concepts in their own unique and special way. In JavaScript, objects are used to implement many concepts. I like to think of JavaScript objects as a single language feature that wears many hats. In [the previous instalment](https://bartificer.net/pbs84) we focused on one of these hats, JavaScript’s use of objects to implement dictionaries. In this instalment we’ll look at another hat JavaScript objets get to wear — arrays. As with the previous instalment, this instalment will be a mixture of consolidated reminders of things we’ve met before, and of some new features added to arrays in more recent versions of the JavaScript language.
+There are many programming concepts that are common to the vast majority of programming languages, but each language implements these concepts in their own unique and special way. In JavaScript, objects are used to implement many concepts. I like to think of JavaScript objects as a single language feature that wears many hats. In [the previous instalment](https://bartificer.net/pbs84) we focused on one of these hats, JavaScript’s use of objects to implement dictionaries. In this instalment we’ll look at another hat JavaScript objects get to wear — arrays. As with the previous instalment, this instalment will be a mixture of consolidated reminders of things we’ve met before, and of some new features added to arrays in more recent versions of the JavaScript language.
 
 We’ll also look at a sample solution to the challenge set at the end of instalment 83, but unusually, we’ll do that after our look at arrays.
 
@@ -13,7 +13,7 @@ You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/d52db74056e78a9e298a691c716b487c93db910f/instalmentResources/pbs85/pbs83-challengeSolution/index.html) or  
     [View Source](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs85/pbs83-challengeSolution/index.html)
 
-# Matching Postcast Episode 613
+# Matching Podcast Episode 613
 
 Listen along to this instalment on [episode 613 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/ccatp-613/)
 
@@ -39,7 +39,7 @@ As mentioned in the introduction, JavaScript uses objects to implement the array
 
 So, in Javascript, arrays are objects of type `Array`.
 
-The `Array` prototype adds just one proprty of note to arrays — `.length`. JavaScript defines an array’s length as one greater than the highest index that contains a value, or zero if the array contains no values. So, if you have an array with 10 values indexed from zero to nine, then that array’s `.length` will be 10, but an array with a single value at index 9 will also have a `.length` of 10.
+The `Array` prototype adds just one property of note to arrays — `.length`. JavaScript defines an array’s length as one greater than the highest index that contains a value, or zero if the array contains no values. So, if you have an array with 10 values indexed from zero to nine, then that array’s `.length` will be 10, but an array with a single value at index 9 will also have a `.length` of 10.
 
 ### Creating Arrays with Array Literals
 
@@ -73,7 +73,7 @@ Because JavaScript arrays are all instances of the built-in `Array` class, they 
 Note that these examples are intended to be run from the JavaScript console on the file `pbs85a.html` from this instalment’s zip file. The examples make use of an array named days defined within that files global scope as follows:
 
 ```JavaScript
-var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];	
+var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 ```
 
 OK, let’s look at the actual examples now:
@@ -322,7 +322,7 @@ async function buildCurrencyCard(curCode){
   if(!curCode.match(/^[A-Z]{3}$/)){
     throw new TypeError(`Invalid country code: ${curCode}`);
   }
-		
+
   // fetch the data for the currency
   const curData = await $.ajax({ // could throw Error
     url: CURRENCY_API_URL,
@@ -333,7 +333,7 @@ async function buildCurrencyCard(curCode){
     }
   });
   console.debug(`received currency data for '${curCode}': `, curData);
-		
+
   // build the view for the card
   const cardView = {
     base: {
@@ -351,7 +351,7 @@ async function buildCurrencyCard(curCode){
     });
   }
   console.debug('generated view:', cardView);
-		
+
   // generate and return the HTML
   return Mustache.render(CURRENCY_CARD_TPL, cardView);
 }

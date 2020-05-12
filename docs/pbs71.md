@@ -6,7 +6,7 @@ It would be a shame to go through an entire instalment without any new content t
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/02/pbs71.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs71.zip).
 
-# Matching Postcast Episode 581
+# Matching Podcast Episode 581
 
 Listen along to this instalment on [episode 581 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/02/ccatp-581/)
 
@@ -16,7 +16,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 70 Challenge Solution
 
-The challenge set at the end of the previous instalment was to create a simplistic timer web app. The app would consist of a form where the user can enter a number of minutes and a message, and a button to start a timer that will display the message in a modal dialogue when the requested number of minutes have elapsed. Every minute between starting the timer and the final modal a toast dialogue should appear telling the user how long is left. To stop multiple timers being started at once, the form should be disabled while a timer is running. There was bonus credit for creating Toast notifications that did not dismiss automatically, and then dismissing them programatically when the timer ended.
+The challenge set at the end of the previous instalment was to create a simplistic timer web app. The app would consist of a form where the user can enter a number of minutes and a message, and a button to start a timer that will display the message in a modal dialogue when the requested number of minutes have elapsed. Every minute between starting the timer and the final modal a toast dialogue should appear telling the user how long is left. To stop multiple timers being started at once, the form should be disabled while a timer is running. There was bonus credit for creating Toast notifications that did not dismiss automatically, and then dismissing them programmatically when the timer ended.
 
 You’ll find my full solution in this instalment’s ZIP file in the folder `pbs70-challenge-solution`.
 
@@ -74,10 +74,10 @@ const $mins = $('#timer_min_rg');
 $mins.on('input', function(){
   // get the current number of minutes
   const mins = $mins.val();
-			
+
   // update the display of the current value
   $('.duration_display').text(mins);
-			
+
   // hide or show all plural-only and singular-only elements
   if(mins > 1){
     $('.plural_only').show();
@@ -160,19 +160,19 @@ With the house-keeping out of the way we’re now ready to tackle the big one �
 $form.on('submit', function(){
   // if the timer is already running do nothing
   if(RUNNING) return false;
-			
+
   // mark the timer as running
   RUNNING = true;
-			
+
   // disable the form
   $formControls.prop('disabled', true);
-			
+
   // start the main timeout
   const mins = $mins.val();
   mainTimerID = window.setTimeout(function(){
     // DESCRIBE THIS LATER
   }, mins * 1000 * 60);
-			
+
   // if needed, start the toast interval
   let minsLeft = mins - 1;
   if(minsLeft > 1){
@@ -196,10 +196,10 @@ if(minsLeft > 1){
       `${minsLeft} Minute${minsLeft > 1 ? 's' : ''} Left`,
       `${minsGone} minute${minsGone > 1 ? 's' : ''} down, ${minsLeft} to go!`
     );
-					
+
     // decrement the minutes left
     minsLeft--;
-					
+
     // if we're the last toast, end ourselves
     if(minsLeft === 0){
       window.clearInterval(toastIntervalID);
@@ -216,28 +216,28 @@ You’ll notice that to help keep the code maintainable, I wrote a separate func
 function showToast(t, msg){
   // create an empty toast
   const $toast = $('<div>').addClass('toast').attr('role', 'status').attr('aria-atomic', true);
-		
+
   // create a title for the toast and append it
   const $title = $('<div>').addClass('toast-header');
   $title.append($('<strong>').text(t));
   $toast.append($title);
-		
+
   // create a body for the toast and append it
   const $body = $('<div>').addClass('toast-body');
   $body.text(msg);
   $toast.append($body);
-		
+
   // add the toast to the toast rack
   $('#toast_rack').append($toast);
-		
+
   // initialise the toast plugin on the toast
   $toast.toast({ autohide: false });
-		
+
   // add an event handler to automatically delete the toast when it hides
   $toast.on('hidden.bs.toast', function(){
     $(this).remove();
   });
-		
+
   // finally show the toast
   $toast.toast('show');
 }
@@ -257,17 +257,17 @@ const mins = $mins.val();
   mainTimerID = window.setTimeout(function(){
     // hide any toasts
     $('.toast').toast('hide');
-				
+
     // populate the modal
     const msg = $msg.val() || '🙊';
     $('#message_display').text(msg);
-				
+
     // display the Modal
     $modal.modal('show');
-				
+
     // re-enable the form
     $formControls.prop('disabled', false);
-				
+
     // mark execution as completed
     RUNNING = false;
     mainTimerID = null;
@@ -286,7 +286,7 @@ Something you often need to do in web apps is make it clear to the user that som
 
 The Bootstrap _Spinner_ component exists to fulfil this role. A spinner is an animated icon that moves in such a way as to suggest on-going activity. Bootstrap provides two flavours of spinner that it names _Border_, and _Growing_. You can see both in the file `pbs71a.html` in this instalment’s ZIP file.
 
-You create a spinner giving any tag of your choice either the class `.spinner-border` or `.spinner-grow`. That’s all you **need** to do, but you **should** do more! To aid accessibility you should give your spinner the ARIA role `status`, and you should add some screen-reader-only text inside the spinner describing the the icon is indicating, usually _‘loading …’_.
+You create a spinner giving any tag of your choice either the class `.spinner-border` or `.spinner-grow`. That’s all you **need** to do, but you **should** do more! To aid accessibility you should give your spinner the ARIA role `status`, and you should add some screen-reader-only text inside the spinner describing the icon is indicating, usually _‘loading …’_.
 
 When you make a tag a spinner it will become an inline block element (unless you add the spinner inside a flexbox). For that reason I like to use the generic inline tag `<span>`, but you’ll see many examples that use `<div>`, and you really could use any tag you like.
 
@@ -317,7 +317,7 @@ You can control the colour of your spinners using Bootstrap’s text colour util
 
 ### Aligning Spinners
 
-Something you’ll often want to do is centre-align a spinner. Since spinners are inline block elements they behave just like text, so you can centre them like you would any piece of text using Boostrap’s utility classes. Below is an example from `pbs71a.html`:
+Something you’ll often want to do is centre-align a spinner. Since spinners are inline block elements they behave just like text, so you can centre them like you would any piece of text using Bootstrap’s utility classes. Below is an example from `pbs71a.html`:
 
 ```XHTML
 <p class="text-center">
@@ -389,18 +389,18 @@ Let’s start with the first approach. The markup is quite simple:
 
 Note that because in this case the spinner will be the only thing visible in the button once the button is clicked I do have to include the screen-reader-only text inside the spinner. I also chose to use a small spinner because I think that looks better.
 
-With the markup in place we need to add a click hander that will hide the text, show the spinner and disable the button. We do this inside the document ready event handler:
+With the markup in place we need to add a click handler that will hide the text, show the spinner and disable the button. We do this inside the document ready event handler:
 
 ```JavaScript
 $('#spinner_btn_1').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
-			
+
   // hide the text
   $('.button_text', $btn).hide(250);
-			
+
   // show the spinner
   $('.spinner-border', $btn).removeClass('d-none');
-			
+
   // disable the button
   $btn.prop('disabled', true);
 });
@@ -411,24 +411,24 @@ In a real-world situation some other event handler would be responsible for re-e
 ```JavaScript
 $('#spinner_btn_1').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
-			
+
   // hide the text
   $('.button_text', $btn).hide(250);
-			
+
   // show the spinner
   $('.spinner-border', $btn).removeClass('d-none');
-			
+
   // disable the button
   $btn.prop('disabled', true);
-			
+
   // start a timeout to re-enable the button after 3 seconds
   window.setTimeout(function(){
     // show the text
     $('.button_text', $btn).show(250);
-				
+
     // hide the spinner
     $('.spinner-border', $btn).addClass('d-none');
-				
+
     // re-enable the button
     $btn.prop('disabled', false);
   }, 1000 * 3);
@@ -449,29 +449,29 @@ Since the spinner is purely decorative in this scenario it has not screen-reader
 With the markup in place we can add the event handler. Like in our previous example, in the real world the re-enabling would be done in a separate event handler, but in this case we’re using a 3 second timeout set within the click handler:
 
 ```JavaScript
-// add a click hander to the second spinner button
+// add a click handler to the second spinner button
 $('#spinner_btn_2').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
-			
+
   // replace the text
   $textSpan = $('.button_text', $btn); // get a reference to the span with the text
   const originalText = $textSpan.text(); // save the original so we can restore it
   $textSpan.text('Waiting…');
-			
+
   // show the spinner
   $('.spinner-border', $btn).removeClass('d-none');
-			
+
   // disable the button
   $btn.prop('disabled', true);
-			
+
   // start a timeout to re-enable the button after 3 seconds
   window.setTimeout(function(){
     // put the text back
     $textSpan.text(originalText);
-				
+
     // hide the spinner
     $('.spinner-border', $btn).addClass('d-none');
-				
+
     // re-enable the button
     $btn.prop('disabled', false);
   }, 1000 * 3);
