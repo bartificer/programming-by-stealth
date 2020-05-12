@@ -10,6 +10,17 @@
 	<!-- Include Font Awesome 5 -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	
+	<!-- Add local styles -->
+	<style>
+		/* Load the web font for the clock */
+		@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+		
+		/* Apply the web font to the clock */
+		#wc_clock{
+			font-family: 'Share Tech Mono', monospace;
+		}
+	</style>
+	
 	<title>World Clock (PBS 92 Challenge Solution)</title>
 </head>
 <body>
@@ -57,12 +68,40 @@
 							<span id="wc_hours">00</span>
 							<span class="wc_separator">:</span>
 							<span id="wc_minutes">00</span>
-							<span class="wc_separator">:</span>
-							<span id="wc_seconds">00</span>
+							<small id="wc_seconds_section">
+								<span class="wc_separator">:</span>
+								<span id="wc_seconds">00</span>
+							</small>
 							<span id="wc_ampm">am</span>
 						</div>
 					</div>
 				</div>
+				<form action="javascript:void(0);" class="card-body form">
+					<div class="form-group">
+						<label for="wc_timeZone_sel">Timezone</label>
+						<select id="wc_timeZone_sel" class="form-control">
+							<option value="local" selected>Your Local Timezone</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="wc_24h_cb">
+							<label class="custom-control-label" for="wc_24h_cb">24 Hour Format</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="wc_showSeconds_cb">
+							<label class="custom-control-label" for="wc_showSeconds_cb">Show Seconds</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="wc_pulse_cb">
+							<label class="custom-control-label" for="wc_pulse_cb">Pulse Separators</label>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -73,19 +112,77 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+<!-- Include Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment-with-locales.min.js" integrity="sha256-8d6kI5cQEwofkZmaPTRbKgyD70GN5mDpTYNP9YWhTlI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data.min.js" integrity="sha256-IWYg4uIC8/erItNXYvLtyYHioRi2zT1TFva8qaAU/ww=" crossorigin="anonymous"></script>
+
 <!-- This Page's Local JavaScript Code -->
 <script type="text/javascript">
 	//
-	// Define global variables for examples
+	// Define global variables for the clock
 	//
 	
-	// NONE FOR NOW
+	// the parts of the clock
+	// (will be initialised in document ready handler)
+	var $WC_HOURS, $WC_MINUTES, $WC_SECONDS, $WC_SEPARATORS, $WC_AMPM, $WC_SECONDS_SECTION;
+	
+	// the form elements controlling the clock
+	// (will be initialised in document ready handler)
+	var $WC_24HR_CB, $WC_SHOW_SECONDS_CB, $WC_PULSE_CB;
 	
 	//
 	// Document ready handler
 	//
 	$(function(){
-		// NOTHING FOR NOW
+		// initialise the global variables representing the parts of the clock
+		$WC_HOURS = $('#wc_hours');
+		$WC_MINUTES = $('#wc_minutes');
+		$WC_SECONDS = $('#wc_seconds');
+		$WC_AMPM = $('#wc_ampm');
+		$WC_SEPARATORS = $('.wc_separator');
+		$WC_SECONDS_SECTION = $('#wc_seconds_section');
+		
+		// initialise the global variables representing the form elements
+		$WC_24HR_CB = $('#wc_24h_cb');
+		$WC_SHOW_SECONDS_CB = $('#wc_showSeconds_cb');
+		$WC_PULSE_CB = $('#wc_pulse_cb');
+		
+		// start the world clock interval
+		let tick = true;
+		window.setInterval(function(){
+				// figure out of we're a tick or a tock
+				if(tick){
+					// we're a tick, so update the time on the clock and show the separators
+					const now = moment().tz('Europe/Dublin');
+					$WC_HOURS.text(now.format($WC_24HR_CB.prop('checked') ? 'HH' : 'h'));
+					$WC_MINUTES.text(now.format('mm'));
+					$WC_SECONDS.text(now.format('ss'));
+					$WC_AMPM.text(now.format('a'));
+					$WC_SEPARATORS.fadeTo(250, 1);
+				}else{
+					// we're a tock, just pulse the separators if needed
+					if($WC_PULSE_CB.prop('checked')){
+						$WC_SEPARATORS.fadeTo(250, 0.25);
+					}
+				}
+				
+				// Always update the display of everything
+				if($WC_24HR_CB.prop('checked')){
+					$WC_AMPM.hide(250);
+				}else{
+					$WC_AMPM.show(250);
+				}
+				if($WC_SHOW_SECONDS_CB.prop('checked')){
+					$WC_SECONDS_SECTION.show(250);
+				}else{
+					$WC_SECONDS_SECTION.hide(250);
+				}
+				
+				// toggle the tick
+				tick = !tick;
+			},
+			500 //runs every half second
+		);
 	});
 </script>
 
