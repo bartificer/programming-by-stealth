@@ -36,7 +36,7 @@ By default code tags are rendered using a fixed width font, but again, CSS can b
 
 Create a folder called `pbs4` in the document root of your web server, and save the following into that folder as a file called `index.html`:
 
-```XHTML
+```html
 <!DOCTYPE html>
 <html>
 <head>
