@@ -38,7 +38,7 @@ This is by far the preferred means of adding CSS to an HTML document. It allows 
 
 To import an external style sheet, use the `<link>` tag within the `<head>` section of the document as follows:
 
-```
+```html
 <link rel="stylesheet" type="text/css" href="URL_TO_STYLE_SHEET" />
 
 ```
@@ -167,7 +167,7 @@ hsla(HUE_IN_DEGREES, SATURATION_VALUE%, LIGHTNESS_VALUE, ALPHA_VALUE)
 
 The following three definitions all set the colour to the same shade of red:
 
-```
+```css
 color: Crimson;
 color: #DC143C;
 color: rgb(220, 20, 60);
@@ -181,7 +181,7 @@ For those of you not familiar with typographic terminology, a serif font is a va
 
 Below are some example best-practice font-family declarations:
 
-```
+```css
 font-family: "Times New Roman", Times, serif;
 font-family: Helvetica, Arial, sans-serif; /* My preference */
 font-family: Verdana, Geneva, sans-serif;
@@ -220,7 +220,7 @@ The size that text should be rendered at is controlled with the `font-size` CSS 
 
 The following examples show how to enable and disable bold and italics:
 
-```
+```css
 font-style: italic; /* enable italics */
 font-style: normal; /* disable italics */
 font-weight: bold; /* enable bold */
@@ -231,7 +231,7 @@ font-weight: normal; /* disable bold */
 
 The `text-decoration` CSS property can be used to add a line under, over, or through text.
 
-```
+```css
 text-decoration: underline; /* underline text */
 text-decoration: overline; /* overline text */
 text-decoration: line-through; /* strikethrough */
@@ -258,7 +258,7 @@ In reality, what all this means is that, in the western world, if we don’t spe
 
 The `text-transform` CSS property can be used to alter the case of the text within an HTML tag. This can be especially useful for headings.
 
-```
+```css
 text-transform: capitalize; /* upper-case the first letter of each word */
 text-transform: lowercase; /* convert to all lowercase */
 text-transform: uppercase; /* covert to all caps */
@@ -321,7 +321,7 @@ sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </html>
 ```
 
-```
+```css
 /*
 Styles for PBS 6 worked example
 */
