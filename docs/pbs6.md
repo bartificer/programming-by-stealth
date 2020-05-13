@@ -122,7 +122,7 @@ The CSS property for specifying text colour is simply `color` (spelled the Ameri
 <dl>
 <dt>Colour Names</dt>
 
-<dd>The CSS specification includes a large list of named colours. All the obvious ones like <code>Red</code>, <code>Green</code>, <code>Blue</code>, <code>Yellow</code>, <code>Purple</code>, <code>Black</code>, <code>White</code>, etc. are there, but the list is much more extensive, and includes more unusual colours like <code>CornflowerBlue</code> and <code>DarkOliveGreen</code>. You can find a full list of all the supported names with samples of the colours <a href="http://www.w3schools.com/cssref/css_colornames.asp" title="CSS Colour List from W3 Schools">here</a>.</dd>
+<dd>The CSS specification includes a large list of named colours. All the obvious ones like <code>Red</code>, <code>Green</code>, <code>Blue</code>, <code>Yellow</code>, <code>Purple</code>, <code>Black</code>, <code>White</code>, etc. are there, but the list is much more extensive, and includes more unusual colours like <code>CornflowerBlue</code> and <code>DarkOliveGreen</code>. You can find a full list of all the supported names with samples of the colours <a href="http://www.w3schools.com/cssref/css_colors.asp" title="CSS Colour List from W3 Schools">here</a>.</dd>
 
 <dt>HTML Colour Codes (HEX)</dt>
 
@@ -181,7 +181,7 @@ For those of you not familiar with typographic terminology, a serif font is a va
 
 Below are some example best-practice font-family declarations:
 
-```CSS
+```
 font-family: "Times New Roman", Times, serif;
 font-family: Helvetica, Arial, sans-serif; /* My preference */
 font-family: Verdana, Geneva, sans-serif;
@@ -220,7 +220,7 @@ The size that text should be rendered at is controlled with the `font-size` CSS 
 
 The following examples show how to enable and disable bold and italics:
 
-```CSS
+```
 font-style: italic; /* enable italics */
 font-style: normal; /* disable italics */
 font-weight: bold; /* enable bold */
@@ -231,7 +231,7 @@ font-weight: normal; /* disable bold */
 
 The `text-decoration` CSS property can be used to add a line under, over, or through text.
 
-```CSS
+```
 text-decoration: underline; /* underline text */
 text-decoration: overline; /* overline text */
 text-decoration: line-through; /* strikethrough */
@@ -258,7 +258,7 @@ In reality, what all this means is that, in the western world, if we don’t spe
 
 The `text-transform` CSS property can be used to alter the case of the text within an HTML tag. This can be especially useful for headings.
 
-```CSS
+```
 text-transform: capitalize; /* upper-case the first letter of each word */
 text-transform: lowercase; /* convert to all lowercase */
 text-transform: uppercase; /* covert to all caps */
@@ -321,7 +321,7 @@ sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </html>
 ```
 
-```CSS
+```
 /*
 Styles for PBS 6 worked example
 */
