@@ -2,7 +2,7 @@
 
 In this instalment we’ll build on our basic understanding of CSS from previous instalment. We’ll start with some new CSS selectors, in the process, introduce two new HTML tag attributes, then we’ll move on to the CSS box model. Each HTML tag is represented in the page as a box, and all those boxes can be manipulated with CSS.
 
-# Matching Podcast Episode 422
+## Matching Podcast Episode 422
 
 Listen Along: Chit Chat Across the Pond Episode 422
 
@@ -20,7 +20,7 @@ Solving this problem is what advanced CSS selectors are all about. There are man
 
 Imagine this scenario – in your main document, you are happy to have emphasised text rendered in the default way, that is to say, in italics. You also like having block quotes rendered in italics, so you have added the style definition in your sheet:
 
-```CSS
+```css
 blockquote{
   font-style: italic;
 }
@@ -30,7 +30,7 @@ You now include a quotation that contains emphasised text – that emphasis will
 
 This is where the CSS containment selector comes into play. To specify that a style should only be applied to a tag if it is contained within another tag, the selector is simply the name of the containing tag followed by a space, followed by the contained tag. So, in our example, we could make emphasised text within block quotes dark grey with the style definition:
 
-```CSS
+```css
 blockquote em{
   color: DarkGrey;
 }
@@ -49,15 +49,15 @@ You can define your own class names as you wish, but, they must obey the followi
 *   CSS class names must begin with a letter, underscore, or hyphen (not a number)
 *   The first character can be followed by zero or more letters, digits, underscores or hyphens
 *   If the first character is a hyphen, the name must be at least two characters long, and the second character must be a letter or an underscore
-*   As a convention, class names beginning with a hyphen are reserved for the browser, so while they are allowed, you should avoid naming your own classes with a leading hyphen
+*   As a convention, class names beginning with a hyphen are reserved for the browser. So while they are allowed, you should avoid naming your own classes with a leading hyphen
 
 Adding classes to a tag will have no visible effect on the document without CSS. In effect, the attribute provides a hook to hang style information onto.
 
-To specify a class name in a CSS selector, the syntax is the name of the class pre-fixed with a dot.
+To specify a class name in a CSS selector, the syntax is the name of the class prefixed with a dot.
 
 So, to specify that all tags with the class `vip` should be rendered in dark red, you could use the following style definition:
 
-```CSS
+```css
 .vip{
   color: DarkRed;
 }
@@ -65,7 +65,7 @@ So, to specify that all tags with the class `vip` should be rendered in dark red
 
 To specify a style for only a particular tag of a particular class, specify the tag name followed by a dot followed by the class name. So, for example, to make top-level headings with the class vip bright red, you could use the following style definition:
 
-```CSS
+```css
 h1.vip{
   color: Red;
 }
@@ -77,17 +77,17 @@ Finally, note that you can apply the same class name to as many tags within a do
 
 ### IDs
 
-Every HTML tag can specify an `id` attribute. Effectively, an ID is a name you give a tag that uniquely identifies it in the document. IDs have a number of uses, and we’ll learn about more of them as we go through this series, but for now, we’ll use IDs to target individual tags within a CSS selector. That is to say, not all instances of a given tag, but a single, specific tag.
+Every HTML tag can specify an `id` attribute. Effectively, an ID is a name you give a tag that uniquely identifies it in the document. IDs have a number of uses, and we’ll learn about more of them as we go through this series. But for now, we’ll use IDs to target individual tags within a CSS selector. That is to say, not all instances of a given tag, but a single, specific tag.
 
 Like a class name, IDs are names of your own invention, but they do have to adhere to certain rules:
 
 *   The first character in an ID must be a letter
-*   After the first character there can be zero or more letters, digits, underscores, hyphens, colons or dots.
-*   While it is legal to use dots in IDs, it causes complications when using the ID in a CSS selector, so it is advisable not to use them.
+*   After the first character there can be zero or more letters, digits, underscores, hyphens, colons, or dots.
+*   While it is legal to use dots in IDs, it causes complications when using the ID in a CSS selector; so it is advisable not to use them.
 
-The CSS selector for an ID is the `#` symbol followed by the ID, so to make any tag with the ID `intro_text` blue, you would use a style definition something like:
+The CSS selector for an ID is the `#` symbol followed by the ID. So to make any tag with the ID `intro_text` blue, you would use a style definition something like:
 
-```CSS
+```css
 #intro_text{
   color: blue;
 }
@@ -95,7 +95,7 @@ The CSS selector for an ID is the `#` symbol followed by the ID, so to make any 
 
 You can also combine a tag name with an ID so the style is only applied if the tag with a given ID is of a given type. For example, to make a paragraph with an ID of `intro_text` blue you would use a style definition something like:
 
-```CSS
+```css
 p#intro_text{
   color: blue;
 }
@@ -105,31 +105,33 @@ Unlike with classes, IDs should be unique within an HTML document.
 
 ### Combining Selectors
 
-Selectors will get even more complex in future instalments, but for now it is important to emphasise that the three selectors were have learned about today can be combined in any arbitrary way. To apply a style only to emphasised text with a class `vip` within a paragraph with ID intro\_text you would use the selector `p#intro_text em.vip`.
+Selectors will get even more complex in future instalments; but for now it is important to emphasise that the three selectors we have learned about today can be combined in any arbitrary way. To apply a style only to emphasised text with a class `vip` within a paragraph with ID intro\_text you would use the selector `p#intro_text em.vip`.
 
-## Specificity Re-visited
+## Specificity Revisited
 
-Now that we have learned about tag containment, classes and IDs within CSS selectors, we need to re-visit the concept of specificity.
+Now that we have learned about tag containment, classes, and IDs within CSS selectors, we need to revisit the concept of specificity.
 
 The specificity for a given style definition consists of four numbers, and is written as `s,i,c,t` – where all four letters represent an integer as follows:
 
-`s`
+<dl>
+<dt><code>s</code></dt>
 
-`1` if the style definition was defined in a style attribute belonging to the tag being styled, `0` otherwise.
+<dd><code>1</code> if the style definition was defined in a style attribute belonging to the tag being styled, <code>0</code> otherwise.</dd>
 
-`i`
+<dt><code>i</code></dt>
 
-The number of IDs specified within the selector
+<dd>The number of IDs specified within the selector</dd>
 
-`c`
+<dt><code>c</code></dt>
 
-The number of Classes specified within the selector
+<dd>The number of Classes specified within the selector</dd>
 
-`t`
+<dt><code>t</code></dt>
 
-The number of tag names specified within the selector
+<dd>The number of tag names specified within the selector</dd>
+</dl>
 
-To compare two specificities, start with the `s`, if they are different, the one with the highest `s` wins, otherwise, move on to `i`, again, if they are different, the one with the highest `i` wins, otherwise move on to `c`, and so on.
+To compare two specificities, start with the `s`. If they are different, the one with the highest `s` wins. Otherwise, move on to `i`. Again, if they are different, the one with the highest `i` wins, otherwise move on to `c`, and so on.
 
 If we add in what we learned about specificity last time, we can now say that the specificity of style definitions that are inherited from the portent, or specified with the \* selector is `0,0,0,0`.
 
@@ -137,13 +139,13 @@ Finally – if the four-component specificity for two competing definitions is e
 
 ## The CSS Box Model
 
-Within the browser, every HTML tag that makes up part of the page is defined by a rectangle, and that rectangle is referred to as the tag’s _box_.
+Within the browser, every HTML tag that makes up part of the page is defined by a rectangle. That rectangle is referred to as the tag’s _box_.
 
-To build the box for an element, start with the content region itself. Around that you can wrap a region zero or more pixels wide in the same colour as the box’s background (transparent by default) called the padding, around that you can wrap a coloured region zero or more pixels wide called the border, and finally, around that you can add a transparent region zero or more pixels wide called the margin. Padding, border, and margin default to be symmetric, but each can have a different thickness on the top, bottom, left, and right.
+To build the box for an element, start with the content region itself. Around that you can wrap a region zero or more pixels wide in the same colour as the box’s background (transparent by default) called the padding. Around that you can wrap a coloured region zero or more pixels wide called the border. Finally, around that you can add a transparent region zero or more pixels wide called the margin. Padding, border, and margin default to be symmetric, but each can have a different thickness on the top, bottom, left, and right.
 
 ![The CSS Box Model](../assets/pbs7/Screen-Shot-2016-01-15-at-16.06.11.png)
 
-The boxes for block-level tags stretch to the full width of the content area of the tag they are contained within, and stack one against the other, with the boxes touching each other. The body tag’s box extends to the edges of the content area of the browser window or tab they are appearing in.
+The boxes for block-level tags stretch to the full width of the content area of the tag they are contained within, They stack one against the other, with the boxes touching each other. The body tag’s box extends to the edges of the content area of the browser window or tab they are appearing in.
 
 ## Styling the Boxes
 
@@ -151,25 +153,27 @@ We can use CSS to style the box for any HTML tag.
 
 When setting dimensions on boxes, we have a number of units at our disposal:
 
-Pixels
+<dl>
+<dt>Pixels</dt>
 
-Written as an integer number with `px` appended, e.g. `4px`.
+<dd>Written as an integer number with <code>px</code> appended, e.g. <code>4px</code>.</dd>
 
-Percentages
+<dt>Percentages</dt>
 
-A dimension can be expressed as a percentage relative to some appropriate dimension – exactly what the percentage will be relative to depends entirely on the context in which it is used. Percentages are written as a number followed by the `%` symbol.
+<dd>A dimension can be expressed as a percentage relative to some appropriate dimension – exactly what the percentage will be relative to depends entirely on the context in which it is used. Percentages are written as a number followed by the <code>%</code> symbol.</dd>
 
-Font Size Multiplier
+<dt>Font Size Multiplier</dt>
 
-For reasons now lost to history (though there are some plausible theories), in typography, the term `em` refers to the size of a font. In CSS, dimensions can be specified as being a given multiplier of the font size. This is done by specifying a number with the letters `em` appended to it. To specify that a dimension should be half the size of the element’s font you would write it as `0.5em`.
+<dd>For reasons now lost to history (though there are some plausible theories), in typography, the term <code>em</code> refers to the size of a font. In CSS, dimensions can be specified as being a given multiplier of the font size. This is done by specifying a number with the letters <code>em</code> appended to it. To specify that a dimension should be half the size of the element’s font, you would write it as <code>0.5em</code>.</dd>
+</dl>
 
 ### Margins & Padding
 
-The margin is controlled by four CSS properties, `margin-top`, `margin-right`, `margin-bottom`, and `margin-left`. Each of these properties expects as valid positive dimension value – negative margins make no sense!
+The margin is controlled by four CSS properties, `margin-top`, `margin-right`, `margin-bottom`, and `margin-left`. Each of these properties expects a valid positive dimension value – negative margins make no sense!
 
 Because it’s often desirable to set all four margins at once, CSS provides the `margin` shorthand property. It expects either one, two, or four dimensions separated by spaces. When one dimension is specified, that dimension is applied to all four margin properties. When two dimensions are specified the first is applied to the top and bottom margins, and the second to the left and right. Finally, when four properties are provided, they are interpreted as the top, right, bottom, and left values – in that order.
 
-```CSS
+```css
 /* Short version */
 margin: 5px;
 /* Is identical to */
@@ -195,27 +199,27 @@ margin-bottom: 10px;
 margin-left: 15px;
 ```
 
-An extra complication, although it does make sense, is that vertical margins which touch each other without anything in-between will collapse to the largest of the two margins. This sounds counter-intuitive, but it makes sense when you see it in action. For example, you may say that headers should have 20 pixels of margin top and bottom, and paragraphs should have 10 pixels of margin top and bottom. When a paragraph comes directly after a heading, you don’t want there to be a 30 pixel gap because that will look very odd indeed. What happens is that the margin will collapse to 20 pixels, because 20 is greater than 10. Horizontal margins do no collapse.
+An extra complication, although it does make sense, is that vertical margins which touch each other without anything in between will collapse to the largest of the two margins. This sounds counterintuitive, but it makes sense when you see it in action. For example, you may say that headers should have 20 pixels of margin top and bottom, and paragraphs should have 10 pixels of margin top and bottom. When a paragraph comes directly after a heading, you don’t want there to be a 30 pixel gap because that will look very odd indeed. What happens is that the margin will collapse to 20 pixels, because 20 is greater than 10. Horizontal margins do not collapse.
 
-Padding is specified in similarly to margins, but using the four properties `padding-top`, `padding-right`, `padding-bottom`, and `padding-left`, and the shorthand property `padding`.
+Padding is specified similar to margins, but using the four properties `padding-top`, `padding-right`, `padding-bottom`, and `padding-left`, and the shorthand property `padding`.
 
 ### Borders
 
 Margins and padding are represented by four dimensions, one for each side. Borders are a little more complicated, because each of the four sides of the border has a width (thickness if you will), colour, and style. This means that the basic properties of a single box’s border is controlled by no fewer than twelve CSS properties: `border-top-width`, `border-top-color`, `border-top-style`, `border-right-width`, `border-right-color`, `border-right-style`, `border-bottom-width`, `border-bottom-color`, `border-bottom-style`, `border-left-width`, `border-left-color`, and `border-left-style`.
 
-The `-width` properties expect a dimension, like margin and padding, the `-color` properties expect a valid colour, like with the `color` property we saw in the previous instalment, and the `-style` properties expect one of the following values: `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, or `outset`. The default border style is `solid`.
+The `-width` properties expect a dimension, like margin and padding. The `-color` properties expect a valid colour, like with the `color` property we saw in the previous instalment. The `-style` properties expect one of the following values: `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, or `outset`. The default border style is `solid`.
 
-There are a number of shorthand properties to make setting borders easier, all five of them expect to be given one or more of a width, style, or colour, separated by spaces. To set all three properties on one of the four borders there are `border-top`, `border-right`, `border-bottom`, and `border-left`, and to set the three properties on all four borders at once there is the shorthand property `border`.
+There are a number of shorthand properties to make setting borders easier. All five of them expect to be given one or more of a width, style, or colour, separated by spaces. To set all three properties on one of the four borders, there are `border-top`, `border-right`, `border-bottom`, and `border-left`. To set the three properties on all four borders at once, there is the shorthand property `border`.
 
 So, to set all four borders to the same, use something like:
 
-```CSS
+```css
 border: 2px solid blue;
 ```
 
 If you want three of the borders to be the same, you can first use the border shorthand property, then one of the sides, e.g. to set all but the borders but the bottom one you could use something like:
 
-```CSS
+```css
 border: 1px dashed red;
 border-bottom: 0px;
 ```
@@ -224,15 +228,15 @@ CSS 3 finally introduced an officially supported way of rounding borders. Indivi
 
 You could add a quite subtle rounding to the borders with something like:
 
-```CSS
+```css
 border-radius: 5px;
 ```
 
 ### Backgrounds
 
-By default, tags have transparent backgrounds, but this can be altered by CSS. Backgrounds appear behind the content region and the padding, that is to say, everything out as far as the border, but not behind the margin, that region of a box is always transparent.
+By default, tags have transparent backgrounds, but this can be altered by CSS. Backgrounds appear behind the content region and the padding, that is to say, everything out as far as the border, but not behind the margin. That region of a box is always transparent.
 
-The easiest element of the background to control is the colour. The property that control the background colour is `background-color`, and valid values are `transparent`, and any valid CSS colour.
+The easiest element of the background to control is the colour. The property that controls the background colour is `background-color`, and valid values are `transparent`, and any valid CSS colour.
 
 Images can also be used as backgrounds using the `background-image` property. The value for this property can be `none`, or the URL to an image.
 
@@ -254,7 +258,7 @@ The page should look something like:
 
 For completeness, the code for the HTML and CSS files is shown below:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -304,7 +308,7 @@ print $q->redirect(
 </html>
 ```
 
-```CSS
+```css
 /*
 Styles for PBS7 Demo
 */
@@ -403,7 +407,7 @@ For today, what we want is the web inspector (`Tools`, `Web Developer`, `Inspect
 
 ![FireFox Developer Tools Web Inspector](../assets/pbs7/Screen-Shot-2016-01-19-at-17.02.56-e1453223192795.png)
 
-This will add new interface to the bottom of the browser window with two panes – one showing the HTML tags in the document, and one showing info about the currently selected tag. To see a tag’s box, just hover over it in the right pane, to see its properties, click on it. In the left pane, where the properties are shown, there are tabs to control what properties you see. The two that are of interest to use at the moment are Rules, which show all the CSS definitions in our stylesheets that apply to the selected tag, and Computed, which shows the rules that have been applied to the tag when all the cascading of styles and calculations of specificity have been done.
+This will add a new interface to the bottom of the browser window with two panes – one showing the HTML tags in the document, and one showing info about the currently selected tag. To see a tag’s box, just hover over it in the right pane. To see its properties, click on it. In the left pane, where the properties are shown, there are tabs to control what properties you see. The two that are of interest to us at the moment are Rules, which show all the CSS definitions in our stylesheets that apply to the selected tag, and Computed, which shows the rules that have been applied to the tag when all the cascading of styles and calculations of specificity have been done.
 
 ![FireFox Web Inspector](../assets/pbs7/Screen-Shot-2016-01-19-at-17.11.42-e1453223585271.png)
 
