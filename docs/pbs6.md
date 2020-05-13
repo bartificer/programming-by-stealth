@@ -2,9 +2,9 @@
 
 We have now learned enough HTML to encode basic page content, marking things as headings, paragraphs, lists, etc.. We have completely ignored the look of our pages so far – relying on our browsers’ default styles. The default styles, it’s fair to say, are pretty darn ugly, which is why almost every page on the web has at least some basic styling applied to override these defaults.
 
-In the bad old days, HTML pages were styled by adding attributes directly into the HTML tags. This was very time-consuming, and it greatly reduced the re-usability of the HTML markup. Those attributes still exist in the HTML spec, but we have completely ignored them, and will continue to do so for the entire series. This is not the bad old days, so we now have access to a much better solution – _Cascading Style Sheets_, or CSS.
+In the bad old days, HTML pages were styled by adding attributes directly into the HTML tags. This was very time-consuming, and it greatly reduced the reusability of the HTML markup. Those attributes still exist in the HTML spec, but we have completely ignored them, and will continue to do so for the entire series. This is not the bad old days, so we now have access to a much better solution – _Cascading Style Sheets_, or CSS.
 
-# Matching Podcast Episode 420
+## Matching Podcast Episode 420
 
 Listen Along: Chit Chat Across the Pond Episode 420
 
@@ -14,27 +14,27 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## CSS Overview
 
-In a CSS-enabled web browser, every HTML tag in a page has a collection of style properties associated with it. Each of these properties has a default value, and if no styling is applied to a page, those default values are used. CSS (and JavaScript) can be used to alter these properties, and hence, alter the appearance of pages.
+In a CSS-enabled web browser, every HTML tag in a page has a collection of style properties associated with it. Each of these properties has a default value. If no styling is applied to a page, those default values are used. CSS (and JavaScript) can be used to alter these properties, and hence, alter the appearance of pages.
 
-CSS is currently at version 3. Each new version has added new properties and selectors (more on those later) to CSS. So far, the versions have all been additive – that is to say, CSS 3 is a super-set of CSS 2 which is a super-set of CSS 1. In this series we are assuming modern browsers and HTML 5 support, so we will also assume CSS 3 support.
+CSS is currently at version 3. Each new version has added new properties and selectors (more on those later) to CSS. So far, the versions have all been additive – that is to say, CSS 3 is a super-set of CSS 2 which is a super-set of CSS 1. In this series we are assuming modern browsers and HTML 5 support; so we will also assume CSS 3 support.
 
 The fundamental atom of a CSS style sheet is the style declaration, which is just a name-value pair. The name is a style property name, and the value is the value that should be set for that property. The CSS specification defines the list of existing property names, what values they can accept, and what effect the values will have on the presentation of page. The individual declarations are very simplistic – e.g. `color: red;`, but when combined, they become very powerful.
 
-Style declarations are applied to HTML tags using so-called _selectors_ – these range from the simple to the down-right complex. A simple selector would be `p`, which selects all paragraph tags, while `p a[target="_blank"], ul > li` selects all links with a target of `_blank` within paragraphs, and all list elements who’s parent is an unordered list.
+Style declarations are applied to HTML tags using so-called _selectors_ – these range from the simple to the downright complex. A simple selector would be `p`, which selects all paragraph tags, while `p a[target="_blank"], ul > li` selects all links with a target of `_blank` within paragraphs and all list elements whose parent is an unordered list.
 
 Finally, the reason the word _cascading_ is in CSS’s name is that style attributes are inherited from parent tags, or, in other words, they cascade down through the document. If you specify that the text in all paragraphs should be blue, then the text within an emphasised region within a paragraph will inherit that blueness from its parent paragraph.
 
 Notice that the style for each HTML tag will be the result of combining style information from many sources – the styles of the containing tags, and, potentially, style declarations from multiple selectors. It is inevitable that there will be conflicts – if all paragraphs should be blue, but all emphasised text should be dark grey, what colour should emphasised text within a paragraph be? This kind of conflict resolution is handled by a complex algorithm which assigns each of the specified values for a key a _specificity_, and the value with the highest specificity wins!
 
-Understanding specificity is the key to mastering CSS, so it’s a term that will come up many times in the next few instalments. The full specificity hierarchy is very complex, so we’re going to build up our understanding of that hierarchy incrementally.
+Understanding specificity is the key to mastering CSS. So it’s a term that will come up many times in the next few instalments. The full specificity hierarchy is very complex, so we’re going to build up our understanding of that hierarchy incrementally.
 
 ## Adding CSS to a HTML Document
 
-There are three distinct ways to incorporate CSS into a HTML document, and they all have their valid uses, but from a best-practices point of view, there is none-the-less a distinct hierarchy.
+There are three distinct ways to incorporate CSS into a HTML document. They all have their valid uses, but, from a best-practices point of view, there is a distinct hierarchy.
 
 ### Import an External Stylesheet
 
-This is by far the preferred means of adding CSS to an HTML document. It allows the same CSS declarations to be applied to many documents, and it allows browsers to cache the CSS data. It also involves the minimal amount of alterations to the HTML document.
+This is by far the preferred means of adding CSS to an HTML document. It allows the same CSS declarations to be applied to many documents. It allows browsers to cache the CSS data. It also involves the minimal amount of alterations to the HTML document.
 
 To import an external style sheet, use the `<link>` tag within the `<head>` section of the document as follows:
 
@@ -55,17 +55,17 @@ Internal style sheets should be defined within a `<style>` tag within the `<head
 
 ### The `style` Attribute
 
-HTML tags can specify CSS declarations to be applied to themselves using the `style` attribute. Use of this approach should be absolutely minimised because it un-does most of the advantages CSS brings to the table. However, it can be useful from time to time because CSS declarations specified via the style attribute have the highest possible specificity, so they will trump all conflicting declarations in both imported external style sheets and the internal style sheet.
+HTML tags can specify CSS declarations to be applied to themselves using the `style` attribute. Use of this approach should be absolutely minimised because it undoes most of the advantages CSS brings to the table. However, it can be useful from time to time because CSS declarations specified via the style attribute have the highest possible specificity; so they will trump all conflicting declarations in both imported external style sheets and the internal style sheet.
 
 The following example shows a `style` attribute on an image tag used to force the border to always be zero pixels, regardless of what is specified in any applicable external or internal style sheets:
 
-```undefined
-<img src="img.jpg", alt="an image" style="border-width: 0px;" />
+```html
+<img src="img.jpg" alt="an image" style="border-width: 0px;" />
 ```
 
 ## Basic CSS Syntax
 
-The two main components of the CSS syntax are style declarations, and selectors. Selectors are used to map a collection of declarations to a collection of HTML tags. The `style` attribute is a special case, it does not allow selectors, and simply expects a list of style declarations.
+The two main components of the CSS syntax are style declarations and selectors. Selectors are used to map a collection of declarations to a collection of HTML tags. The `style` attribute is a special case; it does not allow selectors and simply expects a list of style declarations.
 
 At the highest level, CSS syntax can be summarised as follows:
 
@@ -119,53 +119,55 @@ What follows is just a sampling of some of the most commonly use text-formatting
 
 The CSS property for specifying text colour is simply `color` (spelled the American way). The value for this property can be expressed in one of a number of supported formats:
 
-Colour Names
+<dl>
+<dt>Colour Names</dt>
 
-The CSS specification includes a large list of named colours, all the obvious ones like `Red`, `Green`, `Blue`, `Yellow`, `Purple`, `Black`, `White` etc. are there, but the list is much more extensive, and includes more unusual colours like `CornflowerBlue` and `DarkOliveGreen`. You can find a full list of all the supported names with samples of the colours [here](http://www.w3schools.com/cssref/css_colornames.asp 'CSS Colour List from W3 Schools').
+<dd>The CSS specification includes a large list of named colours. All the obvious ones like <code>Red</code>, <code>Green</code>, <code>Blue</code>, <code>Yellow</code>, <code>Purple</code>, <code>Black</code>, <code>White</code>, etc. are there, but the list is much more extensive, and includes more unusual colours like <code>CornflowerBlue</code> and <code>DarkOliveGreen</code>. You can find a full list of all the supported names with samples of the colours <a href="http://www.w3schools.com/cssref/css_colornames.asp" title="CSS Colour List from W3 Schools">here</a>.</dd>
 
-HTML Colour Codes (HEX)
+<dt>HTML Colour Codes (HEX)</dt>
 
-In HTML, colours are specified as three HEX values between 0 and 255, or more specifically, between `00` and `FF`, representing the red, green, and blue values for the colour. These same values can be used in CSS, and, like in HTML, they must be pre-fixed with the `#` character. For example, pure red is `#FF0000`.
+<dd>In HTML, colours are specified as three HEX values between 0 and 255, or more specifically, between <code>00</code> and <code>FF</code>, representing the red, green, and blue values for the colour. These same values can be used in CSS, and, like in HTML, they must be prefixed with the <code>#</code> character. For example, pure red is <code>#FF0000</code>.</dd>
 
-RGB (Red, Green, Blue)
+<dt>RGB (Red, Green, Blue)</dt>
 
-The RGB components can be given as three decimal values between 0 and 255 using the following format:
+<dd>The RGB components can be given as three decimal values between 0 and 255 using the following format:</dd>
 
-```
+<code>
 rgb(RED_VALUE, GREEN_VALUE, BLUE_VALUE)
-```
+</code>
 
-For example, pure red would be `rgb(255, 0, 0)`.
+<p>For example, pure red would be <code>rgb(255, 0, 0)</code>.</p>
 
-RGB with Alpha (Opacity) AKA RGBA
+<dt>RGB with Alpha (Opacity) AKA RGBA</dt>
 
-An RGBA colour is basically the same as an RGB colour, but with a fourth parameter, the opacity, which should be a value between 0 and 1 where `0` is fully transparent, and `1` is fully opaque. RGBA values are specified as follows:
+<dd>An RGBA colour is basically the same as an RGB colour, but with a fourth parameter, the opacity, which should be a value between 0 and 1 where <code>0</code> is fully transparent, and <code>1</code> is fully opaque. RGBA values are specified as follows:</dd>
 
-```
+<code>
 rgba(RED_VALUE, GREEN_VALUE, BLUE_VALUE, ALPHA_VALUE)
-```
+</code>
 
-For example, semi-transparent pure red would be `rgba(255, 0, 0, 0.5)`.
+<p>For example, semitransparent pure red would be <code>rgba(255, 0, 0, 0.5)</code>.</p>
 
-HSL (Hue Saturation & Lightness)
+<dt>HSL (Hue Saturation & Lightness)</dt>
 
-Modern browsers also support the HSL colour representation – like RGB this involves three parameters, but in this case the first parameter is the hue, given as a value between 0 and 360, representing the position of the colour on the colour wheel in degrees. The second parameter is the saturation, given as a percentage, and the third is a lightness, also given as a percentage. The format for specifying an HSL colour is as follows:
+<dd>Modern browsers also support the HSL colour representation – like RGB this involves three parameters, but in this case the first parameter is the hue, given as a value between 0 and 360, representing the position of the colour on the colour wheel in degrees. The second parameter is the saturation, given as a percentage, and the third is a lightness, also given as a percentage. The format for specifying an HSL colour is as follows:</dd>
 
-```
+<code>
 hsl(HUE_IN_DEGREES, SATURATION_VALUE%, LIGHTNESS_VALUE)
-```
+</code>
 
-HSL with Alpha AKA HSLA
+<dt>HSL with Alpha AKA HSLA</dt>
 
-The same as a HSL value, but with an opacity parameter added, again, represented as a value between 0 and 1, like with RGBA. The format is as follows:
+<dd>The same as a HSL value, but with an opacity parameter added, again, represented as a value between 0 and 1, like with RGBA. The format is as follows:</dd>
 
-```
+<code>
 hsla(HUE_IN_DEGREES, SATURATION_VALUE%, LIGHTNESS_VALUE, ALPHA_VALUE)
-```
+</code>
+</dl>
 
 The following three definitions all set the colour to the same shade of red:
 
-```CSS
+```
 color: Crimson;
 color: #DC143C;
 color: rgb(220, 20, 60);
@@ -192,25 +194,27 @@ W3 Schools has [a nice list of common web-safe font-family declarations](http://
 
 The size that text should be rendered at is controlled with the `font-size` CSS property. This property can specify sizes in a large range of units, both explicitly, and relatively.
 
-Named Absolute Sizes
+<dl>
+<dt>Named Absolute Sizes</dt>
 
-There are named sizes, ranging from `xx-small` to `medium` to `xx-large`. The default size for text in regular tags is `medium`.
+<dd>There are named sizes, ranging from <code>xx-small</code> to <code>medium</code> to <code>xx-large</code>. The default size for text in regular tags is <code>medium</code>.</dd>
 
-Named Relative Sizes
+<dt>Named Relative Sizes</dt>
 
-There are two named relative sizes, each making the text one unit bigger or smaller than font size of the tag’s parent tag (`medium` to `large`, `large` to `x-large`, `medium` to `small`, `small` to `x-small` etc.), the two named relative sizes are `smaller` and `larger`.
+<dd>There are two named relative sizes, each making the text one unit bigger or smaller than font size of the tag’s parent tag (<code>medium</code> to <code>large</code>, <code>large</code> to <code>x-large</code>, <code>medium</code> to <code>small</code>, <code>small</code> to <code>x-small</code>, etc.). The two named relative sizes are <code>smaller</code> and <code>larger</code>.</dd>
 
-Absolute size in Points
+<dt>Absolute size in Points</dt>
 
-An absolute size in points can be specified as a number with `pt` appended to it, e.g. a 12 point font would be written as `12pt`.
+<dd>An absolute size in points can be specified as a number with <code>pt</code> appended to it, e.g. a 12 point font would be written as <code>12pt</code>.</dd>
 
-Absolute size in Pixels
+<dt>Absolute size in Pixels</dt>
 
-An absolute size in pixels can be specified as a number with `px` appended to it, e.g. a 10 pixel font would be written as `10px`.
+<dd>An absolute size in pixels can be specified as a number with <code>px</code> appended to it, e.g. a 10 pixel font would be written as <code>10px</code>.</dd>
 
-Relative Size as a Percentage
+<dt>Relative Size as a Percentage</dt>
 
-The font-size for an element can be specified as a percentage of the size of the font in the tag’s parent tag by specifying it as a number between 0 and 100 with the `%` symbol appended. E.g. to make the font half the size of the parent tag’s font, specify the size as `50%`.
+<dd>The font-size for an element can be specified as a percentage of the size of the font in the tag’s parent tag by specifying it as a number between 0 and 100 with the `%` symbol appended. E.g. to make the font half the size of the parent tag’s font, specify the size as <code>50%</code>.</dd>
+</dl>
 
 ### Italics & Bold
 
@@ -223,7 +227,7 @@ font-weight: bold; /* enable bold */
 font-weight: normal; /* disable bold */
 ```
 
-### Underline, Overline & Strikethrough
+### Underline, Overline, & Strikethrough
 
 The `text-decoration` CSS property can be used to add a line under, over, or through text.
 
@@ -238,17 +242,17 @@ text-decoration: none; /* no line (default) */
 
 The alignment of text is controlled by the `text-align` CSS property. Valid values are `left`, `right`, `center`, and `justify`.
 
-The default alignment depends on the active text direction. If the text direction is left-to-right the default alignment is `left`, and if the text direction is right-to-left, the default alignment is `right`.
+The default alignment depends on the active text direction. If the text direction is left-to-right, the default alignment is `left`, and if the text direction is right-to-left, the default alignment is `right`.
 
-Note that the text direction can be controlled with the `direction` CSS property. Valid values for this property are `ltr` for _left to right_, and `rtl` for _right to left_. In turn, the default value for the CSS `direction` property is determined by the page’s language. This can be specified by the web server using an HTTP header, or, by the page itself using a `<meta>` tag within the header something like:
+Note that the text direction can be controlled with the `direction` CSS property. Valid values for this property are `ltr` for _left to right_, and `rtl` for _right to left_. In turn, the default value for the CSS `direction` property is determined by the page’s language. This can be specified by the web server using an HTTP header, or by the page itself using a `<meta>` tag within the header something like:
 
-```XHTML
+```html
 <meta http-equiv="Content-Language" content="en-UK" />
 ```
 
 Finally, if there is no language using either the HTTP header, or the meta tag, the browser will assume a default based on the locale of the operating system it is running on.
 
-In reality, what all this means is that in the western world, if we don’t specify either an explicit language, or an explicit text direction, the default direction will be left-to-right, and the default text alignment will be `left`.
+In reality, what all this means is that, in the western world, if we don’t specify either an explicit language, or an explicit text direction, the default direction will be left-to-right, and the default text alignment will be `left`.
 
 ### Case Transformations
 
@@ -267,7 +271,7 @@ As an example, I have created a web page that makes use of many of the HTML tags
 
 The contents of both files are shown below:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -361,4 +365,4 @@ Once both files are saved in the appropriate folder, and your local web server i
 
 ## Conclusion
 
-This instalment is just a very basic introduction to CSS, we still have a lot more to learn! In the next instalments we’ll learn about the CSS box model, more advanced selectors, more CSS properties, and even some new HTML tags designed to facilitate easy styling. We’ll start with the box model though, because a good understanding of the box model is critical to effective styling.
+This instalment is just a very basic introduction to CSS. We still have a lot more to learn! In the next instalments we’ll learn about the CSS box model, more advanced selectors, more CSS properties, and even some new HTML tags designed to facilitate easy styling. We’ll start with the box model though, because a good understanding of the box model is critical to effective styling.
