@@ -78,10 +78,10 @@
 				</div>
 				<form action="javascript:void(0);" class="card-body form">
 					<div class="form-group">
+						<label for="wc_timeZone_region_sel">Region</label>
+						<select id="wc_timeZone_region_sel" class="form-control"></select>
 						<label for="wc_timeZone_sel">Timezone</label>
-						<select id="wc_timeZone_sel" class="form-control">
-							<option value="local" selected>Your Local Timezone</option>
-						</select>
+						<select id="wc_timeZone_sel" class="form-control"></select>
 					</div>
 					<div class="form-group">
 						<div class="custom-control custom-switch">
@@ -128,7 +128,11 @@
 	
 	// the form elements controlling the clock
 	// (will be initialised in document ready handler)
-	var $WC_24HR_CB, $WC_SHOW_SECONDS_CB, $WC_PULSE_CB;
+	var $WC_TIMEZONE_REGION_SEL, $WC_TIMEZONE_SEL, $WC_24HR_CB, $WC_SHOW_SECONDS_CB, $WC_PULSE_CB;
+	
+	// the timezone data
+	// (will be initialised in document ready handler)
+	var TIMEZONES_BY_REGION = {}; // full timezone strings indexed by region
 	
 	//
 	// Document ready handler
@@ -143,9 +147,45 @@
 		$WC_SECONDS_SECTION = $('#wc_seconds_section');
 		
 		// initialise the global variables representing the form elements
+		$WC_TIMEZONE_REGION_SEL = $('#wc_timeZone_region_sel');
+		$WC_TIMEZONE_SEL = $('#wc_timeZone_sel');
 		$WC_24HR_CB = $('#wc_24h_cb');
 		$WC_SHOW_SECONDS_CB = $('#wc_showSeconds_cb');
 		$WC_PULSE_CB = $('#wc_pulse_cb');
+		
+		// initialise the timezones datastructure
+		const tzNameRE = /^(\w+)[\/].*$/;
+		for(const tzName of moment.tz.names()){
+			const tzParts = tzName.split('\/');
+			
+			// skip timezones with more than two parts
+			if(tzParts.length != 2) continue;
+			
+			// skip the artificial Etc region
+			if(tzParts[0] === 'Etc') continue;
+			
+			// if we got here, we like this timezone, so save it
+			if(!TIMEZONES_BY_REGION[tzParts[0]]){ // make sure the array for the region exists
+				TIMEZONES_BY_REGION[tzParts[0]] = [];
+			}
+			TIMEZONES_BY_REGION[tzParts[0]].push(tzName);
+		}
+		
+		// load the timezones into the selects
+		for(const region of Object.keys(TIMEZONES_BY_REGION).sort()){
+			const $regionOpt = $('<option>').val(region).text(region);
+			$WC_TIMEZONE_REGION_SEL.append($regionOpt);
+		}
+		
+		// add an event handler to load the appropriate timezones when the region is changed
+		$WC_TIMEZONE_REGION_SEL.on('input', function(){
+			const region = $WC_TIMEZONE_REGION_SEL.val();
+			$WC_TIMEZONE_SEL.empty();
+			for(const tz of TIMEZONES_BY_REGION[region]){
+				const $tzOpt = $('<option>').val(tz).text(tz);
+				$WC_TIMEZONE_SEL.append($tzOpt);
+			}
+		}).trigger('input');
 		
 		// start the world clock interval
 		let tick = true;
@@ -153,7 +193,7 @@
 				// figure out of we're a tick or a tock
 				if(tick){
 					// we're a tick, so update the time on the clock and show the separators
-					const now = moment().tz('Europe/Dublin');
+					const now = moment().tz($WC_TIMEZONE_SEL.val());
 					$WC_HOURS.text(now.format($WC_24HR_CB.prop('checked') ? 'HH' : 'h'));
 					$WC_MINUTES.text(now.format('mm'));
 					$WC_SECONDS.text(now.format('ss'));
