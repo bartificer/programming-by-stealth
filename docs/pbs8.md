@@ -1,8 +1,8 @@
 # PBS 8 of X – CSS Positioning
 
-In [the previous instalment](https://www.bartbusschots.ie/s/2016/01/21/programming-by-stealth-7-of-x-more-css/) we learned about the CSS box model. Each HTML tag is represented as a box within the browser, and those boxes stack down the page, and inside each other to build up the web pages we see. We also learned how to use FireFox’s developer tools to actually see and inspect the boxes. In this instalment we’ll learn how to take one or more boxes out of the normal flow of the page, and position them elsewhere on the page.
+In [the previous instalment](https://www.bartbusschots.ie/s/2016/01/21/programming-by-stealth-7-of-x-more-css/) we learned about the CSS box model. Each HTML tag is represented as a box within the browser. Those boxes stack down the page and inside each other to build up the web pages we see. We also learned how to use FireFox’s developer tools to actually see and inspect the boxes. In this instalment we’ll learn how to take one or more boxes out of the normal flow of the page, and position them elsewhere on the page.
 
-# Matching Podcast Episode 424
+## Matching Podcast Episode 424
 
 Listen Along: Chit Chat Across the Pond Episode 424
 
@@ -12,25 +12,25 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## Grouping HTML Tags
 
-So far, we have looked at HTML tags for defining individual components of a page – headings, paragraphs, lists, images, etc.. We have not yet looked at grouping them into related chunks of any kind.
+So far, we have looked at HTML tags for defining individual components of a page – headings, paragraphs, lists, images, etc. We have not yet looked at grouping them into related chunks of any kind.
 
-HTML 5 has really changed how we define regions without our HTML documents. There are two big advantages to using the new HTML 5 tags – they help screen readers better understand your page, and they make it easier to style your page with CSS, allowing you to use more human-friendly selectors.
+HTML 5 has really changed how we define regions within our HTML documents. There are two big advantages to using the new HTML 5 tags – they help screen readers better understand your page, and they make it easier to style your page with CSS, allowing you to use more human-friendly selectors.
 
 HTML5 has introduced the concept of sectioning tags. These tags have no visible effect on the page without CSS, but they can be used to group chunks of related content within a page.
 
 ### Sections & Articles
 
-If you have a regular page with multiple logical sections, you can use the `<section>` tag to surround each section. You can also nest `<section>` tags inside other `<section>` tags if your content has logical sub-sections.
+If you have a regular page with multiple logical sections, you can use the `<section>` tag to surround each section. You can also nest `<section>` tags inside other `<section>` tags if your content has logical subsections.
 
-For pages that contain multiple independent pieces of content like blogs or new sites, the `<article>` tag should be used instead of the `<section>` tag. Think of an article is a piece of content that could be syndicated, like a blog post or a news story. It something only makes sense in context, it is probably a section, if it can stand alone, it is probably an article.
+For pages that contain multiple independent pieces of content like blogs or new sites, the `<article>` tag should be used instead of the `<section>` tag. Think of an article is a piece of content that could be syndicated, like a blog post or a news story. If something only makes sense in context, it is probably a section. If it can stand alone, it is probably an article.
 
 ### Figures and Asides
 
-The `<aside>` tag can be used to contain content that’s tangentially related to the content of a section or article. Something is an aside, only if the main content still makes sense without it.
+The `<aside>` tag can be used to contain content that’s tangentially related to the content of a section or article. Something is an aside only if the main content still makes sense without it.
 
-Similar, but a little different are figures. A figure can be a collection of images or a code sample or something like that who’s position within the document does not have to be fixed, but without which the main content does not make sense.
+Similar, but a little different, are figures. A figure can be a collection of images, a code sample, or something like that, whose position within the document does not have to be fixed, but without which the main content does not make sense.
 
-The `<figure>` tag is used to encapsulate figures, and figures can optionally contain a single caption within a `<figcaption>` tag.
+The `<figure>` tag is used to encapsulate figures. Figures can optionally contain a single caption within a `<figcaption>` tag.
 
 ### Navigation Areas
 
@@ -46,11 +46,11 @@ A web page can only contain a single `<main>` tag. That single `<main>` tag cann
 
 ### Generic Grouping Tags
 
-Finally, even before HTML 5, there were two generic tags for grouping content – `<div>` is the generic block-level grouping tag, and `<span>` is the generic in-line grouping tag.
+Finally, even before HTML 5, there were two generic tags for grouping content – `<div>` is the generic block-level grouping tag, and `<span>` is the generic inline grouping tag.
 
 ## Sizing Boxes
 
-Before we move on to positioning boxes, it’s worth noting that we can control the size of the box for each tag with CSS. The `width` and `height` properties specify the dimensions of the content region of a box. The default value is `auto`, which means the box will expand and contract based on it’s content, and the type of box that it is. The boxes for inline tags will be as tall and wide as their content, while the boxes for regular block-level tags will be the full width of the containing box, and the height of their content. Widths and heights can be set to specific values using any of the CSS dimensions (e.g. `500px`, or `4em`), or to a percentage of the width or height of the containing box.
+Before we move on to positioning boxes, it’s worth noting that we can control the size of the box for each tag with CSS. The `width` and `height` properties specify the dimensions of the content region of a box. The default value is `auto`, which means the box will expand and contract based on its content, and the type of box that it is. The boxes for inline tags will be as tall and wide as their content, while the boxes for regular block-level tags will be the full width of the containing box, and the height of their content. Widths and heights can be set to specific values using any of the CSS dimensions (e.g. `500px`, or `4em`), or to a percentage of the width or height of the containing box.
 
 As well as specifying exact sizes, it is also possible to leave the width and/or height set to `auto`, and constrain the size of the box within a range using the `min-width`, `max-width`, `min-height`, and `max-height` properties.
 
@@ -58,7 +58,7 @@ Finally, for block-level elements with a `width` other than `auto`, it’s possi
 
 You can see an example of this approach in the demo at the bottom of this instalment. The `<figure>` tag is given a width of `75%`, a padding of `5px`, a top and bottom margin of `10px`, and a left an right margin of `auto`:
 
-```CSS
+```css
 figure{
   text-align: center;
   width: 75%;
@@ -75,27 +75,32 @@ As you can see in the screenshot below, this results in figures being centred re
 
 ### Overflowing boxes
 
-When constraining the dimensions of boxes, or when including very long un-breakable content (big images, or text with really long ‘words’ like giant URLs), it is possible for the content not to fit inside its box. When this happens the browser has a few options: it can simply over-flow the box, showing the content poking out of what ever side of the box it does not fit within, or it can truncate the content, hiding what ever does not fit in the box, or, it can add scroll bars to the box.
+When constraining the dimensions of boxes, or when including very long unbreakable content (big images, or text with really long ‘words’ like giant URLs), it is possible for the content not to fit inside its box. When this happens the browser has a few options: it can simply overflow the box, showing the content poking out of whatever side of the box it does not fit within, or it can truncate the content, hiding whatever does not fit in the box, or, it can add scroll bars to the box.
 
 The behaviour in case of overflow is controlled by the `overflow-x` and `overflow-y` properties. `overflow-x` tells the browser what to do when content overflows out of the left or right edge of a box, and `overflow-y` what to do when content overflows out of the top or bottom of a box. There is also a shorthand property `overflow` which sets both overflows to the same value.
 
 The following values are valid for overflows:
 
-`visible`
+<dl>
+<dt><code>visible</code></dt>
 
-The overflowed content is shown beyond the edges of the box – this is the default
+<dd>The overflowed content is shown beyond the edges of the box – this is the default.</dd>
 
-`hidden`
+<dt><code>hidden</code></dt>
 
-The overflowing content is hidden, that is to say, the overflow is clipped.
+<dd>The overflowing content is hidden, that is to say, the overflow is clipped.</dd>
 
-`scroll`
 
-Scroll bars are always added to the box.
+<dt><code>scroll</code></dt>
 
-`auto`
+<dd>Scroll bars are always added to the box.</dd>
 
-Scrollbars are added only when needed.
+
+<dt><code>auto</code></dt>
+
+<dd>Scrollbars are added only when needed.</dd>
+
+</dl>
 
 ## CSS Positioning
 
@@ -109,7 +114,7 @@ This is the normal flow of a page. CSS positioning is about taking individual ta
 
 The simplest form of positioning is floating. Any block-level tag can be floated left or right using the `float` attribute. Because it makes no sense to float an inline tag, inline tags get converted to block-level tag when floated.
 
-The float property can have three values – `none`, `left`, or `right`, with `none` being the default. When a tag has its `float` property set to either `left` or `right`, it is removed from the normal flow of the page, so the block elements above and below come together. The floated box then floats over the boxes of the un-floated tags moving left or right until it hits either the edge of another floating box, or the edge of the content region of the box containing the floated box.
+The float property can have three values – `none`, `left`, or `right`, with `none` being the default. When a tag has its `float` property set to either `left` or `right`, it is removed from the normal flow of the page, so the block elements above and below come together. The floated box then floats over the boxes of the unfloated tags moving left or right until it hits either the edge of another floating box, or the edge of the content region of the box containing the floated box.
 
 While floated boxes sit in front of the boxes in the normal flow of the document, the content within those underlying boxes flows around the edges of the floated box. Think of it like floating an image in a word document, the text flows around the image.
 
@@ -125,7 +130,7 @@ Normally, floats will poke out of the bottom of boxes, and the clear property wi
 
 The first is particularly unpleasant because it breaks the separation between content and presentation – a completely empty `<div>` can be added at the end of the box to be extended around the floats, and the `clear` property can be set to `none` on that `<div>`.
 
-The second, preferable but still sub-optimal, solution is to set the `overflow` property on the box containing the floats to `auto`. This will cause the box to extend around the floats. If, however, the box contains overly long un-breakable content, scroll bars will appear, and that may not be what you want or expect.
+The second, preferable but still suboptimal, solution is to set the `overflow` property on the box containing the floats to `auto`. This will cause the box to extend around the floats. If, however, the box contains overly long unbreakable content, scroll bars will appear, and that may not be what you want or expect.
 
 You can see an example of this technique in use in the demo at the bottom of this instalment. The little business card in the top of the side bar is a box with a border and background, and it contains a floated image. Without setting the `overflow` to `auto`, it would look like this:
 
@@ -145,11 +150,11 @@ The default value for this property is `static` – that is to say, the tag is e
 
 Tags with their `position` set to `fixed` are taken out of the normal flow of the document, and placed above the boxes that remain within the normal flow, and positioned relative to the browser window.
 
-The attributes that control the position of boxes with a position of fixed are `top`, `right`, `bottom`, and `left`, and they specify the distance between the relevant side of the screen, and relevant edge of the positioned box. So, if `top` is set to `10px`, and `left` to `10px`, then the box will be positioned 10 pixels down from the top of the screen, and 10 pixels in from the left. The size of the box can then be controlled using the `width` and `height` properties, or if the `width` and/or `height` are set to `auto`, by specifying the off-set on two opposite sides.
+The attributes that control the position of boxes with a position of fixed are `top`, `right`, `bottom`, and `left`, and they specify the distance between the relevant side of the screen, and relevant edge of the positioned box. So, if `top` is set to `10px`, and `left` to `10px`, then the box will be positioned 10 pixels down from the top of the screen, and 10 pixels in from the left. The size of the box can then be controlled using the `width` and `height` properties, or if the `width` and/or `height` are set to `auto`, by specifying the offset on two opposite sides.
 
 For example, to position a `<div>` with the ID `top_banner` as a 10-pixel high banner across the whole top of the screen you would set:
 
-```CSS
+```css
 div#top_banner{
   position: fixed;
   top: 0px;
@@ -161,15 +166,15 @@ div#top_banner{
 
 As you scroll, an element with `position` set to `fixed` will not move with the page.
 
-Similar to setting the `position` to `fixed`, when you set the position to `absolute`, the box is taken out of the normal flow of the document, and it’s position controlled by top, right, bottom, and left, but in this case, relative to nearest containing positioned box. If there is no containing positioned box, the position is relative to the body tag.
+Similar to setting the `position` to `fixed`, when you set the position to `absolute`, the box is taken out of the normal flow of the document, and its position controlled by top, right, bottom, and left, but in this case, relative to nearest containing positioned box. If there is no containing positioned box, the position is relative to the body tag.
 
-The big difference is that with `position` set to `absolute`, the box **does** scroll with the page.
+The big difference is that, with `position` set to `absolute`, the box **does** scroll with the page.
 
-Finally, position can be set to `relative`. In this case, a place-holder for the box is left in place within the normal flow of the document, but the actual box is rendered off-set from it’s normal position by the values set in `top`, `right`, `bottom`, and/or `left`.
+Finally, position can be set to `relative`. In this case, a placeholder for the box is left in place within the normal flow of the document, but the actual box is rendered offset from its normal position by the values set in `top`, `right`, `bottom`, and/or `left`.
 
-Off-setting a position is not something you need to do often, but, setting `position` to `relative` without specifying an off-set has a very useful side-effect – it turns the box into a positioned box, so boxes within that box with a `position` of `absolute` now use it as the base for their `top`, `right`, `bottom`, and `left` offsets.
+Offsetting a position is not something you need to do often, but, setting `position` to `relative` without specifying an offset has a very useful side effect – it turns the box into a positioned box, so boxes within that box with a `position` of `absolute` now use it as the base for their `top`, `right`, `bottom`, and `left` offsets.
 
-Finally – the vertical stacking of positioned boxes can be controlled with the `z-index` property. Remember, the vertical stacking of un-positioned boxes is controlled by the nesting of the tags within the normal flow of the document, so the `z-index` property has no effect on un-positioned boxes.
+Finally – the vertical stacking of positioned boxes can be controlled with the `z-index` property. Remember, the vertical stacking of unpositioned boxes is controlled by the nesting of the tags within the normal flow of the document, so the `z-index` property has no effect on unpositioned boxes.
 
 The `z-index` property can either be set to `auto`, where it’s `z-index` is the same as that of it’s containing box, or, to a positive or negative whole number. Boxes with bigger `z-index` values are in front of those with smaller `z-index` values.
 
@@ -179,13 +184,13 @@ All this sounds very complicated, so let’s tie it together with an example.
 
 In this example we have a page with four main components – the main content region, a header, a footer, and a side bar. The header and footer are contained within `<header>` and `<footer>` tags, and between those two tags there is a `<div>` with the ID `central_region` which contains the middle section of the page. The central region `<div>` contains the main content wrapped in a `<main>` tag, and then the side bar as a `<div>` with the ID `sidebar`. The main content is broken into two articles, one with demo figures, and one with demo asides.
 
-The header and footer are unpositioned, as is the main content region. The div containing the entire central region is positioned relative, so it is show in it’s normal position, but it acts as the base of the coordinate system for absolutely positioned boxes with in. The main content is positioned normally, but with a `220px` left margin. This wide margin creates an empty space into which the side bar is then placed by positioning it absolutely.
+The header and footer are unpositioned, as is the main content region. The div containing the entire central region is positioned relative, so it is shown in its normal position, but it acts as the base of the coordinate system for absolutely positioned boxes within it. The main content is positioned normally, but with a `220px` left margin. This wide margin creates an empty space into which the side bar is then placed by positioning it absolutely.
 
 As usual, you can download a zip file with all the files needed for the example [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs8.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs8.zip). Extract these files and place them in a folder called `pbs8` in the document root of your web server, and of course, remember to start your web server. You should now be able to browse to the example at `http://localhost/pbs8/`.
 
 Below is the content of the HTML and CSS files:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -309,7 +314,7 @@ All Content by Bart Busschots - released under CC-NC-By License
 </html>
 ```
 
-```CSS
+```css
 /*
 Styles for PBS7 Demo
 */
