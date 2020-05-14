@@ -58,7 +58,7 @@ To make all this ARIA-compliant, we need to do three additional things — we ne
 
 Next, we’ll need to provide at least one button for closing the dialogue. It’s considered best practice to provide a close button in the top-right corner of the header, and also a regular button with a sane label like _‘OK’_ or _‘I Agree’_ in the footer. The former can be done using the identical code we’ve already seen in dismissible Alerts:
 
-```XHTML
+```hmtl
 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
   <span aria-hidden="true">&times;</span>
 </button>
