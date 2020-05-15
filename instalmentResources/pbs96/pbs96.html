@@ -10,28 +10,41 @@
 	<!-- Include Font Awesome 5 -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	
-	<!-- Add local styles -->
-	<style>
-		/* Load the web font for the clock */
-		@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-		
-		/* Apply the web font to the clock */
-		#wc_clock{
-			font-family: 'Share Tech Mono', monospace;
-		}
-	</style>
+	<!-- Local Script -->
+	<script type="text/javascript">
+		console.log('Hello from an in-line script in the head');
+		console.log(`\tAt this stage the $() function ${ typeof $ === 'undefined' ? 'does NOT' : 'DOES' } exist`);
+	</script>
 	
-	<title>World Clock (PBS 92 Challenge Solution)</title>
+	<!-- Include an external script file -->
+	<script src="./pbs96-1.js"></script>
+	
+	<title>PBS 96 — JavaScript Execution Order Demo</title>
 </head>
 <body>
+
+<!-- Local Script -->
+<script type="text/javascript">
+	console.log('Hello from an in-line script at the top of the body');
+	console.log(`\tAt this stage the $() function ${ typeof $ === 'undefined' ? 'does NOT' : 'DOES' } exist`);
+	
+	// define a function
+	function boogers(){
+		console.log('Hello from a function defined in an in-line script at the top of the body, and called from the jQuery Document Ready Handler');
+		console.log(`\tAt this stage the $() function ${ typeof $ === 'undefined' ? 'does NOT' : 'DOES' } exist`);
+	}
+</script>
+
+<!-- Include an external script file -->
+<script src="./pbs96-2.js"></script>
 
 <!-- The Page Heading (a NavBar) -->
 <header class="navbar navbar-dark bg-dark navbar-expand-sm">
 	<h1 class="navbar-brand">
 		<img src="data://image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAIAAAC0Ujn1AAAEq2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjMwIgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iMzAiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgdGlmZjpJbWFnZVdpZHRoPSIzMCIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMzAiCiAgIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiCiAgIHRpZmY6WFJlc29sdXRpb249IjcyLjAiCiAgIHRpZmY6WVJlc29sdXRpb249IjcyLjAiCiAgIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiCiAgIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIKICAgeG1wOk1vZGlmeURhdGU9IjIwMTktMTEt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" class="border rounded" width="30" height="30" alt="">
-		World Clock
+		PBS 96
 	</h1>
-	<h2 class="navbar-text h5">PBS 92 Challenge Solution</h2>
+	<h2 class="navbar-text h5">JavaScript Execution Order Demo</h2>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header_nav" aria-controls="header_nav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -51,56 +64,14 @@
 <main class="container my-3">
 	<div class="row">
 		<div class="col">
-			<p class="lead text-muted">A sample solution to the challenge set in <a href="https://bartificer.net/pbs92" target="_blank" rel="noopener">installment 92</a> of the <a href="https://bartb.ie/pbs" target="_blank" rel="noopener">Programming by Stealth series</a>.</p>
+			<p class="lead text-muted">A demo file for instalment 96 of the <a href="https://bartb.ie/pbs" target="_blank" rel="noopener">Programming by Stealth series</a>.</p>
 		</div>
 	</div>
-	<div class="row">
+	<section class="row">
 		<div class="col">
-			<div class="card">
-				<div class="card-header h3">
-					World Clock (<span id="wc_timeZone"></span>)
-				</div>
-				<div class="card-body">
-					<div id="wc_clock" class="display-1">
-						<div class="badge badge-primary">
-							<span id="wc_hours">00</span>
-							<span class="wc_separator">:</span>
-							<span id="wc_minutes">00</span>
-							<small id="wc_seconds_section">
-								<span class="wc_separator">:</span>
-								<span id="wc_seconds">00</span>
-							</small>
-							<span id="wc_ampm">am</span>
-						</div>
-					</div>
-				</div>
-				<form action="javascript:void(0);" class="card-body form">
-					<div class="form-group">
-						<label for="wc_timeZone_tb">Time Zone</label>
-						<input type="text" id="wc_timeZone_tb" class="form-control">
-					</div>
-					<div class="form-group">
-						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="wc_24h_cb">
-							<label class="custom-control-label" for="wc_24h_cb">24 Hour Format</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="wc_showSeconds_cb">
-							<label class="custom-control-label" for="wc_showSeconds_cb">Show Seconds</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="wc_pulse_cb">
-							<label class="custom-control-label" for="wc_pulse_cb">Pulse Separators</label>
-						</div>
-					</div>
-				</form>
-			</div>
+			<p>Open the JavaScript console, then refresh this page to see the order of execution in action.</p>
 		</div>
-	</div>
+	</section>
 </main>
 
 <!-- Include Bootstrap JavaScript from CDNs -->
@@ -108,126 +79,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-<!-- Include Bootstrap 4 Autocomplete from CDN -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
+<!-- Include an external script file -->
+<script src="./pbs96-3.js"></script>
 
-<!-- Include Moment.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment-with-locales.min.js" integrity="sha256-8d6kI5cQEwofkZmaPTRbKgyD70GN5mDpTYNP9YWhTlI=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data.min.js" integrity="sha256-IWYg4uIC8/erItNXYvLtyYHioRi2zT1TFva8qaAU/ww=" crossorigin="anonymous"></script>
-
-<!-- This Page's Local JavaScript Code -->
+<!-- The jQuery Document Ready Handler -->
 <script type="text/javascript">
-	//
-	// Define global variables for the clock
-	//
-	
-	// the clock's internal state
-	var WC_TIME_ZONE;
-	
-	// the parts of the clock
-	// (will be initialised in document ready handler)
-	var $WC_TIME_ZONE, $WC_HOURS, $WC_MINUTES, $WC_SECONDS, $WC_SEPARATORS, $WC_AMPM, $WC_SECONDS_SECTION;
-	
-	// the form elements controlling the clock
-	// (will be initialised in document ready handler)
-	var $WC_TIME_ZONE_TB, $WC_24HR_CB, $WC_SHOW_SECONDS_CB, $WC_PULSE_CB;
-	
-	//
-	// Document ready handler
-	//
 	$(function(){
-		// initialise the global variables representing the clock's internal state
-		WC_TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		console.log('Hello from the jQuery document ready handler.');
+		console.log('\tThe $() function must exist or I could not 🙂');
 		
-		// initialise the global variables representing the parts of the clock
-		$WC_TIME_ZONE = $('#wc_timeZone');
-		$WC_HOURS = $('#wc_hours');
-		$WC_MINUTES = $('#wc_minutes');
-		$WC_SECONDS = $('#wc_seconds');
-		$WC_AMPM = $('#wc_ampm');
-		$WC_SEPARATORS = $('.wc_separator');
-		$WC_SECONDS_SECTION = $('#wc_seconds_section');
-		
-		// initialise the global variables representing the form elements
-		$WC_TIME_ZONE_TB = $('#wc_timeZone_tb');
-		$WC_TIME_ZONE_TB.val(WC_TIME_ZONE);
-		$WC_24HR_CB = $('#wc_24h_cb');
-		$WC_SHOW_SECONDS_CB = $('#wc_showSeconds_cb');
-		$WC_PULSE_CB = $('#wc_pulse_cb');
-		
-		// initialise auto-complete on the Timezone textbox
-		const tzAutoCompeleSource = {};
-		let tzAutoCompletecounter = 1;
-		for(const tzName of moment.tz.names()){
-			// break the timezone into parts
-			const tzParts = tzName.split('\/');
-			
-			// skip timezones with more than two parts
-			if(tzParts.length != 2) continue;
-					
-			// skip the artificial Etc region
-			if(tzParts[0] === 'Etc') continue;
-			
-			// if we got here, add the timezone as an option
-			tzAutoCompeleSource[tzName] = tzAutoCompletecounter;
-			tzAutoCompletecounter++;
-		}
-		$WC_TIME_ZONE_TB.autocomplete({
-			source: tzAutoCompeleSource,
-			maximumItems: 10,
-			treshold: 1,
-			onSelectItem: function(){
-				$WC_TIME_ZONE_TB.trigger('input');
-			}
-		});
-		
-		// add an event handler to the timezone textbox
-		$WC_TIME_ZONE_TB.on('input', function(){
-			// validate the timezone
-			const tzObj = moment.tz.zone($WC_TIME_ZONE_TB.val());
-			if(tzObj){
-				WC_TIME_ZONE = tzObj.name;
-			}
-		});
-		
-		// start the world clock interval
-		let tick = true;
-		window.setInterval(function(){
-				// figure out of we're a tick or a tock
-				if(tick){
-					// we're a tick, so update the time on the clock and show the separators
-					$WC_TIME_ZONE.text(WC_TIME_ZONE.replace(/_/g, ' '));
-					const now = moment().tz(WC_TIME_ZONE);
-					$WC_HOURS.text(now.format($WC_24HR_CB.prop('checked') ? 'HH' : 'h'));
-					$WC_MINUTES.text(now.format('mm'));
-					$WC_SECONDS.text(now.format('ss'));
-					$WC_AMPM.text(now.format('a'));
-					$WC_SEPARATORS.fadeTo(250, 1);
-				}else{
-					// we're a tock, just pulse the separators if needed
-					if($WC_PULSE_CB.prop('checked')){
-						$WC_SEPARATORS.fadeTo(250, 0.25);
-					}
-				}
-				
-				// Always update the display of everything
-				if($WC_24HR_CB.prop('checked')){
-					$WC_AMPM.hide(250);
-				}else{
-					$WC_AMPM.show(250);
-				}
-				if($WC_SHOW_SECONDS_CB.prop('checked')){
-					$WC_SECONDS_SECTION.show(250);
-				}else{
-					$WC_SECONDS_SECTION.hide(250);
-				}
-				
-				// toggle the tick
-				tick = !tick;
-			},
-			500 //runs every half second
-		);
+		// call the boogers function
+		boogers();
 	});
+</script>
+
+<!-- Local Script -->
+<script type="text/javascript">
+	console.log('Hello from an in-line script at the bottom of the body');
+	console.log(`\tAt this stage the $() function ${ typeof $ === 'undefined' ? 'does NOT' : 'DOES' } exist`);
 </script>
 
 </body>
