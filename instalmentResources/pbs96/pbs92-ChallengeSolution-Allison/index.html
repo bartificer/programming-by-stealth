@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Include Bootstrap 4 CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Local styles -->
+	  <style type="text/css"> 
+      /* write styles here or change to a link to the style sheet if comples */
+      .mySwitches {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #007bff;  /* same color as Bootstrap "primary" */
+        vertical-align: text-top;
+      }
+    </style>
+  
+    <title>NosillaCast World Clock</title>
+  </head>
+
+  <body>
+    <nav class='navbar navbar-expand-md navbar-light'>
+      <a class='navbar-brand' href="#">Helpful Resources</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://momentjs.com">Moment.js home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://momentjs.com/docs/#/use-it/browser/">Moment.js docs</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://momentjs.com/timezone/">Moment Timezone docs</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              PBS Resources
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-divider"></div>
+              <a class="nav-link dropdown-item" href="https://www.podfeet.com/blog/pbs-index/"  rel="no opener" target="_blank">PBS Index</a>
+              <a class="nav-link dropdown-item" href="https://getbootstrap.com/docs/4.3/getting-started/introduction/"  rel="no opener" target="_blank">Bootstrap Docs</a>
+              <a class="nav-link dropdown-item" href="https://api.jquery.com"  rel="no opener" target="_blank">jQuery API</a>
+              <a class="nav-link dropdown-item" href="https://api.jquery.com/category/ajax/"  rel="no opener" target="_blank">AJAX API</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- The page heading -->
+    <!-- The page heading -->
+    <header>
+      <div class="container-fluid bg bg-light mb-2 rounded">
+        <div class="col-8">
+          <div class="row">
+            <div class="col-10">
+              <!-- Hide heading on small screens -->
+              <h1 class="h3 d-md-inline d-none">The NosillaCastaways World Clock</h1>
+            </div>
+          </div>
+          <div class="row">
+            <p class="lead">
+              <div class="col-2"><img width="75" alt="Programming by Stealth Logo" src="https://pbs.bartificer.net/assets/logo.png"></div>
+              <div class="col-md-5 d-xs-none">
+                <p>Programming By Stealth #92 Challenge</p>
+                <p><a href="https://pbs.bartificer.net/pbs92.html" target="_blank" rel="noopener">pbs.bartificer.net/...</a></p>
+              </div>
+          </div>
+        </div>
+      </div> <!-- close container for page header -->
+    </header>
+
+    <!-- The main page body -->
+    <main>
+      <!-- html goes here -->
+
+      <!-- container to hold switches -->
+      <div class="container"> 
+        <!-- Switch to show/hide seconds -->
+        <div class="row pl-3 pb-3"><!-- row for showSeconds switch -->
+          <div class="col col-md-6 form-control form-check-inline bg-light border border-dark rounded p-2 m3">
+            <!-- Description of checkbox for screen readers -->
+          <div id="secondsDesc" class="sr-only">Switch to toggle between hide and show seconds</div>
+              <div class="mr-2 font-weight-bold align-baseline mySwitches d-none d-md-inline">Hide Seconds</div>
+              <div class="mr-2 font-weight-bold align-baseline mySwitches d-inline d-md-none">Hide</div>
+              <div class="custom-control custom-switch form-control-md" aria-describedby="secondsDesc">
+                <input type="checkbox" class="custom-control-input" id="showSeconds" name="showSeconds" checked>
+                <label class="custom-control-label mySwitches" for="showSeconds">Show Seconds</label>
+              </div>
+          </div>
+        </div>
+        <!-- end switch to show/hide seconds -->
+
+        <!-- Switch to  12 vs 24 hr clock -->
+        <div class="row pl-3 pb-3"> <!-- row for numHrs switch -->
+          <div class="col col-md-6 form-control form-check-inline bg-light border border-dark rounded p-2 m3">
+            <!-- Description of checkbox for screen readers -->
+            <div id="hrsDesc" class="sr-only">Switch to toggle between 24 and 12 hour clock</div> 
+            <div class="mr-2 font-weight-bold mySwitches d-none d-md-inline">24 Hour Clock</div>
+            <div class="mr-2 font-weight-bold mySwitches d-inline d-md-none">24 Hour</div>
+            <div class="custom-control custom-switch form-control-md">
+                <input type="checkbox" class="custom-control-input" checked id="numHrs" name="numHrs" >
+              <label class="custom-control-label mySwitches" for="numHrs">12 Hour Clock</label>
+            
+            </div>
+          </div>
+        </div>
+        <!-- end switch 12 vs 24 hr clock -->
+      </div> <!-- close hold switches container -->
+
+      <!-- A card to hold local time -->
+      <div class="container mb-3">
+        <div class="row">
+          <div class="col col-md-6">
+            <div class="card bg-primary text-white" style="width: 100%">
+              <div class="card-body">
+                <h5 class="card-title bg-light rounded text-primary col p-2">Your local time:</h5>
+                <p class="card-text"></p>
+                <div class="h1" id="forTime"></div> <!-- placeholder div for clock -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end local time card -->
+      
+      <!-- A card to hold the 2nd time -->
+      <div class="container">
+        <div class="row">
+          <div class="col col-md-6">
+            <div class="card bg-primary text-white" style="width: 100%">
+              <div class="card-body">
+                <h5 class="card-title bg-light rounded text-primary col p-2 pb-1">The time in:<p><select class="mr-2 ml-2 col-5 col-md-11 text-primary" id="timeZone" name ="locality"></select></p></h5>
+                
+                <p class="card-text"></p>
+                <div class="h1" id="forTime2"></div> <!-- placeholder div for clock -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end 2nd time card -->
+
+    </main>
+
+
+    <!-- Include jQuery, Popper, then Bootstrap - IN THIS ORDER -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- Include Mustache.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
+    
+    <!-- load moment.js with locales -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+    <!-- load moment-timezone -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data-1970-2030.min.js" integrity="sha256-ob9GYTF6HJFUyVtlWivU47nga6eeRR3Lti9VfUeFhBI=" crossorigin="anonymous"></script>
+
+    <!-- Load the local JS Code AFTER the other libraries -->
+    <script type="text/javascript" src="./script.js"></script>
+
+    <!-- Templates -->
+    <!-- Sample Template -->
+    <!-- <script type="text/html" id="ddTemplate">
+      <div class="form-inline">
+        <div class="form-group">
+
+        <select class="custom-select form-control" id="tzSelected">
+          {{#dropDownZones}}
+          <option value='{{timeZone}}'>
+              {{cc}}: {{city}}
+          </option>
+          {{/dropDownZones}}
+        </select>
+      </div>
+        
+    </div>
+    </script> -->
+
+  </body>
+</html>
