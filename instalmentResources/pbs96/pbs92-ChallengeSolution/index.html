@@ -48,20 +48,20 @@
 </header>
 
 <!-- The main page body -->
-<main class="container my-3">
+<main class="container my-3" style="min-width: 690px;">
 	<div class="row">
 		<div class="col">
 			<p class="lead text-muted">A sample solution to the challenge set in <a href="https://bartificer.net/pbs92" target="_blank" rel="noopener">installment 92</a> of the <a href="https://bartb.ie/pbs" target="_blank" rel="noopener">Programming by Stealth series</a>.</p>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col">
+		<div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
 			<div class="card">
 				<div class="card-header h3">
 					World Clock (<span id="wc_timeZone"></span>)
 				</div>
 				<div class="card-body">
-					<div id="wc_clock" class="display-1">
+					<div id="wc_clock" class="display-1 text-center">
 						<div class="badge badge-primary">
 							<span id="wc_hours">00</span>
 							<span class="wc_separator">:</span>
@@ -78,22 +78,19 @@
 					<div class="form-group">
 						<label for="wc_timeZone_tb">Time Zone</label>
 						<input type="text" id="wc_timeZone_tb" class="form-control">
+						<small class="form-text text-muted">Enter an <a href="https://en.wikipedia.org/wiki/Tz_database" target="_blank" rel="noopener">IANA timezone string</a>, or just start typing a city name for auto-complete suggestions.</small>
 					</div>
-					<div class="form-group">
+					<div class="form-group d-flex justify-content-around">
 						<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input" id="wc_24h_cb">
 							<label class="custom-control-label" for="wc_24h_cb">24 Hour Format</label>
 						</div>
-					</div>
-					<div class="form-group">
 						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="wc_showSeconds_cb">
+							<input type="checkbox" class="custom-control-input" id="wc_showSeconds_cb" checked>
 							<label class="custom-control-label" for="wc_showSeconds_cb">Show Seconds</label>
 						</div>
-					</div>
-					<div class="form-group">
 						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="wc_pulse_cb">
+							<input type="checkbox" class="custom-control-input" id="wc_pulse_cb" checked>
 							<label class="custom-control-label" for="wc_pulse_cb">Pulse Separators</label>
 						</div>
 					</div>
