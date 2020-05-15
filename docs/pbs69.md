@@ -18,7 +18,7 @@ The challenge set at the end of [the previous instalment](https://bartificer.net
 
 My recipe used the grid layout to position the list of required equipment and the glossary next to each other on larger screens and underneath each other on smaller screens. The structure of the code was essentially the following:
 
-```XHTML
+```html
 <div class="row">
   <section class="col-12 col-lg-6">
     <!-- Required Equipment here -->
@@ -31,7 +31,7 @@ My recipe used the grid layout to position the list of required equipment and th
 
 I re-structured it to replace the two cols with a single col containing two tabbed panes. The structure became:
 
-```XHTML
+```html
 <div class="row">
   <div class="col">
     <nav class="nav nav-tabs nav-justified" role="tablist">
@@ -104,7 +104,7 @@ Navbars can only contain the elements in the list above, and the collapse groupi
 
 The simplest Navbar component is the so-called _hamburger button_ (or _Navbar toggler_) used to show and hide the collapsed section of the Navbar on small screens. It will always have the following form:
 
-```XHTML
+```html
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#COLLAPSIBLE_REGION_ID" aria-controls="COLLAPSIBLE_REGION_ID" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -118,7 +118,7 @@ Below is the code for a Navbar that will collapse for breakpoints smaller than m
 
 Re-size the window to see the Navbar collapse into just a hamburger button at small sizes. Click the Hamburger to hide and show the Nav items on small screens.
 
-```XHTML
+```html
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" id="navbar1">
   <!-- The 'hamburger' -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1_content" aria-controls="navbar1_content" aria-expanded="false" aria-label="Toggle navigation">
@@ -173,7 +173,7 @@ You can use any tag to contain the brand as long as you give it the class `.nav-
 
 Generally speaking a Bootstrap brand really is as simple as a single `<a>` tag with the class `.navbar-brand` containing an image and/or some text. For example, here’s the code for the brand in the second example Navbar in `pbs69a.html` in this [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip):
 
-```XHTML
+```html
 <a class="navbar-brand" href="http://www.bartbusschots.ie" target="_blank" rel="noopener">
   <img src="BartAvatar.png" alt="Bart's Avatar" style="height: 1.5em" src="./BartAvatar.png" >
   Bart B.
@@ -198,7 +198,7 @@ To add some text into a Navbar simply wrap it in a tag of your choosing and give
 
 As an example, the third Navbar in `pbs69a.html` contains a tag line (_‘An Irish Voice Online’_) which has been added to the front of the collapsing part of the Navbar. The collapsible part of the Navbar is now structured as follows:
 
-```XHTML
+```html
 <div id="navbar3_content" class="collapse navbar-collapse">
   <!-- The Tagline -->
   <span class="navbar-text">An Irish Voice Online</span>
@@ -224,7 +224,7 @@ Inline forms can be added directly into a Navbar or into the section of the Navb
 
 As an example, let’s add a search form to our Navbar:
 
-```XHTML
+```html
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #86b50d;" id="navbar4">
   <!-- The 'hamburger' -->
   <!-- ... --->

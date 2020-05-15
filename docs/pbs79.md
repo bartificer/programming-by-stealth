@@ -22,14 +22,14 @@ Two things were required for this transformation — some way of showing the use
 
 The approach I chose to take is to disable the buttons in my grid as they get ruled out by guesses. My first step towards this was to create two new global variables to track the lowest and highest possible valid guesses:
 
-```JavaScript
+```javascript
 var MIN_POSSIBLE_GUESS = MIN; // the minimum possible value based on guesses to date
 var MAX_POSSIBLE_GUESS = MAX; // the maximum possible value based on guesses to date
 ```
 
 These variables need to be re-set each time the game is reset, so I updated the `success` handler for the AJAX call that fetch a new random number in my `resetGame()` function:
 
-```JavaScript
+```javascript
 success: function(rn){
   // save the random number
   RANDOM_NUMBER = rn;
@@ -49,7 +49,7 @@ success: function(rn){
 
 The next step was to update my `guessNumber()` function to update these global variables as appropriate on each guess. This the relevant part of the function:
 
-```JavaScript
+```javascript
 // figure out what direction we're wrong
 const tooLow = num < RANDOM_NUMBER ? true : false;
 
@@ -69,7 +69,7 @@ if(tooLow){
 
 Notice that I chose to record the previous values for the minimum and maximum possible guesses. This allowed me to optimise the disabling of buttons in the game grid (later within the same function):
 
-```JavaScript
+```javascript
 // disable any buttons that have become impossible
 for(let n = prevMinPos; n < MIN_POSSIBLE_GUESS; n++){
   $GUESS_BUTTONS_BY_NUMBER[n].prop('disabled', true);
@@ -81,7 +81,7 @@ for(let n = prevMaxPos; n > MAX_POSSIBLE_GUESS; n--){
 
 Finally, just to make the code a little more robust, I added this code near the start of my `guessNumber()` function:
 
-```JavaScript
+```javascript
 //short-circuit guesses that are impossible
 if(num < MIN_POSSIBLE_GUESS || num > MAX_POSSIBLE_GUESS){
   showGameMessage(
@@ -97,7 +97,7 @@ That takes care of the first part of this challenge — players can now clearly 
 
 The second part is to show the user how they compared to the binary search algorithm. The first step to facilitating that was to write a function to do a binary search for the answer:
 
-```JavaScript
+```javascript
 function binarySearch(){
   const guesses = [];
 
@@ -124,7 +124,7 @@ function binarySearch(){
 
 The last step was to update the guessNumber() function to include the binary search information into the `game won` modal dialogue. First, I added the following to the relevant template (the `<script>` tag with the ID `gameWonTemplate`):
 
-```XHTML
+```html
 <p>For reference, the <i>binary search</i> algorithm would have guessed the number in the following <strong>{{binarySearch.guessCount.total}}</strong> guesse(s):</p>
 <p>
   {{#binarySearch.guesses}}
@@ -136,13 +136,13 @@ The last step was to update the guessNumber() function to include the binary sea
 
 Finally, I added the following line to the part of the `guessNumber()` function that executes when the player guesses correctly:
 
-```JavaScript
+```javascript
 const binSearchGuesses = binarySearch();
 ```
 
 And then updated the view object for the template as follows:
 
-```JavaScript
+```javascript
 {
   guesses: GUESSES,
   guessCount: {
@@ -198,7 +198,7 @@ Before we begin, if you’d like to play along with the examples in this section
 
 To make the examples easier to read, `pbs79a.html` defines some global variables for us to use:
 
-```JavaScript
+```javascript
 // the JS Faker web service on www.bartbusschots.ie
 var FAKERWS_BASE = 'https://www.bartbusschots.ie/utils/fakerWS/';
 
@@ -219,7 +219,7 @@ We’ll be using these variables to make AJAX requests to a web service running 
 
 jQuery’s `$.ajax()` function will convert these variables into the following URL:
 
-```undefined
+```
 https://www.bartbusschots.ie/utils/fakerWS/records.php?locale=en-US&type=jsonText&f1=company&f2=catchPhrase&f3=address&f4=tollFreePhoneNumber
 ```
 
@@ -230,7 +230,7 @@ Before we go any further I want to explicitly separate two very different but po
 
 Until now we have been making our AJAX requests in the following way:
 
-```JavaScript
+```javascript
 $.ajax({
   url: CORP_REC_URL,
   method: 'GET',
@@ -259,7 +259,7 @@ As mentioned before, what makes a promise a promise is the fact that it provides
 
 So, the first important takeaway is that `$.ajax()` returns a promise. We can save that promise into a variable:
 
-```JavaScript
+```javascript
 let corpPromise = $.ajax({
   url: CORP_REC_URL,
   method: 'GET',
@@ -299,7 +299,7 @@ Again, regardless of when it’s executed, **the first argument to the rejected 
 
 Let’s get back to our promise — we can now use .then() to specify what we should do with the data returned by the web server, and what we should do if there’s a problem fetching the data:
 
-```JavaScript
+```javascript
 corpPromise.then(
   function(data){ // the resolved callback
     console.log(`Yay! 🙂 The promise resolved to the value:\n${data}`);
@@ -312,7 +312,7 @@ corpPromise.then(
 
 To make our code more readable, `pbs79a.html` defines two functions we can use as our callbacks:
 
-```JavaScript
+```javascript
 var RESOLVED_CB = function(val){
   console.log(`Yay! 🙂 The promise resolved to the value:\n${val}`);
 };
@@ -323,13 +323,13 @@ var REJECTED_CB = function(){
 
 To demonstrate the use of these utility functions, and to demonstrate that promises act as permanent records of the data they resolved to, let’s call `.then()` on our same promise again:
 
-```JavaScript
+```javascript
 corpPromise.then(RESOLVED_CB, REJECTED_CB);
 ```
 
 In order to demonstrate the rejected callback, let’s intentionally make an AJAX request that will fail!
 
-```JavaScript
+```javascript
 let failedPromise = $.ajax({
   url: CORP_REC_URL + 'boogers', // a nonsense URL!
   method: 'GET',
@@ -341,27 +341,27 @@ let failedPromise = $.ajax({
 
 We can now see the rejected callback in action by calling `.then()` on our failed promise:
 
-```JavaScript
+```javascript
 failedPromise.then(RESOLVED_CB, REJECTED_CB);
 ```
 
 If we only care about rejection, and not success we can use `null` as the resolved callback:
 
-```JavaScript
+```javascript
 corpPromise.then(null, REJECTED_CB);
 failedPromise.then(null, REJECTED_CB);
 ```
 
 Because this looks a bit odd, JavaScript Promises also provide a `.catch()` function which takes a single argument, a callback to execute on rejected promises, so the following two lines do exactly the same thing:
 
-```JavaScript
+```javascript
 failedPromise.then(null, REJECTED_CB);
 failedPromise.catch(REJECTED_CB);
 ```
 
 Finally for this instalment, while you can assign a promise to a variable and store it for later use, you don’t have to. If you know you only want to use a promise once you can create it and call its `.then()` all in one go like so:
 
-```JavaScript
+```javascript
 $.ajax({
   url: CORP_REC_URL,
   method: 'GET',

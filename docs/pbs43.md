@@ -55,7 +55,7 @@ Before implementing those two functions I added two new private instance variabl
 
 Like the other instance variables that already exist in the prototype, these variables will be initialised within the constructor:
 
-```JavaScript
+```javascript
 /**
  * The ID of the timeout for the next automatic step, or zero if there
  * is no running timeout (the automaton is not in automatic mode).
@@ -76,7 +76,7 @@ this._autoStepMS = 500;
 
 When ever we add new functionality we should add matching tests to our test suite, so, let’s do that by adding the following two assertions to the bottom of the _‘bartificer.ca.Automaton prototype > constructor: argument processing’_ test:
 
-```JavaScript
+```javascript
 // make sure the auto-step variables initialise to the expected default values
 a.strictEqual(ca1._autoStepID, 0, 'auto step timout ID initialised to zero');
 a.strictEqual(ca1._autoStepMS, 500, 'auto step timout initialised to 500MS');
@@ -86,7 +86,7 @@ Our `.start()` and `.stop()` functions will take care of the value stored in `._
 
 I’v chosen to store the delay between automatic steps as a whole number of milliseconds, so before we write the public accessor we should create a private validation function to test if an arbitrary value is valid as a delay:
 
-```JavaScript
+```javascript
 /**
  * Test if a given value is a valid time period in milliseconds, i.e. a
  * whole number grater than zero.
@@ -112,7 +112,7 @@ function isIntervalMS(ms){
 
 We’re now ready to add the accessor:
 
-```JavaScript
+```javascript
 /**
  * Get or set the number of milliseconds between automatic steps.
  *
@@ -138,7 +138,7 @@ bartificer.ca.Automaton.prototype.autoStepIntervalMS = function(ms){
 
 Again, we’ve added new functionality to our prototype, so, we need to update our test suite. This time by adding a whole new test:
 
-```JavaScript
+```javascript
 QUnit.test('.autoStepIntervalMS()', function(a){
     var mustThrow = dummyBasicTypesExcept('num');
     a.expect(7 + mustThrow.length);
@@ -200,7 +200,7 @@ QUnit.test('.autoStepIntervalMS()', function(a){
 
 Now that we have the instance variables and accessors we need to store the data that will control our automatic mode, we’re ready to implement it. Let’s start with the `.start()` function::
 
-```JavaScript
+```javascript
 /**
  * Start automatically stepping the automaton.
  *
@@ -251,7 +251,7 @@ We can now test our new function by opening `sample.html` in our browser, enabli
 
 So, let’s resolve that obvious shortcoming by implementing `.stop()`:
 
-```JavaScript
+```javascript
 /**
  * Stop automatically stepping the automaton.
  *
@@ -276,14 +276,14 @@ Our prototype now has the ability to run automatically, but we have no UI to all
 
 Let’s start with the HTML:
 
-```XHTML
+```html
 <button type="button" id="start_btn">Start Auto Run</button>
 <button type="button" id="stop_btn">Stop Auto Run</button>
 ```
 
 And now let’s add event handlers (within the document ready handler):
 
-```JavaScript
+```javascript
 // add a click handler to the play and stop buttons
 $('#start_btn').click(function(){
     sampleCA.start();
@@ -301,7 +301,7 @@ The second part of the challenge was to implement as counter showing the current
 
 The first step is obviously to add another instance variable to the `bartificer.ca.Automaton` prototype to store the generation count. Again, initialised in the constructor:
 
-```JavaScript
+```javascript
 /**
  * The genreation counter.
  * @private
@@ -312,14 +312,14 @@ this._generation = 0;
 
 Like before, we should add a test case to the _bartificer.ca.Automaton prototype > constructor: argument processing_ test:
 
-```JavaScript
+```javascript
 // make sure the generation counter initialise to the expected initial value
 a.strictEqual(ca1._generation, 0, 'generation counter initialised to zero');
 ```
 
 We also need a read-only accessor function for this value:
 
-```JavaScript
+```javascript
 /**
  * A read-only accessor function to get the automaton's current generation
  * number.
@@ -338,7 +338,7 @@ bartificer.ca.Automaton.prototype.generation = function(){
 
 Again, we need to add a test for this function to our test suite:
 
-```JavaScript
+```javascript
 QUnit.test('.generation()', function(a){
     a.expect(3);
 
@@ -361,21 +361,21 @@ At this stage we have a variable for holding our generation count, and, a functi
 
 To do that we need to add the following line to `bartificer.ca.Automaton.prototype.step()`:
 
-```JavaScript
+```javascript
 // finally, increment the generation counter
 this._generation++;
 ```
 
 And, the following to `bartificer.ca.Automaton.prototype.setState()`:
 
-```JavaScript
+```javascript
 // set the generation counter back to zero
 this._generation = 0;
 ```
 
 We should now add a test to verify that generation counting is working as expected:
 
-```JavaScript
+```javascript
 QUnit.test('Generation Counting', function(a){
     a.expect(3);
 
@@ -406,7 +406,7 @@ Let’s start by adding another instance variable to the `bartificer.ca.Automato
 
 As with all other instance variables, we need to initialise this new variable within the constructor:
 
-```JavaScript
+```javascript
 /**
  * The callbacks to execute when ever the generation changes.
  * @private
@@ -418,14 +418,14 @@ this._generationChange = [];
 
 Again, we should update the test for our constructor to make sure this variable gets properly initialised by adding the following assertion:
 
-```JavaScript
+```javascript
 // make sure the generation change event handler array initialised correctly
 a.deepEqual(ca1._generationChange, [], 'generation change event handler list initialised to empty array');
 ```
 
 Now we need to write a function for adding callbacks into our array. Given that our prototypes rely on jQuery, it probably makes sense to copy jQuery’s convention when it comes to event handlers, and have the function add an event handler when passed a callback, and execute all currently registered callbacks when called with no parameters (like `.click()` etc.):
 
-```JavaScript
+```javascript
 /**
  * A function for adding a callback to be executed when ever the generation
  * changes, or, to execute all registered geneation-change callbacks.
@@ -464,13 +464,13 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
 
 All we need to do now is call our new function with no parameters from within both the `.step()` and `.setState()` functions:
 
-```JavaScript
+```javascript
 this.generationChange();
 ```
 
 Now that we have this functionality implemented, we need to add a test for it to our test suite:
 
-```JavaScript
+```javascript
 QUnit.test('Generation Change Event Handling', function(a){
     var mustThrow = dummyBasicTypesExcept('fn', 'undef');
     a.expect(mustThrow.length + 6);
@@ -529,13 +529,13 @@ QUnit.test('Generation Change Event Handling', function(a){
 
 Now that we have an event handler at our disposal we can add a generation counter to our UI. First, we’ll need to add some simple HTML markup:
 
-```XHTML
+```html
 <label id="game_of_life_generation">Generation: <tt></tt></label>
 ```
 
 Then, we need to add an event handler to our new generation change event by adding the following to the page’s document ready handler:
 
-```JavaScript
+```javascript
 // add a generation change event handler to update the counter
 sampleCA.generationChange(function(){
     $('#game_of_life_generation > tt').text(sampleCA.generation());
@@ -548,13 +548,13 @@ The final, optional, part of the challenge was to add a control to the UI to all
 
 I chose to have my slider represent the speed in frames per second, that way sliding right increases the speed. Here’s the HTML markup for my slider:
 
-```JavaScript
+```javascript
 <label>Speed <input type="range" id="speed_rng" min=1 max=10 step="0.01"></label>
 ```
 
 All that remains to be done at that stage is to add an event handler to this slider that converts frames per second into the number of milliseconds to pause between steps, and then sets the auto-execution timeout appropriately (again, within the document ready event handler):
 
-```JavaScript
+```javascript
 // add a change handler to the speed slider
 $('#speed_rng').change(function(){
     var fps = $(this).val(); // read the frames per sec from the slider
@@ -567,7 +567,7 @@ $('#speed_rng').change(function(){
 
 While I was editing the code I chose to make a few other cosmetic changes to my game of life implementation. Specifically, I added some CSS to the table representing the automaton to collapse the spacing between the cells, add a border around the automaton as a whole, add a small margin, and shrink the cells so I could make a bigger automaton:
 
-```CSS
+```css
 /* style the cells in the automaton */
 table.bartificer-ca-automaton{
     border-collapse: collapse;
@@ -582,7 +582,7 @@ td.bartificer-ca-cell{
 
 To get more cells I simply altered the call to the constructor:
 
-```JavaScript
+```javascript
 // use the constructor to build an automaton
 sampleCA = new bartificer.ca.Automaton(
     $('#game_of_life_container'), // use the div as the container
@@ -595,7 +595,7 @@ sampleCA = new bartificer.ca.Automaton(
 
 With the cells touching directly the patterns became more visible, but the red and green became utterly over-powering, so I change the render function to render _dead_ cells in a lighter shade of red:
 
-```JavaScript
+```javascript
 // a render function to render live cells green and dead cells red
 function renderRedGreen($td, s){
     // render a true state as green, and false as red
@@ -609,13 +609,13 @@ function renderRedGreen($td, s){
 
 Finally, when I started to really play with the Game of Life I found myself wanting a button to re-seed the game to a fresh random state, so I added a button for that:
 
-```XHTML
+```html
 <button type="button" id="respawn_btn">Respawn</button>
 ```
 
 With a matching event handler:
 
-```JavaScript
+```javascript
 // add a click handler to the respawn button
 $('#respawn_btn').click(function(){
     sampleCA.setState(randomBoolean);
@@ -650,7 +650,7 @@ However, in ES6, variables declared with `var` will continue to be hoisted, but 
 
 Rather than tell you what hoisting does, I’ll show you with this very simple contrived example:
 
-```JavaScript
+```javascript
 // declare a global variable
 var msg = "I'm a global!";
 
@@ -679,7 +679,7 @@ Huh? What’s going on here?
 
 Variable hoisting means that JavaScript effectively re-wrote the function above to the following before executing it:
 
-```JavaScript
+```javascript
 function fn(){
     var msg;
     console.log(msg);
@@ -700,7 +700,7 @@ My single favourite ES6 feature is the keyword `let`. That’s mainly because it
 
 Let’s re-visit our example from above, but replace `var` with `let`:
 
-```JavaScript
+```javascript
 // declare a global variable
 let msg = "I'm a global!";
 
@@ -721,7 +721,7 @@ Why? Because even in ES6, you can’t have your cake and eat it. Within any sing
 
 With block-level scopes we do have a simple solution though, just make another scope!:
 
-```JavaScript
+```javascript
 // declare a global variable
 let msg = "I'm a global!";
 
@@ -758,7 +758,7 @@ That’s what the const keyword is for. It behaves just like let, except that an
 
 Here’s a simple example:
 
-```JavaScript
+```javascript
 // declare the gravitational constant
 const G = 6.7e-11;
 
@@ -775,14 +775,14 @@ Remember, variables hold primitive values and references to objects, so if you d
 
 To illustrate the point, the this will generate an error:
 
-```JavaScript
+```javascript
 const x = 2;
 x = 3; // throws error
 ```
 
 But this won’t:
 
-```JavaScript
+```javascript
 // declare a constant object with one key
 const x = {y: 4};
 
@@ -799,7 +799,7 @@ Since we’ve now mentioned the concept of hoisting, I should point out that var
 
 The following works in all versions of JavaScript, including ES6:
 
-```JavaScript
+```javascript
 // call a function declared later
 fn();
 

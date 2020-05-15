@@ -42,7 +42,7 @@ Each block of bulleted text should be contained within `<li>` tags – this stan
 
 `<ul>` tags should only contain `<li>` tags. `<li>` tags can contain other block-level tags, including other lists to create nested lists, as well as inline tags.
 
-```XHTML
+```html
 <ul>
   <li>The first item in a bulleted list</li>
   <li>The second item in a bulleted list</li>
@@ -59,7 +59,7 @@ Again, like with `<ul>`, `<ol>` tags should only contain `<li>` tags.
 
 Example:
 
-```XHTML
+```html
 <ol>
   <li>The first item in a numbered list</li>
   <li>The second item in a numbered list</li>
@@ -76,7 +76,7 @@ If multiple terms have the same definition, you can have a number of consecutive
 
 `<dl>` tags should only contain `<dt>` and `<dd>` tags, `<dt>` tags should only contain inline tags, and `<ds>` tags can contain any other tags, including block-level tags.
 
-```XHTML
+```html
 <dl>
   <dt>HTML</dt>
   <dd>The Hyper Text Markup Language is a computer language for defining the content of a web page.</dd>
@@ -89,7 +89,7 @@ If multiple terms have the same definition, you can have a number of consecutive
 
 Because `<li>` and `<dd>` tags can contain any other tags, lists can be inserted into list items to create nested lists. A nested list can contain a mixture of all the different list types.
 
-```XHTML
+```html
 <ul>
   <li>
     This top-level bulleted list item contains a numbered list:
@@ -117,7 +117,7 @@ The `<blockquote>` tag is designed to mark a block of text as being some form of
 
 Block quotes can contain both block and inline tags, including other block quotes.
 
-```XHTML
+```html
 <blockquote>
   <h2>Extract from "Lines Written on a Seat on the Grand Canal, Dublin"</h2>
 
@@ -137,7 +137,7 @@ Let’s finish with a final working example.
 
 Start by adding a folder called `pbs3` to the document root of your web server. In there, create a file called `index.html` with the following contents:
 
-```XHTML
+```html
 <!DOCTYPE html>
 <html>
 <head>

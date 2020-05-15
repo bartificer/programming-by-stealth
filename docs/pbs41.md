@@ -51,7 +51,7 @@ The big-picture design will take the following form:
 
 Let’s start with the HTML markup:
 
-```XHTML
+```html
 <label id="rating_label">Rating</label>
 <span id="rating_ui" role="buttongroup" aria-labelled-by="rating_label">
     <span class="fa fa-thumbs-o-down" id="rating_down" data-rating="-1" title="Thumbs Down" tabindex="0" role="radio" aria-checked="false" aria-label="Thumbs Down"></span>
@@ -76,7 +76,7 @@ Usually, unless you’re doing something unusual like using CSS to re-arrange la
 
 With the help of a little CSS we can use the shape of the mouse pointer to help regular users understand that they can click on our thumbs up and thumbs down icons. We might also use the `:hover` pseudo-class for the same reason. The CSS below does both:
 
-```CSS
+```css
 /* Style the Ratings UI */
 span#rating_ui > span {
   cursor: pointer;
@@ -91,7 +91,7 @@ span#rating_ui > span:hover {
 
 The first step to bringing our custom UI to life is to add a change handler to the hidden input that will update the UI to reflect its current value. As we’ve seen many times before, we need to add this change handler inside a document-ready event handler.
 
-```JavaScript
+```javascript
 // add a change handler to the rating hidden input
 $('#rating_ipt').change(function(){
   var $rating = $(this);
@@ -131,7 +131,7 @@ $('#rating_ipt').change(function(){
 
 At this stage we can test our change handler from the web console:
 
-```JavaScript
+```javascript
 $('#rating_ipt').val(-1).change(); // set thumbs down
 $('#rating_ipt').val(1).change(); // set thumbs up
 $('#rating_ipt').val('').change(); // blank the rating
@@ -143,7 +143,7 @@ Notice that because we are altering the value programmatically, we have to expli
 
 The next step is to add a click handler to both buttons – because we have added data attributes containing the values represented by the faux-buttons to the spans themselves, we can add the identical handler to both. The handler simply updates the value in the hidden input, and calls the change handler, just like we did from the console:
 
-```JavaScript
+```javascript
 // add click handlers to the thumbs up and down buttons
 $('span#rating_ui > span').click(function(){
   $('#rating_ipt').val($(this).data('rating')).change();
@@ -172,7 +172,7 @@ Secondly, we need to figure out what key was pressed, was it the space, or was i
 
 Finally, what exactly do we want to do when the spacebar is pressed? Well – we’d like pressing the space to be the equivalent of clicking the icon, so the simplest thing to do is to simply call the `click` handler from the `keypress` handler.
 
-```JavaScript
+```javascript
 // add a keypress handler to the thumbs up and down buttons
 $('span#rating_ui > span').keypress(function(e){
   // only respond to the spacebar
@@ -187,7 +187,7 @@ $('span#rating_ui > span').keypress(function(e){
 
 Assuming a web form contains a reset button, when a user presses it, all the elements within the form should return to their default states. As things stand, our custom UI doesn’t do this. To remedy that we need to add a `reset` event handler to the form that contains our hidden element. Note that the handler has to be added to the form, not to the hidden input — `reset` events only fire on forms, not on the elements within forms. Also, there is no jQuery shortcut function for the reset event, so we need to use the generic `.on()` function.
 
-```JavaScript
+```javascript
 // add a reset handler for the rating
 $('#rating_ipt').closest('form').on('reset', function(){
   $('#rating_ipt').val('').change();
@@ -198,7 +198,7 @@ $('#rating_ipt').closest('form').on('reset', function(){
 
 Below is the code for `pbs41.html` (which you’ll find in this instalment’s ZIP file) – it shows our custom rating UI in context.
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

@@ -18,7 +18,7 @@ The challenge set at the end of the previous instalment was simply to update the
 
 As a quick reminder, this is what the code looked like when we last left it:
 
-```XHTML
+```html
 <span class="input-group input-group-sm" style="position: relative">
   <span class="input-group-prepend">
     <span class="input-group-text"><i class="fas fa-sign-in-alt" aria-hidden="true"></i></span>
@@ -38,7 +38,7 @@ The only thing we need to change is the appended add-on, converting it from a si
 
 The first thing we’ll need to do is add a second button into the add-on to act as the trigger for the dropdown:
 
-```XHTML
+```html
 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="login_dd_t" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
   <span class="sr-only">Toggle Dropdown</span>
 </button>
@@ -48,7 +48,7 @@ The important things to note are that the button needs to have the classes `drop
 
 The next piece of markup we need is the code for the dropdown itself, we add this after the newly added trigger button:
 
-```XHTML
+```html
 <span class="dropdown-menu" aria-labelledby="login_dd_t">
   <button class="dropdown-item" type="submit">Login for 5 Mins</button>
   <button class="dropdown-item" type="submit">Login for 1 Hour</button>
@@ -65,7 +65,7 @@ The challenge did have one small twist, the message displayed when the form is s
 
 This is the starting code for the event handler:
 
-```JavaScript
+```javascript
 $loginForm.submit(function(e){
   if(validateLoginForm()){
     window.alert("Sorry, this is just a dummy form, there's nothing to actually log in to here!");
@@ -80,13 +80,13 @@ There are multiple ways to address this problem, for example, you could write se
 
 I started by adding a hidden input to the form to store the login duration — no value would be interpreted as a permanent login, and any other durations would be represented by simple string values like `5 minutes` or `1 hour`:
 
-```XHTML
+```html
 <input type="hidden" id="login_duration_hdn" value="">
 ```
 
 Next I changed the buttons in the dropdown from `type="submit"` to `type="button"`, gave them both `value` attributes, and gave the menu as a whole and ID:
 
-```XHTML
+```html
 <span class="dropdown-menu" aria-labelledby="login_dd_t" id="login_dd_m">
   <button class="dropdown-item" type="button" value="5 minutes">Login for 5 Mins</button>
   <button class="dropdown-item" type="button" value="1 hour">Login for 1 Hour</button>
@@ -95,7 +95,7 @@ Next I changed the buttons in the dropdown from `type="submit"` to `type="button
 
 The next step was to add an event handler to the buttons so they update the value of the hidden field when clicked, and then submit the form. Because each button now has a value attribute, the same handler can be added to all buttons within the menu. Since the menu now has an ID, we can use the CSS selector `#login_dd_m button` to select all buttons in the menu:
 
-```JavaScript
+```javascript
 $('#login_dd_m button').click(function(){
   $('#login_duration_hdn').val($(this).val());
   $loginForm.submit();
@@ -106,7 +106,7 @@ Notice that we simply use jQuery’s `.val()` function to read the value from th
 
 The final step now is to update the form’ submit handler so it uses the value in the hidden field:
 
-```JavaScript
+```javascript
 $loginForm.submit(function(e){
   const $d = $('#login_duration_hdn');
   if(validateLoginForm()){
@@ -148,7 +148,7 @@ For the simple pure-link variant of the nav bar you could use any containing tag
 
 So, a basic nav really can be this simple:
 
-```XHTML
+```html
 <nav class="nav">
   <a class="nav-link" href="http://www.bartb.ie/" target="_blank">Bart's Site</a>
   <a class="nav-link" href="http://www.podfeet.com/" target="_blank">Allison's Site</a>
@@ -164,7 +164,7 @@ A basic nav like this could almost be described as un-styled, it’s just a left
 
 Here’s a first practical example:
 
-```XHTML
+```html
 <nav class="nav border-top border-bottom bg-light justify-content-around">
   <a class="nav-link" href="http://www.bartb.ie/" target="_blank">Bart's Site</a>
   <a class="nav-link" href="http://www.podfeet.com/" target="_blank">Allison's Site</a>
@@ -192,7 +192,7 @@ Adding `.nav-fill` to an overall nav where each item has the class `.nav-item` w
 
 Putting all that together, below is the markup for a simple justified nav including an active link and a disabled link:
 
-```XHTML
+```html
 <nav class="nav nav-pills nav-justified">
   <a class="nav-item nav-link" href="https://www.bartbusschots.ie/s/2018/11/04/pbs-66-of-x-bootstrap-form-validation/" target="_blank">PBS 66</a>
   <a class="nav-item nav-link" href="https://www.bartbusschots.ie/s/2018/12/02/pbs-67-of-x-bootstrap-dropdown-menus/" target="_blank">PBS 67</a>
@@ -207,7 +207,7 @@ Putting all that together, below is the markup for a simple justified nav includ
 
 Now that our links are doing double duty as both nav items and nav links we have one more display style at our disposal — tabs. To use tabs rather than pills simply replace `.nav-pills` with `.nav-tabs`.
 
-```XHTML
+```html
 <nav class="nav nav-tabs nav-justified">
   <a class="nav-item nav-link" href="https://www.bartbusschots.ie/s/2018/11/04/pbs-66-of-x-bootstrap-form-validation/" target="_blank">PBS 66</a>
   <a class="nav-item nav-link" href="https://www.bartbusschots.ie/s/2018/12/02/pbs-67-of-x-bootstrap-dropdown-menus/" target="_blank">PBS 67</a>
@@ -226,7 +226,7 @@ A list-based nav consist of a containing tag with the class `.nav` (usually a `<
 
 Re-writing the previous example we get:
 
-```XHTML
+```html
 <ul class="nav nav-tabs nav-justified">
   <li class="nav-item">
     <a class="nav-link" href="https://www.bartbusschots.ie/s/2018/11/04/pbs-66-of-x-bootstrap-form-validation/" target="_blank">PBS 66</a>
@@ -253,7 +253,7 @@ The nav item will become the container for the dropdown, so it should get the ad
 
 The menu should then be added into the nav item directly after the nav link. Since this dropdown is for navigation we should use slightly different markup to what we saw in [the previous instalment](https://bartificer.net/pbs67). Rather than filling our menu with buttons, we’ll be filling it with links instead:
 
-```XHTML
+```html
 <ul class="nav nav-justified bg-light border-top border-bottom">
   <li class="nav-item">
     <a class="nav-link" href="http://www.bartb.ie/" target="_blank">Bart's Site</a>
@@ -295,7 +295,7 @@ For a nice visual effect you probably want to add a border on three sides of the
 
 That sounds very complicated, but it’s not actually that bad when you see it all together:
 
-```XHTML
+```html
 <!-- the nav controlling the panes -->
 <nav class="nav nav-tabs nav-justified" role="tablist">
   <a class="nav-item nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">First Tab</a>

@@ -20,7 +20,7 @@ At the end of the previous instalment, I set an optional challenge, and promised
 
 Remember, there are infinitely many correct solutions to any programming problem, so this is just one possible solution:
 
-```JavaScript
+```javascript
 // -- Function --
 // Purpose    : Apply a function to all PBS playground inputs
 // Returns    : VOID
@@ -64,13 +64,13 @@ The simplest objects are so-called plain objects – they are data structures fo
 
 An object is a collection of name-value pairs. You declare an empty object like so:
 
-```JavaScript
+```javascript
 var myObject = {};
 ```
 
 You can then add keys using either of the following notations:
 
-```JavaScript
+```javascript
 myObject.someProperty = 4;
 myObject['someOtherProperty'] = 5;
 ```
@@ -79,7 +79,7 @@ If the name of your property meets the rules for the names of variables, then bo
 
 You don’t have to add the properties one-by-one after you create the object, you can add properties as you create an object using the following notation:
 
-```JavaScript
+```javascript
 var myObject = {
   property_name_1: "value 1",
   property_name_2: 42
@@ -88,7 +88,7 @@ var myObject = {
 
 If a property’s name doesn’t obey the rules for variable names, you must write the property name as a string:
 
-```JavaScript
+```javascript
 var myObject = {
   "a property name with spaces": "a value",
   anotherPropterty: true,
@@ -100,7 +100,7 @@ Like a variable, the values stored in objects can be literal values or reference
 
 The following incomplete (because I’m too lazy to type it all) data structure gives you an idea of what is possible:
 
-```JavaScript
+```javascript
 // build a data structure with US state data
 var statesData = {
   ca: {
@@ -137,7 +137,7 @@ statesData.ct.demonyms.forEach(function(d){
 
 The `Object.keys()` function returns an array of keys (property names) for a given object. `Object.keys()` was introduced in ECMAScript 5.1, so it is now supported in all major browsers.
 
-```JavaScript
+```javascript
 // create an object representing three letter acronyms
 var tlaLib = {
   rpm: 'Revolutions per Minute',
@@ -160,7 +160,7 @@ What makes an object plain is that it contains only data. Plain objects can be c
 
 JavaScript has built-in support for JSON – to go from a plain object to JSON use `JSON.stringify()`, and to go from a JSON string to a plain object use `JSON.parse()`.
 
-```JavaScript
+```javascript
 // create an object representing three letter acronyms
 var tlaLib = {
   rpm: 'Revolutions per Minute',
@@ -190,7 +190,7 @@ When you add a function to an object, that function can access the object it bel
 
 We’ll start with a really simple example – an object to represent a counter.
 
-```JavaScript
+```javascript
 // create a counter object
 var myCounter = {
   _count: 0, // data - the current count, initialised at 0
@@ -242,7 +242,7 @@ The constructor function and its accompanying prototype act as a blueprint that 
 
 You build an object from a prototype using the keyword `new`, using the following syntax
 
-```JavaScript
+```javascript
 // instance_name is the name of your new object
 // Prototype_name is the name of the prototype the object should be constructed from
 // optional_arguments can be empty, or, one or more values passed to the constructor function
@@ -251,7 +251,7 @@ var instance_name = new Prototype_name(optional_arguments);
 
 As a simple example, let’s convert our bespoke counter above into a prototype we can use over and over again, which we’ll name `Counter`.
 
-```JavaScript
+```javascript
 //
 // === Define the Counter Prototype ===
 //
@@ -330,7 +330,7 @@ However, beware that you can’t use `this` to access your object’s properties
 
 If you want to reach your object’s properties from within an anonymous function, you need to wrap it in a different name that is not part of the core JavaScript language. By convention, the name `self` is used. In other words, before defining the first callback within a function belonging to a prototype, add this line:
 
-```JavaScript
+```javascript
 var self = this;
 ```
 
@@ -340,7 +340,7 @@ This technique works because the callback has access to the scope belonging to t
 
 This sounds more complicated than it is – let’s illustrate the technique with an example.
 
-```JavaScript
+```javascript
 //
 // === Create a GuessingGame Prototype ===
 //
@@ -458,7 +458,7 @@ The `instanceof` operator can be used to test if a variable has a given prototyp
 
 We can use this operator to test any variable against any prototype, including prototypes we have created ourselves:
 
-```JavaScript
+```javascript
 //
 // === Define our Counter Prototype ===
 //

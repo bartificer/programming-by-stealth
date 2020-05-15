@@ -24,7 +24,7 @@ The assignment was to create a web page that contains five dropdown menus allowi
 
 Below is my solution, which you’ll also find in this instalment’s ZIP file as `pbs32-challenge-solution/index.html`:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -295,7 +295,7 @@ We’ll start with by creating the following three blank files (paths relative t
 
 Remember, with TDD you shouldn’t write code until you’ve defined some tests for that code to pass, so once we have the three blank files created, the next step is to set up our QUnit test runner in `test/index.html`:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -329,7 +329,7 @@ You should now see a page like the following when you load `index.html` in your 
 
 Next, we need to write some tests. Let’s start with a general test to be sure our namespace exists. Use the following as the initial content of `test/pbs.math.test.js`:
 
-```JavaScript
+```javascript
 //
 // === QUnit Tests for pbs.math API ==========================================
 //
@@ -366,7 +366,7 @@ The first line is fine, we do indeed only have one test. But the second line, th
 
 All QUnit assertions throw an error when they fail, so, because there was no `pbs` namespace, the first assertion failed, an exception was thrown, and execution of the anonymous function ended there, with only one assertion seen by QUnit. To get sane error reporting, you need to tell QUnit in advance how many assertions to expect within a given test. You can do this with the `.expect()` pseudo-assertion like so:
 
-```JavaScript
+```javascript
 QUnit.test( "namespaces exist", function( assert ) {
     assert.expect(2);
     assert.ok(pbs, "expect pbs namespace to exist" );
@@ -381,7 +381,7 @@ If you save the file and re-refresh the test suite you’ll now see the expected
 
 OK – now that our tests are working as we want, we can finally start writing some code for our API. We need to start with the boiler-plate to set up our name spaces. Let’s start by setting up just the `pbs` namespace. Use the following as the initial content of `pbs.math.js`:
 
-```JavaScript
+```javascript
 // A simple API containing miscellaneous mathematical functions
 // This is sample code from the Programming By Stealth series on www.bartb.ie,
 // as such it is not intended for production use.
@@ -396,7 +396,7 @@ After saving `pbs.math.js`, refresh your test runner page (you need to refresh o
 
 Lets’s now add the definition of the `pbs.math` nested namespace to `pbs.math.js`:
 
-```JavaScript
+```javascript
 // A simple API containing miscellaneous mathematical functions
 // This is sample code from the Programming By Stealth series on www.bartb.ie,
 // as such it is not intended for production use.
@@ -428,7 +428,7 @@ We have now done our first cycle through the process – we have written some te
 
 Let’s start the next cycle by defining our test for the first of our two functions by appending the following to `test/pbs.math.test.js`:
 
-```JavaScript
+```javascript
 QUnit.test("factorial() argument validation", function(assert){
     assert.expect(9);
     assert.throws(
@@ -507,7 +507,7 @@ BTW, if you’re wondering how many tests it’s OK to write before writing the 
 
 Let’s add the stub of our function to our API, and include the code for argument validation. Add the following into `pbs.math.js` by appending it to the self-exectuting anonymous function:
 
-```JavaScript
+```javascript
     //
     // -- define the functions --
     //
@@ -535,7 +535,7 @@ Well, that completes another cycle, so let’s define some more tests. This time
 
 Append the following to the file `test/pbs.math.test.js`:
 
-```JavaScript
+```javascript
 QUnit.test("inputs to pbs.math.factorial() give expected outputs", function(assert){
     assert.expect(2);
 
@@ -555,7 +555,7 @@ Now we can update our `pbs.math.factorial()` function so it actually calculates 
 
 Below is the updated version of the `pbs.math.factorial()` function in `pbs.math.js`:
 
-```JavaScript
+```javascript
     // -- Function --
     // Purpose    : Calculate the factorial of a given number
     // Returns    : An integer
@@ -595,7 +595,7 @@ Refreshing the test suite shows that this function now works as expected, so we 
 
 Append the following to `test/pbs.math.test.js`:
 
-```JavaScript
+```javascript
 // -- test the factorial function --
 
 QUnit.test("pbs.math.fibonacciSeries() exists", function(assert){
@@ -658,7 +658,7 @@ QUnit.test("fibonacciSeries() argument validation", function(assert){
 
 With our tests written, we can now create the stub of our `pbs.math.fibonacciSeries()` function, including the code for argument validation. Append the following to the self-executing anonymous function in `pbs.math.js`:
 
-```JavaScript
+```javascript
     // -- Function --
     // Purpose    : Calculate the fibonacci series up to a given number
     // Returns    : An array of integers
@@ -681,7 +681,7 @@ All tests should now pass, so we are ready for the next loop of the cycle. Let�
 
 Append the following to `test/pbs.math.test.js`:
 
-```JavaScript
+```javascript
 QUnit.test("inputs to pbs.math.fibonacciSeries() give expected outputs", function(assert){
     assert.expect(5);
 
@@ -710,7 +710,7 @@ The first argument is the values to test, the second is the expected value, and 
 
 Now that we have our tests written, we can finish our implementation of the `pbs.math.fibonacciSeries()` function in `pbs.math.js`:
 
-```JavaScript
+```javascript
     // -- Function --
     // Purpose    : Calculate the fibonacci series up to a given number
     // Returns    : An array of integers
@@ -781,7 +781,7 @@ While editing the code I’m also going to tidy up some other little cosmetic th
 
 So, this is the final version of our test suite:
 
-```JavaScript
+```javascript
 //
 // === QUnit Tests for pbs.math API ==========================================
 //

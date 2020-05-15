@@ -18,7 +18,7 @@ At the end of [the previous instalment](https://bartificer.net/pbs53) I set the 
 
 I chose to use the colour, margin, padding, and border utility classes to style my _Did You Know_ box:
 
-```XHTML
+```html
 <aside class="m-5 border border-info rounded">
   <h2 class="bg-info text-light p-2">Did you Know?</h2>
   <p class="text-muted p-2">The Cucumber is a member of the nighshade family of plants, along with the tomato, the melon, and even the potato!</p>
@@ -33,7 +33,7 @@ When it came to adding in the requested extra HTML elements I chose to add the b
 
 Like last time I’ve created an HTML document with some pre-created elements and empty `class` attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs54.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs54.zip) as `pbs54a.html`, and in [this interactive Bootply playground](https://www.bootply.com/aNM7DS9MfB#).
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -129,7 +129,7 @@ In the aside in our sandbox page we can see that headings and paragraphs are dis
 
 We can use the Bootstrap display CSS utility class `d-inline` to render both as inline elements so our aside becomes more compact:
 
-```XHTML
+```html
 <aside class="text-muted bg-light border rounded p-2 m-3">
                   <h3 class="d-inline">Note:</h3>
                   <p class="d-inline">Kavanagh got his wish — he is comemorated with a bench that has a statue of him setting on it next to the Royal Canal in Dublin city. Passers by can sit next to Kavanagh on his bench and ponder the view, perhaps with these lines running aroun in their heads.</p>
@@ -165,7 +165,7 @@ Finally, Bootstrap also provides utilities for the new, and still experimental, 
 
 A very common place to see sticky positioning is on cookie notices, so let’s do that in our sandbox page by adding the class `sticky-top` (and some other classes we learned about in the previous instalment) to the cookie notice at the top of our sandbox page:
 
-```XHTML
+```html
 <div class="sticky-top bg-danger text-white p-1 rounded m-1">
   If this page used cookies this notification would let you know that, but it doesn't, so it doesn't!
 </div>
@@ -197,7 +197,7 @@ And where `{value}` can be one of:
 
 As an example, we can combine the sizing class `w-75` with the auto-padding class we learned about last time (`m-auto`) and some border and padding utilities to make the poem in our sandbox page 75% of the width of the page and centred:
 
-```XHTML
+```html
 <blockquote class="w-75 m-auto border rounded p-3">
 ...
 </blockquote>
@@ -213,7 +213,7 @@ Bootstrap goes a step further thought and provides a fix to a common problem —
 
 As a practical example, let’s float the aside within the poem to the right by first making it 25% of the width with `w-25`, and then floating it with `float-right`. For completeness we should ensure the aside could never poke out the bottom of the poem by adding `clearfix` to the element that contains the float, i.e., to the `<blockquote>` tag:
 
-```XHTML
+```html
 <blockquote class="clearfix w-75 m-auto border rounded p-3">
   <h2 class="">Lines Written on a Seat on the Grand Canal, Dublin</h2>
 
@@ -268,7 +268,7 @@ We’re now ready to convert the unordered list into a flex container by giving 
 
 Putting all that together we get the following code for the nav bar:
 
-```XHTML
+```html
 <nav class="">
   <ul class="d-flex flex-row justify-content-around">
     <li class="d-block">
@@ -290,7 +290,7 @@ Bootstrap makes it easy to add elements into your page that are only visible to 
 
 To hide an element from everything but a screen reader simply give it the class `sr-only`, e.g.:
 
-```XHTML
+```html
 <p>The next paragraph is only visible to screen readers</p>
 <p class="sr-only">Hello Screen Reader User!</p>
 ```
@@ -299,7 +299,7 @@ To hide an element from everything but a screen reader simply give it the class 
 
 Putting all the examples above together we get the following final version of our sandbox page:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

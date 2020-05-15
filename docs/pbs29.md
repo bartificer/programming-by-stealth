@@ -51,7 +51,7 @@ It’s obviously easier to buy direct, then you won’t have to go through the c
 
 Below is my solution to the challenge from [the previous instalment](https://bartificer.net/pbs28), written to run via NodeJS rather than in the PBS playground.
 
-```JavaScript
+```javascript
 // init name space - commented out in playground
 var pbs = pbs ? pbs : {};
 
@@ -507,7 +507,7 @@ This subtle difference between basic values and objects becomes very important w
 
 When you have a variable that holds a basic value like a number, and assign another variable equal to it, the number gets copied, so now each variable has its own copy of the number. Changing the number stored in one of the variables has no effect on the value stored in the other. We can prove this to ourselves with this simple code snippet:
 
-```JavaScript
+```javascript
 var x = 4;
 console.log('initial value of x: ' + x);
 var y = x;
@@ -533,7 +533,7 @@ Forgetting that variables can only hold references to objects results in some of
 
 The code snippet below illustrates this _spooky action at a distance_ for you:
 
-```JavaScript
+```javascript
 var x = new pbs.Time(17, 30);
 console.log('x represents the time ' + x.time12());
 var y = x;
@@ -555,7 +555,7 @@ If you remember that variables contain references to objects, then this output m
 
 At the moment, the accessor methods in `pbs.DateTime` are returning references to the objects contained within the instances, not references to copies of those objects. This will lead to unwanted and unexpected behaviour in one of two ways:
 
-```JavaScript
+```javascript
 var t = new pbs.Time(5, 0);
 var d = new pbs.Date(1, 5, 2015);
 var dt = new pbs.DateTime(d, t);
@@ -576,7 +576,7 @@ Because the constructor saved a reference to `t` into the new object `dt` instea
 
 We also get similar _spooky action at a distance_ when we use the accessor methods to get one of the internal values:
 
-```JavaScript
+```javascript
 var dt = new pbs.DateTime(new pbs.Date(25, 12, 2016), new pbs.Time());
 console.log('dt originally represents ' + dt.toString());
 var d = dt.date();
@@ -602,7 +602,7 @@ A clone function is basically a deep copy – if a piece of data is a value like
 
 Let’s start with the simple case, and create a clone function for our `pbs.Time` prototype:
 
-```JavaScript
+```javascript
 // define a clone function
 pbs.Time.prototype.clone = function(){
   return new pbs.Time(this._hours, this._minutes, this._seconds);
@@ -613,7 +613,7 @@ As you can see, for simple objects, clone functions are very simple things. You 
 
 We can see this simple clone function in action like so:
 
-```JavaScript
+```javascript
 var t1 = new pbs.Time(5, 30);
 var t2 = t1.clone();
 console.log('t1=' + t1.toString() + ' & t2=' + t2);
@@ -638,7 +638,7 @@ Because `pbs.DateTime` objects contain objects, that prototype’s `.clone()` fu
 
 As an example, here is how we would update the `.date()` accessor:
 
-```JavaScript
+```javascript
 pbs.DateTime.prototype.date = function(d){
   if(arguments.length === 0){
     return this._date.clone();
@@ -661,7 +661,7 @@ Add `.clone()` functions to your `pbs.Date` and `pbs.Time` prototypes. Next, upd
 
 You’ll know your changes have worked when the following code behaves as expected, without any spooky action at a distance:
 
-```JavaScript
+```javascript
 var d = new pbs.Date(17, 3, 2017);
 var t = new pbs.Time(11, 0);
 var dt = new pbs.DateTime(d, t);
@@ -692,7 +692,7 @@ When you create your own download URL, you can choose which version of the icon 
 
 So, for our purposes, including Font Awesome into a web page is as simple as adding the following line inside the head section:
 
-```XHTML
+```html
 <link rel="stylesheet" href="https://use.fontawesome.com/9437c02941.css" />
 ```
 
@@ -704,7 +704,7 @@ I would strongly advise against that approach – it’s semantic nonsense! The 
 
 So – as a quick example, assuming you have included Font Awesome into your page, you can add a thumbs-up icon anywhere in your page like so:
 
-```XHTML
+```html
 <span class="fa fa-thumbs-up"></span>
 ```
 
@@ -724,7 +724,7 @@ You can also make your ions effectively float left or right by adding the `fa-pu
 
 There are also classes provided to make it easy to use these icons in bulleted lists. To do this, simply add the class `fa-ul` to the `<ul>` tag for the list, and add your icon as the first item within the `<li>` tag, and, with the additional class `fa-li`, e.g.:
 
-```XHTML
+```html
 <h2>Underpants Gnomes Check-list:</h2>
 <ul class="fa-ul">
   <li><span class="fa-li fa fa-check-square-o"></span> Steal underpants</li>
@@ -739,7 +739,7 @@ Then, you add the two icons inside this outer `<span>`. The first one will be be
 
 As an example, you could stack an inverse Apple logo over a heart as follows:
 
-```XHTML
+```html
 <span class="fa-stack">
   <span class="fa fa-heart fa-stack-2x"></span>
   <span class="fa fa-apple fa-stack-1x fa-inverse"></span>
@@ -748,7 +748,7 @@ As an example, you could stack an inverse Apple logo over a heart as follows:
 
 You can also stack the larger logo over the smaller one, and you can add colours to one or the other. You could synthesise a large no photography sign like so:
 
-```XHTML
+```html
 <span class="fa-stack fa-5x">
   <span class="fa fa-camera fa-stack-1x"></span>
   <span class="fa fa-ban fa-stack-2x" style="color: red"></span>
@@ -757,7 +757,7 @@ You can also stack the larger logo over the smaller one, and you can add colours
 
 Finally, bringing all this back to HTML forms, we can re-do our buttons from last time, but with nice icons instead of images:
 
-```XHTML
+```html
 <p>The buttons below include glyph icons to make it clearer what they do:</p>
 <form action="javascript:void(0);">
 <p style="text-align: center">
@@ -779,7 +779,7 @@ Finally, bringing all this back to HTML forms, we can re-do our buttons from las
 
 Below is the file `pbs29.html` from the zip file for this instalment. It shows examples of all the uses of Font Awesome described above:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

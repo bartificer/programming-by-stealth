@@ -58,7 +58,7 @@ To make all this ARIA-compliant, we need to do three additional things — we ne
 
 Next, we’ll need to provide at least one button for closing the dialogue. It’s considered best practice to provide a close button in the top-right corner of the header, and also a regular button with a sane label like _‘OK’_ or _‘I Agree’_ in the footer. The former can be done using the identical code we’ve already seen in dismissible Alerts:
 
-```XHTML
+```html
 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
   <span aria-hidden="true">&times;</span>
 </button>
@@ -66,13 +66,13 @@ Next, we’ll need to provide at least one button for closing the dialogue. It�
 
 The latter can be done by giving any button of your choosing the data attribute `data-dismiss="modal"`, e.g.:
 
-```XHTML
+```html
 <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
 ```
 
 Putting all that together we get markup of the following form:
 
-```XHTML
+```html
 <div class="modal" id="demo_mdl" tabindex="-1" role="dialog" aria-labelledby="modal_title">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -95,7 +95,7 @@ Putting all that together we get markup of the following form:
 
 Next, we need to trigger a Modal from a button. We can do that using Bootstrap’s Toggle plugin. Simply create a button and give it the data attributes `data-toggle="modal"`, and `data-target="#THE_ID_OF_THE_MODAL"` (with the appropriate ID as the value). We can trigger our above modal with the button below:
 
-```XHTML
+```html
 <button type="button" class="btn btn-sm btn-secondary ml-3" data-toggle="modal" data-target="#demo_mdl">
   Our Privacy Policy
 </button>
@@ -117,13 +117,13 @@ Like with other Bootstrap components, the Bootstrap JavaScript contains a jQuery
 
 For example, you can paste the following into a JavaScript console on `pbs70a.html` to show the Modal:
 
-```JavaScript
+```javascript
 $('#demo_mdl').modal('show');
 ```
 
 You can hide it again by entering:
 
-```JavaScript
+```javascript
 $('#demo_mdl').modal('hide');
 ```
 
@@ -131,7 +131,7 @@ If your markup contains a fully completed modal ready to show, then this is all 
 
 At the top of the `<body>` you’ll find the markup for the blank Modal:
 
-```XHTML
+```html
 <div class="modal" id="demo_mdl" tabindex="-1" role="dialog" aria-labelledby="modal_title">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -158,13 +158,13 @@ To see how this is done, you can enter the lines below into the JavaScript conso
 
 First, let’s get a reference to the entire Modal for convenience:
 
-```JavaScript
+```javascript
 const $modal = $('#demo_mdl');
 ```
 
 Next, let’s edit the title text:
 
-```JavaScript
+```javascript
 $('.modal-title', $modal).text('I Like Cake!');
 ```
 
@@ -172,7 +172,7 @@ Breaking this down, we first use the jQuery’s `$()` function to get a referenc
 
 Similarly, let’s edit the body text:
 
-```XHTML
+```html
 $('.modal-body p', $modal).html("Seriously, I <strong>really</strong> like cake!<br><br>Don't You?");
 ```
 
@@ -180,7 +180,7 @@ Again, breaking this down we use the `$()` function to get a reference to the pa
 
 Finally, we can show our masterpiece with:
 
-```JavaScript
+```javascript
 $modal.modal('show');
 ```
 
@@ -216,7 +216,7 @@ Regardless of where you position your toast rack, you need to add some ARIA attr
 
 Putting it all together, this is the toast rack from `pbs70b.html`:
 
-```XHTML
+```html
 <div id="toast_rack" aria-live="polite" class="position-fixed" style="z-index: 999; top: 10px; right: 10px;"></div>
 ```
 
@@ -238,7 +238,7 @@ Next, you need to tell the screen reader to treat the whole Toast as a single un
 
 The documentation also suggests adding a button for dismissing the Toast within the Toast’s heading using jQuery’s Close Button component, something like:
 
-```XHTML
+```html
 <button type="button" class="close" data-dismiss="toast" aria-label="Close">
   <span aria-hidden="true">&times;</span>
 </button>
@@ -246,7 +246,7 @@ The documentation also suggests adding a button for dismissing the Toast within 
 
 I like to have the close button on the right of the header. The easiest way to do this is to put the header text in a <strong> tag with a right margin set to take all available space by giving it the Bootstrap utility class `mr-auto`, and then adding the close button after that. Putting it all together, this is the structure I recommend for Toasts:
 
-```XHTML
+```html
 <div class="toast" aria-role="status" aria-atomic="true">
   <div class="toast-header">
     <strong class="mr-auto">My Heading Text</strong>
@@ -270,13 +270,13 @@ To give you some idea of what the jQuery code to build the above markup might lo
 
 First, we need to create an empty toast with the needed class and ARIA attributes:
 
-```JavaScript
+```javascript
 const $toast = $('<div>').addClass('toast').attr('role', 'status').attr('aria-atomic', true);
 ```
 
 Next we need to build a title with the appropriate classes and containing the title text and the dismiss button:
 
-```JavaScript
+```javascript
 const $title = $('<div>').addClass('toast-header');
 $title.append($('<strong>').addClass('mr-auto').text('My Toast!'));
 const $dismiss = $('<button>').attr('type', 'button');
@@ -287,31 +287,31 @@ $title.append($dismiss);
 
 We can now add the title into the toast:
 
-```JavaScript
+```javascript
 $toast.append($title);
 ```
 
 Now we need to build a body with the appropriate class and our content:
 
-```JavaScript
+```javascript
 const $body = $('<div>').addClass('toast-body').text('My Toast Body');
 ```
 
 We can now add the body into our toast:
 
-```JavaScript
+```javascript
 $toast.append($body);
 ```
 
 That’s all the markup built, so we can add the completed toast into the toast rack:
 
-```JavaScript
+```javascript
 $('#toast_rack').append($toast);
 ```
 
 At this stage the markup is in the DOM, but the jQuery plugin has not been initialised on the tag. Let’s do that now being sure to replace the default half second visibility with a more sane three seconds:
 
-```JavaScript
+```javascript
 $toast.toast({delay: 3000});
 ```
 
@@ -319,13 +319,13 @@ We could show the Toast now, but there is one more thing we should do before we 
 
 While Toasts hide themselves automatically, they remain in the DOM, so, if your app is going to use a lot of Toasts the DOM will become ever more cluttered with more and more invisible Toasts. We really should clean up after ourselves! We can do that by adding an event handler. Specifically, we want to respond to the event that the Bootstrap Toast plugin emits when a Toast finishes hiding itself; `hidden.bs.toast`. What is it that we want to do when this event fires? We want to delete the Toast from the DOM. We can do that with jQuery’s `.remove()` function. Putting all that together we get the following event handler:
 
-```JavaScript
+```javascript
 $toast.on('hidden.bs.toast', function(){ $(this).remove(); });
 ```
 
 And now, at last, we can show our Toast:
 
-```JavaScript
+```javascript
 $toast.toast('show');
 ```
 

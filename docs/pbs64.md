@@ -26,7 +26,7 @@ When creating inline forms the markup is simpler than when creating regular form
 
 Let’s have a look at a simple example:
 
-```XHTML
+```html
 <h1>A Regular Inline Form</h1>
 <p class="form-inline">
   <label for="uname_tb" class="sr-only">Username</label>
@@ -59,7 +59,7 @@ This seems like the opportune time to mention that form elements, like buttons, 
 
 Small forms work particularly well with inline forms, allowing you to make much more subtle forms. A classic example might be a small admin login form on a blog:
 
-```XHTML
+```html
 <h1>A Small Inline form</h1>
 <p class="form-inline">
   <label for="uname_sm_tb" class="sr-only">Username</label>
@@ -78,7 +78,7 @@ Note the change to smaller margins with the replacement of `mr-sm-2` with `mr-sm
 
 Similarly, you could use a large form to encourage users to subscribe to a news letter within an alert:
 
-```XHTML
+```html
 <div class="alert alert-info">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -109,7 +109,7 @@ Unlike inline forms, horizontal forms will not collapse down to stacked forms at
 
 As a simple example, the following login form is horizontal for all but the smallest breakpoint, then it collapses into a stacked form:
 
-```XHTML
+```html
 <fieldset role="form" aria-labelledby="login_hr_fm_desc">
   <legend id="login_hr_fm_desc">Login</legend>
   <div class="form-group form-row">
@@ -145,7 +145,7 @@ Finally, you can use a regular Bootstrap grid to lay our your form. The markup h
 
 To illustrate this point, the following grid-based form has three different behaviours — at the smallest breakpoint it stacks, then it becomes horizontal form, then it becomes a two-line form, an finally, a single-line form:
 
-```XHTML
+```html
 <fieldset class="container-fluid" role="form" aria-labelledby="login_gd_fm_desc">
   <legend id="login_gd_fm_desc" class="form-row"><span class="col">Login</span></legend>
   <div class="form-row align-items-start">

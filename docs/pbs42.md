@@ -18,7 +18,7 @@ I used the file `pbs40.html` from the ZIP file for [instalment 40](https://barti
 
 The first change I made was to add a star rating field:
 
-```XHTML
+```html
 <label id="avg_rating_lbl">Average Review Rating</label>
 <span id="avg_rating_ui" role="radiogroup" aria-labelledby="avg_rating_lbl">
     <span class="fa fa-star-o" id="avg_rating_1" data-stars="1" title="1 star" role="radio" aria-checked="false" aria-label="1" tabindex=0></span>
@@ -30,7 +30,7 @@ The first change I made was to add a star rating field:
 <input type="hidden" name="avg_rating" id="avg_rating_hipt">
 ```
 
-```CSS
+```css
 #avg_rating_ui{
     margin: 0.25em; /* Add some space around the stars */
     display: inline-block; /* keep the stars together on line breaks */
@@ -40,7 +40,7 @@ The first change I made was to add a star rating field:
 }
 ```
 
-```JavaScript
+```javascript
 // add a change handler to the hidden rating input
 $('#avg_rating_hipt').change(function(){
     var $hipt = $(this);
@@ -92,13 +92,13 @@ To make the form look right I also moved some things around when I added the sta
 
 Next, I added a reset button. The HTML markup is straight forward:
 
-```XHTML
+```html
 <button type="reset" id="reset_btn">Reset</button>
 ```
 
 To make the submit button stand out stronger than the reset button I added the following CSS to make the text on the submit button bold:
 
-```CSS
+```css
 /* make the submit button bold */
 button[type="submit"]{
     font-weight: bold;
@@ -107,7 +107,7 @@ button[type="submit"]{
 
 Finally, I added a reset event handler to ensure all my custom validations and UI behave properly when the form gets reset:
 
-```JavaScript
+```javascript
 // add a reset event handler
 $('#movie_entry_fm').on('reset', function(){
     $('#avg_rating_hipt').val(0).change(); // blank the average rating
@@ -168,7 +168,7 @@ Let’s start by writing a function to set the state of each cell in the CA to s
 
 This function will need one argument, the new state information, and it will need to pass the same validation as the optional sixth argument already supported by the constructor. Rather than duplicating the constructor code in both functions, we should re-factor the validation code into a private helper function that can then be called from both the constructor and the new `.setState()` function. In fact, I’m going to implement this as two functions, one that throws errors with detailed error messages, and one which simply returns `true` or `false`:
 
-```JavaScript
+```javascript
 /**
  * Validate that a given value is a valid state for an automaton as a
  * whole.
@@ -242,7 +242,7 @@ function isAutomatonState(s, rows, cols){
 
 With these new functions written we can alter the validation check in the constructor so it simply becomes:
 
-```JavaScript
+```javascript
 if(typeof s !== 'undefined' && !isAutomatonState(s, rows, cols)){
     throw new TypeError('if present, the sixth argument must be a valid cell state (boolean, number, or string), an array of valid cell states with the same dimensions as the automaton, or, a callback');
 }
@@ -260,7 +260,7 @@ We’ll add support for specifying the state in one of three formats:
 
 We now know everything needed to implement the function:
 
-```JavaScript
+```javascript
 /**
  * Set the current state of the automaton as a whole.
  *
@@ -314,19 +314,19 @@ bartificer.ca.Automaton.prototype.setState = function(newState){
 
 Before we can test our new function using the JavaScript console on `sample.html` we need to tweak the sample CA defined in that file so it renders a state of `true` as green and `false` as red. We can do that by changing line 25 from:
 
-```JavaScript
+```javascript
 function($td){ $td.css('background-color', 'Green') }, // always render as green
 ```
 
 To:
 
-```JavaScript
+```javascript
 function($td, s){ $td.css('background-color', s ? 'Green' : 'Red'); },
 ```
 
 With that change made we can enter the following in the console on `sample.html` to set each cell in our CA to a state of `true` or `false` at random.:
 
-```JavaScript
+```javascript
 sampleCA.setState(function(){ return Math.random() < 0.5 ? true : false; });
 ```
 
@@ -336,7 +336,7 @@ As you can see, this sets our automaton to a random state:
 
 We should now update our constructor so it calls this function when passed an optional sixth argument. We just need to add the following to the end of the constructor:
 
-```JavaScript
+```javascript
 // initialise the state if the optional sixth argument was passed
 if(typeof s !== 'undefined'){
     this.setState(s);
@@ -347,7 +347,7 @@ Finally, we need to add tests for this new functionality to our QUnit test suite
 
 Let’s start by adding tests to verify that the constructor successfully initialises all cells to a given state when passed a state as an optional sixth argument. I did this by adding the following code to the bottom of the _‘bartificer.ca.Automaton prototype > constructor: argument processing’_ test:
 
-```JavaScript
+```javascript
 // make sure the optional initial state is properly applied
 var allCellsOK = true;
 var x, y;
@@ -384,7 +384,7 @@ a.ok(allCellsOK, 'Initialisation function correctly applied to all cells');
 
 Next I added a separate test for the `.setState()` function:
 
-```JavaScript
+```javascript
 QUnit.test('.setState()', function(a){
     a.expect(3);
     var $div = $('<div></div>');
@@ -436,7 +436,7 @@ QUnit.test('.setState()', function(a){
 
 Now that we know this much of the code is working we should update our sample page so it initialises the CA to a random state automatically. We do this by updating the initialisation code in `sample.html` to:
 
-```JavaScript
+```javascript
 // a globally scoped variable to hold the automaton object
 var sampleCA;
 
@@ -483,7 +483,7 @@ We’ll do that by adding a function named `.step()` to the `bartificer.ca.Autom
 
 In order to calculate the next state of any given cell we need to call the step function with the current state of the cell, and the current state of all it’s neighbouring cells. This means that before we can write `.step()`, we need to write a function for returning the current state of all the neighbours of a given cell. We’ll name this function `.cellNeighbourStates()`, and have it return an array of eight cell states where the state in position zero is the one from the cell directly above the current cell, and then clockwise from there.
 
-```JavaScript
+```javascript
 /**
  * Get the states of a cell's neighbouring cells.
  *
@@ -523,7 +523,7 @@ bartificer.ca.Automaton.prototype.cellNeighbourStates = function(x, y){
 
 I think you’ll agree there is a lot of room for error in the body of this function — let’s write and run a QUnit test to make sure we got it right before we go any further!
 
-```JavaScript
+```javascript
 QUnit.test('.cellNeighbourStates()', function(a){
     a.expect(6);
 
@@ -558,7 +558,7 @@ QUnit.test('.cellNeighbourStates()', function(a){
 
 Now that we know `.cellNeighbourStates()` works correctly we’re ready to write `.step()`:
 
-```JavaScript
+```javascript
 /**
  * Step the automaton forward by one step.
  *
@@ -595,7 +595,7 @@ bartificer.ca.Automaton.prototype.step = function(){
 
 Before we go any further, let’s create a QUnit test for our new function:
 
-```JavaScript
+```javascript
 QUnit.test('.step()', function(a){
     a.expect(1);
 
@@ -632,19 +632,19 @@ QUnit.test('.step()', function(a){
 
 To test our step function visually, let’s update `sample.html` to go from using an anonymous function that always sets the next state to `true`, to one that inverts the state of each cell. We can do this by changing the anonymous function passed to the `bartificer.ca.Automaton` constructor from:
 
-```JavaScript
+```javascript
 function(){ return true; }, // always set the state to true
 ```
 
 To:
 
-```JavaScript
+```javascript
 function(cs){ return cs ? false : true; }, // always invert the state
 ```
 
 If we now re-load `sample.html` in our browser we can see `.step()` in action by entering the following in the JavaScript console:
 
-```JavaScript
+```javascript
 sampleCA.step();
 ```
 
@@ -654,7 +654,7 @@ This should cause every cell to invert – all the red cells should go green, an
 
 We’re now ready to create a step function that implements the rules of the game of life (see above).
 
-```JavaScript
+```javascript
 // a step function that implements Conway's game of life
 function lifeStep(currentState, neighbourStates){
     // calcualte the number of live neighbours
@@ -684,7 +684,7 @@ function lifeStep(currentState, neighbourStates){
 
 With that function written we can again update our call to the `bartificer.ca.Automaton` constructor so it uses this step function. The Game of Life needs a littler more room to really work, so let’s also update our call to the constructor to build a CA with more rows and columns:
 
-```JavaScript
+```javascript
 // use the constructor to build an automaton
 sampleCA = new bartificer.ca.Automaton(
     $('#game_of_life_container'), // use the div as the container
@@ -697,7 +697,7 @@ sampleCA = new bartificer.ca.Automaton(
 
 We can now advance the game of life one step at a time by repeatedly entering the following into the JavaScript console on `sample.html`:
 
-```JavaScript
+```javascript
 sampleCA.step();
 ```
 
@@ -707,7 +707,7 @@ Now that we can advance the game of life one step at a time using the JavaScript
 
 First, we’ll need some HTML markup for the button. At the moment the entire `<main>` element is used as the container for the CA. We should move the CA into a `<div>` within `<main>` so we can also add the button into `<main>`. This gives us the following new markup for the main section of the page:
 
-```XHTML
+```html
 <main>
     <form action="javascript:void(0);">
     <p><button type="button" id="step1_btn">Step Forward 1x</button></p>
@@ -721,7 +721,7 @@ Note that this change in markup means we need to change the jQuery object we pas
 
 With the markup added, we now need to add a click handler inside the document ready handler:
 
-```JavaScript
+```javascript
 // add a click handler to the step button
 $('#step1_btn').click(function(){
     sampleCA.step();
@@ -730,7 +730,7 @@ $('#step1_btn').click(function(){
 
 Now that our sample page implements Conway’s Game of Life, it makes sense to tweak the text a little, so with all that done, the full source for the final sample page is included below:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

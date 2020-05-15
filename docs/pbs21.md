@@ -22,7 +22,7 @@ Before moving into jQuery proper, let’s take a moment to refresh our memory of
 
 Let’s take a look at a very simple HTML snippet:
 
-```XHTML
+```html
 <p>Here is a photo: <img src="myImage.jpeg" alt="A Photo" /></p>
 ```
 
@@ -36,7 +36,7 @@ The image element can be said to be contained within the paragraph element. We c
 
 Given the following more complex HTML snippet:
 
-```XHTML
+```html
 <section id="my_section">
   <p>Below is a very boring list:</p>
   <ul>
@@ -63,7 +63,7 @@ JQuery makes heavy use of CSS-style selectors, so let’s remind ourselves of wh
 
 Consider the following CSS snippet:
 
-```CSS
+```css
 li{
   color: red;
 }
@@ -129,7 +129,7 @@ All jQuery objects have a `length` property which tells you how many HTML elemen
 
 So see how many `p` elements there are in our dummy page, run the following in the console:
 
-```JavaScript
+```javascript
 $('p').length
 ```
 
@@ -145,7 +145,7 @@ By default, the `$` function searches the entire document for elements matching 
 
 As an example, if we search our entire dummy page for `h1` elements (`$('h1').length`), we get 7. One of those seven is in the header, so we could get only `h1` elements within sections by limiting our search to just the `section` elements:
 
-```JavaScript
+```javascript
 $('h1', $('section')).length
 ```
 
@@ -163,13 +163,13 @@ Note that within the callback, the `this` variable is set to the browser’s nat
 
 This all sounds more complicated than it is. Let’s work through a simple example to illustrate the technique. What we’ll do is write some code to select all paragraphs, then filter them down to just the paragraphs that contain currency amounts, and then turn those paragraphs red:
 
-```JavaScript
+```javascript
 $('p').filter(function(){return $(this).text().match(/[$£€]\d+/);}).css('color', 'red');
 ```
 
 In order to work in the console we need this command on one line, but to understand what’s going on, let’s split it over multiple lines:
 
-```JavaScript
+```javascript
 $('p').filter(function(){
   return $(this).text().match(/[$£€]\d+/);
 }).css('color', 'red');
@@ -181,7 +181,7 @@ The first thing that happens is that $(‘p’) is evaluated – this results in
 
 Now let’s look in detail at the anonymous function – it contains just a single line:
 
-```JavaScript
+```javascript
 return $(this).text().match(/[$£€]\d+/);
 ```
 
@@ -201,7 +201,7 @@ As the previous example shows, you can alter an element’s CSS properties with 
 
 Firstly, you can read the current value of any CSS property of a given HTML element using jQuery’s `.css()` function. The first argument should be the name of the CSS property who’s value you want to retrieve. For example, you can get the width of the Ajax aside box in the dummy page (the box has the ID `as_ajax`) by entering the following in the console:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').css('width');
 ```
 
@@ -209,7 +209,7 @@ Now re-size the window and run the code again, you’ll see that the value has c
 
 To set a given CSS property, call the same function with two arguments, the property name, and the new value. To change the background colour of the Ajax aside box in the dummy page, run the following in the console:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').css('background-color', 'beige');
 ```
 
@@ -217,13 +217,13 @@ Finally, you can use the `.css()` function in a third way to set multiple proper
 
 E.g. to set the text colour, background colour, and border of the Ajax aside box on the dummy page, run the following in the console:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').css({'background-color': 'HoneyDew', color: 'Green', border: '1px dashed Green'});
 ```
 
 For clarity, let’s rewrite that with proper indentation:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').css({
   'background-color': 'HoneyDew',
   color: 'Green',
@@ -233,7 +233,7 @@ $('aside#as_ajax').css({
 
 Notice that because `background-color` is not a valid JavaScript variable name, we had to quote it when defining the plain object. JQuery provides a mechanism for getting around this by supporting camel-cased aliases for CSS property names that contain dashes, so, we can replace `background-color` with `backgroundColor`, and the code will still work:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').css({backgroundColor: 'HoneyDew', color: 'Green', border: '1px dashed Green'});
 ```
 
@@ -241,13 +241,13 @@ As well as manipulating CSS directly, jQuery can also control the CSS classes ap
 
 You can check if a given element has a given class with the `.hasClass()` function. For example, we can check if the Ajax aside in the dummy page has the class `important` by running the following in the console:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').hasClass('important');
 ```
 
 We can add one or more classes to an element with the function `.addClass()`. The classes to set should be passed as a space-delimited string, just like you would use within the `class` attribute of an HTML tag. As an example, we can add the class `important` to the Ajax aside box in the dummy page with the following:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').addClass('important');
 ```
 
@@ -255,13 +255,13 @@ If we re-run our command for checking if this box has the class `important`, we�
 
 Unsurprisingly, one or more classes can be removed from an HTML element with the `.removeClass()` function, again, the classes are specified as a space-delimited string. We can remove the important class from the Ajax aside box with the following:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').removeClass('important');
 ```
 
 We can also toggle one or more classes with the `.toggleClass()` function. When you toggle a class, it will be added if it does not exist, and removed if it does. Run the following a few times in a row to see toggling in action:
 
-```JavaScript
+```javascript
 $('aside#as_ajax').toggleClass('important').hasClass('important');
 ```
 
@@ -269,7 +269,7 @@ We know that we can hide an HTML element on a page by setting its CSS `display` 
 
 To show the animations in all their glory, let’s hide, then show, and finally toggle the Server Side section with a 1 second animation:
 
-```JavaScript
+```javascript
 var aniTime = 1000;
 var $serverSec = $('section#sec_server');
 $serverSec.hide(aniTime);
@@ -281,7 +281,7 @@ Finally, I want to mention a very useful function for checking if a given HTML e
 
 To check if the Ajax aside box has both the classes `important` and `highlighted`, we could test it against the selector `.important.highlighted` like so:
 
-```JavaScript
+```javascript
 var $ajax = $('aside#as_ajax'); // an example of the $-prefix naming convention
 var importantHighlighted = '.important.highlighted';
 $ajax.is(importantHighlighted);
@@ -297,13 +297,13 @@ As well as altering the style of HTML elements, jQuery can alter their attribute
 
 To read the current value of an attribute, use jQuery’s `.attr()` function with one argument, the name of the attribute you want the value of. For example, we can get the current value of the `href` attribute of the link inside the aside box in the dummy page as follows:
 
-```JavaScript
+```javascript
 $('aside a').attr('href');
 ```
 
 You can alter the value of an attribute by passing jQuery’s `.attr()` function a section argument – the new value for the attribute. To change the link in the aside box so it goes to `http://www.bartb.ie/`, you could use the following:
 
-```JavaScript
+```javascript
 $('aside a').attr('href', 'http://www.bartb.ie/');
 ```
 
@@ -323,7 +323,7 @@ Any jQuery function that does not query an element for a specific value will ret
 
 We can see this in action with code like this:
 
-```JavaScript
+```javascript
 $('p').filter(function(){return $(this).text().match(/[$£€]\d+/);}).toggleClass('important').hasClass('important');
 ```
 

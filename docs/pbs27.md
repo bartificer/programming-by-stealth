@@ -42,7 +42,7 @@ Rather than using a long cascade of `if` statements, (or a long complex `switch`
 
 For each possible option three key-value pairs are always defined – `description` (an English-language description of what makes a value valid), `default` (the value to use for the option when none is provided by the user), and `validator` (a reference to a function to validate values for the option). The definition for the timezone option is a nice example of this:
 
-```JavaScript
+```javascript
 var optionDetails = {
   // ...
   timezone: {
@@ -64,7 +64,7 @@ The big advantage to this approach is that the logic related to each option is c
 
 The final thing I want to draw your attention to is the way in which both the `.option()` accessor function and the constructor invoke the `onChange` callbacks defined in the `optionDetails` data structure. The callbacks are invoked in such a way that within them, the special `this` variable will be a reference to the clock object on which the value of the option is being altered. This allows the code within the callbacks to access all the data within the object being updated, including the value of all other options, and, references to all the spans that make up the clock. For example, the `onChange` callback for the `use12HourFormat` option accesses the value of the `showAmpm` option, and sets the visibility of span containing the AM/PM part of the time:
 
-```JavaScript
+```javascript
 var optionDetails = {
   // ...
   use12HourFormat: {
@@ -90,7 +90,7 @@ When we first learned about functions we learned that in JavaScript, functions a
 
 So – given all that, this is how the `.option()` accessor method actually sets the new value of an option:
 
-```JavaScript
+```javascript
 // update the value and call the change handler if appropriate
 this._options[optName] = usableNewValue;
 if(typeof optionDetails[optName].onChange === 'function'){
@@ -110,7 +110,7 @@ The HTML tag to represent a form is simply `<form></form>`.
 
 To get the ball rolling on user input, let’s create a simple web page containing a very naive and simple form. It will contain just one text box, and one button. The text box will allow you to enter your name, and when you click the button, a paragraph will be appended to the end of the page saying hello to you.
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -152,7 +152,7 @@ You’ll find the above code in the instalment’s ZIP file as `pbs27-1a.html`. 
 
 We can see that the HTML tag for representing a text box is <input type=”text” />. Note that `input` is a void tag, so there is no closing `input` tag. We can also see that from a jQuery perspective we can access the value of the text box with the `.val()` function. In typical jQuery fashion, `.val()` is both a getter and a setter. If you call `.val()` on a jQuery object representing a text box without any arguments it will return the contents of the text box as a string. If you call `.val()` on a jQuery object representing a text box with a string as the first argument, it will put the given string into the text box. You can see this in action by opening a web console on the example page above, and executing the following JavaScript:
 
-```JavaScript
+```javascript
 $('#hello_name').val('Boogers');
 ```
 
@@ -178,7 +178,7 @@ So, if forms were initially designed to submit their data to a URL – how do we
 
 Now that we know why hitting enter caused the page to refresh, how do we stop this unwanted behaviour? We simply give the `action` attribute the special value `javascript:void(0);`. For now, always write your `form` tags like so:
 
-```XHTML
+```html
 <form action="javascript:void(0);">
 <!-- inputs go here -->
 </form>
@@ -188,7 +188,7 @@ Now that we know why hitting enter caused the page to refresh, how do we stop th
 
 Given what we’ve just learned, let’s update our first form so its `form` tag has an `action` of `javascript:void(0);`:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -238,19 +238,19 @@ We can explicitly label a form input using the `<label>` tag. This tag can be us
 
 The simplest usage is to wrap both the text describing the input, and the input itself in a single `<label>` tag like so:
 
-```XHTML
+```html
 <label>Name: <input type="text" id="hello_name" /></label>
 ```
 
 There are often reasons why you may want to separate out the input and the matching label within your HTML. In these situations, the solution is to give the input an ID, and then use the `<label>` tag’s `for` attribute to map the label to the input by its ID:
 
-```XHTML
+```html
 <label for="hello_name">Name:</label> <input type="text" id="hello_name" />
 ```
 
 Let’s put it all together and create a final, good, version of our first form:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -319,7 +319,7 @@ Let’s put this algorithm into use with a simple example – we’ll write a pr
 
 **Step 2 (set up your namespace etc.):** Normally, when not in the playground, the first step would look like this:
 
-```JavaScript
+```javascript
 // init the name space
 var pbs = pbs ? pbs : {};
 
@@ -333,7 +333,7 @@ var pbs = pbs ? pbs : {};
 
 **However, because of how the PBS playground works, your code will not work if you include the first line in the above snippet. So, when working in the playground, and ONLY when working in the playground, comment it out:**
 
-```JavaScript
+```javascript
 // init the name space - skip within PlayGround
 //var pbs = pbs ? pbs : {};
 
@@ -347,7 +347,7 @@ var pbs = pbs ? pbs : {};
 
 **Step 3 (Create the Constructor):** Remember that your constructor is a function with the same name as your prototype – in our case, `pbs.Name`. Also remember that you can avoid sloppy code duplication by making use of the accessor functions you know you will be writing later from within your constructor.
 
-```JavaScript
+```javascript
 pbs.Name = function(fn, ln){
   // initialise all data with default values
   this._firstName = 'John';
@@ -366,7 +366,7 @@ pbs.Name = function(fn, ln){
 
 **Step 4 (Create the Accessor Methods)**:
 
-```JavaScript
+```javascript
 pbs.Name.prototype.firstName = function(fn){
   // if we are a getter, return the current value
   if(arguments.length === 0){
@@ -398,7 +398,7 @@ pbs.Name.prototype.lastName = function(ln){
 
 **Step 5 (Create the Needed Functions):**
 
-```JavaScript
+```javascript
 pbs.Name.prototype.fullName = function(){
   return this._firstName + ' ' + this._lastName;
 };
@@ -409,13 +409,13 @@ pbs.Name.prototype.initials = function(){
 
 **Step 6 (Provide a `.toString()` Function):** In this case, we don’t need to do much work here. A sane way to convert a name to a string would be to return the full name as a string. We already have a function that does that (`.fullName()`) – so why not just re-use it?
 
-```JavaScript
+```javascript
 pbs.Name.prototype.toString = pbs.Name.prototype.fullName;
 ```
 
 We have now created a prototype to represent a name. Below is some sample code that makes use of our prototype to create some actual objects with it:
 
-```JavaScript
+```javascript
 var name1 = new pbs.Name();
 pbs.say(name1.toString());
 var name2 = new pbs.Name('Robert', 'Zimmerman');
@@ -429,7 +429,7 @@ pbs.say(name2.fullName());
 
 Putting it all together, we get the following code for running within the playground:
 
-```JavaScript
+```javascript
 // init the name space - skip within PlayGround
 //var pbs = pbs ? pbs : {};
 
@@ -510,7 +510,7 @@ Create a prototype named `pbs.Time` to represent arbitrary times. Each time obje
 
 You can test your prototype with the following code:
 
-```JavaScript
+```javascript
 var lunchTime = new pbs.Time();
 lunchTime.hours(13);
 pbs.say(lunchTime.toString());
@@ -525,7 +525,7 @@ Create a prototype named `pbs.Date` to represent arbitrary dates. Each date obje
 
 You can test your prototype with the following code:
 
-```JavaScript
+```javascript
 var nextAprilFools = new pbs.Date();
 nextAprilFools.day(1).month(4).year(2017);
 pbs.say("In America the next April Fools Day is " + nextAprilFools.american());
@@ -540,7 +540,7 @@ Each Date/Time will have a date, and a time. The prototype should provide the fo
 
 You can test your prototype with the following code:
 
-```JavaScript
+```javascript
 var gonnaPrankBart = new pbs.DateTime(new pbs.Date(1, 4, 2017), new pbs.Time(15));
 pbs.say('Gonna prank Bart good on ' + gonnaPrankBart.european24Hour() + ' his time');
 ```

@@ -30,7 +30,7 @@ Finally I added an icon to the front of the input group by inserting a `<span>` 
 
 After all that I was left with the following simple markup:
 
-```XHTML
+```html
 <footer class="mt-3 p-2 bg-light" role="form" aria-label="Admin Login">
   <form class="form-inline" action="javascript:void(0);">
     <span class="input-group input-group-sm">
@@ -57,7 +57,7 @@ The only mildly interesting thing I did was to force all the prepends and append
 
 As an example, here’s the code for just the sender’s name field:
 
-```XHTML
+```html
 <div class="form-group form-row">
   <label for="sender_name_tb" class="col-sm-5 col-md-4 col-lg-3 col-xl-2 col-form-label">Your Name</label>
   <div class="col">
@@ -96,7 +96,7 @@ The key points to note about this file are that I have added the relevant HTML5 
 
 I also added an event handler to show a standard browser alert box when the form successfully submits:
 
-```JavaScript
+```javascript
 // a document ready handler
 $(function(){
   // add a submit handler to the form
@@ -128,7 +128,7 @@ We can see this in action in `pbs66c.html` from this instalment’s ZIP.
 
 The relevant changes from `pbs66b.html` are the removal of `class="was-validated"` from the `<form>`, and the addition of the needed event handlers inside the document ready handler:
 
-```JavaScript
+```javascript
 // a document ready handler
 $(function(){
   // get a reference to the form for quick access
@@ -195,7 +195,7 @@ You can see the full source in `pbs66d.html`, but I want to draw your attention 
 
 Before we begin, note that the document ready handler starts by creating some utility variables for providing quick access to the relevant form elements, and these variable are scoped such that they are available within all the validation functions and all the event handlers:
 
-```JavaScript
+```javascript
 // a document ready handler
 $(function(){
   // get a reference to the form and its elements for quick access
@@ -219,13 +219,13 @@ Let’s start with a relatively simple case, the name fields. What makes this re
 
 In terms of markup I simply added the following div below the input group that contains the two name fields:
 
-```XHTML
+```html
 <div id="name_vf" class="invalid-feedback">Please enter both a first and last name</div>
 ```
 
 The JavaScript code for updating the styling and showing or hiding the error message is all contained within the validation function for the names (one function used as an `input` handler on both text boxes):
 
-```JavaScript
+```javascript
 const validateNames = function(){
   // update per-element validation styling on both names
   if($fname.is(':valid')){
@@ -257,13 +257,13 @@ In this case we have just a single text box, but we what to thank people when th
 
 Rather than hard-coding the message into the `<div>` I chose to create a single completely empty `div` with just an ID to act as both the success and error message as needed:
 
-```XHTML
+```html
 <div id="amount_vf"></div>
 ```
 
 In this case the validation function needs to update the validity class on the single text box much like we did for both text boxes in the previous example, and then insert text into the feedback `<div>`, give it the appropriate class, and show it. Again, all the work is done inside the relevant validation function:
 
-```JavaScript
+```javascript
 const validateAmount = function(){
   // deal with the valid case
   if($amount.is(':valid')){
@@ -289,13 +289,13 @@ One additional complication is optional fields. In this case there are three sce
 
 We’ll use the Twitter field as an example. Again, the markup is an empty `<div>` with an ID:
 
-```XHTML
+```html
 <div id="twitter_vf"></div>
 ```
 
 The work is again done within the validation function:
 
-```JavaScript
+```javascript
 const validateTwitter = function(){
   // deal with the valid case
   if($twitter.is(':valid')){
@@ -321,7 +321,7 @@ Notice the use of `.empty()` to empty the feedback `<div>` as needed.
 
 Having declared these validation functions we now need to attach them as handlers to the relevant events. Each time a user inputs some text into a text box we need to call the relevant validation function, and each time a user check or un-checks a radio button we need to respond as well. We use jQuery’s `.on()` function to bind the validation functions to the relevant events:
 
-```JavaScript
+```javascript
 // add input handlers to the text boxes etc
 $fname.on('input', validateNames);
 $lname.on('input', validateNames);
@@ -335,7 +335,7 @@ Finally, there is the form submission event handler. This handler first enables 
 
 The code is quite short and straightforward:
 
-```JavaScript
+```javascript
 // add a submit handler to the form
 $form.submit(function(event){
   // always enable bootstrap validation styles

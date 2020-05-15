@@ -24,19 +24,19 @@ HTML is a markup language for specifying what different elements that make up a 
 
 An HTML document consists of nested elements which are described using tags. Elements come in two flavours – those that contain content, and those that don’t. Those that contain content are marked up by wrapping the content between matching opening and closing tags like so:
 
-```XHTML
+```html
 <h1>A Top-level Heading</h1>
 ```
 
 While those that don’t contain content are represented by a single tag, like the one below representing a horizontal rule:
 
-```XHTML
+```html
 <hr />
 ```
 
 All HTML elements can have attributes which take the form of name-value pairs, e.g.:
 
-```XHTML
+```html
 <h1 class="bigdeal">An Important Heading</h1>
 <img src="someFile.png" alt="some image" />
 ```
@@ -53,7 +53,7 @@ The majority of HTML elements fall into two main categories – _block-level ele
 
 1.  Why is the following snippet invalid HTML?
 
-    ```XHTML
+    ```html
     <p>This paragraph contains <strong>some text that is bold <em>and some that is bold and italic</strong>, and some that is just italic</em>.</p>
     ```
 
@@ -65,7 +65,7 @@ The majority of HTML elements fall into two main categories – _block-level ele
 
 2.  Consider the following HTML snippet:
 
-    ```XHTML
+    ```html
     <p>Please visit <a href="http://bartb.ie/" target="_blank" title="Bart's Site">my home page</a>, thanks!</p>
     ```
 
@@ -101,7 +101,7 @@ Every element in an HTML document has many _style properties_ associated with it
 
 Consider the example below:
 
-```CSS
+```css
 ul li{
   color: red;
   font-weight: bold;
@@ -112,7 +112,7 @@ The entire thing is a single CSS _statement_, or, more specifically, a single CS
 
 The rule set has two main parts – the _declaration block_ and the _selector_. In this case, the following is the declaration block:
 
-```CSS
+```css
 {
   color: red;
   font-weight: bold;
@@ -137,7 +137,7 @@ It’s normal to have overlapping selectors, and hence, multiple possible values
 
 Given the following CSS snippet:
 
-```CSS
+```css
 p{
   color: gray;
 }
@@ -230,7 +230,7 @@ When it comes to controlling the flow of control JavaScript provides the expecte
 
 JavaScript provides two syntaxes for declaring functions:
 
-```JavaScript
+```javascript
 function functionName(arg1Name, arg2Name){
   // function content goes here
 }
@@ -238,7 +238,7 @@ function functionName(arg1Name, arg2Name){
 
 And:
 
-```JavaScript
+```javascript
 var nameOfFunction = function(arg1Name, arg2Name){
   // function content goes here
 };
@@ -269,7 +269,7 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
 
 1.  Given the following code snippet:
 
-    ```undefined
+    ```
     var x = {
       a: 'b',
       c: ['d', 'e', 'f', ['h', 'i']],
@@ -321,7 +321,7 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
 
 2.  What will the following code snippet print to the console, and why?
 
-    ```JavaScript
+    ```javascript
     var x = 4;
     function doSomething(){
       var x = 5;
@@ -339,7 +339,7 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
 
 3.  What will the following code snippet print to the console, and why?
 
-    ```JavaScript
+    ```javascript
     var x = 4;
     function doSomething(x){
       console.log(x);
@@ -356,7 +356,7 @@ We’ll be looking at jQuery in detail in a moment, but we have also encountered
 
 4.  What will the following code snippet print to the console, and why?
 
-    ```JavaScript
+    ```javascript
     var x = 4;
 
     (function(){

@@ -22,7 +22,7 @@ In the case of my recipe, the biggest outstanding problem was the header. It wor
 
 This is how the header started:
 
-```XHTML
+```html
 <header class="container sticky-top mt-3">
   <div class="row align-items-center bg-white border-bottom">
     <div class="col-12 col-lg-9">
@@ -42,7 +42,7 @@ Ideally I would have liked to have the heading change size depending on the brea
 
 As a work-around, I added a second heading, one with a size that works on smaller screens, and then used the break-point-aware display utilities to hide and show the appropriate heading at the appropriate break points. To avoid confusing screen readers I marked the second heading as being hidden from screen readers using the `aria-hidden` HTML attribute we learned about a long time ago:
 
-```XHTML
+```html
 <header class="container">
   <div class="row align-items-center bg-white border-bottom">
     <div class="col-12 d-xl-none">
@@ -71,7 +71,7 @@ Bootstrap didn’t re-invent the wheel, instead, it’s built on top of two othe
 
 You can load all three from their respective Content Delivery Networks (CDNs) like so:
 
-```XHTML
+```html
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -103,7 +103,7 @@ To help screen readers and other assistive technologies interpret your alert you
 
 Here’s a very basic example:
 
-```XHTML
+```html
 <div class="alert alert-info" role="alert">
   If this page used cookies this alert would warn you about them 🙂
 </div>
@@ -115,7 +115,7 @@ This is what it looks like within a page:
 
 We can add appropriately styles headers by giving them the class `alert-heading`, appropriately styles links by giving them the class `alert-link`, and we can break our alert into sections with the `<hr>` tag:
 
-```XHTML
+```html
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">GDPR Notice</h4>
   <p>This dummy page doesn't collect any of your personal information, so we have nothing to declare 🙂</p>
@@ -132,7 +132,7 @@ So far we’ve not used any JavaScript functionality yet. Let’s add some, but 
 
 The snippet below is straight form the example in the Bootstrap docs. We’ve not looked at forms in Bootstrap yet, so for now, the only think to note is the data attribute:
 
-```XHTML
+```html
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
   <span aria-hidden="true">&times;<span>
 </button>
@@ -168,7 +168,7 @@ Finally, after all that, our custom JavaScript for the page is added. All our co
 
 If you look inside the document ready handler the first thing you’ll see is a click handler for the button to add new alerts. The code starts by creating a new alert using jQuery and saving it as `$a`:
 
-```JavaScript
+```javascript
 // add a document ready handler
 $(function(){
   // add an event handler to the Add button
@@ -186,14 +186,14 @@ $(function(){
 
 Next a close button is injected into the newly created alert:
 
-```JavaScript
+```javascript
 // inject a dismiss button
 $a.prepend($('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'));
 ```
 
 Then comes the important bit, the bit where we use the `.alert()` jQuery plugin to initialise our new alert:
 
-```JavaScript
+```javascript
 // tell Bootstrap to treat our new alert as an alert
 $a.alert();
 ```
@@ -202,14 +202,14 @@ What the `.alert()` plugin does when called with no arguments is search the HTML
 
 At this stage we can add the newly minted alert into the page:
 
-```JavaScript
+```javascript
 // inject it into the page
 $('#insert_here').append($a);
 ```
 
 Putting it all together our document load handler now looks like this:
 
-```JavaScript
+```javascript
 // add a document ready handler
 $(function(){
   // add an event handler to the Add button
@@ -238,7 +238,7 @@ In the case of dismissible alerts, the obvious event to listen for is the alert 
 
 We could do anything when this event fires, but as a simple example, let’s just write to the web console:
 
-```JavaScript
+```javascript
 // add a document ready handler
 $(function(){
   // add an event handler to the Add button
@@ -272,7 +272,7 @@ The way Bootstrap plugins work is that when you invoke them on an HTML element w
 
 To see this in action, let’s add an event handler for the button to close all alerts to our document ready handler:
 
-```JavaScript
+```javascript
 // add a document ready handler
 $(function(){
   // ...

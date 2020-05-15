@@ -20,7 +20,7 @@ The challenge set at the end of the previous instalment was to update the number
 
 The first step I chose to take in migrating my version of the game to using async functions is to make the function `loadTemplates()` async. Since I had already written the function to return a promise, this is not strictly necessary, but it’s a good idea to explicitly mark functions you expect to always return promises with the `async` keyword for clarity. It will be much more obvious to future you that you intend the function to always return a promise if it’s explicitly coded as an async function. As an added bonus, the `async` keyword should also be picked up by any documentation solution you might be using, again making things clearer for future you. So, all I did was update the function definition to:
 
-```JavaScript
+```javascript
 async function loadTemplates(...templateNames){
   \\ …
 }
@@ -28,7 +28,7 @@ async function loadTemplates(...templateNames){
 
 The next step is to make my document ready event handler async by altering the relevant anonymous function expression:
 
-```JavaScript
+```javascript
 // The Document Ready Handler
 $(async function(){
   // …
@@ -39,7 +39,7 @@ We can now update the body of the document ready handler to use the `await` keyw
 
 This is how the templates are loaded before we make our change:
 
-```JavaScript
+```javascript
 // load the templates and if successful, reset the game
 loadTemplates('gameMessage', 'guesses', 'guessPopover', 'gameWon', 'gameGrid', 'confirmQuit').then(
   function(){
@@ -60,7 +60,7 @@ Notice the standard promise handling — passing `.then()` two callbacks, the fi
 
 Let’s go ahead and re-factor the code to use `await` instead:
 
-```JavaScript
+```javascript
 // load the templates
 try{
   await loadTemplates('gameMessage', 'guesses', 'guessPopover', 'gameWon', 'gameGrid', 'confirmQuit');
@@ -83,7 +83,7 @@ As a reminder, this function fetches a random number from a web service using AJ
 
 So, rather than marking the entire function as async, we just want to make part of the function’s contents run asynchronously. This can be easily achieves with an async IIFE. This is what the function looks like before we refactor it:
 
-```JavaScript
+```javascript
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
@@ -136,7 +136,7 @@ Again, the comments are the only thing clearly distinguishing the error handling
 
 Now let’s replace the AJAX call and its `.then()` with an async IIFE that makes use of `await`:
 
-```JavaScript
+```javascript
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
@@ -219,7 +219,7 @@ Finally, note that the standard Bootstrap utility classes can be used with Cards
 
 The easiest way to illustrate Cards in use is with an example. As a first example, let’s create a Card that has everything but image caps. That is to say, a Card with a header, a regular Card image (not an image cap), a Card body, a Card list, and a Card footer. The Card body will contain a Card title, a Card sub-title, some regular Card text, and a Card link.
 
-```XHTML
+```html
 <!-- The Card -->
 <div class="card" style="width: 300px;">
   <!-- A Card header -->
@@ -264,7 +264,7 @@ This produces a card that looks like this:
 
 Since a Card can have either a header, or, an image cap on top, and, either a footer or an image cap on the bottom, let’s look at a sample card that replaces the header and footer with a pair of image caps.
 
-```XHTML
+```html
 <!-- The Card -->
 <div class="card" style="width: 300px;">
 
@@ -323,7 +323,7 @@ The only noticeable difference is that in a Card Group the Cards touch each othe
 
 Let’s start with a sample card group consisting of three cards representing some podcasts you might have heard of 😉. You’ll find the full code in the file pbs83a.html in the ZIP file, but the snippet below shows the overall structure of the Card Group:
 
-```XHTML
+```html
 <div class="card-group">
   <div class="card">
     <!-- … -->
@@ -352,7 +352,7 @@ The website [exchangeratesapi.io](https://exchangeratesapi.io/) makes a list of 
 
 When you send a GET request to the URL `https://api.exchangeratesapi.io/latest` you’ll get back a JSON string representing the current exchange rates between the Euro and a number of major world currencies. Here’s a sample of the kind of data the web service returns:
 
-```JavaScript
+```javascript
 {
   "rates": {
     "CAD": 1.4606,

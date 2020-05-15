@@ -22,20 +22,20 @@ Since we’re using HTML to markup text, the vast majority of a HTML document is
 
 For example, the `p` tag is used to define a paragraph, it’s opened with `<p>`, and closed with `</p>`. The text for the paragraph goes in between the opening and closing tags. The following example shows the markup for a one-line paragraph:
 
-```XHTML
+```html
 <p>This is a one-line paragraph!</p>
 ```
 
 The vast majority of HTML tags behave like the `p` tag. However, there is a caveat – a small subset of tags are officially defined as _void_ tags. A void tag cannot contain any content, and has no closing tag. You can optionally add a space and a `/` to the end of a void tag. The `hr` tag represents a horizontal rule (a full width line across the page) and it is a void tag, so, the following are both valid:
 
-```XHTML
+```html
 <hr>
 <hr />
 ```
 
 However, the following is invalid:
 
-```XHTML
+```html
 <hr></hr>
 ```
 
@@ -53,7 +53,7 @@ HTML pages should all start with a so-called _doctype_ tag. This is a special ta
 
 The exact text you should use for the doctype has changed immensely through HTML’s evolution – growing ever more complicated until enough was finally enough, and the slate was wiped clean for HTML5. The correct HTML5 doctype is short, to the point, and easy to remember:
 
-```XHTML
+```html
 <!DOCTYPE html>
 ```
 
@@ -67,7 +67,7 @@ You should always use the UTF-8 character encoding for your web pages. It’s go
 
 A basic HTML header should look something like:
 
-```XHTML
+```html
 <head>
   <meta charset="UTF-8" />
   <title>PAGE TITLE</title>
@@ -76,7 +76,7 @@ A basic HTML header should look something like:
 
 Putting it all together, this is the template you should use for all your HTML documents:
 
-```XHTML
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,7 +95,7 @@ You can think of comments as hidden notes that are for the benefit of developers
 
 In HTML, comments are added using a special tag of the following form:
 
-```XHTML
+```html
 <!-- COMMENT TEXT GOES HERE -->
 ```
 
@@ -109,7 +109,7 @@ Using the skills we learned last time, create a folder called `pbs2` in your web
 
 Add the following HTML code to that file:
 
-```XHTML
+```html
 <!DOCTYPE html>
 <html>
 <head>

@@ -24,7 +24,7 @@ The first challenge was very straightforward, replace the heading in the recipe 
 
 This is the last challenge relating to the recipe, so you’ll find my full final responsive recipe page in the `pbs61-challenge1-solution` folder in this instalment’s ZIP file. I’m including just the code for the heading below:
 
-```XHTML
+```html
 <header class="container-fluid">
   <div class="jumbotron">
     <h1 class="display-4">Roasted Cucumber <small class="text-muted">with Red Onion &amp; Dill</small></h1>
@@ -41,7 +41,7 @@ The second challenge was a little more challenging — using your own solution o
 
 In terms of updates to the HTML markup there was only one very small change needed — an empty tag within the button to act as the badge:
 
-```XHTML
+```html
 <button class="btn btn-primary" id="alert_btn">
   Add Alert
   <span class="badge badge-light" id="counter_badge"></span>
@@ -54,7 +54,7 @@ The next step is to write a JavaScript function to calculate the number of alert
 
 The first step to building up this function is to figure out how many alerts there are:
 
-```JavaScript
+```javascript
 const numAlerts = $('#insert_here .alert').length;
 ```
 
@@ -62,7 +62,7 @@ This code passes jQuery’s `$()` function a CSS selector so it queries the docu
 
 I decided that rather than writing zero into the badge, I would bank the badge if there were no alerts, and write the number if there were:
 
-```JavaScript
+```javascript
 if(numAlerts > 0){
   $('#counter_badge').text(numAlerts);
 }else{
@@ -74,7 +74,7 @@ Note that in both cases, I use jQuery’s `$()` function with a CSS selector for
 
 Putting it all together produces the following function:
 
-```JavaScript
+```javascript
 function updateCounter(){
   // get the latest count
   const numAlerts = $('#insert_here .alert').length;
@@ -96,7 +96,7 @@ The other event is the closing of an alert. There is a small subtly here. Bootst
 
 You need to add a listener for this event to the alert as you build it, so this code too needs to go inside the click handler for the button add an alert. This function now looks like this:
 
-```JavaScript
+```javascript
 $('#alert_btn').click(function(){
   // build an alert
   const $a = $('<div>').text($('#alert_text_tb').val() || "A sample Alert — enter text in the text box!");
@@ -157,7 +157,7 @@ It’s not compulsory, but the Bootstrap documentation recommends the user of th
 
 In our example the form takes up an entire column in the grid layout, so the container contains the `form` class as well as the grid classes:
 
-```XHTML
+```html
 <main class="container">
   <div class="row justify-content-center">
     <fieldset class="col col-md-8 col-lg-6 form" role="form" aria-labelledby="feedback_fm_desc">
@@ -177,7 +177,7 @@ In our example the form takes up an entire column in the grid layout, so the con
 
 The UI to extract a single piece of information from the user rarely consists of just a single HTML tag. Instead, the needed UI generally consists of one or more HTML form elements, a label, and perhaps some help text. This is where the Bootstrap CSS class `form-group` comes in. When building forms with Bootstrap, you wrap the UI for each piece of information you’re trying to extract in a block-level tag (usually <div>), and give that wrapper the class `form-group`. The markup for the email address field is a perfect example, containing a label, a text box, and some help text:
 
-```XHTML
+```html
 <div class="form-group">
   <label for="email_tb">Email Address</label>
   <input type="email" class="form-control" id="email_tb" placeholder="A contact email address" aria-describedby="email_tb_desc">
@@ -203,7 +203,7 @@ Bootstrap does not distinguish between checkboxes and radio buttons, you should 
 
 When your form group contains just a single checkbox, like a typical _I agree_ checkbox, the form group and the container for the checkbox and be the same HTML element, so you apply both the classes `form-group` and `form-check` to the one tag. A good example of this is the testimonial checkbox on our sample form:
 
-```XHTML
+```html
 <div class="form-group form-check">
   <input type="checkbox" id="testimonial_cb" class="form-check-input" value="ok" aria-describedby="testimonial_cb_desc">
   <label for="testimonial_cb" class="form-check-label">I agree to the use of this feedback as a testimonial.</label>
@@ -217,7 +217,7 @@ In this situation each checkbox/radio button along with its matching label, and 
 
 A good example of this (including some inline help text), is the _Acquired_ radio group in our sample form:
 
-```XHTML
+```html
 <div class="form-group" role="radiogroup" aria-labeledby="acquired_rad_desc">
   <label id="acquired_rad_desc" class="form-check-label">Acquired</label>
   <div class="form-check">
@@ -241,7 +241,7 @@ While having the radio buttons stacked is a sensible default, it’s not always 
 
 You can see an example of an inline radio group with the emotions form group in our example form:
 
-```XHTML
+```html
 <div class="form-group" role="radiogroup" aria-labelledby="emotion_rad_desc">
   <label id="emotion_rad_desc" class="form-check-label mr-1">Emotion:</label>
   <div class="form-check form-check-inline">

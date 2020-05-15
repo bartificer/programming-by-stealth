@@ -53,7 +53,7 @@ By default, browsers don’t render invalid elements any differently to how they
 
 As a practical example, you could have the text on all text inputs be green when valid and red when invalid with the following CSS statements:
 
-```CSS
+```css
 input[type="text"]:valid{
     color: DarkGreen;
 }
@@ -68,13 +68,13 @@ The most basic type of form validation is the ability to mark a text box or text
 
 So, the following text box is not required:
 
-```XHTML
+```html
 <label>Something Optional: <input type="text" name="somethingOptional" ></label>
 ```
 
 And the following is:
 
-```XHTML
+```html
 <label>Something Required: <input type="text" name="somethingRequired" required ></label>
 ```
 
@@ -84,7 +84,7 @@ When a form containing required text fields is submitted, the browser must check
 
 The following snippet from `pbs39.html` from this instalment’s ZIP file shows the HTML markup for a required text box:
 
-```XHTML
+```html
 <label for="name_tb">Your name (required):</label>
 <input type="text" name="name" required id="name_tb">
 ```
@@ -99,7 +99,7 @@ On text boxes and text areas you can use the HTML5 attributes `minlength` and `m
 
 The following snippet from `pbs39.html` shows a text area with both a minimum and maximum lengths specified:
 
-```XHTML
+```html
 <label for="msg_ta">Message:</label><br />
 <textarea name="message" id="msg_ta" minlength=10 maxlength=140></textarea>
 ```
@@ -114,7 +114,7 @@ On `input` elements with `type="number"` the `max` and `min` attributes are cons
 
 The following snippet from `pbs39.html` shows a numeric text area with a defined valid range:
 
-```XHTML
+```html
 <label for="percent_tb">Some Percentage:</label>
 <input type="number" name="percent" id="percent_tb" min=0 max=100>
 ```
@@ -135,7 +135,7 @@ These special input types combined with the `required` attribute and length cons
 
 The following snippet from `pbs39.html` shows a text area that requires a valid Twitter handle, including the leading `@` be entered:
 
-```XHTML
+```html
 <label for="twitter_tb">Twitter Handle:</label>
 <input type="text" name="twitter" id="twitter_tb" pattern="^[@][\w]+$" placeholder="@username">
 ```
@@ -148,7 +148,7 @@ While browsers can give very meaningful error messages when you use pre-fedinef 
 
 The code below is included in this instalment’s zip file as `pbs39.html`.
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

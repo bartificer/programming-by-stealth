@@ -53,7 +53,7 @@ To play along with these examples, open a JavaScript console on the file `pbs87a
 
 This all sounds very abstract, so let’s create an iterator object and interact with its `.next()` function. To do this we’ll use an array, and we’ll make use of the fact that as of ES6 the `Array` class/prototype provides a `.values()` function which returns a fresh iterator object representing the array’s current values.
 
-```JavaScript
+```javascript
 // create an array
 const myArray = ['first val', 'second', '3rd'];
 
@@ -77,7 +77,7 @@ Let’s take a moment to look at `for...of` iterating over things other than arr
 
 Firstly, we can use `for...of` to iterate over the special arguments variable that exists within all functions:
 
-```JavaScript
+```javascript
 // define a function that iterates over it arguments
 function argLister(){
   console.log(`Received the following ${arguments.length} args(s)`);
@@ -95,7 +95,7 @@ argLister('howdy', 'doody', 'boogers', 'snot');
 
 Now let’s iterate over a string:
 
-```JavaScript
+```javascript
 for(const l of "boogers!"){
   console.log(`l=${l}`);
 }
@@ -103,7 +103,7 @@ for(const l of "boogers!"){
 
 Finally, let’s demonstrate iterating over a jQuery object. The file `pbs87a.html` contains an un-ordered list with the ID `jq_iter_demo` that contains 3 list items. We can iterate over it like so:
 
-```JavaScript
+```javascript
 // define an array of colour classes
 const colourClasses = ['text-primary', 'text-success', 'text-danger'];
 
@@ -151,7 +151,7 @@ Generator functions are special functions, so you create them using a special sy
 
 You can create generator functions using function statements like so:
 
-```JavaScript
+```javascript
 function* myFirstGenerator(){
   yield 'boogers';
   return 'snot';
@@ -160,7 +160,7 @@ function* myFirstGenerator(){
 
 You can also create generator functions using function literals like so:
 
-```JavaScript
+```javascript
 const mySecondGenerator = function*(){
   yield 'boogers';
   return 'snot';
@@ -175,7 +175,7 @@ Generator functions are called to create generator objects, and those objects ar
 
 Let’s consider the very simple sample generator included in pbs85a.html:
 
-```JavaScript
+```javascript
 function* basicGenerator(){
   console.log('basic generator: started to execute');
   yield 'first yielded value';
@@ -190,7 +190,7 @@ This function yields two strings, then returns a string.
 
 To use this generator function we first call it to create a generator object and store it in the global variable `myGeneratorObj`, then call `.next()` on that generator object.
 
-```JavaScript
+```javascript
 // call the generator function to create a new generator object
 myGeneratorObj = basicGenerator();
 
@@ -206,7 +206,7 @@ The second thing to note is that when a value is yielded `done` is `false`, but 
 
 Calling generators directly can be useful, but you can also iterate over all their values with a `for...of` loop. Because generator objects are also iterator objects they can be used directly within a `for...if` loop, but there is a caveat, `for...of` loops only iterate over yielded values, they ignore returned values:
 
-```JavaScript
+```javascript
 // create a generator object
 myGeneratorObj = basicGenerator();
 
@@ -229,7 +229,7 @@ Generator functions can accept arguments in the same way any other functions can
 
 Let’s illustrate this by looking at a more practical example that is designed to play nice with `for...of` loops. Our generator will produce a series of random numbers of a requested length. The number of random numbers desired will be passed as the first argument to the generator function. You’ll find this function defined in `pbs87a.html`, but I’m including the full code below:
 
-```JavaScript
+```javascript
 // basic random number generator
 function* basicRNG(n){
   while(n > 0){
@@ -243,7 +243,7 @@ Note that the function only uses `yield`, and does not use `return`. This is to 
 
 We can now use this generator like so:
 
-```JavaScript
+```javascript
 // create a generator object for 5 random numbers
 myGeneratorObj = basicRNG(5);
 
@@ -255,7 +255,7 @@ for(const rn of myGeneratorObj){
 
 There is of course no need to create a separate variable, so we can collapse this down like so:
 
-```JavaScript
+```javascript
 // iterate over 5 random numbers and print them
 for(const rn of basicRNG(5)){
   console.log(rn);
@@ -272,7 +272,7 @@ To illustrate this point let’s look at a more real-world random number generat
 
 This better random number generator will be able to provider either a finite or infinite number of random numbers, depending on how it’s called. If called with no arguments it will produce an infinite stream, if called with a number as the first argument it will produce that many random numbers.
 
-```JavaScript
+```javascript
 // better random number generator
 function* rng(n=0){
   if(n > 0){
@@ -290,7 +290,7 @@ function* rng(n=0){
 
 This improved generator can still be used within `for...of` loops to generate finite series:
 
-```JavaScript
+```javascript
 // iterate over 3 random numbers and print them
 for(const rn of rng(3)){
   console.log(rn);
@@ -299,7 +299,7 @@ for(const rn of rng(3)){
 
 But it can now also be used with `.next()` to generate infinite series:
 
-```JavaScript
+```javascript
 // create a new generator object for an infinite series
 myGeneratorObj = rng(); // no args
 
@@ -309,7 +309,7 @@ console.log(myGeneratorObj.next());
 
 To make this example a little more real-world, `pbs87a.html` contains a web UI for generating random numbers using this generator. The HTML markup is quite straight forward:
 
-```XHTML
+```html
 <div class="card">
   <h1 class="card-header  h4">Random Number Generator</h1>
   <div class="card-body">
@@ -331,7 +331,7 @@ This is basically just a Bootstrap card containing a bootstrap form consisting o
 
 This UI is brought to life in the document ready handler by creating an infinite RNG generator object and adding a click handler to the button:
 
-```JavaScript
+```javascript
 // create an infinite RNG generator object
 const rngObj = rng();
 
@@ -355,7 +355,7 @@ This might all sound a little confusing, so let’s look at a practical example.
 
 Again, you’ll find the code in `pbs87a.html`, but I’m also including it here:
 
-```JavaScript
+```javascript
 // an acumulator implemented with a generator function
 function* accumulator(initVal){
   // if an initial value was passed, store it
@@ -379,7 +379,7 @@ function* accumulator(initVal){
 
 The important thing to note here is the use of the value potentially emitted by `yield`:
 
-```JavaScript
+```javascript
 const incBy = yield balance;
 ```
 
@@ -389,7 +389,7 @@ To use this generator function we first create a generator object with it, and w
 
 Because a generator function does not even start to execute until the first time `.next()` is called, the first call `.next()` cannot be connected to a `yield` statement, so, any value passed to it will vanish into the ether. For this reason we need to _prime the pump_ on our accumulator by calling `.next()` once after we create it:
 
-```JavaScript
+```javascript
 // create a fresh accumulator
 accumulatorGenObj = accumulator();
 accumulatorGenObj.next(); // step the generator forward to the first yield
@@ -411,7 +411,7 @@ As with the random number generator example, it’s easy to build a simple UI fo
 
 The markup for the form is very simple:
 
-```XHTML
+```html
 <div class="card">
   <h1 class="card-header  h4">Accumulator</h1>
   <div class="card-body">
@@ -438,7 +438,7 @@ As you can see, it’s a Bootstrap card with an input group consisting of a text
 
 The code to bring this basic UI to life is entirely contained within the document ready handler, and is quite short:
 
-```JavaScript
+```javascript
 // variable to store the accumulartor generator object
 let accumulatorGenObj = null;
 
@@ -494,7 +494,7 @@ In my solution I chose to make use of [Bootstrap](https://getbootstrap.com/), [j
 
 Before looking at the UI, let’s look at the implementation of the Fibonacci series itself:
 
-```JavaScript
+```javascript
 function* fibonacci(){
   // variable for the previous state
   // set to zero per the rules
@@ -528,7 +528,7 @@ The comments hopefully make it clear how this function implements the Fibonacci 
 
 We can use this function from the console like so:
 
-```JavaScript
+```javascript
 // create a generator object
 const fibGen = fibonacci();
 
@@ -547,7 +547,7 @@ I chose to use a Bootstrap card to contain the UI as a nice little widget. I cho
 
 Given those requirements I came up with the following markup for the UI:
 
-```XHTML
+```html
 <div class="card">
   <h1 class="card-header  h4">Fibonacci Stepper</h1>
   <div class="card-body">
@@ -572,7 +572,7 @@ Once I had a basic solution working it became clear that there was a need to hig
 
 Since there would be lots of numbers to render, I chose to create a Mustache template for rendering one number. Because I only needed this one template, and because it is a very small template, I chose to embed it right into the document using a `<script>` tag:
 
-```XHTML
+```html
 <script type="text/html" id="fib_num_tpl">
   <span class="h4"><span class="badge badge-primary fib_val fib_val_current">{{num}}</span></span>
 </script>
@@ -584,7 +584,7 @@ With the markup and template taken care of, the final piece of the puzzle is the
 
 First, I declared some variables in the document ready event handler’s scope to facilitate the event handlers themselves:
 
-```JavaScript
+```javascript
 // load the template for rendering a number in the series
 const fibNumTpl = $('#fib_num_tpl').html();
 
@@ -597,7 +597,7 @@ const $fibOut = $('#fib_out');
 
 Next, I added reset and submit handlers to the form, and triggered the reset handler to initialise the UI. I used function chaining to collapse this down into one multi-line statement:
 
-```JavaScript
+```javascript
 // add event handlers to the Fibonacci UI
 // and when done, call the reset event
 $('#fib_fm').on('reset', function(){
@@ -633,7 +633,7 @@ Hopefully the comments are sufficient to make the code self-documenting.
 
 One thing I do want to draw attention to though is the code for un-highlighting the previous value:
 
-```JavaScript
+```javascript
 $('.fib_val.fib_val_current', $fibOut)
   .removeClass('badge-primary fib_val_current')
   .addClass('badge-secondary')

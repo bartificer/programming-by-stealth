@@ -41,7 +41,7 @@ You’ll find the full source code for my sample solution as [the named release 
 
 We get started with a quick and easy little function. Since this is an instance function, it will be invoked on an instance of the class bartificer.ca.State. The function will take one argument, and should compare the instance it was called on (`this`) to that one argument. If the passed value is a `bartificer.ca.State`, and, has the same value and label as the instance itself, it should return `true`, otherwise, it should return `false`:
 
-```JavaScript
+```javascript
 /**
  * Compare this instance to a given object and determine whether or not
  * the passed object should be considered equal to the instance itself.
@@ -67,7 +67,7 @@ equals(obj){
 
 While I didn’t explicitly request it in the assignment, I also created a test for this new function:
 
-```JavaScript
+```javascript
 QUnit.test('.equals()', (a)=>{
     a.expect(9);
     a.strictEqual(typeof bartificer.ca.State.prototype.equals, 'function', 'function exists');
@@ -89,7 +89,7 @@ The first step in refactoring the constructor is to convert the renderFn argumen
 
 This is simply a matter of changing this section of the constructor:
 
-```JavaScript
+```javascript
 if(typeof renderFn !== 'function'){
     throw new TypeError('the fifth argument must be a callback');
 }
@@ -97,7 +97,7 @@ if(typeof renderFn !== 'function'){
 
 To this:
 
-```JavaScript
+```javascript
 if(typeof renderFn === 'undefined'){
     renderFn = function($td, s){
         // render a true state as green, and false as red
@@ -116,7 +116,7 @@ if(typeof renderFn === 'undefined'){
 
 Now we’re ready to collapse all the optional arguments into a single object. This involves a lot of changes to the constructor, so I’ve included the complete constructor below with the modified regions marked:
 
-```JavaScript
+```javascript
 /**
  * The constructor expects to be passed a jQuery object representing a
  * sigle container element. That element will be emptied, and the table
@@ -329,7 +329,7 @@ Changing how the constructor works also required much of the test suite to be re
 
 Finally, with the constructor refactored, we now need to update the call to the constructor in `sample.html`:
 
-```JavaScript
+```javascript
 // use the constructor to build an automaton
 sampleCA = new bartificer.ca.Automaton(
     $('#game_of_life_container'), // use the div as the container
@@ -353,7 +353,7 @@ The first step is to update the constructor so it performs the following two tas
 
 Below is my updated constructor with the changes highlighted:
 
-```JavaScript
+```javascript
 /**
  * The constructor expects to be passed a jQuery object representing a
  * sigle container element. That element will be emptied, and the table
@@ -607,7 +607,7 @@ constructor($container, rows, cols, stepFn, opts){
 
 Next we need a simple read-only accessor for `._cellStates`. This is pretty much just like all the others with the small exception that it returns a fresh array rather than a reference to the original. This is to prevent _spooky action at a distance_. If we returned a reference to the internal array the user could inadvertently alter it and cause very weird and difficult to track down bugs.
 
-```JavaScript
+```javascript
 /**
  * A read-only accessor function for the set of allowed states.
  *
@@ -629,7 +629,7 @@ cellStates(){
 
 We can now add the special accessor `.stateFromValue()`:
 
-```JavaScript
+```javascript
 /**
  * Get the cell state for a given value.
  *
@@ -650,7 +650,7 @@ stateFromValue(val){
 
 Finally, we can add the `.hasState()` utility function:
 
-```JavaScript
+```javascript
 /**
  * Determine whether or not the CA allows a given state.
  *
@@ -679,7 +679,7 @@ Note that while I’m not including the code here, the GitHub release also conta
 
 At this stage our automaton can store a set of allowed states, but it doesn’t in any way enforce them. Our step function is literally anarchy, it will accept any value what so ever returned by the instance’s user-supplied step function:
 
-```JavaScript
+```javascript
 // calculate the next state
 let ns = this._stepFn(c.state(), this.cellNeighbourStates(x, y));
 
@@ -689,7 +689,7 @@ c.nextState(ns);
 
 This might seem forgiving, but it’s not, because the `.nextState()` function rigidly enforces discipline:
 
-```JavaScript
+```javascript
 nextState(ns){
     // if in setter mode, try set
     if(arguments.length >= 1){
@@ -715,7 +715,7 @@ If the user’s step function `true` or `false`, then there is no ambiguity, so 
 
 Because we’ve already added the `.stateFromValue()` function, there’s not actually much more we need to do:
 
-```JavaScript
+```javascript
 /**
  * Step the automaton forward by one step.
  *
@@ -768,7 +768,7 @@ But of course, there’s no need to limit yourself to just two states! To prove 
 
 Let’s start with a basic HTML 5 page that loads jQuery and our bartificer.ca prototypes, includes some very basic CSS for styling our automata (copied directly from `sample.html`), and creates placeholders for our three CAs:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -828,7 +828,7 @@ Let’s start on familiar territory and create the Game of Life CA. To do that w
 
 Let’s start with the set of allowed states:
 
-```JavaScript
+```javascript
 const lifeStates = [
     new bartificer.ca.State(true, 'Alive'),
     new bartificer.ca.State(false, 'Dead')
@@ -837,7 +837,7 @@ const lifeStates = [
 
 Next, let’s define a simple rendering function:
 
-```JavaScript
+```javascript
 function renderLife($td, s){
     // render alive as green and dead as red
     if(s && s.value() == true){
@@ -850,7 +850,7 @@ function renderLife($td, s){
 
 Next, let’s write the step function for the Game of Life:
 
-```JavaScript
+```javascript
 function lifeStep(currentState, neighbourStates){
     // calcualte the number of live neighbours
     let numLiveNeighbours = 0;
@@ -879,7 +879,7 @@ function lifeStep(currentState, neighbourStates){
 
 Finally, the easy part, a function to generate a random boolean:
 
-```JavaScript
+```javascript
 function randomAliveness(){
     return Math.random() < 0.5 ? lifeStates[0] : lifeStates[1];
 }
@@ -887,7 +887,7 @@ function randomAliveness(){
 
 We’re now ready to create the Game of Life CA and set it running. Because the constructor interacts with the DOM (inserts a table) we have to do this inside the jQuery document ready handler:
 
-```JavaScript
+```javascript
 // declare variables to hold references to the CAs
 let lifeCA;
 
@@ -924,7 +924,7 @@ The Maze uses the same set of allowed states, so we don’t need to define a new
 
 We can code this up as:
 
-```JavaScript
+```javascript
 function mazeStep(currentState, neighbourStates){
     // calcualte the number of live neighbours
     let numLiveNeighbours = 0;
@@ -947,7 +947,7 @@ function mazeStep(currentState, neighbourStates){
 
 We can then create our second CA similarly to the first:
 
-```JavaScript
+```javascript
 // declare variables to hold references to the CAs
 let lifeCA;
 let mazeCA;
@@ -1005,7 +1005,7 @@ Given those three states the following rules apply:
 
 So let’s translate that into code. First, the set of states:
 
-```JavaScript
+```javascript
 const brainStates = [
     new bartificer.ca.State(0, 'Ready'),
     new bartificer.ca.State(1, 'Firing'),
@@ -1015,7 +1015,7 @@ const brainStates = [
 
 Now, the set of rules (i.e. the step function):
 
-```JavaScript
+```javascript
 function brainStep(currentState, neighbourStates){
     // decide what to do based on the current state
 
@@ -1041,7 +1041,7 @@ function brainStep(currentState, neighbourStates){
 
 Now we need to get practical — our existing render function can only deal with two states, so we need to write another one for dealing with three states:
 
-```JavaScript
+```javascript
 function renderNeuron($td, s){
     // render ready as yellow, firings as green and recharging as red
     if(!s || !s.value()){
@@ -1056,7 +1056,7 @@ function renderNeuron($td, s){
 
 And now we need a function to return a random brain state:
 
-```JavaScript
+```javascript
 function randomBrainState(){
     return brainStates[Math.round(Math.random() * 10000) % 3];
 }
@@ -1064,7 +1064,7 @@ function randomBrainState(){
 
 And now, we’re ready to add our final CA:
 
-```JavaScript
+```javascript
 // declare variables to hold references to the CAs
 // ...
 let brainCA;

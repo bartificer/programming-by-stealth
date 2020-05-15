@@ -20,7 +20,7 @@ You’ll find my sample solution in the `pbs81-challengeSolution` folder in this
 
 Before making any changes my solution stored the template strings in `<script>` tags within `index.html`. Inside the document ready handler the code used jQuery’s `$()` function to read the strings from the `<script>` tags into a global object named `TEMPLATES`:
 
-```JavaScript
+```javascript
 // get and store the needed templates
 TEMPLATES.gameMessage = $('#gameMessageTemplate').html();
 TEMPLATES.guesses = $('#guessesDisplayTemplate').html();
@@ -33,7 +33,7 @@ TEMPLATES.confirmQuit = $('#confirmQuitTemplate').html();
 
 Note that `TEMPLATES` is declared outside the document ready handler within the global scope:
 
-```JavaScript
+```javascript
 var TEMPLATES = { // Mustache template strings, loaded from script tags by document ready handler
   gameMessage: '',
   guesses: '',
@@ -49,7 +49,7 @@ Note that each template has a name within the `TEMPLATES` object. I decided to m
 
 To load my templates I created a function named `loadTemplates()` which takes one or more template names as arguments, and returns a single promise that will resolve only when all templates are loaded. Note that the promise will reject if any one template fails to load. This function builds an array if promises, one for each template, then creates a final promise unifying them all into a single promise with `Promise.all()`:
 
-```JavaScript
+```javascript
 function loadTemplates(...templateNames){
   if(is.empty(templateNames) || !is.all.string(templateNames)){
     throw new TypeError('must pass one or more template names as strings');
@@ -74,7 +74,7 @@ function loadTemplates(...templateNames){
 
 With this change made it was simply a matter of re-writing the document ready handler so it called this function, then, only when the promise resolved, loaded the interface. This is my updated document ready handler with the new part highlighted:
 
-```JavaScript
+```javascript
 // The Document Ready Handler
 $(function(){
   // get and store the needed page elements
@@ -110,7 +110,7 @@ $(function(){
 
 Note that in order to show an error should the templates fail to load I use the error template. For this reason I chose to hard-code that one template straight into the `TEMPLATES` object:
 
-```JavaScript
+```javascript
 var TEMPLATES = { // Mustache template strings, loaded from external files via AJAX by document ready handler
   gameMessage: '',
   guesses: '',
@@ -194,7 +194,7 @@ As I’ve previously mentioned, functions are marked as async functions by prefi
 
 Here’s an example of a very simplistic async function defined using a function statement:
 
-```JavaScript
+```javascript
 async function square(n){
   return n * n;
 }
@@ -204,13 +204,13 @@ Go ahead and paste the above function definition into the console on `pbs82a.htm
 
 Next, call this function and save the result in the pre-existing variable named `demoOut`:
 
-```JavaScript
+```javascript
 demoOut = square(4);
 ```
 
 If this was a normal function the value of `demoOut` would now be 16, but this is not a normal function, it’s an async function. So, what is the value of `demoOut`? Since async functions are automatically promised, `demoOut` is a promise for the result of executing the function with 4 as the only argument. You can see this for yourself:
 
-```JavaScript
+```javascript
 console.log(demoOut);
 ```
 
@@ -218,7 +218,7 @@ console.log(demoOut);
 
 Below is an example of a similarly simple async function, but this time one declared with a function expression:
 
-```JavaScript
+```javascript
 cube = async function(n){
   return n * n * n;
 };
@@ -226,7 +226,7 @@ cube = async function(n){
 
 Finally, the example below creates another simplistic async function using an arrow function expression (AKA _fat arrow function_):
 
-```JavaScript
+```javascript
 quad = async (n)=>{ return n * n * n * n };
 ```
 
@@ -234,7 +234,7 @@ We’ve not used arrow functions very often since learning about them in [instal
 
 Since async functions are automatically promised we can directly call `.then()` on the value they return:
 
-```JavaScript
+```javascript
 quad(4).then((ans)=>{ console.log(ans) });
 ```
 
@@ -256,7 +256,7 @@ The way I like to think of it is that **`await` waits for a promise and then unw
 
 As a basic example, let’s create another simplistic async function that calls two of our earlier example async functions:
 
-```JavaScript
+```javascript
 async function squareCube(n){
   let ans = await cube(n);
   ans = await square(ans);
@@ -266,7 +266,7 @@ async function squareCube(n){
 
 We can now call our function:
 
-```JavaScript
+```javascript
 squareCube(2).then((a)=>{console.log(a)});
 ```
 
@@ -296,7 +296,7 @@ Let’s have a look at how the function accomplishes this task.
 
 The first thing the function does is declare an object to store the AJAX config we’ll use to fetch the random numbers. Declaring this object separately avoids code duplication and will make the important parts of the function easier to read:
 
-```JavaScript
+```javascript
 // define a re-usable AJAX config object
 const ajaxConf = {
   url: 'https://bartbusschots.ie/utils/fakerWS/numberBetween/1/text',
@@ -312,7 +312,7 @@ Next we need to get our first random number. This will be the number of random n
 
 Because this is an async function we can await the promise returned by jQuery’s `$.ajax()` function:
 
-```JavaScript
+```javascript
 // Get the number of random numbers to fetch
 const numRandNums = await $.ajax(ajaxConf);
 ```
@@ -321,14 +321,14 @@ Now that we know how many random numbers to generate, we can generate a promise 
 
 Before we create the promises we need to update our config object so it generates random numbers between 1 and 100 (rather than between 1 and 5):
 
-```JavaScript
+```javascript
 // update the ajax config to set max val to 100
 ajaxConf.data.arg2 = 100;
 ```
 
 We can now start the appropriate number of AJAX requests and store their matching promises in an array:
 
-```JavaScript
+```javascript
 const randNumPromises = [];
 while(randNumPromises.length < numRandNums){
   randNumPromises.push($.ajax(ajaxConf));
@@ -339,7 +339,7 @@ Note that these AJAX requests are all running in parallel at this point.
 
 We now need to wait for them all to finish before returning all the numbers in a single array:
 
-```JavaScript
+```javascript
 // wait for all the promoises to resolve
 // (promises all running in parallel)
 const randNums = await Promise.all(randNumPromises);
@@ -350,7 +350,7 @@ return randNums;
 
 When you put it all together this is what the function looks like:
 
-```JavaScript
+```javascript
 async function randomNumOfRandomNums(){
   // define a re-usable AJAX config object
   const ajaxConf = {
@@ -387,7 +387,7 @@ async function randomNumOfRandomNums(){
 
 We can execute this function by pushing the button on the page, or, by entering the following into the console:
 
-```JavaScript
+```javascript
 randomNumOfRandomNums().then((rns)=>{console.log(rns)});
 ```
 
@@ -397,7 +397,7 @@ Since `await` can only be used within async functions you might think that you a
 
 A handy tip to remember is that since `async` can be used when declaring any function, including anonymous ones, you can create async _‘self-executing functions’_, or IIFEs (**I**mmediately **I**nvoked **F**unction **E**xpressions). Making use of _fat arrow functions_, we can write them very succinctly like so:
 
-```JavaScript
+```javascript
 (async ()=>{
   window.alert(await $.get('https://api.ipify.org/'));
 })();
@@ -419,7 +419,7 @@ You’ll find the full function in `pbs82a.html` as `fetchWeather()`.
 
 The first thing we need to do is try to geolocate the user to a city. We’ll start by initialising the city to a default value, and then trying to use the free geolocation API from [ip-api.com](http://ip-api.com/) to get a correct value.
 
-```JavaScript
+```javascript
 // determine the location
 let city = DEFAULT_CITY;
 try{
@@ -443,7 +443,7 @@ Notice we’re using `await` to wait for and automatically unwrap the promise re
 
 Now that we know where we are, we can fetch the weather using a similar AJAX request:
 
-```JavaScript
+```javascript
 // get the weather
 try{
   const weather = await $.ajax({
@@ -465,7 +465,7 @@ try{
 
 Putting it all together we get the function:
 
-```JavaScript
+```javascript
 async function fetchWeather(){
   // determine the location
   let city = DEFAULT_CITY;
@@ -507,7 +507,7 @@ async function fetchWeather(){
 
 We can call this function by clicking the button, or, directly on the console:
 
-```JavaScript
+```javascript
 fetchWeather();
 ```
 

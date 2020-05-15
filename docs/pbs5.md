@@ -31,21 +31,23 @@ A so-called _absolute URL_ is a complete URL, and it specifies a number of parts
 
 All these parts are composed into a URL as follows – the underlined sections are placeholders, and the bold sections are required for valid absolute URLs:
 
+<code>
 <ul {list-style-type: none}>
     <strong>
       <u>scheme</u>
       ://
       <u>host</u>
-      </strong>
-      :
-      <u>port</u>
-      <strong>/</strong>
-      <u>path</u>
-      ?
-      <u>query</u>
-      #
-      <u>fragment</u>
+    </strong>
+    :
+    <u>port</u>
+    <strong>/</strong>
+    <u>path</u>
+    ?
+    <u>query</u>
+    #
+    <u>fragment</u>
 </ul>
+</code>
 
 In code as:
 ```
@@ -136,7 +138,7 @@ Attributes are specified within opening and void tags only. They go after the na
 
 The generic form of a tag with two attributes would be:
 
-```XHTML
+```
 <tag_name name1="value 1" name2="value 2">Tag contents</tag_name>
 ```
 
@@ -150,17 +152,18 @@ Using CSS, it is possible to make images behave in different ways. So we’ll re
 
 `<img />` tags require two attributes, and there is a third optional one that I also want to mention:
 
-`src`
+<dl>
+<dt><code>src</code></dt>
+<dd>The URL of the image to include (can be relative or absolute)</dd>
 
-The URL of the image to include (can be relative or absolute)
+<dt><code>alt</code></dt>
+<dd>Alternative text describing this image. This is the text that will replace the image in text-only browsers and screen readers for the visually impaired. The attribute is not technically required, but leaving it out is exceptionally bad form; so consider it required. Also, be sure to always use useful alt text – <em>‘logo’</em> is useless alt text. <em>‘Podfeet Logo’</em> is useful alt text.</dd>
 
-`alt`
+<dt><code>title</code></dt>
+<dd>This optional attribute can be used to specify text that should be displayed as a tooltip when the user hovers their mouse over the image. This is not the same thing as alt text. It exists to allow extra info for users be specified, not to tell screen readers what the image is. All images should have alt text, but only images need titles.</dd>
+</dl>
 
-Alternative text describing this image. This is the text that will replace the image in text-only browsers and screen readers for the visually impaired. The attribute is not technically required, but leaving it out is exceptionally bad form; so consider it required. Also, be sure to always use useful alt text – _‘logo’_ is useless alt text _‘Podfeet Logo’_ is useful alt text.
 
-`title`
-
-This optional attribute can be used to specify text that should be displayed as a tooltip when the user hovers their mouse over the image. This is not the same thing as alt text. It exists to allow extra info for users be specified, not to tell screen readers what the image is. All images should have alt text, but only images need titles.
 
 ### Specifying Widths and Heights
 
@@ -180,7 +183,7 @@ Because image files are required to make this example work, I’ve created a zip
 
 For simplicity I’m also including the content of `index.html` here:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -218,7 +221,7 @@ To add a link to a page, use the `<a>` tag with the `href` attribute. The conten
 
 The basic form of a link looks like this:
 
-```XHTML
+```html
 <a href="a_url">the link text</a>
 ```
 
@@ -234,7 +237,7 @@ Anchors are created using the `<a>` tag with the `name` attribute. When creating
 
 To define a URL fragment with the name `section1` you would add the following tag into the document just before the header for section 1:
 
-```XHTML
+```html
 <a name="section1"></a>
 ```
 
@@ -244,7 +247,7 @@ Again, because the example involves multiple documents, I have zipped the files 
 
 For convenience, the contents of the two HTML files is included here:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -332,7 +335,7 @@ sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </html>
 ```
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

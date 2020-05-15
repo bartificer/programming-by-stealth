@@ -20,13 +20,13 @@ There is no one solution to a problem like this, so below are two different corr
 
 1.  The first approach is to use the CSS containment selector (space) to limit the results to just `a` elements within the `main` element:
 
-    ```JavaScript
+    ```javascript
     $('main a').attr('target', '_blank')
     ```
 
 2.  The second approach is to use the optional second argument to the `$` function to limit the search to the `main` element:
 
-    ```JavaScript
+    ```javascript
     $('a', $('main')).attr('target', '_blank')
     ```
 
@@ -42,7 +42,7 @@ Regardless of whether you’re linking to an external file, or directly embeddin
 
 To link to an external script, use the `src` attribute to specify the URL for the script – it can be a relative or absolute URL. For example, to include the jQuery library, you could add the following to the `head` section of your HTML file:
 
-```XHTML
+```html
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 ```
 
@@ -52,7 +52,7 @@ Note that because the `script` tag is not void, it must have a closing tag, even
 
 When used without an `src` attribute, the `script` tags expects the JavaScript code to be placed between the opening and closing `script` tags:
 
-```XHTML
+```html
 <script type="text/javascript">
 
   // your JavaScript code goes here
@@ -72,7 +72,7 @@ In theory you can calculate the hashes yourself, but thankfully, most open sourc
 
 The jQuery project makes the jQuery library available via a CDN. They offer sample code to show how to include various versions of the library on their website at [code.jquery.com](https://code.jquery.com). If you go there and click on the link for the minified (shrunk down) version of the latest jQuery 3.x you’ll see that they give you the `script` tag to use with the hash in place:
 
-```JavaScript
+```javascript
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 ```
 
@@ -84,7 +84,7 @@ The `noscript` tag allows you to specify content that will only be displayed whe
 
 All modern browsers do support JavaScript, but users may be using plugins to block it, so the `noscript` tag is still useful today. If your page needs JavaScript in order to function, you might include something like the code shown below as a courtesy to users with JavaScript disabled for what ever reason:
 
-```XHTML
+```html
 <noscript>
   <h1>JavaScript Required</h1>
   <p>JavaScript is currently disabled in your browser, but it is required in order to use this page. Please enable it and refresh.</p>
@@ -121,7 +121,7 @@ _**Note:** we’ve not talked about the `rel` attribute in this series so far, b
 
 This simple function would look something like:
 
-```JavaScript
+```javascript
 function fixLinks(){
   $('a').attr('target', '_blank').attr('rel', 'noopener');
 }
@@ -133,13 +133,13 @@ Again, notice the use of function chaining. When reading this code we need to br
 
 Now that we have written this function, we want to tell the browser to run it when it’s finished building the DOM. This is something you want to do so often that jQuery has built it directly into the `$()` function. If you pass the `$()` function a reference to a function (a callback) as the first argument, it will set that function to execute when the browser triggers the event signifying that the DOM is ready:
 
-```JavaScript
+```javascript
 $(fixLinks);
 ```
 
 In the real world we would not normally define a named function and then pass it to jQuery on a separate line. Instead, we would use an anonymous function to do it all in one step:
 
-```JavaScript
+```javascript
 $(function(){
   $('a').attr('target', '_blank').attr('rel', 'noopener');
 });
@@ -147,7 +147,7 @@ $(function(){
 
 Let’s put this all together into a simple sample HTML page that contains some links without a `target` attribute, and includes the above JavaScript code to set all links to have a `target` of `_blank` (and a `rel` of `noopener`) when the page loads (you’ll find this code in the ZIP file for this instalment as `pbs22a.html`):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -189,7 +189,7 @@ To set a function to execute when an object is clicked, pass a callback as the f
 
 As an example, let’s add a click handler to all paragraphs that toggles a class `.highlighted` on and off:
 
-```JavaScript
+```javascript
 // add a click event handler to define toggle the highlighting of paragraphs
 $('p').click(function(){
   $(this).toggleClass('highlighted');
@@ -198,7 +198,7 @@ $('p').click(function(){
 
 A very important subtly is that you have to add this event handler after the DOM has loaded, otherwise, the call to `$('p')` will not find the paragraphs! So, you need to add all other event handlers inside the event handler for the DOM becoming ready:
 
-```JavaScript
+```javascript
 // initialise the page - executed when the DOM is ready
 $(function(){
   // add a click event handler to define toggle the highlighting of paragraphs
@@ -210,7 +210,7 @@ $(function(){
 
 Again, let’s put it all together in a full HTML page (`pbs22b.html` in the ZIP file):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -290,7 +290,7 @@ The built-in JavaScript function `setTimeout()` is used to create a timeout. Thi
 
 As a simple example, the following code will put up an alert 5 seconds after the page loads:
 
-```JavaScript
+```javascript
 // create an anonymous function that will run when the DOM loads
 $(function(){
   // set a timeout to run in 5 seconds
@@ -305,7 +305,7 @@ $(function(){
 
 You can see it in context in this full example (`pbs22c.html` in the zip file):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -349,7 +349,7 @@ Intervals are very similar to timeouts, but they are set and cleared using `setI
 
 Popping up an alert every 5 seconds would be very annoying, so let’s not do that as an example. Instead, let’s toggle the `highlighted` class on all paragraphs every 3 seconds:
 
-```JavaScript
+```javascript
 // create an anonymous function that will run when the DOM loads
 $(function(){
   // set an interval that will toggle the class every 3 seconds
@@ -364,7 +364,7 @@ $(function(){
 
 You can see how this works in context in the file `pbs22d.html` in the zip file:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -441,7 +441,7 @@ tincidunt ex.</p>
 
 Let’s put everything we’ve learned today together into a single exercise. Please use the following HTML page (`pbs22-challenge.html` in the zip file) as your starting point:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

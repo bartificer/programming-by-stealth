@@ -20,7 +20,7 @@ You’ll find my full solution in the folder `pbs72-challenge-solution` in this 
 
 The first step was simply to define a template. I added the following near the top of the `<body>` tag:
 
-```XHTML
+```html
 <!-- The template for the Toasts -->
 <template id="toast_tpl">
   <div class="toast" role="status" aria-atomic>
@@ -36,7 +36,7 @@ Remember, `<template>` tags have to be direct children of the `<body>` tag, so w
 
 With that done it was just a matter of updating my `showToast()` function to make use of this newly defined template:
 
-```JavaScript
+```javascript
 // a function for popping up a toast
 function showToast(t, msg){
   // clone the toast template
@@ -82,7 +82,7 @@ As we’ll learn later, the normal way to get a copy of Mustache is to use a Jav
 
 There is no official Mustache CDN, but it is available from many reputable CDNs, including the very popular [cdnjs](https://cdnjs.com):
 
-```XHTML
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
 ```
 
@@ -92,7 +92,7 @@ The script tag above will add the Mustache API into the global name space as `Mu
 
 Let’s see it in action with a very simple example (copy and paste into the JavaScript console on any page that has imported the Mustache API, e.g. `pbs73a.html` from the ZIP file):
 
-```JavaScript
+```javascript
 const greetingTpl = "Hi there {{name}} the {{nationality}}!";
 const personView1 = {
   name: 'Bart',
@@ -109,7 +109,7 @@ As you can see, Mustache uses double curly braces as its delimiter, hence the na
 
 Because Mustache was built with the web in mind, it takes care of HTML escaping special character for you. You can see this automatic escaping in action with this simple example:
 
-```JavaScript
+```javascript
 const mottoTpl = 'As {{name}} says "{{motto}}"';
 const personView2 = {
   name: 'Bart',
@@ -124,7 +124,7 @@ The above will log:
 
 This is usually what you want, but not always. You can disable HTML escaping by using triple curly braces:
 
-```JavaScript
+```javascript
 const unEscapedMottoTpl = 'As {{{name}}} says "{{{motto}}}"';
 const personView3 = {
   name: 'Bart',
@@ -153,13 +153,13 @@ This is the technique we’ll be using for the remainder of this instalment, and
 
 In the main body of the file you’ll find a placeholder `<div>` into which the template will be rendered:
 
-```XHTML
+```html
 <div id="pbs73_tpl_placeholder"></div>
 ```
 
 Near the bottom of the file you’ll find the template definition:
 
-```XHTML
+```html
 <!-- Define the Template String -->
 <script type="text/html" id="pbs73_tpl">
   <p>As {{name}} the {{nationality}} would say, "{{motto}}"</p>
@@ -168,7 +168,7 @@ Near the bottom of the file you’ll find the template definition:
 
 You’ll find the view object defined in the global scope inside a regular script tag:
 
-```JavaScript
+```javascript
 // define the view
 const personView = {
   name: "Bart",
@@ -179,7 +179,7 @@ const personView = {
 
 Finally, you’ll find the rendering of the template in a jQuery document ready event handler:
 
-```JavaScript
+```javascript
 // a jQuery Document Ready Event Handler
 $(function(){
   // render the template
@@ -189,7 +189,7 @@ $(function(){
 
 That JavaScript statement could use some breaking down, so let’s refactor it so we can see its three distinct parts more clearly:
 
-```JavaScript
+```javascript
 // get the template string from the script tag
 const tplString = $('#pbs73_tpl').html();
 
@@ -206,7 +206,7 @@ In the real world you would of course write it as one statement, as originally s
 
 For the remainder of this instalment we’ll be referring to examples in the file `pbs73b.html` from this instalment’s ZIP. The examples all make use of two view objects, one named `bart`, and one named `allison`. Each samples template will be rendered twice, once with each view object. Below are the definitions of the two view objects:
 
-```JavaScript
+```javascript
 const bart = {
   name: {
     first: 'Bart',
@@ -268,7 +268,7 @@ A value in a view can also be a function. When you try to add a value to a templ
 
 The template `vars_tpl1` in `pbs73b.html` illustrates all of the above:
 
-```XHTML
+```html
 <!-- Demo 1: Variables -->
 <script type="text/html" id="vars_tpl1">
   <p>{{name.first}} {{name.last}} is {{nationality}} and {{pronoun}} produces {{podcasts.length}} podcasts.</p>
@@ -296,7 +296,7 @@ You can invert the logic of a conditional section by using a `^` instead of a `#
 
 You can combine these types of section to create if/else logic in your templates. You can see an example of this in `cond_tpl1` in `pbs73b.html`.
 
-```XHTML
+```html
 <!-- Demo 2: Conditional Sections -->
 <script type="text/html" id="cond_tpl1">
   <p>
@@ -316,7 +316,7 @@ If the variable controlling a section is a non-empty array, then the section wil
 
 You can see both a loop over an array of strings, and a loop over an array of objects in `loop_tpl1` in the file `pbs73b.html`.
 
-```XHTML
+```html
 <!-- Demo 3: Looped Sections -->
 <script type="text/html" id="loop_tpl1">
   <p>{{name.first}} Speaks the following languages:</p>

@@ -30,7 +30,7 @@ But first, below is a solution to the challenge I set at the end of [the previou
 
 Below is my solution to the assignment. Just a reminder that when it comes to programming, there are an infinity of possible correct solutions, so if your code works, but look different to mine, that’s just fine!
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -133,19 +133,19 @@ We can now add a fifth behaviour to that list – if you pass the `$()` function
 
 For example, to build a top-level heading with the text _a header_, you could do the following:
 
-```JavaScript
+```javascript
 var $myHeading = $('<h1 />').text('a header');
 ```
 
 Similarly, I could use jQuery to build a link to my website as follows:
 
-```JavaScript
+```javascript
 var $myLink = $('<a />').text('my homepage').attr('href', 'http://www.bartb.ie/');
 ```
 
 Note that jQuery will accept a full HTML tag with attributes and content all defined within the string. To illustrate this point, the following two lines of code produce the same result:
 
-```JavaScript
+```javascript
 var $img = $('<img src="x.png" alt="an image" title="an image" />');
 var $img = $('<img />').attr('src', 'x.png').attr('alt', 'an image').attr('title', 'an image');
 ```
@@ -174,19 +174,19 @@ Let’s pause for an example. The HTML page below contains a heading followed by
 
 We can get the character count for all the paragraphs with the following snippet:
 
-```JavaScript
+```javascript
 var numChars = $('p').text().length;
 ```
 
 We can create an `aside` tag with the following snippet:
 
-```JavaScript
+```javascript
 var $aside = $('<aside />').text('(the paragraphs above contain ' + numChars + ' characters)');
 ```
 
 Finally, we can inject this new element into the end of the `body` element with the following snippet:
 
-```JavaScript
+```javascript
 $('body').append($aside);
 ```
 
@@ -194,7 +194,7 @@ Remember that we need all the above code to run after the DOM becomes ready.
 
 Putting it all together, we get the following full HTML page (`pbs23a.html` in the ZIP file):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -264,7 +264,7 @@ tincidunt ex.</p>
 
 As we know, jQuery objects represent zero or more HTML elements. It’s easy to apply basic changes to all elements an object represents – we’ve seen this many times already in the previous few instalments. For example, we can turn every paragraph in a page red with the following snippet:
 
-```JavaScript
+```javascript
 $('p').css('color', 'red');
 ```
 
@@ -274,7 +274,7 @@ As an example, let’s alter our previous example so it also puts a count at the
 
 The following snippet does the work:
 
-```JavaScript
+```javascript
 $('p').each(function(){
   var $p = $(this);
   var numChars = $p.text().length;
@@ -285,7 +285,7 @@ $('p').each(function(){
 
 Below is a full web page so you can see the snippet in context (`pbs23b.html` in the ZIP file):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -380,7 +380,7 @@ For data URLs, the remote name is irrelevant, but the command insists you pass o
 
 This produces the following output:
 
-```undefined
+```
 begin-base64 755 boogers
 iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 bWFnZVJlYWR5ccllPAAAA61pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
@@ -416,7 +416,7 @@ For our purposes, we should ignore both the first and last lines. The data we wa
 
 We could update our example to use this icon using the following snippet:
 
-```JavaScript
+```javascript
 var countIconURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA61pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcFJpZ2h0czpNYXJrZWQ9IkZhbHNlIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InV1aWQ6NzBDQkJENjFFODMxREYxMTlCMjJGQkJBMDE3QTBERTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTBBRDY1NzBCM0I4MTFFMDg1ODhFM0I2RkYzOTlFNUMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTBBRDY1NkZCM0I4MTFFMDg1ODhFM0I2RkYzOTlFNUMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTlFNTY2ODQ4OEIzRTAxMUFGRDI4NzU4Q0FBOEM2NEEiIHN0UmVmOmRvY3VtZW50SUQ9InV1aWQ6NzBDQkJENjFFODMxREYxMTlCMjJGQkJBMDE3QTBERTkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz48FcfDAAAB20lEQVR42mL8//8/AyWAiYFCwBhaX+8LpKWIVH/i758/F//8+cMAwr9//2ZgAQpIr21pmU6M7uCamkwo8yLcC0CTmP4Bw+HPv39gvGnzZoaz584x3Lp9m2Hp0qVwcRBeA7QIqN4aqM8A2QDGvyAD/v4F47t37jBISEoyPH/xgkFGTg4u/hdkCJBe19ExFWzI//9gQ1iA/mACmX7v3j2G1cuXg02dPXMm3Nk/fv5ksLazYzhz4QLDxWvXGPS1tBg29vRM8crPzwMawsT059cv5j9AF4hLSzPklJQwfPv2DYU2trBg+Ac06O2nTwyCQkKMIPrbr18MWyZOnPTn9287ll+/foFdsHfXLobD+/aBbW2oqIDTMSkpDEoqKgyqysoMz1+9+i8pJsbAysbG4JScXMzIyHiY5ffPn2ADLOztGX4CTQYBTV1dhnlTpjBUtLSA+d+B3hAWFGQQFxVl4OHmZnCIiSkFa2ZjO8v0C+qFX8AAOn/mDIOAiAjD9atXGSRlZcFiMPwNaAgXULNNWFgFMNwOAVPwaXAgfv74kY2FhYWBi4uLoaShAWca4OXhYTB0d69jZmY+yMXDcwomzvLu9evnqmZm7USleyam/UKioidQkvKAZyaKDQAIMACsfPvDGV7GigAAAABJRU5ErkJggg==';
 
 $('p').each(function(){
@@ -431,7 +431,7 @@ $('p').each(function(){
 
 Again, we can put this all together into a full web page as follows (`pbs23c.html` in the ZIP file):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -543,25 +543,25 @@ This will not be an exhaustive look at URI.js. The documentation on their site i
 
 Firstly, we can create a URI object representing the URL of the current page as follows:
 
-```JavaScript
+```javascript
 var uriObj = new URI();
 ```
 
 We can create a URI object from a jQuery object representing a link named `$a` as follows:
 
-```JavaScript
+```javascript
 var uriObj = $a.uri();
 ```
 
 We can determine if a link is relative or absolute using the `.is()` function:
 
-```JavaScript
+```javascript
 var isRelative = uriObj.is('relative');
 ```
 
 Finally, we can extract the full domain part of a URL using the `.hostname()` function:
 
-```JavaScript
+```javascript
 var domainName = uriObj.hostname();
 ```
 
@@ -573,7 +573,7 @@ External links are those that are not internal. A link is considered internal if
 
 Based on that, we could write a function to mark external links as external like so:
 
-```JavaScript
+```javascript
 function markExternalLinks(){
   // create a jQuery object representing all links
   var $links = $('a');
@@ -604,7 +604,7 @@ function markExternalLinks(){
 
 You can see this function in action in the full web page shown below (`pbs23d.html` in the ZIP file). Note that it includes CSS definitions to show links in green by default, and links with the class `external` in red. Also note that this page imports the URI.js library. Because the URI.js project does not provide a CDN, the code library file is included in the zip file in a folder named `contrib`. This folder must be present in the same folder as `pbs23d.html` for the library to be successfully imported.
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -704,7 +704,7 @@ Using a slightly altered version of the fourth example (`pbs23-assignment.html` 
 2.  Set their `rel` attribute to `noopener`
 3.  Add an icon after the link (the data URL for the icon is available in the global variable `newWindowIconURL`)
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

@@ -30,7 +30,7 @@ Most of the anonymous functions in the test suite make no use of `this` at all, 
 
 I just find this:
 
-```JavaScript
+```javascript
 a.throws(
     ()=>{ const c1 = new bartificer.ca.Automaton(); },
     TypeError,
@@ -40,7 +40,7 @@ a.throws(
 
 Easier to read than:
 
-```JavaScript
+```javascript
 a.throws(
     function(){
         const c1 = new bartificer.ca.Automaton();
@@ -52,7 +52,7 @@ a.throws(
 
 There were of course anonymous functions within the test suite where conversion to arrow functions was not an option. A recurring example is QUnit modules that make use of the `beforeEach` hook to re-initilaise some sample data before each test. The sample data initialised within that hook needs to be saved into `this`, and it needs to be accessed via `this` within the module’s tests, so, neither the callback for the hook itself, nor, the callbacks for the tests can be converted to arrow functions. For example, the following regular functions remain in my sample solution:
 
-```JavaScript
+```javascript
 QUnit.module(
     'read-only accessors',
     {
@@ -93,7 +93,7 @@ In fact, making this change highlighted a repeated hidden bug in my test suite.
 
 A `throws` test passes if an error is thrown. This means that if you make a syntax mistake inside one that causes an error to be thrown, the test will pass, but for the wrong reason. The original code for this test looked like this:
 
-```JavaScript
+```javascript
 a.throws(
     function(){ this.c1.$td($('<td></td>')); },
     Error,
@@ -103,7 +103,7 @@ a.throws(
 
 This test passed, because the code above will always throw an error. Why? Because it tries to use the test’s `this` from within a regular function, not an arrow function! For this code to work properly without the use of an arrow function it should read:
 
-```JavaScript
+```javascript
 const self = this;
 a.throws(
     function(){ self.c1.$td($('<td></td>')); },
@@ -120,7 +120,7 @@ Before converting the prototypes to classes I started by looking for potential a
 
 The self executing function simply becomes:
 
-```JavaScript
+```javascript
 ((bartificer, $, undefined)=>{
   // ...
 })(bartificer, jQuery);
@@ -128,7 +128,7 @@ The self executing function simply becomes:
 
 The `self` example is more interesting, and can be found in the `bartificer.ca.Automaton`‘s `.start()` function:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
@@ -165,7 +165,7 @@ This is a classic example of the `const self = this` anti-pattern.
 
 The reason we have to declare `self` is so we can access the outer function’s `this` from within the anonymous function. If we replace the anonymous function with an arrow function we get access to the outer `this` automatically, so the code becomes simpler and more readable:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
@@ -255,7 +255,7 @@ Along with the addition of the `class` keyword, ES6 also gives us the `extends` 
 
 Let’s look at a very simplistic example to see how it works:
 
-```JavaScript
+```javascript
 // define a parent class
 class Creature{
     constructor(n, l){
@@ -303,7 +303,7 @@ console.log(`${mike.toString()} needing ${mike.pairsOfShoesNeeded()} pair(s) of 
 
 The following creates a class named `Millipede` that extends the class `Creature`:
 
-```JavaScript
+```javascript
 class Millipede extends Creature{
     // ...
 }
@@ -325,7 +325,7 @@ So far, there is no polymorphism in our simplistic example, only inheritance.
 
 Let’s make our `.toString()` function polymorphic:
 
-```JavaScript
+```javascript
 // define a parent class
 class Creature{
     constructor(n, l){
@@ -394,7 +394,7 @@ Let’s start with an initial version of this little project. You’ll find all 
 
 Let’s start with a very quick look at `pbs47a-v1/index.html`:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -433,7 +433,7 @@ Finally, the `Farm` class provides two instance methods, `.addAnimal()`, and `.c
 
 Here’s the code for the class:
 
-```JavaScript
+```javascript
 class Farm{
     constructor($container, ...animals){
         // initialise the DOM
@@ -472,7 +472,7 @@ class Farm{
 
 Skipping to the bottom of the file, the document ready handler simply initialises the variable `bartFarm` with a new `Farm` object using the `div` with the ID `the_farm`. The call to the constructor also passes in three newly created animals:
 
-```JavaScript
+```javascript
 $(function(){
     bartFarm = new Farm($('#the_farm'), new Cow(), new Duck(), new Turkey());
 });
@@ -486,7 +486,7 @@ For the purposes of this example, animals will be represented by an emoji, they 
 
 Here’s the complete code for the `Animal` class:
 
-```JavaScript
+```javascript
 class Animal{
     constructor(i, e, s){
         // initialise the instance properties
@@ -572,7 +572,7 @@ I want to draw your attention to a few key points:
 
 We don’t want a farm full of generic animals, we want a farm with animals of a specific species, so let’s extend this base class to create classes for three species of animal:
 
-```JavaScript
+```javascript
 class Cow extends Animal{
     constructor(){
         super('🐄', '🌾', 'Moo!');
@@ -606,7 +606,7 @@ When overriding a function it’s often useful to be able to call the original f
 
 Here’s our updated Turkey class with the overriding `.makeNoise()` function marked:
 
-```JavaScript
+```javascript
 class Turkey extends Animal{
     constructor(){
         super('🦃', '🌽', 'Gobble!');
@@ -635,7 +635,7 @@ At the moment, no animals produce anything, because none of the child classes ov
 
 Let’s have Cows produce milk on demand by overriding `.getProduce()` in the `Cow` class:
 
-```JavaScript
+```javascript
 class Cow extends Animal{
     constructor(){
         super('🐄', '🌾', 'Moo!');

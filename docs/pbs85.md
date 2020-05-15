@@ -47,7 +47,7 @@ In JavaScript we can create arrays using the array literal syntax. This syntax s
 
 For example, to create an array containing a boolean, a number, and a string you could do something like:
 
-```JavaScript
+```javascript
 const myArray = [true, 42, 'life, the universe, and everything'];
 ```
 
@@ -57,7 +57,7 @@ Array literals can contain any valid JavaScript value, including variables, arra
 
 Since JavaScript arrays are fundamentally just objects with numeric keys, the rules for accessing individual values are the same as those for any other object. However, note that because numbers are not valid variable names, array elements can’t be accessed using the dot syntax, they must be accessed using the square bracket syntax:
 
-```JavaScript
+```javascript
 const myArray = ['one', 'two', 'three'];
 console.log(myArray[1]); // outputs 'two'
 myArray[1] = 'TWO!!';
@@ -72,13 +72,13 @@ Because JavaScript arrays are all instances of the built-in `Array` class, they 
 
 Note that these examples are intended to be run from the JavaScript console on the file `pbs85a.html` from this instalment’s zip file. The examples make use of an array named days defined within that files global scope as follows:
 
-```JavaScript
+```javascript
 var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 ```
 
 OK, let’s look at the actual examples now:
 
-```JavaScript
+```javascript
 // combine into a string with a separator
 console.log(days.join(', '));
 
@@ -112,7 +112,7 @@ console.log(days); // now in reverse alphabetical order
 
 The `Array` class also provides a few useful static functions. We’ve seen both of the noteworthy ones already in this series:
 
-```JavaScript
+```javascript
 // test if a value is an array
 console.log(Array.isArray(['boogers']));
 console.log(Array.isArray(42));
@@ -127,7 +127,7 @@ Because the above snippets altered the value of the `days` array, please refresh
 
 The spread operator can be used to include all the elements from an existing array into an array literal:
 
-```JavaScript
+```javascript
 const a1 = [2, 4, 6, 8];
 const a2 = [0, ...a1, 10];
 console.log(a2); // prints [0, 2, 4, 6, 8, 10]
@@ -137,7 +137,7 @@ A very common use of the spread operator is to create a so-called shallow clone 
 
 To illustrate the point, let’s inadvertently alter the `days` array in `pbs85a.html`:
 
-```JavaScript
+```javascript
 const revDays = days;
 revDays.reverse();
 console.log(revDays); // ["Sunday", "Saturday", "Friday", "Thursday", "Wednesday", "Tuesday", "Monday"]
@@ -148,7 +148,7 @@ Because `days` contains a reference to an array object, when we assigned `revDay
 
 Using the spread operator in conjunction with the array literal syntax we can get around this problem by creating a new array that contains the values from the original array:
 
-```JavaScript
+```javascript
 const revDays = [...days]; // shallow clone
 revDays.reverse();
 console.log(revDays); // ["Sunday", "Saturday", "Friday", "Thursday", "Wednesday", "Tuesday", "Monday"]
@@ -157,7 +157,7 @@ console.log(days); // ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "
 
 Why do we call this a _shallow copy_? Because only the values stored in the array get copied. If the array’s values are themselves references, then we are yet again copying references, as illustrated with this example:
 
-```JavaScript
+```javascript
 const deepArray = [ //an array of arrays
   [1, 2, 3],
   [4, 5, 6],
@@ -177,7 +177,7 @@ One of the most common things to want to do with an array is loop over it. We’
 
 Firstly, there’s the traditional way of looping over an array with a basic `for` loop:
 
-```JavaScript
+```javascript
 // show the number of letters in each day
 for(let i = 0; i < days.length; i++){
   const curDay = days[i];
@@ -187,7 +187,7 @@ for(let i = 0; i < days.length; i++){
 
 ES6 introduced a whole new kind of loop specifically designed for looping over arrays in a more concise and easier to read way — the `for...of` loop:
 
-```JavaScript
+```javascript
 // show the number of letters in each day
 for(const day of days){
   console.log(`${day} has ${day.length} letters`);
@@ -202,7 +202,7 @@ We won’t be going into all the details of this complex new syntax here, but if
 
 This syntax is much more difficult to describe than to show, so let’s just show it!
 
-```JavaScript
+```javascript
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // create three variables named d1, d2 & d3 in one step
@@ -212,7 +212,7 @@ console.log(`d1=${d1}, d2=${d2} & d3=${d3}`);
 
 You don’t have to capture all the values, if you only want the first and third you can leave a slot empty:
 
-```JavaScript
+```javascript
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // create two variables, skipping a value
@@ -222,7 +222,7 @@ console.log(`d1a=${d1a} & d3a=${d3a}`);
 
 You can also use the rest operator (`...`) to capture all the remaining elements into an array:
 
-```JavaScript
+```javascript
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // collect the rest
@@ -234,7 +234,7 @@ A very common use for array destructuring is capturing the results of a regular 
 
 As a practical example, let’s make use of the `dollarAmount` RE defined in the global scope of the file `pbs85a.html` from this instalment’s ZIP file:
 
-```JavaScript
+```javascript
 // a regular expression for matching dollar amounts
 // the first capture group matches the number of dollars
 // the second capture group matches the number of cents, if any
@@ -245,7 +245,7 @@ This RE matches the symbol `$` followed by one or more digits in the first captu
 
 Let’s see this RE in action to see what the `.match()` function actually returns. Firstly, let’s match a dollar amount without any cents:
 
-```JavaScript
+```javascript
 console.log("That dress costs $500!!!".match(dollarAmountRE));
 // prints: ["$500", "500", undefined]
 ```
@@ -254,7 +254,7 @@ Note we get an array with three elements, the full match, the first capture grou
 
 Now let’s see what happens when do have some cents:
 
-```JavaScript
+```javascript
 console.log("I hate prices like $9.99 because they work 🙁".match(dollarAmountRE));
 // prints: ["$9.99", "9", "99"]
 ```
@@ -263,7 +263,7 @@ Again, we get an array with three elements, the full match, the first capture gr
 
 We can use argument destructuring to extract the dollars and cents into separate variables in a single step:
 
-```JavaScript
+```javascript
 const sodaPrice = '$2.99';
 const [, sodaDollars, sodaCents] = sodaPrice.match(dollarAmountRE);
 console.log(`The soda costs ${sodaDollars} dollars and ${sodaCents} cents.`);
@@ -289,7 +289,7 @@ Finally, the document ready handler loops over the currencies defined in the `DE
 
 The first thing I want to highlight is the template’s use of a Mustache section for repeating part of the template multiple times. I.e., I use a section to create a loop in my template. Each card has to display multiple rates, so the repeated section describes how to display a single rate. I’ve highlighted the section within the full template below:
 
-```XHTML
+```html
 <div  class="col-12 col-md-6 col-lg-4">
   <div class="card m-3">
     <h2 class="card-header h4">
@@ -315,7 +315,7 @@ By using named mustaches the template in effect defines the structure of the exp
 
 I’d like to draw your attention to the fact that all the needed information exists, but not in one place, and not in the required format. The rates come from the ex change rates API, and the rest from the `CURRENCIES` dictionary. Between fetching the exchange rates via AJAX and rendering the card template with Mustache, the `buildCurrencyCard()` function has to generate a view object of the above form. I’ve highlighted the section of the function that does that work below:
 
-```JavaScript
+```javascript
 async function buildCurrencyCard(curCode){
   // validate the currency code
   curCode = String(curCode).toUpperCase();

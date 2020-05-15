@@ -22,7 +22,7 @@ Dorothy suggested that my solution missed a golden opportunity to make use of va
 
 The function in question is `dummyBasicTypesExcept()` in the test suite (`test/test.js`). In my original sample solution it looked like this:
 
-```JavaScript
+```javascript
 function dummyBasicTypesExcept(){
     // build and exclusion lookup from the arguments
     const exclude_lookup = {};
@@ -47,7 +47,7 @@ This function loops over the arguments object, so it’s a perfect candidate for
 
 So, let’s do the conversion:
 
-```JavaScript
+```javascript
 function dummyBasicTypesExcept(...excludeTypes){
     // build and exclusion lookup from the arguments
     const exclude_lookup = {};
@@ -78,7 +78,7 @@ The challenge was to apply our new knowledge of ES6 arrays and strings to both t
 
 The most common opportunity for change I found was plenty of opportunities to replace ugly string concatenation with template literals. The following test from the test suite serves as a nice example, going from:
 
-```JavaScript
+```javascript
 a.ok(
     new bartificer.ca.Automaton($('<' + t + '></' + t + '>'), 10, 10, function(){}, function(){}),
     '$container can be a ' + t
@@ -87,7 +87,7 @@ a.ok(
 
 To the much clearer:
 
-```JavaScript
+```javascript
 a.ok(
     new bartificer.ca.Automaton($(`<${t}></${t}>`), 10, 10, function(){}, function(){}),
     `$container can be a ${t}`
@@ -96,7 +96,7 @@ a.ok(
 
 The `.generationChange()` instance function from the `bartificer.ca.Automaton` prototype provides an opportunity to replace a traditional `for` loop over an array with a `for...of` loop. Before the change the function looked like this:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.generationChange = function(fn){
     // check the number of parameters
     if(arguments.length >= 1){
@@ -123,7 +123,7 @@ bartificer.ca.Automaton.prototype.generationChange = function(fn){
 
 This gets converted to:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.generationChange = function(fn){
     // check the number of parameters
     if(arguments.length >= 1){
@@ -154,7 +154,7 @@ I’ve published my sample solution to GitHub as a [release tagged `PBS45-Challe
 
 Imagine you have an array, and you want to create a new array that consists of some new elements, and, all the elements from the first array. To do that with pre-ES6 versions of JavaScript you would need to do something like:
 
-```JavaScript
+```javascript
 const firstArray = ['boogers', 'snot'];
 const secondArray = ['bogies'];
 firstArray.forEach(function(elem){
@@ -172,7 +172,7 @@ console.log(secondArray);
 
 Wouldn’t it be great to be able to just include the elements of the first array in the second as you declare it? Let’s try just include the first array in the second without the new spread operator, what happens?
 
-```JavaScript
+```javascript
 const firstArray = ['boogers', 'snot'];
 const secondArray = ['bogies', firstArray];
 
@@ -191,7 +191,7 @@ This is where the spread operator (`...`) can help — as its name suggests, the
 
 We can use the spread operator to simplify our example like so:
 
-```JavaScript
+```javascript
 const firstArray = ['boogers', 'snot'];
 const secondArray = ['bogies', ...firstArray];
 
@@ -206,7 +206,7 @@ console.log(secondArray);
 
 A particularly common use of the spread operator is to clone a simple flat array. Remember, arrays are objects, so variables hold references to arrays, not the arrays themselves, so if you have an array, you can’t just make a copy like you would with a number or a string:
 
-```JavaScript
+```javascript
 const firstArray = ['boogers', 'snot'];
 const secondArray = firstArray;
 secondArray.push('bogies');
@@ -224,7 +224,7 @@ As you can see, I have not created a copy of the array, but simply created two r
 
 Before ES6 you had to manually clone arrays:
 
-```JavaScript
+```javascript
 const firstArray = ['boogers', 'snot'];
 
 // clone the first array
@@ -247,7 +247,7 @@ console.log(secondArray);
 
 With the spread operator we can simplify this code:
 
-```JavaScript
+```javascript
 const firstArray = ['boogers', 'snot'];
 
 // clone the first array
@@ -271,7 +271,7 @@ In JavaScript, every regular function gets two special variables of its own with
 
 The second of these two can be a little inconvenient. For example, when defining an instance function within a prototype, the `this` variable is a reference to the object (an instance of the prototype) the function was invoked on. Modern JavaScript makes heavy use of callbacks, so you often end up defining anonymous functions within instance functions. Within the anonymous function, `this` is no longer a reference to the object the instance function was called on, because every regular function gets its own `this`. To get around this problem a convention has become established, before defining any anonymous functions within instance functions a variable named `self` and assigned equal to `this`:
 
-```JavaScript
+```javascript
 var self = this;
 ```
 
@@ -291,7 +291,7 @@ The syntax for an arrow function takes the following form (which explain the nam
 
 As an example, let’s look at the `.start()` instance function from the `bartificer.ca.Automaton` prototype:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
@@ -328,7 +328,7 @@ As shown in the highlighted lines, we use a variable named `self` to preserve ac
 
 With arrow functions we can simplify this code to:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
@@ -368,7 +368,7 @@ JavaScript is a prototyped language, so you define your own object types by crea
 
 To see how this works, let’s consider a very simplistic prototype written in the way we’re used to seeing:
 
-```JavaScript
+```javascript
 /**
  * A prototype representing a booger.
  *
@@ -423,7 +423,7 @@ The above code defines a prototype named Booger with one private property (`_col
 
 The sample code below uses this prototype to create and manipulate an object that is an instance of the `Booger` prototype:
 
-```JavaScript
+```javascript
 // create a yellow Booger and print it
 let myBooger = new Booger('yellow');
 console.log(myBooger.toString());
@@ -444,7 +444,7 @@ console.log('there are ' + Booger.synonyms().length + " synonyms for 'booger'");
 
 With ES6 we can re-write the prototype definition using the `class` keyword instead:
 
-```JavaScript
+```javascript
 /**
  * A class representing a booger.
  */
@@ -509,7 +509,7 @@ Finally, by default, all functions are assumed to be instance functions, unless 
 
 The `class` keyword, like the `function` keyword can be used in two ways. As a reminder, you can declare a function like this:
 
-```JavaScript
+```javascript
 // declare a function
 function sayBoogers(){
     console.log('Boogers!!! :oP');
@@ -525,7 +525,7 @@ sayBoogers();
 
 Or like this:
 
-```JavaScript
+```javascript
 // declare a function
 const sayBoogers = function(){
     console.log('Boogers!!! :oP');
@@ -541,7 +541,7 @@ sayBoogers();
 
 The same is true of the `class` keyword, which comes in handy when working with namespaces:
 
-```JavaScript
+```javascript
 // declare a class within a nested namespace
 var bartificer = bartificer ? bartificer : {};
 ((bartificer, undefined)=>{

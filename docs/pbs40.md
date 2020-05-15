@@ -20,7 +20,7 @@ At the end of the previous instalment I set the challenge of creating a web form
 
 Because the assignment was so open-ended, everyone’s solution is going to be very different, so my sample solution really is a sample, and it may look nothing like what you came up with. Anyhow, below is my code, and you can find a copy in this instalment’s ZIP file as `pbs39-challenge-sampleSollution/pbs39-challenge.html`:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -333,7 +333,7 @@ As we learned back in [instalment 31](https://bartificer.net/pbs31), you need to
 
 This snippet from my sample solution illustrates my use of field sets:
 
-```XHTML
+```html
 <fieldset role="form" aria-labelledby="movie_entry_fm_desc">
   <legend id="movie_entry_fm_desc">Movie Details</legend>
 
@@ -372,7 +372,7 @@ As an example, in my HTML markup, my fields and their matching labels are contai
 
 Here is a snippet of the HTML for my genre section:
 
-```XHTML
+```html
 <fieldset id="genre_fs" role="group" aria-labelledby="genre_fs_desc">
   <legend id="genre_fs_desc">Genre(s)</legend>
 
@@ -394,7 +394,7 @@ Here is a snippet of the HTML for my genre section:
 
 And here are the relevant sections of my CSS for displaying the genres as I do:
 
-```CSS
+```css
 /* a class for inline lists */
 ul.inlined{
   padding-left: 0px;
@@ -416,7 +416,7 @@ What does this CSS do? It removes the left-padding that usually accompanies unor
 
 As well as changing how something is displayed, you can also choose not to display it at all. The _Basics_ section provides a good example of this concept. This grouping of related inputs captures three pieces of information – the movie’s title, year, and MPAA rating. The section is marked up as an un-ordered list with an element for each piece of information, and each list item contains a label and a form element:
 
-```XHTML
+```html
 <fieldset id="basics_fs" role="group" aria-labelledby="basics_fs_desc">
   <legend id="basics_fs_desc">Basics</legend>
 
@@ -448,7 +448,7 @@ Displaying each element on a separate line with bullets would be a waste of spac
 
 The next thing to note is that the year and the rating are effectively self-documenting. Does having the label visible add clarity? Or does it just add confusing clutter? I would argue that those two specific labels add unhelpful clutter, and that the form would be clearer without them. I could have deleted the labels form the markup, but that would be a terrible thing to do – why? Because accessibility tools rely on the presence of those labels! Instead, the correct thing to do is to use CSS to hide just those two labels:
 
-```CSS
+```css
 /* Custom styling for the basics input group */
 label[for="year_tb"], label[for="rating_sel"]{
   display: none;
@@ -483,13 +483,13 @@ As well as supporting the validation attributes we’ve already seen like `requi
 
 So, you could mark an input with the ID `input1_tb` as invalid and have it display the message _‘Enter a US ZIP code’_ with:
 
-```JavaScript
+```javascript
 $('#input1_tb').get(0).setCustomValidity('Enter a US ZIP code');
 ```
 
 You could later remove this validation error with:
 
-```JavaScript
+```javascript
 $('#input1_tb').get(0).setCustomValidity('');
 ```
 
@@ -503,7 +503,7 @@ The DOM defines a finite set of events that can occur within a browser window. M
 
 There are two ways of adding an event handler to one or more objects in jQuery, we can either use the generic `.on()` function, or, we can use one of the many convenient shortcut functions jQuery provides. To add a click handler to every checkbox on a page we could do something like:
 
-```JavaScript
+```javascript
 $('input[type="checkbox"]').on('click', function(){
     console.log('CLICK!!!');
 });
@@ -511,7 +511,7 @@ $('input[type="checkbox"]').on('click', function(){
 
 Alternatively, we could use the `.click()` shortcut function to achieve the same thing:
 
-```JavaScript
+```javascript
 $('input[type="checkbox"]').click(function(){
     console.log('CLICK!!!');
 });
@@ -527,7 +527,7 @@ Finally, also remember that you can call all the registered event handlers on an
 
 Let’s start by adding validation to the cast text box. What we need to ensure is that there is text in the text area, and that each line consists of a character name and an actor’s name separated by a colon character. We’ll create a function to perform this validation for us, remembering that when we use the function as an event handler, the special `this` variable will contain a reference to the DOM object representing the text area.
 
-```JavaScript
+```javascript
 // an event handler to validate the cast list
 function validateCastList(){
     // convert the DOM object to a jQuery object
@@ -561,7 +561,7 @@ function validateCastList(){
 
 We now need to attach this function to the keyboard event on the text area. This needs to be done after the DOM has loaded. Remember that when you pass the jQuery function a callback as the only argument, this callback will be added as an event handler for the DOM read event. The sample solution already has a DOM ready event handler:
 
-```JavaScript
+```javascript
 // add a document ready event handler
 $(function(){
     // add a click handler to the submit button to blank the output area
@@ -579,7 +579,7 @@ $(function(){
 
 We should add our code the end of the anonymous function like so:
 
-```JavaScript
+```javascript
 // add a document ready event handler
 $(function(){
     // add a click handler to the submit button to blank the output area
@@ -613,7 +613,7 @@ Now let’s add code to ensure that at least one genre must be selected.
 
 Again, let’s start by building a function that checks if at least one genre is chosen, and if not, adds a custom validation error message to the first genre checkbox:
 
-```JavaScript
+```javascript
 // an event handler to ensure at least one genre is chosen
 function validateGenres(){
     // build a jQuery object that references all the genre checkboxes
@@ -634,7 +634,7 @@ function validateGenres(){
 
 Now that we have this function we need to attach it to the change handler for every genre checkbox so the validity gets re-calculated each time any genre is checked or un-checked. Again, we do this by adding our code to the bottom of the existing document ready event handler:
 
-```JavaScript
+```javascript
 // add a document ready event handler
 $(function(){
     // add a click handler to the submit button to blank the output area
