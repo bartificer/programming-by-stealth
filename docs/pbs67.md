@@ -24,7 +24,7 @@ With the HTML5 markup in place on both forms I moved on to adding bootstrap vali
 
 For the sharing form I opted to use HTML5 form validation on first submit. To enable this I added the following to the document ready handler:
 
-```JavaScript
+```javascript
 // add on-first-submit form validation to the sharing form
 const $shareForm = $('#share_fm');
 const enableShareValidation = function(){
@@ -44,7 +44,7 @@ The documentation clearly states that the tooltip must be contained within an HT
 
 This is what the completed form looks like:
 
-```XHTML
+```html
 <form id="login_fm" class="form-inline" action="javascript:void(0);" novalidate>
 <span class="input-group input-group-sm" style="position: relative">
   <span class="input-group-prepend">
@@ -62,7 +62,7 @@ This is what the completed form looks like:
 
 With the markup in place, the next step was to replace the simple submit handler for the login form with the following JavaScript code:
 
-```JavaScript
+```javascript
 // add custom validation to login form
 const $loginForm = $('#login_fm');
 const validateLoginForm = function(){
@@ -97,7 +97,7 @@ $('input', $loginForm).on('input', validateLoginForm);
 
 The first thing above codes does is define a validation function which checks whether or not both of the inputs in the form are valid, and then shows or hides the validation tooltip and enables or disables the login button. The validity check is done in one simple line:
 
-```JavaScript
+```javascript
 const allOK = $('input:valid', $loginForm).length === 2;
 ```
 
@@ -107,7 +107,7 @@ So, what about the thing to the left of the `===`? It is a call to the jQuery `$
 
 The other line within the validation function I want draw attention to is this one:
 
-```JavaScript
+```javascript
 $('button[type=submit]', $loginForm).prop('disabled', false);
 ```
 
@@ -172,7 +172,7 @@ Within this new container we then add the buttons that will make up the menu’s
 
 Putting all that together we get the following simple example:
 
-```XHTML
+```html
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" id="basicDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
     Share …
@@ -193,7 +193,7 @@ By default the Dropdown will prefer to drop downwards, but if it’s at the bott
 
 The following shows a menu set to drop right:
 
-```XHTML
+```html
 <div class="dropright">
   <button class="btn btn-secondary dropdown-toggle" id="basicDroprightBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
     Share …
@@ -257,7 +257,7 @@ When creating a split button the button to toggle the dropdown should not contai
 
 You can see all this in action in the following example:
 
-```XHTML
+```html
 <div class="btn-group">
   <button type="button" class="btn btn-primary">Send</button>
   <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" id="splitDropdownBtn">
@@ -274,7 +274,7 @@ You can see all this in action in the following example:
 
 While you can only have one dropdown per button group, you can have more than one regular button in the button group along with the dropdown:
 
-```undefined
+```
 <div class="btn-group">
   <button type="button" class="btn btn-primary">Save</button>
   <button type="button" class="btn btn-primary">Send</button>
@@ -298,7 +298,7 @@ You do this by using the `.input-group-prepend` or `.input-group-append` in the 
 
 An example using a regular dropdown:
 
-```XHTML
+```html
 <div class="input-group">
   <input type="text" class="form-control" aria-label="message" placeholder="Your message">
   <div class="input-group-append">
@@ -318,7 +318,7 @@ An example using a regular dropdown:
 
 An example using a split button:
 
-```XHTML
+```html
 <div class="input-group">
   <input type="text" class="form-control" aria-label="message" placeholder="Your message">
   <div class="input-group-append">

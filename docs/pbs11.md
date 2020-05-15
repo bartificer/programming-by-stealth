@@ -33,7 +33,7 @@ When tables were used for page layout, you would have found all sorts of complex
 
 I will make one exception though – it often makes sense to merge all the cells in the footer row into one long cell containing some kind of information about the data source – perhaps the time the data was sourced at, or copyright information. You can do this by including only one cell in the footer row, and setting the `colspan` HTML attribute on that one cell to the number of columns in the table. For example, if your table had four columns, you could use a footer something like:
 
-```XHTML
+```html
 <tfoot>
   <tr>
     <th colspan="4">Info about the data here.</th>
@@ -45,7 +45,7 @@ I will make one exception though – it often makes sense to merge all the cells
 
 Let’s tie all this together with a simple un-styled sample table. You can save the HTML below as `simpleTable.html` in a folder called `pbs11` in your local web server’s document root, then view it at `http://localhost/pbs11/simpleTable.html` (a copy of this file is included in the zip file linked in the Worked Example section near the bottom of this post).
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -127,7 +127,7 @@ By default table are only as wide as they need to be to contain their content. T
 
 The simplest way to add borders to a table is to set a border on the table as a whole, and then on all table header and table data cells. To do this to all tables with the class `basic`, you could use the following CSS definition:
 
-```CSS
+```css
 table.basic, table.basic th, table.basic td{
   border: 1px solid black;
 }
@@ -135,7 +135,7 @@ table.basic, table.basic th, table.basic td{
 
 When you do this you’ll notice that what you get is not the behaviour you tend to see in spreadsheet or word processing apps, where tables are resented as a simple grid. Instead, each cell has a separate border around it, and there is a gap between the borders of adjacent cells. The width of this gap can be controlled with the `border-spacing` CSS property (to be applied to tables, not cells). To illustrate the point, below is the code to add a 1 pixel solid black border with a very wide border spacing:
 
-```CSS
+```css
 table.basic{
   width: 100%; /* make the table full-width */
   border-spacing: 10px; /* exaggerate the space between cells */
@@ -154,7 +154,7 @@ We can make tables behave like they do in Excel by collapsing the borders. Wheth
 
 When you collapse the borders, there is no longer any need to set a border on the table itself, so the following CSS will suffice:
 
-```CSS
+```css
 /* apply styles to the table */
 table.basic{
   width: 100%; /* make the table full-width */
@@ -181,7 +181,7 @@ You’ll find all sorts of approaches used to set column widths on tables. My pr
 
 As an example, the following CSS code sets the widths of each of the four columns in our example table (which has been assigned the ID `logs_table`) as percentages:
 
-```CSS
+```css
 /* set the column widths on the logs table */
 #logs_table thead th:nth-child(1){
   width: 20%;
@@ -253,7 +253,7 @@ Finally, when the content of a cell is truncated, we want to indicate that fact 
 
 Putting it all together, the following definition would truncate the first column in a table with the ID `some_table`:
 
-```CSS
+```css
 #some_table tbody td:nth-child(1){
   white-space: nowrap;
   overflow-x: hidden;
@@ -265,7 +265,7 @@ Putting it all together, the following definition would truncate the first colum
 
 You can download a zip file with the code [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/03/pbs11.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs11.zip). Extract the files and save them in a folder called `pbs11` in your local web server’s document root, and then you’ll be able to browse to the demo at `http://localhost/pbs11/`. For completeness, the HTML and CSS from the example are included below:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -431,7 +431,7 @@ You can download a zip file with the code [here](https://www.bartbusschots.ie/s/
 </html>
 ```
 
-```CSS
+```css
 /*
 Styles for PBS 11 Demo
 */

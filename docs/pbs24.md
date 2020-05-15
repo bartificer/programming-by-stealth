@@ -22,7 +22,7 @@ Before we get stuck into this instalment’s new content, let’s look at a solu
 
 Below is my solution. As always, I want to stress that there are an infinity of correct solutions to any programming challenge, so, if your code works, then it’s just as correct as mine!
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -135,7 +135,7 @@ In JavaScript, when you define a function within another function, the outer fun
 
 Consider the following code:
 
-```JavaScript
+```javascript
 function initClickCounter(){
   // define a variable in the outer function
   var counter = 0;
@@ -154,7 +154,7 @@ function initClickCounter(){
 
 We could add this into a page as shown below:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -226,7 +226,7 @@ Because my registered business name is _Bartificer_, I publish all my JavaScript
 
 If you choose this approach, your code will inevitably be split across multiple `.js` files, and any one project will only use a sub-set of those files. So how do you declare your object in the first place? You could declare it in a sort of master file that must be included in every project, but that is needlessly cumbersome. A better approach is to declare the object in every file, but only if it does not already exist. This can be done using the following code snippet:
 
-```JavaScript
+```javascript
 var pbs = pbs ? pbs : {};
 ```
 
@@ -240,13 +240,13 @@ If `CONDITION` evaluates to `true`, the entire operator will evaluate to `VALUE_
 
 For example, we could create a variable named `x`, and set it to the value of another variable named `y`, if `y` is positive, or `0` otherwise like so:
 
-```JavaScript
+```javascript
 var x = y > 0 ? y : 0;
 ```
 
 You can test this in the JavaScript console. First run the following:
 
-```JavaScript
+```javascript
 var y = 4;
 var x = y > 0 ? y : 0;
 console.log(x);
@@ -254,7 +254,7 @@ console.log(x);
 
 Then run the following:
 
-```JavaScript
+```javascript
 var y = -3;
 var x = y > 0 ? y : 0;
 console.log(x);
@@ -262,7 +262,7 @@ console.log(x);
 
 Now that we understand the ternary operator, let’s look at our sample code again:
 
-```JavaScript
+```javascript
 var pbs = pbs ? pbs : {};
 ```
 
@@ -276,7 +276,7 @@ The final strange beast we need to learn about before we can look at the design 
 
 In JavaScript, a pair of parentheses can have three different meanings, depending on where they appear in your code. Firstly, when they appear without an name, value, or keyword directly to their left, they simply act to group things together, e.g.:
 
-```JavaScript
+```javascript
 var x = (4 + 5) * (6 - 7);
 ```
 
@@ -284,7 +284,7 @@ Secondly, many JavaScript keywords make use of parentheses – e.g. `if`, `while
 
 Finally, if a pair of parentheses containing zero or more comma-separated arguments appears directly after a name or value that is not a keyword, JavaScript will try to execute what ever is to the left of the parenthesis as a function, using the values between the parentheses as arguments to that function, e.g.:
 
-```JavaScript
+```javascript
 console.log('test');
 ```
 
@@ -292,7 +292,7 @@ console.log('test');
 
 We can combine all that knowledge to form the following construction:
 
-```JavaScript
+```javascript
 (function(msg){ console.log(msg); })('test');
 ```
 
@@ -300,7 +300,7 @@ The first set of parentheses creates a group that gets evaluated first. That gro
 
 The above construction is hard to read, and would be even harder to read if the anonymous function contained even just a few lines of code, let alone hundreds. Hence, it’s usually written over multiple lines with the following indentation:
 
-```JavaScript
+```javascript
 (function(msg){
   console.log(msg);
   // more lines of code within the self-executing
@@ -314,7 +314,7 @@ We are now ready to look at a very common design pattern for simulating namespac
 
 To illustrate the technique, let’s create a very simple API that contains just one function – `helloWorld()`, and present it to the world using `pbs` as a namespace. The code below should be saved in a stand-alone `.js` file, say `pbs.helloWorld.js` (included in this instalment’s ZIP file):
 
-```JavaScript
+```javascript
 // make sure the pbs 'namespace' exists
 var pbs = pbs ? pbs : {};
 
@@ -335,19 +335,19 @@ var pbs = pbs ? pbs : {};
 
 We could now include our simple little API into an existing web page like so:
 
-```XHTML
+```html
 <script type="text/javascript" src="pbs.helloWorld.js"></script>
 ```
 
 Having done that, we could call the function like so:
 
-```JavaScript
+```javascript
 pbs.helloWorld();
 ```
 
 For added context, let’s create a full web page that uses our simple API to generate an alert each time a paragraph is clicked (`pbs24b.html` in the ZIP file):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -404,7 +404,7 @@ This will build a documentation website describing `myFile.js`, and place all th
 
 We can get more control over the generated document by creating a config file. The config file should be in JSON format, and can be passed to the command with the `-c` flag. You’ll find a copy of the config I’ll be using in the ZIP file as `jsdoc.conf.json`:
 
-```JavaScript
+```javascript
 {
 	"templates" : {
 		"default" : {
@@ -421,7 +421,7 @@ This very simple config does two things. Firstly, it sets a configuration variab
 
 I mentioned that JSDoc looks for specially formatted comments. JSDoc will try to interpret all comments starting with `/**` and ending with `*/`. JSDoc is smart enough to ignore leading spaces and `*`s on multi-line comments. These special comments are referred to as _doc comments_. You can give a simple description of a function as you create it like so:
 
-```JavaScript
+```javascript
 /**
 * Calculate the Factorial of an integer.
 */
@@ -446,7 +446,7 @@ You can leave out either the type or the description if you like (but not both).
 
 Given what we know now, let’s re-write our sample function:
 
-```JavaScript
+```javascript
 /**
 * Calculate the Factorial of a number. The factorial of a positive integer is defined as the product of all the integers between `1` and the number (inclusive). I.e. the factorial of `3` is `1 x 2 x 3`
 * @param {number} n - the number to get the factorial of. It must be a whole positive number.
@@ -467,7 +467,7 @@ Where `EXCEPTION_PROTOTYPE` is the prototype of the exception that could be thro
 
 We could re-write our function so it throws an exception on invalid arguments as follows:
 
-```JavaScript
+```javascript
 /**
 * Calculate the Factorial of a number. The factorial of a positive integer is defined as the product of all the integers between `1` and the number (inclusive). I.e. the factorial of `3` is `1 x 2 x 3`
 * @param {number} n - the number to get the factorial of. It must be a whole positive number.
@@ -484,7 +484,7 @@ function fact(n){
 
 Finally, before we move on from functions, I also want to mention the `@example` tag, which you can use to add sample code into your documentation. This tag works over multiple lines – everything until the next tag, or, until the end of the comment is considered part of the example. Let’s re-write our function one last time:
 
-```JavaScript
+```javascript
 /**
 * Calculate the Factorial of a number. The factorial of a positive integer is defined as the product of all the integers between `1` and the number (inclusive). I.e. the factorial of `3` is `1 x 2 x 3`
 * @param {number} n - the number to get the factorial of. It must be a whole positive number.
@@ -511,7 +511,7 @@ Finally, we should add a doc comment to the `helloWorld` function. Because this 
 
 This is how our file now looks:
 
-```JavaScript
+```javascript
 /**
 * @overview A simple sample API that contains just one function. Everything is contained within the {@link pbs} namespace.
 * @author Bart Busschots
@@ -561,7 +561,7 @@ As we did with URI.js, this is merely a sampler of what Moment.js can do, focusi
 
 We can create a moment object representing the current time in a given timezone as follows:
 
-```JavaScript
+```javascript
 var now = moment().tz('Europe/London');
 ```
 
@@ -569,14 +569,14 @@ The timezone string should be a TZ string as defined in the [IANA time zone data
 
 We can then access one or more aspects of the time as a string using the `.format()` function. For example, to see the hours and minutes separated by a colon we could use:
 
-```JavaScript
+```javascript
 var now = moment().tz('Europe/London');
 console.log(now.format('HH:mm'));
 ```
 
 You can get a full listing of all the formatting characters [here](http://momentjs.com/docs/#/displaying/format/), but for our assignment we only need to know the following:
 
-```JavaScript
+```javascript
 var now = moment().tz('Europe/London');
 var hours = now.format('HH'); // hours in 24 hour format with a leading 0 when < 10
 var minutes = now.format('mm'); // minutes with a leading 0 when < 10
@@ -586,7 +586,7 @@ var minutes = now.format('mm'); // minutes with a leading 0 when < 10
 
 Rather than starting with a blank canvas, start with the following two files (`pbs24-assignment.html` and `pbs.renderClock.js` in the ZIP file):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -642,7 +642,7 @@ Rather than starting with a blank canvas, start with the following two files (`p
 
 You don’t need to make any changes to this file. You can use it as-is to test that your clock function is working. This file must be located in the same folder as the `contrib` folder, and the `pbs.renderClock.js` file in order to function.
 
-```JavaScript
+```javascript
 /**
 * @overview A simple single-function API for inserting a clock into a web page that shows the current time in a give timezone.
 

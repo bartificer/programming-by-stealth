@@ -81,7 +81,7 @@ By default the `$()` function will search the entire document, but we can limit 
 
 You can see an example of this more advanced usage in the submit event handler for the form for adding new cards in the sample solution:
 
-```JavaScript
+```javascript
 // get the selected currency
 const curCode = $('select', $form).val();
 ```
@@ -100,7 +100,7 @@ Having selected one or more elements within a page, the next logical thing to do
 
 Within the sample solution, you can see the use of .prop() to both read and alter properties in the following snippet from the function for enabling and disabling options within the currency selection in the form for adding new cards (`updateAddCardSelectOptions()`):
 
-```JavaScript
+```javascript
 // if the current option is not disabled, select it and exit the loop
 if(!$opt.prop('disabled')){
   $opt.prop('selected', true);
@@ -122,7 +122,7 @@ Rather counter-intuitively, document (effectively represented in HTML by the `<b
 
 There are two common groups of metaphors used to describe the DOM and moving with in it. To illustrate these terms let’s consider a very simplistic document:
 
-```undefined
+```
 <body>
   <header>
     <h1>A Very Simple Document</h1>
@@ -171,7 +171,7 @@ It’s also important to note that you can create arbitrarily many arbitrarily d
 
 In the sample solution the Mustache templating engine is used to build complex HTML strings which are then passed to the `$()` function. You can see an example of this within the function for adding currency cards (`showCurrencyCard()`):
 
-```JavaScript
+```javascript
 // generate the HTML
 const cardHTML = Mustache.render(TEMPLATES.currencies.displayCard, cardView);
 
@@ -196,7 +196,7 @@ Once you have your newly created elements you need to insert them into the DOM. 
 
 In the sample solution, the form for showing and hiding rates is generated from a template, stored in a variable named `$showHideRatesForm`, and then inserted into a waiting <div> with the following line:
 
-```JavaScript
+```javascript
 // add the form into the page
 $('#currency_controls').append($showHideRatesForm);
 ```
@@ -225,13 +225,13 @@ Also remember that when evaluating a line of JavaScript code, the interpreter ex
 
 For example, consider the following line:
 
-```JavaScript
+```javascript
 const x = Math.round(Math.PI);
 ```
 
 The JavaScript interpreter can’t assign a value to `x` without first figuring out what it is, so it must first execute the function, only then can it do the assignment. That means the compile effectively executes this single line in two steps:
 
-```JavaScript
+```javascript
 // step 1:
 const x = Math.round(Math.PI);
 // ⬇️
@@ -242,13 +242,13 @@ const x = 3;
 
 If a single line contains multiple function calls the interpreter has to take even more steps to process it. Consider the following slightly more complex example:
 
-```JavaScript
+```javascript
 const x = Math.round(Math.random() * 100);
 ```
 
 Not only can the interpreter not assign `x` immediately, it can’t even execute `Math.round()` immediately because it doesn’t know what argument to pass it. That means the interpreter needs three steps for this line:
 
-```JavaScript
+```javascript
 // step 1:
 const x = Math.round(Math.random() * 100);
 // ⬇️
@@ -270,7 +270,7 @@ Note that you can chain as many function calls as you like, so you can just keep
 
 E.g. the following chain will throw an error because `Math.random()` returns a number, not an object:
 
-```JavaScript
+```javascript
 const x = Math.random().round();
 ```
 
@@ -280,7 +280,7 @@ Some APIs are written with the intent of facilitating function chaining by retur
 
 What does the following snippet do?
 
-```JavaScript
+```javascript
 $('p.lead').removeClass('lead').addClass('alert alert-info')
 ```
 
@@ -300,7 +300,7 @@ Another very common use of function chaining in jQuery is the addition and invoc
 
 You can see an example of this construct in the sample solution. Within the document ready event handler an input handler is added to each of the toggles for the currency rates. To make sure the visual rendering of each toggle is correct the handler needs to be called on each toggle. This is done in the following way:
 
-```JavaScript
+```javascript
 // add event handlers to all the toggles and trigger them to get the
 // inital rendering right
 $('input[type="checkbox"]', $showHideRatesForm).on('input', function(){
@@ -312,7 +312,7 @@ Note that functions designed to be chained don’t have to pass the object they 
 
 You can see an example of this in the following line from the document ready handler in the sample solution:
 
-```JavaScript
+```javascript
 // select the first currency in the list
 $('select option', $newCurrencyForm).first().prop('selected', true);
 ```
@@ -323,7 +323,7 @@ The `$()` function creates a jQuery object representing every `<option>` inside 
 
 As well as representing the visual elements of a page, and allowing JavaScript to alter them, the DOM also allows arbitrary pieces of named data to be added into elements. These are known as _data attributes_. From an HTML point of view they can be added to any tag by pre-fixing the name of your choice with `data-`. So, to add a data attribute named `boogers` to a paragraph you could mark it up like so:
 
-```XHTML
+```html
 <p data-boogers="some value">A random paragraph!</p>
 ```
 
@@ -333,13 +333,13 @@ Because data attributes are attributes, they can also be used in conjunction wit
 
 In the sample solution, the Bootstrap grid column for each currency card is given the CSS class `.currencyCol` and the 3-letter ISO code for the currency the card will represent is added in a data attribute named currency. This is the relevant line from the Bootstrap template used to generate the columns:
 
-```XHTML
+```html
 <div data-currency="{{{base.code}}}" class="currencyCol col-12 col-md-6 col-xl-4">
 ```
 
 Similarly, the list item for each rate within each card is given the CSS class `.currencyRate` and a data attribute named `currency`:
 
-```XHTML
+```html
 <li class="list-group-item currencyRate" data-currency="{{{code}}}">
 ```
 
@@ -347,19 +347,19 @@ These data attributes make it possible to easily get references the cards and ra
 
 To get all cards and rates for the Euro enter the following:
 
-```JavaScript
+```javascript
 $('[data-currency="EUR"]')
 ```
 
 This is too broad a brush to be useful, but we can combine this attribute selector with a class selector to narrow our focus. The following will highlight the Euro card by making the text of all list items within it blue:
 
-```JavaScript
+```javascript
 $('.currencyCol[data-currency="EUR"] li').addClass('text-primary')
 ```
 
 Similarly, we can make the text for every British pound rate in each card bold and red by entering:
 
-```JavaScript
+```javascript
 $('.currencyRate[data-currency="GBP"]').addClass('font-weight-bold text-danger')
 ```
 
@@ -367,7 +367,7 @@ The sample solution uses CSS attribute selectors for data attributes within call
 
 The following snippet from the start of the function to show a currency card (showCurrencyCard()) demonstrates the use of both the CSS attribute selector and jQuery’s `.data()` function:
 
-```XHTML
+```html
 // get the col for the currency
 const $curCol = $(`.currencyCol[data-currency='${curCode}']`);
 

@@ -22,7 +22,7 @@ The approach I chose to take is to transform the start button into a cancel butt
 
 Before starting to add new functionality I started by re-factoring my solution to PBS 70 a little. To make the event handlers easier to read I first moved the code for starting a timer into a separate function named `startTimer()`. For this function to be able to access my shortcut variables to the various parts of the UI it needs to share a scope with those variables. This is why I created the function within the jQuery document ready handler, and not out in the global scope. The actual code for the function is simply cut-and-pasted from the submit handler for the form:
 
-```JavaScript
+```javascript
 // a helper function to start the timer
 const startTimer = function(){
   // if the timer is already running do nothing
@@ -81,7 +81,7 @@ const startTimer = function(){
 
 The form’s submit handler can then be updated to simply become:
 
-```JavaScript
+```javascript
 // add a submit handler to the timer form
 $form.on('submit', function(){
   return startTimer();
@@ -90,7 +90,7 @@ $form.on('submit', function(){
 
 Next I broke the code for enabling and disabling the form out into stand-alone functions. Again, I defined them within the jQuery document ready handler so they share a scope with my helper variables:
 
-```JavaScript
+```javascript
 // a helper function to disable the form
 const disableForm = function(){
   $formControls.prop('disabled', true);
@@ -106,7 +106,7 @@ Again, the relevant parts of the `startTimer()` function were updated to call th
 
 As things stand, the button on my form is a submit button, and the event handler starting the timer is _on submit_. To get my button to work as both a start and cancel button it needs to be transformed into a regular button with a click handler. From a markup point of view this simply involves changing the `type` from `submit` to `button`. To make the button easier to address I also gave it an ID:
 
-```XHTML
+```html
 <button type="button" id="timer_btn" class="btn btn-success form-control">
   Start!
 </button>
@@ -116,13 +116,13 @@ Rather than replacing the submit handler, I chose to add a click handler. Why? B
 
 To make things easier, I first created another utility variable for addressing the button:
 
-```JavaScript
+```javascript
 const $btn = $('#timer_btn');
 ```
 
 The I added the click handler:
 
-```JavaScript
+```javascript
 // add a click handler to the timer button
 $btn.click(function(){
   startTimer();
@@ -135,7 +135,7 @@ Before we update the code for the button to add the spinner and to change the te
 
 To do this I updated the `disableForm()` and `enableForm()` functions as shown:
 
-```JavaScript
+```javascript
 // a helper function to disable the form
 const disableForm = function(){
   // disable the form elements
@@ -163,7 +163,7 @@ const enableForm = function(){
 
 With that groundwork laid we can finally update the button’s markup to include a spinner and two separate textual labels:
 
-```XHTML
+```html
 <button type="button" id="timer_btn" class="btn btn-success form-control">
   <span class="spinner-border spinner-border-sm mr-2 running_only d-none" role="status" aria-hidden></span>
   <span class="not_running_only">Start!</span>
@@ -173,7 +173,7 @@ With that groundwork laid we can finally update the button’s markup to include
 
 At this stage we have a working solution to the first part of the challenge — our form now clearly indicates its running state to the user. However, having the button remain green seems inappropriate, so I updated the disableForm() and enableForm() functions to toggle the button between green (`btn-success`) and red (`btn-danger`):
 
-```XHTML
+```html
 // a helper function to disable the form
 const disableForm = function(){
   // disable the form elements
@@ -207,7 +207,7 @@ const enableForm = function(){
 
 Let’s tackle the final part of the challenge now, giving users the ability to cancel a running timer. Before we plumb in some UI, let’s start by writing a function that will actually stop a timer. Like all our other functions, it needs to share a scope with my utility variables, so I’ve created it within the jQuery document ready event handler:
 
-```JavaScript
+```javascript
 // a helper function to stop the timer
 const stopTimer = function(){
   // if the timer is not running, do nothing
@@ -238,13 +238,13 @@ At this stage we’re almost ready to plumb this new functionality into our form
 
 To fix this I updated the $formControls utility variable so it no longer includes buttons:
 
-```JavaScript
+```javascript
 const $formControls = $('input, textarea', $form);
 ```
 
 Finally, we can now update the click handler on the button to start or stop the timer as appropriate:
 
-```JavaScript
+```javascript
 // add a click handler to the timer button
 $btn.click(function(){
   // start or stop as appropriate
@@ -258,7 +258,7 @@ $btn.click(function(){
 
 At this stage we have a working solution, but it would benefit form a little re-factoring. As things stand there’s a lot of code duplication between the timeout that fires when the timer ends, and the `stopTimer()` function. This can be easily fixed by replacing the duplicated code in the timeout with a call to the `stopTimer()` function:
 
-```JavaScript
+```javascript
 mainTimerID = window.setTimeout(function(){
   // stop the timer
   stopTimer();
@@ -278,7 +278,7 @@ With that we have what I consider to be a perfect solution to the challenge. You
 
 Templating is an extremely broad topic — templates come in many forms, and they fill many different needs in many different ways. While I haven’t focused on the word, we have been making extensive use of one form of JavaScript templates throughout most of the JavaScript-focused instalments in this series. [Strings defined within back-ticks](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are officially \*Template literals\* (formerly \*Template strings\*). Using the `${}` operator we can inject data into these strings:
 
-```JavaScript
+```javascript
 const like = 'ice cream';
 console.log(`I really like ${like}, it's just so tasty!`);
 ```
@@ -311,7 +311,7 @@ Also note that template tags can’t appear just anywhere in your code, you shou
 
 Let’s consider the following sample template:
 
-```XHTML
+```html
 <template id="tpl1">
 <p>I like <span class="thing"></span>, it's just so tasty!</p>
 </template>
@@ -319,7 +319,7 @@ Let’s consider the following sample template:
 
 First, we need to get a reference to the raw DOM object representing our template. We can do this using the built-in JavaScript function `document.getElementById()`:
 
-```JavaScript
+```javascript
 const tpl1DOM = document.getElementById('tpl1');
 ```
 
@@ -327,31 +327,31 @@ This is one of the native functions that jQuery users under the hood to do its m
 
 We can also make use of jQuery’s `.get()` function to access the template’s raw DOM object:
 
-```JavaScript
+```javascript
 const tpl1DOM = $('#tpl1').get(0);
 ```
 
 We can now access the template’s contents using the DOM object’s `.content` property, and we’ll need to clone it using the built-in JavaScript function [`document.importNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/importNode):
 
-```JavaScript
+```javascript
 const tpl1CloneDocFrag = document.importNode(tpl1DOM.content, true);
 ```
 
 When we clone the template’s contents the output will be a so-called [document fragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment). We don’t want the fragment itself, instead, we want its contents, and we can get those via the fragment’s `.children` property:
 
-```JavaScript
+```javascript
 const tpl1CloneDOM = tpl1CloneDocFrag.children;
 ```
 
 After all that we’ll be left with a raw DOM object representing a clone of the contents of the template. If we were using native JavaScript DOM functions we could manipulate this object directly, but we’ve been learning jQuery, so we need to convert this DOM object into a jQuery object by passing it to jQuery’s `$()` function:
 
-```JavaScript
+```javascript
 const $tpl1Clone = $(tpl1CloneDOM);
 ```
 
 Putting it all together we can get a jQuery object representing a clone of our template with:
 
-```JavaScript
+```javascript
 // get the template's raw DOM object
 const tpl1DOM = $('#tpl1').get(0);
 
@@ -367,13 +367,13 @@ const $tpl1Clone = $(tpl1CloneDOM);
 
 We can of course collapse all that down into a single line:
 
-```JavaScript
+```javascript
 const $tpl1Clone = $(document.importNode($('#tpl1').get(0).content, true).children);
 ```
 
 We can now manipulate this jQuery object in the normal way, for example, we can inject text into the span with the class `.thing` with:
 
-```JavaScript
+```javascript
 $('.thing', $tpl1Clone).text('ice cream');
 ```
 
@@ -387,7 +387,7 @@ We’re going to refactor this code so it uses HTML5 templates to generate the t
 
 Before we start, this is how the code currently builds up the toast:
 
-```JavaScript
+```javascript
 // add a click handler to the generate toast button
 $('#toast_generate_btn').click(function(){
   // creat an empty toast
@@ -424,7 +424,7 @@ The highlighted lines are where the structure of the toast get defined. I think 
 
 We can replace that un-glanceable code with this much clearer template:
 
-```XHTML
+```html
 <!-- The template for the Toasts -->
 <template id="toast_tpl">
   <div class="toast" role="status" aria-atomic>
@@ -438,7 +438,7 @@ We can replace that un-glanceable code with this much clearer template:
 
 With that done, we can re-write the event handler:
 
-```JavaScript
+```javascript
 // add a click handler to the generate toast button
 $('#toast_generate_btn').click(function(){
   // get an empty toast from the template
@@ -474,7 +474,7 @@ You can see the finished refactoring in `pbs72b.html` in this instalment’s ZIP
 
 Note that you can use this file to prove to yourself that template content is not really part of the document, but separate from it. Open the file in a browser, refresh the page, and **do not generate any toasts**. Open the JavaScript console, and search for all tags with the class `.toast`:
 
-```JavaScript
+```javascript
 $('.toast')
 ```
 

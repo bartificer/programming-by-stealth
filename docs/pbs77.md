@@ -20,7 +20,7 @@ I’ve included the code snippets below in the file `pbs77a.html` in this instal
 
 The sample file declares a very simplistic function named `saySomething()`:
 
-```JavaScript
+```javascript
 function saySomething(something){
   showToast('Saying …', something);
 }
@@ -28,7 +28,7 @@ function saySomething(something){
 
 You can see this function in action by executing the following in the JavaScript console:
 
-```JavaScript
+```javascript
 saySomething('boogers')
 ```
 
@@ -36,7 +36,7 @@ What can we say about `saySomething()`? We can say it is a function, and that it
 
 Now let’s look at another function definition:
 
-```JavaScript
+```javascript
 function doSomethingRandom(someFn){
   // generate a random number
   const randNum = Math.ceil(Math.random()*100);
@@ -52,7 +52,7 @@ For starters, it names the first argument passed to it `someFn`. The first thing
 
 To see this function in action, let’s call it form the JavaScript console with the previously defined function as the only argument:
 
-```JavaScript
+```javascript
 doSomethingRandom(saySomething)
 ```
 
@@ -60,7 +60,7 @@ Note that we are passing the name of the function as the argument, not the resul
 
 We can pass any function that does something sensible with a single argument to the `doSomethingRandom()` function. Again, try executing the following on the console:
 
-```JavaScript
+```javascript
 doSomethingRandom(window.alert)
 ```
 
@@ -82,7 +82,7 @@ So far we have been using named functions as callbacks. In reality, the function
 
 Consider the following example:
 
-```JavaScript
+```javascript
 doSomethingRandom(function(rn){
   saySomething(`${rn - 1}, ${rn}, ${rn + 1}`);
 });
@@ -96,7 +96,7 @@ These are obviously very contrived examples, so how are callbacks commonly used 
 
 Consider the following array of people objects:
 
-```JavaScript
+```javascript
 const peopleObjects = [
   {
     firstName: 'Bart',
@@ -145,7 +145,7 @@ Rather than writing our own functions, we can sort our objects using the built-i
 
 To sort by surname while ignoring case:
 
-```JavaScript
+```javascript
 Array.from(peopleObjects).sort(function(a, b){
   const snA = a && a.surname ? String(a.surname).toLowerCase() : '';
   const snB = b && b.surname ? String(b.surname).toLowerCase() : '';
@@ -158,7 +158,7 @@ Note that the `.sort()` function does not duplicate the array, but sorts it in p
 
 Similarly, the following snippet will sort on `displayName` in a case-insensitive way:
 
-```JavaScript
+```javascript
 Array.from(peopleObjects).sort(function(a, b){
   const dnA = a && a.displayName ? String(a.displayName).toLowerCase() : '';
   const dnB = b && b.displayName ? String(b.displayName).toLowerCase() : '';
@@ -169,7 +169,7 @@ Array.from(peopleObjects).sort(function(a, b){
 
 And for completeness, the following snippet will sort on domain in a case-insensitive way ignoring the www part if present:
 
-```JavaScript
+```javascript
 Array.from(peopleObjects).sort(function(a, b){
   const urlToDomain = function(u){
     const urlMatch = String(u).toLowerCase().match(/^http(?:s)?[:]\/\/([^\/]+)/);
@@ -192,7 +192,7 @@ Literally every event handler we’ve used in this series uses functions as argu
 
 Firstly, The document ready handler takes the form:
 
-```JavaScript
+```javascript
 $(function(){
   // …
 });
@@ -202,7 +202,7 @@ That’s an anonymous function being passed as the only argument to the `$()` fu
 
 Secondly, the click handler for the button takes the following form:
 
-```JavaScript
+```javascript
 $('#ajax_btn').click(function(){
   // …
 });
@@ -220,7 +220,7 @@ The jQuery documentation tells us that the `success` callback gets executed if t
 
 As an example, the click handler for the button in `pbs77a.html` makes the following AJAX HTTP request to a URL on my server that returns a random number between 1 and 100 as a string:
 
-```JavaScript
+```javascript
 $.ajax({
   url: 'https://www.bartbusschots.ie/utils/fakerWS/numberBetween/1/text',
   method: 'GET',
@@ -258,7 +258,7 @@ The first thing I needed to do was create a blank file, give it the name `contac
 
 At this stage everything breaks, because the document ready handler currently fetches the template string using the following line of code:
 
-```JavaScript
+```javascript
 const contactTpl = $('#contact_card_tpl').html();
 ```
 
@@ -270,7 +270,7 @@ The code for generating the view objects can remain un-altered.
 
 Let’s add the AJAX call to the bottom of the document ready handler, after the code that generates the view objects:
 
-```JavaScript
+```javascript
 const $contactCardHolder = $('#contact_cards');
 $.ajax({
   url: './contacts.tpl2.txt',
@@ -312,7 +312,7 @@ The first thing we need to do is move the JSON data from the `<script>` tag into
 
 Next, let’s do a little house keeping and move the error handling code from the existing AJAX call into a separate function so we can use it for both calls without duplicating code:
 
-```JavaScript
+```javascript
 const showAJAXError = function(){
   $contactCardHolder.append($('<div>').addClass('col-12 text-danger').text('AJAX ERROR'));
 };
@@ -320,7 +320,7 @@ const showAJAXError = function(){
 
 We also need to move the declaration of the variable that will hold the generated view objects (`people`) into the global scope so the `success` callback for this AJAX request can write to it, and, the `success` callback for the second AJAX request to fetch the template can read from it:
 
-```JavaScript
+```javascript
 var people = [];
 ```
 
@@ -356,13 +356,13 @@ The key to getting this to work is to move the code for rendering the template i
 
 We already have a globally scoped variable for holding the view objects, we now also need one for the template string, so it’s start by declaring that variable:
 
-```JavaScript
+```javascript
 var contactCardTpl = '';
 ```
 
 Next, let’s define the function for rendering the contact cards:
 
-```JavaScript
+```javascript
 const renderContactCards = function(){
   // make sure the view objects are ready
   if(people.length < 1) return;

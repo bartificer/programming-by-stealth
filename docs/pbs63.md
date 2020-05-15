@@ -20,7 +20,7 @@ The challenge set at the end of the previous instalment was to improve upon the 
 
 The first part of the challenge was to transform the form into a properly marked up Bootstrap form complete with all the appropriate ARIA attributes to make the form accessible. There was very little to do here, and it was all simple by-the-book markup, so I don’t think there's any need to dwell on it. This is the form I ended up with at this point in the challenge:
 
-```XHTML
+```html
 <fieldset class="col form" role="form" aria-labelledby="create_fm_desc">
   <legend id="create_fm_desc">Create Alerts</legend>
 
@@ -61,7 +61,7 @@ The first part of the challenge was to transform the form into a properly marked
 
 The next instruction was to convert the text box to a text area and re-label it to _Alert Body_. Again, this is simple by-the-book markup, but there was one possible stumbling block — because I chose to use a different ID for the text area than the one I had use for the text box, I had to do a find-and-replace in the entire file to update every occurrence of the ID, both in the HTML markup and the JavaScript event handlers. This is my updated form group:
 
-```XHTML
+```html
 <div class="form-group">
   <label for="alert_body_ta">Alert Body</label>
   <textarea class="form-control" id="alert_body_ta" placeholder="The text for the body of your alert" rows=5></textarea>
@@ -72,7 +72,7 @@ The third part of the challenge was to add a new form group with an appropriatel
 
 The markup is by the book:
 
-```XHTML
+```html
 <div class="form-group">
   <label for="alert_title_tb">Alert Title</label>
   <input type="text" class="form-control" id="alert_title_tb" placeholder="The title for your alert">
@@ -82,7 +82,7 @@ The markup is by the book:
 Updating the click handler for the create button is also quite straight forward, we use the same jQuery functions used in our starting code to query the document for the values from the form, build an alert from those values, and inject the newly created alert into the document, we just call those
 same functions more often to query the form for two values rather than one:
 
-```JavaScript
+```javascript
 $('#alert_btn').click(function(){
   // build an empty alert
   const $a = $('<div>').addClass(`alert alert-${$('#alert_style_sel').val()}`);
@@ -119,7 +119,7 @@ The next part of the challenge was to add a checkbox to the form to allow the us
 
 The markup for this checkbox was again, by the book:
 
-```XHTML
+```html
 <div class="form-group form-check">
   <input type="checkbox" id="add_close_btn_cb" class="form-check-input" value=1 checked>
   <label for="add_close_btn_cb" class="form-check-label">Add a close button to the alert.</label>
@@ -129,7 +129,7 @@ The markup for this checkbox was again, by the book:
 The JavaScript is also quite straightforward. Basically, I use jQuery’s `$()` function to
 query the document for the checkbox, then use jQuery’s `.prop()` function to test whether or not the checkbox has the `checked` property. I can then use that value in `if()` statement wrapped around the code for injecting the close button:
 
-```undefined
+```
 $('#alert_btn').click(function(){
   // build an empty alert
   const $a = $('<div>').addClass(`alert alert-${$('#alert_style_sel').val()}`);
@@ -166,7 +166,7 @@ $('#alert_btn').click(function(){
 
 The next part of the challenge was to add a group of radio buttons to allow the user to choose an icon for the alert. The choice of what type of icons to use was yours. I chose to use Font Awesome glyph icons as described in [instalment 29](https://bartificer.net/pbs29). This involved importing the Font Awesome 4 CSS in the <head> section, and then the following form markup would work:
 
-```XHTML
+```html
 <div class="form-group" role="radiogroup" aria-labelledby="alert_icon_lbl">
   <label id="alert_icon_lbl">Alert Icon</label><br>
   <div class="form-check form-check-inline">
@@ -194,25 +194,25 @@ Next the click handler for the button to create alerts needed to be updated to r
 
 Reading the value from a radio group is something we haven’t done in a while, so let’s remind ourselves how we do that with jQuery. What we need to do is query the document for the one member of the radio group that is selected, and then read out its value. Let’s break that down — first we’ll need all inputs with the name `alert_icon_rb`. The CSS selector for that is:
 
-```CSS
+```css
 input[name=alert_icon_rb]
 ```
 
 We don’t want all the members of the radio group though, just the one that’s checked, so we need to add the `:checked` pseudo-class to the selector:
 
-```CSS
+```css
 input[name=alert_icon_rb]:checked
 ```
 
 Combining that CSS selector with jQuery’s `$()` and `.val()` functions we can get the value of the checked radio button with:
 
-```JavaScript
+```javascript
 $('input[name=alert_icon_rb]:checked').val()
 ```
 
 Putting it all together, my click handler now looks like this:
 
-```JavaScript
+```javascript
 $('#alert_btn').click(function(){
     // build an empty alert
     const $a = $('<div>').addClass(`alert alert-${$('#alert_style_sel').val()}`);
@@ -256,7 +256,7 @@ $('#alert_btn').click(function(){
 
 The penultimate part of the challenge was to have the form reset to its default state when the alert is created. The easiest way to do this is to call the form’s `.reset()` function as the last line in the click handler. I gave my form the ID `create_fm`, so I can get a reference to a jQuery object representing the form with `$('#create_fm')`. This gets me a jQuery object, not the form’s raw object in the DOM. But, I need the DOM object because `.reset()` is a DOM function, not a jQuery function. I can do that with jQuery’s `.get()` function. Putting it all together the very end of my click handler now becomes:
 
-```JavaScript
+```javascript
 // reset the form
 $('#create_fm').get(0).reset();
 ```
@@ -265,7 +265,7 @@ Finally, for extra credit, was the conversion of the two buttons into a single f
 
 Despite being hard to find, the final answer is very simple. Wrap the two buttons in a div with the class btn-group to combine the two buttons into a nice single grouped button, then turn that button group into a flex box by adding the class `d-flex` and set both buttons to want to be full-width by adding the class `w-100` to each:
 
-```XHTML
+```html
 <div class="form-group">
   <div class="btn-group d-flex" role="group">
     <button class="btn btn-primary w-100" id="alert_btn">
@@ -305,7 +305,7 @@ Bootstrap buttons don’t need to be their default (quite large) size, they come
 
 Using Bootstrap’s button classes we can render any link as a button by giving it the class `btn` plus one of the regular style variants:
 
-```XHTML
+```html
 This apparent secondary button is actually an <code>&lt;a&gt;</code> tag!
 <a class="btn btn-secondary" href="http://getbootstrap.com/docs/4.1/components/buttons/" taget="_blank" rel="noopener">More ...</a>
 ```
@@ -314,7 +314,7 @@ This apparent secondary button is actually an <code>&lt;a&gt;</code> tag!
 
 But, we can also render any button as a link by giving it the classes `btn` and `btn-link`:
 
-```XHTML
+```html
 This apparent link is actually a <code>&lt;button&gt;</code> tag!
 <button class="btn btn-link" id="btn_as_link">More ...</button>
 ```
@@ -329,7 +329,7 @@ Creating a basic button group is very straightforward, just wrap your buttons in
 
 Button groups are most often used within the UI of a web app, but you can use them anywhere. You could use them for social media sharing links:
 
-```XHTML
+```html
 Basic share links as a button group:
 <span class="btn-group" role="group" aria-label="share">
   <a class="btn btn-secondary" href="javascript:void(0);">Twitter</a>
@@ -346,7 +346,7 @@ Most conveniently, you and re-size all the buttons in a button group at once by 
 
 Combining button groups with some kind of icon sent, like glyph icons, and sizing them appropriately, you can do very nice things like this:
 
-```XHTML
+```html
 Share links with glyph icons as a small button group:
 <span class="btn-group btn-group-sm" role="group" aria-label="share">
   <a class="btn btn-secondary" href="javascript:void(0);">
@@ -372,7 +372,7 @@ As we saw with the bonus credit part of the challenge, using a button group as a
 
 As a reminder, this is how to do it:
 
-```XHTML
+```html
 <div class="form-group">
   <div class="btn-group d-flex" role="group">
     <button class="btn btn-primary w-100" id="alert_btn">
@@ -396,7 +396,7 @@ To create a button toolbar simple wrap your button groups in another tag (also u
 
 As a contrived example, here’s the code for a simple text-formatting button toolbar:
 
-```XHTML
+```html
 <div class="btn-toolbar" role="toolbar" aria-label="format">
  <div class="btn-group mr-2" role="group" aria-label="font style">
    <button class="btn btn-secondary">

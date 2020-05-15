@@ -26,7 +26,7 @@ The best way to see the effect of a CSS class is to add it to some HTML, so to t
 
 You can use the HTML page below (also in [the instalment’s ZIP file](http://<a href=) as `pbs53.html`), or, [this live interactive playground](https://www.bootply.com/7wouLw6Mgk).
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -70,7 +70,7 @@ We won’t be making use of this feature for a while, but it’s important to kn
 
 As a general rule, the colour utility classes have semantic names, and you should use them where they make semantic sense. For example, to render a success message you might use:
 
-```XHTML
+```html
 <p class="text-success">It worked!</p>
 ```
 
@@ -86,7 +86,7 @@ As a general rule these classes only affect text colour, but when applied to lin
 
 As an example, let’s change the colour of the quotation so it’s more subtle than the normal text colour. To do that, we just add the CSS class `text-muted` to the `<blockquote>` tag:
 
-```XHTML
+```html
 <blockquote class="text-muted">
   <p class="">'pretend I said something really witty and clever'</p>
   <p class=""><a href="http://bartb.ie/" target="_blank" rel="noopener">Bart Busschots</a></p>
@@ -101,7 +101,7 @@ Bootstrap defines the following background colour utility classes: `bg-primary`,
 
 As an example, let’s add a light background to the quote in our sandbox by adding the bg-light class to the `<blockquote>` tag:
 
-```XHTML
+```html
 <blockquote class="text-muted bg-light">
   <p class="">'pretend I said something really witty and clever'</p>
   <p class=""><a href="http://bartb.ie/" target="_blank" rel="noopener">Bart Busschots</a></p>
@@ -118,7 +118,7 @@ Adding borders is something you’ll want to do quite often, so Bootstrap provid
 
 The most common thing to want to do is to add a border to all four sides of an element, and Bootstrap makes this very easy with the simply named utility class `border`! So, to add a border to a paragraph you would simply do something like:
 
-```XHTML
+```html
 <p class="border">I'm a bordered paragraph!</p>
 ```
 
@@ -136,7 +136,7 @@ Sometimes you want the opposite of a subtle rounding, in fact, sometimes you wan
 
 Let’s add a rounded border to all four sides of the quotation in our dummy page by adding the classes `border` and `rounded`:
 
-```XHTML
+```html
 <blockquote class="text-muted bg-light border rounded">
   <p class="">'pretend I said something really witty and clever'</p>
   <p class=""><a href="http://bartb.ie/" target="_blank" rel="noopener">Bart Busschots</a></p>
@@ -170,7 +170,7 @@ So, to remove all margins on all sides you would use the CSS class `m0`, to set 
 
 Let’s add some padding to all sides of the quotation in our dummy page, and a big margin on the left, and smaller margins on the other three sides:
 
-```XHTML
+```html
 <blockquote class="text-muted bg-light border rounded p-2 m-3 ml-5">
   <p class="">'pretend I said something really witty and clever'</p>
   <p class=""><a href="http://bartb.ie/" target="_blank" rel="noopener">Bart Busschots</a></p>
@@ -189,7 +189,7 @@ Bootstrap also provides a number of very obviously named utility CSS classes for
 
 Let’s finish off the quotation in our dummy page by aligning the author to the right and making it bold, and making the quotation italic and light:
 
-```XHTML
+```html
 <blockquote class="text-muted bg-light border rounded p-2 m-3 ml-5">
   <p class="font-italic font-weight-light">'pretend I said something really witty and clever'</p>
   <p class="font-weight-bold text-right"><a href="http://bartb.ie/" target="_blank" rel="noopener">Bart Busschots</a></p>
@@ -204,7 +204,7 @@ Here’s what the final product looks like:
 
 As an example, let’s see how we could combine these classes to quickly create an info box to add some additional information into my recipe in such a way that it’s clearly separate from the body of the recipe:
 
-```XHTML
+```html
 <aside class="m-5 border border-info rounded">
   <h2 class="bg-info text-light p-2">Did you Know?</h2>
   <p class="text-muted p-2">The Cucumber is a member of the nighshade family of plants, along with the tomato, the melon, and even the potato!</p>

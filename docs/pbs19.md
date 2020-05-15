@@ -18,7 +18,7 @@ Using a loop of your choice, print the 12 times tables from 12 times 1 up to and
 
 ### Solution
 
-```JavaScript
+```javascript
 for(var i = 1; i <= 12; i++){
   pbs.say('12 x ' + i + ' = ' + (12 * i));
 }
@@ -40,7 +40,7 @@ Build up your solution in the following way:
 
 ### Solution
 
-```JavaScript
+```javascript
 var fibonacci = [0, 1];
 while(fibonacci[fibonacci.length -1] < 1000000){
   var nextFib = fibonacci[fibonacci.length -1] + fibonacci[fibonacci.length -2];
@@ -57,7 +57,7 @@ Write a program that prints the numbers from 1 to 100. But for multiples of thre
 
 ### Solution
 
-```JavaScript
+```javascript
 for(var i = 1; i <= 100; i++){
   // figure out of we are a special case or not
   if(i % 3 == 0 || i % 5 == 0){
@@ -89,7 +89,7 @@ Test your function by calculating the factorial of the inputs in the PBS playgro
 
 Show/Hide Iterative Solution
 
-```JavaScript
+```javascript
 // -- Function --
 // Purpose    : calculate the factorial of a number
 // Returns    : A number (NaN if the input is invalid)
@@ -125,7 +125,7 @@ if(theInputs.length > 0){
 
 ### Recursive Solution
 
-```JavaScript
+```javascript
 // -- Function --
 // Purpose    : calculate the factorial of a number
 // Returns    : A number (NaN if the input is invalid)
@@ -172,7 +172,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : Constructor function for the ComplexNumber prototype
     // Returns    : NOTHING
@@ -193,7 +193,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : An accessor function for the real part of the complex number
     // Returns    : The current real part of the complex number if no arguments
@@ -224,7 +224,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : An accessor function for the imaginary part of the complex number
     // Returns    : The current imaginary part of the complex number if no arguments
@@ -262,7 +262,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : Render a complex number as a string
     // Returns    : A string
@@ -320,7 +320,7 @@ Build up your solution in the following way:
 
 5.  Test what you have so far with the following code:
 
-    ```JavaScript
+    ```javascript
     //
     // === Test the toString() and Accessor functions ===
     //
@@ -357,7 +357,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : Set the value of a complex number object
     // Returns    : A reference to the object
@@ -413,7 +413,7 @@ Build up your solution in the following way:
 
 7.  Test the parse function you just created with the following code:
 
-    ```JavaScript
+    ```javascript
     //
     // === Test the Parse() function ===
     //
@@ -447,7 +447,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : Constructor function for the ComplexNumber prototype
     // Returns    : NOTHING
@@ -474,7 +474,7 @@ Build up your solution in the following way:
 
 9.  Test your updated constructor with the following code:
 
-    ```JavaScript
+    ```javascript
     //
     // === Test the Updated Constructor ===
     //
@@ -498,7 +498,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : Add another complex number to the object
     // Returns    : A reference to the object
@@ -524,7 +524,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : Subtract another complex number from the object
     // Returns    : A reference to the object
@@ -552,7 +552,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     // -- Function --
     // Purpose    : Sultiply another complex number into the object
     // Returns    : A reference to the object
@@ -584,7 +584,7 @@ Build up your solution in the following way:
 
     ### Partial Solution
 
-    ```JavaScript
+    ```javascript
     ComplexNumber.prototype.conjugateOf = function(){
       // if the imaginary part is positive, make a new CN with a negative version
       if(this.imaginary() &gt; 0){
@@ -599,7 +599,7 @@ Build up your solution in the following way:
 14. Test your arithmetic functions with the following code:
 
 
-    ```JavaScript
+    ```javascript
     //
     // === Test the Arithmentic Functions ===
     //
@@ -634,7 +634,7 @@ Build up your solution in the following way:
 
 ### Completed Prototype
 
-```JavaScript
+```javascript
 //
 // === Define the ComplexNumber Prototype ===
 //

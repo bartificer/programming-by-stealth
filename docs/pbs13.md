@@ -32,7 +32,7 @@ As you can see, the vast majority of values convert to `true`, so my advice is t
 
 A little gotcha here is that the string `'false'` evaluates to `true`!
 
-```JavaScript
+```javascript
 pbs.say("0 is\t\t\t" + Boolean(0));
 pbs.say("1 is\t\t\t" + Boolean(1));
 pbs.say("-2.6 is\t\t\t" + Boolean(-2.6));
@@ -57,7 +57,7 @@ Let’s start with equality, which is not as simple as you might think.
 
 The `===` operator checks for exact equality. It’s very strict – `true` is only returned if the two values are identical – same type and all. This is why I suggest you get into the habit of referring to this operator as _is exactly equal to_. This strict equality check has some implications that you may find counter-intuitive:
 
-```JavaScript
+```javascript
 pbs.say("4 === 4 is\t\t" + (4 === 4));
 pbs.say("'4' === '4' is\t\t" + ('4' === '4'));
 pbs.say("'4' === 4 is\t\t" + ('4' === 4));
@@ -76,7 +76,7 @@ In many situations, most in fact, this level of equality checking is simply too 
 
 By default, the `==` operator works in numeric mode, converting the values to numbers as needed before doing the comparison. However, in the case where both values are strings, a string comparison is performed instead. This simple rule results in behaviour that is almost always sensible, as demonstrated by the example below:
 
-```JavaScript
+```javascript
 pbs.say("4 == 4 is\t\t" + (4 == 4));
 pbs.say("'4' == '4' is\t\t" + ('4' == '4'));
 pbs.say("'4' == 4 is\t\t" + ('4' == 4));
@@ -131,7 +131,7 @@ The default behaviour is to convert the values on both sides of the operator to 
 
 Only when **both** of the values are strings do the operators switch to lexical mode – that is to say, comparing the values alphabetically. One string is less than another if it would appear in the dictionary before the other.
 
-```JavaScript
+```javascript
 pbs.say("2 < 4 is\t\t" + (2 < 4));
 pbs.say("'2' < 4 is\t\t" + ('2' < 4));
 pbs.say("4 < 4 is\t\t" + (4 < 4));
@@ -167,7 +167,7 @@ A logical NOT – this is a unary operator that inverts the value it’s applied
 
 In terms of precedence, `!` has the highest precedence, then `&&`, and finally `||`.
 
-```JavaScript
+```javascript
 pbs.say('false && false is\t' + (false && false));
 pbs.say('false && true is\t' + (false && true));
 pbs.say('true && false is\t' + (true && false));
@@ -190,7 +190,7 @@ You can read the value from the first input with `pbs.input(1)`, the second with
 
 Because of how HTML text fields work, the value returned by `pbs.input()` is always a string. This means that you need to explicitly convert to a number before doing arithmetic, or making numeric comparisons.
 
-```JavaScript
+```javascript
 pbs.say(parseInt(pbs.input(1)) + parseInt(pbs.input(2)));
 ```
 
@@ -202,7 +202,7 @@ Branching is the act of altering the path through code depending on some conditi
 
 JavaScript implements this concept with the `if` statement. An `if` statement takes the following form:
 
-```JavaScript
+```javascript
 if(condition) statement_1; else statement_2;
 ```
 
@@ -210,12 +210,12 @@ If the `condition` evaluates to `true`, then `statement_1` will execute, otherwi
 
 The following two coding styles are entirely in keeping with the spec:
 
-```JavaScript
+```javascript
 if(parseInt(pbs.input(1)) % 2 == 0) pbs.say('EVEN');
 else pbs.say('ODD');
 ```
 
-```JavaScript
+```javascript
 if(parseInt(pbs.input(1)) % 2 == 0)
   pbs.say('EVEN');
 else
@@ -226,7 +226,7 @@ You **can** write code like this, but **please don’t**! Develop the good habit
 
 This is how you should write your `if` statements, even when you only want to execute one statement on `true` and/or `false` evaluation of the condition:
 
-```JavaScript
+```javascript
 if(parseInt(pbs.input(1)) % 2 == 0){
   pbs.say('EVEN');
 }else{
@@ -238,7 +238,7 @@ This is also a good time to mention code layout again. It’s universally agreed
 
 Some people prefer to have the braces on new lines, the so-called _[Allman style](https://en.wikipedia.org/wiki/Indent_style#Allman_style)_ (AKA _BSD style_), like so:
 
-```JavaScript
+```javascript
 if(parseInt(pbs.input(1)) % 2 == 0)
 {
   pbs.say('EVEN');
@@ -251,7 +251,7 @@ else
 
 There are also more or less _cuddled_ variants to all these styles, that is to say, more or less optional white space included. The canonical K&R style is less cuddled than what I use (has more white space):
 
-```JavaScript
+```javascript
 if ( parseInt( pbs.input( 1 ) ) % 2 == 0 ) {
   pbs.say( 'EVEN' );
 } else {
@@ -267,7 +267,7 @@ All examples in this series will use the style I prefer – a cuddled variant of
 
 We have one more new thing to learn before we can move on to our final example for this instalment. We need to learn about the built-in JavaScript function for checking if a value is not a number. The function is very well named – `isNaN()`. It behaves pretty much as you would expect:
 
-```JavaScript
+```javascript
 pbs.say("isNaN(4) returns " + isNaN(4));
 pbs.say("isNaN(3.14159) returns " + isNaN(3.14159));
 pbs.say("isNaN(-2.6) returns " + isNaN(-2.6));
@@ -284,7 +284,7 @@ As a final example to tie everything together, let’s write a more robust odd/e
 
 We’ll need to take our input from the first input text box, make sure it’s a number, and then check whether it’s odd or even.
 
-```JavaScript
+```javascript
 // get the input and convert to an integer
 var rawInput = pbs.input(1);
 var inputNum = parseInt(rawInput);

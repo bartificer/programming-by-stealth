@@ -22,7 +22,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to PBS 29 Challenge
 
-```JavaScript
+```javascript
 // init name space
 var pbs = pbs ? pbs : {};
 
@@ -497,7 +497,7 @@ At this stage our prototypes are free of glaring problems, but they are still mi
 
 The JavaScript language provides useful comparison operators for values like numbers, strings, and booleans, but not for objects. When dealing with objects, the `==` and `===` operators only tell us whether or not two variables contain references to the same object. The following code illustrates this:
 
-```JavaScript
+```javascript
 var t1 = new pbs.Time(12, 0);
 var t2 = new pbs.Time(12, 0);
 console.log(t1 == t2); // false
@@ -519,7 +519,7 @@ The first of these, `.equals()` should take one argument, return `true` if that 
 
 Let’s add a `.equals()` function to the `pbs.Time` prototype:
 
-```JavaScript
+```javascript
 pbs.Time.prototype.equals = function(obj){
   if(typeof obj !== 'object'){
     return false;
@@ -533,7 +533,7 @@ pbs.Time.prototype.equals = function(obj){
 
 We can test our new `.equals()` function with the following code:
 
-```JavaScript
+```javascript
 var t1 = new pbs.Time(12, 0);
 var t2 = new pbs.Time(12, 0);
 console.log(t1.equals(t2)); // true
@@ -551,7 +551,7 @@ The second comparison function, `.compareTo()`, is a little more complex, but no
 
 Let’s add a `.compareTo()` function to our `pbs.Time` prototype:
 
-```JavaScript
+```javascript
 pbs.Time.prototype.compareTo = function(obj){
   // make sure we have a valid object to test
   if(!(typeof obj === 'object' && obj instanceof pbs.Time)){
@@ -589,7 +589,7 @@ pbs.Time.prototype.compareTo = function(obj){
 
 We can test our `.compareTo()` function with the following code:
 
-```JavaScript
+```javascript
 var t1 = new pbs.Time(12, 0);
 var t2 = new pbs.Time(12, 0);
 console.log(t1.compareTo(t2)); // 0
@@ -625,7 +625,7 @@ Finally, because our prototypes are all time-related, implement two additional f
 
 You can test all of your comparison operators with the following code:
 
-```JavaScript
+```javascript
 var dt1 = new pbs.DateTime(new pbs.Date(4, 7, 2017), new pbs.Time(12));
 var dt2 = new pbs.DateTime(new pbs.Date().day(4).month(7).year(2017), new pbs.Time(12));
 console.log(dt1.equals(dt2)); // true
@@ -679,7 +679,7 @@ The most important concept is that of ARIA roles. The basic idea is that no matt
 
 For example, you might have a `div` that contains an `h1`, an `h2`, and an image that together form your site’s banner. To make that fact clear to assistive devices, you should add a `role` attribute to the `<div>` tag with the value `banner`:
 
-```XHTML
+```html
 <div role="banner">
 <h1>Bart's Widgets</h1>
 <h2>The Best Widgets on the Web by a Country Mile!</h2>
@@ -709,7 +709,7 @@ Finally, the ARIA spec says that everything clickable must be focusable with the
 
 Let’s finish this instalment by getting back to some specifics. In the previous instalment we learned how to use glyph icon sets like Font Awesome to add icons to buttons. Our code looked something like:
 
-```XHTML
+```html
 <button type="submit">
   <span class="fa fa-save"></span>
   Save
@@ -718,7 +718,7 @@ Let’s finish this instalment by getting back to some specifics. In the previou
 
 Visually, buttons of this form work fine, but for assistive technologies they contain some potentially confusing additional information – that empty `<span>` tag. This serves no purpose other than visual ornamentation. As such, we should hide it from assistive technologies by applying the `aria-hidden` property to it like so:
 
-```XHTML
+```html
 <button type="submit">
   <span class="fa fa-save" aria-hidden="true"></span>
   Save

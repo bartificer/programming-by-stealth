@@ -20,7 +20,7 @@ The challenge set at the end of [the previous instalment](https://bartificer.net
 
 The first part of the challenge was to convert the page header to a display heading. I chose to break my title into two parts, a main part, and a sub-title using the `<small>` tag:
 
-```XHTML
+```html
 <h1 class="display-1 sticky-top bg-white border-bottom">Roasted Cucumber<br> <small class="text-muted">with Red Onion &amp; Dill</small></h1>
 ```
 
@@ -28,7 +28,7 @@ The key point is the addition of the class `display-1` to the `<h1>` tag.
 
 The next task was to add a pithy description to the top of the recipe, and to mark it as a lead paragraph. To aid screen readers and SEO, the paragraph should be preceded with a visually invisible heading:
 
-```XHTML
+```html
 <h2 class="sr-only">Description</h2>
 <p class="lead">An unusual roasted vegetable dish that's refreshingly tangy and will pair well with fish.</p>
 ```
@@ -37,7 +37,7 @@ The key here is the use of the class `lead` on the paragraph, and the class `sr-
 
 Next, the heading at the top of the table of ingredients was to be rendered as if it were a heading tag. I felt that this heading was of equal importance to the other section headings on the page, all of which are `<h2>`s, so I chose to add the class `h2`:
 
-```XHTML
+```html
 <table class="w-25 float-right">
   <thead>
     <tr>
@@ -52,7 +52,7 @@ Next, the heading at the top of the table of ingredients was to be rendered as i
 
 The fourth task was to update the quotation to use the appropriate markup and classes for block quotations:
 
-```XHTML
+```html
 <blockquote class="blockquote">
   <p class="font-italic">"If the natural ..."</p>
   <footer class="blockquote-footer text-right"><strong>Julia Child</strong> in <em>Mastering ...</em> (1961)</footer>
@@ -63,7 +63,7 @@ The key changes are the addition of the class `blockquote` to the `<blockquote>`
 
 Finally, the fifth task was to update the flex box with required equipment to use the appropriate list classes rather than the `d-block` hack used previously:
 
-```undefined
+```
 <ul class="list-unstyled d-flex flex-row justify-content-between text-center my-3 mx-0 p-0">
   <li>
     <!-- ... -->
@@ -86,7 +86,7 @@ For the most part, images in Bootstrap are styled in the same way as any other b
 
 For example, to add a rounded red border, float left, and add a margin to all sides but the left you could do something like:
 
-```undefined
+```
 <img class="border border-danger rounded float-left m-3 ml-0" src="img.jpeg" alt="an image">
 ```
 
@@ -110,7 +110,7 @@ Bootstrap provides some CSS classes for adding basic styles to figures. The cont
 
 As a first example, let’s add these classes to the first figure in the playground:
 
-```XHTML
+```html
 <figure class="figure">
   <img id="fig1" class="figure-img img-fluid rounded" alt="Election Posters ..." src="https://upload.wikimedia.org...">
   <figcaption class="figure-caption">Abortion Referendum Campaign Posters...</figcaption>
@@ -125,7 +125,7 @@ You’ll see that the changes adding these tags make are subtle. The spacing is 
 
 A very likely next step would be to float the figure, so let’s do that by adding the classes `w-25` (to set the width), and `float-right` to the `<figure>` tag:
 
-```XHTML
+```html
 <figure class="figure w-25 float-right">
   <!-- ... -->
 </figure>
@@ -135,7 +135,7 @@ You may not want your figure to float, instead, you might want to centre it with
 
 Let’s start by giving the components that make up our second figure (the map) the standard Bootstrap classes for figures (`figure`, `figure-img` & `figure-caption`). We should also make the image responsive by giving it the class `img-fluid`, and centre the text within the caption by giving it the Bootstrap utility class `text-center`. This will format the caption nicely, but it won’t centre the figure:
 
-```XHTML
+```html
 <figure class="figure">
   <img id="fig2" class="figure-img img-fluid" alt="Result Map" src="https://upload.wikimedia.org/...">
   <figcaption class="figure-caption text-center">Referendum result by ...</figcaption>
@@ -148,7 +148,7 @@ Perhaps surprisingly, that only half works — the width does change, but the fi
 
 As you can confirm to yourself with the developer tools of your choice, the class `figure` sets the `display` property to `inline-block`, and inline blocks don’t have margins! What’s the solution? Simple, just set the `display` to `block` with the Bootstrap utility class `d-block`:
 
-```XHTML
+```html
 <figure class="figure w-75 mx-auto d-block">
   <img id="fig2" class="figure-img img-fluid" alt="Result Map" src="https://upload.wikimedia.org/...">
   <figcaption class="figure-caption text-center">Referendum result ...</figcaption>
@@ -221,7 +221,7 @@ Let’s take things a little further and shrink the table and float it right by 
 
 The first smaller table in the sandbox should now look something like:
 
-```XHTML
+```html
 <table class="table table-bordered table-sm w-50 float-right">
   <caption class="">National total results...</caption>
   <thead class="thead-light">
@@ -253,7 +253,7 @@ This kind of automatic scrolling is made available via the `table-responsive` cl
 
 Let’s do this for the second, larger, table in our sandbox:
 
-```XHTML
+```html
 <div class="table-responsive">
   <table class="table table-striped">
     <caption class="">Detailed results...</caption>

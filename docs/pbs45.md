@@ -26,7 +26,7 @@ As an example, let’s look at one specific way in which Allison’s solution to
 
 This was the original function before converting to ES6:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
@@ -54,7 +54,7 @@ bartificer.ca.Automaton.prototype.start = function(ms){
 
 My sample solution changed this function to:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
@@ -82,7 +82,7 @@ bartificer.ca.Automaton.prototype.start = function(ms){
 
 But Allison changed the function to:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton.prototype.start = function(ms){
     // if we are already in stepping mode, do nothing
     if(this._autoStepID) return this;
@@ -120,7 +120,7 @@ If you declare a variable with `const` then its value can’t be changed. But wh
 
 Let’s look at traditional `for` loops again, can we replace `var` with `const` here? Consider this loop:
 
-```JavaScript
+```javascript
 for(var i = 1; i <= 10; i++){
     console.log('4 x ' + i + ' = ' + (4 * i));
 }
@@ -128,7 +128,7 @@ for(var i = 1; i <= 10; i++){
 
 That is really just _syntactic sugar_ for (a nicer way of writing) the following:
 
-```JavaScript
+```javascript
 var i = 1;
 while(i <= 10){
     console.log('4 x ' + i + ' = ' + (4 * i));
@@ -138,7 +138,7 @@ while(i <= 10){
 
 So, `i` contains numeric values that change each time the loop executes. That means we cannot use `const`, and must use `let`, so the loop becomes:
 
-```JavaScript
+```javascript
 for(let i = 1; i <= 10; i++){
     console.log('4 x ' + i + ' = ' + (4 * i));
 }
@@ -146,7 +146,7 @@ for(let i = 1; i <= 10; i++){
 
 Now let’s look at the `for...in` loop. Again, we’ll use a simple example to illustrate the point:
 
-```JavaScript
+```javascript
 var tlaLib = {
     mph: 'miles per hour',
     mpg: 'miles per gallon',
@@ -159,7 +159,7 @@ for(var tla in tlaLib){
 
 This is really syntactic sugar for something like:
 
-```JavaScript
+```javascript
 var tlaLib = {
     mph: 'miles per hour',
     mpg: 'miles per gallon',
@@ -173,7 +173,7 @@ Object.keys(tlaLib).forEach(function(){
 
 This means that each time you go around a `for...in` loop you get a completely new `tla` variable that comes into existence at the start of the iteration, and ends at the end. Since our example object has three keys, that means three different `tla` variables come into being, last for a few lines of code, and then cease to exist. Changing the value of the current key within the body of a loop will always be a mistake, so, they should be declared with `const`. Hence, I would re-write this example as:
 
-```JavaScript
+```javascript
 const tlaLib = {
     mph: 'miles per hour',
     mpg: 'miles per gallon',
@@ -202,7 +202,7 @@ A real annoyance in earlier versions of JavaScript is that there are objects tha
 
 ES6 solves this problem with the addition of the `Array.from()` function (a static function provided by the `Array` prototype). You pass this function an array-like object as the first argument, and it returns a true array containing the same values as the original.
 
-```JavaScript
+```javascript
 function argsArrayTest(){
     Array.from(arguments).forEach(function(a, i){
         console.log('arg' + i + '=' + a);
@@ -224,7 +224,7 @@ Looping over all the elements in an array is a really common thing to want to do
 
 To illustrate how `for...of` loops work, let’s start with a simple example — a tradition `for` loop iterating over an array:
 
-```JavaScript
+```javascript
 var mucusSynonyms = ['boogers', 'bogies', 'snot'];
 
 console.log("Synonyms for 'dried nasal mucus':");
@@ -242,7 +242,7 @@ for(var i = 0; i < mucusSynonyms.length; i++){
 
 We can simplify this with a `for...of` loop like so:
 
-```JavaScript
+```javascript
 const mucusSynonyms = ['boogers', 'bogies', 'snot'];
 
 console.log("Synonyms for 'dried nasal mucus':");
@@ -268,7 +268,7 @@ Again, like with arrays, I just want to draw your attention to two new string-re
 
 With previous versions of JavaScript, looping over every character in a string was tedious at best:
 
-```JavaScript
+```javascript
 var myString = 'boogers';
 
 var randomCase = '';
@@ -281,7 +281,7 @@ console.log(randomCase);
 
 But now we can use the same `for...of` loop we use for arrays:
 
-```JavaScript
+```javascript
 const myString = 'boogers';
 
 let randomCase = '';
@@ -299,14 +299,14 @@ Thanks to template strings in ES6, you never have to concatenate again if you do
 
 A template string is surrounded by so-called back-ticks rather than single or double quotation marks. Within a template string you can insert a value from an expression by including the expression in the string wrapped between `${` and `}`. Any valid JavaScript expression can be included in this way, but in reality you’ll mostly just be including a single variable, or perhaps a function call on a variable, or maybe an arithmetic expression, e.g.:
 
-```JavaScript
+```javascript
 let r = 4;
 console.log(`Given a radius of ${r}, the circumfrence is ${2 * r * Math.PI}`);
 ```
 
 For comparison, in the past I would have written that above simple and easy to read code like so:
 
-```JavaScript
+```javascript
 var r = 4;
 console.log('Given a radius of ' + r + ', the circumfrence is ' + (2 * r * Math.PI});
 ```

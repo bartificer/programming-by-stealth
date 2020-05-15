@@ -20,7 +20,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge set at the end of [the previous instalment](https://bartificer.net/pbs31) was to add four static functions to the date and time prototypes we’ve been building up over recent instalments. Because the code for these prototypes is now very long, I’m only including the relevant excerpts below. You can find my full solution in this instalment’s ZIP file (`pbs31-challengeSolution.js`).
 
-```JavaScript
+```javascript
 // init name space
 var pbs = pbs ? pbs : {};
 
@@ -229,7 +229,7 @@ When writing code, errors are very much a game of two halves – determining tha
 
 What you absolutely do not want to end up writing is something like:
 
-```JavaScript
+```javascript
 function divBy(x, y){
   if(y == 0){
     $('#errors').text("You can't divide by zero!");
@@ -249,7 +249,7 @@ In JavaScript, the mechanism for separating error detection from the response to
 
 When your code detects an error, it should respond by throwing an error using the `throw` keyword. You’ll find lots of examples similar to the one below throughout my versions of our date and time prototypes:
 
-```JavaScript
+```javascript
 pbs.Time.prototype.hours = function(h){
   if(arguments.length === 0){
     return this._hours;
@@ -288,7 +288,7 @@ To handle your own errors, you need to wrap the code that could generate an erro
 
 For example, save the following file into the same folder as `pbs.datetime.js` (from this instalment’s ZIP file), and run it with NodeJS (or in an editor that supports code execution like [CodeRunner](https://coderunnerapp.com)):
 
-```JavaScript
+```javascript
 // code to suck our browser-targeted date & time prototypes into NodeJS
 // (this is a dirty hack to get code written for the browser into Node)
 fs = require('fs');
@@ -305,7 +305,7 @@ This produces and unhandled error.
 
 We can turn this into a handled error like so:
 
-```JavaScript
+```javascript
 // code to suck our browser-targeted date & time prototypes into NodeJS
 // (this is a dirty hack to get code written for the browser into Node)
 fs = require('fs');
@@ -326,7 +326,7 @@ In the parentheses after the keyword `catch` we define a name for the object rep
 
 All the standard JavaScript error objects contain a data attribute named `.message` which holds the error message as a string. We can use this to add extra information into our error messages to users:
 
-```JavaScript
+```javascript
 // code to suck our browser-targeted date & time prototypes into NodeJS
 // (this is a dirty hack to get code written for the browser into Node)
 fs = require('fs');
@@ -357,7 +357,7 @@ You’ll see that the page responds in a sane way. It doesn’t just write somet
 
 Below is the entire click handler for the button:
 
-```JavaScript
+```javascript
 // add a click handler to the button
 $('#render_btn').click(function(){
   // assume there will be no error, so blank the error message
@@ -401,7 +401,7 @@ As we discussed in the previous instalment, all HTML form inputs are designed to
 
 The text the user sees for each option is independent of the value that option represents, as illustrated with the following sample dropdown:
 
-```XHTML
+```html
 <label>
 What day of the Week would you like Tacos?
 <select name="tacos_day">
@@ -428,7 +428,7 @@ By default, the first option in a dropdown is automatically selected, but you ca
 
 Options can also be arranged into labeled groups with the `optgroup` tag. For example, we can enhance our example above like so:
 
-```XHTML
+```html
 <label>
 What day of the Week would you like Tacos?
 <select name="tacos_day">
@@ -457,7 +457,7 @@ Personally, I find scrollable lists ugly and multiple selection difficult for us
 
 The file `pbs32b.html` in this instalment’s ZIP file contains a sample form with examples of both uses of the `<select>` tag, and a button to show the resulting name-value pairs. Both approaches to labelling are also demonstrated:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -524,7 +524,7 @@ All examples in this section can be executed in the web console on `pbs32b.html`
 
 Like with checkboxes and radio buttons, you can access the `name` of a `<select>` using jQuery’s `.attr()` function with the string `'name'` as the first argument. For example, you can get the name of the days dropdown with:
 
-```JavaScript
+```javascript
 $('#taco_day_sel').attr('name')
 ```
 
@@ -534,25 +534,25 @@ You can get the value of the currently selected option(s) within a `<select>` el
 
 You can see `.val()`‘s normal behaviour in action by running the code below which gets the value of the currently selected day option:
 
-```JavaScript
+```javascript
 $('#taco_day_sel').val()
 ```
 
 You can see how multi-selects behave with the following snippet which shows the values of all currently selected fillings:
 
-```JavaScript
+```javascript
 $('#taco_fillings_sel').val()
 ```
 
 The `.val()` function can also be used to set one or more options by passing the appropriate value as an argument. For example, we can set the taco day to Sunday with:
 
-```JavaScript
+```javascript
 $('#taco_day_sel').val(7)
 ```
 
 You can also use `.val()` to select multiple options in a multi-select. The code below sets the fillings to beef, cheese, beans, and sweet peppers:
 
-```JavaScript
+```javascript
 $('#taco_fillings_sel').val(["beef", "cheese", "beans", "sweet_pepper"])
 ```
 
@@ -560,7 +560,7 @@ Note that the value of individual options can be accessed and set by using `.val
 
 You don’t have to control selection using `.val()` on the `select`, you can also use `.prop()` with a first argument of `'selected'` on `option` elements to get or set their selected status. For example, we can determine whether or not cheese is a selected filling with:
 
-```JavaScript
+```javascript
 $('option[value="cheese"]', $('#taco_fillings_sel')).prop('selected')
 ```
 
@@ -568,7 +568,7 @@ Note the use of the attribute selector we learned about in [instalment 28](https
 
 We can also use this technique to set the selected state of any given option by passing a second argument to `.prop()`. For example, we can set taco day to Monday and select chilli peppers as a filling with:
 
-```JavaScript
+```javascript
 $('option[value="1"]', $('#taco_day_sel')).prop('selected', true);
 $('option[value="chilli_pepper"]', $('#taco_fillings_sel')).prop('selected', true);
 ```
@@ -577,7 +577,7 @@ Notice that regular selects behave rather like radio buttons – when a given op
 
 Finally, hand-coding long sequences of options can be very tedious. It’s often advantageous to add a DOM ready event handler to populate a select with options using some kind of loop. You can see three examples of this technique in action in the file `pbs32a.html` from this instalment’s ZIP file. The raw HTML does not define a single option in any of the three dropdowns:
 
-```XHTML
+```html
 <ul>
   <li>
     <label>
@@ -602,7 +602,7 @@ Finally, hand-coding long sequences of options can be very tedious. It’s often
 
 Instead, all three of the dropdowns are populated using jQuery in a DOM ready event handler:
 
-```JavaScript
+```javascript
 // the DOM ready event handler
 $(function(){
   // add the options to the day select

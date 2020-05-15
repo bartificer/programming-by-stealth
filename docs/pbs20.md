@@ -18,7 +18,7 @@ The challenge set at the end of PBS 18 was to create prototypes representing IP 
 
 As always, I want to stress that there are an infinity of possible correct solutions, so this is just my solution. Your code can be different from mine, and yet still totally correct.
 
-```JavaScript
+```javascript
 //
 // === Define the IP Address Prototype ===
 //
@@ -308,7 +308,7 @@ Philosophically, jQuery likes to keep function names short, and, it likes to use
 
 As a quick example, we can get the current `href` attribute of all `a` tags in the dummy page by executing the following in the console:
 
-```JavaScript
+```javascript
 $('a').attr('href');
 ```
 
@@ -316,7 +316,7 @@ What you’ll see is that when querying against multiple elements (there are man
 
 Now, we can use the same function to set the `href` of every link to go to `http://www.podfeet.com/` like so:
 
-```JavaScript
+```javascript
 $('a').attr('href', 'http://www.podfeet.com/');
 ```
 
@@ -326,7 +326,7 @@ To get the dummy page back to normal, simply refresh the page in your browser.
 
 Also philosophically, jQuery’s API is designed to facilitate function chaining. Any function that does not need to return a value returns a reference to the object it was called on. This allows you to do things like empty an element and inject new text into it in a single line of code by chaining calls to `.empty()` and `.text()`. The following example will select all `a` tags, empty them of all content, and then inject the text ‘boo!’ into them:
 
-```JavaScript
+```javascript
 $('a').empty().text('boo!');
 ```
 

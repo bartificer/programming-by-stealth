@@ -22,7 +22,7 @@ The challenge at the end of the previous instalment was to write the contents of
 
 Below is my suggested `pbs.renderClock.js`. Again, if your code is different to mine but works, it is no less correct.
 
-```JavaScript
+```javascript
 /**
 * @overview A simple single-function API for inserting a clock into a web page that shows the current time in a give timezone.
 
@@ -114,7 +114,7 @@ Secondly, my code uses a jQuery function we have not seen before – `.fadeTo()`
 
 It is possible to save data into a HTML tag using an attribute with a name that starts with `data-` and then has a name of your choosing. For example, you could put the SKU of a product into a listing doing something like:
 
-```XHTML
+```html
 <ul>
   <li data-sku="1234">Bart's Big Widget</li>
   <li data-sku="1235">Bart's Little Dongle</li>
@@ -132,7 +132,7 @@ The jQuery for interacting with data attributes is `.data()`. The first argument
 
 For example, given the following HTML snippet:
 
-```XHTML
+```html
 <ul>
   <li data-sku="1234" id="widget">Bart's Big Widget</li>
   <li data-sku="1235" id="dongle">Bart's Little Dongle</li>
@@ -142,13 +142,13 @@ For example, given the following HTML snippet:
 
 You could access the SKU of the dongle with:
 
-```JavaScript
+```javascript
 var dongleSKU = $('#dongle').data('sku');
 ```
 
 And you could set a new SKU on the widget with:
 
-```JavaScript
+```javascript
 $('#widget').data('sku', 1233);
 ```
 
@@ -158,7 +158,7 @@ When setting data attributes in HTML, you are limited to setting string values, 
 
 To see data attributes in action, and, to remind ourselves how to create our own prototypes, we’ll build a better clock API that allows arbitrarily many clocks to be added to a single page by building a prototype. Before we start our API, that let’s remind ourselves of how we build a basic prototype:
 
-```JavaScript
+```javascript
 // define a constructor
 function MyPrototype(){
   // initialise any needed data attributes
@@ -189,7 +189,7 @@ MyPrototype.prototype.toString = function(){
 
 Given that prototype, we could interact with it like so:
 
-```JavaScript
+```javascript
 var x = new MyPrototype('watzits');
 console.log(x.stuff());
 x.stuff('thingys');
@@ -198,7 +198,7 @@ console.log(x.toString());
 
 Now that we know about self executing anonymous functions and namespaces, let’s update that template to make it adhere to more best-practices.
 
-```JavaScript
+```javascript
 // init the PBS namespace
 var pbs = pbs ? pbs : {};
 
@@ -235,7 +235,7 @@ var pbs = pbs ? pbs : {};
 
 We can now interact with our updated prototype like so:
 
-```JavaScript
+```javascript
 var x = new pbs.MyPrototype('watzits');
 console.log(x.stuff());
 x.stuff('thingys');
@@ -244,7 +244,7 @@ console.log(x.toString());
 
 I want to draw your attention to the start and end of the self-executing anonymous function:
 
-```JavaScript
+```javascript
 (function(pbs, $, undefined){
   // .... the code goes here
 })(pbs, jQuery);
@@ -275,7 +275,7 @@ The final code will be included below, but let’s built it up piece-by-piece. I
 
 Our API relies on jQuery, so we should write a function to test if a value is a reference to a jQuery object:
 
-```JavaScript
+```javascript
 var isjQuery = function(obj){
   if(typeof obj !== 'object'){
     return false;
@@ -289,7 +289,7 @@ var isjQuery = function(obj){
 
 Our API transforms single HTML span elements into clocks, so we also need a function to check if a given value is a reference to a jQuery object representing exactly one `span` element:
 
-```JavaScript
+```javascript
 var isSingleSpan = function($s){
   if(typeof $s !== 'object'){
     return false;
@@ -314,7 +314,7 @@ A lookup table is simply a plain object where every valid string is a key that m
 
 Consider the following simple lookup table:
 
-```JavaScript
+```javascript
 var daysOfTheWeek = {
   Monday: true,
   Tuesday: true,
@@ -328,7 +328,7 @@ var daysOfTheWeek = {
 
 We can now write a function to test if a given string is a day if the week like so:
 
-```JavaScript
+```javascript
 function isDayOfTheWeek(d){
   return daysOfTheWeek[d] ? true : false;
 }
@@ -336,7 +336,7 @@ function isDayOfTheWeek(d){
 
 Using this approach, we can build a lookup table of all valid timezone, and then write a very efficient validation function like so:
 
-```JavaScript
+```javascript
 var tzLookup = {};
 moment.tz.names().forEach(function(tzn){
   tzLookup[tzn] = true;
@@ -354,7 +354,7 @@ With that groundwork laid, let’s write the constructor for our world clock pro
 
 Here’s the code for the constructor for the `pbs.WorldClock` prototype:
 
-```JavaScript
+```javascript
 pbs.WorldClock = function($span, tz){
   // make sure we were passed a jQuery object representing exactly one span
   if(!isSingleSpan($span)){
@@ -413,7 +413,7 @@ Finally, we call the `.start()` function on our newly built object to start the 
 
 Clocks built with our prototype contain one piece of data that should be made accessible to users of the API – the timezone. To allow users to get and set the timezone of any clock, we should add an accessor function to the prototype:
 
-```JavaScript
+```javascript
 pbs.WorldClock.prototype.timezone = function(){
   // if there is a first argument, try use it as a timezone
   if(arguments.length >= 1){
@@ -430,7 +430,7 @@ pbs.WorldClock.prototype.timezone = function(){
 
 The last thing we need before we can write the function to start our clock running is a function to render the current time into a clock. I’ve chosen to use a private function to do this work, rather than a function that’s part of the prototype. Because this function is not part of the prototype, it can’t make use of the special variable `this` for accessing the internals of a clock. Instead, we need to pass the clock to be rendered as an argument.
 
-```JavaScript
+```javascript
 var renderClock = function(clock){
   // get the current time
   var now = moment().tz(clock._timezone);
@@ -450,7 +450,7 @@ var renderClock = function(clock){
 
 We can now add function for starting and stopping clocks into the prototype:
 
-```JavaScript
+```javascript
 /**
 * Start the clock.
 */
@@ -485,7 +485,7 @@ pbs.WorldClock.prototype.stop = function(){
 
 Finally, let’s add the ability to automatically transform spans into clocks. As a first step, let’s build a function to search one or more containers for spans with the class pbs-worldclock-auto, and turn each of them into a clock:
 
-```JavaScript
+```javascript
 pbs.WorldClock.autoInitialise = function($containers){
   // default the container if none was passed
   if(typeof $containers === 'undefined'){
@@ -512,14 +512,14 @@ pbs.WorldClock.autoInitialise = function($containers){
 
 Now that we have a function for scanning parts of a document for clock spans and automatically initialising them, let’s add an event handler to the document to automatically initialise clocks when the page loads:
 
-```JavaScript
+```javascript
 // add an event handler to automaticlaly initialise clocks when the document becomes ready
 $(function(){ pbs.WorldClock.autoInitialise(); });
 ```
 
 We have all the pieces for our API now, so let’s put them all together to form a complete and documented API:
 
-```JavaScript
+```javascript
 /**
 * @overview A JavaScript prototype for creating world clocks.
 * @requires jQuery
@@ -890,7 +890,7 @@ var pbs = pbs ? pbs : {};
 
 You can see the API in use in `pbs26.html`:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -990,13 +990,13 @@ In this example we initialise the first clock ourselves by explicitly calling th
 
 We did not just use data attributes to allow a timezone to be specified, we also had the constructor add a reference to the object representing a clock into the span that contains it using a data attribute. This linkage can be useful, for example, you could enter the following in the console to stop clock 1:
 
-```JavaScript
+```javascript
 $('#clock1').data('pbsWorldclock').stop()
 ```
 
 We can later re-start it with:
 
-```JavaScript
+```javascript
 $('#clock1').data('pbsWorldclock').start()
 ```
 

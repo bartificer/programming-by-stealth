@@ -16,7 +16,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to the PBS 27 Challenges
 
-```JavaScript
+```javascript
 // init name space - commented out in playground
 // var pbs = pbs ? pbs : {};
 
@@ -306,7 +306,7 @@ My sample solution follows the template described at the end of [the previous in
 
 I’d like to draw your attention to a few aspects of the solution – firstly, the `pbs.DateTime` prototype is by far the simplest of the three, because it leverages the code in the other two. Because the data attributes (`this._date` & `this._time`) are instances of the `pbs.Date` and `pbs.Time` prototypes, the functions from those prototypes can be leveraged. You really see this in action in the implementations of functions like `american24Hour()`:
 
-```JavaScript
+```javascript
 pbs.DateTime.prototype.american24Hour = function(){
   return this._date.american() + ' ' + this._time.time24();
 };
@@ -320,7 +320,7 @@ The solution to this dilemma is to use so-called [Astronomical Year Numbering](h
 
 Internally, my solution stores years as astronomical years so that maths works, but, when generating strings, my code renders years in CE or BCE. This is done by checking whether or not the year is less than of equal to zero, and if it is, subtracting one get the correct BCE year. You can see an example of this in my implementation of the `.european()` function:
 
-```JavaScript
+```javascript
 pbs.Date.prototype.european = function(){
   var ans = '';
   if(this._day < 10){
@@ -346,7 +346,7 @@ Firstly, this code has a number of so-called _bad smells_ (an actual software en
 
 There’s a lot of testing to see whether a given value is an integer within a given range – we need to make sure hours are whole numbers between 1 and 23, minutes and seconds are whole numbers between 0 and 59, and so on. Let’s write a little helper function to take care of all those cases in one go.
 
-```JavaScript
+```javascript
 // A function for validating integer inputs
 function isValidInteger(v, lbound, ubound){
   // first and foremost, make sure we have an integer
@@ -371,7 +371,7 @@ function isValidInteger(v, lbound, ubound){
 
 We can now refactor our accessor methods to use this function, e.g. the accessors from `pbs.Time` could be re-written like so:
 
-```JavaScript
+```javascript
 pbs.Time.prototype.hours = function(h){
   if(arguments.length === 0){
     return this._hours;
@@ -414,7 +414,7 @@ Also notice that I have placed all three of my prototypes within the same self-e
 
 The next big issue we have is with validation of the days in the `pbs.Date` prototype. The following does not currently throw an exception, and it really should:
 
-```JavaScript
+```javascript
 var impossibleDate = new pbs.Date(31, 2, 2017);
 ```
 
@@ -422,7 +422,7 @@ How can we resolve this? Clearly, there is going to have to be some kind of link
 
 The first thing we’ll want to create is a private lookup table storing the number of days in each month. Like with the helper functions, we don’t want this littering the global scope, so it too should be defined within the self-executing anonymous function:
 
-```JavaScript
+```javascript
 var daysInMonthLookup = {};
 daysInMonthLookup[1] = 31;
 daysInMonthLookup[2] = 28;
@@ -452,7 +452,7 @@ That gives us the following rules for calculating leap years:
 
 Below is a sample implementation:
 
-```JavaScript
+```javascript
 function isValidateDMYCombo(d, m, y){
   // figure out how many days are allowed in the curreny month
   var numDaysInMonth = daysInMonthLookup[m];
@@ -486,7 +486,7 @@ Notice that I have not added any data validation on the arguments to this privat
 
 We can now go back and alter our accessor functions so they prevent invalid dates from being added. While in there, we can also fix another subtle bug – we should ensure that the data is all saved as numbers, not as string representations of valid numbers.
 
-```JavaScript
+```javascript
 pbs.Date.prototype.day = function(d){
   if(arguments.length === 0){
     return this._day;
@@ -535,14 +535,14 @@ This now brings along a new problem – at the moment our prototype only allows 
 
 E.g. The following code looks perfectly valid, but will throw an exception:
 
-```JavaScript
+```javascript
 var myDate = new pbs.Date();
 myDate.day(29).month(2).year(2016);
 ```
 
 However, the following will succeed:
 
-```JavaScript
+```javascript
 var myDate = new pbs.Date();
 myDate.year(2016).month(2).day(29);
 ```
@@ -567,7 +567,7 @@ Remember that we evaluate from left to right, so the first thing to happen is th
 
 So, because we return this within all our accessors when setting a value, and only because we do that, the single line `myDate.year(2016).month(2).day(29)` is entirely equivalent to:
 
-```JavaScript
+```javascript
 myDate.year(2016);
 myDate.month(2);
 myDate.day(29);
@@ -584,7 +584,7 @@ First, add private helper functions to do the following, and re-factor your code
 
 You’ll know you have succeeded if the test code from the three sections of the previous challenge continues to work:
 
-```JavaScript
+```javascript
 // instalment 27 part 1 tests
 var lunchTime = new pbs.Time();
 lunchTime.hours(13);
@@ -608,7 +608,7 @@ Next, update the `pbs.Date` prototype so both the `.american()` and `.european()
 
 You’ll know your updated prototype is working when the following test code succeeds:
 
-```JavaScript
+```javascript
 var testDate = new pbs.Date(1, 1, 1970);
 testDate.european(29, 2, 2016);
 pbs.say('successfully converted 1 Jan 1970 to ' + testDate.toString());
@@ -621,7 +621,7 @@ Finally, add two more functions to your `pbs.Date` prototype with the following 
 
 You can test your functions with the following code:
 
-```JavaScript
+```javascript
 var nextXMas = new pbs.Date();
 nextXMas.international(2017, 12, 25);
 pbs.say("I'm looking forward to getting presents on the " + nextXMas.english());
@@ -635,7 +635,7 @@ It’s been a long time since we’ve learned a new CSS selector, but now that w
 
 The simplest attribute selector is `[attribute_name]` – it will match all elements with a value for the attribute `attribute_name`. So, to add a green border around all images that have a title you could use CSS something like:
 
-```CSS
+```css
 img[title]{
   border: 1px solid green;
 }
@@ -645,7 +645,7 @@ img[title]{
 
 You can style elements based on a given attribute having an exact value with this selector. For example, to turn all links with a `target` of `_blank` purple we could use something like:
 
-```CSS
+```css
 a[target="_blank"]{
   color: purple;
 }
@@ -655,7 +655,7 @@ a[target="_blank"]{
 
 You can style elements based on the value for a given selector beginning with a given value. For example, you could turn any link with an href that begins with `https://` green with something like:
 
-```CSS
+```css
 a[href^="https://"]{
   color: green;
 }
@@ -665,7 +665,7 @@ a[href^="https://"]{
 
 You can style elements based on the value for a given selector ending with a given value. For example, you could add a red border to any image with an `src` attribute that ends in `.gif` red with something like:
 
-```CSS
+```css
 img[src$=".gif"]{
   border: 1px solid red;
 }
@@ -675,7 +675,7 @@ img[src$=".gif"]{
 
 You can style elements based on the value of a given attribute containing a given value as a sub-string using this selector. For example, you could add a green border to any image who’s `alt` attribute contains the word `boogers` with something like:
 
-```CSS
+```css
 img[alt*="boogers"]{
   border: 1px green;
 }
@@ -685,13 +685,13 @@ img[alt*="boogers"]{
 
 Some HTML attributes can contain a space-delimited list of values. For example, the `rel` attribute on links. We know it can contain `noopener` to specify that a window opened by clicking the link should not get a JavaScript `opener` object. But we can also set the `rel` attribute to `nofollow` to tell search engines not to follow the link when crawling the site. To specify that a link should have rel values of both noopener and nofollow, you would place both values into the same attribute separate by a space, like so:
 
-```XHTML
+```html
 <a href="http://www.bartb.ie/" rel="noopener nofollow">Bart's Home Page</a>
 ```
 
 If we want to make all links with a `rel` of `nofollow` grey, regardless of whether they also specified other values, and regardless of the order those values were specified in, we would use the `[attribute_name~="some_word"]` selector like so:
 
-```CSS
+```css
 a[rel~="nofollow"]{
   color: grey;
 }
@@ -699,7 +699,7 @@ a[rel~="nofollow"]{
 
 The above selector would turn all the following links grey:
 
-```XHTML
+```html
 <a href="http://www.bartb.ie/" rel="nofollow">Bart's Home Page</a>
 <a href="http://www.bartb.ie/" rel="noopener nofollow">Bart's Home Page</a>
 <a href="http://www.bartb.ie/" rel="nofollow noopener">Bart's Home Page</a>
@@ -733,7 +733,7 @@ Buttons can be styled with CSS, and the CSS attribute selectors can be used to s
 
 In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2017/01/pbs28.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs28.zip) you’ll find just one HTML page, and a few images. Below is the code for the page, which contains nine buttons in three sets of three. First, un-styled examples of each of the three kinds of button, then styled examples of each kind of button, and finally, one of each kind of button where images are used to make the buttons easier to understand.
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

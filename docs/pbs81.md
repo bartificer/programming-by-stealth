@@ -20,7 +20,7 @@ My sample solution already used Mustache templates, so I didn’t have to make a
 
 The only change I needed to make was to alter the AJAX request for a random number so it used promises rather than the `success` and `error` callbacks. In my code this functionality was all contained within the function `resetGame()`. Before I started my alterations the basic structure of that function could be summarised with the following pseudo-code:
 
-```JavaScript
+```javascript
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
@@ -62,7 +62,7 @@ The return value from `$.ajax()` is a promise, so we should not ignore it!
 
 The first step is to make use of that value, for now, let’s store it in a sensibly named variable:
 
-```JavaScript
+```javascript
 const randNumPromise = $.ajax({
   // …
 });
@@ -70,7 +70,7 @@ const randNumPromise = $.ajax({
 
 Next, we need to use `.then()` to respond to the promise’s resolution or rejection:
 
-```JavaScript
+```javascript
 randNumPromise.then(
   function(rn){ // resolved
     // copy & paste the code from the success callback here
@@ -83,7 +83,7 @@ randNumPromise.then(
 
 There is of course no need to do this as two separate statements, we can collapse this into a single statement of the form:
 
-```JavaScript
+```javascript
 $.ajax({
   // …
 }).then(
@@ -100,7 +100,7 @@ With that done the `success` and `error` callbacks need to be removed from the o
 
 Putting it all together, my finished `resetGame()` function looks like this:
 
-```JavaScript
+```javascript
 function resetGame(){
   // set the game on flag to false
   GAME_ON = false;
@@ -187,7 +187,7 @@ By default, this is how promises behave.
 
 We can see this behaviour in action with Demo 1 in `pbs81a.html`. The click handler for that button (shown below) starts three un-related promises one after the other. You’ll see all three log that they are starting, then each will resolve or reject randomly in a random amount of seconds.
 
-```JavaScript
+```javascript
 $('#demo1_btn').click(function(){
   outputMessage('Starting Promise 1');
   randomPromise().then(function(s){
@@ -210,7 +210,7 @@ Sometimes the input to one task depends on the output from another. In this situ
 
 We can see this behaviour in action with Demo 2 in `pbs81a.html`. The click handler for this button (code below) starts three chained promises where the resolution of the first triggers the start of the second, and the resolution of the second the start of the third.
 
-```JavaScript
+```javascript
 $('#demo2_btn').click(function(){
   outputMessage('Starting Promise 1');
   randomPromise().then(function(s){
@@ -245,7 +245,7 @@ We can use this function to wait for all parallelise-able tasks to complete befo
 
 In the case of our hypothetical template use-case we would structure our code like this:
 
-```JavaScript
+```javascript
 const tpl1Promise = $.ajax({
   // …
 });
@@ -276,7 +276,7 @@ allTplAndDataPromise.then(
 
 Rather than create all those variables, we can do this as a single anonymous promise chain like so:
 
-```JavaScript
+```javascript
 Promise.all([
   $.ajax({
     // template 1 AJAX request
@@ -305,7 +305,7 @@ Promise.all([
 
 Demo 3 in `pbs81a.html` shows `Promise.all()` in action. The callback for the demo 3 button (code below) creates three promises which run in parallel, then pass all three of them to `Promise.all()` to create a fourth promise which won’t resolve until all three of the original promises have resolved.
 
-```JavaScript
+```javascript
 $('#demo3_btn').click(function(){
   outputMessage('Starting Promise 1');
   const p1 = randomPromise().then(function(s){

@@ -40,7 +40,7 @@ Before we go any further, just a quick note on the example code snippets. These 
 
 The original syntax for defining JavaScript functions is the [function statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) (also called the _function declaration_):
 
-```JavaScript
+```javascript
 function nameOfFunction(nameOfFirstArg, nameOfSecondArg){
   // ...
 }
@@ -50,7 +50,7 @@ We get to choose the name of the function, and the names the arguments will get 
 
 As a basic example, let’s write a function to raise one number to the power of another:
 
-```JavaScript
+```javascript
 function raiseTo(num, pow){
   let ans = num;
   for(let i = 2; i <= pow; i++){
@@ -68,7 +68,7 @@ Also note that **the function definition will be hoisted**, that is to say, it w
 
 Hoisting can make things behave a little unexpectedly, as illustrated by this example:
 
-```JavaScript
+```javascript
 // declare the demo function (creates a new scope)
 function hoistDemo(){
   // call the function we'll declare lower in this scope
@@ -88,7 +88,7 @@ When you run the above code the `hoistDemo()` function will be called, creating 
 
 Under-the-hood the JavaScript interpreter re-ordered the contents of the function `hoistDemo()` so that all function declarations are at the top, so the code is, in effect, silently transformed into the following:
 
-```JavaScript
+```javascript
 function hoistDemo(){
   function hoistedFunction(){
     console.log('I exist already!');
@@ -103,7 +103,7 @@ A [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 The syntax is simply:
 
-```JavaScript
+```javascript
 function(nameOfFirstArg, nameOfSecondArg){
   // ...
 }
@@ -111,7 +111,7 @@ function(nameOfFirstArg, nameOfSecondArg){
 
 We can re-write our example `raiseTo()` function using the function expression/literal syntax like so:
 
-```JavaScript
+```javascript
 const raiseTo = function(num, pow){
   let ans = num;
   for(let i = 2; i <= pow; i++){
@@ -125,7 +125,7 @@ Note that we name our anonymous function by assigning it to a variable. Because 
 
 Also note that **function expressions/literals are not hoisted**. We can prove this by re-writing our hoisting example from above using a literal:
 
-```JavaScript
+```javascript
 // declare the demo function (creates a new scope)
 function unHoistedDemo(){
   // try call the function we'll declare lower in this scope
@@ -151,7 +151,7 @@ Ignoring the visual differences for now, the big differentiation between arrow f
 
 With all that said, let’s look at the fat arrow syntax:
 
-```JavaScript
+```javascript
 (nameOfFirstArg, nameOfSecondArg)=>{
   // ...
 }
@@ -161,7 +161,7 @@ As you can see, the syntax is very abbreviated, it’s simply an argument list w
 
 Let’s re-write our example `raiseTo()` function one more time:
 
-```JavaScript
+```javascript
 const raiseTo = (num, pow)=>{
   let ans = num;
   for(let i = 2; i <= pow; i++){
@@ -177,7 +177,7 @@ The fat arrow syntax is already quite concise, but in the special case where a f
 
 To illustrate this point let’s define another function, this time one that raises the number two to a give power. For simplicity we’re use our existing `raiseTo()` function to implement this new function’s functionality:
 
-```JavaScript
+```javascript
 // make sure you declare raiseTo() from above before trying to use this function!
 const twoTo = (pow)=>{
   return raiseTo(2, pow);
@@ -186,7 +186,7 @@ const twoTo = (pow)=>{
 
 Since this function takes exactly one argument we can omit the parentheses:
 
-```JavaScript
+```javascript
 const twoTo = pow => {
   return raiseTo(2, pow);
 };
@@ -194,13 +194,13 @@ const twoTo = pow => {
 
 Because this is just a one-line function we can omit the semi-colon within the function body and collapse it all onto one line:
 
-```JavaScript
+```javascript
 const twoTo = pow => { return raiseTo(2, pow) };
 ```
 
 Finally, and also because this is a one-line function, we can omit the `return` keyword and curly braces:
 
-```JavaScript
+```javascript
 const twoTo = pow => raiseTo(2, pow);
 ```
 
@@ -212,7 +212,7 @@ Every function defines its own scope, and, has access to variables in the scopes
 
 We can see this in action in the following example:
 
-```JavaScript
+```javascript
 // declare 3 variable in the global scope
 var [a, b, c] = ['Global a', 'Global b', 'Global c'];
 
@@ -258,7 +258,7 @@ Note that this is an array-like object, not an array, but as of ES6 you can conv
 
 This object can be used to write functions that accept arbitrarily many arguments. As an example, the function below will return the sum of all passed arguments:
 
-```JavaScript
+```javascript
 function sumAll(){
   let ans = 0;
   for(let i = 0; i < arguments.length; i++){
@@ -270,7 +270,7 @@ function sumAll(){
 
 Notice that we did not name any of the arguments. We can see this function in action like so:
 
-```JavaScript
+```javascript
 sumAll(); // 0
 sumAll(1, 2); // 3
 sumAll(10, 20, 30); // 60
@@ -278,7 +278,7 @@ sumAll(10, 20, 30); // 60
 
 While the `arguments` object is not an array, it is array-like enough that it can be used within `for...of` loops, so since ES6 we can shorten the above example like so:
 
-```JavaScript
+```javascript
 function sumAll(){
   let ans = 0;
   for(num of arguments){
@@ -296,7 +296,7 @@ Since ES6 JavaScript allows named arguments to have default values. The syntax s
 
 For example, the following function will repeat a given string an arbitrary number of times, defaulting to two:
 
-```JavaScript
+```javascript
 function repeatString(str, num = 2){
   ans = '';
   for(let i = num; i > 0; i--){
@@ -308,13 +308,13 @@ function repeatString(str, num = 2){
 
 If we call the function with just one argument the default value is used for the second argument, doubling the string:
 
-```JavaScript
+```javascript
 repeatString('boogers'); // boogersboogers
 ```
 
 But if we call the function with two arguments the specified value is used instead of the default:
 
-```JavaScript
+```javascript
 repeatString('boogers', 3); // boogersboogersboogers
 ```
 
@@ -324,7 +324,7 @@ Since ES6 we can use the rest operator (`...`) to collect all arguments after a 
 
 You can see this in action in the following example:
 
-```JavaScript
+```javascript
 // define the demo function
 function restDemo(namedArg1, namedArg2, ...namedRest){
   console.log(`namedArg1='${namedArg1}'`);

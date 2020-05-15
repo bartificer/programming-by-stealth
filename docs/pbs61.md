@@ -28,7 +28,7 @@ The first step is to include the Bootstrap JavaScript code at the bottom of the 
 
 With that done adding a dismissible alert simply becomes a copy-and-paste task. I decided to style mine as successful, and to give a positive message:
 
-```XHTML
+```html
 <p class="alert alert-success m-3">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;<span>
@@ -45,7 +45,7 @@ The second challenge was a little more complex, but basically involved extending
 
 I started by building a form to gather the needed information:
 
-```XHTML
+```html
 <fieldset class="col" role="form" aria-labelledby="create_fm_desc">
   <legend id="create_fm_desc">Create Alerts</legend>
 
@@ -82,7 +82,7 @@ Notice the proper use of labels and ARIA attributes to make the form accessible.
 
 There also needed to be a container into which to inject the alerts:
 
-```XHTML
+```html
 <div class="col" id="insert_here"></div>
 ```
 
@@ -90,7 +90,7 @@ From the point of view of getting the JavaScript to work, the key points to note
 
 The next step was to add an event handler for the add button (this is done inside a document ready event handler):
 
-```JavaScript
+```javascript
 // add an event handler to the Add button
 $('#alert_btn').click(function(){
   // build an alert
@@ -117,7 +117,7 @@ Most of this code is very similar to that in `pbs60b.html`, but the two notable 
 
 To get at the value of the text box I used:
 
-```JavaScript
+```javascript
 $('#alert_text_tb').val() || "A sample Alert — enter text in the text box!"
 ```
 
@@ -125,7 +125,7 @@ Remember, when you pass jQuery a CSS selector as a single string argument is sea
 
 The other important line of code is the one that sets the style of the alert based on the dropdown:
 
-```JavaScript
+```javascript
 $a.addClass(`alert alert-${$('#alert_style_sel').val()}`);
 ```
 
@@ -149,7 +149,7 @@ I’ve added a file demoing both flavours of Jumbotron to this instalment’s ZI
 
 Let’s look at the relevant code snippets, starting with the simple edge-to-edge Jumbotron:
 
-```XHTML
+```html
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">A Full-Width Jumbotron</h1>
@@ -162,7 +162,7 @@ The key points to note are that the Jumbotron is outside the container, and the 
 
 Now let’s move on to look at the second, more expansive example. This is the more commonly used variant of the Jumbotron, and I’ve added a little more content to make it a bit more realistic:
 
-```XHTML
+```html
 <div class="container-fluid">
   <div class="jumbotron">
     <h1 class="display-4">A Regular Jumbotron</h1>

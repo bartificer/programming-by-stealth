@@ -24,7 +24,7 @@ The first part of the challenge was to make the image in your recipe responsive.
 
 The second part was a little more challenging — opt the figure into Bootstrap’s more opinionated styling, and format it in a way that makes sense within your page. Opting the figure into Bootstrap’s styles involves adding the class `figure` to the `<figure>` tag, the class `figure-img` to the `<img>` tag within the figure, and the class `figure-caption` to the `<figcaption>` tag:
 
-```XHTML
+```html
 <figure class="text-center figure">
     <img class="border rounded img-fluid figure-img" alt="Roasted Cucumber with Red Onion &amp; Dill" src="roastedCucumberWithRedOnionAndDill.png" />
     <figcaption class="figure-caption">The finished product fresh out of the oven!</figcaption>
@@ -33,7 +33,7 @@ The second part was a little more challenging — opt the figure into Bootstrap�
 
 Before opting into the Bootstrap styling by adding the class `figure` to the `<figure>` tag my figure was centred, now it isn’t — why? As we learned in the previous instalment, it’s because the Bootstrap class `figure` sets the tag’s `display` property to `inline-block`. To fix this regression I simply had to force the figure to be displayed as a block by adding the Bootstrap utility class `d-block`:
 
-```XHTML
+```html
 <figure class="text-center figure d-block">
     <img class="border rounded img-fluid figure-img" alt="Roasted Cucumber with Red Onion &amp; Dill" src="roastedCucumberWithRedOnionAndDill.png" />
     <figcaption class="figure-caption">The finished product fresh out of the oven!</figcaption>
@@ -82,7 +82,7 @@ Note that all nested containers behave like fluid containers, regardless of whet
 
 The following simple demo (`pbs57a.html` in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip)) illustrates the difference between how fixed and fluid containers respond to window width — play around with the window’s width to see how differently the two kinds of container respond.
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -131,7 +131,7 @@ The classes `col-1` through `col-12` will give you columns of width one through 
 
 The following would be a very common arrangement — two side bars with explicit widths, and the space between given over to a central main content area (you’ll find this file in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57b.html`):
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -175,7 +175,7 @@ By default, Bootstrap adds some spacing between rows and columns so text in adja
 
 When we first met Bootstrap back in [instalment 52](https://bartificer.net/pbs52) I told you to wrap your Bootstrap code in the following snippet:
 
-```XHTML
+```html
 <div class="container-fluid mt-3">
   <div class="row">
     <div class="col-12">
@@ -231,7 +231,7 @@ Next, we’ll convert the entire `<main>` tag into the second row of the outer g
 
 It’s inside this full-width column that takes up the entire second row of the outer grid that we want to create our nested inner grid. Before we do that, let’s pause and take stock of where things stand now. This is the current big-picture structure of our page:
 
-```XHTML
+```html
 <div class="container mt-3">
   <div class="row">
     <header class="col-12">
@@ -273,7 +273,7 @@ At this stage we’re almost done. We just need to do a little house-keeping in 
 
 You’ll find the full source for the finished laided-out page in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57e.html`, but this is the basic structure of the final page:
 
-```XHTML
+```html
 <!DOCTYPE html>
 <html>
 <head>

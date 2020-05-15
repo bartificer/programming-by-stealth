@@ -24,7 +24,7 @@ At the end of [the previous instalment](https://bartificer.net/pbs48) I set a ch
 
 The first part of the challenge was simply to add an instance function named `.species()` to the `Animal` class that will return the name of the Animal’s class as a string. Based on what we learned about the `.constructor` and `.name` properties last time, this is a very short little function indeed:
 
-```JavaScript
+```javascript
 species(){
     return this.constructor.name;
 }
@@ -38,7 +38,7 @@ The second part of the challenge was to make use of the `.species()` function we
 
 This function is a little longer, but not much more complicated. They key is that instances of the Farm class store their list of animals in an instance variable named `._animals` that’s an array. We simply need to loop over this array and count how many of each species we meet:
 
-```JavaScript
+```javascript
 speciesInventory(){
     // start with an empty object
     const ans = {};
@@ -69,7 +69,7 @@ Again, we can test our function by entering `bartFarm.speciesInventory()` into t
 
 The third part of the challenge was extremely simply — update the `Farm` class’s constructor so it creates an empty `<div>` with the class `farm_inventory`:
 
-```JavaScript
+```javascript
 constructor($container, ...animals){
     // initialise the DOM
     this._$container = $container.empty();
@@ -96,7 +96,7 @@ The fourth part of the challenge was to add code to the `.addAnimal()` function 
 
 This involves calling the function from part 3, and then using jQuery to build and inject DOM elements:
 
-```JavaScript
+```javascript
 addAnimal(a){
     // store the animal
     this._animals.push(a);
@@ -127,7 +127,7 @@ They key here is to understand that the `instanceof` operator is aware of inheri
 
 Once you understand that, the function becomes very easy to write indeed:
 
-```JavaScript
+```javascript
 static isAnimal(a){
     return a instanceof Animal ? true : false;
 }
@@ -144,7 +144,7 @@ The final part of the challenge is to add another static function to the `Animal
 
 The only small complication is that you need to be a little careful in how you structure your tests so as to avoid generating errors when passed non-objects to test. The key is to first make sure both arguments are instance of the `Animal` class using the static function we created in step 5 before calling the `.species()` instance function on both arguments and comparing the results:
 
-```JavaScript
+```javascript
 static areSameSpecies(a1, a2){
     if(!(Animal.isAnimal(a1) && Animal.isAnimal(a2))) return false;
     return a1.species() === a2.species() ? true : false;
@@ -172,7 +172,7 @@ The keys can, in theory, be any JavaScript string. If you try use a key that’s
 
 The object literal syntax lets you create an object and its members in one go, the syntax is as follows:
 
-```JavaScript
+```javascript
 const myObject = {
     "key1": "a value for key 1",
     "key2": 42,
@@ -188,7 +188,7 @@ The keys are the items to the left of the colon, and the values the items to the
 
 If a key is a valid JavaScript variable name (as described way back in [instalment 12](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/)), then it doesn’t have to be quoted but if the key contains even a single character that can’t appear in a variable name then it must be quoted. So, we can re-write the above sample as:
 
-```JavaScript
+```javascript
 const myObject = {
     key1: "a value for key 1",
     key2: 42,
@@ -208,7 +208,7 @@ In reality, keys are usually valid variable names, so you rarely see the quoted 
 
 The primary way of accessing the members of an object is with the square-bracket notation. Given our example above we can access each element as follows:
 
-```JavaScript
+```javascript
 // access a value directly
 const x = myObject['key1'];
 
@@ -237,7 +237,7 @@ The square bracket works for all keys in an object. Keys that have not had a val
 
 Hence, you may be tempted to test for the presence of a key like so:
 
-```JavaScript
+```javascript
 const anObj = {
     someVal: true,
     someOtherVal: false
@@ -252,7 +252,7 @@ if(anObj['someVal']){
 
 That will behave as expected for they key `someVal`, but not for the key `someOtherVal`! To be sure a key really is undefined you have to check its type:
 
-```JavaScript
+```javascript
 if(typeof anObj['someOtherVal'] !== 'undefined'){
     console.log('the key someOtherVal HAS been defined');
 }else{
@@ -262,7 +262,7 @@ if(typeof anObj['someOtherVal'] !== 'undefined'){
 
 For the sub-set of keys that are valid JavaScript names you can use the shorter dot notation to access object members. The above access examples can be re-written like so:
 
-```JavaScript
+```javascript
 // access a value directly
 const x = myObject.key1;
 
@@ -293,7 +293,7 @@ We were able to use the dot notation a lot of the time, but not all the time. In
 
 Given an object, you can use the static `keys()` function from the `Object` class to get a list of all the keys it contains as an array:
 
-```JavaScript
+```javascript
 const myObj = { k1: 'a', k2: 'b', k3: 'c'};
 
 const myKeys = Object.keys(myObj);
@@ -304,7 +304,7 @@ const myKeys = Object.keys(myObj);
 
 Looping over an object means looping through each of the keys it contains. If you don’t care about the order in which you process the keys you can use a `for...in` loop directly:
 
-```JavaScript
+```javascript
 const myObj = {
     x: 'y',
     a: 42,
@@ -326,7 +326,7 @@ If you need to process the keys in order you need to first extract them form the
 
 Explicitly, this is what you need to do:
 
-```JavaScript
+```javascript
 const myObj = {
     x: 'y',
     a: 42,
@@ -355,7 +355,7 @@ for(const k of myObjSortedKeys){
 
 In the real world we would never write the whole process out so explicitly, we would instead collapse it to simply:
 
-```JavaScript
+```javascript
 const myObj = {
     x: 'y',
     a: 42,
@@ -380,7 +380,7 @@ What will the following code snippets output to the console?
 
 1.  What will the value of `midTotal` be at the end of this code snippet?
 
-    ```JavaScript
+    ```javascript
     const salesData = {
       mon: 10,
       tue: 12,
@@ -401,7 +401,7 @@ What will the following code snippets output to the console?
 
 2.  What will the value of z be at the end of this code snippet?
 
-    ```JavaScript
+    ```javascript
     const x = {y: 'x', x: 'boogers'};
     const z = x[x.y];
     ```
@@ -442,7 +442,7 @@ What will the following code snippets output to the console?
 
 3.  What will the following snippet write to the console?
 
-    ```JavaScript
+    ```javascript
     const stuff = 'thingy';
     const whatchamagig = {
     	stuff: 'what?',
@@ -459,7 +459,7 @@ What will the following code snippets output to the console?
 
 4.  What will the following snippet write to the console?
 
-    ```JavaScript
+    ```javascript
     const stuff = 'thingy';
     const thingy = 'huh?';
     const whatsit = thingy;
@@ -509,7 +509,7 @@ What will the following code snippets output to the console?
 
 5.  What will the value of `yokie` be after this snippet executes?
 
-    ```JavaScript
+    ```javascript
     const whatchamagig = {
     	stuff: 'what?',
     	thingy: 'come again?',
@@ -578,7 +578,7 @@ What will the following code snippets output to the console?
 
 6.  What does the following snippet write to the console?
 
-    ```JavaScript
+    ```javascript
     const stuff = 'whatsit';
     const thingy = 'yoke';
     const whatsit = thingy;
@@ -654,7 +654,7 @@ The first step is to write a simple new class to represent an individual state. 
 
 However, before we can write the class itself we should to lay some ground-work. We’ll need validation functions for primitive values and non-empty strings, so let’s add those:
 
-```JavaScript
+```javascript
 /**
  * Test if a given value is a primitive value.
  *
@@ -694,7 +694,7 @@ function isNonEmptyString(v){
 
 We can now make use of these functions when writing our simple `bartificer.ca.State` class:
 
-```JavaScript
+```javascript
 /**
  * A prototype to represent a cell state. A state consists of a value and a
  * label.
@@ -788,7 +788,7 @@ I also added tests for this new class to the test suite, but I won’t clutter t
 
 Now that we’ve created this class to represent a state, we need to update the `isCellState()` function so it only considers instances of `bartificer.ca.State` to be valid states:
 
-```JavaScript
+```javascript
 /**
  * Test if a given value is a valid cell state (an instance of
  * {@link bartificer.ca.State}).
@@ -811,7 +811,7 @@ While no changes were needed to the two main classes themselves, huge changes ne
 
 Finally, we need to update the `sample.html` page. Specifically, we need to update the initialisation, step, and render functions so they use each state’s `.value()` function to get at a state’s underlying value, and return `bartificer.ca.State` objects as appropriate.
 
-```JavaScript
+```javascript
 // state objects to represent alive and dead
 const alive = new bartificer.ca.State(true, 'Alive');
 const dead = new bartificer.ca.State(false, 'Dead');
@@ -884,19 +884,19 @@ So, the four required arguments should be left as-is, and the remaining two opti
 
 This means that the first line of the constructor needs to change from:
 
-```JavaScript
+```javascript
 constructor($container, rows, cols, stepFn, renderFn, s){
 ```
 
 to:
 
-```JavaScript
+```javascript
 constructor($container, rows, cols, stepFn, opts){
 ```
 
 As an example of how the re-factored constructor would be used, the call to the constructor in `sample.html` will become:
 
-```JavaScript
+```javascript
 // use the constructor to build an automaton
 sampleCA = new bartificer.ca.Automaton(
     $('#game_of_life_container'), // use the div as the container

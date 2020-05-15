@@ -18,14 +18,14 @@ The challenge set at the end of the previous instalment was quite straight forwa
 
 The first thing to do was to load the Mustache library into the document:
 
-```XHTML
+```html
 <!-- Include Mustache.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
 ```
 
 With Mustache now available in the document, the next step was to update the template for the toasts so it’s contained within a `<script>` tag with a non-executable MIME type (I chose `text/html`) and an ID rather than a `<template>` tag with an ID. Then it was just a matter of inserting the Mustache placeholders for injecting the content from the view object. I chose to use the names `title` and `message`:
 
-```XHTML
+```html
 <!-- The template for the Toasts -->
 <script type="text/html" id="toast_tpl">
   <div class="toast" role="status" aria-atomic>
@@ -39,7 +39,7 @@ With Mustache now available in the document, the next step was to update the tem
 
 Then it was just a matter of updating my `showToast()` function so it loaded the template from the newly created `<script>` tag, and used Mustache to process it:
 
-```JavaScript
+```javascript
 // a function for popping up a toast
 function showToast(t, msg){
   // fetch a copy of the template string
@@ -101,7 +101,7 @@ These example code snippets can be executed in the JavaScript console on any pag
 
 Let’s start with the following simple view:
 
-```JavaScript
+```javascript
 const demoView1 = {
   place: "LA",
   tempC: 22 // temperature in degrees C
@@ -114,7 +114,7 @@ We’d like to use it to render the following output:
 
 Without using functions the closest we could get would be the following:
 
-```JavaScript
+```javascript
 Mustache.render('It will be {{tempC}}&deg;C in {{place}} tomorrow.', demoView1);
 ```
 
@@ -126,7 +126,7 @@ Close, but not what we want.
 
 Let’s start by creating a function for converting a Celsius temperature to the desired representation:
 
-```JavaScript
+```javascript
 function degCToHumanTemp(degC){
   const degF = Math.round((degC * 1.8) + 32);
   return `${degF}°F (${degC}°C)`;
@@ -135,7 +135,7 @@ function degCToHumanTemp(degC){
 
 Now let’s update our view to offer this function as a section key:
 
-```JavaScript
+```javascript
 const demoView2 = {
   place: "LA",
   tempC: 22, // temperature in degrees C
@@ -151,7 +151,7 @@ Note that our section key, `humanTemp`, is a function that returns a function th
 
 We can now use `humanTemp` as a _section key_:
 
-```JavaScript
+```javascript
 const demoTpl2 = 'It will be {{#humanTemp}}{{tempC}}{{/humanTemp}} in {{place}} tomorrow.';
 Mustache.render(demoTpl2, demoView2);
 ```
@@ -164,7 +164,7 @@ So how does this work? When the anonymous function defined in the view is called
 
 If the conversion is only needed once it doesn’t make sense to add it to the view as a function, but if you need it more than once it starts to make more sense:
 
-```JavaScript
+```javascript
 const tempView3 = {
   place: "LA",
   minC: 18, // temperature in degrees C
@@ -197,7 +197,7 @@ Let’s see this in action with a pair of examples. You can see these in their f
 
 First, lets create two partials, one for links to external sites, and one for a ‘new’ badge.
 
-```JavaScript
+```javascript
 const pbs74bPartials = {
   extLink: '<a href="{{{url}}}" target="_blank" rel="noopener noreferrer">{{text}} <i class="fas fa-external-link-alt"></i></a>',
   newBadge: '<span class="badge badge-pill badge-danger">New!</span>'
@@ -206,7 +206,7 @@ const pbs74bPartials = {
 
 We can now use these partials in our templates. Let’s start with the following template:
 
-```XHTML
+```html
 <script type="text/html" id="pbs74b_tpl1">
   <p>{{> newBadge}} You can now join Allison's wonderful Nosillacastaways community on {{> extLink}}!</p>
 </script>
@@ -214,7 +214,7 @@ We can now use these partials in our templates. Let’s start with the following
 
 We can now use this partials-containing template like so:
 
-```JavaScript
+```javascript
 // render the first demo template
 $('#pbs74b_tpl1_placeholder').html(Mustache.render(
   $('#pbs74b_tpl1').html(), // the template
@@ -230,7 +230,7 @@ We can of course use these same partials in other templates within the same docu
 
 Let’s start by defining another template:
 
-```XHTML
+```html
 <script type="text/html" id="pbs74b_tpl2">
   <p>These are the most important 3<sup>rd</sup> party libraries this series relies on:</p>
   <ol>
@@ -247,7 +247,7 @@ Note that this template is intended to loop over a view variable named `jsLibs`,
 
 We can now use this template as follows:
 
-```JavaScript
+```javascript
 // render the second demo template
 $('#pbs74b_tpl2_placeholder').html(Mustache.render(
   $('#pbs74b_tpl2').html(), // the template
@@ -270,7 +270,7 @@ The trick for using `<script>` tags with non-executable types to store template 
 
 As with template strings, you can use any `type` you like in your `<script>` tag, but I prefer to use the correct MIME Type for the data I’m storing. The appropriate MIME Type for JSON is `application/json` so, I use `<script>` tags of the following form (replacing the content of the tag and the ID as appropriate):
 
-```XHTML
+```html
 <script type="application/json" id="some_id">
   {
     "some": "data"
@@ -280,13 +280,13 @@ As with template strings, you can use any `type` you like in your `<script>` tag
 
 We can then access the embedded JSON string using jQuery’s `.text()`. function, e.g.
 
-```JavaScript
+```javascript
 const jsonString = $('#some_id').text();
 ```
 
 As we learned way back in [instalment 17](https://bartificer.net/pbs17), the JavaScript function for converting a JSON string into a JavaScript object is `JSON.parse()`, so we can go directly from an ID to a JavaScript object with code of the form:
 
-```JavaScript
+```javascript
 const jsObject = JSON.parse($('#some_id').text());
 ```
 

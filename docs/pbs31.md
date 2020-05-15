@@ -20,7 +20,7 @@ The challenge was to add comparison functions to all three of our prototypes.
 
 You can find my entire solution in the file named `pbs30-challengeSolution` in this instalment’s ZIP file. Below are the snippets that are relevant to the challenge:
 
-```JavaScript
+```javascript
 // init name space
 var pbs = pbs ? pbs : {};
 
@@ -226,7 +226,7 @@ What does it mean to be an instance function? As the name suggests, instance fun
 
 Consider the following simple code snippet:
 
-```JavaScript
+```javascript
 var t = new pbs.Time(16);
 console.log(t.time12());
 ```
@@ -249,7 +249,7 @@ Prototypes can contain another category of functions, so-called _static function
 
 I’m sure that sounds both abstract and confusing, so let’s try make it more concrete with an example. The concept of a leap years is definitely related to the concept of dates, so it has relevance of our `pbs.Date` prototype. However, leap years are not dates, so a function for checking if a given year is a leap year doesn’t make sense as an instance function. If you wanted to find out if 1900 was a leap year, it would not make sense to have to write code like this:
 
-```JavaScript
+```javascript
 var testYear = 1900;
 var tempDate = new pbs.Date(1, 1, testYear);
 if(tempDate.isLeapYear()){
@@ -261,7 +261,7 @@ if(tempDate.isLeapYear()){
 
 That code just doesn’t make sense – it’s definitely a bad smell! I’d argue that the following code snippet makes a lot more sense, and makes for much more readable code:
 
-```JavaScript
+```javascript
 var testYear = 1900;
 if(pbs.Date.isLeapYear(testYear)){
   console.log(testYear + ' IS a leap year');
@@ -274,7 +274,7 @@ Notice that in this case, the function `isLeapYear()` is not being called on an 
 
 Let’s write that function:
 
-```JavaScript
+```javascript
 pbs.Date.isLeapYear = function(y){
   // make sure we were passed a plausible year
   if(!isValidInteger(y)){
@@ -304,7 +304,7 @@ If you remember, the pattern for the name of an instance function was `Prototype
 
 If you add this code inside your self-executing anonymous function along with the rest of the `pbs.Date` prototype (you can add it anywhere after the `pbs.Date` constructor is defined), you will then be able to run the following test code:
 
-```JavaScript
+```javascript
 console.log(pbs.Date.isLeapYear(1900)); // false
 console.log(pbs.Date.isLeapYear(2000)); // true
 console.log(pbs.Date.isLeapYear(2001)); // false
@@ -313,7 +313,7 @@ console.log(pbs.Date.isLeapYear(2004)); // true
 
 My version of our prototypes makes use of a private helper function named `isValidateDMYCombo` for checking if a given day, month, and year combination is valid. That function has to check if a given year is a leap year every time the given month is February. Here is the full code for the function as it stands:
 
-```JavaScript
+```javascript
 // helper function to validate a given combination of day, month, and year
 function isValidateDMYCombo(d, m, y){
   // figure out how many days are allowed in the curreny month
@@ -347,7 +347,7 @@ function isValidateDMYCombo(d, m, y){
 
 Notice we now have code duplication between this function and our new `pbs.Date.isLeapYear()` static function. We can remedy that by refactoring the `isValidateDMYCombo()` private helper function to use the `pbs.Date.isLeapYear()` static function:
 
-```JavaScript
+```javascript
 // helper function to validate a given combination of day, month, and year
 function isValidateDMYCombo(d, m, y){
   // figure out how many days are allowed in the curreny month
@@ -373,7 +373,7 @@ Firstly, write a static function named `pbs.Date.leapYearsBetween()` that takes 
 
 You’ll know your code works when the following test code produces the following output:
 
-```JavaScript
+```javascript
 console.log("The Leap Years between 2000 and 2100 (inclusive):");
 pbs.Date.leapYearsBetween(2000, 2100).forEach(function(ly){
   console.log("* " + ly);
@@ -412,7 +412,7 @@ The Leap Years between 2000 and 2100 (inclusive):
 
 Secondly, create the following three static functions: `pbs.Date.areEqual()`, `pbs.Time.areEqual()`, and `pbs.DateTime.areEqual()`. Each of these functions should take two or more instances of the relevant prototype as arguments, and check whether or not they are all equal to each other, returning `true` if they are, and `false` in all other cases. You can test your functions with the code below:
 
-```JavaScript
+```javascript
 // PBS 31 - Part 2a
 var t1 = new pbs.Time();
 var t2 = new pbs.Time();
@@ -503,13 +503,13 @@ We use the `<input>` tag with the `type` attribute set to `checkbox` to create a
 
 Here’s a simple sample checkbox:
 
-```XHTML
+```html
 <input type="checkbox" name="tos_agree" value="yes" />
 ```
 
 A checkbox without a label is useless to everyone, sighted and visually impaired alike, so remember to add labels to your checkboxes. You can either wrap a `<label>` tag around your checkbox, or, have the `<label>` tag be separate, but linked by ID using the `for` attribute:
 
-```XHTML
+```html
 <!-- either -->
 <label>
   <input type="checkbox" name="tos_agree" value="yes" />
@@ -537,7 +537,7 @@ To make your radio button groups accessible, all the radio buttons that make up 
 
 Below is a sample radio button group:
 
-```XHTML
+```html
 <div role="radiogroup" aria-labelledby="tos_radgrp_desc">
   <label id="tos_radgrp_desc">Do you agree to our TOS?</label>
   <label>
@@ -555,7 +555,7 @@ Both checkboxes and radio buttons default to not being checked. You can have ind
 
 For example, the following checkbox would be checked by default:
 
-```XHTML
+```html
 <label>
   <input type="checkbox" name="tos_agree" value="yes" checked="checked" />
   I agree to something
@@ -568,7 +568,7 @@ There is also a matching CSS pseudo-class `:checked`, which matches only checkbo
 
 Below is the code for a simple HTML document containing a single form which contains a checkbox and a radio button group. I’ve also added a button that will show the form data associated with the form. Try checking the checkbox and then pushing the button to see the effect that has on the form data. You’ll also find a copy of this code in the file `pbs31.html` in this instalment’s ZIP file.
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -635,7 +635,7 @@ To play along with the examples in this section, open `pbs31.html` in the browse
 
 We can use jQuery’s `.val()` function to get or set the value associated with a checkbox or an individual radio button. For example, we can get the value associated with the checkbox on our example page by entering the following in the console:
 
-```JavaScript
+```javascript
 $('#tos_agree_cb').val()
 ```
 
@@ -643,7 +643,7 @@ Before we continue, be sure the checkbox is checked, and then press the button. 
 
 Now, let’s change the value associated with this checkbox by entering the following in the console:
 
-```JavaScript
+```javascript
 $('#tos_agree_cb').val('boogers')
 ```
 
@@ -655,7 +655,7 @@ To get or set the name associated with a checkbox or a radio button we need to u
 
 We can get the name associated with the checkbox with the ID `tos_agree_cb` by entering the following in the console:
 
-```JavaScript
+```javascript
 $('#tos_agree_cb').attr('name')
 ```
 
@@ -663,7 +663,7 @@ Before continuing, check the checkbox and press the button. Note that the form d
 
 We can change the name associated with this checkbox by entering the following in the console:
 
-```JavaScript
+```javascript
 $('#tos_agree_cb').attr('name', 'boogers_agree')
 ```
 
@@ -671,19 +671,19 @@ If we hit the button again, we can see that `tos_agree=yes` has become `boogers_
 
 We can also make use of the CSS attribute selectors we learned about in [instalment 28](https://bartificer.net/pbs28) to search for elements in the page by name. For example, enter the following in the console to see how many inputs on the page have the name `nerd`:
 
-```JavaScript
+```javascript
 $('input[name="nerd"]').length
 ```
 
 In a small document like this example, that is more than specific enough, but in a larger document we might want to be a little more specific, and limit our search to just radio buttons. We could do that like so:
 
-```JavaScript
+```javascript
 $('input[type="radio"][name="nerd"]').length
 ```
 
 We can also use the CSS pseudo-class `:checked` to count the number of inputs (checkboxes or radio buttons) that are currently checked:
 
-```JavaScript
+```javascript
 $('input:checked').length
 ```
 
@@ -693,7 +693,7 @@ Before we continue, shift+refresh the page so you have a fresh copy going forwar
 
 We can check whether or not a given input is checked by entering the following in the console:
 
-```JavaScript
+```javascript
 $('#tos_agree_cb').prop('checked')
 ```
 
@@ -701,7 +701,7 @@ Try checking the checkbox and then running the same code again.
 
 We can also set the current checked state of a checkbox or radio button like so:
 
-```JavaScript
+```javascript
 $('#nerd_maybe_rb').prop('checked', true)
 ```
 
@@ -709,13 +709,13 @@ Notice that the nerd radio button group changed from _yes_ to _maybe a little_.
 
 We can also use the CSS attribute selector to change the selected value in a radio button group based on the value we want (this will only work if one of the radio buttons has the desired value assigned):
 
-```JavaScript
+```javascript
 $('input[type="radio"][name="nerd"][value="yes"]').prop('checked', true)
 ```
 
 Finally, we can also use the attribute selector to get the value of the currently selected radio button in a radio button group:
 
-```JavaScript
+```javascript
 $('input[type="radio"][name="nerd"]:checked').val()
 ```
 

@@ -30,7 +30,7 @@ At the end of the previous instalment, I set an optional challenge, and promised
 
 There are infinitely many correct solutions to any programming problem, so this is just one possible solution:
 
-```JavaScript
+```javascript
 // define the averaging function
 function avg(a){
   // check that we got an array - if not, return NaN
@@ -76,7 +76,7 @@ It should be easy to tell whether or not a given argument was passed to a functi
 
 We know that undefined evaluates to false, so you might think to do something like this:
 
-```JavaScript
+```javascript
 function doubler(n){
   if(n){
     return parseFloat(n) * 2;
@@ -96,7 +96,7 @@ What we need is a proper test for undefinedness. This is where the `typeof` oper
 
 If a variable is undefined, then applying the `typeof` operator to it will result in the string `'undefined'` – `typeof x === 'undefined'`. Knowing this, we can re-write our function from above like so:
 
-```JavaScript
+```javascript
 function doubler(n){
   if(typeof n !== 'undefined'){
     return parseFloat(n) * 2;
@@ -120,7 +120,7 @@ It is often the case that the task performed by a function needs some arguments,
 
 A somewhat contrived simple example would be a function called `incrementor()`, by default it will increment values by 1, but it can increment by a different amount if desired. In other words, it requires one argument, the number to increment, and optionally supports a second, the amount to increment by. You could implement that function like so:
 
-```JavaScript
+```javascript
 // define the incrementor function
 function incrementor(n, i){
   // make sure we got a valid number to increment
@@ -156,7 +156,7 @@ Optional arguments are very useful, but sometimes you need to write a function t
 
 A hack you could perform would be to force the caller of the function to pass all the numbers as a single array. This gets messy though – it would be much nicer if you could write a function that would work properly in all these scenarios:
 
-```JavaScript
+```javascript
 product(2, 4);
 product(2, 4, 6, 7, 11);
 product(2, 4, 6, 7, 11, 234, 1, 43, 66);
@@ -164,7 +164,7 @@ product(2, 4, 6, 7, 11, 234, 1, 43, 66);
 
 This is where the `arguments` array comes to your rescue. The argument names we have been using up until this point are completely optional – they are a convenience rather than a requirement. JavaScript actually stores all arguments in a locally scoped array called `arguments`. We already know how to loop over arrays, so we can use that knowledge to loop over arguments:
 
-```JavaScript
+```javascript
 // define the product function
 function product(){
   // if there are no arguments, return 0
@@ -196,7 +196,7 @@ We already know that variables can contain literal values or references to objec
 
 The `function` keyword creates function objects. So far, we have been creating and naming our functions in one go using a convenient shortcut notation – let’s strip the shortcut away. When you write this:
 
-```JavaScript
+```javascript
 function doubler(x){
   return x += x;
 }
@@ -204,7 +204,7 @@ function doubler(x){
 
 You are really doing this:
 
-```JavaScript
+```javascript
 var doubler = function(x){
   return x += x;
 };
@@ -216,7 +216,7 @@ We can us this variable just like we can any other variable.
 
 To prove this point, let’s create a function, and copy the reference into another variable name, giving us two references to the same function:
 
-```JavaScript
+```javascript
 // define a function, and save a referene to it into the variable doubler
 var doubler = function(x){
   return x * 2;
@@ -234,7 +234,7 @@ pbs.say(d(4));
 
 To make our code robust, we’ll need to check if a variable does or does not contain a reference to a function. We can do this using the `typeof` operator. If a variable contains a reference to a function, then applying the `typeof` operator to it will result in the string `'function'`, so, we can test if something is a function with code like `typeof x === 'function'`:
 
-```JavaScript
+```javascript
 // create a function using the shortcut notation
 function doubler(n){
   return n * 2;
@@ -256,7 +256,7 @@ pbs.say(typeof tripler);
 
 To illustrate the power of function references as arguments, let’s create a function to apply an arbitrary function to every element of an array. Our function will take two arguments, a reference to an array, and a reference to a function.
 
-```JavaScript
+```javascript
 // define a function to apply a function to every element in an array
 function arrayApply(a, fn){
   // validate the arguments
@@ -296,7 +296,7 @@ pbs.say('doubled array: ' + a);
 
 Having to declare and name the functions we want to apply to the array seems wasteful – why don’t we just create the function as we need it, and not name it?
 
-```JavaScript
+```javascript
 // define a function to apply a function to every element in an array
 function arrayApply(a, fn){
   // validate the arguments
@@ -336,7 +336,7 @@ The `forEach()` function calls the callback with two arguments, first, the value
 
 Let’s illustrate this with a simple example:
 
-```JavaScript
+```javascript
 var a = ['Allison', 'Likes', 'Boogers'];
 a.forEach(function(w, i){
   pbs.say(i + ': ' + w);

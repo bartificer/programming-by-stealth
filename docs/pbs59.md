@@ -26,7 +26,7 @@ A good example of this approach is the header section of my recipe. It consists 
 
 Before starting this challenge they were set up to look good on large screens by default with the following code:
 
-```XHTML
+```html
 <header class="container sticky-top mt-3">
   <div class="row align-items-center bg-white border-bottom">
     <div class="col-9">
@@ -42,7 +42,7 @@ Before starting this challenge they were set up to look good on large screens by
 
 The first step is to make this part of the page mobile-first by changing both columns to `col-12`. Next, to make it work well on large screen again, I added `col-lg-9` and `col-lg-3` to the first and second columns respectively:
 
-```XHTML
+```html
 <header class="container sticky-top mt-3">
   <div class="row align-items-center bg-white border-bottom">
     <div class="col-12 col-lg-9">
@@ -58,7 +58,7 @@ The first step is to make this part of the page mobile-first by changing both co
 
 This works and does exactly what I want, but there is a slightly more efficient approach. Instead of explicitly specifying widths for both columns, one can be left automatic at all breakpoints by giving it the class col, then all adjustments for all breakpoints can be done on just one column. This is the final version of my header:
 
-```XHTML
+```html
 <header class="container sticky-top mt-3">
   <div class="row align-items-center bg-white border-bottom">
     <div class="col-12 col-lg-9">
@@ -112,13 +112,13 @@ The first problem we want to address is that the display header does not work we
 
 Before:
 
-```XHTML
+```html
 <h1 class="display-1">Ireland Votes <small class="text-muted">May 2018</small></h1>
 ```
 
 After:
 
-```XHTML
+```html
 <h1 class="display-1">Ireland Votes <small class="text-muted d-none d-lg-inline">May 2018</small></h1>
 ```
 
@@ -130,7 +130,7 @@ Before we go on, note that because this image file is very large, I’ve limit i
 
 At the moment the figure is centred with a large left and right margin to keep it clear of the edges of the window:
 
-```XHTML
+```html
 <figure class="figure d-block mx-5 text-center" id="fig1">
 ```
 
@@ -140,19 +140,19 @@ What we want to do is have this figure become a float once there is enough room 
 
 Putting all that together we get:
 
-```XHTML
+```html
 <figure class="figure d-block mx-5 text-center float-lg-right mr-lg-0 ml-lg-3">
 ```
 
 Finally, let’s ensure the large table (the one with the ID `table2`) only scrolls when it really needs to, i.e. from the large breakpoint down by changing the div that wraps it from:
 
-```XHTML
+```html
 <div class="table-responsive">
 ```
 
 To:
 
-```XHTML
+```html
 <div class="table-responsive-lg">
 ```
 

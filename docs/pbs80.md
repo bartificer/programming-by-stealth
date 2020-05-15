@@ -30,14 +30,14 @@ The examples below are intended to be executed from the JavaScript console on th
 
 Firstly, there are two variables defined in the global scope that we’ll use to store our promises:
 
-```JavaScript
+```javascript
 var originalPromise = null;
 var chainedPromise = null;
 ```
 
 Secondly, the file provides some pre-written functions for use as callbacks to `.then()`:
 
-```JavaScript
+```javascript
 var RESOLVED_CB = function(val){
   console.log(`Yay! 🙂 The promise resolved to the value:\n${val}`);
 };
@@ -56,13 +56,13 @@ The function accepts up to three arguments:
 
 You can see the function in action (with default values for all arguments) by entering the following in the console on `PBS80a.html`:
 
-```JavaScript
+```javascript
 promisedConfirm().then(RESOLVED_CB, REJECTED_CB)
 ```
 
 Or, with each of the three possible arguments passed:
 
-```JavaScript
+```javascript
 promisedConfirm('Will you have a slice of cake?', 'Yes please!', 'No').then(RESOLVED_CB, REJECTED_CB)
 ```
 
@@ -76,7 +76,7 @@ The fact that calling .then() on a promise creates a new promise means there wil
 
 For extra clarity, let’s illustrate this naming convention with a code snippet:
 
-```JavaScript
+```javascript
 const chainedPromise = originalPromise.then(resolvedCallback, rejectedCallback);
 ```
 
@@ -92,13 +92,13 @@ Let’s illustrate this behaviour with some examples.
 
 Start by creating a promise that’s controlled by a confirmation dialogue. Enter the command in the console, but don’t click either of the buttons in the dialogue just yet!
 
-```JavaScript
+```javascript
 originalPromise = promisedConfirm();
 ```
 
 Next, we’ll create a chained promise using `.then()` in which we’ll change the data returned and the error thrown:
 
-```JavaScript
+```javascript
 chainedPromise = originalPromise.then(
   function(originalData){ // resolved callback
     console.log(`The original promise resolved with: ${originalData}`);
@@ -113,7 +113,7 @@ chainedPromise = originalPromise.then(
 
 Finally, we can add callbacks to the chained promise so we can see its state when it finally resolves:
 
-```JavaScript
+```javascript
 chainedPromise.then(
   function(chainedData){ // resolved callback
     console.log(`The chained promise resolved with: ${chainedData}`);
@@ -136,7 +136,7 @@ The chained promise resolved with: I am new data!
 
 What we did here is build up a _promise chain_ — the resolution of one promise triggered the resolution on another. We built out chain in steps using separate variables, but that’s not how it would normally be done. We can build our entire chain at once like so:
 
-```JavaScript
+```javascript
 promisedConfirm().then(
   function(d){
     console.log('original promise resolved with: ', d);
@@ -164,7 +164,7 @@ In this case we turned a successful promise for one piece of data into a success
 
 Within a promise chain you can convert a rejection into resolution by having your rejected callback return a value rather than throwing an error. Let’s ensure our chain always ends in a promise that resolves, no matter which button we click:
 
-```JavaScript
+```javascript
 promisedConfirm().then(
   function(d){
     console.log('original promise resolved with: ', d);
@@ -222,7 +222,7 @@ The answer is that JavaScript gets cranky! The exact level of crankiness will be
 
 If you want to respond differently to rejections at different points of the chain you should pass a second argument to `.then()` at that point in the chain. I.e., you should do something like:
 
-```JavaScript
+```javascript
 aPromise.then(
   function(){
     // resolved action 1
@@ -249,7 +249,7 @@ aPromise.then(
 
 In situations where you want to do the same thing no matter what when wrong, regardless of where in the chain the rejection occurred, you should add a final `.catch()` to the end of the chain and use that to deal with the rejection. I.e., you should do something like:
 
-```JavaScript
+```javascript
 aPromise.then(
   function(){
     // resolved action 1
@@ -303,7 +303,7 @@ We can use this API to get geolocation data for the user’s current IP address 
 
 Passing the result of an AJAX request for the URL `http://ip-api.com/json/` to JSON.parse() should produce an object something like:
 
-```JavaScript
+```javascript
 {
   "as": "AS14061 DigitalOcean, LLC",
   "city": "Amsterdam",
@@ -375,7 +375,7 @@ Like the other examples earlier in this instalment, this example is intended to 
 
 To help make the example easier to read, it makes use of the following variables defined in the global scope:
 
-```JavaScript
+```javascript
 // variables for use in the practical example
 var DEFAULT_CITY = 'Brussels';
 var GEOLOCATION_URL = 'http://ip-api.com/json/';
@@ -402,7 +402,7 @@ Before we begin — I’m going to build this chain step-by-step, storing the ke
 
 Let’s start with the first link in our chain — we need a promise for the user’s city:
 
-```JavaScript
+```javascript
 cityPromise = $.ajax({
   url: GEOLOCATION_URL,
   method: 'GET',
@@ -436,7 +436,7 @@ Finally, notice that we have used the rejection callback to convert a rejection 
 
 The next step in our chain is to make a new AJAX call to the weather API:
 
-```JavaScript
+```javascript
 weatherPromise = cityPromise.then(
   function(city){ // resolved callback
     return $.ajax({
@@ -470,7 +470,7 @@ Finally, notice the resolved callback returns the result of `$.ajax()`, i.e., it
 
 At this stage we have a promise for the weather, so we should out-put it to the user. We can use the utility function `outputMessage()`:
 
-```JavaScript
+```javascript
 weatherPromise.then(
   function(weather){ // resolved callback
     outputMessage(weather, 'console');
@@ -485,7 +485,7 @@ As mentioned previously, in the real world you would probably create this entire
 
 We can see this same functionality as a single anonymous promise chain in the click handler for the _Get My Weather_ button:
 
-```JavaScript
+```javascript
 // add a click handler to the weather button
 $('#weather_btn').click(function(){
   $.ajax({
@@ -538,7 +538,7 @@ Error handling is also much easier with promise chains. With nested traditional 
 
 As a illustration of these two points, this is the bare minimum structure for four serial asynchronous tasks using traditional callbacks:
 
-```JavaScript
+```javascript
 asyncTask1(
   // …
   function(){ // task 1 success callback
@@ -578,7 +578,7 @@ Notice that as well as being deeply nested, the callbacks are out of order — t
 
 Contrast that with the same minimal structure for a promise chain:
 
-```JavaScript
+```javascript
 asyncPromiser1().then(
   function(){ // task 1 resolved callback
     // …

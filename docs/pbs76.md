@@ -34,7 +34,7 @@ In PBS 75 I offered a tip to help with the challenge, and in that tip I suggeste
 
 But before starting any real work, I needed to do a little house-keeping. I started by updating the jumbotron text to better describe the page:
 
-```XHTML
+```html
 <header class="container mt-5">
   <div class="jumbotron">
     <h1 class="display-4">Contact the Hosts<br><small class="text-muted">PBS 74 Challenge</small></h1>
@@ -46,7 +46,7 @@ But before starting any real work, I needed to do a little house-keeping. I star
 
 Next, I updated the main body of the page so as to include a placeholder into which the contact cards can later be added:
 
-```XHTML
+```html
 <main class="container mb-5">
   <div class="row mb-4">
     <div class="col">
@@ -65,7 +65,7 @@ I’ve highlighted the node into which I’ll be injecting the contact cards. No
 
 At this point I knew where in the document I’d be injecting my contact cards, so I could now do a first pass at my template. In keeping with Bootstrap best practices, I started by building a template aimed at the smallest breakpoint (`xs`):
 
-```XHTML
+```html
 <!-- The Mustache Template for a Contact Card -->
 <script type="text/html" id="contact_card_tpl">
   <nav class="col-12 mb-3 p-2">
@@ -95,7 +95,7 @@ Some key points to note:
 
 Finally, there is a little more markup to look at in the definition of the `icon` partial:
 
-```JavaScript
+```javascript
 // define any needed partials
 const partials = {
   icon: '<i class="{{{icon.classes}}}" title="{{{icon.title}}}" aria-hidden="true"></i><span class="sr-only">{{{icon.title}}}</span>'
@@ -118,7 +118,7 @@ The template and partials together define the form the view objects will need to
 
 This is the structure imposed by my template and partials:
 
-```JavaScript
+```javascript
 {
   name: { // an object
     first: 'A FIRST NAME' // e.g. 'Allison'
@@ -147,7 +147,7 @@ To actually see the template and partials in action I now needed to write a docu
 3.  Build a view object for each person matching the structure above.
 4.  Use Mustache to render the contact cards and inject them into the page using jQuery.
 
-```JavaScript
+```javascript
 // document ready handler
 $(function(){
   // fetch the contact card template
@@ -216,7 +216,7 @@ We can access the object defining the data about Allison and Bart at `data.peopl
 
 Given this simple `for...of` loop we can log all the keys in the `data.people` object in alphabetical order (try it in the JavaScript console):
 
-```JavaScript
+```javascript
 for(const uname of Object.keys(data.people).sort()){
   console.log(uname);
 }
@@ -224,7 +224,7 @@ for(const uname of Object.keys(data.people).sort()){
 
 Note that within this loop we can access the relevant person’s details via `data.people[uname]`, e.g. the following loop will log both people’s full names (try it in the JavaScript console):
 
-```JavaScript
+```javascript
 for(const uname of Object.keys(data.people).sort()){
   console.log(`${data.people[uname].name.first} ${data.people[uname].name.last}`);
 }
@@ -234,7 +234,7 @@ So, my code builds the needed array of view objects by looping over the keys in 
 
 My code starts to build each person object by creating an object with just the two needed top-level keys (`name`, and `contactMethods`):
 
-```JavaScript
+```javascript
 const person = {
   name: data.people[uname].name,
   contactMethods: []
@@ -245,7 +245,7 @@ At this point `person.contactMethods` is an empty array, so the next task is to 
 
 As a reminder, each contact method object needs to have the following form (determined by my template and partials):
 
-```JavaScript
+```javascript
 {
   name: 'A CONTACT METHOD NAME', // e.g. 'twitter'
   value: 'THE VALUE FOR THE CONTACT METHOD' // e.g. 'podfeet'
@@ -260,7 +260,7 @@ To build one of these objects for each contact method I used another `for...of` 
 
 If you look at the JSON object you’ll see that within each person there’s an object named `contact` which represents each piece of contact information as a name-value pair. Again, we’ll need to make use of `Object.keys()` to get at the data we need:
 
-```JavaScript
+```javascript
 for(const contactName of Object.keys(data.people[uname].contact).sort()){
   const contactVal = data.people[uname].contact[contactName];
   person.contactMethods.push({
@@ -294,7 +294,7 @@ My first step was expand my view generation code a little and add a test to chec
 
 I chose to use a regular expression in combination with the `.match()` function from the `String` prototype ([relevant docs available here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)).
 
-```JavaScript
+```javascript
 const valIsURL = contactVal.match(/^http(s)?[:]\/\//);
 ```
 
@@ -302,7 +302,7 @@ The RE takes a little un-packing. The `^` means `start of string`, `()` defines 
 
 Next I defined a partial for rendering a link:
 
-```JavaScript
+```javascript
 const partials = {
   icon: '<i class="{{{icon.classes}}}" title="{{{icon.title}}}" aria-hidden="true"></i><span class="sr-only">{{{icon.title}}}</span>',
   link: '<a href="{{{link.url}}}" target="_blank" rel="noopener">{{link.text}}</a>'
@@ -311,7 +311,7 @@ const partials = {
 
 This partial imposes more structure on the view objects — the links must be added to the view as object of the form:
 
-```JavaScript
+```javascript
 {
   url: 'https://SOMEDOMAN.TLD/…',
   text: 'THE VISIBLE LINK TEXT'
@@ -320,7 +320,7 @@ This partial imposes more structure on the view objects — the links must be ad
 
 With the partial created and named (`link`), I could update my template to make us of it. This updated template only rendered a clickable link when the contact method object contains a link object:
 
-```XHTML
+```html
 <!-- The Mustache Template for a Contact Card -->
 <script type="text/html" id="contact_card_tpl">
   <nav class="col-12 col-lg-6 mb-3 p-2">
@@ -344,7 +344,7 @@ With the partial created and named (`link`), I could update my template to make 
 
 Finally, I updated my view creation code to inject the needed link objects when the RE matched the value for the contact method being processed.:
 
-```JavaScript
+```javascript
 // build the view objects
 const people = [];
 for(const uname of Object.keys(data.people).sort()){
@@ -405,7 +405,7 @@ How could we do it better? We could adapt the lookup table idea used in `data.co
 
 In some cases we won’t need to do any transformation at all, so to save code duplication I first created a function to simply return what ever is passed:
 
-```JavaScript
+```javascript
 const passthrough = function(val){
  return val;
 };
@@ -413,7 +413,7 @@ const passthrough = function(val){
 
 We can re-write this traditional function as an _arrow function_ like so:
 
-```JavaScript
+```javascript
 const passthrough = (val)=>{ return val; };
 ```
 
@@ -423,7 +423,7 @@ As a practical example, let’s look at just function for transforming the Stack
 
 This is the relevant arrow function:
 
-```JavaScript
+```javascript
 (val)=>{ return val.replace(/^http(?:s)?[:]\/\/stackoverflow[.]com\/users\/\d+\/(.+)[?]tab=profile$/, '$1'); }
 ```
 
@@ -435,7 +435,7 @@ We then match the string `'stackoverflow.com/users/'`, remembering to escape the
 
 Putting it all together I created two lookup tables, one defining functions for transforming the raw values (the keys from `data.people.allison.contact` and `data.people.bart.contact`) into URLs, and one for transforming them into meaningful text for the links. I added my lookup tables into the `data` object for easy access:
 
-```JavaScript
+```javascript
 // inject helper functions for generating pretty values
 // and URLs for each contact type into the data structure
 const passthrough = (val)=>{ return val; };
@@ -461,7 +461,7 @@ data.urlGenerators = {
 
 You can see these function in action by opening the JavaScript console on `pbs74-challenge-solution/advanced.html` from the ZIP file and entering:
 
-```JavaScript
+```javascript
 data.prettyValueGenerators.twitter('podfeet');
 data.urlGenerators.twitter('podfeet');
 ```
@@ -470,7 +470,7 @@ We now know that our view will always have link information within it, so we can
 
 We also need to update our code for generating the view objects to use our new lookup tables:
 
-```JavaScript
+```javascript
 // build the view objects
 const people = [];
 for(const uname of Object.keys(data.people).sort()){
@@ -515,13 +515,13 @@ Secondly, since there are no responsive size classes, the easiest way to achieve
 
 We want our existing small icon to be visible for breakpoints `sx` and `sm`, but be hidden from `md` up, so we start by adding `d-md-none` to that span:
 
-```XHTML
+```html
 <span class="d-inline-block d-md-none" style="width: 1.5em;">{{> icon}}</span>
 ```
 
 Next we add a new larger icon which should be hidden for breakpoints `xs` and `sm`, then become visible from `md` up:
 
-```XHTML
+```html
 <div class="d-none d-md-block text-center h1">
   {{> icon}}
 </div>
@@ -537,7 +537,7 @@ We’re almost there, but we still need to centre the icons and text, and also c
 
 Putting it all together my updated template becomes:
 
-```XHTML
+```html
 <!-- The Mustache Template for a Contact Card -->
 <script type="text/html" id="contact_card_tpl">
   <nav class="col-12 col-sm-6 col-md-12 mb-3 p-2">
@@ -621,7 +621,7 @@ Again, just a reminder that the above is just a tiny subset of the features prov
 
 With all that said, let’s get stuck in! Rather than describing each option in the abstract, let’s start with an example:
 
-```JavaScript
+```javascript
 // make the AJAX call
 const myAjaxRequest = $.ajax({
   url: 'https://www.bartbusschots.ie/utils/fakerWS/numberBetween', // REQUIRED

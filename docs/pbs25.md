@@ -20,7 +20,7 @@ I didn’t write this library with the intention of using it in this series. I w
 
 Let’s start by looking at how the library is used right here on this site. If you view the source of this page you’ll find the following within the `head` tag:
 
-```XHTML
+```html
 <!-- Include and use Bartificer Link Toolkit -->
 <script type="text/javascript" src="https://www.bartbusschots.ie/s/wp-content/themes/blue-zinfandel-squared-bart/contrib/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="https://www.bartbusschots.ie/s/wp-content/themes/blue-zinfandel-squared-bart/contrib/URI-1.18.1.js"></script>

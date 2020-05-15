@@ -20,7 +20,7 @@ The challenge set at the end of the previous instalment was to continue to impro
 
 The first part of the challenge was to find something in your recipe that defaults to displaying as a block, and have it display inline instead, or _vica-versa_. I chose to re-visit the _Did you Know_ section so as to make it more compact. This small section of the page consists of an `<aside>` tag which contains a heading and a paragraph. By default both the heading and paragraph are blocks, so they each start a new line. To make the aside more compact I chose to have the header display as inline block (with the `d-inline-block` class), and the paragraph as inline (with the `d-inline` class). The reason for choosing inline block for the heading is to be able to vertically align it (with the `align-middle` class), and the reason for choosing inline for the paragraph is to allow it flow over multiple lines if needed. Below is the relevant code segment:
 
-```XHTML
+```html
 <aside class="m-5 border border-info rounded p-2">
   <h2 class="text-info d-inline-block align-middle">Did you Know?</h2>
   <p class="text-muted d-inline">The Cucumber is a member of the nightshade family of plants, along with the tomato, the melon, and even the potato!</p>
@@ -31,13 +31,13 @@ The second part of the challenge was to make the page header stick to the top of
 
 Below is the code for my header:
 
-```XHTML
+```html
 <h1 class="sticky-top bg-white border-bottom text-primary border-primary">Roasted Cucumber with Red Onion &amp; Dill</h1>
 ```
 
 The third part of the challenge was to adjust the width of the ingredients table and float it to one side or the other. I chose to make mine 25% wide (with the `w-25` class) and float to the right (with the `float-right` class):
 
-```XHTML
+```html
 <table class="w-25 float-right">
   <!-- ... -->
 </table>
@@ -51,7 +51,7 @@ I chose to use the latest free version of the [” rel=”noopener” target=”
 
 The key to making this work is to display the list itself as a flex row by adding the `d-flex` and `flex-row` classes. This will make the list items behave like flex items, but they are still being displayed as list items, so they still have their bullets. The best way we currently know about to fix this is to explicitly display these elements as blocks by adding the class `d-block` to each. Finally, to distribute the flex items nicely within the row, and to centre the content of each list item I also added the `justify-content-around` and `text-center` classes to the list as a whole. A representative sample of my code is shown below:
 
-```XHTML
+```html
 <ul class="d-flex flex-row justify-content-around text-center">
   <li class="d-block">
     <p><span class="fas fa-clipboard fa-5x"></span></p>
@@ -67,7 +67,7 @@ You can find my full sample solution in the `pbs54-challengeSolution` folder in 
 
 Like last time I’ve created an HTML document with some pre-created elements and empty class attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip) as `pbs55a.html`, and in [this interactive Bootply playground](https://www.bootply.com/tMgnvjSRCT#).
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -162,7 +162,7 @@ You can also use this to keep your markup semantically correct but separate from
 
 As a practical example, let’s update the heading in the aside so it’s not displayed as large as it would be by default by adding the class `h5` to the `<aside>` in the sandbox for this instalment:
 
-```XHTML
+```html
 <aside class="border border-info rounded p-3 w-25 float-right text-muted bg-light">
     <h1 class="h5 d-inline text-info">Note:</h1>
     <p class="d-inline">Kavanagh got his wish — he is comemorated with a bench that has a statue of him setting on it next to the Royal Canal in Dublin city. Passers by can sit next to Kavanagh on his bench and ponder the view, perhaps with these lines running aroun in their heads.</p>
@@ -185,7 +185,7 @@ It’s quite common to have one paragraph of text that needs to stand out from t
 
 We can try this with the first paragraph in our playground:
 
-```XHTML
+```html
 <p class="lead">Patrick Kavanagh is the most famous poet to come from the Irish county of Monaghan. He was born in 1904, and died in 1967.</p>
 ```
 
@@ -197,7 +197,7 @@ If you choose to give a block quote the class `blockquote` you can also style th
 
 We can see the effect of both of these things in our playground:
 
-```XHTML
+```html
 <blockquote class="blockquote">
   <h2 class="">Lines Written on a Seat on the Grand Canal, Dublin</h2>
 
@@ -211,7 +211,7 @@ We can see the effect of both of these things in our playground:
 
 This changes the fonts, but doesn’t highlight the box itself in any way. You can do that using any of the utility classes we’ve learned about. I find the following quite pleasing:
 
-```XHTML
+```html
 <blockquote class="blockquote w-75 mx-auto my-5 bg-light p-4 border rounded">
   <h2 class="display-4">Lines Written on a Seat on the Grand Canal, Dublin</h2>
 
@@ -242,7 +242,7 @@ Bootstrap allows us to remove the bullets from adding the class `list-unstyled` 
 
 We can see this in action by removing the bullets from the list of other recommended poems in our playground:
 
-```XHTML
+```html
 <ul class="list-unstyled">
    <li class=""><a href="https://www.poemhunter.com/poem/canal-bank-walk/">Canal Bank Walk</a></li>
    <!-- ... -->
@@ -253,7 +253,7 @@ We can see this in action by removing the bullets from the list of other recomme
 
 Armed with this new information, if we wanted to display the links in the playground’s footer as a flex box we can now do it much more simply:
 
-```undefined
+```
 <ul class="d-flex flex-row justify-content-around list-unstyled">
   <li class="">
     <a class="" href="http://www.twitter.com/bbusschots">🐦 @bbusschots</a>
@@ -275,7 +275,7 @@ As well as lists without bullets, Bootstrap allows you to go one better, display
 
 We can see this in action by displaying the list of links in the playground page’s footer as an inline list:
 
-```XHTML
+```html
 <footer class="text-center">
   <ul class="list-inline">
     <li class="list-inline-item">

@@ -160,7 +160,7 @@ Finally, we are calling the httpEcho URL for the plain-text version of the outpu
 
 When we run the command we get a lot of output!
 
-```Shell
+```shell
 bart-imac2018:~ bart$ curl -v --data-urlencode d1=val1 --data-urlencode d2=val2 --cookie 'c1=cookie; c2=monster' https://www.bartbusschots.ie/utils/httpEcho/text?p1=param1Val\&p2=param2Val
 *   Trying 37.139.7.12...
 * TCP_NODELAY set
@@ -247,7 +247,7 @@ The first thing we see is some information about what `curl` is doing. You see i
 
 At this stage `curl` is finally ready to send the HTTP request, so the next thing we see is that request:
 
-```Shell
+```shell
 > POST /utils/httpEcho/text?p1=param1Val&p2=param2Val HTTP/1.1
 > Host: www.bartbusschots.ie
 > User-Agent: curl/7.54.0
@@ -261,7 +261,7 @@ Notice that `curl` uses the `User-Agent` header to identify itself, and the `Coo
 
 The next thing we see is the HTTP response from the servers, starting with the status code and the response headers:
 
-```Shell
+```shell
 < HTTP/1.1 200 OK
 < Server: nginx/1.12.2
 < Date: Sat, 06 Apr 2019 15:19:04 GMT
@@ -275,7 +275,7 @@ Notice we got a `200 OK` status, and the use of the `Content-Type` HTTP response
 
 Finally, we see the actual data returned by the server, in this case, the plain-text echoing of the data the server received just as it would appear in a browser window:
 
-```Shell
+```shell
 # Client
 - IP:                          46.7.114.231
 - Browser (User Agent String): curl/7.54.0

@@ -34,7 +34,7 @@ Firstly, because there is so much to test here, it made my life easier to split 
 
 If you look at my QUnit test runner (`test/index.html`), you’ll see how easy it is to split up your tests – create the files, then import each into the test runner with a separate `<script>` tag:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -73,7 +73,7 @@ For example, `DUMMY_DATA.num.desc` is `'a number'`, and `DUMMY_DATA.num.val` is 
 
 Here’s a snippet of the definition of this variable:
 
-```JavaScript
+```javascript
 DUMMY_DATA = {
   undef: {
     desc: 'undefined',
@@ -105,7 +105,7 @@ For example, the `.hours()` accessor function in the `pbs.Time` prototype should
 
 To make these basic type checks easier, I created another global variable named `DUMMY_BASIC_TYPES` with the exact same structure as `DUMMY_DATA`, but with fewer entries. Because the entries needed were the same, I copied them from `DUMMY_DATA`, hence the definition of `DUMMY_BASIC_TYPES` looks like this:
 
-```JavaScript
+```javascript
 DUMMY_BASIC_TYPES = {
   undef: DUMMY_DATA.undef,
   bool: DUMMY_DATA.bool,
@@ -121,7 +121,7 @@ Note that `DUMMY_DATA.str` and `DUMMY_BASIC_TYPES.str` both contain references t
 
 Next, I added a helper function that will return the list of all basic types except those passed as arguments:
 
-```JavaScript
+```javascript
 // -- Function --
 // Purpose    : return the names of all dummy basic types not explicitly
 //              excluded as an array.
@@ -158,7 +158,7 @@ The logic of this test breaks down as follows – first name sure that the basic
 
 I particularly want to draw your attention to the first step in this process because I implemented it by calling the helper function and then looping through the returned types, testing that each type that should throw an error does indeed do so. Here’s the test in full:
 
-```JavaScript
+```javascript
 QUnit.test('hours validation (via constructor & .hours() accessor)', function(a){
   // make sure all basic types except numbers throw
   var must_throw = dummyBasicTypesExcept('undef', 'num');
@@ -241,19 +241,19 @@ Let’s look more closely at the loop at the start of the function.
 
 Firstly, we use the `dummyBasicTypesExcept()` helper function to get a list of all basic types that should result in an error being thrown, i.e. all of them except `undefined` and a number:
 
-```JavaScript
+```javascript
 var must_throw = dummyBasicTypesExcept('undef', 'num');
 ```
 
 Until we know how many basic types must throw, we can’t know how many assertions to expect, hence, this function call is made before the call to `a.expect()`, and the calculation of the value passed to `a.expect()` incorporates the length of the `must_throw` array:
 
-```JavaScript
+```javascript
 a.expect((must_throw.length * 2) + 10);
 ```
 
 We can now loop over the values in the `must_throw` array to check that both the constructor and the `.hours()` accessor do indeed throw an Error when passed each of the basic data types they should throw an error for:
 
-```JavaScript
+```javascript
 must_throw.forEach(function(tn){
   var basic_type = DUMMY_BASIC_TYPES[tn];
   a.throws(
@@ -292,7 +292,7 @@ A proper clone has three distinctive characteristics:
 
 We know how to easily test for non-equality (`assert.notEqual()` or `assert.notStrictEqual()`), and we can use `assert.ok()` in conjunction with the `instanceof` operator to test the clone’s prototype, but we have not yet met a good assertion for testing that the attribute values match. That’s precisely what `assert.propEqual()` is for. The assertion expects three arguments – two objects, and a description. If all the properties in both objects have the same value, the assertion passes. You can see this assertion in use in the test for the `.clone()` function in the `pbs.Time` prototype:
 
-```JavaScript
+```javascript
 QUnit.test('cloning works', function(a){
   a.expect(3);
   var to = new pbs.Time(20, 10, 5);
@@ -333,7 +333,7 @@ The callback passed to this function will get executed each time the test suite 
 
 When QUnit runs the callbacks it will pass them one argument, a plain object containing relevant details. You can see each of these callbacks in action by adding the following to one of your test suites – note that this will generate a **lot** of alerts, and will be very annoying!
 
-```JavaScript
+```javascript
 QUnit.begin(function(details){
   window.alert('Starting test suite with ' + details.totalTests + ' tests');
 });
@@ -358,14 +358,14 @@ In general, these callbacks are most useful when integrating QUnit with some kin
 
 In fact, my sample solution makes use of one of these callback functions – `QUnit.testStart()`. The two helper variables DUMMY\_DATA and DUMMY\_BASIC\_TYPES are both defined in the global scope, but they are created without any contents:
 
-```JavaScript
+```javascript
 var DUMMY_DATA = {};
 var DUMMY_BASIC_TYPES = {};
 ```
 
 The dummy data is defined, or rather re-defined, before every test because the values for both of these variables are set within the anonymous function passed to `QUnit.testStart()`:
 
-```JavaScript
+```javascript
 QUnit.testStart(function() {
     DUMMY_DATA = {
         undef: {
@@ -414,7 +414,7 @@ Executed after each test within the module.
 
 Using the following as the second argument to QUnit.module() somewhere within your test suite will illustrate when these hooks get executed, again, this code will generate a lot of alerts and be very annoying!
 
-```JavaScript
+```javascript
 {
   before: function(){
     window.alert('starting to process the module');
@@ -437,7 +437,7 @@ Note that QUnit ensures that the special `this` variable accessible within each 
 
 My sample test suite contains a number of examples of the use of these hooks, including the one below which shows the use of the `before` hook in a module containing the tests for the string generation functions in the `pbs.Time` prototype:
 
-```JavaScript
+```javascript
 //
 //--- pbs.Time Tests for the string generation functions  -----------------
 //
@@ -496,7 +496,7 @@ You can find a copy of the code in this instalment’s ZIP file, or, you can dow
 
 We’ll start with a blank `test.js`, and a basic `index.html` that imports the API to be tested, the QUnit framework, and our currently empty test suite:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -537,7 +537,7 @@ A key feature of this API is that it tries to classify links as being _local_ or
 
 To make this decree obvious, let’s start our `test.js` file with a callback that will be executed before the test suite runs that will complain if the test runner is running on any domain other than `localhost`:
 
-```JavaScript
+```javascript
 //
 // === Pre-flight checks ======================================================
 //
@@ -555,7 +555,7 @@ You can verify that this callback works as expected by opening the HTML file dir
 
 The next thing we should add to our test suite is a simple test to make sure the namespace exists:
 
-```JavaScript
+```javascript
 //
 // === General Tests ==========================================================
 //
@@ -568,7 +568,7 @@ QUnit.test('namespace exists', function(a){
 
 The most critical function within the API is `bartificer.linkToolkit.isLocalUrl()` – this function should correctly identify which URLs lead to a page on the same site as the current page, and which don’t. Since this function doesn’t interact with the DOM, we already know everything we need to implement some tests for it:
 
-```JavaScript
+```javascript
 //
 // === Tests for bartificer.linkToolkit.isLocalUrl() ==========================
 //
@@ -634,7 +634,7 @@ QUnit.module('isLocalUrl()', {}, function(){
 
 Notice that to save a lot of typing, and to make the code more readable, I created a local variable named `isLocalUrl` to store a reference to the function `bartificer.linkToolkit.isLocalUrl`. This means that the following two lines of code are effectively identical:
 
-```JavaScript
+```javascript
 window.alert(bartificer.linkToolkit.isLocalUrl('/boogers.html'));
 window.alert(isLocalUrl('/boogers.html'));
 ```
@@ -651,7 +651,7 @@ What should be put into our fixture? That decision is very much driven by what t
 
 In reality you’ll probably find that you continue to tweak your fixture as you write your tests. Below is the fixture I ended up with at the end of the process:
 
-```XHTML
+```html
 <div id="qunit-fixture">
   <ul>
     <li><a href="a.html" id="rl_nt_nr">A relative link, no target, no rel</a></li>
@@ -676,7 +676,7 @@ In reality you’ll probably find that you continue to tweak your fixture as you
 
 Given this fixture, here are my tests for the `bartificer.linkToolkit.noopenerFix()` function:
 
-```JavaScript
+```javascript
 //
 // === Tests for bartificer.linkToolkit.noopenerFix() =========================
 //

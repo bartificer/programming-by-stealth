@@ -22,7 +22,7 @@ You’ll find my full solution in this instalment’s ZIP file in the folder `pb
 
 I started by creating a page with a jumbotron as a header and a single narrow centred column into which I’d place the form. To keep things nicely aligned I used a single container with two rows, each containing one column. The first row’s column contains the jumbotron, the second row’s column contains the form. To Keep the form centred I used the off-set classes for Bootstrap’s grid. The desired width for the centre column, and hence, the required amount of off-set was different at every breakpoint, so both of the cols ended up with a lot of classes!
 
-```XHTML
+```html
 <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
   …
 </div>
@@ -36,7 +36,7 @@ For the number of minutes I decided to get a little creative and use a range inp
 
 All in all my form is mostly simple and by-the-book:
 
-```XHTML
+```html
 <form id="timer_fm" action="javascript:void(0);" class="form">
   <div class="form-group">
     <label for="timer_min_rg"><span class="duration_display"></span> Minute<span class="plural_only">s</span></label>
@@ -56,7 +56,7 @@ All in all my form is mostly simple and by-the-book:
 
 One small nuance I want to draw your attention to is the label for the range input. When the user slides the slider we would like to show them the current value they’ve selected. I chose to do that by adding a `<span>` within the label into which I’ll add the number of minutes with JavaScript. I also decided to be grammatically correct, and deal with pluralisation too. So, here’s the code for the label:
 
-```XHTML
+```html
 <label for="timer_min_rg"><span class="duration_display"></span> Minute<span class="plural_only">s</span></label>
 ```
 
@@ -64,7 +64,7 @@ Notice that I chose to use classes rather than IDs? Why? Because I figured (righ
 
 With the HTML in place, the JavaScript to make it go can be plumbed in. What we need to do is add a handler to the input event to the range slider so the each time the range is adjusted the display of the value and the pluralisation gets updated. We do this by adding the following code inside a jQuery document ready event handler:
 
-```JavaScript
+```javascript
 // quick references to the form elements and modal
 // …
 const $mins = $('#timer_min_rg');
@@ -95,7 +95,7 @@ We can now start thinking about an event handler for the button that starts the 
 
 Putting all that together, this is the code for my modal:
 
-```XHTML
+```html
 <!-- The Modal (Hidden by Default) -->
 <div class="modal" id="timeup_mdl" tabindex="-1" role="dialog" aria-labelledby="modal_title">
   <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -120,14 +120,14 @@ Putting all that together, this is the code for my modal:
 
 The ‘toast rack’ for containing the Toast notifications is pretty much identical to the example in the previous instalment:
 
-```XHTML
+```html
 <!-- The container for the Toasts -->
 <div id="toast_rack" aria-live="polite" class="position-fixed" style="z-index: 999; top: 10px; right: 10px;"></div>
 ```
 
 Before we look at the event handler for the button I just want to note that for convenience I added a bunch of variables to the top of my jQuery document ready handler to hold references to the various elements on the page we’ll need to interact with:
 
-```JavaScript
+```javascript
 // quick references to the form elements and modal
 const $form = $('#timer_fm');
 const $formControls = $('input, textarea, button', $form);
@@ -140,7 +140,7 @@ Most of those variables are quite straight-forward, but `$formControls` deserves
 
 The document ready handler also contains two variables for keeping a record of the timeout and interval IDs we’ll use for triggering the modal and toasts:
 
-```JavaScript
+```javascript
 // variables for storing the timeout and interval IDs
 let mainTimerID = null;
 let toastIntervalID = null;
@@ -148,14 +148,14 @@ let toastIntervalID = null;
 
 Finally, I also added a globally scoped variable to store the current state of the timer:
 
-```JavaScript
+```javascript
 // a flag to record whether or not a timer is running
 var RUNNING = false;
 ```
 
 With the house-keeping out of the way we’re now ready to tackle the big one — the event handler for starting the timer! The code is quite long, so let’s start by ignoring the detail and taking a quick look at the over-all structure:
 
-```JavaScript
+```javascript
 // add a submit handler to the timer form
 $form.on('submit', function(){
   // if the timer is already running do nothing
@@ -185,7 +185,7 @@ $form.on('submit', function(){
 
 As you can see, at highest level things are quite simple — a safety check to avoid starting multiple timers, then disable the form’s elements, then start the timeout that will show the modal at the end, then, if needed, start the interval for the toasts. Before we look at the main timeout, let’s look at the interval for the toasts:
 
-```JavaScript
+```javascript
 // if needed, start the toast interval
 let minsLeft = mins - 1;
 if(minsLeft > 1){
@@ -211,7 +211,7 @@ if(minsLeft > 1){
 
 You’ll notice that to help keep the code maintainable, I wrote a separate function for displaying a toast, `showToast()`, which takes two arguments, a string to use as the title, and a string to use as the body. This function consists of a slightly simplified version of the code we saw in the example file `pbs70b.html` from the previous instalment:
 
-```JavaScript
+```javascript
 // a function for popping up a toast
 function showToast(t, msg){
   // create an empty toast
@@ -251,7 +251,7 @@ Notice that the anonymous function ends by checking if it needs to end the inter
 
 We’re now ready to look at the main timer timeout:
 
-```JavaScript
+```javascript
 // start the main timeout
 const mins = $mins.val();
   mainTimerID = window.setTimeout(function(){
@@ -294,7 +294,7 @@ By default spinners have no margin, so they will come very close to ‘touching�
 
 Putting all that together, the following is the code for the first two spinners on `pbs71a.html`:
 
-```XHTML
+```html
 <span class="spinner-border m-3" role="status">
   <span class="sr-only">Loading...</span>
 </span>
@@ -307,7 +307,7 @@ Putting all that together, the following is the code for the first two spinners 
 
 You can control the colour of your spinners using Bootstrap’s text colour utility classes (`.text-primary`, `.text-success` etc.). Below is the code from `pbs71a.html` using some of the colour utilities:
 
-```XHTML
+```html
 <span class="spinner-border m-3 text-primary" role="status"><span class="sr-only">Loading...</span></span>
 <span class="spinner-border m-3 text-secondary" role="status"><span class="sr-only">Loading...</span></span>
 <span class="spinner-border m-3 text-success" role="status"><span class="sr-only">Loading...</span></span>
@@ -319,7 +319,7 @@ You can control the colour of your spinners using Bootstrap’s text colour util
 
 Something you’ll often want to do is centre-align a spinner. Since spinners are inline block elements they behave just like text, so you can centre them like you would any piece of text using Bootstrap’s utility classes. Below is an example from `pbs71a.html`:
 
-```XHTML
+```html
 <p class="text-center">
   <span class="spinner-border m-3" role="status"><span class="sr-only">Loading...</span></span>
 </p>
@@ -327,7 +327,7 @@ Something you’ll often want to do is centre-align a spinner. Since spinners ar
 
 You can also centre a spinner using [Bootstrap’s flexbox utility classes](https://getbootstrap.com/docs/4.2/utilities/flex/). Again, an example from `pbs71a.html`:
 
-```XHTML
+```html
 <div class="d-flex justify-content-around">
   <span class="spinner-border m-3" role="status"><span class="sr-only">Loading...</span></span>
 </div>
@@ -335,7 +335,7 @@ You can also centre a spinner using [Bootstrap’s flexbox utility classes](http
 
 Since spinners can be used as flexitems, we can of course do much more with them, like perhaps align them with some text as shown in `pbs71a.html`:
 
-```XHTML
+```html
 <div class="d-flex justify-content-around align-items-center">
   <span>Loading …</span>
   <span class="spinner-border m-3" role="status" aria-hidden></span>
@@ -352,7 +352,7 @@ Spinners come in three sizes, small, default (medium), and large. You get a smal
 
 You can see all six size variants in `pbs71a.html`:
 
-```JavaScript
+```javascript
 <p>A small, default, and large broder spinner.</p>
 <div class="d-flex justify-content-around align-items-center">
   <span class="spinner-border spinner-border-sm m-3" role="status"><span class="sr-only">Loading...</span></span>
@@ -380,7 +380,7 @@ Two common approaches are to replace the text in the button with the spinner, or
 
 Let’s start with the first approach. The markup is quite simple:
 
-```XHTML
+```html
 <button type="button" class="btn btn-primary" id="spinner_btn_1">
   <span class="spinner-border spinner-border-sm d-none" role="status"><span class="sr-only">Waiting...</span></span>
   <span class="button_text">Click Me!</span>
@@ -391,7 +391,7 @@ Note that because in this case the spinner will be the only thing visible in the
 
 With the markup in place we need to add a click handler that will hide the text, show the spinner and disable the button. We do this inside the document ready event handler:
 
-```JavaScript
+```javascript
 $('#spinner_btn_1').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
 
@@ -408,7 +408,7 @@ $('#spinner_btn_1').click(function(){
 
 In a real-world situation some other event handler would be responsible for re-enabling the button. To demonstrate how that would work in this contrived situation we can add a timeout into the click handler to re-enable the button after 3 seconds:
 
-```JavaScript
+```javascript
 $('#spinner_btn_1').click(function(){
   $btn = $(this); // get a reference to the button that was clicked
 
@@ -437,7 +437,7 @@ $('#spinner_btn_1').click(function(){
 
 The markup for the second button is also quite straight forward:
 
-```XHTML
+```html
 <button type="button" class="btn btn-primary" id="spinner_btn_2">
   <span class="spinner-border spinner-border-sm mr-2 d-none" role="status" aria-hidden></span>
   <span class="button_text">Click Me!</span>
@@ -448,7 +448,7 @@ Since the spinner is purely decorative in this scenario it has not screen-reader
 
 With the markup in place we can add the event handler. Like in our previous example, in the real world the re-enabling would be done in a separate event handler, but in this case we’re using a 3 second timeout set within the click handler:
 
-```JavaScript
+```javascript
 // add a click handler to the second spinner button
 $('#spinner_btn_2').click(function(){
   $btn = $(this); // get a reference to the button that was clicked

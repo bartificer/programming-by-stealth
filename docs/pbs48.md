@@ -20,7 +20,7 @@ The challenge set at the end of the previous instalment consisted of making four
 
 This is very straight forward, it really is just about choosing some emoji really:
 
-```JavaScript
+```javascript
 class Chicken extends Animal{
     constructor(){
         super('🐓', '🌽', 'Cluck!');
@@ -30,7 +30,7 @@ class Chicken extends Animal{
 
 You can then add a chicken to the farm by adding an instance of this new class to the call to the `Farm` constructor in the document ready handler:
 
-```JavaScript
+```javascript
 $(function(){
     // initialise the farm with one animal of each kind
     bartFarm = new Farm(
@@ -49,7 +49,7 @@ Adding a form is a game of two halves — first the HTML markup, perhaps includi
 
 Let’s start with the HTML markup:
 
-```XHTML
+```html
 <form action="javascript:void(0);">
 <fieldset role="form" aria-labelledby="the_farm_fm_desc">
         <legend id="the_farm_fm_desc">Add Animals</legend>
@@ -65,7 +65,7 @@ Let’s start with the HTML markup:
 
 Basically, we have a form containing a list of four buttons grouped together within a field set. To make this look decent there is also a little CSS added via a `style` tag within the head section:
 
-```CSS
+```css
 fieldset > ul {
   padding-left: 0px;
 }
@@ -82,7 +82,7 @@ All I’m doing here is rendering the list inline, and making the buttons a litt
 
 Finally, we need to update the document ready handler to add click handlers to our four buttons:
 
-```JavaScript
+```javascript
 $(function(){
     // initialise the farm with one animal of each kind
     bartFarm = new Farm(
@@ -105,7 +105,7 @@ $(function(){
 
 Again, this is very straight forward:
 
-```JavaScript
+```javascript
 class EggLayer extends Animal{
     constructor(i, e, s){
         super(i, e, s);
@@ -129,7 +129,7 @@ class Chicken extends EggLayer{
 
 Were the challenge simply to be to get egg layers to produce eggs on demand every time the code would simply be:
 
-```JavaScript
+```javascript
 class EggLayer extends Animal{
     constructor(i, e, s){
         super(i, e, s);
@@ -145,7 +145,7 @@ However, that’s not exactly what was asked. To make things a little more compl
 
 The first thing we’ll need is a new instance property to keep track of when an egg was last produced:
 
-```JavaScript
+```javascript
 class EggLayer extends Animal{
     constructor(i, e, s){
         super(i, e, s);
@@ -164,7 +164,7 @@ Now we need to update `.getProduce()` to implement the rate limiting. Key to all
 
 We now have all we need to implement our rate limiting:
 
-```JavaScript
+```javascript
 class EggLayer extends Animal{
     constructor(i, e, s){
         super(i, e, s);
@@ -209,7 +209,7 @@ The `.apply()` and `.call()` functions are extremely similar — both take the v
 
 The `.apply()` function expects the values for the arguments object to be passed as an array, while the `.call()` function expects the values for the arguments object to be passed as zero or more separate values (variadic). Assuming a function named `myFunction` exists, the following two lines of code have the identical effect:
 
-```JavaScript
+```javascript
 myFunction.apply('dummy this value', ['arg 1', 'arg 2', 'arg 3']);
 myFunction.call('dummy this value', 'arg 1', 'arg 2', 'arg 3');
 ```
@@ -218,7 +218,7 @@ It’s the existence of `.apply()` and `.call()` that make it possible for 3rd p
 
 Let’s look at an example:
 
-```JavaScript
+```javascript
 // define a function that prints its this value & args
 function selfConfess(){
 	console.log('called with this value:', this);
@@ -248,7 +248,7 @@ Both instance and static functions will always be called indirectly, that is to 
 
 Let’s build up a little dummy class to illustrate these points. Our class will have one instance property, one static property, one instance function, and one static function:
 
-```JavaScript
+```javascript
 // define the class
 class Explainer{
 	constructor(n){
@@ -273,7 +273,7 @@ Explainer.staticName = 'the explainer class';
 
 The key thing to remember is that static functions and static properties are properties of the class/prototype, not of instances of that class/prototype, so, we can use them without ever instantiating a single instance of the class:
 
-```JavaScript
+```javascript
 // demo static property and function
 console.log(Explainer.staticName);
 Explainer.staticFn();
@@ -288,7 +288,7 @@ Notice that the call to the static function is an indirect call, and that the th
 
 What happens if we try to call an instance function in a static context:
 
-```JavaScript
+```javascript
 Explainer.instanceFn();
 
 // Throws error:
@@ -300,7 +300,7 @@ Instance functions can’t be called on the class/prototype itself, they have to
 
 Let’s create two instances and access our instance property and function on each:
 
-```JavaScript
+```javascript
 // demo instance property and function
 const firstInstance = new Explainer('Alice');
 const secondInstance = new Explainer('Bob');
@@ -323,7 +323,7 @@ Both times the instance function is called indirectly, but each time the thing o
 
 Just like we can’t call an instance function in a static context (on a class/prototype), you can’t call a static function on an instance:
 
-```JavaScript
+```javascript
 firstInstance.staticFn();
 
 // Throws Error:
@@ -333,7 +333,7 @@ firstInstance.staticFn();
 
 In this initial simple example I chose not to name any static and instance properties or functions with the same name as each other. However, since they are actually completely different things, there is no reason not use the same name. A static property named `myName` and an instance property named `myName` are completely different things, as are a static function named `logName` and an instance function named `logName`. We can illustrate this point with an updated dummy class:
 
-```JavaScript
+```javascript
 class BetterExplainer{
 	constructor(n){
 		// set an instance property named myName
@@ -357,7 +357,7 @@ BetterExplainer.myName = 'the better explainer class';
 
 Again, we can interact with the static property and function without needing to instantiate an instance of the class:
 
-```JavaScript
+```javascript
 console.log(BetterExplainer.myName);
 BetterExplainer.logMyName();
 
@@ -371,7 +371,7 @@ Clearly, based on the output, it was the static function named `logMyName` that 
 
 Now let’s instantiate two instances of our new class and interact with the instance properties and features:
 
-```JavaScript
+```javascript
 const firstBetterInstance = new BetterExplainer('Alicia');
 const secondBetterInstance = new BetterExplainer('Robbert');
 console.log(firstBetterInstance.myName);
@@ -395,7 +395,7 @@ At the point you declare a class, JavaScript stores the name you created it with
 
 We can see this in action with the following simple snippet:
 
-```JavaScript
+```javascript
 console.log(Explainer.name);
 console.log(BetterExplainer.name);
 
@@ -417,7 +417,7 @@ Secondly, when the static function is run, its `this` placeholder will contain a
 
 To illustrate this let’s first create a third even better explainer class that contains a static function that logs its class name to the console:
 
-```JavaScript
+```javascript
 class EvenBetterExplainer{
 	constructor(n){
 		// set an instance property named myName
@@ -440,7 +440,7 @@ Note the use of the `this` placeholder in the static function for accessing the 
 
 We can see our new static function in action like so:
 
-```JavaScript
+```javascript
 EvenBetterExplainer.logClassName();
 
 // outputs:
@@ -450,7 +450,7 @@ EvenBetterExplainer.logClassName();
 
 Now let’s extend our even better explainer in the simplest way possible — we’ll inherit everything and add nothing:
 
-```JavaScript
+```javascript
 class PointlessSubClass extends EvenBetterExplainer{
 	constructor(n){
 		super(n);
@@ -460,7 +460,7 @@ class PointlessSubClass extends EvenBetterExplainer{
 
 We can now prove both that static functions are inherited, and, that the `this` placeholder within them behaves as described like so:
 
-```JavaScript
+```javascript
 PointlessSubClass.logClassName();
 
 // outputs:
@@ -478,7 +478,7 @@ Because, within an instance function, `this` is a placeholder for the instance i
 
 We can prove this by creating one last explainer class which includes an instance method named `logClassName` that logs the name of the class an instance belongs to:
 
-```JavaScript
+```javascript
 class BestExplainer{
 	constructor(n){
 		// set an instance property named myName
@@ -504,7 +504,7 @@ class BestExplainer{
 
 We can see this instance function in action by creating an instance of this class and calling the function on it:
 
-```JavaScript
+```javascript
 let bestInstance = new BestExplainer('Allison');
 bestInstance.logClassName();
 
@@ -515,7 +515,7 @@ bestInstance.logClassName();
 
 This will also work with inheritance. To prove that, let’s first create one final very simple subclass:
 
-```JavaScript
+```javascript
 class BestSubclass extends BestExplainer{
 	constructor(n){
 		super(n);
@@ -525,7 +525,7 @@ class BestSubclass extends BestExplainer{
 
 This subclass will have inherited `BestExplainer`‘s `.logClassName()` function, and because of the power of the `this` placeholder, it will show the correct class:
 
-```JavaScript
+```javascript
 let bestSubclassInstance = new BestSubclass('Roberta');
 bestSubclassInstance.logClassName();
 

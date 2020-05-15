@@ -20,7 +20,7 @@ The challenge was to add two forms to the recipe we built up over recent instalm
 
 The markup was very much by-the-book, being basically the same as that in the small form example in the previous instalment:
 
-```XHTML
+```html
 <footer class="mt-3 p-2 bg-light" role="form" aria-labelledby="login_desc">
   <form class="form-inline" action="javascript:void(0);">
     <label id="login_desc" class="mr-2">Admin Login:</label>
@@ -35,7 +35,7 @@ The markup was very much by-the-book, being basically the same as that in the sm
 
 The only small extra addition in the challenge was a click handler for the login button:
 
-```JavaScript
+```javascript
 $(function(){
   $('#login_btn').click(function(){
     window.alert("Sorry, this is just a dummy form, there's nothing to actually log in to here!");
@@ -45,7 +45,7 @@ $(function(){
 
 The second form was a feedback form, and you were free to use any layout that you felt worked well, as long as it was usable at all breakpoints. I chose to use a horizontal form:
 
-```XHTML
+```html
 <fieldset class="col" role="form" aria-labelledby="share_fm_desc">
   <legend id="share_fm_desc" class="h2">Share via Email</legend>
   <form action="javascript:void(0)">
@@ -114,7 +114,7 @@ This all sounds very complicated, so let’s see some practical examples.
 
 First, you can use a pre-pend to make it clear that you don’t want a user to enter some kind of prefix into the form by providing it for them in an add-on. A great example of this would be a Twitter handle where you could pre-pend the @ symbol to make clear you just want the bit after that:
 
-```XHTML
+```html
 <div class="form-group form-row">
   <label for="twitter_tb" class="col-sm-3 col-form-label">Twitter Handle</label>
   <div class="col">
@@ -137,7 +137,7 @@ This is what this input looks like:
 
 Text inputs can also contain text-based icons like emoji or glyphicons, so we could improve our Twitter input by adding an Twitter icon as an append:
 
-```XHTML
+```html
 <div class="input-group">
   <div class="input-group-prepend">
     <span class="input-group-text">@</span>
@@ -155,7 +155,7 @@ The above snippet uses a Font Awesome glyphicon and looks like this:
 
 Another very common way to show context with text add-ons is currency amounts. You can use a pre-pend add-on to show the currency, and an append add-on to show that you want the user to enter just the major part of the amount. For example, here is an input group asking for a Euro amount to the nearest Euro:
 
-```XHTML
+```html
 <div class="form-group form-row">
   <label for="amount_tb" class="col-sm-3 col-form-label">Donation</label>
   <div class="col">
@@ -176,7 +176,7 @@ Another very common way to show context with text add-ons is currency amounts. Y
 
 You can use a text add-on as a label, but just remember to use the appropriate ARIA attributes to support assistive technologies:
 
-```XHTML
+```html
 <div class="form-row">
   <div class="col form-group">
     <div class="input-group">
@@ -201,7 +201,7 @@ A great example of why you might want to do this would be on a form where you as
 
 The following input asks the users for a homepage URL, and asks them whether or not to publish it:
 
-```XHTML
+```html
 <div class="form-group form-row">
   <label for="url_tb" class="col-sm-3 col-form-label">Homepage</label>
   <div class="col">
@@ -229,7 +229,7 @@ Note the use of the `aria-label` attribute to give the checkbox a label for assi
 
 While you can only have a single prepend or append add-on as such, each of those can actually contain multiple elements. Also, you can have multiple inputs in the same input group. We can improve our URL example by adding a second text add-on after the one that contains the checkbox:
 
-```XHTML
+```html
 <div class="input-group">
   <div class="input-group-prepend">
     <span class="input-group-text"> Plug</span>
@@ -248,7 +248,7 @@ While you can only have a single prepend or append add-on as such, each of those
 
 An example where you might want multiple inputs would be someone’s name:
 
-```XHTML
+```html
 <div class="form-group form-row">
   <label class="col-sm-3 col-form-label">Names</label>
   <div class="col">
@@ -271,7 +271,7 @@ Note the use of `aria-label` attributes to give each input an individual label f
 
 You can add a dropdown into your input groups by giving it the class `.custom-select`.
 
-```XHTML
+```html
 <div class="form-group form-row">
   <label for="type_sel" class="col-sm-3 col-form-label">Frequency</label>
   <div class="col">
@@ -309,7 +309,7 @@ Just like with button groups, there are three sizes of input group, small, defau
 
 As an example, let’s make a simple small search box:
 
-```XHTML
+```html
 <p role="form" class="form-inline">
   <span class="input-group input-group-sm">
     <span class="input-group-prepend">

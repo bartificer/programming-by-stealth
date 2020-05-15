@@ -24,7 +24,7 @@ Because JavaScript is an untyped language, you can mix and match data types with
 
 In JavaScript, you create an array of values like this:
 
-```JavaScript
+```javascript
 var myArray = ['a string', 42, true];
 ```
 
@@ -32,7 +32,7 @@ The above code creates an array containing three values, element 0 contains the 
 
 We can access the values stored in these array elements like so:
 
-```JavaScript
+```javascript
 var firstVal = myArray[0];
 var secondVal = myArray[1];
 var thirdVal = myArray[2];
@@ -42,14 +42,14 @@ We refer to the number inside the square brackets as an _index_. So, we say that
 
 You can add more values into an array after it has been created by simply assigning a value to the desired array index. Note that in JavaScript, arrays can have gaps.
 
-```JavaScript
+```javascript
 var myArray = [1, 2];
 myArray[42] = 11; // array now has elements 0, 1, and 42
 ```
 
 You don’t have to add any values into an array as you create it – you can create a completely empty array like so:
 
-```JavaScript
+```javascript
 var myEmptyArray = [];
 ```
 
@@ -57,7 +57,7 @@ For those of you coming to JavaScript from strongly typed languages, you’ll be
 
 Arrays have a `length` property which you can assess by appending `.length` to the array name. Because array indexes start at zero, the length is one greater than the highest defined index. Note that that is exactly how the length is calculated, so an array with just one defined element at index 100 has a length of 101. This concept is demonstrated below:
 
-```JavaScript
+```javascript
 var a1 = ['a', 'b'];
 pbs.say(a1.length);
 a1[9] = 'j';
@@ -78,7 +78,7 @@ Loops allow a block of code to be repeated until a given condition is met. JavaS
 
 We’ll start with the most generic kind of loop – the `while` loop. A `while` loop takes the following form:
 
-```JavaScript
+```javascript
 while(condition) statement;
 ```
 
@@ -86,7 +86,7 @@ The condition is checked, if it evaluates to `false`, execution jumps beyond the
 
 As with `if` statements, the spec talks about a statement, but, anywhere you can have a statement, you can have a code block, and, just like with `if` statements, I strongly suggest you get into the habit of always using a code block with your `while` loops. This is how I suggest you always write your `while` loops:
 
-```JavaScript
+```javascript
 while(condition){
   statement; // one ore more statements in the loop
 }
@@ -94,7 +94,7 @@ while(condition){
 
 As a simple example, let’s use a while loop to total all the elements in an array.
 
-```JavaScript
+```javascript
 var a = [1, 2, 3, 4, 5];
 
 // loop through the array to sum the values
@@ -117,13 +117,13 @@ This is a very common code pattern – declare a counter before the loop, increm
 
 The `for` loop takes the following form:
 
-```JavaScript
+```javascript
 for(initialisation_statement; condition; increment_statement) looped_statement;
 ```
 
 Again, you should get into the habit of a using a code block for `for` loops, so I suggest you always use the following form:
 
-```JavaScript
+```javascript
 for(initialisation_statement; condition; increment_statement){
   looped_statement; // one or more statements here
 }
@@ -133,7 +133,7 @@ The `initialisation_statement` gets executed once, and once only, when the loop 
 
 If we re-write the above `while` loop as a `for` loop you’ll see how much easier it becomes to read
 
-```JavaScript
+```javascript
 var a = [1, 2, 3, 4, 5];
 
 // loop through the array to sum the values
@@ -152,7 +152,7 @@ You don’t have to call your iteration variable `i`, but most people do – it�
 
 The counter doesn’t have to start at zero, and the updating of the counter doesn’t have to be a simple increment. The following example prints out all odd factors of 13 that are less than 1000 in reverse order:
 
-```JavaScript
+```javascript
 for(var i = 999; i > 0; i -= 2){
   if(i % 13 == 0){
     pbs.say(i);
@@ -166,7 +166,7 @@ When looping in any way, be careful that the loop will always end, otherwise you
 
 If you’d like to intentionally create an infinite loop, just to see what happens, the following will do it:
 
-```JavaScript
+```javascript
 // AN INFINITE LOOP - WILL KILL YOUR BROWSER TAB
 while(1 == 1){
   ; // do nothing
@@ -175,7 +175,7 @@ while(1 == 1){
 
 You’re very unlikely to do something like the above example by accident, but you could easily make a simple mistake like the one below:
 
-```JavaScript
+```javascript
 var a = [1, 2, 3, 4, 5];
 
 // loop through the array to sum the values
@@ -194,7 +194,7 @@ Why is this an infinite loop? We forgot to increment `i` at the bottom of the lo
 
 Another common mistake is to try loop through an array backwards, but type `i++` out of habit, instead of `i--`:
 
-```JavaScript
+```javascript
 var a = [1, 2, 3, 4, 5];
 
 // loop through the array to sum the values
@@ -214,7 +214,7 @@ Since `i` will keep getting bigger, and the loop will only terminate when `i` be
 
 To check if a variable contains an array reference or not, we need to check if it is an object with the `Array` prototype (for now, this is technobabble, but it will make sense a few instalments from now). We can do this with the `instanceof` operator. We’ll revisit this operator later in the series, so for now I’ll just say that the following only evaluates to `true` when `x` contains a reference to an array: `x instaceof Array`.
 
-```JavaScript
+```javascript
 var a = [1, 2, 3];
 var b = 'boogers';
 pbs.say(a instanceof Array);
@@ -225,7 +225,7 @@ pbs.say(b instanceof Array);
 
 As we learned in the previous instalment, all variables can be collapsed to `true` or `false` when needed. For example, we know that all numbers other than zero evaluate to `true`, and zero to `false`. All array references evaluate to `true`, even references to empty arrays.
 
-```JavaScript
+```javascript
 pbs.say("[] evaluates to\t\t" + Boolean([]));
 pbs.say("['boo!'] evaluates to\t" + Boolean(['boo!']));
 ```
@@ -236,7 +236,7 @@ Our first worked example will multiply together the contents of all the non-empt
 
 The playground defines a function `pbs.inputs()`, which returns an array of values from all the non-empty inputs in the interface. This array can be anywhere from zero to three long, depending on how many inputs are left empty.
 
-```JavaScript
+```javascript
 // get all non-empty inputs
 var rawInputs = pbs.inputs();
 
@@ -281,7 +281,7 @@ What we’d like to do is print out the multiplication tables for all numbers be
 
 Let’s start by writing the code to print the table for any given number:
 
-```JavaScript
+```javascript
 // get the number to do the tables for
 var rawInput = pbs.input(1);
 var n = parseInt(rawInput);
@@ -300,7 +300,7 @@ if(isNaN(n) || n < 1){
 
 Now, we can add a second loop around the first loop to go from 1 up to n:
 
-```JavaScript
+```javascript
 // get the number of tables to do
 var rawInput = pbs.input(1);
 var n = parseInt(rawInput);

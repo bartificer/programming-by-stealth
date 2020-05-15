@@ -36,7 +36,7 @@ To practice our JavaScript, HTML, and CSS, let’s create a star rating UI back-
 
 First, we’ll need some HTML to represent each of the 5 stars, and we’ll need a hidden input to hold number of stars the user selects. We’ll need to interact with these elements using CSS and JavaScript, so we need to give them IDs. Also, since each star will represent a specific star rating, we should store the value a specific icon represents within the icon itself using a data attribute (we looked at data attributes in [instalment 26](https://bartificer.net/pbs26)). Here’s some HTML that meets our requirements:
 
-```XHTML
+```html
 <label id="stars_label">Rate this form:</label>
 <span id="stars_ui">
     <span class="fa fa-star-o" id="stars_1" data-stars="1" title="1 star"></span>
@@ -50,7 +50,7 @@ First, we’ll need some HTML to represent each of the 5 stars, and we’ll need
 
 We also need to style this a little so it behaves as expected in the browser – we need to make sure that should our star rating UI end up at a line break, all five stars break together, and, we would like the mouse to change to a pointer when you hover over any of the stars. We can achieve that with the following CSS:
 
-```CSS
+```css
 /* style the star rating UI */
 #stars_ui{
     display: inline-block; /* keep the stars together on line breaks */
@@ -62,7 +62,7 @@ We also need to style this a little so it behaves as expected in the browser –
 
 Our inputs now look correct to sighted users, but what about those who rely on accessibility technologies? We need to add some ARIA roles and attributes to make our custom UI accessible. In terms of usage, a star rating is basically a radio group, so we’ll use the ARIA roles for radio groups. With the ARIA details added our HTML now looks like this:
 
-```XHTML
+```html
 <label id="stars_label">Rate this form:</label>
 <span id="stars_ui" role="radiogroup" aria-labelledby="stars_label">
     <span class="fa fa-star-o" id="stars_1" data-stars="1" title="1 star" role="radio" aria-checked="false" aria-label="1"></span>
@@ -78,7 +78,7 @@ You’ll notice that I’ve given the `<span>` that contains all five of the sta
 
 At this point we have a UI that looks right, but it does absolutely nothing! To make it go, we need to add some JavaScript. Specifically, we need to add a click handler to each of the five stars. To do that, we use jQuery’s `.click()` function. Remember that you can’t add click handlers to elements until the document is ready, so we need to add our handlers within a document ready handler:
 
-```JavaScript
+```javascript
 // document ready event handler
 $(function(){
     // add a click handler to the stars UI
@@ -143,7 +143,7 @@ As well as controlling the step, you can also specify minimum and maximum permit
 
 Other than these extra behaviours, number inputs behave like regular text inputs, allowing things like placeholder text and so on. Below is a sample number input that allows values between zero and 5 to one decimal place, and where clicking the arrows moves the value by a half:
 
-```XHTML
+```html
 <input type="number" name="out_of_5" placeholder="out of 5" min="0" max="0" step="0.5" />
 ```
 
@@ -177,7 +177,7 @@ Given this design, each automaton object will need to contain a reference to the
 
 If we ignore input validation (for now), that gives us the following initial implementation of the constructor:
 
-```JavaScript
+```javascript
 bartificer.ca.Automaton = function($container, rows, cols, stepFn, renderFn, s){
     var x, y; // variables to be used in loops throughout this function
 
@@ -233,7 +233,7 @@ Notice the use of jQuery’s `$` function with HTML tags as strings to create th
 
 Also notice the use of jQuery’s `.data()` function to tie the HTML elements and the JavaScript objects together. This makes it possible to access the `bartificer.ca.Automaton` object representing a cellular automaton from a jQuery object representing the table or container representing the automaton within the DOM. E.g., if we instantiated a cellular automaton within a `<div>` with the ID `conway_life`, we could access the associated `barticer.ca.Automaton` object via the HTML element as follows:
 
-```JavaScript
+```javascript
 $('#conway_life').data('bartificerObject')
 ```
 
@@ -247,7 +247,7 @@ Let’s build a little sample page to do just that, and rather un-imaginatively,
 
 We’ll start with a basic HTML 5 template that imports jQuery from the official jQuery CDN, and then imports our cellular automaton prototypes:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -263,7 +263,7 @@ We’ll start with a basic HTML 5 template that imports jQuery from the official
 
 We should add a title and a container to the body:
 
-```XHTML
+```html
 <body>
 <header><h1>A Sample Cellular Automaton</h1></header>
 <main></main>
@@ -275,7 +275,7 @@ We’ll use the `<main>` element as the container into which we’ll inject our 
 
 Let’s now add the JavaScript code to actually create a `bartificer.ca.Automaton` object. We do that by adding a `<script>` tag into the `head` section of the page. Within that we’ll need to write a document-ready event handler. As a reminder, you do that by passing jQuery’s `$` function a callback as the first argument:
 
-```XHTML
+```html
 <script type="text/javascript">
     $(function(){
         // code that runs when the document becomes ready goes here
@@ -299,7 +299,7 @@ Finally, we can optionally specify an initial state for each cell in the automat
 
 The last thing we need to do before we can refresh our sample page and see our automaton is to add some CSS to make the empty table cells that represent the cells in our automaton big enough to see – they contain no content, so without some CSS, they’d just be a few pixels each on the screen. Because our prototypes injected classes into the HTML elements they generated, the CSS can be very straightforward, we just need to add the following into the `head` section of the page:
 
-```XHTML
+```html
 <style type="text/css">
     td.bartificer-ca-cell{
         width: 10px;
@@ -310,7 +310,7 @@ The last thing we need to do before we can refresh our sample page and see our a
 
 Putting it all together, and adding some comments, we get the following HTML page:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

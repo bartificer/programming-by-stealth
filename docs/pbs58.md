@@ -34,7 +34,7 @@ I’ve included my full recipe in the `pbs57-challengeSolution` in folder [this 
 
 However, the focus of this challenge was the overall structure, and that’s easier to see with most of the page content removed:
 
-```XHTML
+```html
 <header class="container sticky-top mt-3">
   <div class="row align-items-center bg-white border-bottom">
     <div class="col-9">
@@ -155,7 +155,7 @@ Remember from last time that the full width of a container is 12, and that if a 
 
 Take this very basic HTML as a starting point:
 
-```XHTML
+```html
 <div class="container-fluid my-3 text-center">
     <div class="row px-1">
         <div class="col p-3 border rounded bg-primary">
@@ -187,7 +187,7 @@ Finally, on very wide-screened devices the side-bars are becoming wastefully lar
 
 Your code should now look like this:
 
-```XHTML
+```html
 <div class="container-fluid my-3 text-center">
     <div class="row px-1">
         <div class="col-12 col-lg col-xl-3 p-3 border rounded bg-primary">
@@ -215,7 +215,7 @@ I mentioned in the guidelines that the visual layout and the order of elements i
 
 We’ll examine this idea through a worked example — a relatively simple but very commonly used page structure:
 
-```XHTML
+```html
 <div class="container-fluid my-3 text-center">
     <header class="row px-1">
         <div class="col p-3 border rounded bg-primary">
@@ -267,7 +267,7 @@ In our example above, default ordering is working for all columns and breakpoint
 
 So, we now have a layout that meets best practice for assistive devices and SEO, and works well on both small and large screened devices:
 
-```XHTML
+```html
 <div class="container-fluid my-3 text-center">
     <header class="row px-1">
         <div class="col p-3 border rounded bg-primary">

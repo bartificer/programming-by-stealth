@@ -35,7 +35,7 @@ Since these assertions rely heavily on jQuery, this is a good opportunity for so
 
 Since I wrote multiple tests for each function, it made sense to group those tests into a QUnit module. Below is the code for my QUnit module for testing `bartificer.linkToolkit.markExternal()`:
 
-```JavaScript
+```javascript
 //
 // === Tests for bartificer.linkToolkit.markExternal() ========================
 //
@@ -219,13 +219,13 @@ Because the fixture was structured to have each link in its own list item, testi
 
 This all comes down to remembering our jQuery from earlier in the series. Firstly, to get a jQuery object representing a link given it’s ID we call the `$` function with the ID pre-fixed with a `#` symbol as the only argument, so within my loops that’s simply:
 
-```JavaScript
+```javascript
 var $a = $('#' + aId); // the link
 ```
 
 Once we have the link, we can get a jQuery object that represents the containing list item by simply calling `.parent()` on the jQuery object representing the link. In my loops that’s simply:
 
-```JavaScript
+```javascript
 var $li = $a.parent(); // the list item containing the link
 ```
 
@@ -237,13 +237,13 @@ The selector is a little more complicated, but not much. The documentation says 
 
 Finally, the `length` property of a jQuery object tells you how many elements it represents. Putting it all together we get the following line in each of my loops:
 
-```JavaScript
+```javascript
 $('a + img', $li).length, // the number of images after links in the list item
 ```
 
 When it comes to testing the options it’s generally not so much about testing which links did or did not get an image added, but picking a single link that should be marked as external and making sure it was altered in the appropriate way. A good example of this is the test to make sure the `altText` option does indeed set the appropriate alt text on the added images:
 
-```JavaScript
+```javascript
 QUnit.test('option altText', function(a){
     var customAltText = 'dummy alt text';
 
@@ -266,19 +266,19 @@ Rather than seeking out an exact ID to use as a sample, I simply chose to examin
 
 We can use this selector with the two-argument version of the `$` function to confine the search to the fixture as follows:
 
-```JavaScript
+```javascript
 $('li a + img', $('#qunit-fixture'))
 ```
 
 This results in a jQuery object representing many images, to pick a single one to test I simply used jQuery’s `.first()` function to get just the first one. Finally, what I actually need to test is the `alt` attribute, so I need to call the `.attr()` function with a single argument, the name of the attribute I want. So, the _expected_ argument for the assertion becomes:
 
-```JavaScript
+```javascript
 $('li a + img', $('#qunit-fixture')).first().attr('alt')
 ```
 
 Note that the containment and after selectors are also central to the test for the `iconExternal` option. This option is `true` by default, meaning images should be added directly after links by default. However if this option is set to `false`, the image should be added as the last thing inside the link:
 
-```JavaScript
+```javascript
 QUnit.test('option iconExternal=false', function(a){
     a.expect(2);
 
@@ -338,7 +338,7 @@ Text boxes are created using the `input` tag with the `type` attribute set to `t
 
 Below is a very simple form with just a single text box:
 
-```XHTML
+```html
 <form action="javascript:void(0);">
 <label>Your Name <input type="text" name="user_name" /></label>
 </form>
@@ -350,7 +350,7 @@ And it looks like this:
 
 The `value` attribute can be used to specify text that will be pre-loaded into the text box when the page loads or the form is reset:
 
-```XHTML
+```html
 <form action="javascript:void(0);">
 <label>Your Name <input type="text" name="user_name" value="John Doe" /></label>
 </form>
@@ -362,7 +362,7 @@ The form now looks like this when the page loads:
 
 HTML 5 added the placeholder attribute for specifying place-holder text that’s visible but dimmed while the text box is empty and not focused, and invisible the rest of the time. Here we can see a placeholder used to give the user a hint as to what to enter:
 
-```XHTML
+```html
 <form action="javascript:void(0);">
 <label>Your Name <input type="text" name="user_name" placeholder="e.g. John Doe" /></label>
 </form>
@@ -374,7 +374,7 @@ The visual size of the text box depends on the font size. The bigger the font si
 
 The number of characters that can be typed before the browser will prevent further entry is controlled by the `maxlength` attribute. If you set a `size` of 10 and a `maxlength` of 3, the text box will be rendered large enough for 10 characters, but the browser will prevent the user every typing more than 3 characters. If you do it the other way around, the text box will be small, but will accept up to 10 characters of input, scrolling as needed. In general, you usually want a little more space than the maximum length, so you might set a `maxlength` of 2 and a `size` of 3:
 
-```XHTML
+```html
 <form action="javascript:void(0);">
 <label>Your 2-Letter Country Code <input type="text" name="user_country" placeholder="US" maxlength="2" size="3" /></label>
 </form>
@@ -400,7 +400,7 @@ Again, like with text boxes, you can use the `spellcheck` attribute with the val
 
 Like text boxes, the visual size of text areas is determined by the font size, and the dimensions are specified in characters rather than pixels or percentages. Since there are two dimensions, there are two attributes – the width of the text area in characters is specified with the `rows` attribute, and the height with the `cols` attribute.
 
-```XHTML
+```html
 <form action="javascript:void(0);">
 <label for="message_body">Message Body</label><br />
 <textarea id="message_body" name="body" rows="10" cols="50"></textarea>
@@ -423,7 +423,7 @@ The various attributes like `name` and `placeholder` can be accessed using jQuer
 
 Let’s put it all together with a simple example form that uses one of each kind of text input. You’ll find the code below in the zip file for this instalment as `pbs35.html`:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>

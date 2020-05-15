@@ -34,7 +34,7 @@ Let’s start in the traditional way – with a _Hello World_ program.
 
 In our playground, and only in our playground, the function for writing a line of output is `pbs.say()`. So, in this case our code is very simple – we just want to output the string of text “Hello World!”, so we just need this one line of code:
 
-```JavaScript
+```javascript
 pbs.say("Hello World!");
 ```
 
@@ -54,7 +54,7 @@ A single-line comment starts with the symbols `//`, everything on the line from 
 
 A multi-line comment starts with the symbols `/*` and ends with the symbols `*/`. Those two sequences, and everything in-between is interpreted as a comment. Comments of this kind can extend over multiple lines.
 
-```JavaScript
+```javascript
 pbs.say('boo!'); // this is a single-line comment at the end of a line
 
 // this on the other hand is a single-line comment covering the entire line
@@ -92,7 +92,7 @@ The JavaScript spec allows you to use a variable without declaring it, but never
 
 To declare a variable, use the keyword `var`, followed by a space, followed by a valid name, optionally followed by an equals symbol, another space, and a value, and always terminated with a `;` character. E.g.
 
-```JavaScript
+```javascript
 // a variable declaration without a value
 var x;
 
@@ -104,7 +104,7 @@ You declare a variable once, then, you use it as often as you need (it’s actua
 
 Variables can be used anywhere values can be used. The `pbs.say()` function prints a value,so, we can pass it a variable and it will print the value contained in that variable:
 
-```JavaScript
+```javascript
 var x = 100;
 pbs.say(x);
 ```
@@ -121,7 +121,7 @@ So, while a variable is not bound to a specific data type, under the hood, each 
 
 All the following are valid numerical literal values in JavaScript:
 
-```JavaScript
+```javascript
 var a = 4;
 var b = -42;
 var c = 3.1415;
@@ -135,7 +135,7 @@ var g = -2.3e-3; // -2.3 x 10^-3
 
 There are just two boolean literal values:
 
-```JavaScript
+```javascript
 var x = true;
 var y = false;
 ```
@@ -150,7 +150,7 @@ In JavaScript, the escape character is the backslash (`\`), so to include a back
 
 Two other escape characters you should know about are `\n` for the newline character, and `\t` for the tab character.
 
-```JavaScript
+```javascript
 var a = "a simple string";
 var b = 'another simple string';
 var c = 'so, she said "look how easy it is to avoid escaping things sometimes!"';
@@ -170,7 +170,7 @@ Combining two strings together to form a longer string is referred to as _string
 
 You can use it to concatenate literal strings, or strings stored in variables, e.g.
 
-```JavaScript
+```javascript
 pbs.say("You've gotta have a bowl" + " of coco poops");
 
 var vessel = 'bowl';
@@ -188,7 +188,7 @@ Most operators in JavaScript work on two values, and the operator goes between t
 
 The `++` operator adds one to the value it is applied to, or, it increments it. And similarly, the `--` operator subtracts one from the value it is applied to, or, it decrements it.
 
-```JavaScript
+```javascript
 var x = 4;
 pbs.say(x);
 x++;
@@ -246,7 +246,7 @@ So, the `+` symbol is used for both string concatenation, and addition, how do y
 
 This behaviour is quite logical, and most of the time, you get the behaviour you want and expect, but there are some subtleties, as illustrated in the examples below;
 
-```JavaScript
+```javascript
 pbs.say(1 + 2);
 var x = 4;
 var y = 5;
@@ -294,7 +294,7 @@ You’ll also get `NaN` at times you might hope not to. Sadly, `parseInt('four')
 
 Every value collapse into either `true` or `false` when needed, and anything can be turned to a string, even if it isn’t always a very meaningful string. The rules for collapsing down to boolean values are a little complex, so we’ll leave them be until the next instalment.
 
-```JavaScript
+```javascript
 var x = 4;
 var y = 2;
 pbs.say(x + y); // default behaviour
@@ -311,7 +311,7 @@ JavaScript has a special literal value for representing true nothingness – `un
 
 You can also explicitly set a variable to be `undefined` using the assignment operator.
 
-```JavaScript
+```javascript
 pbs.say(a);
 var a = 42;
 pbs.say(a);

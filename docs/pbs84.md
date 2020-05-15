@@ -34,7 +34,7 @@ The simplest way to create an object is using so-called object literals. These c
 
 That sounds complicated, but let’s look at the declaration of a dictionary storing profits per day as a collection of name-value pairs where the names are abbreviations of the days of the week, and each value a number of Euro as a floating-point number. You’ll find this declaration in `pbs84a.html`:
 
-```JavaScript
+```javascript
 const dailyProfits = {
   mon: 252.80,
   tue: 125.93,
@@ -52,7 +52,7 @@ JavaScript supports two distinct syntaxes for accessing a specific value within 
 
 The simplest syntax to read uses the period to decent into an object. I.e. the value for a given key can be addressed as `object.key`. For example, the profits for Wednesday in the example object above are `dailyProfits.wed`. Can use this notation to access the value like we can any variable, and, we can use it to alter the value, e.g.:
 
-```JavaScript
+```javascript
 // access a value within a dictionary
 console.log(`Wednesday's profits were €${dailyProfits.wed}`);
 
@@ -67,7 +67,7 @@ This syntax can only be used when you know the exact name of the key you wish to
 
 When our keys contain characters that can’t be used in variable names, or, when we want to use the value of another variable as the key, we need the more advanced square bracket syntax. Here we surround the value to be used as the key with square brackets and place them directly after the object name, i.e. `object[key]`. We can re-write our dot-syntax example above as:
 
-```JavaScript
+```javascript
 // access a value within a dictionary
 console.log(`Wednesday's profits were €${dailyProfits['wed']}`);
 
@@ -82,13 +82,13 @@ Notice that the key is a string. If we left out the quotation marks JavaScript w
 
 If your code often encodes data in dictionaries indexed by week day you would probably store the weekdays in an array and then use that array to loop over your keys. Below is the definition of the days array in the file `pbs84a.html`:
 
-```JavaScript
+```javascript
 const dayAbbrs = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 ```
 
 We can now use this array to loop over all the entries in our profits dictionary like so:
 
-```JavaScript
+```javascript
 for(const d of dayAbbrs){
   console.log(`€${dailyProfits[d]} profit!`);
 }
@@ -104,7 +104,7 @@ Object literals, the dot syntax, and the square bracket syntax all support nesti
 
 As an example let’s look at a more detailed dictionary of weekly sales as defined in `pbs84a.html`:
 
-```JavaScript
+```javascript
 const dailySales = {
   mon: {
     itemsSold: 56,
@@ -143,7 +143,7 @@ Also note that you can mix the dot and square bracket syntaxes, so Monday’s pr
 
 You can see this for yourself by entering the following in the JavaScript console on `pbs84a.html`:
 
-```JavaScript
+```javascript
 console.log(`dailySales.mon.profit evaluates to: ${dailySales.mon.profit}`);
 console.log(`dailySales['mon']['profit'] evaluates to: ${dailySales['mon']['profit']}`);
 console.log(`dailySales['mon'].profit evaluates to: ${dailySales['mon'].profit}`);
@@ -152,7 +152,7 @@ console.log(`dailySales.mon['profit'] evaluates to: ${dailySales.mon['profit']}`
 
 To facilitate more human-friendly outputs, `pbs84a.html` defines a better version of the array of day abbreviations. This array stores a list of dictionaries, one for each day of the week. Each of those dictionaries defines two keys, `name`, and `abbr`. The values for the `name` key are the human-friendly names of the days, and the values for the `abbr` key are the abbreviations:
 
-```JavaScript
+```javascript
 const days = [
   { name: 'Monday', abbr: 'mon' },
   { name: 'Tuesday', abbr: 'tue' },
@@ -166,7 +166,7 @@ const days = [
 
 We can now print out our daily data with a loop like so:
 
-```JavaScript
+```javascript
 for(const d of days){
   console.log(`We made €${dailySales[d.abbr].profit} profit by selling ${dailySales[d.abbr].itemsSold} items on ${d.name}!`);
 }
@@ -176,7 +176,7 @@ Notice the use of both the dot and square bracket syntaxes.
 
 In the real world we would probably make the code a little easier to read by creating a variable to hold the current day’s data within the loop:
 
-```JavaScript
+```javascript
 for(const d of days){
   const dData = dailySales[d.abbr];
   console.log(`We made €${dData.profit} profit by selling ${dData.itemsSold} items on ${d.name}!`);
@@ -187,7 +187,7 @@ for(const d of days){
 
 JavaScript provides the `Object.keys()` function for extracting the keys from a given dictionary and returning them as an array of strings, e.g.:
 
-```JavaScript
+```javascript
 console.log(Object.keys(dailySales));
 ```
 
@@ -195,7 +195,7 @@ console.log(Object.keys(dailySales));
 
 It’s quite common to end up in a situation where you have a variable with a given name that you wish to use within an object as a key with the same name. Before ECMA Script 2015 (AKA ES6) you had to duplicate the variable name within object literals. As a contrived example, imagine we have two variables named `alice` & `bob` that contain these people’s OS preference. We then want to create an object containing multiple poeple’s preferences, including Alice’s and Bob’s. Before ES6 we had to write code of the form:
 
-```JavaScript
+```javascript
 const bob = 'Linux';
 const alice = 'macOS';
 // …
@@ -211,7 +211,7 @@ Notice the annoying duplication of `bob` and `alice`. Why is this? To the left o
 
 Since ES 6 we can remove this duplication like so:
 
-```JavaScript
+```javascript
 const osPrefs2 = {
   bob,
   alice,
@@ -228,7 +228,7 @@ ECMAScript 2018 brought along another nice new pice of object-related syntax —
 
 To incorporate all the key-value pairs from an existing dictionary into a new dictionary simply pre-fix the name of the existing dictionary with `...` within an object literal. As an example, imagine we have an existing object that defines the OS preferences of all the men in the office, and we want to create a new object that includes all the men’s preference and those of the women in the office, we can do that with the spread operator:
 
-```JavaScript
+```javascript
 const menOSPrefs = {
   bob: 'Linux',
   charlie: 'Windows'
@@ -260,7 +260,7 @@ Object destructuring is much more difficult to describe than to demonstrate, so 
 
 For these examples we’ll be using the dictionary userOSPerfs defined in the file pbs84a.html:
 
-```JavaScript
+```javascript
 const userOSPrefs = {
   alice: 'macOS',
   bob: 'Linux',
@@ -272,7 +272,7 @@ Note that because we’ll be declaring variables over and over again, you’ll n
 
 Given the above dictionary, we can use object destructuring to create a variable named `bob` from the `bob` key like so:
 
-```JavaScript
+```javascript
 const {bob} = userOSPrefs;
 console.log(`bob evaluates to: ${bob}`);
 ```
@@ -281,7 +281,7 @@ This will create the variable `bob` with the value `'Linux'`.
 
 We can create as many variables as we like within a single assignment. The following will create two variables from our dictionary, `alice` & `charlie`:
 
-```JavaScript
+```javascript
 const {alice, charlie} = userOSPrefs;
 console.log(`alice evaluates to: ${alice}`);
 console.log(`charlie evaluates to: ${charlie}`);
@@ -295,7 +295,7 @@ The spread operator can be used within the object destructuring syntax to create
 
 Again, using our above example dictionary `userOSPrefs` we can extract Bob’s record into a variable named `bob`, and everyone else into a new dictionary named `notBob` like so:
 
-```JavaScript
+```javascript
 const {bob, ...notBob} = userOSPrefs;
 console.log(bob);
 console.log(notBob);
@@ -307,7 +307,7 @@ This will create two variables, one named `bob` with the value ‘Linux’, and 
 
 What happens if you try extract a key that the dictionary doesn’t define? Ordinarily your new variable will be created with the value `undefined`. You can specify a default value to use should there be no matching key like so (again, using our above dictionary `userOSPrefs`):
 
-```JavaScript
+```javascript
 const {tom='Windows', alice='Linux'} = userOSPrefs;
 console.log(`tom evaluates to: ${tom}`);
 console.log(`alice evaluates to: ${alice}`);
@@ -321,7 +321,7 @@ Being able to suck multiple keys out of a dictionary and turn them into variable
 
 Using our sample `userOSPrefs` dictionary from before, we can create variables for the keys `bob` and `charlie` named `Robert` and `Charles` like so:
 
-```JavaScript
+```javascript
 const {bob: Robert, charlie: Charles} = userOSPrefs;
 console.log(`Robert evaluates to: ${Robert}`);
 console.log(`Charles evaluates to: ${Charles}`);
@@ -329,7 +329,7 @@ console.log(`Charles evaluates to: ${Charles}`);
 
 Note that this syntax can be used with default values too:
 
-```JavaScript
+```javascript
 const {bob: Robert='macOS', tom: Thomas='macOS'} = userOSPrefs;
 console.log(`Robert evaluates to: ${Robert}`);
 console.log(`Thomas evaluates to: ${Thomas}`);
@@ -345,7 +345,7 @@ It is possible to use destructuring to assign new values to existing variables, 
 
 Curly braces already have a meaning when not pre-fixed by a keyword like `const`, `let`, or `var` — they indicate a code block. If you try use the destructuring syntax as we’ve seen it thus far without a `const`, `let`, or `var`, you’ll get a syntax error. JavaScript will interpret the curly braces as a code block and try to read the destructuring syntax as a regular JavaScript statement, and conclude that it’s garbage! The way around this is very simple — just wrap the entire assignment in round brackets!
 
-```JavaScript
+```javascript
 let alice = 'OS/2 Warp';
 let bob = 'OS/2 Warp';
 

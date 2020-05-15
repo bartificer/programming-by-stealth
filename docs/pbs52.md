@@ -37,7 +37,7 @@ For now, this is all we have to do to start using Bootstrap 4:
 
     Again, for cross-browser consistency, the Bootstrap documentation makes it clear that the following tag should be added to the `head` section of any HTML page that uses Bootstrap:
 
-    ```XHTML
+    ```html
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     ```
 
@@ -45,7 +45,7 @@ For now, this is all we have to do to start using Bootstrap 4:
 
     You could download the Bootstrap CSS and include your own copy, but by far the easiest thing to do is to load it from the officially supported content distribution network (CDN) by adding the following into the `head` section of the HTML page:
 
-    ```XHTML
+    ```html
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     ```
 
@@ -53,7 +53,7 @@ For now, this is all we have to do to start using Bootstrap 4:
 
 For now, you can use this as a template for HTML pages that use Bootstrap:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -125,7 +125,7 @@ I know Bootstrap is an API rather than a language, but still, I think it’s tim
 
 Enter the following into the HTML area in the playground:
 
-```XHTML
+```html
 <div class="jumbotron m-3">
   <h1>Hello World!</h1>
   <p class="lead text-muted">Welcome to Bootstrap 4</p>
@@ -138,7 +138,7 @@ To see what this looks like, press the _Run_ button in the upper left:
 
 Initially, until we learn about Bootstrap’s layout functionality, we’ll need to wrap our code snippets with the following:
 
-```XHTML
+```html
 <div class="container-fluid mt-3">
   <div class="row">
     <div class="col-12">

@@ -26,7 +26,7 @@ In short, the challenge was to create prototypes for objects representing quotat
 
 Again, I want to stress that there is no such thing as a definitive correct answer – there are an infinity of correct solutions to this challenge. My solution is shown below.
 
-```JavaScript
+```javascript
 //
 // === Create Quotation Prototype ===
 //
@@ -244,7 +244,7 @@ However, `arguments` objects do not have the `Array` prototype, so they don’t 
 
 In version 5 of ECMAScript (and older), you have to manually convert this object to a true array if you want to use it as one. You would do so using code something like:
 
-```JavaScript
+```javascript
 var argsArray = [];
 for(var i = 0; i < arguments.length; i++){
   argsArray[i] = arguments[i];
@@ -253,7 +253,7 @@ for(var i = 0; i < arguments.length; i++){
 
 In version 6 of ECMAScript, a better solution has been provided, but, it will not work in IE, so, it’s probably too early to start using this feature on the web. However, if you are using JavaScript in other environments, and those environments are at ECMAScript version 6 or newer, you can safely use this technique. As you can see, it is much shorter than the old manual approach:
 
-```JavaScript
+```javascript
 var argsArray = Array.from(arguments);
 ```
 
@@ -270,7 +270,7 @@ As we’ve already seen, the syntax for this operator is `typeof value_to_test`,
 *   `'function'` – the value is a reference to a function object
 *   `'object'` – the value is a reference to an object that is not a function object
 
-```JavaScript
+```javascript
 pbs.say("typeof undefined is\t'" + typeof undefined + "'");
 pbs.say("typeof null is\t\t'" + typeof null + "'");
 pbs.say("typeof 4 is\t\t'" + typeof 4 + "'");
@@ -295,7 +295,7 @@ Strings are literal values, but under the hood, JavaScript converts them to obje
 
 The `String` prototype provides a property called `.length`, which tells you the number of characters in a string. The `String` prototype also provides two functions for manipulating the case of a string – `.toUpperCase()` and `.toLowerCase()`, both of which return a new string with the changes applied, rather than changing the value in the string they are called on.
 
-```JavaScript
+```javascript
 var myString = 'Hello World!';
 pbs.say(myString);
 pbs.say(myString.length);
@@ -309,7 +309,7 @@ As you can see in the last line of the example above, string functions and prope
 
 Another useful string function is `.charAt()`, which allows you to access individual characters within a string, almost as if the string were an array of characters. The following example uses `.charAt()` in conjunction with a loop to reverse a string:
 
-```JavaScript
+```javascript
 function reverseString(s){
   s = String(s); // force s to be a String
   var ans = '';
@@ -323,14 +323,14 @@ pbs.say(reverseString("Hello World!"));
 
 This above example illustrates a very important point – before using a string function on a variable, you need to be sure it really is a string, otherwise, you’ll get an error, as demonstrated by this code:
 
-```JavaScript
+```javascript
 var x = 4;
 pbs.say(x.toUpperCase());
 ```
 
 You can protect yourself from this kind of error by explicitly converting the variable to a string before applying the function. You can do that like shown in the reverse example, or, you can do it in such a way that it does not affect the value stored in the variable as show below:
 
-```JavaScript
+```javascript
 var x = 4;
 pbs.say(typeof x);
 pbs.say(String(x).toUpperCase());
@@ -341,7 +341,7 @@ Finally, the `String` prototype provides a function `.split()` which allows a st
 
 As an example, we can split a time string into an array of hour, minute, and second values by splitting it on the string `:`, as shown below:
 
-```JavaScript
+```javascript
 var t = "15:45:01";
 pbs.say("the time " + t + " splits into the following parts:");
 var timeParts = t.split(':'); // returns an array
@@ -356,7 +356,7 @@ As we already know, in JavaScript, arrays are implemented as objects with the `A
 
 We’ll start with four related functions for adding and removing items from the ends of arrays. You can add one or more values to the end of an array with `.push()`, and to the front of an array with `.unshift()`. You can remove and return the last element of an array with `.pop()`, and the first element with `.shift()`. These four operators allow you to use arrays as stacks or queues.
 
-```JavaScript
+```javascript
 var a = ['apple', 'orange', 'pear'];
 pbs.say('initial array: ' + a);
 a.push('banana');
@@ -373,7 +373,7 @@ To create your own sort order, define a function that takes two arguments – if
 
 As an example, the following code shows how a default lexical sort does a terrible job of sorting numbers, and, how a callback can be used to do a numeric sort:
 
-```JavaScript
+```javascript
 var a = [1, 5, 2, 7, 16, 25];
 pbs.say('initial array: ' + a);
 a.sort();
@@ -388,7 +388,7 @@ pbs.say('after sorting with callback that does arithmetic comparison: ' + a);
 
 Finally, I also want to mention a very convenient function for joining all the elements of an array into a single string. By default, `.join()` will return a string representing all the values in the array, separated by a comma. You can specify your own separator by passing a string as an argument.
 
-```JavaScript
+```javascript
 var a = ['Allison', 'likes', 'boogers'];
 pbs.say(a.join());
 pbs.say(a.join(', '));
@@ -413,14 +413,14 @@ Something that’s worth focusing on in more detail is JavaScript’s random num
 
 E.g. we can generate a random integer between zero and 99 (inclusive) with the following simple code:
 
-```JavaScript
+```javascript
 var randomInt = Math.floor(Math.random() * 100);
 pbs.say(randomInt);
 ```
 
 Or, between 1 an 100 inclusive with the following code:
 
-```JavaScript
+```javascript
 var randomInt = Math.floor(Math.random() * 100) + 1;
 pbs.say(randomInt);
 ```
@@ -431,13 +431,13 @@ I’m going assume you know what regular expressions are. If not, please see [in
 
 In JavaScript, regular expressions are represented as objects with the prototype `RegExp`. Like strings, arrays, and objects, you don’t have to use the `new` keyword to create regular expression objects, you can use the following special syntax instead:
 
-```JavaScript
+```javascript
 var myRE = /regexp_here/optional_flags_here;
 ```
 
 For example, you can create a regular expression that matches positive integers like so:
 
-```JavaScript
+```javascript
 var posIntRE = /^\d+$/;
 ```
 
@@ -445,7 +445,7 @@ The `RegExp` prototype provides a number of useful functions that we should take
 
 First, you can use the `.test()` function to test if a string matches a regular expression:
 
-```JavaScript
+```javascript
 var posIntRE = /^\d+$/;
 pbs.say(posIntRE.test(42));
 pbs.say(posIntRE.test('42'));
@@ -459,7 +459,7 @@ Secondly, you can use the `.exec()` function to do more detailed matching, inclu
 
 Let’s start with the simplest example – using `.exec()` to access sub matches. Reminder – you create sub-matches within a regular expression using parentheses. If the test string does not match the regular expression at all, `.exec()` returns `null`, and if the string does match, a results object is returned. If a results object is returned, the entire matched text will be in `results[0]`, the first sub-match will be in `results[1]`, the second in `results[2]`, and so on.
 
-```JavaScript
+```javascript
 var s = "That lunch was delicious, but it cost €50.43, which is a bit steep!";
 var moneyRE = /([£$€])(\d+([.]\d\d)?)/;
 var res = moneyRE.exec(s);
@@ -475,7 +475,7 @@ Notice that it is the order of the opening parentheses that defines the order of
 
 If our regular expression has the `g` flag (for a global match), `.exec()` will remember where it left off, and next time you call it, it will give you the next result, so, you can loop through all the matches like so:
 
-```JavaScript
+```javascript
 var s = "That lunch was delicious, but it cost €50.43, which is a bit steep! I guess I'd happily have paid €30 for it. Mind you, nothing is as bad as that £100 lunch in London last year!";
 var moneyRE = /([£$€])(\d+([.]\d\d)?)/g;
 var res;
@@ -490,7 +490,7 @@ You can test if a string matches a given regular expression with the `.match()` 
 
 Because `null` evaluates to `false`, you can do simple testing like so:
 
-```JavaScript
+```javascript
 var intRE = /^[-]?\d+$/;
 var inputs = pbs.inputs();
 if(inputs.length > 0){
@@ -509,7 +509,7 @@ if(inputs.length > 0){
 
 If your RE has the `g` flag, you can also use `.match()` to find all matches like so:
 
-```JavaScript
+```javascript
 var s = "If I have 5 apples, and I sell 3, how many do I have left? ... correct, 2";
 var res = s.match(/[-]?\d+/g);
 if(res === null){
@@ -528,7 +528,7 @@ If you pass a string as the replacement, you can use `$1`, `$2` etc. to referenc
 
 The following replacement will find all currency values of the form `€1.23`, and replace them with the form `1.23EUR`.
 
-```JavaScript
+```javascript
 var s = "I have €1.27 in my pocket today, but I had €2.22 yesterday. I must have spent €0.95 in the last day.";
 pbs.say("BEFORE: " + s);
 s = s.replace(/[€](\d+[.]\d\d)/g, "$1EUR");
@@ -541,7 +541,7 @@ Now lets look at the more complex option for the replacement, a callback. The ca
 
 We can use this technique to do mathematical calculations in our replacement, e.g., the following will replace all Fahrenheit temperatures with their celsius equivalents:
 
-```JavaScript
+```javascript
 var s = "It's 104F today - that's just too hot. 80F is hot enough for me!";
 pbs.say("BEFORE: " + s);
 s = s.replace(/([-]?\d+)F/g, function(str, sub1){
@@ -562,7 +562,7 @@ Exception handling is very much a game of two halves, and, one of those halves i
 
 When something goes wrong, your code should use the JavaScript keyword `throw` to throw an `Error` object. For example, we could re-write our factorial function from previous instalments to be exception-aware like so:
 
-```JavaScript
+```javascript
 // -- Function --
 // Purpose    : Calcualtes the factorial of an integer number
 // Returns    : An integer number
@@ -598,7 +598,7 @@ In this case, we did not make any kind of effort to catch the error that was thr
 
 The second part to exception handling is catching what you throw. Rather than letting the playground catch the errors we throw, we can catch them in our own code, and then deal with them in a sensible way. The syntax for this is a so-called _try-catch block_. The syntax takes the following form:
 
-```JavaScript
+```javascript
 try{
   // code that could trigger an error goes here
 }catch(err){
@@ -612,7 +612,7 @@ The error message within an `Error` object can be accessed using its `.message` 
 
 We can now use the `try` and `catch` keywords to safely call our `factorial()` function with the values entered in the playground inputs as show below (the function itself has not been changed):
 
-```JavaScript
+```javascript
 // -- Function --
 // Purpose    : Calcualtes the factorial of an integer number
 // Returns    : An integer number

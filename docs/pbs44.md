@@ -26,7 +26,7 @@ Firstly, safely declaring shared global namespaces like `bartificer` still needs
 
 In other words, this line needs to remain as it is:
 
-```JavaScript
+```javascript
 var bartificer = bartificer ? bartificer : {};
 ```
 
@@ -34,7 +34,7 @@ You can try re-write it with `let` or `const`, but you’ll run into a brick wal
 
 If you were to try do the following, what would happen?
 
-```JavaScript
+```javascript
 let bartificer = bartificer ? bartificer : {};
 ```
 
@@ -48,7 +48,7 @@ The second subtly I want to draw your attention to is that there were opportunit
 
 As an example, let’s look at `bartificer.ca.Automaton.prototype.step()`:
 
-```JavaScript
+```javascript
 /**
  * Step the automaton forward by one step.
  *
@@ -91,7 +91,7 @@ Because `var` is function-scoped, the two sets of for loops share the same `x` a
 
 We could just replace `var` with `let`, and leave the scope as-is, but while that would result in working code, it wouldn’t be in keeping with the spirit of ES6, or our aim of minimising variable scope. So, instead, we should create separate instances of `x` and `y` for each set of loops:
 
-```JavaScript
+```javascript
 /**
  * Step the automaton forward by one step.
  *
@@ -141,7 +141,7 @@ It’s quite common to have functions with optional arguments. When the function
 
 Let’s use a trivially simple example to illustrate the point — a function to increment a value. The first argument must be the value to increment, and the second optional argument is the amount to increment by, which defaults to one:
 
-```JavaScript
+```javascript
 function inc(n, i){
     if(typeof i === 'undefined'){
         i = 1;
@@ -152,7 +152,7 @@ function inc(n, i){
 
 A seasoned programmer might shorten that function to:
 
-```JavaScript
+```javascript
 function inc(n, i){
     return n + (typeof i === 'undefined' ? 1 : i);
 }
@@ -162,7 +162,7 @@ However, regardless of which of those implementations you choose, the fact that 
 
 With ES6 we can give default values right within the function declaration, so our function now becomes just:
 
-```JavaScript
+```javascript
 function inc(n, i = 1){
     return n + i;
 }
@@ -174,7 +174,7 @@ I think you’ll agree that’s much clearer!
 
 Way back in [instalment 16](https://www.bartbusschots.ie/s/2016/06/08/programming-by-stealth-16-of-x-javascript-function-objects/) we learned how to write functions that can process arbitrarily many arguments by looping over the special `arguments` object that exists within each function. We illustrated the point with this sample function which multiplies together arbitrarily many numbers:
 
-```JavaScript
+```javascript
 function product(){
     // if there are no arguments, return 0
     if(arguments.length == 0){
@@ -194,7 +194,7 @@ function product(){
 
 You can see the function in action with calls like these:
 
-```JavaScript
+```javascript
 console.log(product(3, 4)); // 12
 console.log(product(1, 2, 3, 4, 5)); // 120
 ```
@@ -205,7 +205,7 @@ ES6 adds a feature some other languages have had for many years, so-called _vari
 
 In ES6 you define an argument as being variadic by pre-fixing the name with three periods. So, we could re-write the above example like so:
 
-```JavaScript
+```javascript
 // define the product function
 function product(...n){
     // if there are no arguments, return 0
@@ -232,7 +232,7 @@ In the above example the variadic argument is the only argument, but that doesn�
 
 For example, the following function takes an operator as the first argument, and then applies that operator to all the other arguments passed. So, it has one regular argument, and then all other arguments passed get collapsed into the variadic argument:
 
-```JavaScript
+```javascript
 // declare function
 function prefixOp(op, ...n){
     if(n.length === 0) return NaN;
@@ -274,7 +274,7 @@ Note that you can’t assign a default value to a variadic argument.
 
 Way back in [instalment 17](https://bartificer.net/pbs17) we learned how to loop over objects with the help of the `Object.keys()` function. We used the following example to illustrate the point:
 
-```JavaScript
+```javascript
 // create an object representing three letter acronyms
 var tlaLib = {
   rpm: 'Revolutions per Minute',
@@ -295,7 +295,7 @@ Note that this example is designed to be run inside the [PBS JavaScript playgrou
 
 With ES6 there’s an easier way — the so-called `for ... in` loop:
 
-```JavaScript
+```javascript
 // create an object representing three letter acronyms
 const tlaLib = {
   rpm: 'Revolutions per Minute',
@@ -324,7 +324,7 @@ The example above uses a plain object (`tlaLib`), but things get a little more c
 >
 > The following simple prototype contains one of each kind of property:
 >
-> ```JavaScript
+> ```javascript
 > // declare a simple prototype with:
 > // One instance property (colour),
 > // and one static property (aka)
@@ -336,7 +336,7 @@ The example above uses a plain object (`tlaLib`), but things get a little more c
 >
 > We can create two instances of this prototype with the following:
 >
-> ```JavaScript
+> ```javascript
 > // create two Boogers
 > let bogey1 = new Booger();
 > let bogey2 = new Booger('yellow');
@@ -344,7 +344,7 @@ The example above uses a plain object (`tlaLib`), but things get a little more c
 >
 > Each of these instances has their own copy of the instance property `colour`, as demonstrated by the following code snippet:
 >
-> ```JavaScript
+> ```javascript
 > // show both colours
 > console.log(bogey1.colour); // green
 > console.log(bogey2.colour); // yellow
@@ -359,7 +359,7 @@ The example above uses a plain object (`tlaLib`), but things get a little more c
 >
 > However, both instances share a reference to the single static property `aka`, as illustrated by the following:
 >
-> ```JavaScript
+> ```javascript
 > // show both aka properties
 > console.log(bogey1.aka); // Bogey
 > console.log(bogey2.aka); // Bogey
@@ -380,7 +380,7 @@ This function takes a string as an argument and returns `true` if the object has
 
 You can see this in action with the following code snippet:
 
-```JavaScript
+```javascript
 // declare a simple prototype with:
 // one instance property (colour),
 // and one static property (aka)
@@ -401,7 +401,7 @@ There’s one final complication with `for ... in` loops — they only iterate o
 
 To illustrate this point, an array containing one element has two instance properties, `0`, and `length`, but only the `0` property is enumerable:
 
-```JavaScript
+```javascript
 // craete an Array object with one element
 let a = ['boogers'];
 

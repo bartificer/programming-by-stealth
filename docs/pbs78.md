@@ -46,7 +46,7 @@ To make the operation of my sample solution more transparent, I chose to store a
 
 As an Example, you can see the current random number to be guessed by entering `RANDOM_NUMBER` into the console. You can also see all the guesses made during the current game by entering `GUESSES`. There’s also a globally scoped lookup table to map valid guesses to buttons in the game UI, so to simulate clicking on the button for 42 you can enter the following into the console:
 
-```JavaScript
+```javascript
 $GUESS_BUTTONS_BY_NUMBER[42].click()
 ```
 
@@ -64,7 +64,7 @@ I chose to break these tasks out into separate functions for three reasons:
 
 As and example, run the following in the JavaScript console:
 
-```JavaScript
+```javascript
 showGameMessage('Cake is nice, but nothing beats a great cookie!', 'fas fa-cookie-bite', 'success');
 ```
 
@@ -74,7 +74,7 @@ Rather than coding my game logic directly into the various event handlers that p
 
 You can see all these functions in action by entering the following in the Javascript console:
 
-```JavaScript
+```javascript
 guessNumber(80);
 resetGame();
 guessNumber(42);
@@ -109,7 +109,7 @@ Popovers don’t exist independently in a page, instead, they are attached to so
 
 That all sounds very complicated, so let’s stop thinking about this in the abstract, and look at a practical example (from `pbs78a.html` in this instalment’s ZIP file). Let’s start with the HTML markup, in this case we’ll attach the popover to a button:
 
-```XHTML
+```html
 <button type="button" class="btn btn-secondary btn-sm" data-toggler="popover" title="A Popover Title" data-content="Some boring Popover content">
   Click me!
 </button>
@@ -119,7 +119,7 @@ The `data-toggler="popover"` attribute will enable the default toggling behaviou
 
 Just adding this markup won’t do anything though, we need to explicitly enable the popover using the matching Bootstrap jQuery plugin. We do that by calling the `.popover()` function on the button with an empty object as the only argument. We can do this for all popovers on the page by simply adding the following to our document ready handler:
 
-```JavaScript
+```javascript
 $('[data-toggler="popover"]').popover({});
 ```
 
@@ -135,7 +135,7 @@ How a popover is activated is controlled by the `trigger` option. The default is
 
 An alternative to this default behaviour is to set the trigger to `hover`. You can do this in HTML with the data attribute `data-trigger="hover"`. This behaviour may not make sense on a button, but it can be useful for other things. For example, the following link shows the meaning of the acronym as a popover triggered by hovering:
 
-```XHTML
+```html
 <span class="mark" data-toggler="popover" data-trigger="hover" data-content="Programming by Stealth">PBS</span>
 ```
 
@@ -145,13 +145,13 @@ Yet another way to trigger popovers is on focus. This only works on elements wit
 
 A good example would be a popover explaining a text box that’s only visible while the text box has focus:
 
-```XHTML
+```html
 <input type="text" class="form-control" data-toggler="popover" data-trigger="focus" data-content="Enter Some Text!">
 ```
 
 One of the annoying things about the default click trigger is that you have to click on the element that the popover belongs to, to get rid of it. It would be much more convenient to be able to click anywhere on the page to dismiss it! With a little trickery you can achieve this by using an `<a>` tag (the docs insist it will not work reliably with `<button>` tags) **without an `href` attribute** and **with a `tabindex` attribute** combined with the `focus` trigger and the Bootstrap button classes (`.btn` plus `.btn-primary` or similar):
 
-```XHTML
+```html
 <a class="btn btn-secondary btn-sm" data-toggler="popover" data-trigger="focus" title="A Dismissable Popover" data-content="Click anywhere on the page to make me go away!" tabindex="0">
   Click me!
 </a>
@@ -163,7 +163,7 @@ Finally, you can set multiple triggers on the same element, with one exception, 
 
 This might sound like a strange thing to do, but combining `hover` and `click` can be quite useful. Since hovering is neither accessible nor usable on touch devices, nothing mission-critical should ever be triggered solely on hover. It’s fine to use pure hovers for optional extras, but your page/web app has to be able to function without their use. When you add both the hover and click triggers to a popover it will behave in a non-sticky way until you click it once, and then it will become sticky until you click again:
 
-```XHTML
+```html
 <button type="button" class="btn btn-secondary btn-sm" data-toggler="popover" data-trigger="hover click" title="A Hoverable Pin-able Popover" data-content="Click to make me stick on, click again to un-stick me!">
   Hover over or Click me!
 </button>
@@ -209,7 +209,7 @@ All the popovers in my sample solution are entirely controlled via JavaScript. I
 
 The `.attachPopover()` function first does some sanity checking on the arguments, then it uses Mustache to generate the content for the popover, then it initialises it using an options object. The relevant lines are:
 
-```JavaScript
+```javascript
 // try render the template
 let bodyHTML = '';
 try{
@@ -233,7 +233,7 @@ Notice that I use the various options to disable all automatic triggers (`trigge
 
 Because I set the `trigger` to `manual`, all hiding and showing is now up to my code. I show the appropriate popover in my `guessNumber()` function, and use a timeout to have it automatically disappear after a number of seconds. This is the relevant code snippet:
 
-```JavaScript
+```javascript
 $guessBtn.popover('show');
 window.setTimeout(
   function(){
@@ -253,7 +253,7 @@ Data variation is something you have to do a lot, and it is often extremely repe
 
 Rather than having to check if something is a integer between 1 and 20 inclusive with code like this:
 
-```JavaScript
+```javascript
 const val = 4;
 if(String(val).match(//^\d+$) && val >= 1 && val <=20 ){
   window.alert('yay!');
@@ -264,7 +264,7 @@ if(String(val).match(//^\d+$) && val >= 1 && val <=20 ){
 
 Wouldn’t it be much nicer to be able to use well named functions instead? Perhaps something like:
 
-```JavaScript
+```javascript
 const val = 4;
 if(is.integer(val) && is.within(val, 1, 20){
   window.alert('yay!');
@@ -281,19 +281,19 @@ You’ll find the full list of available checks on their website: [http://is.js.
 
 Basic checks can be performed in following way (replacing `NAME_OF_CHECK` with the actual name of the check, and `VALUE_TO_TEST` with the value to be validated):
 
-```JavaScript
+```javascript
 is.NAME_OF_CHECK(VALUE_TO_TEST)
 ```
 
 For example, to check if the variable `boogers` contains a valid URL, you would use:
 
-```JavaScript
+```javascript
 is.url(boogers)
 ```
 
 Some checks take arguments, and you pass those after the value to be tested. For example, the `within()` check expects two parameters, a minimum permitted value, and a maximum permitted value, hence, to check if the variable `snot` contains a number between 1 and 100 you would use:
 
-```JavaScript
+```javascript
 is.within(snot, 1, 100)
 ```
 
@@ -303,13 +303,13 @@ To make your code even easier to ready by minimising the need for the `!` operat
 
 Interfaces get inserted between the `is` and the check name, so when using interfaces your checks will take the following form (replacing `NAME_OF_INTERFACE` with the actual name of the interface, `NAME_OF_CHECK` with the actual name of the check, and `VALUE_TO_TEST` with the value to be validated):
 
-```JavaScript
+```javascript
 is.NAME_OF_INTERFACE.CHECK_NAME(VALUE_TO_TEST)
 ```
 
 For example, to check if the variable `puke` does not contain an email address you would use:
 
-```JavaScript
+```javascript
 is.not.email(puke)
 ```
 
@@ -319,13 +319,13 @@ The `.all` and `.any` interfaces allow a check to be applied to all the elements
 
 To test of all the values in the array `vomArray` are IPv4 IP addresses you would use:
 
-```JavaScript
+```javascript
 is.all.ipv4(vomArray)
 ```
 
 Similarly, to test if any value in the array `barfArray` is empty (string with no characters, array with no elements, or object with no keys) you would use:
 
-```JavaScript
+```javascript
 is.any.empty(barfArray)
 ```
 
@@ -337,13 +337,13 @@ Note that not all checks support .all and .any. The entry in the documentation f
 
 The entire library is contained in one relatively small file, so you can download it, copy it into the same directory as your HTML document, and then load it with a script tag something like:
 
-```XHTML
+```html
 <script type="text/javascript" src="is.js"></script>
 ```
 
 Alternatively, you can load it form a CDN. There is no officially supported CDN, but many of the public JavaScript CDNs host the file. In my sample solution I loaded is.js form the [Cloudflare-powered free CDNJS](https://cdnjs.com/about) with:
 
-```XHTML
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js" integrity="sha256-lnJeulOa3e5IO2EzHr8jKJ3CbT80MBwkS5a+n2ooIr4=" crossorigin="anonymous"></script>
 ```
 

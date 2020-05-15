@@ -28,7 +28,7 @@ We have also encountered some built-in JavaScript functions, including `parseInt
 
 You can create your own functions using the `function` keyword:
 
-```JavaScript
+```javascript
 function name(argument_list){
   statements;
 }
@@ -42,7 +42,7 @@ Finally, if you want your function to return a value, use the keyword `return`. 
 
 As an example, let’s write a function to calculate the factorial of a number, and use it to calculate the factorials of all non-empty inputs:
 
-```JavaScript
+```javascript
 // define the factorial function
 function factorial(n){
   // convert n to an integer number
@@ -87,7 +87,7 @@ In real terms, what this means is that functions can access global variables, bu
 
 Some examples may help this subtle but important concept sink in. Firstly, let’s do what you’ll want to do more often than anything else – protect the variables within a function from globally scoped variables with the same name by diligently using `var` within the function:
 
-```JavaScript
+```javascript
 // declare a function that creates a local variable x
 function dummyFn(){
   var x = 5; // only exists within this function
@@ -111,7 +111,7 @@ dummyFn();
 
 Sometimes you intentionally want to access a global variable from within a function – you do this by intentionally not declaring the the variable inside the function:
 
-```JavaScript
+```javascript
 // declare a globally scoped accumulator
 var ACCUMULATOR = 1;
 
@@ -148,7 +148,7 @@ Recursion works very well on certain data structures like trees, and, in problem
 
 You can translate those two rules into a very simple piece of recursive code:
 
-```JavaScript
+```javascript
 function factorial(n){
   var intN = parseInt(n);
 
@@ -186,7 +186,7 @@ What ever you pass to a function, or return from a function, gets copied. When y
 
 To illustrate the difference, lets first pass a literal value to a function, and alter it within the function and see what happens:
 
-```JavaScript
+```javascript
 function doubler(x){
   x += x; // double the varible
   return x;
@@ -202,7 +202,7 @@ As you can see when you run the above code – altering the passed value inside 
 
 Now let’s see what happens when we pass an array:
 
-```JavaScript
+```javascript
 function arrayDoubler(x){
   for(var i = 0; i < x.length; i++){
     x[i] += x[i]; // double the value
