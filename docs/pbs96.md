@@ -2,6 +2,8 @@
 
 In this instalment we're taking a break from learning new things to look at two sample solutions to the world clock challenge set at the end of PBS 92. I'll start by handing over to Allison to describe her sample solution, and then I'll take over again to share mine.
 
+Finally — I'll set another challenge to tide you over for four weeks while we finish our third look at OO programming in JavaScript over the next two instalments.
+
 ## Allison's World Clock
 
 > This entire section is written by [Allison Sheridan](https://www.podfeet.com/).
@@ -323,10 +325,6 @@ Once I'd picked my font, applying it onvolved just a few lines of CSS within a `
   font-family: 'Share Tech Mono', monospace;
 }
 ```
-
-### Where Does Code Go?
-
-TO DO — MAYBE
 
 ## A New Challenge
 
