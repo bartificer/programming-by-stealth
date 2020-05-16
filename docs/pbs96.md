@@ -125,10 +125,9 @@ I spent some time making the clock look pretty on mobile and I declared victory.
   
 I've taken my clock much further than what I've described here. It has some functionality that I'm very excited about, but the UI is what my father would have described as "ugly as sin."  I'd like to ask if anyone in the Programming By Stealth community would like to step in to consult with me on how to make it less ugly and to make it obvious what the functionality is.  As it stands, I have to put in a lot of words to explain it and that always means you're doing it wrong!
 
+## Bart's Sample Solution
 
 > Back to Bart {: .aside }
-
-## Bart's Sample Solution
 
 You'll find the full source code for my sample solution in the file `pbs92-ChallengeSolution-Bart/index.html` in this instalment's ZIP file, or you can [view a live version of my solution in your browser here](https://rawcdn.githack.com/bartificer/programming-by-stealth/020e0f0590ec9b3148dbb303755c99167904d827/instalmentResources/pbs96/pbs92-ChallengeSolution-Bart/index.html), or [view the source code online here](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs96/pbs92-ChallengeSolution-Bart/index.html).
 
