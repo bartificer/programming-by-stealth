@@ -9,7 +9,7 @@ Finally — I'll set another challenge to tide you over for four weeks while we 
 > This entire section is written by [Allison Sheridan](https://www.podfeet.com/).
 {: .aside }
 
-Allison taking over the reigns here to talk about how I approached making the clock as our challenge from PBS 92.  If you'd like to see the results of my clock you can view them on Glitch here: [https://nc-world-clock.glitch.me](https://nc-world-clock.glitch.me) and you can see the code files at [glitch.com/...](https://glitch.com/edit/#!/nc-world-clock?path=index.html%3A1%3A0)
+Allison taking over the reigns here to talk about how I approached making the clock as our challenge from PBS 92.  You'll find the full source code for my solution in the file `pbs92-ChallengeSolution-Allison/index.html` in this instalment's ZIP file or you can [view a live version of my solution in your browser here](https://rawcdn.githack.com/bartificer/programming-by-stealth/7fd37665c0ba5b67e19bd23322d5bdec174119c7/instalmentResources/pbs96/pbs92-ChallengeSolution-Allison/index.html), or [view the source code online here](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs96/pbs92-ChallengeSolution-Allison/index.html).
 
 I really enjoyed the clock assignment, even though technically we had learned how to make clocks in Programming By Stealth many many lessons ago.  I decided not to go back and look at those instructions and start from scratch with my newly-learned tools to see if I could make it happen.
 
@@ -65,7 +65,7 @@ My main challenge was not how to find the timezone data, but how to display it s
 ### Modifying the time format
 Armed with a well-formatted, if exhaustive JSON dictionary of timezone data, it was actually pretty easy to use moment.js to create a working clock. Items 2 and 3 were to allow the user to choose a 12 or 24 hour clock and whether or not to show seconds.  Moment.js documentation was pretty good at explaining how to make these different formats.
 
-I decided to declare some variables that were the strings that moment.js required for the different formats.  For example, TIME24WSEC was the string 'h:mm:ss a'.  I also created variables for whether the user wanted seconds and a 12 hour clock.  Finally I created one variable called FORMATTEDTIME in which I would put the chosen format. I set it to a default value of time with 12 seconds.
+I decided to declare some variables that were the strings that moment.js required for the different formats.  For example, TIME24WSEC was the string 'h:mm:ss a'.  I also created variables for whether the user wanted seconds and a 12 hour clock.  Finally I created one variable called FORMATTEDTIME in which I would put the chosen format. I set it to a default value of 12-hour time with seconds.
 
 ```js
 	// Time formats
@@ -83,7 +83,7 @@ I decided to declare some variables that were the strings that moment.js require
 
 I created two "checkboxes" and formatted them using Bootstrap to look like toggle switches.  These checkboxes were to select between 12 and 24 hour clocks and whether or not to show the seconds.  I ran into an interesting problem though. If you have a checkbox, it only has one label.  But if visually it looks like a toggle, then there's an expectation that there's a label on both sides.
 
-My solution was to use "12 Hour Clock" as the real label for the checkbox and to put a plain old line of text to the left of the checkbox that said "24 Hour Clock".  But that opened up a can of worms for a screen reader. How are they to know that the other glop of text was explaining the checkbox? I chose to put a `div` with `class ="sr-only"` to give them a fighting chance.  I asked good friend of the NosillaCast Scott Howell to test it for me.  We both discovered using VoiceOver that it worked well enough but that there's some sort of bug where labels on checkboxes get read out twice. I was able to find people chatting about the problem more than 5 years back so I decided I wouldn't worry about it.
+My solution was to use "12 Hour Clock" as the real label for the checkbox and to put a plain old line of text to the left of the checkbox that said "24 Hour Clock".  But that opened up a can of worms for a screen reader. How are they to know that the other glop of text was explaining the checkbox? I chose to put a `div` with `class ="sr-only"` to give them a fighting chance.  I asked good friend of the NosillaCast and VoiceOver user Scott Howell to test it for me.  We both discovered using VoiceOver that it worked well enough but that there's some sort of bug where labels on checkboxes get read out twice. I was able to find people chatting about the problem more than 5 years back so I decided I wouldn't worry about it.
 
 ![Toggle Switches that are really checkboxes](./assets/pbs96/allisonToggleSwitches.png)
 
@@ -109,11 +109,11 @@ Next up I needed two event handlers. One to capture the user's desire for the cl
 
 ```js
 	function renderTime(){
-	    $('#forTime2').html(moment().tz(selectedZone).format(FORMATTEDTIME)); // time in selected zone
+	    $('#forTime').html(moment().tz(selectedZone).format(FORMATTEDTIME)); // time in selected zone
 	  }
 ```
 
-In this line, `#forTime2` was the ID of the div to hold this clock, and "selectedZone" was the chosen value from the dropdown select.  
+In this line, `#forTime` was the ID of the div to hold this clock, and "selectedZone" was the chosen value from the dropdown select.  
 
 Everything worked swimmingly until I saw the last part of the challenge, and that was whether or not to show pulsing dividers between the parts of the time.  In order to execute that part of the assignment, I would have to completely refactor how I created the formatted times. I had some ideas for a really cool feature for my clock that I was itching to work on so I made the decision that my users will not be allowed to have pulsing dividers!
 
@@ -121,9 +121,12 @@ I spent some time making the clock look pretty on mobile and I declared victory.
 
 ![Clock showing toggles and a choice of time](./assets/pbs96/allisonFinalClockDesign.png)
 
-### Request
+### Request from Allison
   
 I've taken my clock much further than what I've described here. It has some functionality that I'm very excited about, but the UI is what my father would have described as "ugly as sin."  I'd like to ask if anyone in the Programming By Stealth community would like to step in to consult with me on how to make it less ugly and to make it obvious what the functionality is.  As it stands, I have to put in a lot of words to explain it and that always means you're doing it wrong!
+
+
+> Back to Bart {: .aside }
 
 ## Bart's Sample Solution
 
