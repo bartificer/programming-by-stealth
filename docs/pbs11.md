@@ -133,7 +133,7 @@ table.basic, table.basic th, table.basic td{
 }
 ```
 
-When you do this, you’ll notice that what you get is not the behaviour you tend to see in spreadsheet or word processing apps, where tables are resented as a simple grid. Instead, each cell has a separate border around it, and there is a gap between the borders of adjacent cells. The width of this gap can be controlled with the `border-spacing` CSS property (to be applied to tables, not cells). To illustrate the point, below is the code to add a 1 pixel solid black border with a very wide border spacing:
+When you do this, you’ll notice that what you get is not the behaviour you tend to see in spreadsheet or word processing apps, where tables are presented as a simple grid. Instead, each cell has a separate border around it, and there is a gap between the borders of adjacent cells. The width of this gap can be controlled with the `border-spacing` CSS property (to be applied to tables, not cells). To illustrate the point, below is the code to add a 1 pixel solid black border with a very wide border spacing:
 
 ```css
 table.basic{
@@ -237,11 +237,11 @@ The `white-space` property controls how the browser will treat white space withi
 
 <dt><code>nowrap</code></dt>
 
-<dd>Multiple consecutive white-space characters are collapsed, but lines only break on <code>< br /></code> tags.</dd>
+<dd>Multiple consecutive white space characters are collapsed, but lines only break on <code>< br /></code> tags.</dd>
 
 <dt><code>pre</code></dt>
 
-<dd>All white-space is preserved (not collapsed), including newline characters. Lines only break on newline characters (i.e. behave like a <code>< pre></code> tag).</dd>
+<dd>All white space is preserved (not collapsed), including newline characters. Lines only break on newline characters (i.e. behave like a <code>< pre></code> tag).</dd>
 
 <dt><code>pre-wrap</code></dt>
 
