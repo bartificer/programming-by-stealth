@@ -87,7 +87,7 @@ My solution was to use "12 Hour Clock" as the real label for the checkbox and to
 
 ![Toggle Switches that are really checkboxes](./assets/pbs96/allisonToggleSwitches.png)
 
-```js
+```html
 	<!-- Switch to  12 vs 24 hr clock -->
 	          <div class="row pl-3 pb-3"> <!-- row for numHrs switch -->
 	            <div class="col col-md-6 form-control form-check-inline bg-light border border-dark rounded p-2 m3">
