@@ -9,7 +9,7 @@ TO DO
 ## Allison's World Clock
 
 > This entire section is written by [Allison Sheridan](https://www.podfeet.com/).
-{: .asside }
+{: .aside }
 
 Allison taking over the reigns here to talk about how I approached making the clock as our challenge from PBS 92.  If you'd like to see the results of my clock you can view them on Glitch here: [https://nc-world-clock.glitch.me](https://nc-world-clock.glitch.me) and you can see the code files at [glitch.com/...](https://glitch.com/edit/#!/nc-world-clock?path=index.html%3A1%3A0)
 
@@ -22,7 +22,7 @@ The first thing I did in this assignment was write my JavaScript in a separate f
 
 A few challenges back, I started adding a standardized `navbar` at the top of every assignment with what I consider helpful resources. In the `navbar` I put in a dropdown for specific PBS Resources, like links to [Dorothy's PBS Index](https://www.podfeet.com/blog/pbs-index/), the [Bootstrap documentation](https://getbootstrap.com/docs/4.3/getting-started/introduction/), the [jQuery API](https://api.jquery.com) and the [AJAX API](https://api.jquery.com/category/ajax/).  Then I add in useful resources for the particular assignment.  This time that included direct links to [Moment.js Home](https://momentjs.com), [Moment.js Docs](https://momentjs.com/docs/#/use-it/browser/), and [Moment TimeZone Docs](https://momentjs.com/timezone/).  With these items in the `navbar`, I always have quick access to them.
 
-=== insert navbar.png ===
+![Navbar to show all the resources needed](https://github.com/bartificer/programming-by-stealth/blob/master/docs/pbs96Assets/allisonNavbar.png)
 
 ```html
 	<nav class='navbar navbar-expand-md navbar-light'>
@@ -87,7 +87,7 @@ I created two "checkboxes" and formatted them using Bootstrap to look like toggl
 
 My solution was to use "12 Hour Clock" as the real label for the checkbox and to put a plain old line of text to the left of the checkbox that said "24 Hour Clock".  But that opened up a can of worms for a screen reader. How are they to know that the other glop of text was explaining the checkbox? I chose to put a `div` with `class ="sr-only"` to give them a fighting chance.  I asked good friend of the NosillaCast Scott Howell to test it for me.  We both discovered using VoiceOver that it worked well enough but that there's some sort of bug where labels on checkboxes get read out twice. I was able to find people chatting about the problem more than 5 years back so I decided I wouldn't worry about it.
 
-=== insert toggle switches image ===
+![Toggle Switches that are really checkboxes](https://github.com/bartificer/programming-by-stealth/blob/master/docs/pbs96Assets/allisonToggleSwitches.png)
 
 ```js
 	<!-- Switch to  12 vs 24 hr clock -->
@@ -121,7 +121,7 @@ Everything worked swimmingly until I saw the last part of the challenge, and tha
 
 I spent some time making the clock look pretty on mobile and I declared victory.
 
-=== insert final clock design ===
+![Clock showing toggles and a choice of time](https://github.com/bartificer/programming-by-stealth/blob/master/docs/pbs96Assets/allisonFinalClockDesign.png)
 
 ### Request
   
