@@ -4,7 +4,7 @@ Finally, after many months of making Allison wait, it’s time to look at tables
 
 Remember – tables are for one thing, and one thing only – **displaying tabular data**!
 
-# Matching Podcast Episode 430
+## Matching Podcast Episode 430
 
 Listen Along: Chit Chat Across the Pond Episode 430
 
@@ -14,9 +14,9 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## Tables in HTML
 
-Tables have been a part of the HTML spec for a long time, and they have changed a lot over time. As with everything else in this series, we’re only going to look at the correct way to do tables in HTML 5, we’re going to ignore all the obsolete ways tables were done in older versions of HTML.
+Tables have been a part of the HTML spec for a long time, and they have changed a lot over time. As with everything else in this series, we’re only going to look at the correct way to do tables in HTML 5. We’re going to ignore all the obsolete ways tables were done in older versions of HTML.
 
-The `<table>` tag is used to define a table. A table consists of a number of regions, defined by tags, some of which are optional, and some of which are not. The order these tags appear inside the table is not optional. The following are the four regions of a table, listed in the order they must appear within the `<table>` tag:
+The `<table>` tag is used to define a table. A table consists of a number of regions, defined by tags. Some of these are optional and some are not. The order in which these tags appear inside the table is not optional. The following are the four regions of a table, listed in the order they must appear within the `<table>` tag:
 
 1.  `<caption>` (optional) – a title or caption for the table
 2.  `<thead>` (optional) – one or more rows of column headers
@@ -25,13 +25,13 @@ The `<table>` tag is used to define a table. A table consists of a number of reg
 
 Note that all four of these tags must be direct children of the table tag.
 
-By default, the table caption is rendered centred above the table. Next, the header rows are rendered, then the table body rows, and finally the table footer rows. In theory, browsers can use the table header and table footer to intelligently scroll and print tables. I’ve yet to see browser vendors implement these kinds of features though. However, this doesn’t make the regions useless – they are very useful when it comes to styling your tables. Every table should have a table body, many tables you see have table heads, a few tables have captions, and you tend not to see that many tables with a footer.
+By default, the table caption is rendered centred above the table. Next, the header rows are rendered, then the table body rows, and finally the table footer rows. In theory, browsers can use the table header and table footer to intelligently scroll and print tables. I’ve yet to see browser vendors implement these kinds of features though. However, this doesn’t make the regions useless – they are very useful when it comes to styling your tables. Every table should have a table body. Many tables you see have table heads. A few tables have captions. You tend not to see that many tables with a footer.
 
 Inside the `<thead>`, `<tfoot>`, and `<tbody>` tags, your data and titles need to be contained within cells within rows. A row is defined by the `<tr>` (table row) tag. Cells are defined by either the `<th>` (table header) tag, or `<td>` (table data) tag. Header cells are for labelling rows or columns, and data cells are for containing data. Using the appropriate cell types will make your tables easier to style.
 
 When tables were used for page layout, you would have found all sorts of complex techniques in regular use – merging of cells, the nesting of one table within another, and so on. When you only use tables to display tabular data, you tend not to need these advanced features, so I don’t want to dwell on them.
 
-I will make one exception though – it often makes sense to merge all the cells in the footer row into one long cell containing some kind of information about the data source – perhaps the time the data was sourced at, or copyright information. You can do this by including only one cell in the footer row, and setting the `colspan` HTML attribute on that one cell to the number of columns in the table. For example, if your table had four columns, you could use a footer something like:
+I will make one exception though – it often makes sense to merge all the cells in the footer row into one long cell containing some kind of information about the data source – perhaps the time the data was sourced at or copyright information. You can do this by including only one cell in the footer row, and setting the `colspan` HTML attribute on that one cell to the number of columns in the table. For example, if your table had four columns, you could use a footer something like:
 
 ```html
 <tfoot>
@@ -41,9 +41,9 @@ I will make one exception though – it often makes sense to merge all the cells
 </tfoot>
 ```
 
-### Un-styled Table Example
+### Unstyled Table Example
 
-Let’s tie all this together with a simple un-styled sample table. You can save the HTML below as `simpleTable.html` in a folder called `pbs11` in your local web server’s document root, then view it at `http://localhost/pbs11/simpleTable.html` (a copy of this file is included in the zip file linked in the Worked Example section near the bottom of this post).
+Let’s tie all this together with a simple unstyled sample table. You can save the HTML below as `simpleTable.html` in a folder called `pbs11` in your local web server’s document root. View it at `http://localhost/pbs11/simpleTable.html` (a copy of this file is included in the zip file linked in the Worked Example section near the bottom of this post).
 
 ```html
 <!DOCTYPE HTML>
@@ -113,7 +113,7 @@ table footer, and a table body.</p>
 
 The table will look something like:
 
-![PBS11 - Un-styled Table](../assets/pbs11/Screen-Shot-2016-03-15-at-13.55.42-e1458050213106.png)
+![PBS11 - Unstyled Table](../assets/pbs11/Screen-Shot-2016-03-15-at-13.55.42-e1458050213106.png)
 
 You can see that the caption appears at the top, the header and footer are above and below the data, and the footer has a single cell stretched across the full width.
 
@@ -133,7 +133,7 @@ table.basic, table.basic th, table.basic td{
 }
 ```
 
-When you do this you’ll notice that what you get is not the behaviour you tend to see in spreadsheet or word processing apps, where tables are resented as a simple grid. Instead, each cell has a separate border around it, and there is a gap between the borders of adjacent cells. The width of this gap can be controlled with the `border-spacing` CSS property (to be applied to tables, not cells). To illustrate the point, below is the code to add a 1 pixel solid black border with a very wide border spacing:
+When you do this, you’ll notice that what you get is not the behaviour you tend to see in spreadsheet or word processing apps, where tables are resented as a simple grid. Instead, each cell has a separate border around it, and there is a gap between the borders of adjacent cells. The width of this gap can be controlled with the `border-spacing` CSS property (to be applied to tables, not cells). To illustrate the point, below is the code to add a 1 pixel solid black border with a very wide border spacing:
 
 ```css
 table.basic{
@@ -173,11 +173,11 @@ This produces a table that looks like this:
 
 ### Controlling Column Widths
 
-By default, tables are rendered using auto-layout mode (or more specifically with the `table-layout` property set to `auto`). In auto layout mode, the browser will try to figure out what widths columns should be based on the content of the table. This means that if you have multiple tables within the same document, no two will have the same column widths! Also, if you have a very large table, auto-layout mode becomes an absolute resource hog, as the browser has to digest a lot of information to determine the column widths to use.
+By default, tables are rendered using auto-layout mode (or more specifically with the `table-layout` property set to `auto`). In auto-layout mode, the browser will try to figure out what widths columns should be based on the content of the table. This means that, if you have multiple tables within the same document, no two will have the same column widths! Also, if you have a very large table, auto-layout mode becomes an absolute resource hog, as the browser has to digest a lot of information to determine the column widths to use.
 
-Things get much simpler, and much more repeatable, if you disable this automatic layout mode by setting that table’s `table-layout` CSS property to `fixed`. Initially, this will result in all columns being the same width, but fear not, we have now asserted our control over the table’s layout, so we can start to control it ourselves with CSS.
+Things get much simpler, and much more repeatable, if you disable this automatic layout mode by setting that table’s `table-layout` CSS property to `fixed`. Initially, this will result in all columns being the same width. But fear not, we have now asserted our control over the table’s layout, and we can start to control it ourselves with CSS.
 
-You’ll find all sorts of approaches used to set column widths on tables. My preferred method is to set a `width` on the header cells in the table header only. It’s important to be very precise with your selectors here – you don’t want the widths you wanted to apply to one table to start affecting others! If you want to have multiple tables in the document that line up nicely and all look the same, use a class to address them all. If the table who’s columns you want to control is a one-off, give it an ID and apply the styles to that ID.
+You’ll find all sorts of approaches used to set column widths on tables. My preferred method is to set a `width` on the header cells in the table header only. It’s important to be very precise with your selectors here – you don’t want the widths you wanted to apply to one table to start affecting others! If you want to have multiple tables in the document that line up nicely and all look the same, use a class to address them all. If the table whose columns you want to control is a one-off, give it an ID and apply the styles to that ID.
 
 As an example, the following CSS code sets the widths of each of the four columns in our example table (which has been assigned the ID `logs_table`) as percentages:
 
@@ -207,49 +207,53 @@ The above example uses percentages, but you can also use exact pixel values. If 
 
 For the most part, the table caption is just a box that sits above the table, is the full width of the table, and is, by default, centred. You can change the position of the caption using the `caption-side` CSS property. This has two allowed values: `top`, and `bottom`.
 
-If you use the caption as an over-all title for the table, then it makes sense to keep the caption at the top. If you use the caption to describe the table with a paragraph of text, then it probably makes more sense to move it to the bottom.
+If you use the caption as an overall title for the table, then it makes sense to keep the caption at the top. If you use the caption to describe the table with a paragraph of text, then it probably makes more sense to move it to the bottom.
 
 ### Styling the Rows and Cells
 
 With the exception of the special behaviour of the borders, table cells behave like any other box on a web page. You can set the padding, background, and text properties just like you can on any other element in the page.
 
-Like with any other nested tags, the inner tags are rendered as being above the outer tags, so cells sit on top of rows, sit on top of regions, sit on top of the table as a whole. Like most other HTML tags, the above are all rendered with a transparent background by default. You can explicitly set a background on them like you can any other tag, and depending on what you’re trying to achieve, you can choose whether to set that background on the table, the region, the row, or the cell.
+Like with any other nested tags, the inner tags are rendered as being above the outer tags, so cells sit on top of rows, sit on top of regions, sit on top of the table as a whole. Like most other HTML tags, the above are all rendered with a transparent background by default. You can explicitly set a background on them like you can any other tag. Depending on what you’re trying to achieve, you can choose whether to set that background on the table, the region, the row, or the cell.
 
-When it comes to aligning the text within cells, the horizontal alignment is controlled by the `text-align` CSS property which we learned about in [instalment 6](https://www.bartbusschots.ie/s/2016/01/08/programming-by-stealth-6-of-x-introducing-css/) (just like text in other tags). The vertical alignment within cells is controlled by setting the value of the `vertical-align` CSS property to `top`, `middle`, or `bottom`.
+When it comes to aligning the text within cells, the horizontal alignment is controlled by the `text-align` CSS property which we learned about in [instalment 6](https://pbs.bartificer.net/pbs6) (just like text in other tags). The vertical alignment within cells is controlled by setting the value of the `vertical-align` CSS property to `top`, `middle`, or `bottom`.
 
 ### Truncating Cell Content
 
-Long un-breakable content like URLs can cause problems in tables. They’ll either result in cells containing them being unreasonably long, or, the URLs overflowing into adjacent cells. It may be desirable to stop this happening by automatically truncating overly long content in certain columns.
+Long unbreakable content, like URLs, can cause problems in tables. They’ll either result in the cells containing them being unreasonably long or the URLs overflowing into adjacent cells. It may be desirable to stop this happening by automatically truncating overly long content in certain columns.
 
 You can do this by combining the use of three CSS properties, one of which we have encountered before, and two of which are new to us.
 
-Firstly, we want to hide any overflows, so we can do that with the `overflow-x` property we learned about in [instalment 8](https://www.bartbusschots.ie/s/2016/02/03/programming-by-stealth-8-of-x-css-positioning/) (`overflow-x: hidden`).
+Firstly, we want to hide any overflows, so we can do that with the `overflow-x` property we learned about in [instalment 8](https://pbs.bartificer.net/pbs8) (`overflow-x: hidden`).
 
-Next, we may want to force the content of the cell to always stay on one line. URLs with `-` characters in them will break over multiple lines while others URLs will not, so for consistency, you may want to force all URLs to stay on one line. You can do this with the `white-space` CSS property.
+Next, we may want to force the content of the cell to always stay on one line. URLs with `-` characters in them will break over multiple lines while other URLs will not. So for consistency, you may want to force all URLs to stay on one line. You can do this with the `white-space` CSS property.
 
 The `white-space` property controls how the browser will treat white space within a tag. Below is a list of the most commonly used values for this property:
 
-`normal`
 
-Multiple consecutive white-space characters (space, tab, newline etc.) are collapsed into a single space, and lines break on spaces or dashes when needed.
+<dl>
+<dt><code>normal</code></dt>
 
-`nowrap`
+<dd>Multiple consecutive white space characters (space, tab, newline etc.) are collapsed into a single space, and lines break on spaces or dashes when needed.</dd>
 
-Multiple consecutive white-space characters are collapsed, but lines only break on `<br />` tags.
+<dt><code>nowrap</code></dt>
 
-`pre`
+<dd>Multiple consecutive white-space characters are collapsed, but lines only break on <code>< br /></code> tags.</dd>
 
-All white-space is preserved (not collapsed), including newline characters. Lines only break on newline characters (i.e. behave like a `<pre>` tag).
+<dt><code>pre</code></dt>
 
-`pre-wrap`
+<dd>All white-space is preserved (not collapsed), including newline characters. Lines only break on newline characters (i.e. behave like a <code>< pre></code> tag).</dd>
 
-White space is preserved (not collapsed), but lines will break on spaces and dashes as needed.
+<dt><code>pre-wrap</code></dt>
+
+<dd>White space is preserved (not collapsed), but lines will break on spaces and dashes as needed.</dd>
+
+</dl>
 
 The vast majority of tags have a default value of `normal` for the `white-space` CSS property.
 
-In our case, what we want to do is force everything onto one line, so we want to set `white-space` to `nowrap`.
+In our case, what we want to do is force everything onto one line. So we want to set `white-space` to `nowrap`.
 
-Finally, when the content of a cell is truncated, we want to indicate that fact to the user, and we want that indication to be automatic. We can do this with the `text-overflow` property which was introduced in CSS 3. This property specifies what the browser should do to indicate that text has been truncated by appearing in a hidden overflow. The default value for this property is `clip`, which means the text should just cut off without any explicit indication. The other allowed special value is `ellipsis`, which will add the three-dots character at the end of the remaining visible text. The third option is to set the value of this property to a string of your choosing, then this string will be used instead of an ellipsis character.
+Finally, when the content of a cell is truncated, we want to indicate that fact to the user, and we want that indication to be automatic. We can do this with the `text-overflow` property which was introduced in CSS 3. This property specifies what the browser should do to indicate that text has been truncated by appearing in a hidden overflow. The default value for this property is `clip`, which means the text should just cut off without any explicit indication. The other allowed special value is `ellipsis`, which will add the three dots character at the end of the remaining visible text. The third option is to set the value of this property to a string of your choosing. Then this string will be used instead of an ellipsis character.
 
 Putting it all together, the following definition would truncate the first column in a table with the ID `some_table`:
 
@@ -591,12 +595,12 @@ The page should look something like this:
 
 ![PBS 11 Demo](../assets/pbs11/Screen-Shot-2016-03-17-at-15.08.35-e1458227378869.png)
 
-I want draw your attention to a few key features of the second, more advanced, table example. Firstly, the regions of the table are used to style the header, footer, and table body differently. The `:nth-child pseudo-class` we learned about in [the previous instalment](https://www.bartbusschots.ie/s/2016/03/04/programming-by-stealth-10-of-x-yet-more-css/) is used heavily in this example – to set column widths, and to create the zebra-pattern in the rows.
+I want draw your attention to a few key features of the second, more advanced, table example. First, the regions of the table are used to style the header, footer, and table body differently. The `:nth-child pseudo-class` we learned about in [the previous instalment](https://pbs.bartificer.net/pbs10) is used heavily in this example – to set column widths, and to create the zebra pattern in the rows.
 
-Because there are two table showing the same log data, the column widths are applied with a class rather than ID. However, the third table is a one-of-a-kind table, so it’s column widths are applied with an ID.
+Because there are two tables showing the same log data, the column widths are applied with a class rather than ID. However, the third table is a one-of-a-kind table. So its column widths are applied with an ID.
 
-Finally, I want to draw your attention to a few features in the third table. It sets an explicit pixel width on the first two columns, and sets the width of the third column to `auto`. As you re-size the window, you’ll see the first two columns remain the same width, and the last one absorbs all the change. You’ll also see that the middle column has been set to truncate if needed, and to indicate the presence of truncation with ellipses. The ellipses are only present on one URL, because only one URL is too long to fit within the allocated space.
+Finally, I want to draw your attention to a few features in the third table. It sets an explicit pixel width on the first two columns, and sets the width of the third column to `auto`. As you resize the window, you’ll see the first two columns remain the same width, and the last one absorbs all the change. You’ll also see that the middle column has been set to truncate if needed, and to indicate the presence of truncation with ellipses. The ellipses are only present on one URL, because only one URL is too long to fit within the allocated space.
 
 ## Conclusions
 
-We have now finished our introduction to HTML and CSS, and are ready to move onto our first real programming language – JavaScript. To keep the chunks bite-sized, we’ve going to first learn some JavaScript basics in the abstract, removed from the web context, before moving on to learn how to integrate JavaScript into web pages.
+We have now finished our introduction to HTML and CSS, and are ready to move onto our first real programming language – JavaScript. To keep the chunks bite-sized, we’re going to first learn some JavaScript basics in the abstract, removed from the web context, before moving on to learn how to integrate JavaScript into web pages.

@@ -1,8 +1,8 @@
 # PBS 9 of X – More CSS Positioning
 
-In [the previous instalment](https://www.bartbusschots.ie/s/2016/02/03/programming-by-stealth-8-of-x-css-positioning/) we learned how to group multiple HTML tags together to define regions within a page, and then how to move those regions around by floating them, or positioning them explicitly. We’ll start this instalment with a little revision – there was a lot to digest last time! While re-visiting the layout from last time, we’ll also look at some of its limitations, and then we’ll move on to look at the CSS `display` property, how it can be used to alter layouts, and, how we can use it to improve on our demo layout.
+In [the previous instalment](https://pbs.bartificer.net/pbs8) we learned how to group multiple HTML tags together to define regions within a page, and then how to move those regions around by floating them, or positioning them explicitly. We’ll start this instalment with a little revision – there was a lot to digest last time! While revisiting the layout from last time, we’ll also look at some of its limitations. Then we’ll move on to look at the CSS `display` property, how it can be used to alter layouts, and, how we can use it to improve on our demo layout.
 
-# Matching Podcast Episode 426
+## Matching Podcast Episode 426
 
 Listen Along: Chit Chat Across the Pond Episode 426
 
@@ -12,21 +12,21 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## A Little Revision
 
-Because there was a lot of absorb last time, I thought it would be a good idea to re-vist the concepts from last time in a more practical way. To that end I’ve created a little web app for demonstrating CSS positioning. You can download the code [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs8-PositioningPlayground.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs8-PositioningPlayground.zip) and run it on your own local server, or, you can run the tool from my web server [here](https://www.bartbusschots.ie/pbsdemos/pbs8-PositioningPlayground/).
+Because there was a lot to absorb last time, I thought it would be a good idea to revisit the concepts from last time in a more practical way. To that end I’ve created a little web app for demonstrating CSS positioning. You can download the code [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs8-PositioningPlayground.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs8-PositioningPlayground.zip) and run it on your own local server, or you can run the tool from my web server [here](https://www.bartbusschots.ie/pbsdemos/pbs8-PositioningPlayground/).
 
-You can use the tool to experiment with the different CSS properties we worked with last time, and, there are instructions included to re-create the two-column layout from the demo at the end of the last instalment.
+You can use the tool to experiment with the different CSS properties we worked with last time. There are instructions included to recreate the two-column layout from the demo at the end of the last instalment.
 
-Once you have the layout created following the instructions – try expanding the size of the main content region by setting the height of box 4 to `300px`. No problems there, the footer moves down, and all is well. Now, let’s see what happens when we make the sidebar longer than the content by setting the height of box 5 to `500px`. Uh oh – it breaks our layout! Because box 5 is positioned absolute, it has been lifted out of the normal flow of the document, so it is not actually contained within the green box anymore – it is hovering in front of it, so as it expands, it just continues on obscuring part of the footer. This tells us that our layout has a limitation – it only works on sites where the content is longer than the sidebar.
+Once you have the layout created following the instructions – try expanding the size of the main content region by setting the height of box 4 to `300px`. No problems there, the footer moves down, and all is well. Now, let’s see what happens when we make the sidebar longer than the content by setting the height of box 5 to `500px`. Uh oh – it breaks our layout! Because box 5 is positioned absolute, it has been lifted out of the normal flow of the document. It is not actually contained within the green box anymore – it is hovering in front of it. So as it expands, it just continues on, obscuring part of the footer. This tells us that our layout has a limitation – it only works on sites where the content is longer than the sidebar.
 
-Also – it should be noted that this little web app is entirely written in HTML, CSS, and JavaScript, so, by the time we finish this series, you should have the skills needed to build something like this yourself. If you’re curious, you can get a sneak peak of what’s to come, and see what JavaScript looks like.
+Also – it should be noted that this little web app is entirely written in HTML, CSS, and JavaScript. So, by the time we finish this series, you should have the skills needed to build something like this yourself. If you’re curious, you can get a sneak peak of what’s to come and see what JavaScript looks like.
 
 ## The CSS `display` Property
 
-We have already encountered the concept of block-level tags, and inline tags, and we have mentioned that there are a few tags that behave a little oddly. We’ve learned that headings and paragraphs are block-level tags, emphasis is an inline tag, and that images are an example of a tag that behaves neither exactly like an inline tag, or a block level tag.
+We have already encountered the concept of block-level tags and inline tags; and we have mentioned that there are a few tags that behave a little oddly. We’ve learned that headings and paragraphs are block-level tags, that emphasis is an inline tag, and that images are an example of a tag that behaves neither exactly like an inline tag or a block level tag.
 
 That is a simplification that omits one important point – headings are block-level tags **by default**, and emphasis tags inline tags **by default**. Using the `display` CSS property, we can override these defaults.
 
-We’ve also hinted that while most tags default to `block` or `inline`, that there are some oddballs – well, those oddball tags have `display` values other than `block` or `inline`, and we’ll also look at some of those other possible values for `display`. This not an exhaustive list of all possible values for the `display` property though, just the ones you’ll need most often.
+We’ve also hinted that, while most tags default to `block` or `inline`, there are some oddballs. Well, those oddball tags have `display` values other than `block` or `inline`. We’ll look at some of those other possible values for `display`. This is not an exhaustive list of all possible values for the `display` property though, just the ones you’ll need most often.
 
 ### `display: block`
 
@@ -46,9 +46,9 @@ Although we haven’t been explicit about it, we have already encountered a tag 
 
 As an example, let’s imagine we want to make a modern-day version of an Egyptian cartouche – a group of pictograms surrounded by a rounded border that should never be split across multiple lines. Rather than using a series of ancient pictograms, we will use a two-by-two grid of images of modern emoji. (If you’re not familiar with cartouches, [this Wikipedia page](https://en.wikipedia.org/wiki/Cartouche) might be of interest to you.)
 
-The HTML markup is simply a `<span>` with the class `cartouche` containing four image tags, with a line break (`<br />`) after the second image. Unfortunately, to avoid extra space appearing between the images within the cartouche, there can’t be any white space between the relevant HTML tags, and that includes newline characters. You can obviously do this by putting the entire contents of the cartouche span onto a single line, but it will be very very long, and not easy to read. To get around this, two interesting ‘hacks’ are often used. The first technique is to insert a line break just before closing each tag, that way the empty space is not between the HTML tags:
+The HTML markup is simply a `<span>` with the class `cartouche` containing four image tags, with a line break (`<br />`) after the second image. Unfortunately, to avoid extra space appearing between the images within the cartouche, there can’t be any white space between the relevant HTML tags, and that includes newline characters. You can obviously do this by putting the entire contents of the cartouche span onto a single line, but it will be very very long, and not easy to read. To get around this, two interesting ‘hacks’ are often used. The first technique is to insert a line break just before closing each tag. That way the empty space is not between the HTML tags:
 
-```XHTML
+```html
 <span class="cartouche"
   ><img src="contrib/twemoji/16x16/1f4f7.png" alt="Camera"
   /><img src="contrib/twemoji/16x16/1f6b4.png" alt="Mountain Bike" /><br
@@ -59,7 +59,7 @@ The HTML markup is simply a `<span>` with the class `cartouche` containing four 
 
 If you find that too ugly, the other approach you’ll often see is to insert the line breaks inside HTML comments like so:
 
-```XHTML
+```html
 <span class="cartouche"><!--
   --><img src="contrib/twemoji/16x16/1f4f7.png" alt="Camera" /><!--
   --><img src="contrib/twemoji/16x16/1f6b4.png" alt="Mountain Bike" /><br /><!--
@@ -70,7 +70,7 @@ If you find that too ugly, the other approach you’ll often see is to insert th
 
 Regardless of how you choose to indent your HTML code, you’ll need to apply the same CSS to transform the `<span>` into a cartouche. First, we set its `display` property to `inline-block`, and then style the box appropriately to make it look nice. The full CSS for the cartouche is shown below:
 
-```CSS
+```css
 span.cartouche{
   display: inline-block;
   padding: 1px;
@@ -93,35 +93,36 @@ This is what it looks like when used within a paragraph of text:
 
 You can control the vertical alignment of any item that is displayed as `inline-block`, including images. The relevant CSS property is `vertical-align`, and it can have the following values:
 
-`baseline`
+<dl>
+<dt><code>baseline</code></dt>
 
-This is the default value – the bottom of the inline block is aligned with the font’s baseline – that is, the imaginary line the letters sit on – note that letters like _p_ and _q_ punch through the baseline (and are hence known as _descenders_ in typography circles).
+<dd>This is the default value – the bottom of the inline block is aligned with the font’s baseline – that is, the imaginary line the letters sit on. Note that letters like <em>p</em> and <em>q</em> punch through the baseline (and are hence known as <em>descenders</em> in typography circles).</dd>
+<dt><code>sub</code> & <code>super</code></dt>
 
-`sub` & `super`
+<dd>Align the inline block as if it were subscript or superscript text.</dd>
 
-Align the inline block as if it were sub-script or super-script text.
+<dt><code>top</code> & <code>bottom</code></dt>
 
-`top` & `bottom`
+<dd>The top or bottom of the inline block are aligned with the highest or lowest item on the line – whether that item be text or another inline block element.</dd>
 
-The top or bottom of the inline block are aligned with the highest or lowest item on the line – whether that item be text or another inline block element.
+<dt><code>text-top</code> & <code>text-bottom</code></dt>
 
-`text-top` & `text-bottom`
+<dd>The top of the inline block is aligned with the top of the text or the bottom with the bottom of the text.</dd>
 
-The top of the inline block is aligned with the top of the text, or, the bottom with the bottom of the text.
+<dt><code>middle</code></dt>
 
-`middle`
+<dd>After <code>baseline</code>, this is probably the value you’ll need most often: the middle of the inline block is aligned with the middle of the text. The example cartouche above has its <code>vertical-align</code> set to <code>middle</code>.</dd>
 
-After `baseline`, this is probably the value you’ll need most often – the middle of the inline block is aligned with the middle of the text. The example cartouche above has its `vertical-align` set to `middle`.
+<dt>A dimension, e.g. <code>4px</code> or <code>-3em</code></dt>
 
-A dimension, e.g. `4px` or `-3em`
+<dd>If an inline block’s <code>vertical-align</code> is set to a dimension, it will be shifted by that amount relative to the baseline. If the value is positive it will be shifted up, and if negative, down.</dd>
 
-If an inline block’s `vertical-align` is set to a dimension, it will be shifted by that amount relative to the baseline. If the value is positive it will be shifted up, and if negative, down.
+<dt>A percentage, e.g. <code>25%</code></dt>
 
-a Percentage, e.g. `25%`
+<dd>Raises or lowers the inline block by a percentage of the line height. Positive percentages shift the inline block up, and negative percentages shift it down.</dd>
+</dl>
 
-Raises or lowers the inline block by a percentage of the line-height. Positive percentages shift the inline block up, and negative percentages shift it down.
-
-Displaying items as `inline-block` can be used to make a line of fixed-width items behave nicely as the page re-sizes. You can see this in action in the CSS Playground web app used earlier in the instalment. The main form headed with the legend _Control Panel_ contains sub-forms with legends indicating the box they control. The main form has its `display` set to `block`, and its `text-align` set to `center`. The mini forms each have their `display` set to `inline-block`, their `text-align` set to `left`, their `width` set to `185px`, and their `height` allowed to default to `auto`. In this case, the tags for the forms intentionally do have some white-space between them (a line break), so in effect, each form behaves like a 1-letter word. As the window is re-sized, the containing form grows and shrinks as you would expect for a block-level element. The mini forms behave like words, and move nicely onto multiple lines as needed.
+Displaying items as `inline-block` can be used to make a line of fixed-width items behave nicely as the page resizes. You can see this in action in the CSS Playground web app used earlier in the instalment. The main form headed with the legend _Control Panel_ contains sub-forms with legends indicating the box they control. The main form has its `display` set to `block`, and its `text-align` set to `center`. The mini forms each have their `display` set to `inline-block`, their `text-align` set to `left`, their `width` set to `185px`, and their `height` allowed to default to `auto`. In this case, the tags for the forms intentionally do have some white space between them (a line break), so in effect, each form behaves like a 1-letter word. As the window is resized, the containing form grows and shrinks as you would expect for a block-level element. The mini forms behave like words, and move nicely onto multiple lines as needed.
 
 ![Inline-block 5 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.21-e1455732340709.png)
 ![inline-block 4 in a row](../assets/pbs9/Screen-Shot-2016-02-17-at-18.03.06-e1455732373506.png)
@@ -131,25 +132,25 @@ Displaying items as `inline-block` can be used to make a line of fixed-width ite
 
 A new concept known as flex boxes was added to CSS 3 to help make layouts more robust. You can build nice layouts with a combination of floats and positioned boxes, but all such layouts have shortcomings, as we saw at the start of this instalment.
 
-This instalment’s demo re-creates the same two-column layout using a CSS 3 flex box, and the resulting layout is much more robust. It looks the same, but behaves just as nicely regardless of which column is the tallest.
+This instalment’s demo recreates the same two-column layout using a CSS 3 flex box, and the resulting layout is much more robust. It looks the same, but behaves just as nicely, regardless of which column is the tallest.
 
 Flex boxes are very powerful, and hence, very complex. It would take us two or even three entire instalments to cover every detail of flex boxes. We’re not going to do that – instead, we’ll just look at the basics, and link out to some helpful resources should you find yourself needing to control more aspects of your flex boxes.
 
 To use flex box, you need a containing element to hold the boxes that will be flexibly sized. This is known as a flex container. Any box can be turned into a flex container by setting its `display` property to `flex`. All direct children of this container are now flex items.
 
-Flex containers either behave as rows or columns. The default is to behave as a row, and that is the only behaviour we’ll look at in this instalment. The CSS property for controlling the direction is `flex-direction`, and its default value is `row`.
+Flex containers either behave as rows or columns. The default is to behave as a row, and that is the only behaviour we’ll look at in this instalment. The CSS property for controlling the direction is `flex-direction`. Its default value is `row`.
 
 What makes flex items inside a horizontal flex container different to normal inline or inline-block boxes is that they all stretch to be the height of the tallest box. This is exactly the behaviour we want for typical web layouts.
 
-The order in which the boxes appear in the row does not have to be the same as the order they appear in the code, so, like with positioned layouts, we can place the side-bar below the main-content in HTML code, and still have it displayed as the first item in the layout row.
+The order in which the boxes appear in the row does not have to be the same as the order they appear in the code. So, as with positioned layouts, we can place the sidebar below the main content in HTML code, and still have it displayed as the first item in the layout row.
 
-As their name suggests, flex boxes, and the items within them, are designed to grow and shrink as pages are re-sized, and they can do so in very clever ways. In our example layout, we would like the sidebar to always be 200 pixels wide, and for the main content region to do all the shrinking and growing as the window is re-sized.
+As their name suggests, flex boxes, and the items within them, are designed to grow and shrink as pages are resized, and they can do so in very clever ways. In our example layout, we would like the sidebar to always be 200 pixels wide, and for the main content region to do all the shrinking and growing as the window is resized.
 
-You control how a flex item shrinks and grows using the `flex` CSS property. To fix an item’s width, like we want to do with our side bar, set `flex` to `none`, and set an explicit width on the item. To allow an item shrink and grow, set `flex` to `1`. If you have multiple flex items within the same flex container that you want to have shrink and grow, but to have be different widths, you can use the flex property to define a ratio. If you have two flexible flex items, and you want one to be twice as big as the other, set `flex` to `1` on the small one, and `flex` to `2` on the big one.
+You control how a flex item shrinks and grows using the `flex` CSS property. To fix an item’s width, as we want to do with our side bar, set `flex` to `none`, and set an explicit width on the item. To allow an item shrink and grow, set `flex` to `1`. If you have multiple flex items within the same flex container that you want to have shrink and grow, but to have be different widths, you can use the flex property to define a ratio. If you have two flexible flex items, and you want one to be twice as big as the other, set `flex` to `1` on the small one, and `flex` to `2` on the big one.
 
 This is actually a gross simplification of the `flex` property. In reality, `flex` is a shorthand CSS property for three underlying properties that give very granular control over the way flex items behave. We’re not going to dig into this complexity in this instalment.
 
-The `order` property can be used to change where in the row different flex items appear. In our example we will set `order` to `1` on the sidebar, and to `2` on the main content region, that way the sidebar is on the left, and the main content on the right.
+The `order` property can be used to change where in the row different flex items appear. In our example we will set `order` to `1` on the sidebar, and to `2` on the main content region. That way the sidebar is on the left and the main content on the right.
 
 More Information on Flex Box:
 
@@ -161,7 +162,7 @@ More Information on Flex Box:
 
 The code for the demo can be downloaded [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/02/pbs9.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs9.zip). Extract the files and save them to a folder called `pbs9` in your web server’s document root, and remember to start your server. You should then be able to see the demo at `http://localhost/pbs9/`. For completeness, the code for the two most important files is included below:
 
-```XHTML
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -247,7 +248,7 @@ All Content by Bart Busschots - released under CC-NC-By License
 </html>
 ```
 
-```CSS
+```css
 /*
 Styles for PBS7 Demo
 */
@@ -402,12 +403,12 @@ The resulting page should look something like:
 
 ![PBS 9 Demo](../assets/pbs9/Screen-Shot-2016-02-18-at-17.57.42-e1455818354848.png)
 
-The demo for this instalment looks very similar to the one for the previous instalment, but the big different is that the over-all layout is now implemented using flex box instead of positioning. The `<div>` surrounding the main content and the sidebar has been set to `display: flex`, the main content has been set to `flex: 1`, and the sidebar has been set to a width of `200px`, and `flex: none`.
+The demo for this instalment looks very similar to the one for the previous instalment, but the big difference is that the overall layout is now implemented using flex box instead of positioning. The `<div>` surrounding the main content and the sidebar has been set to `display: flex`, the main content has been set to `flex: 1`, and the sidebar has been set to a width of `200px` and `flex: none`.
 
-The demo also contains an example of `display: inline-block` in the form of the cartouche made of four emoji icons. Finally, it also contains and example of a flex box being used to create three even-width boxes which scale nicely as the page is re-sized.
+The demo also contains an example of `display: inline-block` in the form of the cartouche made of four emoji icons. Finally, it also contains an example of a flex box being used to create three even width boxes which scale nicely as the page is resized.
 
 ## Conclusion
 
-We’ve now touched on the three CSS properties that together allow us to control the layout of an HTML document – `float`, `position`, and `display`. Think of these three properties as the atoms from which all modern web layouts are built. On the bad old days before CSS, layouts were done using HTML tables – I can’t stress how important it is not to build pages in that way. It should also be noted that another new CSS feature is currently under development that will make layouts even easier in future – CSS Grids, but that feature is a few years away from main-stream use yet. At the moment only one browser has proper support for the feature – Microsoft’s new Edge browser.
+We’ve now touched on the three CSS properties that together allow us to control the layout of an HTML document – `float`, `position`, and `display`. Think of these three properties as the atoms from which all modern web layouts are built. On the bad old days before CSS, layouts were done using HTML tables – I can’t stress how important it is not to build pages in that way. It should also be noted that another new CSS feature is currently under development that will make layouts even easier in future – CSS Grids, but that feature is a few years away from main stream use yet. At the moment only one browser has proper support for the feature – Microsoft’s new Edge browser.
 
-In the next instalment or two we’ll learn how to style lists with CSS, and, we’ll also discover some more CSS selectors. After that, we’ll back-track a little, and learn some more HTML tags – ones that I’ve intentionally skipped until after we learned about CSS. Then, we’ll be ready for the next big leap – an introduction to our first real programming language of the series – JavaScript.
+In the next instalment or two we’ll learn how to style lists with CSS. We’ll also discover some more CSS selectors. After that, we’ll backtrack a little and learn some more HTML tags – ones that I’ve intentionally skipped until after we learned about CSS. Then, we’ll be ready for the next big leap – an introduction to our first real programming language of the series – JavaScript.

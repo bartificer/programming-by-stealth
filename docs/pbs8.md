@@ -1,6 +1,6 @@
 # PBS 8 of X – CSS Positioning
 
-In [the previous instalment](https://www.bartbusschots.ie/s/2016/01/21/programming-by-stealth-7-of-x-more-css/) we learned about the CSS box model. Each HTML tag is represented as a box within the browser. Those boxes stack down the page and inside each other to build up the web pages we see. We also learned how to use FireFox’s developer tools to actually see and inspect the boxes. In this instalment we’ll learn how to take one or more boxes out of the normal flow of the page, and position them elsewhere on the page.
+In [the previous instalment](https://pbs.bartificer.net/pbs7) we learned about the CSS box model. Each HTML tag is represented as a box within the browser. Those boxes stack down the page and inside each other to build up the web pages we see. We also learned how to use FireFox’s developer tools to actually see and inspect the boxes. In this instalment we’ll learn how to take one or more boxes out of the normal flow of the page, and position them elsewhere on the page.
 
 ## Matching Podcast Episode 424
 
