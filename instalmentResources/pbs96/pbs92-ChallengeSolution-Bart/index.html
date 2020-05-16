@@ -7,9 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	
-	<!-- Include Font Awesome 5 -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	
 	<!-- Add local styles -->
 	<style>
 		/* Load the web font for the clock */
@@ -74,10 +71,10 @@
 						</div>
 					</div>
 				</div>
-				<form action="javascript:void(0);" class="card-body form">
+				<form action="javascript:void(0);" class="card-body form" novalidate>
 					<div class="form-group">
 						<label for="wc_timeZone_tb">Time Zone</label>
-						<input type="text" id="wc_timeZone_tb" class="form-control">
+						<input type="text" id="wc_timeZone_tb" class="form-control" autocomplete="off">
 						<small class="form-text text-muted">Enter an <a href="https://en.wikipedia.org/wiki/Tz_database" target="_blank" rel="noopener">IANA timezone string</a>, or just start typing a city name for auto-complete suggestions.</small>
 					</div>
 					<div class="form-group d-flex justify-content-around">
@@ -106,7 +103,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 <!-- Include Bootstrap 4 Autocomplete from CDN -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
 
 <!-- Include Moment.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment-with-locales.min.js" integrity="sha256-8d6kI5cQEwofkZmaPTRbKgyD70GN5mDpTYNP9YWhTlI=" crossorigin="anonymous"></script>
@@ -154,7 +151,7 @@
 		
 		// initialise auto-complete on the Timezone textbox
 		const tzAutoCompeleSource = {};
-		let tzAutoCompletecounter = 1;
+		let tzAutoCompleteCounter = 1;
 		for(const tzName of moment.tz.names()){
 			// break the timezone into parts
 			const tzParts = tzName.split('\/');
@@ -166,14 +163,14 @@
 			if(tzParts[0] === 'Etc') continue;
 			
 			// if we got here, add the timezone as an option
-			tzAutoCompeleSource[tzName] = tzAutoCompletecounter;
-			tzAutoCompletecounter++;
+			tzAutoCompeleSource[tzName] = tzAutoCompleteCounter;
+			tzAutoCompleteCounter++;
 		}
 		$WC_TIME_ZONE_TB.autocomplete({
-			source: tzAutoCompeleSource,
-			maximumItems: 10,
-			treshold: 1,
-			onSelectItem: function(){
+			source: tzAutoCompeleSource, // the autocompelte values
+			maximumItems: 10, // the maximum autocomplete suggestions
+			treshold: 1, // the minimum number of characters to search
+			onSelectItem: function(){ // event handler for selection of autocomplete suggestion
 				$WC_TIME_ZONE_TB.trigger('input');
 			}
 		});
@@ -183,7 +180,12 @@
 			// validate the timezone
 			const tzObj = moment.tz.zone($WC_TIME_ZONE_TB.val());
 			if(tzObj){
+				// not null, so time zone is valid
 				WC_TIME_ZONE = tzObj.name;
+				$WC_TIME_ZONE_TB.removeClass('is-invalid').addClass('is-valid');
+			}else{
+				// timezone is invalid
+				$WC_TIME_ZONE_TB.removeClass('is-valid').addClass('is-invalid');
 			}
 		});
 		
@@ -199,11 +201,11 @@
 					$WC_MINUTES.text(now.format('mm'));
 					$WC_SECONDS.text(now.format('ss'));
 					$WC_AMPM.text(now.format('a'));
-					$WC_SEPARATORS.fadeTo(250, 1);
+					$WC_SEPARATORS.fadeTo(450, 1);
 				}else{
 					// we're a tock, just pulse the separators if needed
 					if($WC_PULSE_CB.prop('checked')){
-						$WC_SEPARATORS.fadeTo(250, 0.25);
+						$WC_SEPARATORS.fadeTo(450, 0.25);
 					}
 				}
 				
