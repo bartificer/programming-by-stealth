@@ -1,10 +1,6 @@
 # PBS 96 of X — World Clock Challenge Solution
 
-In this instalment we're taking a break from learning new things to look at two sample solutions to the world clock challenge set at the end of PBS 92. We'll start with my (Bart's) basic solution, then I'll hand over to Allison to share her solution which goes above and beyond the original challenge to create a truly useful tool.
-
-## Bart's Sample Solution
-
-TO DO
+In this instalment we're taking a break from learning new things to look at two sample solutions to the world clock challenge set at the end of PBS 92. I'll start by handing over to Allison to describe her sample solution, and then I'll take over again to share mine.
 
 ## Allison's World Clock
 
@@ -126,3 +122,22 @@ I spent some time making the clock look pretty on mobile and I declared victory.
 ### Request
   
 I've taken my clock much further than what I've described here. It has some functionality that I'm very excited about, but the UI is what my father would have described as "ugly as sin."  I'd like to ask if anyone in the Programming By Stealth community would like to step in to consult with me on how to make it less ugly and to make it obvious what the functionality is.  As it stands, I have to put in a lot of words to explain it and that always means you're doing it wrong!
+
+## Bart's Sample Solution
+
+You'll find the full source code for my sample solution in the file `pbs92-ChallengeSolution-Bart/index.html` in this instalment's ZIP file, or you can [view a live version of my solution in your browser here](https://rawcdn.githack.com/bartificer/programming-by-stealth/020e0f0590ec9b3148dbb303755c99167904d827/instalmentResources/pbs96/pbs92-ChallengeSolution-Bart/index.html), or [view the source code online here](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs96/pbs92-ChallengeSolution-Bart/index.html).
+
+This challenge was set before we started our exploration of encapsulation and object oriented programming, so I have avoided using either concept in my solution — it's entirely old-school as it were 😉
+
+My solution revolves around some very basic markup that creates a large Bootstrap Badge that will act as the container for the clock, then adds some spans with IDs inside that badge to hold all the components of the clock, and a simple form to control the clock.
+
+To bring the clock to life my solution defines a number of global variables to hold information about the clock and references to the parts of the clock. Those variables are declared in the global scope, and initialised in a jQuery document ready handler.
+
+Finally, a single 500ms interval is used to drive the clock.
+
+### How to Pulse Separators?
+
+### How to Show Timezones?
+
+### Where Does Code Go?
+
