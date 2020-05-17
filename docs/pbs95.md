@@ -20,7 +20,7 @@ This instalment uses 8 example files:
   * [`pbs95c.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95c.html)
   * [`pbs95d.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/f8650097b4e2fc0952eca4d15343d185a4bd22cc/instalmentResources/pbs95/pbs95d.html)
 
-  ## Matching Podcast Episode
+## Matching Podcast Episode
 
 Listen along to this instalment on [episode 637 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/05/ccatp-637/).
 
