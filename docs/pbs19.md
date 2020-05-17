@@ -1,6 +1,6 @@
 # PBS 19 of X – Some JavaScript Challenges
 
-While recording [instalment 18](https://pbs.bartificer.net/pbs18/) of the [Programming by Stealth series](https://www.bartbusschots.ie/s/blog/programming-by-stealth/), I promised Allison some challenges to help listeners test and hone their understanding of the core JavaScript language. Since we’ve now covered pretty much the whole language in the series, it’s the perfect time to pause and consolidate that knowledge.
+While recording [instalment 18](https://pbs.bartificer.net/pbs18) of the [Programming by Stealth series](https://www.bartbusschots.ie/s/blog/programming-by-stealth/), I promised Allison some challenges to help listeners test and hone their understanding of the core JavaScript language. Since we’ve now covered pretty much the whole language in the series, it’s the perfect time to pause and consolidate that knowledge.
 
 These challenges are designed to be run in the [PBS JavaScript Playground](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/). You may also find the [PBS JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) helpful.
 

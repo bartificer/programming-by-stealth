@@ -411,7 +411,7 @@ Also worth mentioning is `Math.sqrt()`, for getting the square roots of numbers.
 
 Something that’s worth focusing on in more detail is JavaScript’s random number generator, which is also provided by the `Maths` object. `Math.random()` will return a random floating point number between zero and one. The number returned can be exactly zero, but cannot be exactly one. By combining this function with some simple arithmetic and the rounding functions mentioned above, we can generate random numbers in any range we need.
 
-E.g. we can generate a random integer between zero and 99 (inclusive) with the following simple code:
+For example, we can generate a random integer between zero and 99 (inclusive) with the following simple code:
 
 ```javascript
 var randomInt = Math.floor(Math.random() * 100);

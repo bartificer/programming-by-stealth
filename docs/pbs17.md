@@ -450,7 +450,7 @@ if(guesses.length == 0){
 }
 ```
 
-Notice that within the `guess()` function of the `GuessingGame` prototype, we have a callback that needs to access some of the object’s properties. We create a variable named `self` and assign it the value `this`. Then, within the callback, we use `self` where ever we would normally use `this`.
+Notice that within the `guess()` function of the `GuessingGame` prototype, we have a callback that needs to access some of the object’s properties. We create a variable named `self` and assign it the value `this`. Then, within the callback, we use `self` wherever we would normally use `this`.
 
 ### Testing if an Object has a Prototype
 
