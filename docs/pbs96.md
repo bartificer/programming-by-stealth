@@ -8,10 +8,10 @@ Finally — I'll set another challenge to tide you over for four weeks while we 
 
 This instalment uses 4 example files:
 
-* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/66e9f41e421c7b584ebdd262ee3f40a6588dde24/instalmentZips/pbs96.zip)
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/0babf18789ac253590aee2afeed3f6cae855c70c/instalmentZips/pbs96.zip)
 * [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs96)
-* View the four HTML files in your browser:
-  * [`pbs92-ChallengeSolution-Allison/index.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/66e9f41e421c7b584ebdd262ee3f40a6588dde24/instalmentResources/pbs96/pbs92-ChallengeSolution-Allison/index.html)
+* View the 2 HTML files in your browser:
+  * [`pbs92-ChallengeSolution-Allison/index.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/5ad7214faac1abc4701d1c65b49685357164042a/instalmentResources/pbs96/pbs92-ChallengeSolution-Allison/index.html)
   * [`pbs92-ChallengeSolution-Bart/index.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/66e9f41e421c7b584ebdd262ee3f40a6588dde24/instalmentResources/pbs96/pbs92-ChallengeSolution-Bart/index.html)
 
   ## Matching Podcast Episode
