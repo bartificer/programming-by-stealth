@@ -1,10 +1,10 @@
 # PBS 14 of X – JS Loops & Arrays
 
-At this stage we’ve learned about three of the key components common to just about every programming language, and how they’re implemented in JavaScript – variables, operators, and branching. Now it’s time to add two more – arrays, and loops.
+At this stage we’ve learned about three of the key components common to just about every programming language, and how they’re implemented in JavaScript – variables, operators, and branching. Now it’s time to add two more – arrays and loops.
 
-Arrays store a list of related data in a single variable, and loops allow us to apply the same action over and over again. To process an arbitrarily long array, you need some kind of iteration, and loops are the simplest way of achieving that.
+Arrays store a list of related data in a single variable. Loops allow us to apply the same action over and over again. To process an arbitrarily long array, you need some kind of iteration. Loops are the simplest way of achieving that.
 
-# Matching Podcast Episode 438
+## Matching Podcast Episode 438
 
 Listen Along: Chit Chat Across the Pond Episode 438
 
@@ -38,9 +38,9 @@ var secondVal = myArray[1];
 var thirdVal = myArray[2];
 ```
 
-We refer to the number inside the square brackets as an _index_. So, we say that in JavaScript, arrays are indexed from zero up. We also talk about the element at index 0, or the element at index 1, etc..
+We refer to the number inside the square brackets as an _index_. So, we say that in JavaScript, arrays are indexed from zero up. We also talk about the element at index 0 or the element at index 1, etc.
 
-You can add more values into an array after it has been created by simply assigning a value to the desired array index. Note that in JavaScript, arrays can have gaps.
+You can add more values into an array after it has been created by simply assigning a value to the desired array index. Note that, in JavaScript, arrays can have gaps.
 
 ```javascript
 var myArray = [1, 2];
@@ -55,7 +55,7 @@ var myEmptyArray = [];
 
 For those of you coming to JavaScript from strongly typed languages, you’ll be happy to know that JavaScript arrays shrink and grow as needed – you don’t have to declare their size as you create them.
 
-Arrays have a `length` property which you can assess by appending `.length` to the array name. Because array indexes start at zero, the length is one greater than the highest defined index. Note that that is exactly how the length is calculated, so an array with just one defined element at index 100 has a length of 101. This concept is demonstrated below:
+Arrays have a `length` property which you can assess by appending `.length` to the array name. Because array indexes start at zero, the length is one greater than the highest defined index. Note that this is exactly how the length is calculated. An array with just one defined element at index 100 has a length of 101. This concept is demonstrated below:
 
 ```javascript
 var a1 = ['a', 'b'];
@@ -68,11 +68,11 @@ a2[100] = 'boo!';
 pbs.say(a2.length);
 ```
 
-Back in the first instalment, I mentioned that in JavaScript, variables hold either a literal value (number, string, or boolean), or, a reference to an object. We’ve not looked at objects in any kind of detail yet, and we’re not going for some time yet, but, I do want to flag the fact that in JavaScript, arrays are implemented as objects. This will become important later on in the series.
+Back in the first instalment, I mentioned that in JavaScript, variables hold either a literal value (number, string, or boolean) or a reference to an object. We’ve not looked at objects in any kind of detail yet, and we’re not going for some time yet. However I do want to flag the fact that, in JavaScript, arrays are implemented as objects. This will become important later on in the series.
 
 ## Loops
 
-Loops allow a block of code to be repeated until a given condition is met. JavaScript supports a number of looping constructs, but we’re just going to focus on the two most common ones in this instalment – the `while` and `for` loops.
+Loops allow a block of code to be repeated until a given condition is met. JavaScript supports a number of looping constructs. We’re just going to focus on the two most common ones in this instalment – the `while` and `for` loops.
 
 ### `while` Loops
 
@@ -82,9 +82,9 @@ We’ll start with the most generic kind of loop – the `while` loop. A `while`
 while(condition) statement;
 ```
 
-The condition is checked, if it evaluates to `false`, execution jumps beyond the loop, if it evaluates to `true`, the statement gets executed, then the loop repeats, checking the condition again.
+The condition is checked; if it evaluates to `false`, execution jumps beyond the loop; if it evaluates to `true`, the statement gets executed. Then the loop repeats, checking the condition again.
 
-As with `if` statements, the spec talks about a statement, but, anywhere you can have a statement, you can have a code block, and, just like with `if` statements, I strongly suggest you get into the habit of always using a code block with your `while` loops. This is how I suggest you always write your `while` loops:
+As with `if` statements, the spec talks about a statement, but, anywhere you can have a statement, you can have a code block. Just like with `if` statements, I strongly suggest you get into the habit of always using a code block with your `while` loops. This is how I suggest you always write your `while` loops:
 
 ```javascript
 while(condition){
@@ -121,7 +121,7 @@ The `for` loop takes the following form:
 for(initialisation_statement; condition; increment_statement) looped_statement;
 ```
 
-Again, you should get into the habit of a using a code block for `for` loops, so I suggest you always use the following form:
+Again, you should get into the habit of using a code block for `for` loops. So I suggest you always use the following form:
 
 ```javascript
 for(initialisation_statement; condition; increment_statement){
@@ -129,9 +129,9 @@ for(initialisation_statement; condition; increment_statement){
 }
 ```
 
-The `initialisation_statement` gets executed once, and once only, when the loop initiates, then the condition is checked, if it evaluates to `false`, then execution jumps past the loop, if it evaluates to `true`, the `looped_statement` is executed, then the `increment_statement`, and then we jump back to checking the condition.
+The `initialisation_statement` gets executed once, and once only, when the loop initiates. Then the condition is checked; if it evaluates to `false`, then execution jumps past the loop; if it evaluates to `true`, the `looped_statement` is executed. Finally the `increment_statement` is executed, and we jump back to checking the condition.
 
-If we re-write the above `while` loop as a `for` loop you’ll see how much easier it becomes to read
+If we rewrite the above `while` loop as a `for` loop, you’ll see how much easier it becomes to read:
 
 ```javascript
 var a = [1, 2, 3, 4, 5];
@@ -162,7 +162,7 @@ for(var i = 999; i > 0; i -= 2){
 
 ### Watch out for Infinite Loops
 
-When looping in any way, be careful that the loop will always end, otherwise you have what is called an _infinite loop_, and your script will never get beyond that line of code. It will be doomed to repeat itself for ever! Some browsers will eventually detect that a script has been running for an abnormally long time, and offer to kill it, but others won’t. Your only choice then will be to close the tab/window and start over!
+When looping in any way, be careful that the loop will always end. Otherwise you have what is called an _infinite loop_, and your script will never get beyond that line of code. It will be doomed to repeat itself for ever! Some browsers will eventually detect that a script has been running for an abnormally long time, and offer to kill it, but others won’t. Your only choice then will be to close the tab/window and start over!
 
 If you’d like to intentionally create an infinite loop, just to see what happens, the following will do it:
 
@@ -212,7 +212,7 @@ Since `i` will keep getting bigger, and the loop will only terminate when `i` be
 
 ## Checking if a Variable Contains a Reference to an Array
 
-To check if a variable contains an array reference or not, we need to check if it is an object with the `Array` prototype (for now, this is technobabble, but it will make sense a few instalments from now). We can do this with the `instanceof` operator. We’ll revisit this operator later in the series, so for now I’ll just say that the following only evaluates to `true` when `x` contains a reference to an array: `x instaceof Array`.
+To check if a variable contains an array reference or not, we need to check if it is an object with the `Array` prototype (for now, this is technobabble, but it will make sense a few instalments from now). We can do this with the `instanceof` operator. We’ll revisit this operator later in the series. So for now I’ll just say that the following only evaluates to `true` when `x` contains a reference to an array: `x instanceof Array`.
 
 ```javascript
 var a = [1, 2, 3];
@@ -325,4 +325,4 @@ if(isNaN(n) || n < 1){
 
 ## Conclusions
 
-We’re now well on the way to learning about the most important building blocks that are common to all languages. We’ve learned about variables, operators, branching, arrays, and looping. Next on the agenda is functions – named chunks of re-usable code.
+We’re now well on the way to learning about the most important building blocks that are common to all languages. We’ve learned about variables, operators, branching, arrays, and looping. Next on the agenda is functions – named chunks of reusable code.

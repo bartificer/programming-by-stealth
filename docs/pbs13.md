@@ -1,8 +1,8 @@
 # PBS 13 of X – JS Conditionals
 
-In [the previous instalment](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/) we got our first taste of JavaScript. We learned about variables, literal data types, and some basic string and arithmetic operators. In this instalment we’re going to focus on booleans. We’ll look at how non-boolean values get converted to booleans when needed (e.g. is `'boogers'` `true` or `false`?), we’ll learn about some comparison operators that result in boolean values, and we’ll learn about some logical operators. At that stage we’ll have all the knowledge we need to learn about our third fundamental programming concept – branching.
+In [the previous instalment](https://pbs.bartificer.net/pbs12) we got our first taste of JavaScript. We learned about variables, literal data types, and some basic string and arithmetic operators. In this instalment we’re going to focus on booleans. We’ll look at how non-boolean values get converted to booleans when needed (e.g. is `'boogers'` `true` or `false`?). We’ll learn about some comparison operators that result in boolean values. We’ll learn about some logical operators. At that stage we’ll have all the knowledge we need to learn about our third fundamental programming concept – branching.
 
-# Matching Podcast Episode 434
+## Matching Podcast Episode 434
 
 Listen Along: Chit Chat Across the Pond Episode 434
 
@@ -12,11 +12,11 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## Our New Playground
 
-Like with the previous instalment, we’ll be working in our JavaScript playground. However, since the last instalment, the playground has gotten a bit of an upgrade. No more popup windows, so it now works on tablet devices as well as traditional computers.
+As with the previous instalment, we’ll be working in our JavaScript playground. However, since the last instalment, the playground has gotten a bit of an upgrade. No more popup windows, so it now works on tablet devices as well as traditional computers.
 
-The basic operation remains the same, but now when you click `Run` the output will appear at the bottom of the page instead of in a new window.
+The basic operation remains the same, but now when you click `Run`, the output will appear at the bottom of the page instead of in a new window.
 
-You can download this code for this updated playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
+You can download this code for this updated playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
 
 ## Boolean Conversions
 
@@ -28,7 +28,7 @@ All strings with the exception of the empty string evaluate to `true`.
 
 The special values `undefined` and `null` evaluate to `false`. (`null` is a literal value that can be used when you want a variable to be defined, but not hold a real value).
 
-As you can see, the vast majority of values convert to `true`, so my advice is to try remember that the following convert to `false`: `undefined`, `null`, `0`, `NaN`, and `''` (the empty string).
+As you can see, the vast majority of values convert to `true`. So my advice is to remember that the following convert to `false`: `undefined`, `null`, `0`, `NaN`, and `''` (the empty string).
 
 A little gotcha here is that the string `'false'` evaluates to `true`!
 
@@ -55,7 +55,7 @@ JavaScript supports a number of operators for comparing values. What all these o
 
 Let’s start with equality, which is not as simple as you might think.
 
-The `===` operator checks for exact equality. It’s very strict – `true` is only returned if the two values are identical – same type and all. This is why I suggest you get into the habit of referring to this operator as _is exactly equal to_. This strict equality check has some implications that you may find counter-intuitive:
+The `===` operator checks for exact equality. It’s very strict – `true` is only returned if the two values are identical – same type and all. This is why I suggest you get into the habit of referring to this operator as _is exactly equal to_. This strict equality check has some implications that you may find counterintuitive:
 
 ```javascript
 pbs.say("4 === 4 is\t\t" + (4 === 4));
@@ -89,45 +89,50 @@ pbs.say("NaN == NaN is\t\t" + (NaN == NaN));
 
 However, all is not perfectly logical – again, notice that `NaN` is not considered to be effectively equal to `NaN`.
 
-The other outlier in the example above is `'true' == true`. The value on both sides is not a string, so, the operator works numerically – `true` is converted to `1`, and `'true'` to `NaN`, hence, the result of the comparison is `false`.
+The other outlier in the example above is `'true' == true`. The value on both sides is not a string, so the operator works numerically – `true` is converted to `1`, and `'true'` to `NaN`, hence, the result of the comparison is `false`.
 
 I’m repeating myself here, but I think it’s important to hammer home the importance of keeping `=`, `==`, and `===` straight in your head. To that end, I strongly suggest you develop the habit of mentally reading these three operators as follows:
 
-`=`
 
-_is assigned the value of_
+<dl>
+<dt><code>=</code></dt>
 
-`==`
+<dd><em>is assigned the value of</em></dd>
 
-_is effectively equal to_
+<dt><code>==</code></dt>
 
-`===`
+<dd><em>is effectively equal to</em></dd>
 
-_is exactly equal to_
+<dt><code>===</code></dt>
 
+<dd><em>is exactly equal to</em></dd>
+
+</dl>
 ### Comparisons
 
 As well as checking for equality as described above, JavaScript also supports the following comparison operators:
 
-`<`
+<dl>
+<dt><code><</code></dt>
 
-_is less than_
+<dd><em>is less than</em></dd>
 
-`>`
+<dt><code>></code></dt>
 
-_is greater than_
+<dd><em>is greater than</em></dd>
 
-`<=`
+<dt><code><=</code></dt>
 
-_is less than or equal to_
+<dd><em>is less than or equal to</em></dd>
 
-`>=`
+<dt><code>>=</code></dt>
 
-_is greater than or equal to_
+<dd><em>is greater than or equal to</em></dd>
+</dl>
 
-Just like `==`, these operators work in one of two modes – _numerically_, or, _lexically_ (alphabetic comparisons).
+Just like `==`, these operators work in one of two modes – _numerically_ or _lexically_ (alphabetic comparisons).
 
-The default behaviour is to convert the values on both sides of the operator to numbers, and compare them mathematically. Any comparison to `NaN` evaluates to `false`.
+The default behaviour is to convert the values on both sides of the operator to numbers and compare them mathematically. Any comparison to `NaN` evaluates to `false`.
 
 Only when **both** of the values are strings do the operators switch to lexical mode – that is to say, comparing the values alphabetically. One string is less than another if it would appear in the dictionary before the other.
 
@@ -153,17 +158,19 @@ pbs.say("NaN >= NaN is\t\t" + (NaN >= NaN));
 
 The logical operators work on booleans, so all values they operate on get converted to booleans before the operator is applied, and, the outcome is always a boolean. There are just three logical operators:
 
-`&&`
+<dl>
+<dt><code>&&</code></dt>
 
-A logical AND – only evaluates to `true` when both values are `true`
+<dd>A logical AND – only evaluates to <code>true</code> when both values are <code>true</code></dd>
 
-`||`
+<dt><code>||</code></dt>
 
-A logical OR – evaluates to `true` when one or both values are `true`
+<dd>A logical OR – evaluates to <code>true</code> when one or both values are <code>true</code></dd>
 
-`!`
+<dt><code>!</code></dt>
 
-A logical NOT – this is a unary operator that inverts the value it’s applied to – it should be placed in front of the value to be inverted
+<dd>A logical NOT – this is a unary operator that inverts the value it’s applied to – it should be placed in front of the value to be inverted</dd>
+</dl>
 
 In terms of precedence, `!` has the highest precedence, then `&&`, and finally `||`.
 
@@ -188,7 +195,7 @@ Before we look at branching, let’s look at how to read values out of the input
 
 You can read the value from the first input with `pbs.input(1)`, the second with `pbs.input(2)`, and the third with `pbs.input(3)`.
 
-Because of how HTML text fields work, the value returned by `pbs.input()` is always a string. This means that you need to explicitly convert to a number before doing arithmetic, or making numeric comparisons.
+Because of how HTML text fields work, the value returned by `pbs.input()` is always a string. This means that you need to explicitly convert to a number before doing arithmetic or making numeric comparisons.
 
 ```javascript
 pbs.say(parseInt(pbs.input(1)) + parseInt(pbs.input(2)));
@@ -222,7 +229,7 @@ else
   pbs.say('ODD');
 ```
 
-You **can** write code like this, but **please don’t**! Develop the good habit now of always using code blocks in `if` statements. That is to say, wrap the statement(s) in curly braces. This will allow you to execute multiple statements on `true` or `false` evaluation instead of just one, and it will protect you from a whole class of subtle but very dangerous bugs creeping into you code. Had Apple’s developers followed this simply piece of advice, the famous [GO TO FAIL bug](https://nakedsecurity.sophos.com/2014/02/24/anatomy-of-a-goto-fail-apples-ssl-bug-explained-plus-an-unofficial-patch/) would never have happened!
+You **can** write code like this, but **please don’t**! Develop the good habit now of always using code blocks in `if` statements. That is to say, wrap the statement(s) in curly braces. This will allow you to execute multiple statements on `true` or `false` evaluation instead of just one. Also it will protect you from a whole class of subtle but very dangerous bugs creeping into your code. Had Apple’s developers followed this simply piece of advice, the famous [GO TO FAIL bug](https://nakedsecurity.sophos.com/2014/02/24/anatomy-of-a-goto-fail-apples-ssl-bug-explained-plus-an-unofficial-patch/) would never have happened!
 
 This is how you should write your `if` statements, even when you only want to execute one statement on `true` and/or `false` evaluation of the condition:
 
@@ -309,4 +316,4 @@ if(isNaN(inputNum)){
 
 ## Conclusions
 
-We have now learned about three core concepts all programming languages share – variables, operators, and branching. In the next instalment we’ll learn about two more core concepts – arrays, and loops. This will give us the ability to store lists of values, and to processes them.
+We have now learned about three core concepts all programming languages share – variables, operators, and branching. In the next instalment we’ll learn about two more core concepts – arrays and loops. This will give us the ability to store lists of values and to process them.
