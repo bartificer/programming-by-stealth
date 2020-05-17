@@ -4,6 +4,24 @@ In this instalment we're taking a break from learning new things to look at two 
 
 Finally — I'll set another challenge to tide you over for four weeks while we finish our third look at OO programming in JavaScript over the next two instalments.
 
+## Instalment Resources
+
+This instalment uses 4 example files:
+
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/66e9f41e421c7b584ebdd262ee3f40a6588dde24/instalmentZips/pbs96.zip)
+* [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs96)
+* View the four HTML files in your browser:
+  * [`pbs92-ChallengeSolution-Allison/index.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/66e9f41e421c7b584ebdd262ee3f40a6588dde24/instalmentResources/pbs96/pbs92-ChallengeSolution-Allison/index.html)
+  * [`pbs92-ChallengeSolution-Bart/index.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/66e9f41e421c7b584ebdd262ee3f40a6588dde24/instalmentResources/pbs96/pbs92-ChallengeSolution-Bart/index.html)
+
+  ## Matching Podcast Episode
+
+Listen along to this instalment on [episode 638 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/05/ccatp-638/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_16.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_16.mp3" >Download the MP3</a>
+
 ## Allison's World Clock
 
 > This entire section is written by [Allison Sheridan](https://www.podfeet.com/).
