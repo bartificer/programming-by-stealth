@@ -1,12 +1,12 @@
 # PBS 16 of X – JS Callbacks
 
-In the previous instalment we introduced the concept of JavaScript functions. We learned how to all existing functions, and how to create out own.
+In the previous instalment we introduced the concept of JavaScript functions. We learned how to call existing functions, and how to create our own.
 
-In this instalment we’re going to take our understanding of functions to the next level. The techniques we encounter today would be considered advanced techniques in most other languages, and you could spend years developing in Java and never encounter an anonymous function. However, because of how JavaScript is integrated into HTML documents, these techniques are considered fundamental in JavaScript, and anonymous functions are a dime a dozen!
+In this instalment, we’re going to take our understanding of functions to the next level. The techniques we encounter today would be considered advanced techniques in most other languages. You could spend years developing in Java and never encounter an anonymous function. However, because of how JavaScript is integrated into HTML documents, these techniques are considered fundamental in JavaScript, and anonymous functions are a dime a dozen!
 
 Before we delve into anonymous functions, we’ll start by taking a deeper look at how JavaScript deals with function arguments.
 
-# Matching Podcast Episode 442
+## Matching Podcast Episode 442
 
 Listen Along: Chit Chat Across the Pond Episode 442
 
@@ -18,15 +18,15 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 For this instalment we will yet again be using our JavaScript playground. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground-v2.1.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground-v2.1.zip), or, you can use the online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground/](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
 
-## PBS JavaScript Cheat-Sheet
+## PBS JavaScript CheatSheet
 
-At Allison’s suggestion, I’ve created a [JavaScript cheat-sheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) which you can use as a quick reminder when working on the challenges. The cheat-sheet reminds you of the core concepts through a series of code samples, and links back to the relevant PBS instalments.
+At Allison’s suggestion, I’ve created a [JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) which you can use as a quick reminder when working on the challenges. The cheatsheet reminds you of the core concepts through a series of code samples and links back to the relevant PBS instalments.
 
-I’ll update the cheat-sheet as we continue to learn more.
+I’ll update the cheatsheet as we continue to learn more.
 
 ## Solution to Instalment 15 Challenge
 
-At the end of the previous instalment, I set an optional challenge, and promised to provide a possible solution next time. The challenge was to create a function for calculating the average of an arbitrarily long array of numbers, and use this function to average numbers entered into the inputs in the playground.
+At the end of the previous instalment, I set an optional challenge, and promised to provide a possible solution next time. The challenge was to create a function for calculating the average of an arbitrarily long array of numbers and use this function to average numbers entered into the inputs in the playground.
 
 There are infinitely many correct solutions to any programming problem, so this is just one possible solution:
 
@@ -74,7 +74,7 @@ if(theInputs.length){
 
 It should be easy to tell whether or not a given argument was passed to a function, but sadly it’s not.
 
-We know that undefined evaluates to false, so you might think to do something like this:
+We know that undefined evaluates to false; so you might think to do something like this:
 
 ```javascript
 function doubler(n){
@@ -90,11 +90,11 @@ pbs.say('calling doubler() with 8 as the first arg results in ' + doubler(8));
 pbs.say("calling doubler() with the string '8' as the first arg results in " + doubler('8'));
 ```
 
-This does work correctly when no argument is passed, but, it can’t tell the difference between no argument, and any other argument that evaluates to false.
+This does work correctly when no argument is passed, but it can’t tell the difference between no argument and any other argument that evaluates to false.
 
 What we need is a proper test for undefinedness. This is where the `typeof` operator comes in.
 
-If a variable is undefined, then applying the `typeof` operator to it will result in the string `'undefined'` – `typeof x === 'undefined'`. Knowing this, we can re-write our function from above like so:
+If a variable is undefined, then applying the `typeof` operator to it will result in the string `'undefined'` – `typeof x === 'undefined'`. Knowing this, we can rewrite our function from above like so:
 
 ```javascript
 function doubler(n){
@@ -112,13 +112,13 @@ pbs.say("calling doubler() with the string '8' as the first arg results in " + d
 
 ## Getting Clever with Function Arguments
 
-So far, all we know about arguments is that we give them a name in the function definition, and then we access then by that name within the body of the function. Let’s look a little more deeply.
+So far, all we know about arguments is that we give them a name in the function definition. Then we access them by that name within the body of the function. Let’s look a little more deeply.
 
 ### Optional Arguments
 
-It is often the case that the task performed by a function needs some arguments, but others have a sensible default, so it makes sense to have them be optional.
+It is often the case that the task performed by a function needs some arguments, while other arguments have a sensible default; so it makes sense to have them be optional.
 
-A somewhat contrived simple example would be a function called `incrementor()`, by default it will increment values by 1, but it can increment by a different amount if desired. In other words, it requires one argument, the number to increment, and optionally supports a second, the amount to increment by. You could implement that function like so:
+A somewhat contrived simple example would be a function called `incrementor()`. By default it will increment values by 1, but it can increment by a different amount if desired. In other words, it requires one argument, the number to increment, and optionally supports a second, the amount to increment by. You could implement that function like so:
 
 ```javascript
 // define the incrementor function
@@ -148,7 +148,7 @@ pbs.say(incrementor(5, 'donkey'));
 pbs.say(incrementor(3.146, 5.2));
 ```
 
-As you can see, our function behaves in a sensible way regardless of the number of arguments provided.
+As you can see, our function behaves in a sensible way, regardless of the number of arguments provided.
 
 ### An Arbitrary Number of Arguments
 
@@ -162,7 +162,7 @@ product(2, 4, 6, 7, 11);
 product(2, 4, 6, 7, 11, 234, 1, 43, 66);
 ```
 
-This is where the `arguments` array comes to your rescue. The argument names we have been using up until this point are completely optional – they are a convenience rather than a requirement. JavaScript actually stores all arguments in a locally scoped array called `arguments`. We already know how to loop over arrays, so we can use that knowledge to loop over arguments:
+This is where the `arguments` array comes to your rescue. The argument names we have been using up until this point are completely optional – they are a convenience rather than a requirement. JavaScript actually stores all arguments in a locally scoped array called `arguments`. We already know how to loop over arrays. So we can use that knowledge to loop over arguments:
 
 ```javascript
 // define the product function
@@ -192,7 +192,7 @@ pbs.say(product(2, 4, 6, 7, 11, 234, 1, 43, 66));
 
 ## In JavaScript, Functions are Objects
 
-We already know that variables can contain literal values or references to objects. We learned that in JavaScript, arrays are objects. In JavaScript, functions are objects too. Because variables can hold references to objects, and because functions are objects, variables can hold references to functions, and, functions can be passed to other functions as arguments.
+We already know that variables can contain literal values or references to objects. We have learned that, in JavaScript, arrays are objects. In JavaScript, functions are objects too. Because variables can hold references to objects, and because functions are objects, variables can hold references to functions, and, functions can be passed to other functions as arguments.
 
 The `function` keyword creates function objects. So far, we have been creating and naming our functions in one go using a convenient shortcut notation – let’s strip the shortcut away. When you write this:
 
@@ -232,7 +232,7 @@ pbs.say(d(4));
 
 ### Checking if a Variable Contains a Reference to a Function
 
-To make our code robust, we’ll need to check if a variable does or does not contain a reference to a function. We can do this using the `typeof` operator. If a variable contains a reference to a function, then applying the `typeof` operator to it will result in the string `'function'`, so, we can test if something is a function with code like `typeof x === 'function'`:
+To make our code robust, we’ll need to check if a variable does or does not contain a reference to a function. We can do this using the `typeof` operator. If a variable contains a reference to a function, then applying the `typeof` operator to it will result in the string `'function'`. So, we can test if something is a function with code like `typeof x === 'function'`:
 
 ```javascript
 // create a function using the shortcut notation
@@ -254,7 +254,7 @@ pbs.say(typeof tripler);
 
 ### Functions as Arguments
 
-To illustrate the power of function references as arguments, let’s create a function to apply an arbitrary function to every element of an array. Our function will take two arguments, a reference to an array, and a reference to a function.
+To illustrate the power of function references as arguments, let’s create a function to apply an arbitrary function to every element of an array. Our function will take two arguments, a reference to an array and a reference to a function.
 
 ```javascript
 // define a function to apply a function to every element in an array
@@ -324,15 +324,15 @@ arrayApply(a, function(n){return n * 2;});
 pbs.say('doubled array: ' + a);
 ```
 
-The functions we dynamically created inside the call to `arrayApply()` were created without giving them a name, this is why they are known as _anonymous functions_. When a function reference is passed as an argument to another function, it is known as a _callback_. A JavaScript aficionado may say that `arrayApply()` function uses callbacks to apply a function to every element in an array.
+The functions we dynamically created inside the call to `arrayApply()` were created without giving them a name. This is why they are known as _anonymous functions_. When a function reference is passed as an argument to another function, it is known as a _callback_. A JavaScript aficionado may say that `arrayApply()` function uses callbacks to apply a function to every element in an array.
 
 ## Iterating Over Arrays with Callbacks
 
-What we have done above is such a common thing to want to do, that there is a built-in JavaScript function for doing it.
+What we have done above is such a common thing to want to do that there is a built-in JavaScript function for doing it.
 
 Array objects contain a reference to a function called `forEach()`, which calls a callback with each element of the array as an argument. This is by far the easiest way to loop through an array.
 
-The `forEach()` function calls the callback with two arguments, first, the value of the element in the array, and second, the position in the array.
+The `forEach()` function calls the callback with two arguments: first, the value of the element in the array, and second, the position in the array.
 
 Let’s illustrate this with a simple example:
 
@@ -345,11 +345,11 @@ a.forEach(function(w, i){
 
 ## A Challenge
 
-Create a function called `inputTransformer()`. This function will accept a single argument – a reference to a function object, aka callback. The callback can be assumed to take one argument, and return a value.
+Create a function called `inputTransformer()`. This function will accept a single argument – a reference to a function object, aka callback. The callback can be assumed to take one argument and return a value.
 
-`inputTransformer()` should loop through all the inputs with values entered in the PBS playground, and apply the passed function to each value. `inputTransformer()` should print the value of each input, and the result of passing that value to the callback.
+`inputTransformer()` should loop through all the inputs with values entered in the PBS playground and apply the passed function to each value. `inputTransformer()` should print the value of each input and the result of passing that value to the callback.
 
-`inputTransformer()` should check that it was passed a valid argument, and print an error message if it was not.
+`inputTransformer()` should check that it was passed a valid argument and print an error message if it was not.
 
 Test `inputTransformer()` by calling it with an anonymous function that squares the inputs, and another that cubes them.
 

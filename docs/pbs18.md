@@ -1,14 +1,14 @@
 # PBS 18 of X – JS Miscellany
 
-We’ve now covered most of the core JavaScript language. We’ve learned that variables can store literal values, or references to objects. We’ve learned there are three types of literal values – numbers, booleans, and strings. We’ve learned about operators. We’ve learned about conditionals. We’ve learned about loops of various sorts, and we’ve learned about objects. We’ve learned that in JavaScript, arrays are implemented as objects with the prototype `Array`, and that functions are also implemented as objects.
+We’ve now covered most of the core JavaScript language. We’ve learned that variables can store literal values or references to objects. We’ve learned there are three types of literal values – numbers, booleans, and strings. We’ve learned about operators. We’ve learned about conditionals. We’ve learned about loops of various sorts, and we’ve learned about objects. We’ve learned that, in JavaScript, arrays are implemented as objects with the prototype `Array`, and that functions are also implemented as objects.
 
 Before we can leave the playground and head off into the world of the browser, we just have a few more loose ends to tie up, which we’ll take care of in this instalment.
 
-Now that we know about objects, we need to re-visit the `arguments` object present in every JavaScript function. We need to take a detailed look at the `typeof` operator, and we need to look at some built-in objects and functions JavaScript provides.
+Now that we know about objects, we need to revisit the `arguments` object present in every JavaScript function. We need to take a detailed look at the `typeof` operator, and we need to look at some built-in objects and functions JavaScript provides.
 
 We also need to look at how JavaScript handles regular expressions, and finally, we need to introduce the concept of exception handling.
 
-# Matching Podcast Episode 446
+## Matching Podcast Episode 446
 
 Listen Along: Chit Chat Across the Pond Episode 446
 
@@ -228,19 +228,19 @@ pbs.say(rq.quote());
 
 I want to draw your attention to a few key points in this solution.
 
-Firstly, you can see that in the constructor for the `RandomQuoter` (starting on line 93), I explicitly convert the `arguments` object into a true array before passing it on to the `.add()` function. The same is also done inside the `.add()` function (starting at line 124).
+Firstly, you can see that, in the constructor for the `RandomQuoter` (starting on line 93), I explicitly convert the `arguments` object into a true array before passing it on to the `.add()` function. The same is also done inside the `.add()` function (starting at line 124).
 
 Secondly, within the `.add()` function in the `RandomQuoter`, I need to access a property of a `RandomQuoter` object from within a callback. To enable this, I had to create an alias to `this` (at line 124), which, following convention, I named `self`.
 
 Finally, I wrote the `.empty()` and `.add()` functions in the `RandomQuoter` prototype in such a way that they can be chained together. That is to say, you can call `.empty()` and `.add()` one after the other by appending the function calls together. You can see this in action on line 185. This is only possible because both of those functions return a reference to `this` (lines 115 & 147). This very commonly used technique is referred to as _function chaining_.
 
-## The `arguments` Keyword Re-visited
+## The `arguments` Keyword Revisited
 
-In the previous instalment we learned that functions contain a variable called `arguments` that provides direct access to the function’s arguments. We described this object as an array, because it behaves like one, and, we had not yet learned enough about objects to be totally honest about its nature.
+In the previous instalment we learned that functions contain a variable called `arguments` that provides direct access to the function’s arguments. We described this object as an array because it behaves like one. We had not yet learned enough about objects to be totally honest about its nature.
 
-`arguments` objects sure look like arrays, allowing you to access the first argument to a function as `arguments[0]`, the second as `arguments[1]`, etc.. Also, `arguments` objects have a `.length` property, just like true arrays do.
+`arguments` objects sure look like arrays, allowing you to access the first argument to a function as `arguments[0]`, the second as `arguments[1]`, etc. Also, `arguments` objects have a `.length` property, just like true arrays do.
 
-However, `arguments` objects do not have the `Array` prototype, so they don’t support functions provided by that prototype, like `.forEach()` & `.sort()`, and, applying `instanceof Array` to an `arguments` object will evaluate to `false`, so it fails our test for whether or not something is an array.
+However, `arguments` objects do not have the `Array` prototype. So they don’t support functions provided by that prototype, like `.forEach()` & `.sort()`. Applying `instanceof Array` to an `arguments` object will evaluate to `false`; so it fails our test for whether or not something is an array.
 
 In version 5 of ECMAScript (and older), you have to manually convert this object to a true array if you want to use it as one. You would do so using code something like:
 
@@ -251,7 +251,7 @@ for(var i = 0; i < arguments.length; i++){
 }
 ```
 
-In version 6 of ECMAScript, a better solution has been provided, but, it will not work in IE, so, it’s probably too early to start using this feature on the web. However, if you are using JavaScript in other environments, and those environments are at ECMAScript version 6 or newer, you can safely use this technique. As you can see, it is much shorter than the old manual approach:
+In version 6 of ECMAScript, a better solution has been provided. However, it will not work in IE; so it’s probably too early to start using this feature on the web. If you are using JavaScript in other environments, and those environments are at ECMAScript version 6 or newer, you can safely use this technique. As you can see, it is much shorter than the old manual approach:
 
 ```javascript
 var argsArray = Array.from(arguments);
@@ -283,17 +283,17 @@ pbs.say("typeof [1, 2, 3] is\t'" + typeof [1, 2, 3] + "'");
 pbs.say("typeof {x: 2, y: 1} is\t'" + typeof {x: 2, y: 1} + "'");
 ```
 
-The most obvious shortcoming is that arrays are simply returned as `'object'`, this is why we have to rely on the `instanceof` operator to determine if something is an array.
+The most obvious shortcoming is that arrays are simply returned as `'object'`. This is why we have to rely on the `instanceof` operator to determine if something is an array.
 
 ## Built-in Objects & Functions
 
-JavaScript comes with a whole bunch of useful pre-defined object prototypes and stand-alone functions built in. We couldn’t possibly go through an exhaustive list, but we will look at some common ones, grouped by topic.
+JavaScript comes with a whole bunch of useful predefined object prototypes and stand-alone functions built in. We couldn’t possibly go through an exhaustive list, but we will look at some common ones, grouped by topic.
 
 ### String Functions
 
-Strings are literal values, but under the hood, JavaScript converts them to objects of prototype `String` as needed.
+Strings are literal values, but, under the hood, JavaScript converts them to objects of prototype `String` as needed.
 
-The `String` prototype provides a property called `.length`, which tells you the number of characters in a string. The `String` prototype also provides two functions for manipulating the case of a string – `.toUpperCase()` and `.toLowerCase()`, both of which return a new string with the changes applied, rather than changing the value in the string they are called on.
+The `String` prototype provides a property called `.length`, which tells you the number of characters in a string. The `String` prototype also provides two functions for manipulating the case of a string – `.toUpperCase()` and `.toLowerCase()`. Both of these return a new string with the changes applied, rather than changing the value in the string they are called on.
 
 ```javascript
 var myString = 'Hello World!';
@@ -328,7 +328,7 @@ var x = 4;
 pbs.say(x.toUpperCase());
 ```
 
-You can protect yourself from this kind of error by explicitly converting the variable to a string before applying the function. You can do that like shown in the reverse example, or, you can do it in such a way that it does not affect the value stored in the variable as show below:
+You can protect yourself from this kind of error by explicitly converting the variable to a string before applying the function. You can do that as shown in the reverse example. Or you can do it in such a way that it does not affect the value stored in the variable as show below:
 
 ```javascript
 var x = 4;
@@ -352,7 +352,7 @@ timeParts.forEach(function(tp){
 
 ### Array Functions
 
-As we already know, in JavaScript, arrays are implemented as objects with the `Array` prototype. This prototype brings along the useful `.length` property, as well as the `.forEach()` function, both of which we have already seen. The `Array` prototype brings along more functions than that though, and we’ll look at some of those now. Bear in mind that unlike with strings, some of these functions do alter the array itself, rather than returning an altered clone.
+As we already know, in JavaScript, arrays are implemented as objects with the `Array` prototype. This prototype brings along the useful `.length` property, as well as the `.forEach()` function, both of which we have already seen. The `Array` prototype brings along more functions than that though. We’ll look at some of those now. Bear in mind that, unlike with strings, some of these functions do alter the array itself, rather than returning an altered clone.
 
 We’ll start with four related functions for adding and removing items from the ends of arrays. You can add one or more values to the end of an array with `.push()`, and to the front of an array with `.unshift()`. You can remove and return the last element of an array with `.pop()`, and the first element with `.shift()`. These four operators allow you to use arrays as stacks or queues.
 
@@ -409,7 +409,7 @@ There are also many useful functions for rounding numbers, including `Math.floor
 
 Also worth mentioning is `Math.sqrt()`, for getting the square roots of numbers.
 
-Something that’s worth focusing on in more detail is JavaScript’s random number generator, which is also provided by the `Maths` object. `Math.random()` will return a random floating point number between zero and one. The number returned can be exactly, zero, but cannot be exactly one. By combining this function with some simple arithmetic and the rounding functions mentioned above, we can generate random numbers in any range we need.
+Something that’s worth focusing on in more detail is JavaScript’s random number generator, which is also provided by the `Maths` object. `Math.random()` will return a random floating point number between zero and one. The number returned can be exactly zero, but cannot be exactly one. By combining this function with some simple arithmetic and the rounding functions mentioned above, we can generate random numbers in any range we need.
 
 E.g. we can generate a random integer between zero and 99 (inclusive) with the following simple code:
 
@@ -455,9 +455,9 @@ pbs.say(posIntRE.test('boogers'));
 pbs.say(posIntRE.test('3 boogers'));
 ```
 
-Secondly, you can use the `.exec()` function to do more detailed matching, including accessing sub-matches, and iterating over multiple matches within the same string.
+Secondly, you can use the `.exec()` function to do more detailed matching, including accessing submatches, and iterating over multiple matches within the same string.
 
-Let’s start with the simplest example – using `.exec()` to access sub matches. Reminder – you create sub-matches within a regular expression using parentheses. If the test string does not match the regular expression at all, `.exec()` returns `null`, and if the string does match, a results object is returned. If a results object is returned, the entire matched text will be in `results[0]`, the first sub-match will be in `results[1]`, the second in `results[2]`, and so on.
+Let’s start with the simplest example – using `.exec()` to access submatches. Reminder – you create submatches within a regular expression using parentheses. If the test string does not match the regular expression at all, `.exec()` returns `null`. If the string does match, a results object is returned. If a results object is returned, the entire matched text will be in `results[0]`, the first submatch will be in `results[1]`, the second in `results[2]`, and so on.
 
 ```javascript
 var s = "That lunch was delicious, but it cost €50.43, which is a bit steep!";
@@ -471,9 +471,9 @@ if(res !== null){
 }
 ```
 
-Notice that it is the order of the opening parentheses that defines the order of the sub-matches – hence the decimal part of the amount being third.
+Notice that it is the order of the opening parentheses that defines the order of the submatches – hence the decimal part of the amount being third.
 
-If our regular expression has the `g` flag (for a global match), `.exec()` will remember where it left off, and next time you call it, it will give you the next result, so, you can loop through all the matches like so:
+If our regular expression has the `g` flag (for a global match), `.exec()` will remember where it left off, and next time you call it, it will give you the next result. So you can loop through all the matches like so:
 
 ```javascript
 var s = "That lunch was delicious, but it cost €50.43, which is a bit steep! I guess I'd happily have paid €30 for it. Mind you, nothing is as bad as that £100 lunch in London last year!";
@@ -484,9 +484,9 @@ while((res = moneyRE.exec(s)) !== null){
 }
 ```
 
-When you think about it, regular expressions are very closely related to strings. To make code simpler, JavaScript includes a number of regular expression related functions in the `String` prototype. This allows you to reverse the logic, instead of calling a function on an RE that you pass a string, you can call a function on a string that you pass an RE. There are two such functions in the `String` prototype.
+When you think about it, regular expressions are very closely related to strings. To make code simpler, JavaScript includes a number of regular expression related functions in the `String` prototype. This allows you to reverse the logic: instead of calling a function on an RE that you pass a string, you can call a function on a string that you pass an RE. There are two such functions in the `String` prototype.
 
-You can test if a string matches a given regular expression with the `.match()` function. The function takes an RE as an argument, and returns `null` if the string does not match, and an array of matches and sub-matches if it does.
+You can test if a string matches a given regular expression with the `.match()` function. The function takes an RE as an argument, and returns `null` if the string does not match, and an array of matches and submatches if it does.
 
 Because `null` evaluates to `false`, you can do simple testing like so:
 
@@ -520,11 +520,11 @@ if(res === null){
 }
 ```
 
-Finally, the `String` prototype also contains a function `.replace()`, which searches a string for a given RE, and then replaces the matching text in the string with a given substitution. The first argument passed to `.replace()` is the regular expression, the second, the substitution. The function does not alter the string it’s called on, instead, it returns a new string with the replacements in place.
+Finally, the `String` prototype also contains a function `.replace()`, which searches a string for a given RE, and then replaces the matching text in the string with a given substitution. The first argument passed to `.replace()` is the regular expression, the second, the substitution. The function does not alter the string it’s called on. Instead, it returns a new string with the replacements in place.
 
 The specified replacement can take one of two forms – a string, or, a callback.
 
-If you pass a string as the replacement, you can use `$1`, `$2` etc. to reference any sub-matches. If you want your replacement to contain an actual $ symbol, you need to write it as `$$`. You can use `$&` to include the entire matched string.
+If you pass a string as the replacement, you can use `$1`, `$2` etc. to reference any submatches. If you want your replacement to contain an actual $ symbol, you need to write it as `$$`. You can use `$&` to include the entire matched string.
 
 The following replacement will find all currency values of the form `€1.23`, and replace them with the form `1.23EUR`.
 
@@ -535,11 +535,11 @@ s = s.replace(/[€](\d+[.]\d\d)/g, "$1EUR");
 pbs.say("AFTER: " + s);
 ```
 
-Note that if you leave off the `g` flag, only the first match will get replaced.
+Note that, if you leave off the `g` flag, only the first match will get replaced.
 
-Now lets look at the more complex option for the replacement, a callback. The callback will be run once for every match (if the RE does not have a `g` flag only one match will be found). It will be called with the full matching string as the first argument, followed by each sub-match as subsequent arguments. The callback should return the replacement text as a string.
+Now let's look at the more complex option for the replacement: a callback. The callback will be run once for every match (if the RE does not have a `g` flag, only one match will be found). It will be called with the full matching string as the first argument, followed by each submatch as subsequent arguments. The callback should return the replacement text as a string.
 
-We can use this technique to do mathematical calculations in our replacement, e.g., the following will replace all Fahrenheit temperatures with their celsius equivalents:
+We can use this technique to do mathematical calculations in our replacement. For example the following will replace all Fahrenheit temperatures with their Celsius equivalents:
 
 ```javascript
 var s = "It's 104F today - that's just too hot. 80F is hot enough for me!";
@@ -552,15 +552,15 @@ pbs.say("AFTER: " + s);
 
 ## Error Handling with Exceptions
 
-When writing re-usable code, like functions, it is good practice to test assumptions made about the inputs/arguments before using them in the code. This approach tends to lead to robust code, and for that reason, the examples in this series use that approach. What I want to look at now is different approaches for what to do when you detect an error. So far in the series we have been returning some kind of special value to indicate failure. Depending on the situation, perhaps `NaN`, or zero, or `false`.
+When writing reusable code, like functions, it is good practice to test assumptions made about the inputs/arguments before using them in the code. This approach tends to lead to robust code. For that reason, the examples in this series use that approach. What I want to look at now is different approaches for what to do when you detect an error. So far in the series we have been returning some kind of special value to indicate failure. Depending on the situation, perhaps `NaN`, or zero, or `false`.
 
-This approach works, but, it has a distinct drawback. When your function is used, the only way to get value out of all that error checking is to test the output for the special value that indicates failure.
+This approach works, but it has a distinct drawback. When your function is used, the only way to get value out of all that error checking is to test the output for the special value that indicates failure.
 
-There is a better way. When something goes wrong, we should not return a special value, instead, we should use JavaScript’s in-built mechanism for raising the alarm that something has gone wrong. Specifically, we should _throw_ an exception. This mechanism is known as _exception handling_. JavaScript’s implementation of exception handling is very heavily influenced by Java, so Java programmers should feel right at home with it.
+There is a better way. When something goes wrong, we should not return a special value. Instead, we should use JavaScript’s in-built mechanism for raising the alarm that something has gone wrong. Specifically, we should _throw_ an exception. This mechanism is known as _exception handling_. JavaScript’s implementation of exception handling is very heavily influenced by Java. So Java programmers should feel right at home with it.
 
-Exception handling is very much a game of two halves, and, one of those halves is optional.
+Exception handling is very much a game of two halves, and one of those halves is optional.
 
-When something goes wrong, your code should use the JavaScript keyword `throw` to throw an `Error` object. For example, we could re-write our factorial function from previous instalments to be exception-aware like so:
+When something goes wrong, your code should use the JavaScript keyword `throw` to throw an `Error` object. For example, we could rewrite our factorial function from previous instalments to be exception-aware like so:
 
 ```javascript
 // -- Function --
@@ -592,9 +592,9 @@ pbs.say(factorial(3));
 
 As you can see, this function correctly calculates the factorial, and, when given valid input, behaves normally.
 
-However, when we give it bogus input (the string _boogers_ in this case), it triggers an error, and, execution of the code stops (the last line never happens).
+However, when we give it bogus input (the string _boogers_ in this case), it triggers an error, and execution of the code stops (the last line never happens).
 
-In this case, we did not make any kind of effort to catch the error that was thrown, so, the error was handed up to the playground, and the playground dealt with it as best it could – by putting up a red message with a warning triangle, and ceasing execution. As far as the playground is concerned, this error is no different to a syntax error, like forgetting to close a bracket. An error is an error is an error.
+In this case, we did not make any kind of effort to catch the error that was thrown. So, the error was handed up to the playground, and the playground dealt with it as best it could – by putting up a red message with a warning triangle, and ceasing execution. As far as the playground is concerned, this error is no different to a syntax error, like forgetting to close a bracket. An error is an error is an error.
 
 The second part to exception handling is catching what you throw. Rather than letting the playground catch the errors we throw, we can catch them in our own code, and then deal with them in a sensible way. The syntax for this is a so-called _try-catch block_. The syntax takes the following form:
 
@@ -656,19 +656,19 @@ if(ipts.length > 0){
 
 Try running this code with no inputs, all valid inputs, and then a mix of valid and invalid inputs. You’ll see that the code behaves nicely in all those situations.
 
-You’ll also notice that by catching the errors thrown within `factorial()`, they never make it to the playground, so no red error messages, and an error while calculating the factorial on one input does not stop the remainder of the code from running.
+You’ll also notice that by catching the errors thrown within `factorial()`, they never make it to the playground, so no red error messages. An error while calculating the factorial on one input does not stop the remainder of the code from running.
 
-## PBS JavaScript Cheat-Sheet
+## PBS JavaScript CheatSheet
 
-The [JavaScript cheat-sheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) has been updated to include the what we learned in this instalment.
+The [JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) has been updated to include the what we learned in this instalment.
 
 ## A Challenge
 
-Create a prototype called `IP` that will represent an IP address. Internally, the IP address should be stored as an array of four integers. The constructor should default to the IP `0.0.0.0`, but should optionally accept an IP address as an argument, either as a string, or, as an array of integers.
+Create a prototype called `IP` that will represent an IP address. Internally, the IP address should be stored as an array of four integers. The constructor should default to the IP `0.0.0.0`, but should optionally accept an IP address as an argument, either as a string or as an array of integers.
 
 Add a function to the `IP` prototype named `.parse()` – this function should take a string or an array as an argument, and, if the passed value is a valid IP, set the internally stored IP to the given IP address. The function should throw an error if it receives invalid arguments
 
-Add another function to the `IP` prototype named `.toArray()`. This function requires no arguments, and should return the IP address as a fresh array (not a reference to the internal array, i.e. a clone).
+Add another function to the `IP` prototype named `.toArray()`. This function requires no arguments and should return the IP address as a fresh array (not a reference to the internal array, i.e. a clone).
 
 Finally, add a third function to the `IP` prototype named `.toString()`. This function should return the IP as a string in the normal dotted format.
 
@@ -678,7 +678,7 @@ Next, create a prototype called `Subnet`. The constructor should require two arg
 
 Add a function named `.toString()` to the `Subnet` prototype which will return a string consisting of the IP address as a string, followed by a forward slash, and then `255.0.0.0` for class A subnets, `255.255.0.0` for class B subnets, and `255.255.255.0` for class C subnets.
 
-Finally, add a function named `.test()` to the `Subnet` prototype for testing if a given IP is within the represented subnet. The function should require one argument, an IP object. If the subnet is a class A, check that the first part of the given IP matches the first part of the internal IP of the subnet. If class B, check the first two parts, and if class C, the first three. The function should return `true` if the IP is within the subnet, and `false` otherwise, including on invalid arguments.
+Finally, add a function named `.test()` to the `Subnet` prototype for testing if a given IP is within the represented subnet. The function should require one argument: an IP object. If the subnet is a class A, check that the first part of the given IP matches the first part of the internal IP of the subnet. If class B, check the first two parts, and if class C, the first three. The function should return `true` if the IP is within the subnet, and `false` otherwise, including on invalid arguments.
 
 Finally, test your prototypes by creating a subnet from playground inputs 1 and 2, and testing it against an IP address from playground input 3.
 

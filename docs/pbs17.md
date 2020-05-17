@@ -2,7 +2,7 @@
 
 At this stage in the series we have made very good progress towards understanding the core JavaScript language. However, there is still one very important piece missing – objects. We have mentioned them in passing in almost every instalment, and each time, we put them off until later. We finally remedy that in this instalment.
 
-# Matching Podcast Episode 444
+## Matching Podcast Episode 444
 
 Listen Along: Chit Chat Across the Pond Episode 444
 
@@ -16,7 +16,7 @@ This is the penultimate instalment for which we’ll be using our JavaScript pla
 
 ## Solution to Instalment 16 Challenge
 
-At the end of the previous instalment, I set an optional challenge, and promised to provide a possible solution in the next instalment. The challenge was to write a function for transforming the inputs in the PBS playground by applying a callback to every value, and to test that function by calling it with callbacks for squaring and cubing the inputs.
+At the end of the previous instalment, I set an optional challenge and promised to provide a possible solution in the next instalment. The challenge was to write a function for transforming the inputs in the PBS playground by applying a callback to every value, and to test that function by calling it with callbacks for squaring and cubing the inputs.
 
 Remember, there are infinitely many correct solutions to any programming problem, so this is just one possible solution:
 
@@ -60,7 +60,7 @@ inputTransformer(function(n){return n * n * n });
 
 ## Plain Objects
 
-The simplest objects are so-called plain objects – they are data structures for holding data. If you know JSON, they will look very familiar to you indeed, because JSON stands for JavaScript Object Notation! The JSON standard has drifted a little away from pure JavaScript, so JavaScript objects are not identical to JSON anymore, but they are still extremely similar.
+The simplest objects are so-called plain objects – they are data structures for holding data. If you know JSON, they will look very familiar to you indeed, because JSON stands for JavaScript Object Notation! The JSON standard has drifted a little away from pure JavaScript. So JavaScript objects are not identical to JSON anymore, but they are still extremely similar.
 
 An object is a collection of name-value pairs. You declare an empty object like so:
 
@@ -75,9 +75,9 @@ myObject.someProperty = 4;
 myObject['someOtherProperty'] = 5;
 ```
 
-If the name of your property meets the rules for the names of variables, then both notations will work. If your have a property name that does not meet the rules for variable names, say, it stats with a digit, or has a space in it, then you must use the second notation (the one with the square brackets).
+If the name of your property meets the rules for the names of variables, then both notations will work. If you have a property name that does not meet the rules for variable names, say, it starts with a digit, or has a space in it, then you must use the second notation (the one with the square brackets).
 
-You don’t have to add the properties one-by-one after you create the object, you can add properties as you create an object using the following notation:
+You don’t have to add the properties one-by-one after you create the object. You can add properties when you create an object using the following notation:
 
 ```javascript
 var myObject = {
@@ -96,7 +96,7 @@ var myObject = {
 };
 ```
 
-Like a variable, the values stored in objects can be literal values or references to other objects, so you can store objects in objects, arrays in objects, objects in arrays, and so on – allowing you to build up very complex data structures indeed.
+Like a variable, the values stored in objects can be literal values or references to other objects. So you can store objects in objects, arrays in objects, objects in arrays, and so on – allowing you to build up very complex data structures indeed.
 
 The following incomplete (because I’m too lazy to type it all) data structure gives you an idea of what is possible:
 
@@ -156,7 +156,7 @@ Object.keys(tlaLib).forEach(function(tla){
 
 ## Plain Objects & JSON
 
-What makes an object plain is that it contains only data. Plain objects can be converted into JSON strings, and, JSON strings can be converted into JavaScript plain objects.
+What makes an object plain is that it contains only data. Plain objects can be converted into JSON strings and JSON strings can be converted into JavaScript plain objects.
 
 JavaScript has built-in support for JSON – to go from a plain object to JSON use `JSON.stringify()`, and to go from a JSON string to a plain object use `JSON.parse()`.
 
@@ -178,15 +178,15 @@ var tlaLibCopy = JSON.parse(tlaJSON);
 
 ## ‘Un-Plain’ Objects
 
-Plain objects are a sub-set of all objects. What makes them plain is that they only contain data, that is to say, literals, arrays, and other plain objects. Once you add something to an object that is not a literal, array, or plain object, it ceases to be a plain object.
+Plain objects are a subset of all objects. What makes them plain is that they only contain data, that is to say, literals, arrays, and other plain objects. Once you add something to an object that is not a literal, array, or plain object, it ceases to be a plain object.
 
-The most obvious thing you can add to objects other than literals, arrays, or plain objects are functions. As soon as you add a function to an object, is ceases to be plain.
+The most obvious thing you can add to objects other than literals, arrays, or plain objects are functions. As soon as you add a function to an object, it ceases to be plain.
 
 Thanks to JSON, plain objects have become a big thing in JavaScript, but they are actually the exception rather than the norm.
 
-Philosophically, object oriented programming is about bundling data and the code that manipulates that data, into a single entity. For example, in JavaScript the `.forEach()` function comes bundled with an array, giving you the data, and a function for manipulating that data, all contained in a single object.
+Philosophically, object oriented programming is about bundling data, and the code that manipulates that data, into a single entity. For example, in JavaScript the `.forEach()` function comes bundled with an array, giving you the data, and a function for manipulating that data, all contained in a single object.
 
-When you add a function to an object, that function can access the object it belongs to with the keyword `this`. When you see `this`, mentally think of it as `"the object this function belongs to"`. `this` allows a function attached to an object to access the data within the object, and, to invoke other functions that are also attached to the object.
+When you add a function to an object, that function can access the object it belongs to with the keyword `this`. When you see `this`, mentally think of it as `"the object this function belongs to"`. `this` allows a function attached to an object to access the data within the object, and to invoke other functions that are also attached to the object.
 
 We’ll start with a really simple example – an object to represent a counter.
 
@@ -221,19 +221,19 @@ pbs.say(myCounter.getCount());
 
 As you can see, the data, and the functions for manipulating that data, are contained within a single structure. You can also see how the keyword `this` is used to access the object’s data from within the object’s functions.
 
-This is an un-prototyped object – we have built it entirely from scratch, making it a bespoke, one-off object. If we wanted a second counter, we would have to completely re-create it, duplicating all our code. Duplicating code is always a bad thing. Firstly, it’s wasted time and effort, and secondly, if you find a bug you have to remember to fix it in lots of different places.
+This is an non-prototyped object – we have built it entirely from scratch, making it a bespoke, one-off object. If we wanted a second counter, we would have to completely recreate it, duplicating all our code. Duplicating code is always a bad thing. Firstly, it’s wasted time and effort, and secondly, if you find a bug, you have to remember to fix it in lots of different places.
 
-What we need is sets of instructions for assembling multiple copies of the same kinds of objects. What we need are prototypes of some kind!
+What we need are sets of instructions for assembling multiple copies of the same kinds of objects. What we need are prototypes of some kind!
 
 ## Prototyped Objects
 
-Different programming languages implement objects in different ways. JavaScript does it in its own unique and special way – it is a prototype-based object oriented languages. If you are used to thinking of objects in terms of _classes_, like you would in Java or C++, JavaScript’s paradigm will take some getting used to. Beginners are very much at an advantage here – a lack of misleading pre-conceptions is definitely helpful when it comes to JavaScript objects.
+Different programming languages implement objects in different ways. JavaScript does it in its own unique and special way – it is a prototype-based object oriented language. If you are used to thinking of objects in terms of _classes_, like you would in Java or C++, JavaScript’s paradigm will take some getting used to. Beginners are very much at an advantage here – a lack of misleading preconceptions is definitely helpful when it comes to JavaScript objects.
 
 If you want to create lots of similar objects, you start by defining a so-called _constructor function_, which will create the data elements for your objects. JavaScript will automatically associate a prototype with that constructor function, and you then add your functions to that prototype.
 
 So, in JavaScript, defining a custom object prototype is a two-step process:
 
-1.  Define a constructor function – the name of that function will be the name of your prototype. This function should initialise any data attributes objects created from this prototype will contain (using the `this` keyword.
+1.  Define a constructor function – the name of that function will be the name of your prototype. This function should initialise any data attribute objects created from this prototype (using the `this` keyword).
 2.  Add functions to the prototype that belongs to your constructor function.
 
 By convention, JavaScript constructor functions, and hence, prototypes, are named in camel case with a leading capital, hence the built-in prototypes `Array`, `String`, `Boolean`, and `Object`.
@@ -320,7 +320,7 @@ counter2.reset();
 pbs.say('counter 1 = ' + counter1.count() + ', counter 2 = ' + counter2.count());
 ```
 
-Notice that we can pass values to the constructor function to set defaults. Also, notice that the behaviour of the `count()` function changes depending on whether or not you pass it arguments – it allows you to get and/or set the value in the counter. This is a very common design pattern in JavaScript. Finally, notice the inner variable is pre-fixed with an `_`. This is a convention for marking the variable as private. It does not actually prevent access to the variable, but serves as an indication to programmers using your prototype that they are using it incorrectly (there are advanced techniques for creating truly private variables, but we’ll leave those for another day).
+Notice that we can pass values to the constructor function to set defaults. Also, notice that the behaviour of the `count()` function changes depending on whether or not you pass it arguments – it allows you to get and/or set the value in the counter. This is a very common design pattern in JavaScript. Finally, notice the inner variable is prefixed with an `_`. This is a convention for marking the variable as private. It does not actually prevent access to the variable, but serves as an indication to programmers using your prototype that they are using it incorrectly (there are advanced techniques for creating truly private variables, but we’ll leave those for another day).
 
 ### Accessing `this` from Within Anonymous Functions
 
@@ -450,7 +450,7 @@ if(guesses.length == 0){
 }
 ```
 
-Notice that within the `guess()` function of the `GuessingGame` prototype, we have a callback that needs to access some of the object’s properties. We create a variable named `self`, and assign it the value `this`. Then, within the callback, we use `self` where ever we would normally use `this`.
+Notice that within the `guess()` function of the `GuessingGame` prototype, we have a callback that needs to access some of the object’s properties. We create a variable named `self` and assign it the value `this`. Then, within the callback, we use `self` where ever we would normally use `this`.
 
 ### Testing if an Object has a Prototype
 
@@ -513,19 +513,19 @@ pbs.say(ctr instanceof Counter);
 pbs.say(a instanceof Counter);
 ```
 
-## PBS JavaScript Cheat-Sheet
+## PBS JavaScript CheatSheet
 
-The [JavaScript cheat-sheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) has been updated to include the contents of this instalment.
+The [JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) has been updated to include the contents of this instalment.
 
 ## A Challenge
 
-First, build a prototype called `Quotation`. `Quotation` objects should contain two pieces of data, a quotation, and a name. The constructor should require two arguments, both strings, the first a quotation, the second the name the person who said it. The prototype should also provide accessor methods allowing the quotation and name be updated. Name these functions `.quote()` and `.by()`. The prototype should also contain a function which returns the quotation as a nicely formatted string – the quotation appearing first and surrounded by quotation marks, then a dash, and then the name of the person. Call this function `.toString()`.
+First, build a prototype called `Quotation`. `Quotation` objects should contain two pieces of data, a quotation and a name. The constructor should require two arguments, both strings, the first a quotation, the second the name of the person who said it. The prototype should also provide accessor methods allowing the quotation and name be updated. Name these functions `.quote()` and `.by()`. The prototype should also contain a function which returns the quotation as a nicely formatted string – the quotation appearing first and surrounded by quotation marks, then a dash, and then the name of the person. Call this function `.toString()`.
 
-Secondly, build a second prototype called `RandomQuoter`. `RandomQuoter` objects should contain a single piece of data, an array of `Quotation` objects. The constructor should optionally be able to take an arbitrary number of arguments, and any of them that are `Quotation` objects should get stored. The prototype should contain a function named `.empty()` that blanks the stored array of quotations. The prototype should also contain a function named `.add()`, which should take an arbitrary number of `Quotation` objects as arguments, and append them to the stored quotations. For convenience, you might want to write `.add()` so it can also accept quotes in an array passed as the first argument. Finally, the prototype should contain a function named `.quote()` which returns a random quotation from the set of stored quotations as a string. If the object does not contain any quotations, `.quote()` should return `undefined`.
+Secondly, build a second prototype called `RandomQuoter`. `RandomQuoter` objects should contain a single piece of data: an array of `Quotation` objects. The constructor should optionally be able to take an arbitrary number of arguments, and any of them that are `Quotation` objects should get stored. The prototype should contain a function named `.empty()` that blanks the stored array of quotations. The prototype should also contain a function named `.add()`, which should take an arbitrary number of `Quotation` objects as arguments, and append them to the stored quotations. For convenience, you might want to write `.add()` so it can also accept quotes in an array passed as the first argument. Finally, the prototype should contain a function named `.quote()` which returns a random quotation from the set of stored quotations as a string. If the object does not contain any quotations, `.quote()` should return `undefined`.
 
-Test your prototypes by building an object containing some of your favourite quotations, and printing three of them at random.
+Test your prototypes by building an object containing some of your favourite quotations and printing three of them at random.
 
-For extra credit, add the ability for your `Quotation` objects to store an optional explanatory note. Your constructor should accept such a note as a third optional argument, there should be an accessor function for it named `.note()`, and, the `.toString()` function should render the note in parenthesis after the name.
+For extra credit, add the ability for your `Quotation` objects to store an optional explanatory note. Your constructor should accept such a note as a third optional argument. There should be an accessor function for it named `.note()`. The `.toString()` function should render the note in parenthesis after the name.
 
 ## Conclusions
 

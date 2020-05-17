@@ -1,10 +1,10 @@
 # PBS 19 of X – Some JavaScript Challenges
 
-While recording [instalment 18](https://www.bartbusschots.ie/s/2016/07/06/pbs-18-js-misc/) of the [Programming by Stealth series](https://www.bartbusschots.ie/s/blog/programming-by-stealth/), I promised Allison some challenges to help listeners test and hone their understanding of the core JavaScript language. Since we’ve now covered pretty much the whole language in the series, it’s the perfect time to pause and consolidate that knowledge.
+While recording [instalment 18](https://pbs.bartificer.net/pbs18/) of the [Programming by Stealth series](https://www.bartbusschots.ie/s/blog/programming-by-stealth/), I promised Allison some challenges to help listeners test and hone their understanding of the core JavaScript language. Since we’ve now covered pretty much the whole language in the series, it’s the perfect time to pause and consolidate that knowledge.
 
 These challenges are designed to be run in the [PBS JavaScript Playground](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/). You may also find the [PBS JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) helpful.
 
-# Matching Podcast Episode 449
+## Matching Podcast Episode 449
 
 Listen Along: Chit Chat Across the Pond Episode 449
 
@@ -28,14 +28,14 @@ for(var i = 1; i <= 12; i++){
 
 Write code to print out the Fibonacci series of numbers, stopping after the numbers go above 1,000,000 (you may print one number that is above 1,000,000, but no more).
 
-The first two numbers in the series are 0 and 1, after that, the next number in the series is the sum of the previous two numbers.
+The first two numbers in the series are 0 and 1. After that, the next number in the series is the sum of the previous two numbers.
 
 Build up your solution in the following way:
 
 1.  Create an array named `fibonacci` with two initial values – 0, and 1.
 2.  Write a `while` loop that will keep going until the value of the last element of the fibonacci array is greater than 1,000,000. Inside the `while` loop, do the following:
-    1.  Calculate the next Fibonacci number by adding the last two elements in the `fibonacci` array together.
-    2.  Add this new value to the end of the `fibonacci` array.
+     1. Calculate the next Fibonacci number by adding the last two elements in the `fibonacci` array together.
+     1. Add this new value to the end of the `fibonacci` array.
 3.  Print the Fibonacci series, one element per line, by converting the `fibonacci` array into a string separated by newline characters.
 
 ### Solution
@@ -53,7 +53,7 @@ pbs.say(fibonacci.join('\n'));
 
 This is a total cliché, and very common as an interview question. It tests if a programmer understands programming basics like loops and conditionals.
 
-Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number, and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.
+Write a program that prints the numbers from 1 to 100. But for multiples of three, print “Fizz” instead of the number. For the multiples of five, print “Buzz”. For numbers which are multiples of both three and five, print “FizzBuzz”.
 
 ### Solution
 
@@ -83,7 +83,7 @@ Write a function to calculate the factorial of an arbitrary number. Name the fun
 
 As a reminder, the factorial of 0 is 1, and the factorial of any positive number, `n`, is defined as `n` times the factorial of `n - 1`.
 
-You can write your solution either using a loop of your choice, or, using recursion.
+You can write your solution either using a loop of your choice or using recursion.
 
 Test your function by calculating the factorial of the inputs in the PBS playground. If no inputs are set, print a message telling the user to enter numbers into the inputs.
 
@@ -251,14 +251,14 @@ Build up your solution in the following way:
     };
     ```
 
-4)  Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
+4.  Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
 
-    1.  In the general case, where both real and imaginary parts are non-zero, return a string of the following form: `'(2 + 3i)'`. If the imaginary number is negative, change the `+` to a `-`.
-    2.  If the imaginary part is exactly 1, just show it as `i`.
-    3.  If either of the parts are equal to zero, omit the parentheses.
-    4.  If the real and imaginary parts are both zero, just return the string `'0'`.
-    5.  If only the imaginary part is zero, return just the real part as a string.
-    6.  If only the real part is zero, return just the imaginary part as a string followed by the letter `i`.
+     1. In the general case, where both real and imaginary parts are non-zero, return a string of the following form: `'(2 + 3i)'`. If the imaginary number is negative, change the `+` to a `-`.
+     2. If the imaginary part is exactly 1, just show it as `i`.
+     3. If either of the parts are equal to zero, omit the parentheses.
+     4. If the real and imaginary parts are both zero, just return the string `'0'`.
+     5. If only the imaginary part is zero, return just the real part as a string.
+     6. If only the real part is zero, return just the imaginary part as a string followed by the letter `i`.
 
     ### Partial Solution
 
@@ -443,7 +443,7 @@ Build up your solution in the following way:
     pbs.say(cn3.toString());
     ```
 
-8.  Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code, instead, update the constructor function to check if there are one or two arguments, and if there are, call the `parse` function with the appropriate arguments.
+8.  Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code. Instead, update the constructor function to check if there are one or two arguments. If there are, call the `parse` function with the appropriate arguments.
 
     ### Partial Solution
 
@@ -495,7 +495,6 @@ Build up your solution in the following way:
 
 10. Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
 
-
     ### Partial Solution
 
     ```javascript
@@ -521,7 +520,6 @@ Build up your solution in the following way:
 
 11. In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
 
-
     ### Partial Solution
 
     ```javascript
@@ -546,7 +544,6 @@ Build up your solution in the following way:
     ```
 
 12. Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
-
 
     `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
 
@@ -579,8 +576,7 @@ Build up your solution in the following way:
     };
     ```
 
-13. Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vica-versa_.
-
+13. Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vice-versa_.
 
     ### Partial Solution
 
