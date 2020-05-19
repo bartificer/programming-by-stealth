@@ -1,10 +1,10 @@
 # PBS 22 of X – jQuery Events
 
-In the previous instalments we experimented with jQuery using the web console on our [dummy page](https://www.bartbusschots.ie/pbsdemos/pbs-dummyPage/). In this instalment we’ll learn how to embed JavaScript into web pages, and, how to attach our code so it gets triggered by browser events.
+In the previous instalments we experimented with jQuery using the web console on our [dummy page](https://www.bartbusschots.ie/pbsdemos/pbs-dummyPage/). In this instalment we’ll learn how to embed JavaScript into web pages, and how to attach our code so it gets triggered by browser events.
 
 This instalment includes a number of examples. You can copy-and-paste the code out of the page, but for convenience I’ve zipped up all the files and you can [download them here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/09/pbs22.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs22.zip).
 
-# Matching Podcast Episode 457
+## Matching Podcast Episode 457
 
 Listen Along: Chit Chat Across the Pond Episode 457
 
@@ -16,7 +16,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge was simply to write a JQuery command to set the `target` of all links in the main content region of the [dummy page](https://www.bartbusschots.ie/pbsdemos/pbs-dummyPage/) to `_blank`.
 
-There is no one solution to a problem like this, so below are two different correct solutions.
+There is no one solution to a problem like this. Below are two different correct solutions.
 
 1.  The first approach is to use the CSS containment selector (space) to limit the results to just `a` elements within the `main` element:
 
@@ -32,11 +32,11 @@ There is no one solution to a problem like this, so below are two different corr
 
 ## Embedding JavaScript in Web Pages
 
-Back in [instalment 6](https://www.bartbusschots.ie/s/2016/01/08/programming-by-stealth-6-of-x-introducing-css/) we learned that there were two ways to include CSS code in a web page – by linking to an external stylesheet, or, by embedding CSS code directly into the page.
+Back in [instalment 6](https://pbs.bartificer.net/pbs6) we learned that there were two ways to include CSS code in a web page – by linking to an external stylesheet, or by embedding CSS code directly into the page.
 
-JavaScript can similarly be included into a page in two ways – by linking to an external script, or, by embedding JavaScript directly into a page. Like with CSS, it’s generally preferable to link to an external file – it will provide a much neater separation between your HTML code, your CSS code, and your JavaScript code. However, if you only have a small amount of code to include, the addition of a separate file could be considered over complication. The examples in this instalment embed JavaScript directly into HTML pages for simplicity.
+JavaScript can similarly be included into a page in two ways – by linking to an external script, or by embedding JavaScript directly into a page. As with CSS, it’s generally preferable to link to an external file – it will provide a much neater separation between your HTML code, your CSS code, and your JavaScript code. However, if you only have a small amount of code to include, the addition of a separate file could be considered over complication. The examples in this instalment embed JavaScript directly into HTML pages for simplicity.
 
-Regardless of whether you’re linking to an external file, or directly embedding your JavaScript, you will be using the `script` tag. The HTML specification was designed to support multiple possible scripting languages into the future. The reality today is that there is only one browser scripting language with cross-browser support, and that’s JavaScript. Because of the possibility of other languages in the future, the `script` tag supports the `type` attribute to specify the language being used. The value for this attribute should be the [MIME Type](https://en.wikipedia.org/wiki/Media_type) for the scripting language, so we will be using `text/javascript`. Today, browsers default to treating `script` tags without a `type` attribute as JavaScript, but I generally prefer to be explicit, so I tend to specify a `type` regardless.
+Regardless of whether you’re linking to an external file, or directly embedding your JavaScript, you will be using the `script` tag. The HTML specification was designed to support multiple possible scripting languages into the future. The reality today is that there is only one browser scripting language with cross-browser support, and that’s JavaScript. Because of the possibility of other languages in the future, the `script` tag supports the `type` attribute to specify the language being used. The value for this attribute should be the [MIME Type](https://en.wikipedia.org/wiki/Media_type) for the scripting language. So we will be using `text/javascript`. Today, browsers default to treating `script` tags without a `type` attribute as JavaScript. I generally prefer to be explicit, so I tend to specify a `type` regardless.
 
 ### Linking to an External Script
 
@@ -76,13 +76,13 @@ The jQuery project makes the jQuery library available via a CDN. They offer samp
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 ```
 
-You’ll see that they also suggest using another attribute – `crossorigin`, this is another security feature, telling the browser that we are intentionally downloading code from a remote server, and that that code should be granted certain privileges that would ordinarily be denied it. For those extra privileges to be granted, the server hosting the code must set a HTTP header giving its consent. CDNs hosting JavaScript code should have that header in place.
+You’ll see that they also suggest using another attribute – `crossorigin`. This is another security feature, telling the browser that we are intentionally downloading code from a remote server, and that that code should be granted certain privileges that would ordinarily be denied it. For those extra privileges to be granted, the server hosting the code must set a HTTP header giving its consent. CDNs hosting JavaScript code should have that header in place.
 
 ### The `noscript` Tag
 
 The `noscript` tag allows you to specify content that will only be displayed when JavaScript is disabled.
 
-All modern browsers do support JavaScript, but users may be using plugins to block it, so the `noscript` tag is still useful today. If your page needs JavaScript in order to function, you might include something like the code shown below as a courtesy to users with JavaScript disabled for what ever reason:
+All modern browsers do support JavaScript, but users may be using plugins to block it, so the `noscript` tag is still useful today. If your page needs JavaScript in order to function, you might include something like the code shown below as a courtesy to users with JavaScript disabled for whatever reason:
 
 ```html
 <noscript>
@@ -99,17 +99,17 @@ Clearly, if we want our code to interact with the DOM, it needs to run at some t
 
 ## The Browser Event Model
 
-The web browser monitors for all kinds of activities, and when they happen, it triggers a so-called _event_. These events can be triggered by all sorts of things – when the DOM is finished building, the browser triggers an event. When an image is finished loading, the browser triggers an event. When the user moves the mouse, the browser triggers an event. When the user clicks the mouse, the browser triggers an event. When the user presses a key, the browser triggers an events. And on and on and on. Just about everything that happens in a browser triggers an event.
+The web browser monitors for all kinds of activities. When they happen, it triggers a so-called _event_. These events can be triggered by all sorts of things – when the DOM is finished building, the browser triggers an event. When an image is finished loading, the browser triggers an event. When the user moves the mouse, the browser triggers an event. When the user clicks the mouse, the browser triggers an event. When the user presses a key, the browser triggers an events. And on and on and on. Just about everything that happens in a browser triggers an event.
 
-Many of these events have a target associated with them. Specific images finish loading, the user clicks on specific things, they type when specific fields have focus, etc..
+Many of these events have a target associated with them. Specific images finish loading, the user clicks on specific things, they type when specific fields have focus, etc.
 
-JavaScript allows us to attach so-called _listeners_ to events that happen to specific targets. A listener is simply a reference to a function, AKA a callback, and when the browser triggers an event, it will execute all the defined listeners attached to the relevant targets. This allows us to execute a specific function when the user clicks on a certain button, or to execute a particular function when a specific image loads, or, to execute a specific function when the DOM finishes building. It should also be noted that there is no limit to how many functions you attach to a listener. We could execute a thousand different functions when the DOM finishes loading, or when the user moves the mouse, or what ever.
+JavaScript allows us to attach so-called _listeners_ to events that happen to specific targets. A listener is simply a reference to a function, AKA a callback. When the browser triggers an event, it will execute all the defined listeners attached to the relevant targets. This allows us to execute a specific function when the user clicks on a certain button, or to execute a particular function when a specific image loads, or to execute a specific function when the DOM finishes building. It should also be noted that there is no limit to how many functions you attach to a listener. We could execute a thousand different functions when the DOM finishes loading, or when the user moves the mouse, or whatever.
 
 Events are part of the browser, not part of jQuery, and you can use the basic DOM to interact with them. However, like with so much related to the DOM, jQuery makes it easier to work with events. This is why we will learn how to attach listeners to events using jQuery.
 
 ## Events and jQuery
 
-JQuery supports many different kinds of events, and rather than list them all now, we’ll encounter them naturally over the next few instalments.
+JQuery supports many different kinds of events. Rather than list them all now, we’ll encounter them naturally over the next few instalments.
 
 ### The Document Ready Event
 
@@ -129,7 +129,7 @@ function fixLinks(){
 
 Again, notice the use of function chaining. When reading this code we need to break the statement apart at the dots (period symbols/full stops), and work our way from left to right, figuring what each part evaluates to before moving on.
 
-`$('a')` returns a jQuery object representing all links on the page. We then call the `attr()` function on that object with two arguments, that means we are setting the value of the attribute named in the first argument (`target`) to the value of the second argument (`_blank`). Because we are altering the HTML elements represented by the jQuery object rather than querying them for a value, the `attr()` function will return a reference to the object it was called on, i.e., to our jQuery object representing all links in the page. Finally, we apply the `attr()` function to the jQuery object again, setting another attribute to a new value, this time `rel` to `noopener`.
+`$('a')` returns a jQuery object representing all links on the page. We then call the `attr()` function on that object with two arguments. That means we are setting the value of the attribute named in the first argument (`target`) to the value of the second argument (`_blank`). Because we are altering the HTML elements represented by the jQuery object rather than querying them for a value, the `attr()` function will return a reference to the object it was called on, i.e., to our jQuery object representing all links in the page. Finally, we apply the `attr()` function to the jQuery object again, setting another attribute to a new value, this time `rel` to `noopener`.
 
 Now that we have written this function, we want to tell the browser to run it when it’s finished building the DOM. This is something you want to do so often that jQuery has built it directly into the `$()` function. If you pass the `$()` function a reference to a function (a callback) as the first argument, it will set that function to execute when the browser triggers the event signifying that the DOM is ready:
 
@@ -196,7 +196,7 @@ $('p').click(function(){
 });
 ```
 
-A very important subtly is that you have to add this event handler after the DOM has loaded, otherwise, the call to `$('p')` will not find the paragraphs! So, you need to add all other event handlers inside the event handler for the DOM becoming ready:
+A very important subtlety is that you have to add this event handler after the DOM has loaded. Otherwise, the call to `$('p')` will not find the paragraphs! So, you need to add all other event handlers inside the event handler for the DOM becoming ready:
 
 ```javascript
 // initialise the page - executed when the DOM is ready
@@ -286,7 +286,7 @@ As well as events, the browser has a second mechanism for triggering code to run
 
 ### Timeouts
 
-The built-in JavaScript function `setTimeout()` is used to create a timeout. This function can operate in two modes, a modern best-practice mode, and a legacy mode. We will be ignoring the legacy mode completely. When used in the modern mode, the function expects a reference to a function (AKA a callback) as the first argument, the number of milliseconds to wait as the second argument, and, any arguments to be passed to the callback as the third argument and beyond. It’s very common to use an anonymous function as the first argument.
+The built-in JavaScript function `setTimeout()` is used to create a timeout. This function can operate in two modes, a modern best-practice mode and a legacy mode. We will be ignoring the legacy mode completely. When used in the modern mode, the function expects a reference to a function (AKA a callback) as the first argument, the number of milliseconds to wait as the second argument, and any arguments to be passed to the callback as the third argument and beyond. It’s very common to use an anonymous function as the first argument.
 
 As a simple example, the following code will put up an alert 5 seconds after the page loads:
 
@@ -347,7 +347,7 @@ When you create a timeout, the browser assigns it a numeric identifier, which is
 
 Intervals are very similar to timeouts, but they are set and cleared using `setInterval()` and `clearInterval()`. Both of these functions expect the same arguments as `setTimeout()` and `clearTimeout()`.
 
-Popping up an alert every 5 seconds would be very annoying, so let’s not do that as an example. Instead, let’s toggle the `highlighted` class on all paragraphs every 3 seconds:
+Popping up an alert every 5 seconds would be very annoying. So let’s not do that as an example. Instead, let’s toggle the `highlighted` class on all paragraphs every 3 seconds:
 
 ```javascript
 // create an anonymous function that will run when the DOM loads
@@ -507,18 +507,18 @@ tincidunt ex.</p>
 </html>
 ```
 
-1.  In the `script` element within the `head` element, declare a variable named blinkIntervalID with the value `0` (this variable will be in the global scope)
-2.  Below your variable declaration, declare a function named `toggleBlinking()`. This function will take no arguments, and return nothing. If the current value of the global variable `blinkIntervalID` is `0`, this function should create a new interval which will toggle the class `highlighted` on all paragraphs every second, and save the interval ID into the global variable `blinkIntervalID`. If the current value of the global variable `blinkIntervalID` is not `0`, the function should cancel the interval who’s ID is stored in the global variable `blinkIntervalID`, and set the variable to `0`.
+1.  In the `script` element within the `head` element, declare a variable named blinkIntervalID with the value `0` (this variable will be in the global scope).
+2.  Below your variable declaration, declare a function named `toggleBlinking()`. This function will take no arguments, and return nothing. If the current value of the global variable `blinkIntervalID` is `0`, this function should create a new interval which will toggle the class `highlighted` on all paragraphs every second, and save the interval ID into the global variable `blinkIntervalID`. If the current value of the global variable `blinkIntervalID` is not `0`, the function should cancel the interval whose ID is stored in the global variable `blinkIntervalID`, and set the variable to `0`.
 3.  Create an anonymous function that will execute when the DOM has finished loading. Inside this function, add an event handler to every paragraph that will call the function `toggleBlinking()` every time the user clicks on a paragraph.
 
-Test you code by clicking on any paragraph. The `highlight` style should start being applied and un-applied every second. You should be able to stop this by clicking on any paragraph. You should be able to stop and start the blinking as often as you like by continuing to click on paragraphs.
+Test your code by clicking on any paragraph. The `highlight` style should start being applied and unapplied every second. You should be able to stop this by clicking on any paragraph. You should be able to stop and start the blinking as often as you like by continuing to click on paragraphs.
 
 Remember that any errors your code generates will be written to the JavaScript console. You can also write to the console from within your code using the function `console.log()`. You can log text, but also the value stored within variables, even complex ones like arrays and objects. The `console.log()` function expects at least one argument, and it will log all arguments you pass it.
 
 ## Conclusions
 
-We’re now well on the way to being front-end web programmers. We know how to define the structure of a web page with HTML, how to style it with CSS, and we can now embed JavaScript code into web pages and get it to run when certain events or timers fire. We’ve also learned how to use jQuery to interrogate and alter the style and attributes of one or more HTML elements on a page.
+We’re now well on the way to being front-end web programmers. We know how to define the structure of a web page with HTML and how to style it with CSS. We can now embed JavaScript code into web pages and get it to run when certain events or timers fire. We’ve also learned how to use jQuery to interrogate and alter the style and attributes of one or more HTML elements on a page.
 
-While we have learned a lot, we still have a lot to learn. There are many more kinds of event we can attach our code to, we have not learned anything about HTML form tags yet – buttons, text fields, dropdown, etc., and we’ve only scratched the surface of what jQuery can do. So far we’ve been using jQuery to alter existing HTML elements, we can also use it to build new elements from scratch and inject them into the DOM, and, remove existing elements from the DOM.
+While we have learned a lot, we still have a lot to learn. There are many more kinds of events we can attach our code to. We have not learned anything about HTML form tags yet – buttons, text fields, dropdown, etc., and we’ve only scratched the surface of what jQuery can do. So far we’ve been using jQuery to alter existing HTML elements. We can also use it to build new elements from scratch and inject them into the DOM, and remove existing elements from the DOM.
 
 In other words, we still have a lot to look forward to!

@@ -1,18 +1,18 @@
 # PBS 23 of x – Creating Elements with jQuery
 
-So far in this series we have been using jQuery to alter existing HTML elements by changing their attributes or style. In this instalment we take things to the next level, and learn how to use jQuery to create entirely new HTML elements, and inject them into the DOM, and hence, into the web page.
+So far in this series we have been using jQuery to alter existing HTML elements by changing their attributes or style. In this instalment we take things to the next level, and learn how to use jQuery to create entirely new HTML elements and inject them into the DOM, and hence, into the web page.
 
-We’ll be working towards our first truly practical assignment in the series – a function that finds all links on a page, and if, and only if, they lead to an external page, alters them to open in a new tab, and appends an icon indicating that fact. In order to work up to that we need to learn five new things:
+We’ll be working towards our first truly practical assignment in the series – a function that finds all links on a page, and if, and only if, they lead to an external page, alters them to open in a new tab, and appends an icon indicating that fact. In order to work up to that, we need to learn five new things:
 
 1.  How to build HTML elements with jQuery
 2.  How to inject HTML elements into the DOM
 3.  How to loop through each element represented by a jQuery object
 4.  How to embed images directly into web pages using Data URLs
-5.  How to use the 3rd-party library URI.js to interrogate URLs
+5.  How to use the third-party library URI.js to interrogate URLs
 
-There are four examples in this instalment, and a starting-point for the challenge. I’ve gathered them, and the other files they depend on, into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs23.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs23.zip). It’s assumed that you’ll extract this ZIP file and place the five HTML files and one folder it contains into a folder named `pbs23` in your local web server’s htdocs folder. The folder is particularly important because it contains a copy of the URI.js library, and if it’s not in the same folder as `pbs23d.html` and `pbs23-assignment.html`, those pages won’t work.
+There are four examples in this instalment, and a starting point for the challenge. I’ve gathered them, and the other files they depend on, into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs23.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs23.zip). It’s assumed that you’ll extract this ZIP file and place the five HTML files and one folder it contains into a folder named `pbs23` in your local web server’s htdocs folder. The folder is particularly important because it contains a copy of the URI.js library, and if it’s not in the same folder as `pbs23d.html` and `pbs23-assignment.html`, those pages won’t work.
 
-# Matching Podcast Episode 459
+## Matching Podcast Episode 459
 
 Listen Along: Chit Chat Across the Pond Episode 459
 
@@ -22,13 +22,13 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to PBS 22 Challenge
 
-But first, below is a solution to the challenge I set at the end of [the previous instalment](https://bartificer.net/pbs22). I provided an HTML file as a starting point, and then set the following tasks:
+But first, below is a solution to the challenge I set at the end of [the previous instalment](https://pbs.bartificer.net/pbs22). I provided an HTML file as a starting point, and then set the following tasks:
 
 1.  In the `script` element within the `head` element, declare a variable named blinkIntervalID with the value `0` (this variable will be in the global scope)
 2.  Below your variable declaration, declare a function named `toggleBlinking()`. This function will take no arguments, and return nothing. If the current value of the global variable `blinkIntervalID` is `0`, this function should create a new interval which will toggle the class `highlighted` on all paragraphs every second, and save the interval ID into the global variable `blinkIntervalID`. If the current value of the global variable `blinkIntervalID` is not `0`, the function should cancel the timeout who’s ID is stored in the global variable `blinkIntervalID`, and set the variable to `0`.
 3.  Create an anonymous function that will execute when the DOM has finished loading. Inside this function, add an event handler to every paragraph that will call the function `toggleBlinking()` every time the user clicks on a paragraph.
 
-Below is my solution to the assignment. Just a reminder that when it comes to programming, there are an infinity of possible correct solutions, so if your code works, but look different to mine, that’s just fine!
+Below is my solution to the assignment. Just a reminder that when it comes to programming, there are an infinity of possible correct solutions, so if your code works, but looks different from mine, that’s just fine!
 
 ```html
 <!DOCTYPE HTML>
@@ -150,25 +150,27 @@ var $img = $('<img src="x.png" alt="an image" title="an image" />');
 var $img = $('<img />').attr('src', 'x.png').attr('alt', 'an image').attr('title', 'an image');
 ```
 
-My preference is for the second style, so that’s what you’ll see me use in examples throughout this series.
+My preference is for the second style. So that’s what you’ll see me use in examples throughout this series.
 
-When we create HTML elements in this way, they exist, but they are not part of the page. It’s almost like they are in a parallel dimension. For these elements to become visible, they need to be injected into to the DOM. JQuery provides a number of functions for doing this. These functions should be called on a jQuery object representing an existing element, they will then place the new element relative to the existing element in one of the following ways:
+When we create HTML elements in this way, they exist, but they are not part of the page. It’s almost like they are in a parallel dimension. For these elements to become visible, they need to be injected into to the DOM. JQuery provides a number of functions for doing this. These functions should be called on a jQuery object representing an existing element. They will then place the new element relative to the existing element in one of the following ways:
 
-`.before()`
+<dl>
+<dt><code>.before()</code></dt>
 
-Injects the new element into the DOM directly before the existing element.
+<dd>Injects the new element into the DOM directly before the existing element.</dd>
 
-`.after()`
+<dt><code>.after()</code></dt>
 
-Injects the new element into the DOM directly after the existing element.
+<dd>Injects the new element into the DOM directly after the existing element.</dd>
 
-`.prepend()`
+<dt><code>.prepend()</code></dt>
 
-Injects the new element into the DOM inside the existing element as the first child element.
+<dd>Injects the new element into the DOM inside the existing element as the first child element.</dd>
 
-`.append()`
+<dt><code>.append()</code></dt>
 
-Injects the new element into the DOM inside the existing element as the last child element.
+<dd>Injects the new element into the DOM inside the existing element as the last child element.</dd>
+</dl>
 
 Let’s pause for an example. The HTML page below contains a heading followed by some paragraphs of text. We’ll use jQuery to inject an `aside` element as the last element within the `body` element containing the character count for the paragraphs.
 
@@ -268,7 +270,7 @@ As we know, jQuery objects represent zero or more HTML elements. It’s easy to 
 $('p').css('color', 'red');
 ```
 
-However, sometimes we need to apply similar, but not identical, changes to each element represented by a jQuery object. In these kinds of situations, we need to loop through each element represented by the object one by one. Or – to put it another way, we need to iterate over the elements represented by the jQuery object. This is what jQuery’s `.each()` function is for. This function expects one argument, a callback, and it will execute that callback once for every element the object represents. Within the callback, the current DOM element will be available via the special `this` variable. As usual, to convert this DOM object to a jQuery object, pass it to the `$()` function, i.e. use `$(this)`.
+However, sometimes we need to apply similar, but not identical, changes to each element represented by a jQuery object. In these kinds of situations, we need to loop through each element represented by the object one by one. Or – to put it another way, we need to iterate over the elements represented by the jQuery object. This is what jQuery’s `.each()` function is for. This function expects one argument, a callback. It will execute that callback once for every element the object represents. Within the callback, the current DOM element will be available via the special `this` variable. As usual, to convert this DOM object to a jQuery object, pass it to the `$()` function, i.e. use `$(this)`.
 
 As an example, let’s alter our previous example so it also puts a count at the end of every paragraph.
 
@@ -362,7 +364,7 @@ tincidunt ex.</p>
 
 ## Images Via Data URLs
 
-Usually, a URL points to a location where data can be retrieved from, but, it’s possible to embed data directly into a URL using so-called _data URLs_. The part of a URL before the first `:` character is known as the URL’s _scheme_. We’re used to seeing the `http`, `https`, and perhaps `ftp` schemes, but there is also a `data` scheme. Using this scheme, it’s possible to encode base-64 encoded data directly into a URL.
+Usually, a URL points to a location where data can be retrieved from, but it’s possible to embed data directly into a URL using so-called _data URLs_. The part of a URL before the first `:` character is known as the URL’s _scheme_. We’re used to seeing the `http`, `https`, and perhaps `ftp` schemes, but there is also a `data` scheme. Using this scheme, it’s possible to encode base-64 encoded data directly into a URL.
 
 For our purposes, data URLs will take the following form (the spec is a little broader, but we’ll be ignoring the other possibilities):
 
@@ -533,13 +535,13 @@ The big advantage to using data URLs within JavaScript code is that you can shar
 
 The final piece we need to build our link enhancer is the ability to parse URLs into their component parts so we can analyse them. We could do this with regular expressions, but that’s not as straight forward as you might imagine – the specification defining valid URLs is actually quite complex.
 
-When you encounter a common problem like this, re-inventing the wheel is not a good approach. Instead, you should look to see if there’s an open source project that has already solved your problem for you. I don’t mean copying and pasting snippets of code from a web forum, I mean using a well packaged and well documented library of code that has been specifically designed to be re-used.
+When you encounter a common problem like this, reinventing the wheel is not a good approach. Instead, you should look to see if there’s an open source project that has already solved your problem for you. I don’t mean copying and pasting snippets of code from a web forum. I mean using a well packaged and well documented library of code that has been specifically designed to be reused.
 
-When code has been properly designed to be re-used, it will have a well defined and well documented list of available variables, functions, and/or prototypes. Collectively, this documented collection of functions etc. is known as an Application Programming Interface, or API. The API should be all you need to know to make use of a well packaged code library. We’ve already used one such code library in this series – jQuery.
+When code has been properly designed to be reused, it will have a well defined and well documented list of available variables, functions, and/or prototypes. Collectively, this documented collection of functions etc. is known as an Application Programming Interface, or API. The API should be all you need to know to make use of a well packaged code library. We’ve already used one such code library in this series – jQuery.
 
-OK, so we need to process URLs, we can’t possibly be the only JavaScript programmers to need that functionality, so there’s probably a well regarded library that solves this problem out there somewhere. A little Googling would tell you that the best regarded JavaScript library for interacting with URLs is [URI.js](https://medialize.github.io/URI.js/).
+OK, so we need to process URLs. We can’t possibly be the only JavaScript programmers to need that functionality. So there’s probably a well regarded library that solves this problem out there somewhere. A little Googling would tell you that the best regarded JavaScript library for interacting with URLs is [URI.js](https://medialize.github.io/URI.js/).
 
-This will not be an exhaustive look at URI.js. The documentation on their site is very good, so I’ll leave learning more as an exercise for the reader. Instead, I just want to highlight the parts of the API we’ll need to achieve our goals. Also note that URI.js integrates with jQuery.
+This will not be an exhaustive look at URI.js. The documentation on their site is very good. So I’ll leave learning more as an exercise for the reader. Instead, I just want to highlight the parts of the API we’ll need to achieve our goals. Also note that URI.js integrates with jQuery.
 
 Firstly, we can create a URI object representing the URL of the current page as follows:
 
@@ -569,7 +571,7 @@ You can read more about each of these functions, and learn about all the other f
 
 As a worked example, let’s create some code to add the class `external` to all links in a page that lead to a different site.
 
-External links are those that are not internal. A link is considered internal if either of the following are true; the link is relative, or, the domain the link points to is the same as the domain of the current page.
+External links are those that are not internal. A link is considered internal if either of the following are true: the link is relative or the domain the link points to is the same as the domain of the current page.
 
 Based on that, we could write a function to mark external links as external like so:
 
@@ -765,8 +767,8 @@ Using a slightly altered version of the fourth example (`pbs23-assignment.html` 
 
 ## Conclusions
 
-Hopefully, when you complete the assignment, you’ll have reached an important milestone in this series – our first truly practical piece of code that solves a common real-world problem. To get here we needed an understanding of HTML, CSS, the JavaScript language, and two third-party libraries – jQuery and URI.js.
+Hopefully, when you complete the assignment, you’ll have reached an important milestone in this series – our first truly practical piece of code that solves a common real world problem. To get here we needed an understanding of HTML, CSS, the JavaScript language, and two third-party libraries – jQuery and URI.js.
 
-In the next instalment we’ll tackle another real-world problem, we’ll create an embeddable clock that shows the time in a given timezone. This is something Allison needs for her website. She records her podcast live on Sundays at 5pm her time. To avoid timezone confusions, she would like visitors to her site to see a live clock showing the current time in her timezone.
+In the next instalment we’ll tackle another real world problem. We’ll create an embeddable clock that shows the time in a given timezone. This is something Allison needs for her website. She records her podcast live on Sundays at 5pm her time. To avoid timezone confusions, she would like visitors to her site to see a live clock showing the current time in her timezone.
 
-We already know all the pieces we need to create the clock, the new skill we’ll be learning is how to package our code so as to make it easy to embed into an existing site, and hence, easily re-usable by others. In other words, we’ll be making our own library with its own API for others to re-use on their own pages.
+We already know all the pieces we need to create the clock. The new skill we’ll be learning is how to package our code so as to make it easy to embed into an existing site, and hence, easily reusable by others. In other words, we’ll be making our own library with its own API for others to reuse on their own pages.

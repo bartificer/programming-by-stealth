@@ -1,12 +1,12 @@
 # PBS 21 of X – jQuery Basics
 
-In the [previous instalment](https://www.bartbusschots.ie/s/2016/09/01/pbs-20-js-in-the-browser/) we took our first tentative steps into the browser. We learned about the Javascript console, the concept of the Document Object Model, or DOM, and we introduced the jQuery library.
+In the [previous instalment](https://pbs.bartificer.net/pbs20) we took our first tentative steps into the browser. We learned about the Javascript console, the concept of the Document Object Model, or DOM, and we introduced the jQuery library.
 
-Our initial introduction to jQuery was very superficial, now, it’s time to dive in deeper, and get much more rigorous in our understanding. We’ll look at how to use jQuery to select specific HTML elements on the page, and then, how to manipulate their styling, and their HTML attributes.
+Our initial introduction to jQuery was very superficial. Now, it’s time to dive in deeper and get much more rigorous in our understanding. We’ll look at how to use jQuery to select specific HTML elements on the page, and then how to manipulate their styling and their HTML attributes.
 
-For this instalment we’ll still be using the Javascript console on the [PBS dummy page](https://www.bartbusschots.ie/pbsdemos/pbs-dummyPage/). From the next instalment on, we’ll be embedding our JavaScript directly into our web pages, so this will be the last time we use the dummy page.
+For this instalment we’ll still be using the Javascript console on the [PBS dummy page](https://www.bartbusschots.ie/pbsdemos/pbs-dummyPage/). From the next instalment on, we’ll be embedding our JavaScript directly into our web pages. This will be the last time we use the dummy page.
 
-# Matching Podcast Episode 455
+## Matching Podcast Episode 455
 
 Listen Along: Chit Chat Across the Pond Episode 455
 
@@ -16,7 +16,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Some Quick Revision
 
-Before moving into jQuery proper, let’s take a moment to refresh our memory of some HTML and CSS basics, and let’s take the time to define some terminology.
+Before moving into jQuery proper, let’s take a moment to refresh our memory of some HTML and CSS basics. Let’s take the time to define some terminology.
 
 ### HTML Tags, Elements & Attributes
 
@@ -59,7 +59,7 @@ All the following statements are true:
 
 ### CSS Selectors
 
-JQuery makes heavy use of CSS-style selectors, so let’s remind ourselves of what CSS selectors are, and what they do.
+JQuery makes heavy use of CSS-style selectors. Let’s remind ourselves of what CSS selectors are and what they do.
 
 Consider the following CSS snippet:
 
@@ -73,67 +73,71 @@ In the above CSS, the selector is `li`. This is a very simple selector, specifyi
 
 The job of a CSS selector is to specify a set of HTML elements.
 
-A single tag name is a very simplistic selector, as we learned in previous instalments, selectors get more complicated than that – here is a very quick refresher:
+A single tag name is a very simplistic selector. As we learned in previous instalments, selectors get more complicated than that – here is a very quick refresher:
 
-`h1, h2`
+<dt>
+<dt><code>h1, h2</code></dt>
 
-Selects all `h1` and all `h2`, because the comma is used to create a super-set out of multiple selectors
+<dd>Selects all <code>h1</code> and all <code>h2</code>, because the comma is used to create a super-set out of multiple selectors</dd>
 
-`section p`
+<dt><code>section p</code></dt>
 
-Selects all `p` elements that are contained within a `section` element.
+<dd>Selects all <code>p</code> elements that are contained within a <code>section</code> element.</dd>
 
-`section > p`
+<dt><code>section > p</code></dt>
 
-Selects all `p` elements that are directly contained within a `section` element, i.e. `p` elements with a `section` element as their parent.
+<dd>Selects all <code>p</code> elements that are directly contained within a <code>section</code> element, i.e. <code>p</code> elements with a <code>section</code> element as their parent.</dd>
 
-`.someClass`
+<dt><code>.someClass</code></dt>
 
-Selects all elements that have the class `someClass`
+<dd>Selects all elements that have the class <code>someClass</code></dd>
 
-`#someID`
+<dt><code>#someID</code></dt>
 
-Selects all elements that have the ID `someID`
+<dd>Selects all elements that have the ID <code>someID</code></dd>
 
-`:first-child`
+<dt><code>:first-child</code></dt>
 
-Selects all elements that meet the criteria for the pseudo-class `first-child` (i.e. are the first child element within their parent element) – note that there are many pseudo classes, this is just one example
+<dd>Selects all elements that meet the criteria for the pseudo-class <code>first-child</code> (i.e. are the first child element within their parent element) – note that there are many pseudo classes; this is just one example</dd>
+</dt>
 
 Selectors are designed to be combined, so you can do things like this:
 
-`p.someClass`
+<dt>
+<dt><code>p.someClass</code></dt>
 
-Select all `p` elements with the class `someClass`
+<dd>Select all <code>p</code> elements with the class <code>someClass</code></dd>
 
-`section#someID li`
+<dt><code>section#someID li</code></dt>
 
-Select all `li` elements contained within the `section` element with the ID `someID`
+<dd>Select all <code>li</code> elements contained within the <code>section</code> element with the ID <code>someID</code></dd>
 
-`section#someID > ul.someClass.someOtherClass`
+<dt><code>section#someID > ul.someClass.someOtherClass</code></dt>
 
-Selects all `ul` elements with both the classes `someClass` and `someOtherClass` directly contained within the `section` element with the ID `someID`
+<dd>Select all <code>ul</code> elements with both the classes <code>someClass</code> and <code>someOtherClass</code> directly contained within the <code>section</code> element with the ID <code>someID</code></dd>
+</dt>
 
 ## Selecting Elements with jQuery
 
-JQuery is built around the concept of selecting HTML elements, and either extracting information from them, or, altering them in some way. The selection is achieved through the use of CSS selectors.
+JQuery is built around the concept of selecting HTML elements, and either extracting information from them, or altering them in some way. The selection is achieved through the use of CSS selectors.
 
 When you call the `$` function with a string containing a CSS selector as the first argument, jQuery does the following:
 
 1.  Creates a new object with the `jQuery` prototype. This is an array-like object designed to store zero or more objects representing individual HTML elements.
 2.  jQuery then searches the DOM for HTML elements matching the given selector. An object is created for each matching element, and added to the array-like jQuery object
-3.  When the search is complete, and all matching elements have been saved into the array-like jQuery object, and that object is then returned
+3.  When the search is complete, and all matching elements have been saved into the array-like jQuery object, that object is then returned
 
-The array-like jQuery object has the `jQuery` prototype, so it provides a large array of functions for extracting information from the elements, or, altering the elements in some way. We’ll work our way through the most important of these functions over the next few instalments, but you’ll find [full documentation on the jQuery website](http://api.jquery.com).
+The array-like jQuery object has the `jQuery` prototype; so it provides a large array of functions for extracting information from the elements, or altering the elements in some way. We’ll work our way through the most important of these functions over the next few instalments, but you’ll find [full documentation on the jQuery website](http://api.jquery.com).
 
 All jQuery objects have a `length` property which tells you how many HTML elements they represent.
 
-So see how many `p` elements there are in our dummy page, run the following in the console:
+To see how many `p` elements there are in our dummy page, run the following in the console:
 
 ```javascript
 $('p').length
 ```
 
-When evaluating something containing dots, Javascript starts at the left, and evaluates what ever it finds before the first `.` before even looking at what comes after the dot. Once the left-most part of the expression has been evaluated, Javascript tries to process what ever comes after the dot. It keeps work from left to right until a final value is arrived at.
+When evaluating something containing dots, Javascript starts at the left and evaluates whatever it finds before the first `.` before even looking at what comes after the dot. Once the left-most part of the expression has been evaluated, Javascript tries to process whatever comes after the dot. It keeps work from left to right until a final value is arrived at.
 
 In this case, that means the first thing JavaScript does is evaluate $(‘p’), which is a call to the `$` function with a string containing a CSS selector as the first and only argument. This will return a jQuery object representing a list of all `p` elements on the page. JavaScript will then get the `length` property of that object.
 
@@ -159,7 +163,7 @@ The filter function works as follows:
 2.  The callback is called once for every element represented by the object being filtered, if the function returns a truthy value, the element is added to the new jQuery object. When the callback is called, the value of the special variable `this` will be set to the DOM object representing the element being tested.
 3.  When all elements in the original jQuery object have been tested, the new jQuery object is returned.
 
-Note that within the callback, the `this` variable is set to the browser’s native DOM object representing the element, not to a jQuery object. This means you cannot perform jQuery functions on the object as-is. If you want to convert the native DOM object to a jQuery object, simply pass it as the only argument to the `$` function, i.e. `$(this)`.
+Note that, within the callback, the `this` variable is set to the browser’s native DOM object representing the element, not to a jQuery object. This means you cannot perform jQuery functions on the object as-is. If you want to convert the native DOM object to a jQuery object, simply pass it as the only argument to the `$` function, i.e. `$(this)`.
 
 This all sounds more complicated than it is. Let’s work through a simple example to illustrate the technique. What we’ll do is write some code to select all paragraphs, then filter them down to just the paragraphs that contain currency amounts, and then turn those paragraphs red:
 
@@ -185,37 +189,37 @@ Now let’s look in detail at the anonymous function – it contains just a sing
 return $(this).text().match(/[$£€]\d+/);
 ```
 
-This line also contains a dotted expression, so we need to evaluate it from left to right too. The first thing to evaluate is `$(this)`. JQuery promises that it will ensure that within the callback, the `this` variable will contain a reference to the DOM object to be evaluated. We can convert this DOM object to a jQuery object by passing it to the `$` function, so, the result of evaluating `$(this)` is a new jQuery object representing exactly one html element, the one to be evaluated. We then call jQuery’s `.text()` function on that jQuery object with no arguments, which will return the text within the HTML element as a string. At this point in the evaluation we have a string, so the last thing we do is call the `.match()` function provided by the `String` prototype on that string, passing it a regular expression as an argument. If the string matches the regular expression, a truthy value will be returned, otherwise a falsy one will be returned.
+This line also contains a dotted expression. So we need to evaluate it from left to right too. The first thing to evaluate is `$(this)`. JQuery promises that it will ensure that, within the callback, the `this` variable will contain a reference to the DOM object to be evaluated. We can convert this DOM object to a jQuery object by passing it to the `$` function. The result of evaluating `$(this)` is a new jQuery object representing exactly one html element, the one to be evaluated. We then call jQuery’s `.text()` function on that jQuery object with no arguments, which will return the text within the HTML element as a string. At this point in the evaluation we have a string. So the last thing we do is call the `.match()` function provided by the `String` prototype on that string, passing it a regular expression as an argument. If the string matches the regular expression, a truthy value will be returned, otherwise a falsy one will be returned.
 
 Breaking down the dots from left to right is the only way to understand code like this, and when you use jQuery, you generate a lot of code like this, so you’ll get plenty of practice!
 
-### A convention – Pre-fixing the Names of jQuery Variables with `$`
+### A convention – Prefixing the Names of jQuery Variables with `$`
 
-By convention, many jQuery developers get into the habit of pre-fixing the names of variables that will store references to jQuery objects with a `$` symbol. This acts as a good mnemonic – if the variable name starts with a `$`, you can call jQuery functions on it.
+By convention, many jQuery developers get into the habit of prefixing the names of variables that will store references to jQuery objects with a `$` symbol. This acts as a good mnemonic – if the variable name starts with a `$`, you can call jQuery functions on it.
 
 This is not a rule, it’s just a convention. It is a convention I really like though, so you’ll see me follow it throughout this series.
 
 ## JQuery and CSS
 
-As the previous example shows, you can alter an element’s CSS properties with jQuery. Lets have a closer look at the relevant jQuery functions.
+As the previous example shows, you can alter an element’s CSS properties with jQuery. Let's have a closer look at the relevant jQuery functions.
 
-Firstly, you can read the current value of any CSS property of a given HTML element using jQuery’s `.css()` function. The first argument should be the name of the CSS property who’s value you want to retrieve. For example, you can get the width of the Ajax aside box in the dummy page (the box has the ID `as_ajax`) by entering the following in the console:
+Firstly, you can read the current value of any CSS property of a given HTML element using jQuery’s `.css()` function. The first argument should be the name of the CSS property whose value you want to retrieve. For example, you can get the width of the Ajax aside box in the dummy page (the box has the ID `as_ajax`) by entering the following in the console:
 
 ```javascript
 $('aside#as_ajax').css('width');
 ```
 
-Now re-size the window and run the code again, you’ll see that the value has changed.
+Now resize the window and run the code again. You’ll see that the value has changed.
 
-To set a given CSS property, call the same function with two arguments, the property name, and the new value. To change the background colour of the Ajax aside box in the dummy page, run the following in the console:
+To set a given CSS property, call the same function with two arguments, the property name and the new value. To change the background colour of the Ajax aside box in the dummy page, run the following in the console:
 
 ```javascript
 $('aside#as_ajax').css('background-color', 'beige');
 ```
 
-Finally, you can use the `.css()` function in a third way to set multiple properties at once. Rather than passing a name and a value, you can pass a plain object containing arbitrarily many name, value pairs. The keys in the plain object should be CSS property names, and the values the new values for those CSS properties.
+Finally, you can use the `.css()` function in a third way to set multiple properties at once. Rather than passing a name and a value, you can pass a plain object containing an arbitrary number of name-value pairs. The keys in the plain object should be CSS property names, and the values the new values for those CSS properties.
 
-E.g. to set the text colour, background colour, and border of the Ajax aside box on the dummy page, run the following in the console:
+For example, to set the text colour, background colour, and border of the Ajax aside box on the dummy page, run the following in the console:
 
 ```javascript
 $('aside#as_ajax').css({'background-color': 'HoneyDew', color: 'Green', border: '1px dashed Green'});
@@ -231,7 +235,7 @@ $('aside#as_ajax').css({
 });
 ```
 
-Notice that because `background-color` is not a valid JavaScript variable name, we had to quote it when defining the plain object. JQuery provides a mechanism for getting around this by supporting camel-cased aliases for CSS property names that contain dashes, so, we can replace `background-color` with `backgroundColor`, and the code will still work:
+Notice that, because `background-color` is not a valid JavaScript variable name, we had to quote it when defining the plain object. JQuery provides a mechanism for getting around this by supporting camel-cased aliases for CSS property names that contain dashes, so, we can replace `background-color` with `backgroundColor`, and the code will still work:
 
 ```javascript
 $('aside#as_ajax').css({backgroundColor: 'HoneyDew', color: 'Green', border: '1px dashed Green'});
@@ -251,9 +255,9 @@ We can add one or more classes to an element with the function `.addClass()`. Th
 $('aside#as_ajax').addClass('important');
 ```
 
-If we re-run our command for checking if this box has the class `important`, we’ll see that it now does.
+If we rerun our command for checking if this box has the class `important`, we’ll see that it now does.
 
-Unsurprisingly, one or more classes can be removed from an HTML element with the `.removeClass()` function, again, the classes are specified as a space-delimited string. We can remove the important class from the Ajax aside box with the following:
+Unsurprisingly, one or more classes can be removed from an HTML element with the `.removeClass()` function. Again, the classes are specified as a space-delimited string. We can remove the important class from the Ajax aside box with the following:
 
 ```javascript
 $('aside#as_ajax').removeClass('important');
@@ -265,9 +269,9 @@ We can also toggle one or more classes with the `.toggleClass()` function. When 
 $('aside#as_ajax').toggleClass('important').hasClass('important');
 ```
 
-We know that we can hide an HTML element on a page by setting its CSS `display` property to `none`. This means that we could hide and show elements using the `.css()` function. However, jQuery provides us some nice alternatives – `.hide()`, `.show()`, and `.toggle()`. These functions have the advantage of making code easier to read, and, of using a pleasing animation to show and hide the elements. By default these animations take 400 milliseconds, but you can change their duration by passing a number as the first argument. That number will be interpreted as the desired animation length in milliseconds.
+We know that we can hide an HTML element on a page by setting its CSS `display` property to `none`. This means that we could hide and show elements using the `.css()` function. However, jQuery provides us some nice alternatives – `.hide()`, `.show()`, and `.toggle()`. These functions have the advantage of making code easier to read, and of using a pleasing animation to show and hide the elements. By default these animations take 400 milliseconds, but you can change their duration by passing a number as the first argument. That number will be interpreted as the desired animation length in milliseconds.
 
-To show the animations in all their glory, let’s hide, then show, and finally toggle the Server Side section with a 1 second animation:
+To show the animations in all their glory, let’s hide, then show, and finally toggle the Server Side section with a One second animation:
 
 ```javascript
 var aniTime = 1000;
@@ -277,7 +281,7 @@ $serverSec.show(anyTime);
 $serverSec.toggle(anyTime);
 ```
 
-Finally, I want to mention a very useful function for checking if a given HTML element matches any arbitrary CSS selector. The function is simply called `.is()`, accepts a CSS selector string as an argument, and will return `true` if the element it is called on is matches by that selector, and `false` otherwise.
+Finally, I want to mention a very useful function for checking if a given HTML element matches any arbitrary CSS selector. The function is simply called `.is()`, accepts a CSS selector string as an argument, and returns `true` if the element it is called on matches by that selector, and `false` otherwise.
 
 To check if the Ajax aside box has both the classes `important` and `highlighted`, we could test it against the selector `.important.highlighted` like so:
 
@@ -295,13 +299,13 @@ $ajax.is(importantHighlighted);
 
 As well as altering the style of HTML elements, jQuery can alter their attributes. Remember, attributes are things like `src` and `alt` on images, or `href` and `target` on links.
 
-To read the current value of an attribute, use jQuery’s `.attr()` function with one argument, the name of the attribute you want the value of. For example, we can get the current value of the `href` attribute of the link inside the aside box in the dummy page as follows:
+To read the current value of an attribute, use jQuery’s `.attr()` function with one argument: the name of the attribute you want the value of. For example, we can get the current value of the `href` attribute of the link inside the aside box in the dummy page as follows:
 
 ```javascript
 $('aside a').attr('href');
 ```
 
-You can alter the value of an attribute by passing jQuery’s `.attr()` function a section argument – the new value for the attribute. To change the link in the aside box so it goes to `http://www.bartb.ie/`, you could use the following:
+You can alter the value of an attribute by passing jQuery’s `.attr()` function a second argument – the new value for the attribute. To change the link in the aside box so it goes to `http://www.bartb.ie/`, you could use the following:
 
 ```javascript
 $('aside a').attr('href', 'http://www.bartb.ie/');
@@ -309,13 +313,13 @@ $('aside a').attr('href', 'http://www.bartb.ie/');
 
 ## Manipulating Multiple Elements at Once
 
-jQuery’s functions for manipulating HTML elements are designed to work on multiple elements at once. Let’s say we use a CSS selector and the $ function to create a jQuery object that represents a thousand elements. If we then use the .css() function to set a CSS property to a new value, that property will be updated in all the elements represent by the object, not just one.
+jQuery’s functions for manipulating HTML elements are designed to work on multiple elements at once. Let’s say we use a CSS selector and the $ function to create a jQuery object that represents a thousand elements. If we then use the .css() function to set a CSS property to a new value, that property will be updated in all the elements represented by the object, not just one.
 
 When you think about it, that makes sense – because jQuery was designed in this way, it saves you from the tedium of writing similar loops over and over again.
 
-When using jQuery to access a value within an element, things are different. If you use the `.attr()` function to get the value of the `href` property on a jQuery object representing ten links, you will not get back ten values, instead, you will get back the value of the attribute in the first element within the jQuery object.
+When using jQuery to access a value within an element, things are different. If you use the `.attr()` function to get the value of the `href` property on a jQuery object representing ten links, you will not get back ten values. Instead, you will get back the value of the attribute in the first element within the jQuery object.
 
-As a general rule, when it comes to reading values out of HTML elements using jQuery, you should try write your selectors so they select exactly one element.
+As a general rule, when it comes to reading values out of HTML elements using jQuery, you should try to write your selectors so they select exactly one element.
 
 ## Function Chaining in jQuery
 
@@ -337,4 +341,4 @@ Write a JQuery command to set the `target` of all links in the `main` content re
 
 ## Conclusions
 
-At this stage we’re starting to get a good taster of what jQuery can do – we can select elements, query and manipulate their style, and query and manipulate their attributes. We’re now ready to move our of the web console, and start incorporating our Javascript code directly into our web pages. To do that we’ll also need to learn about browser events, and how jQuery can interact with them.
+At this stage we’re starting to get a good taste of what jQuery can do – we can select elements, query and manipulate their style, and query and manipulate their attributes. We’re now ready to move out of the web console, and start incorporating our Javascript code directly into our web pages. To do that we’ll also need to learn about browser events, and how jQuery can interact with them.

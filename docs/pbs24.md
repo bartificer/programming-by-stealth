@@ -1,14 +1,14 @@
 # PBS 24 of x – Creating a JavaScript API
 
-In this instalment we’ll take our JavaScript skill up a level, learning how to write code that is designed to be re-used by ourselves or by others. When you solve a problem that you know you’ll need to solve again, it’s worth putting in a little extra effort to make your code as easy to re-use as possible. You may decide to share that code with others, or you may not, but either way, it’s in your interest to write it using some simple best practices.
+In this instalment we’ll take our JavaScript skill up a level, learning how to write code that is designed to be reused by ourselves or by others. When you solve a problem that you know you’ll need to solve again, it’s worth putting in a little extra effort to make your code as easy to reuse as possible. You may decide to share that code with others, or you may not, but either way, it’s in your interest to write it using some simple best practices.
 
-Re-usable code without documentation is all but useless, so, we’ll also learn how to create great API documentation as you code. We’ll learn to do this using the free and open source tool [JSDoc](https://github.com/jsdoc3/jsdoc).
+Reusable code without documentation is all but useless. So we’ll also learn how to create great API documentation as you code. We’ll learn to do this using the free and open source tool [JSDoc](https://github.com/jsdoc3/jsdoc).
 
-As a worked example, we’ll re-write our link fixer as an easily re-usable API, and while we’re at it we’ll also add in some extra functionality to make its behaviour more customisable, and hence, more useful to more people.
+As a worked example, we’ll rewrite our link fixer as an easily reusable API. While we’re at it we’ll also add in some extra functionality to make its behaviour more customisable, and hence, more useful to more people.
 
 The sample files used in this instalment, as well as some needed libraries, can be [downloaded as a ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/10/pbs24.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs24.zip). The examples assume you’ll save the files within the zip in a folder named `pbs24` in the document root of your local web server.
 
-# Matching Podcast Episode 461
+## Matching Podcast Episode 461
 
 Listen Along: Chit Chat Across the Pond Episode 461
 
@@ -18,7 +18,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to Instalment 23’s Challenge
 
-Before we get stuck into this instalment’s new content, let’s look at a solution to the challenge set at the end of [the previous instalment](https://bartificer.net/pbs23). The challenge was to write a function to find all links in a page, check each to see if it’s internal to the site, or external, and if it’s external, to transform the link to have a `target` of `_blank`, a `rel` of `noopener`, and to inject an icon after the image to show that it will open in a new window/tab.
+Before we get stuck into this instalment’s new content, let’s look at a solution to the challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs23). The challenge was to write a function to find all links in a page, check each to see if it’s internal to the site, or external, and if it’s external, to transform the link to have a `target` of `_blank`, a `rel` of `noopener`, and to inject an icon after the image to show that it will open in a new window/tab.
 
 Below is my solution. As always, I want to stress that there are an infinity of correct solutions to any programming challenge, so, if your code works, then it’s just as correct as mine!
 
@@ -119,13 +119,13 @@ Below is my solution. As always, I want to stress that there are an infinity of 
 </html>
 ```
 
-## Writing Re-usable and Sharable Code
+## Writing Reusable and Sharable Code
 
-Whether you’re writing code for your own re-use in future projects, for sharing with a team, or for publishing to the world, you need to take some extra care to avoid your code having un-intended side-effects. The biggest potential danger is littering of the global scope. The reason you want to avoid using the global scope for everything is that the global scope can only contain one variable with any given name. If you use a globally scoped variable named `x` in your code, then your code conflicts with every other piece of code that uses a globally scoped variable named `x`. The fewer globally scoped names your code uses, the less likely it is to conflict with other code.
+Whether you’re writing code for your own reuse in future projects, for sharing with a team, or for publishing to the world, you need to take some extra care to avoid your code having unintended side-effects. The biggest potential danger is littering of the global scope. The reason you want to avoid using the global scope for everything is that the global scope can only contain one variable with any given name. If you use a globally scoped variable named `x` in your code, then your code conflicts with every other piece of code that uses a globally scoped variable named `x`. The fewer globally scoped names your code uses, the less likely it is to conflict with other code.
 
-Many programming languages make use of a concept known as _namespacing_ or _packaging_, to create a hierarchy of scopes. When you create a new API, you would place all your code in its own namespace, so your code would be completely separated from the global scope. In Java you organise your code into packages, generally named in reverse-DNS style – if I was publishing Java code I could package it as `net.bartificer.projectName` (Bartificer is my registered business name, and I own the domain `bartificer.net`). Perl uses a :: separated hierarchy, so the Perl module that drives www.xkpasswd.net is contained within the package `Crypt::HSXKPasswd`. In both of these examples, there would be/is zero littering of the global scope.
+Many programming languages make use of a concept known as _namespacing_ or _packaging_, to create a hierarchy of scopes. When you create a new API, you place all your code in its own namespace; so your code would be completely separated from the global scope. In Java you organise your code into packages, generally named in reverse-DNS style – if I was publishing Java code I could package it as `net.bartificer.projectName` (Bartificer is my registered business name, and I own the domain `bartificer.net`). Perl uses a :: separated hierarchy. The Perl module that drives www.xkpasswd.net is contained within the package `Crypt::HSXKPasswd`. In both of these examples, there would be/is zero littering of the global scope.
 
-The bad news is that Javascript does not have a built-in mechanism for namespacing. However, a workaround has been developed that uses JavaScript objects, and the concept of function closures to simulate traditional namespaces. It’s not possible to keep the global namespace completely clean using this workaround, but, it does allow us to limit ourselves to a single globally-scoped variable for all our APIs.
+The bad news is that Javascript does not have a built-in mechanism for namespacing. However, a workaround has been developed that uses JavaScript objects and the concept of function closures to simulate traditional namespaces. It’s not possible to keep the global namespace completely clean using this workaround, but it does allow us to limit ourselves to a single globally-scoped variable for all our APIs.
 
 Before the workaround can make any sense, I need to explain a few new JavaScript concepts – _closures_, the _ternary operator_, and _self-executing anonymous functions_.
 
@@ -198,17 +198,17 @@ We could add this into a page as shown below:
 </html>
 ```
 
-The initialisation function runs exactly once – when the DOM becomes ready. When that function runs, a variable named `counter` is created, and given the value `0`. This variable is created within the scope of the function (`initClickCounter()`), not within the global scope.
+The initialisation function runs exactly once – when the DOM becomes ready. When that function runs, a variable named `counter` is created and given the value `0`. This variable is created within the scope of the function (`initClickCounter()`), not within the global scope.
 
-The next thing that happens as the function `initClickCounter()` executes is that another function is defined, and stored in another locally scoped variable named `incrementCounter`. We’ll refer to this as the _inner function_, since it’s defined within another function, specifically, `initClickCounter()`, which we’ll refer to as the _outer function_.
+The next thing that happens as the function `initClickCounter()` executes is that another function is defined and stored in another locally scoped variable named `incrementCounter`. We’ll refer to this as the _inner function_, since it’s defined within another function, specifically, `initClickCounter()`, which we’ll refer to as the _outer function_.
 
-The inner function is only defined here, not executed. However, notice that it makes use of the variable `counter`, which exists in the outer function’s scope. It does not declare this variable (no `var` in front of it), so it does not have its own copy, it is instead reaching up into its containing scope to access it. It can do this because a copy of the outer function’s scope is permanently added to the inner function using JavaScript’s _closure_ mechanism. The inner function does not get a copy of the variable, it gets a reference to it.
+The inner function is only defined here, not executed. However, notice that it makes use of the variable `counter`, which exists in the outer function’s scope. It does not declare this variable (no `var` in front of it); so it does not have its own copy. instead it is reaching up into its containing scope to access it. It can do this because a copy of the outer function’s scope is permanently added to the inner function using JavaScript’s _closure_ mechanism. The inner function does not get a copy of the variable; it gets a reference to it.
 
 The last thing that happens when the outer function executes is that it adds the inner function to all paragraphs as a click handler.
 
-Once the outer function finishes executing, the inner function has still not been executed even once, it has only been declared, and added as a click handler. Were it not for closures, the variable `counter` would have vanished into the ether when the outer function finished executing, but it has not – the inner function retains a reference to it.
+Once the outer function finishes executing, the inner function has still not been executed even once. It has only been declared and added as a click handler. Were it not for closures, the variable `counter` would have vanished into the ether when the outer function finished executing, but it has not – the inner function retains a reference to it.
 
-We can now execute the inner function by clicking on the paragraph in the page. The first time you click, the counter will have a value of `0`. It then gets incremented by `1`, and alerted. The second time you click, it will be incremented and alerted again. Notice that the count goes up. If we had declared the variable within the inner function that would not happen, it would be a fresh copy each time, but because we are using a variable from the outer function’s scope, it is the same variable each time, so the count keeps incrementing.
+We can now execute the inner function by clicking on the paragraph in the page. The first time you click, the counter will have a value of `0`. It then gets incremented by `1`, and alerted. The second time you click, it will be incremented and alerted again. Notice that the count goes up. If we had declared the variable within the inner function that would not happen, it would be a fresh copy each time, but because we are using a variable from the outer function’s scope, it is the same variable each time. So the count keeps incrementing.
 
 Closures can be difficult to understand, as they are a kind of _spooky action at a distance_ (to paraphrase Einstein), but they are absolutely vital to modern JavaScript programming.
 
@@ -216,15 +216,15 @@ Closures can be difficult to understand, as they are a kind of _spooky action at
 
 If you were to add all your variables, functions, and prototypes directly into the global scope, you would have to chose the names for each one very carefully. If you use a generic name, you are very likely to create an incompatibility with other pieces of code. Rather than trying to pick many unique names, it’s much simpler to pick one name, give it to an object, and add all your functions, variables, and prototypes as key-value pairs within that object.
 
-You’ve already seen this technique in action – the PBS JavaScript playground used a single object named `pbs`, into which all the available functions were added as key-value pairs, hence you had `pbs.say()`, `pbs.inputs()`, and so on. `pbs` was a variable in the global scope that pointed to an object. That object contained a key named `say` that referenced a function to render text to the output area, and another key named `inputs` that referenced a function to read the values from the input text boxes.
+You’ve already seen this technique in action – the PBS JavaScript playground used a single object named `pbs`, into which all the available functions were added as key-value pairs. Hence you had `pbs.say()`, `pbs.inputs()`, and so on. `pbs` was a variable in the global scope that pointed to an object. That object contained a key named `say` that referenced a function to render text to the output area, and another key named `inputs` that referenced a function to read the values from the input text boxes.
 
-This is the approach I recommend you take for all your re-usable code. Choose one name that’s likely to be pretty unique, create a single object with that name, and add all your variables, functions, and prototypes as key-value pairs to that object. I suggest you choose a name that’s likely to be quite unique, and, that references you, or the organisation you work for, in some way.
+This is the approach I recommend you take for all your reusable code. Choose one name that’s likely to be pretty unique, create a single object with that name, and add all your variables, functions, and prototypes as key-value pairs to that object. I suggest you choose a name that’s likely to be quite unique, and, that references you, or the organisation you work for, in some way.
 
-Remember that there is no reason not to nest these pseudo name-spaces – you could have `pbs.util.x`, `pbs.util.y`, as well as `pbs.project1.x`, and `pbs.projec1.y`, and so on.
+Remember that there is no reason not to nest these pseudo namespaces – you could have `pbs.util.x`, `pbs.util.y`, as well as `pbs.project1.x`, and `pbs.projec1.y`, and so on.
 
-Because my registered business name is _Bartificer_, I publish all my JavaScript APIs as `bartificer.something`. For example, I released the API that powers [subnetcalc.it](http://www. subnetcalc.it/) as `bartificer.ip` it contains a number of prototypes for modelling IP addresses and subnets, including `bartificer.ip.IP`, `bartificer.ip.Subnet`, and `bartificer.ip.Netmask`.
+Because my registered business name is _Bartificer_, I publish all my JavaScript APIs as `bartificer.something`. For example, I released the API that powers [subnetcalc.it](http://www. subnetcalc.it/) as `bartificer.ip`. It contains a number of prototypes for modelling IP addresses and subnets, including `bartificer.ip.IP`, `bartificer.ip.Subnet`, and `bartificer.ip.Netmask`.
 
-If you choose this approach, your code will inevitably be split across multiple `.js` files, and any one project will only use a sub-set of those files. So how do you declare your object in the first place? You could declare it in a sort of master file that must be included in every project, but that is needlessly cumbersome. A better approach is to declare the object in every file, but only if it does not already exist. This can be done using the following code snippet:
+If you choose this approach, your code will inevitably be split across multiple `.js` files, and any one project will only use a subset of those files. So how do you declare your object in the first place? You could declare it in a sort of master file that must be included in every project, but that is needlessly cumbersome. A better approach is to declare the object in every file, but only if it does not already exist. This can be done using the following code snippet:
 
 ```javascript
 var pbs = pbs ? pbs : {};
@@ -268,7 +268,7 @@ var pbs = pbs ? pbs : {};
 
 The `CONDITION` is simply `pbs`, `VALUE_1` is also `pbs`, and `VALUE_2` is a new empty object.
 
-So, if `pbs` evaluates to `true`, then the entire operator evaluates to `pbs`, otherwise, it evaluates to a new empty object. The only way an object can evaluate to `false` is if it’s undefined. So, if the `pbs` object already exists, nothing changes, the line effectively becomes `var pbs = pbs;`. However, if the `pbs` object doesn’t exist yet, the line effectively becomes `var pbs = {};`, i.e. pbs gets created as a new object containing no keys.
+So, if `pbs` evaluates to `true`, then the entire operator evaluates to `pbs`; otherwise, it evaluates to a new empty object. The only way an object can evaluate to `false` is if it’s undefined. So, if the `pbs` object already exists, nothing changes, the line effectively becomes `var pbs = pbs;`. However, if the `pbs` object doesn’t exist yet, the line effectively becomes `var pbs = {};`, i.e. pbs gets created as a new object containing no keys.
 
 ### Self-Executing Anonymous Functions
 
@@ -282,13 +282,13 @@ var x = (4 + 5) * (6 - 7);
 
 Secondly, many JavaScript keywords make use of parentheses – e.g. `if`, `while`, `for`, and `function`.
 
-Finally, if a pair of parentheses containing zero or more comma-separated arguments appears directly after a name or value that is not a keyword, JavaScript will try to execute what ever is to the left of the parenthesis as a function, using the values between the parentheses as arguments to that function, e.g.:
+Finally, if a pair of parentheses containing zero or more comma-separated arguments appears directly after a name or value that is not a keyword, JavaScript will try to execute whatever is to the left of the parenthesis as a function, using the values between the parentheses as arguments to that function, e.g.:
 
 ```javascript
 console.log('test');
 ```
 
-`console.log` evaluates to a function (`console` is an object, and `log` is a key within that object that contains a reference to a function), and by putting the parentheses containing the single argument `'test'` directly after it, we call that function with `'test'` as the only argument.
+`console.log` evaluates to a function (`console` is an object, and `log` is a key within that object that contains a reference to a function). By putting the parentheses containing the single argument `'test'` directly after it, we call that function with `'test'` as the only argument.
 
 We can combine all that knowledge to form the following construction:
 
@@ -386,13 +386,13 @@ Inspired by JavaDoc, [JSDoc](https://github.com/jsdoc3/jsdoc) is a tool for auto
 
 ### Installing JSDoc
 
-JSDoc is actually written in JavaScript. The easiest way to install it is to use the [Node.js](https://nodejs.org/) JavaScript engine and it’s accompanying package manager, `npm`. Node is available cross platform, with simple installers for Windows and Mac, and there are packaged versions available for many popular Linux distributions.
+JSDoc is actually written in JavaScript. The easiest way to install it is to use the [Node.js](https://nodejs.org/) JavaScript engine and its accompanying package manager, `npm`. Node is available cross platform, with simple installers for Windows and Mac. There are packaged versions available for many popular Linux distributions.
 
 Once you’ve installed Node, you should be able to use Node’s package manager to install JSDoc. The basic form of the command will be as follows:
 
 `npm install -g jsdoc`
 
-The `-g` means you would like the package installed globally, i.e. system-wide. To install system-wide you need admin privileges, so on Windows you should use a command prompt run as Administrator, and on Linux/macOS you should execute the command with `root` privileges, either directly, or via `sudo`. For example, on my Mac I used:
+The `-g` means you would like the package installed globally, i.e. system-wide. To install system-wide you need admin privileges. So on Windows you should use a command prompt run as Administrator. On Linux/macOS you should execute the command with `root` privileges, either directly or via `sudo`. For example, on my Mac I used:
 
 `sudo npm install -g jsdoc`
 
@@ -400,9 +400,9 @@ You should now be able to create documentation from any javascript file with a c
 
 `jsdoc myFile.js`
 
-This will build a documentation website describing `myFile.js`, and place all the HTML files etc. into a folder named `out` in the current directory. You can specify as many input files as you like, and JSDoc will build a single unified documentation site describing them all.
+This will build a documentation website describing `myFile.js` and place all the HTML files etc. into a folder named `out` in the current directory. You can specify as many input files as you like. JSDoc will build a single unified documentation site describing them all.
 
-We can get more control over the generated document by creating a config file. The config file should be in JSON format, and can be passed to the command with the `-c` flag. You’ll find a copy of the config I’ll be using in the ZIP file as `jsdoc.conf.json`:
+We can get more control over the generated document by creating a config file. The config file should be in JSON format, that can be passed to the command line with the `-c` flag. You’ll find a copy of the config I’ll be using in the ZIP file as `jsdoc.conf.json`:
 
 ```javascript
 {
@@ -415,7 +415,7 @@ We can get more control over the generated document by creating a config file. T
 }
 ```
 
-This very simple config does two things. Firstly, it sets a configuration variable on the default theme that suppresses JSDoc’s default behaviour of adding the code itself into the documentation. I find it just makes the documentation more difficult to read, but if you want to see what it looks like, just change the `false` to a `true`. Secondly, it enables JSDoc’s built-in but optional Markdown plugin. When this plugin is enabled, you can use [Markdown syntax](https://daringfireball.net/projects/markdown/syntax) within JSDoc descriptions.
+This very simple config does two things. Firstly, it sets a configuration variable on the default theme that suppresses JSDoc’s default behaviour of adding the code itself into the documentation. I find it just makes the documentation more difficult to read. If you want to see what it looks like, just change the `false` to a `true`. Secondly, it enables JSDoc’s built-in but optional Markdown plugin. When this plugin is enabled, you can use [Markdown syntax](https://daringfireball.net/projects/markdown/syntax) within JSDoc descriptions.
 
 ### JSDoc Comments
 
@@ -430,13 +430,13 @@ function fact(n){
 }
 ```
 
-This is a very basic example that will result in very basic documentation. JSDoc supports so-called tags that allow you to add more information to your doc comments. These tags all start with the `@` symbol. I don’t want to bore you with a definitive list of all available tags, instead, we’ll meet them organically as we go through the series. You can learn more about any tags we do mention, as well as all the other tags that exist, in the [JSDoc documentation](http://usejsdoc.org/).
+This is a very basic example that will result in very basic documentation. JSDoc supports so-called tags that allow you to add more information to your doc comments. These tags all start with the `@` symbol. I don’t want to bore you with a definitive list of all available tags. Instead, we’ll meet them organically as we go through the series. You can learn more about any tags we do mention, as well as all the other tags that exist, in the [JSDoc documentation](http://usejsdoc.org/).
 
-To get started, let’s look at documenting functions. When using an API, a function should be like a black box, what you care about is what goes in, and what comes out. If your function expects arguments, you should specify them in order using the `@param` tag, one tag per argument, and each tag starting on a new line. Each `@param` tag should take the following form:
+To get started, let’s look at documenting functions. When using an API, a function should be like a black box, what you care about is what goes in, and what comes out. If your function expects arguments, you should specify them in order using the `@param` tag, one tag per argument, with each tag starting on a new line. Each `@param` tag should take the following form:
 
 `@param {TYPE} ARGUMENT_NAME - DESCRIPTION`
 
-The `TYPE` should be a valid native JavaScrip type, like `string`, `number` or `boolean`, the name of a prototype, like `Object`, or, a reference to a custom type of your own creation (more on that later in the series). The `ARGUMENT_NAME` is just the name of the argument, and the description should be some text describing the argument. The type and description are optional, and if you don’t want to set a description, also leave out the dash preceding it. Oh – also, if there is a description, the dash should have exactly one space before it and one space after it.
+The `TYPE` should be a valid native JavaScrip type, like `string`, `number` or `boolean`, the name of a prototype, like `Object`, or a reference to a custom type of your own creation (more on that later in the series). The `ARGUMENT_NAME` is just the name of the argument, and the description should be some text describing the argument. The type and description are optional. If you don’t want to set a description, also leave out the dash preceding it. Oh – also, if there is a description, the dash should have exactly one space before it and one space after it.
 
 To specify what a function returns, use the `@returns` tag:
 
@@ -444,7 +444,7 @@ To specify what a function returns, use the `@returns` tag:
 
 You can leave out either the type or the description if you like (but not both).
 
-Given what we know now, let’s re-write our sample function:
+Given what we know now, let’s rewrite our sample function:
 
 ```javascript
 /**
@@ -457,7 +457,7 @@ function fact(n){
 }
 ```
 
-Note that we are using Markdown syntax to mark some items for rendering as code snippets, specifically, we are using the back-tick to do that.
+Note that we are using Markdown syntax to mark some items for rendering as code snippets, specifically, we are using the backtick to do that.
 
 Something else functions can do is throw exceptions. You can document this using the `@throws` tag. This tag takes the following form:
 
@@ -465,7 +465,7 @@ Something else functions can do is throw exceptions. You can document this using
 
 Where `EXCEPTION_PROTOTYPE` is the prototype of the exception that could be thrown. If your function can throw multiple types of error, you should add multiple `@throws` tags to the doc comment.
 
-We could re-write our function so it throws an exception on invalid arguments as follows:
+We could rewrite our function so it throws an exception on invalid arguments as follows:
 
 ```javascript
 /**
@@ -482,7 +482,7 @@ function fact(n){
 }
 ```
 
-Finally, before we move on from functions, I also want to mention the `@example` tag, which you can use to add sample code into your documentation. This tag works over multiple lines – everything until the next tag, or, until the end of the comment is considered part of the example. Let’s re-write our function one last time:
+Finally, before we move on from functions, I also want to mention the `@example` tag, which you can use to add sample code into your documentation. This tag works over multiple lines – everything until the next tag, or, until the end of the comment is considered part of the example. Let’s rewrite our function one last time:
 
 ```javascript
 /**
@@ -541,13 +541,13 @@ var pbs = pbs ? pbs : {};
 })(pbs);
 ```
 
-You may notice that the overview contains a JSDoc tag that I have not mentioned yet, `{@link pbs}`. This in-line JSDoc tag can be used in any JSDoc description to insert a reference to a documented item. In this case, a link to the documentation about the `pbs` namespace.
+You may notice that the overview contains a JSDoc tag that I have not mentioned yet, `{@link pbs}`. This inline JSDoc tag can be used in any JSDoc description to insert a reference to a documented item. In this case, it's a link to the documentation about the `pbs` namespace.
 
 We are now ready to generate our documentation. Start by opening a command prompt in the same folder as the `pbs.helloWorld.js` and `jsdoc.conf.json` files. From there, run the following command:
 
 `jsdoc pbs.helloWorld.js --destination docs-helloWorld -c jsdoc.conf.json`
 
-Assuming you extracted the contents of the ZIP file into a folder named `pbs24` in the document root of your local web server, and, that your local web server is running, you should now be able to access the documentation you’ve just created at the URL `http://localhost/pbs24/docs-helloWorld/`.
+Assuming you extracted the contents of the ZIP file into a folder named `pbs24` in the document root of your local web server, and that your local web server is running, you should now be able to access the documentation you’ve just created at the URL `http://localhost/pbs24/docs-helloWorld/`.
 
 ## A Challenge
 
@@ -555,7 +555,7 @@ The challenge this time is to create a first-pass at an API for rendering a cloc
 
 ### A Quick Introduction to `Moment.js`
 
-At the moment, the most powerful looking open source JavaScript library for manipulating dates is [Moment.js](http://momentjs.com), and it has an extension specifically for manipulating timezones. The two JavaScript files needed to use `Moment.js`‘s timezone features are included in the contrib folder within the zip file.
+At the moment, the most powerful looking open source JavaScript library for manipulating dates is [Moment.js](http://momentjs.com). It has an extension specifically for manipulating timezones. The two JavaScript files needed to use `Moment.js`‘s timezone features are included in the contrib folder within the zip file.
 
 As we did with URI.js, this is merely a sampler of what Moment.js can do, focusing on the features we need to achieve our goal. This is not a tutorial on Moment.js. You can find the full documentation at [momentjs.com/docs](http://momentjs.com/docs/).
 
@@ -567,7 +567,7 @@ var now = moment().tz('Europe/London');
 
 The timezone string should be a TZ string as defined in the [IANA time zone database](https://en.wikipedia.org/wiki/Tz_database). Thankfully Wikipedia publishes [a full listing of the database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) – the value we need is in the third column.
 
-We can then access one or more aspects of the time as a string using the `.format()` function. For example, to see the hours and minutes separated by a colon we could use:
+We can then access one or more aspects of the time as a string using the `.format()` function. For example, to see the hours and minutes separated by a colon, we could use:
 
 ```javascript
 var now = moment().tz('Europe/London');
@@ -711,4 +711,4 @@ How you make the function do its thing is entirely up to you, but I suggest the 
 
 ## Conclusions
 
-We’ve learned how to use the magic of closures to package our code into re-usable libraries, and, we’ve learned how to use JSDoc to generate documentation for our library’s APIs. So far our APIs have been very simplistic – so simplistic some people might even argue that they don’t deserve to be called APIs at all! That will change in the next instalment, when we’ll create a powerful API for adding arbitrarily many clocks, each in any timezone, to a page in a configurable way. To do that we’ll need to learn another new concept – data attributes – a way of embedding data into an HTML element.
+We’ve learned how to use the magic of closures to package our code into reusable libraries, and we’ve learned how to use JSDoc to generate documentation for our library’s APIs. So far our APIs have been very simplistic – so simplistic some people might even argue that they don’t deserve to be called APIs at all! That will change in the next instalment, when we’ll create a powerful API for adding arbitrarily many clocks, each in any timezone, to a page in a configurable way. To do that we’ll need to learn another new concept – data attributes – a way of embedding data into an HTML element.
