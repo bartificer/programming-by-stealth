@@ -41,37 +41,37 @@ A few challenges back, I started adding a standardized `navbar` at the top of ev
 ![Navbar to show all the resources needed](./assets/pbs96/allisonNavbar.png)
 
 ```html
-	<nav class='navbar navbar-expand-md navbar-light'>
-	      <a class='navbar-brand' href="#">Helpful Resources</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	        <ul class="navbar-nav mr-auto">
-	          <li class="nav-item active">
-	            <a class="nav-link" href="https://momentjs.com">Moment.js home</a>
-	          </li>
-	          <li class="nav-item active">
-	            <a class="nav-link" href="https://momentjs.com/docs/#/use-it/browser/">Moment.js docs</a>
-	          </li>
-	          <li class="nav-item active">
-	            <a class="nav-link" href="https://momentjs.com/timezone/">Moment Timezone docs</a>
-	          </li>
-	          <li class="nav-item dropdown">
-	            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	              PBS Resources
-	            </a>
-	            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	              <div class="dropdown-divider"></div>
-	              <a class="nav-link dropdown-item" href="https://www.podfeet.com/blog/pbs-index/"  rel="no opener" target="_blank">PBS Index</a>
-	              <a class="nav-link dropdown-item" href="https://getbootstrap.com/docs/4.3/getting-started/introduction/"  rel="no opener" target="_blank">Bootstrap Docs</a>
-	              <a class="nav-link dropdown-item" href="https://api.jquery.com"  rel="no opener" target="_blank">jQuery API</a>
-	              <a class="nav-link dropdown-item" href="https://api.jquery.com/category/ajax/"  rel="no opener" target="_blank">AJAX API</a>
-	            </div>
-	          </li>
-	        </ul>
-	      </div>
-	    </nav>
+<nav class='navbar navbar-expand-md navbar-light'>
+  <a class='navbar-brand' href="#">Helpful Resources</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="https://momentjs.com">Moment.js home</a>
+     </li>
+     <li class="nav-item active">
+       <a class="nav-link" href="https://momentjs.com/docs/#/use-it/browser/">Moment.js docs</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="https://momentjs.com/timezone/">Moment Timezone docs</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        PBS Resources
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-divider"></div>
+          <a class="nav-link dropdown-item" href="https://www.podfeet.com/blog/pbs-index/"  rel="no opener" target="_blank">PBS Index</a>
+	      <a class="nav-link dropdown-item" href="https://getbootstrap.com/docs/4.3/getting-started/introduction/"  rel="no opener" target="_blank">Bootstrap Docs</a>
+	      <a class="nav-link dropdown-item" href="https://api.jquery.com"  rel="no opener" target="_blank">jQuery API</a>
+	      <a class="nav-link dropdown-item" href="https://api.jquery.com/category/ajax/"  rel="no opener" target="_blank">AJAX API</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
 ```
 
 ### Moment.js for the Clocks
@@ -86,17 +86,17 @@ Armed with a well-formatted, if exhaustive JSON dictionary of timezone data, it 
 I decided to declare some variables that were the strings that moment.js required for the different formats.  For example, TIME24WSEC was the string 'h:mm:ss a'.  I also created variables for whether the user wanted seconds and a 12 hour clock.  Finally I created one variable called FORMATTEDTIME in which I would put the chosen format. I set it to a default value of 12-hour time with seconds.
 
 ```js
-	// Time formats
-	let h = 'h';
-	let m = 'mm';
-	let s = 'ss a';
-	let TIME12WSEC = 'h:mm:ss a';
-	let TIME12WOSEC = 'h:mm a';
-	let TIME24WSEC = 'HH:mm:ss';
-	let TIME24WOSEC = 'HH:mm';
-	let FORMATTEDTIME = TIME12WSEC; // Default formatted time
-	let TRUESECONDS = true; // boolean true if show seconds is true
-	let TRUE12HR = true; // boolean true if numHrs is 12
+// Time formats
+let h = 'h';
+let m = 'mm';
+let s = 'ss a';
+let TIME12WSEC = 'h:mm:ss a';
+let TIME12WOSEC = 'h:mm a';
+let TIME24WSEC = 'HH:mm:ss';
+let TIME24WOSEC = 'HH:mm';
+let FORMATTEDTIME = TIME12WSEC; // Default formatted time
+let TRUESECONDS = true; // boolean true if show seconds is true
+let TRUE12HR = true; // boolean true if numHrs is 12
 ```
 
 I created two "checkboxes" and formatted them using Bootstrap to look like toggle switches.  These checkboxes were to select between 12 and 24 hour clocks and whether or not to show the seconds.  I ran into an interesting problem though. If you have a checkbox, it only has one label.  But if visually it looks like a toggle, then there's an expectation that there's a label on both sides.
@@ -106,29 +106,29 @@ My solution was to use "12 Hour Clock" as the real label for the checkbox and to
 ![Toggle Switches that are really checkboxes](./assets/pbs96/allisonToggleSwitches.png)
 
 ```html
-	<!-- Switch to  12 vs 24 hr clock -->
-	          <div class="row pl-3 pb-3"> <!-- row for numHrs switch -->
-	            <div class="col col-md-6 form-control form-check-inline bg-light border border-dark rounded p-2 m3">
-	              <!-- Description of checkbox for screen readers -->
-	              <div id="hrsDesc" class="sr-only">Switch to toggle between 24 and 12 hour clock</div> 
-	              <div class="mr-2 font-weight-bold mySwitches d-none d-md-inline">24 Hour Clock</div>
-	              <div class="mr-2 font-weight-bold mySwitches d-inline d-md-none">24 Hour</div>
-	              <div class="custom-control custom-switch form-control-md" aria-describedby="hrsDesc">
-	                  <input type="checkbox" class="custom-control-input" checked id="numHrs" name="numHrs" >
-	                <label class="custom-control-label mySwitches" for="numHrs">12 Hour Clock</label>
+<!-- Switch to  12 vs 24 hr clock -->
+  <div class="row pl-3 pb-3"> <!-- row for numHrs switch -->
+    <div class="col col-md-6 form-control form-check-inline bg-light border border-dark rounded p-2 m3">
+	  <!-- Description of checkbox for screen readers -->
+	  <div id="hrsDesc" class="sr-only">Switch to toggle between 24 and 12 hour clock</div> 
+	  <div class="mr-2 font-weight-bold mySwitches d-none d-md-inline">24 Hour Clock</div>
+	  <div class="mr-2 font-weight-bold mySwitches d-inline d-md-none">24 Hour</div>
+	  <div class="custom-control custom-switch form-control-md" aria-describedby="hrsDesc">
+	    <input type="checkbox" class="custom-control-input" checked id="numHrs" name="numHrs" >
+	    <label class="custom-control-label mySwitches" for="numHrs">12 Hour Clock</label>
 	              
-	              </div>
-	            </div>
-	          </div>
-	          <!-- end switch 12 vs 24 hr clock -->
+	  </div>
+	</div>
+</div>
+<!-- end switch 12 vs 24 hr clock -->
 ```
 
 Next up I needed two event handlers. One to capture the user's desire for the clock format from my two checkboxes, and the second to capture the selected timezone from the Dropdown of Doom (™Donald Burr).  Because I created the time format variables up front, I found that rendering the time because a trivial amount of code:
 
 ```js
-	function renderTime(){
-	    $('#forTime').html(moment().tz(selectedZone).format(FORMATTEDTIME)); // time in selected zone
-	  }
+function renderTime(){
+  $('#forTime').html(moment().tz(selectedZone).format(FORMATTEDTIME)); // time in selected zone
+}
 ```
 
 In this line, `#forTime` was the ID of the div to hold this clock, and "selectedZone" was the chosen value from the dropdown select.  
