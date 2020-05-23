@@ -1,14 +1,14 @@
 # PBS 29 of x – JS Prototype Revision | Glyph Icons
 
-In this instalment we’ll continue with our twin-track approach of revising JavaScript prototypes, and learning about HTML forms.
+In this instalment we’ll continue with our twin track approach of revising JavaScript prototypes and learning about HTML forms.
 
-We’ll start by moving our JavaScript revision out of the PBS playground, and over to [NodeJS](https://nodejs.org/), getting you much better error reporting. Then we’ll have a look at my sample solution to the challenge from [the previous instalment](https://bartificer.net/pbs28), and we’ll eradicate another _bad smell_ from the prototype. We’ll come face-to-face with the implications of the fact that variables don’t contain objects, but references to objects. If you don’t bear that fact in mind, you can end up with _spooky action at a distance_ that seems like the worst kind of black magic. The kind of bugs that baffle, mystify, and drive you nutty as squirrel poo!
+We’ll start by moving our JavaScript revision out of the PBS playground, and over to [NodeJS](https://nodejs.org/), getting you much better error reporting. Then we’ll have a look at my sample solution to the challenge from [the previous instalment](https://pbs.bartificer.net/pbs28), and we’ll eradicate another _bad smell_ from the prototype. We’ll come face-to-face with the implications of the fact that variables don’t contain objects, but references to objects. If you don’t bear that fact in mind, you can end up with _spooky action at a distance_ that seems like the worst kind of black magic. The kind of bugs that baffle, mystify, and drive you nutty as squirrel poo!
 
-We’ll then switch gears back to HTML forms, where we’ll learn about a very powerful technique for including scalable vector-based icons in your form elements. These very special icons are known as _glyph icons_, and while rolling your own is a significant undertaking, you don’t have to, because you can use icon sets created by others. We’ll learn about glyph icons using the free and open source glyph icon set from [Font Awesome](http://fontawesome.io/).
+We’ll then switch gears back to HTML forms, where we’ll learn about a very powerful technique for including scalable vector-based icons in your form elements. These very special icons are known as _glyph icons_. While rolling your own is a significant undertaking, you don’t have to, because you can use icon sets created by others. We’ll learn about glyph icons using the free and open source glyph icon set from [Font Awesome](http://fontawesome.io/).
 
 You can download a ZIP file containing the sample solution to the previous challenge, and, the example HTML file from today’s examples [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/02/pbs29.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs29.zip).
 
-# Matching Podcast Episode 474
+## Matching Podcast Episode 474
 
 Listen Along: Chit Chat Across the Pond Episode 474
 
@@ -18,38 +18,38 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Taking Our Prototype Revision out of the PBS Playground
 
-While doing my own homework (writing a sample solution to the challenge I set in the previous instalment) I came to the realisation that we have out-grown the PBS playground. It was designed as a temporary home in which we could learn the basics before moving into the browser proper.
+While doing my own homework (writing a sample solution to the challenge I set in the previous instalment) I came to the realisation that we have outgrown the PBS playground. It was designed as a temporary home in which we could learn the basics before moving into the browser proper.
 
-The biggest shortcoming with the playground is its poor error reporting. Sure, it gives you an error message, but it can’t tell you which line within your code triggered that error. When you’re working on small tasks requiring just a few lines of code this is not a problem, but our prototypes are hundreds of lines long now!
+The biggest shortcoming with the playground is its poor error reporting. Sure, it gives you an error message, but it can’t tell you which line within your code triggered that error. When you’re working on small tasks requiring just a few lines of code, this is not a problem, but our prototypes are hundreds of lines long now!
 
 We absolutely need a way of testing our prototypes as we build them that will give us detailed error reporting.
 
-By far the simplest solution is to install a command-line JavaScript engine like [NodeJS](https://nodejs.org/) (Node for short). With Node installed you can save your code to a text file with a `.js` file extension, and then run it with a command of the form:
+By far the simplest solution is to install a command line JavaScript engine like [NodeJS](https://nodejs.org/) (Node for short). With Node installed, you can save your code to a text file with a `.js` file extension, and then run it with a command of the form:
 
 `node myFile.js`
 
 Node is free, open source, and cross-platform, so anyone can play along. Node is also quick and easy to install. The Node website will offer you two downloads, an LTS (Long Term Support) version, and the very latest version. The LTS version is labeled as recommended for most users, and that’s what I always install.
 
-While Node gives us a place to run our code, it doesn’t give us a place to edit our code. You can literally use any plain-text text editor, but realistically, you’re going to want to use a programming editor with features like syntax highlighting and bracket matching. Earlier in the series I suggested the free and open source editor Atom for editing your HTML and CSS files. You can use [Atom](https://atom.io) for your JavaScript files too, and it will give you features like syntax highlighting, code auto-completion, and bracket matching.
+While Node gives us a place to run our code, it doesn’t give us a place to edit our code. You can literally use any plain-text text editor. However realistically, you’re going to want to use a programming editor with features like syntax highlighting and bracket matching. Earlier in the series I suggested the free and open source editor Atom for editing your HTML and CSS files. You can use [Atom](https://atom.io) for your JavaScript files too. It will give you features like syntax highlighting, code auto-completion, and bracket matching.
 
-So now we have a nice editor, and a place to run our code. Will it _just work_?
+So now we have a nice editor and a place to run our code. Will it _just work_?
 
-Nope, but don’t worry, you just need to make two very small changes to get your code working in our new environment:
+Nope, but don’t worry. You just need to make two very small changes to get your code working in our new environment:
 
-1.  un-comment the namespace declaration (`var pbs = pbs ? pbs : {};`) at the top of your code. This was only commented out because of the playground’s idiosyncrasies – it’s needed everywhere but in the playground.
+1.  Uncomment the namespace declaration (`var pbs = pbs ? pbs : {};`) at the top of your code. This was only commented out because of the playground’s idiosyncrasies – it’s needed everywhere but in the playground.
 2.  Replace all occurrences of `pbs.say` with `console.log`. As its name suggests, `pbs.say()` is a feature of the PBS playground, not a standard JavaScript feature.
 
-Some code editors can do much more than just editing code – they can also run it right within the editor. I recently discovered an editor like this which I’ve fallen in love with, and am now using to do all my code samples and sample solutions for this series. It can run NodeJS code, it does syntax highlighting and bracket matching, and it even understands the code you’ve written enough to suggest auto-completions of function names etc. as you type.
+Some code editors can do much more than just editing code – they can also run it right within the editor. I recently discovered an editor like this which I’ve fallen in love with. I am now using it to do all my code samples and sample solutions for this series. It can run NodeJS code, it does syntax highlighting and bracket matching, and it even understands the code you’ve written enough to suggest auto-completions of function names etc. as you type.
 
-The editor I’m describing is [Code Runner 2](https://coderunnerapp.com). It’s only available for macOS, and it costs €14.99. It’s available directly from their website, or, [from the MacApp Store](https://itunes.apple.com/ie/app/coderunner-2/id955297617?mt=12). The Mac App Store version is limited by macOS’s sandboxing, so while it can give you syntax highlighting and things like that, it can’t run NodeJS code. Thankfully, the Code Runner people have added a feature to the App Store version of their app that tells you when you hit such a limitation, and provides you with really simple instructions for converting your App Store purchase into a license key for the non-App Store version which you can download from their website. This conversion is really quick and easy, and costs nothing.
+The editor I’m describing is [Code Runner 2](https://coderunnerapp.com). It’s only available for macOS, and it costs €14.99. It’s available directly from their website or [from the MacApp Store](https://itunes.apple.com/ie/app/coderunner-2/id955297617?mt=12). The Mac App Store version is limited by macOS’s sandboxing. While it can give you syntax highlighting and things like that, it can’t run NodeJS code. Thankfully, the Code Runner people have added a feature to the App Store version of their app that tells you when you hit such a limitation, and provides you with really simple instructions for converting your App Store purchase into a license key for the non-App Store version which you can download from their website. This conversion is really quick and easy, and costs nothing.
 
-It’s obviously easier to buy direct, then you won’t have to go through the conversion process, but if you have iTunes credit, the fact that you can use it and then convert is very useful.
+It’s obviously easier to buy direct. Then you won’t have to go through the conversion process. But if you have iTunes credit, the fact that you can use it and then convert is very useful.
 
 ![Code Runner 2 Screen Shot](../assets/pbs29/Screen-Shot-2017-02-03-at-16.47.48-e1486140559831.png)
 
 ## Solution to PBS 28 Challenge
 
-Below is my solution to the challenge from [the previous instalment](https://bartificer.net/pbs28), written to run via NodeJS rather than in the PBS playground.
+Below is my solution to the challenge from [the previous instalment](https://pbs.bartificer.net/pbs28), written to run via NodeJS rather than in the PBS playground.
 
 ```javascript
 // init name space - commented out in playground
@@ -497,7 +497,7 @@ I’d like to start by drawing your attention to my implementations of the `pbs.
 
 You can also see that all the setters in the `pbs.Date` prototype now call the helper function `isValidateDMYCombo()` to ensure it’s not possible to set an invalid date like the 31st of April 2016. Creating the helper function has allowed us to avoid massive code duplication.
 
-At this stage our prototypes are coming on nicely, but, they still have some shortcomings.
+At this stage our prototypes are coming on nicely, but they still have some shortcomings.
 
 The biggest remaining problem is a subtle but very important one, and it only affects the `pbs.DateTime` prototype. What makes this prototype different? Instances of `pbs.Date` and `pbs.Time` contain only basic data (numbers), but, instances of `pbs.DateTime` contain objects – each instance of `pbs.DateTime` contains an instance of both `pbs.Date`, and `pbs.Time`.
 
@@ -505,7 +505,7 @@ A point I stressed early in the series is that variables can store numbers, stri
 
 This subtle difference between basic values and objects becomes very important when you assign one variable equal to the value stored in another.
 
-When you have a variable that holds a basic value like a number, and assign another variable equal to it, the number gets copied, so now each variable has its own copy of the number. Changing the number stored in one of the variables has no effect on the value stored in the other. We can prove this to ourselves with this simple code snippet:
+When you have a variable that holds a basic value, like a number, and assign another variable equal to it, the number gets copied. Each variable has its own copy of the number. Changing the number stored in one of the variables has no effect on the value stored in the other. We can prove this to ourselves with this simple code snippet:
 
 ```javascript
 var x = 4;
@@ -527,9 +527,9 @@ after adding 10 to y we have: x=4 & y=14
 
 Variables that ‘contain’ objects do not behave like this. Why? Because they contain **references** to the objects, not the objects themselves.
 
-When you have a variable that ‘contains’ an object and then create another variable and assign it equal to the first, what gets copied is the reference, **not** the object. You now have two copies of the same ‘address’, so you have in effect created an alias to the object. The object effectively has two names, but there is still only one object. If you alter the object via one of its names, the value ‘contained’ in the other will also change. This kind of _spooky action at a distance_ can really catch you out if you’re not careful!
+When you have a variable that ‘contains’ an object and then create another variable and assign it equal to the first, what gets copied is the reference, **not** the object. You now have two copies of the same ‘address’. You have in effect created an alias to the object. The object effectively has two names, but there is still only one object. If you alter the object via one of its names, the value ‘contained’ in the other will also change. This kind of _spooky action at a distance_ can really catch you out if you’re not careful!
 
-Forgetting that variables can only hold references to objects results in some of the most brain-bending bugs imaginable. You could easily loose your sanity as changing one variable inexplicably (to you) breaks something hundreds of lines removed in your code. Finding these kinds of bugs can be really tricky, so you really want to avoid them. That’s why I’ve been repeating the fact that objects contain **references** to variables so often in this segment – don’t think it’s possible to over-emphasise the point!
+Forgetting that variables can only hold references to objects results in some of the most brain-bending bugs imaginable. You could easily loose your sanity as changing one variable inexplicably (to you) breaks something hundreds of lines removed in your code. Finding these kinds of bugs can be really tricky; so you really want to avoid them. That’s why I’ve been repeating the fact that objects contain **references** to variables so often in this segment – don’t think it’s possible to overemphasise the point!
 
 The code snippet below illustrates this _spooky action at a distance_ for you:
 
@@ -551,7 +551,7 @@ after altering y to 9:00:00AM x is now also 9:00:00AM
 
 ```
 
-If you remember that variables contain references to objects, then this output makes perfect sense: `y` was set equal to the same reference as `x`, so of course they are the same object, but if you forget that variables contains references to objects rather than the objects themselves, this behaviour will catch you by surprise every time.
+If you remember that variables contain references to objects, then this output makes perfect sense: `y` was set equal to the same reference as `x`, so of course they are the same object. If you forget that variables contains references to objects rather than the objects themselves, this behaviour will catch you by surprise every time.
 
 At the moment, the accessor methods in `pbs.DateTime` are returning references to the objects contained within the instances, not references to copies of those objects. This will lead to unwanted and unexpected behaviour in one of two ways:
 
@@ -592,13 +592,13 @@ dt now represents 2017-12-25 00:00:00
 
 ```
 
-We never explicitly altered `dt`, but, `dt` changed.
+We never explicitly altered `dt`, but `dt` changed.
 
 What’s the solution? Cloning!
 
 Constructors and accessor methods that make use of objects need to store or return references to copies, or _clones_, of these objects, not merely copies of the original references. To make this possible, every prototype you write should contain a function named `.clone()`, which should return a new object that represents the same values as stored within the instance being cloned.
 
-A clone function is basically a deep copy – if a piece of data is a value like a number, string, or boolean, just copy it, if it’s an object, clone it.
+A clone function is basically a deep copy – if a piece of data is a value like a number, string, or boolean, just copy it. If it’s an object, clone it.
 
 Let’s start with the simple case, and create a clone function for our `pbs.Time` prototype:
 
@@ -630,7 +630,7 @@ t1=09:00:00 & t2=04:00:00
 
 ```
 
-As you can see, the clone starts off as an identical copy of the original, and then both can be altered without affecting the other.
+As you can see, the clone starts off as an identical copy of the original. Then either can be altered without affecting the other.
 
 Adding a clone function to `pbs.Date` will be very similar.
 
@@ -676,19 +676,19 @@ console.log('t=' + t + ', t2=' + t2 + ' & dt=' + dt);
 
 ## HTML Glyph Icons
 
-In the previous instalment, we saw how we could use images to enhance the clarity of our buttons. The concept of adding an icon to help the user is sound, but using pixel-based images is not. The icons need to be scalable, so, we need some kind of vector-based solution.
+In the previous instalment, we saw how we could use images to enhance the clarity of our buttons. The concept of adding an icon to help the user is sound, but using pixel-based images is not. The icons need to be scalable. So we need some kind of vector-based solution.
 
-Because this is a very common problem, an interesting solution has been devised that combines a collection of technologies to produce a solution that’s powerful, and yet simple to use. The solution combines scalable vector graphics, web fonts, and CSS, and the resulting icons are often generally referred to as _glyphs_, or _glyph icons_, and collections of these icons as _glyph icon sets_, or _iconic fonts_.
+Because this is a very common problem, an interesting solution has been devised that combines a collection of technologies to produce a solution that’s powerful, and yet simple to use. The solution combines scalable vector graphics, web fonts, and CSS. The resulting icons are often generally referred to as _glyphs_, or _glyph icons_, and collections of these icons as _glyph icon sets_, or _iconic fonts_.
 
-While pre-made glyph icon sets are very easy to use, creating your own is quite laborious. Thankfully, you don’t have to! You can buy commercial glyph icon sets like [Glyphicons](http://glyphicons.com), or, you can use free open-source glyph icon sets like the one provided by [Font Awesome](http://fontawesome.io). That’s what we’ll be using in this series.
+While premade glyph icon sets are very easy to use, creating your own is quite laborious. Thankfully, you don’t have to! You can buy commercial glyph icon sets like [Glyphicons](http://glyphicons.com), or you can use free open source glyph icon sets like the one provided by [Font Awesome](http://fontawesome.io). That’s what we’ll be using in this series.
 
 ### Using Font Awesome
 
-If you plan on using Font Awesome for real-world projects, you should create a free account on their CDN (content delivery network), and generate a project-specific download URL as described on their [get started page](http://fontawesome.io/get-started/).
+If you plan on using Font Awesome for real world projects, you should create a free account on their CDN (content delivery network), and generate a project-specific download URL as described on their [get started page](http://fontawesome.io/get-started/).
 
 For this series though, we’ll be using a download URL created with my account.
 
-When you create your own download URL, you can choose which version of the icon set your link will lead to, and you can choose to use either a JavaScrip-based variant of the icon set which includes some extra automation, or a plain CSS variant. For simplicity, the link I generated for this series is to the plain CSS variant.
+When you create your own download URL, you can choose which version of the icon set your link will lead to. You can choose to use either a JavaScript-based variant of the icon set which includes some extra automation, or a plain CSS variant. For simplicity, the link I generated for this series is to the plain CSS variant.
 
 So, for our purposes, including Font Awesome into a web page is as simple as adding the following line inside the head section:
 
@@ -708,15 +708,15 @@ So – as a quick example, assuming you have included Font Awesome into your pag
 <span class="fa fa-thumbs-up"></span>
 ```
 
-The sizing of the icon is determined by the font size, so if you include an icon in a header you’ll see it larger than when you include it in a paragraph.
+The sizing of the icon is determined by the font size. If you include an icon in a header, you’ll see it larger than when you include it in a paragraph.
 
 Because these icons are actually characters in a font, their colour is determined by the text colour set for the part of the page where they appear.
 
-So, to get icons rendered in the default way with the same size and colour as your text, you just create an empty `<span>` and give it the class `fa`, and the class for the icon you would like. However, you can do more! Font Awesome also defines a number of modifier classes which you can add as extra classes along with the two you always need.
+So, to get icons rendered in the default way with the same size and colour as your text, you just create an empty `<span>` and give it the class `fa` and the class for the icon you would like. However, you can do more! Font Awesome also defines a number of modifier classes which you can add as extra classes along with the two you always need.
 
 You can make icons a little bigger than the text by adding the class `fa-lg` (for large), or you can make the icons bigger still with `fa-2x`, `fa-3x`, and so on up to `fa-5x`, which makes simply massive icons.
 
-You can also control the rotation of your icons with the special classes `fa-rotate-90`, `fa-rotate-180`, and `fa-rotate-270`, and you can mirror them with `fa-flip-horizontal` and `fa-flip-vertical`.
+You can also control the rotation of your icons with the special classes `fa-rotate-90`, `fa-rotate-180`, and `fa-rotate-270`. You can mirror them with `fa-flip-horizontal` and `fa-flip-vertical`.
 
 Another thing you can do is add a subtle border around your icon by adding the class `fa-border`.
 
@@ -755,7 +755,7 @@ You can also stack the larger logo over the smaller one, and you can add colours
 </span>
 ```
 
-Finally, bringing all this back to HTML forms, we can re-do our buttons from last time, but with nice icons instead of images:
+Finally, bringing all this back to HTML forms, we can redo our buttons from last time, but with nice icons instead of images:
 
 ```html
 <p>The buttons below include glyph icons to make it clearer what they do:</p>
@@ -922,6 +922,6 @@ You can view your local copy of this file in your browser, or view a version on 
 
 ## Final Thoughts
 
-We’ll start the next instalment with more JavaScript prototype revision. First, with a look at my sample solution to the challenge set in this instalment, and then we’ll move on to add another important additional feature to all three of our prototypes – the ability to do comparisons.
+We’ll start the next instalment with more JavaScript prototype revision. First, we'll take a look at my sample solution to the challenge set in this instalment. Then we’ll move on to add another important additional feature to all three of our prototypes – the ability to do comparisons.
 
 We’ll then move on to learn about a W3C standard that is very important for HTML forms, especially forms that make use of glyph icons – ARIA (Accessible Rich Internet Applications).

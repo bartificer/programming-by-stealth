@@ -1,12 +1,12 @@
 # PBS 28 of x – JS Prototype Revision | CSS Attribute Selectors & Buttons
 
-In this instalment we’ll continue our parallel streams of JavaScript prototype revision, and web forms.
+In this instalment we’ll continue our parallel streams of JavaScript prototype revision and web forms.
 
-We’ll start by looking at a sample solution to the challenge set at the end of [the previous instalment](https://bartificer.net/pbs27). We’ll look at what is good about the solution, and where it falls short. We’ll then improve the prototypes through the user of private helper functions.
+We’ll start by looking at a sample solution to the challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs27). We’ll look at what is good about the solution, and where it falls short. We’ll then improve the prototypes through the use of private helper functions.
 
 Before moving on to look at HTML buttons in detail, we’ll learn some new CSS selectors that are particularly useful for styling web forms.
 
-# Matching Podcast Episode 472
+## Matching Podcast Episode 472
 
 Listen Along: Chit Chat Across the Pond Episode 472
 
@@ -302,7 +302,7 @@ var gonnaPrankBart = new pbs.DateTime(new pbs.Date(1, 4, 2017), new pbs.Time(15)
 pbs.say('Gonna prank Bart good on ' + gonnaPrankBart.european24Hour() + ' his time');
 ```
 
-My sample solution follows the template described at the end of [the previous instalment](https://bartificer.net/pbs27).
+My sample solution follows the template described at the end of [the previous instalment](https://pbs.bartificer.net/pbs27).
 
 I’d like to draw your attention to a few aspects of the solution – firstly, the `pbs.DateTime` prototype is by far the simplest of the three, because it leverages the code in the other two. Because the data attributes (`this._date` & `this._time`) are instances of the `pbs.Date` and `pbs.Time` prototypes, the functions from those prototypes can be leveraged. You really see this in action in the implementations of functions like `american24Hour()`:
 
@@ -314,11 +314,11 @@ pbs.DateTime.prototype.american24Hour = function(){
 
 When it comes to the years, I have implemented them as a whole number, which I allow to be negative or zero. In our day-to-day way of writing years, there is no year zero. The year before 1CE (or 1AD if you prefer the Christian-centric view of time) was not 0CE, or 0BCE (or indeed 0AD or 0BC), it was 1BCE (or 1BC).
 
-We could store our year as a whole number with a sign, and throw an error if someone tries to use zero, but then maths stops behaving properly. You’d like to be able to subtract two years from each other to determine how far apart they are. If you implicitly skip zero then you start to get the wrong answer from simple subtractions when ever one number is positive and the other is negative.
+We could store our year as a whole number with a sign, and throw an error if someone tries to use zero, but then maths stops behaving properly. You’d like to be able to subtract two years from each other to determine how far apart they are. If you implicitly skip zero, then you start to get the wrong answer from simple subtractions whenever one number is positive and the other is negative.
 
 The solution to this dilemma is to use so-called [Astronomical Year Numbering](https://en.wikipedia.org/wiki/Astronomical_year_numbering), and that’s what my code does. When storing dates, you store them as whole numbers with a sign, and allow zero. All positive numbers represent CE years, and all negative numbers and represent BCE years plus one. So 1 is 1AD, 0 is 1BCE, and -1 is 2BCE and so on.
 
-Internally, my solution stores years as astronomical years so that maths works, but, when generating strings, my code renders years in CE or BCE. This is done by checking whether or not the year is less than of equal to zero, and if it is, subtracting one get the correct BCE year. You can see an example of this in my implementation of the `.european()` function:
+Internally, my solution stores years as astronomical years so that maths works, but, when generating strings, my code renders years in CE or BCE. This is done by checking whether or not the year is less than or equal to zero. If it is, subtracting one gets the correct BCE year. You can see an example of this in my implementation of the `.european()` function:
 
 ```javascript
 pbs.Date.prototype.european = function(){
@@ -342,7 +342,7 @@ pbs.Date.prototype.european = function(){
 
 Now lets look at what’s not so good about my solution.
 
-Firstly, this code has a number of so-called _bad smells_ (an actual software engineering term). My solution contains a lot of duplicated code, and yours probably does too. There is definitely scope for re-organising some of that repeated code into helper functions, or, to use the fancy software engineering term, for _refactoring_ the repeated code into a number of helper functions.
+Firstly, this code has a number of so-called _bad smells_ (an actual software engineering term). My solution contains a lot of duplicated code, and yours probably does too. There is definitely scope for reorganising some of that repeated code into helper functions, or, to use the fancy software engineering term, for _refactoring_ the repeated code into a number of helper functions.
 
 There’s a lot of testing to see whether a given value is an integer within a given range – we need to make sure hours are whole numbers between 1 and 23, minutes and seconds are whole numbers between 0 and 59, and so on. Let’s write a little helper function to take care of all those cases in one go.
 
@@ -369,7 +369,7 @@ function isValidInteger(v, lbound, ubound){
 }
 ```
 
-We can now refactor our accessor methods to use this function, e.g. the accessors from `pbs.Time` could be re-written like so:
+We can now refactor our accessor methods to use this function, e.g. the accessors from `pbs.Time` could be rewritten like so:
 
 ```javascript
 pbs.Time.prototype.hours = function(h){
@@ -406,11 +406,11 @@ pbs.Time.prototype.seconds = function(s){
 
 I’ve shown this function in isolation, but that still leaves us with a really important question – where should you place it within your code?
 
-We could place it at the very top of our code, above the namespace and the self-executing anonymous function within which we define our prototypes, or, we could put it as the first thing within the self-executing anonymous function. In both cases, the code would run, so which is the right thing to do?
+We could place it at the very top of our code, above the namespace and the self-executing anonymous function within which we define our prototypes, or we could put it as the first thing within the self-executing anonymous function. In both cases, the code would run; so which is the right thing to do?
 
-If we place it outside the self-executing anonymous function, it will be in the global scope. It’s precisely to avoid this kind of littering of the global scope that we introduced the concept of self-executing anonymous functions, so, the correct place to put these kinds of helper functions is inside the self-executing anonymous function.
+If we place it outside the self-executing anonymous function, it will be in the global scope. It’s precisely to avoid this kind of littering of the global scope that we introduced the concept of self-executing anonymous functions. So, the correct place to put these kinds of helper functions is inside the self-executing anonymous function.
 
-Also notice that I have placed all three of my prototypes within the same self-executing anonymous function. If you placed each in its own function, then they would not share a scope, so you couldn’t use the same helper functions within all three prototypes. It’s for exactly this reason that I placed the three prototypes within the same self-executing anonymous function.
+Also notice that I have placed all three of my prototypes within the same self-executing anonymous function. If you placed each in its own function, then they would not share a scope. You couldn’t use the same helper functions within all three prototypes. It’s for exactly this reason that I placed the three prototypes within the same self-executing anonymous function.
 
 The next big issue we have is with validation of the days in the `pbs.Date` prototype. The following does not currently throw an exception, and it really should:
 
@@ -420,7 +420,7 @@ var impossibleDate = new pbs.Date(31, 2, 2017);
 
 How can we resolve this? Clearly, there is going to have to be some kind of linkage between the month and day parts of the date. When changing the month or the day, we need to check that the pair together are valid, and if not, we need to act.
 
-The first thing we’ll want to create is a private lookup table storing the number of days in each month. Like with the helper functions, we don’t want this littering the global scope, so it too should be defined within the self-executing anonymous function:
+The first thing we’ll want to create is a private lookup table storing the number of days in each month. As with the helper functions, we don’t want this littering the global scope. It too should be defined within the self-executing anonymous function:
 
 ```javascript
 var daysInMonthLookup = {};
@@ -438,11 +438,11 @@ daysInMonthLookup[11] = 30;
 daysInMonthLookup[12] = 31;
 ```
 
-This will allow us to deal with 11 of the 12 months in the year quite easily, but what about February? We need to know the year to know how many days there are in February! So, we actually need to validate the combination of day, month and year each time we update any one of them.
+This will allow us to deal with 11 of the 12 months in the year quite easily, but what about February? We need to know the year to know how many days there are in February! So, we actually need to validate the combination of day, month, and year each time we update any one of them.
 
 This calls for another helper function!
 
-[According to WikiPedia](https://en.wikipedia.org/wiki/Leap_year), the Gregorian Calendar we use today came into use in 1582. We could write our code so it uses the Julian calendar for years before 1582, but that would get very complex very quickly, instead, we’ll use the [Proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar), that is, our modern calendar projected backwards as if it had always been in use.
+[According to WikiPedia](https://en.wikipedia.org/wiki/Leap_year), the Gregorian Calendar we use today came into use in 1582. We could write our code so it uses the Julian calendar for years before 1582, but that would get very complex very quickly. Instead, we’ll use the [Proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar), that is, our modern calendar projected backwards as if it had always been in use.
 
 That gives us the following rules for calculating leap years:
 
@@ -531,9 +531,9 @@ pbs.Date.prototype.year = function(y){
 };
 ```
 
-This now brings along a new problem – at the moment our prototype only allows days, months, and years to be set one, by, one, so there are edge cases where converting from one valid date to another valid date in one order will fail, but doing the same conversion in another order will succeed.
+This now brings along a new problem – at the moment our prototype only allows days, months, and years to be set one by one. So there are edge cases where converting from one valid date to another valid date in one order will fail, but doing the same conversion in another order will succeed.
 
-E.g. The following code looks perfectly valid, but will throw an exception:
+For example, the following code looks perfectly valid, but will throw an exception:
 
 ```javascript
 var myDate = new pbs.Date();
@@ -551,9 +551,9 @@ Why?
 
 The reason is subtle, but important, and shows a shortcoming in our current prototype design.
 
-When you call the constructor with no arguments, the date is set to 1 Jan 1970. When you call `.day(29)` on that object, you are setting the date to 29 Jan 1970, which is fine, but when you call `.month(2)`, you are setting the date to 29 Feb 1970, which is invalid because 1970 is not a leap year!
+When you call the constructor with no arguments, the date is set to 1 Jan 1970. When you call `.day(29)` on that object, you are setting the date to 29 Jan 1970, which is fine. But when you call `.month(2)`, you are setting the date to 29 Feb 1970, which is invalid because 1970 is not a leap year!
 
-Why does the same thing in a different order succeed? By changing the year, then month, then day the object goes from 1 Jan 1970, to 1 Jan 2016, to 1 Feb 2016, to 29 Feb 2016, so it never passed through an invalid state.
+Why does the same thing in a different order succeed? By changing the year, then month, then day the object goes from 1 Jan 1970, to 1 Jan 2016, to 1 Feb 2016, to 29 Feb 2016. It never passed through an invalid state.
 
 How can we update our prototype to address this limitation?
 
@@ -561,11 +561,11 @@ We clearly need some kind of accessor function that accepts three arguments, val
 
 The solution is to write a new accessor method that accepts three arguments, allowing all three values to be updated and validated in one go. We could write a whole new function, but we already have two functions for reading the entire date, `.american()` and `.european()`, so why not update those to optionally accept three arguments in the appropriate order?
 
-Notice that in the above samples we use code like `myDate.year(2016).month(2).day(29)`, this is an example of so-called function chaining, and it is only possible because our accessors return `this` when used to set a value.
+Notice that in the above samples we use code like `myDate.year(2016).month(2).day(29)`. This is an example of so-called function chaining. It is only possible because our accessors return `this` when used to set a value.
 
-Remember that we evaluate from left to right, so the first thing to happen is that `myDate` is looked up. It is a reference to an object with the prototype `pbs.Date`. Next, the dot operator applies the function `year()` from the `pbs.Date` prototype to what ever is to its left, i.e. the `myDate` object. The `year()` function returns `this`, so, `myDate.year()` returns the `myDate` object. At this stage in the evaluation, the line has effectively become `myDate.month(2).day(29)`. The dot operator happens again, and the month() function from the pbs.Date prototype gets applied to the myDate object. Again, because `myDate` is the object on which the function is being invoked, within the function, `this` is a reference to the `myDate` object. So, when `month()` again returns `this`, the value being returned is a reference to the `myDate` object yet again. The line has now become equivalent to `myDate.day(29)`. The dot operator fires one last time, and applies the `day()` function from the `pbs.Date` prototype to the myDate object.
+Remember that we evaluate from left to right. The first thing to happen is that `myDate` is looked up. It is a reference to an object with the prototype `pbs.Date`. Next, the dot operator applies the function `year()` from the `pbs.Date` prototype to whatever is to its left, i.e. the `myDate` object. The `year()` function returns `this`; so, `myDate.year()` returns the `myDate` object. At this stage in the evaluation, the line has effectively become `myDate.month(2).day(29)`. The dot operator happens again, and the `month()` function from the `pbs.Date` prototype gets applied to the `myDate` object. Again, because `myDate` is the object on which the function is being invoked, within the function, `this` is a reference to the `myDate` object. So, when `month()` again returns `this`, the value being returned is a reference to the `myDate` object yet again. The line has now become equivalent to `myDate.day(29)`. The dot operator fires one last time and applies the `day()` function from the `pbs.Date` prototype to the `myDate` object.
 
-So, because we return this within all our accessors when setting a value, and only because we do that, the single line `myDate.year(2016).month(2).day(29)` is entirely equivalent to:
+So, because we return `this` within all our accessors when setting a value, and only because we do that, the single line `myDate.year(2016).month(2).day(29)` is entirely equivalent to:
 
 ```javascript
 myDate.year(2016);
@@ -575,9 +575,9 @@ myDate.day(29);
 
 ## A Challenge
 
-Using either your own solution to the previous challenge, or my sample solution above as your starting point, and make the following changes.
+Using either your own solution to the previous challenge, or my sample solution above as your starting point, make the following changes.
 
-First, add private helper functions to do the following, and re-factor your code to make use of them:
+First, add private helper functions to do the following, and refactor your code to make use of them:
 
 *   A function to validate integers – it should accept optional upper and lower bounds on the values (you can use the sample function above)
 *   A function that takes a number and converts it into a string of a given length – if the length is greater than the number of digits, zeros should be added to the front of the string until it is long enough. Update the various functions for rendering dates and times as strings to make use of this function
@@ -616,7 +616,7 @@ pbs.say('successfully converted 1 Jan 1970 to ' + testDate.toString());
 
 Finally, add two more functions to your `pbs.Date` prototype with the following details:
 
-*   A function named .international() that behaves like the updated versions of `.american()` and `.european()`, but orders the date as Y, M, D.
+*   A function named `.international()` that behaves like the updated versions of `.american()` and `.european()`, but orders the date as Y, M, D.
 *   A function named `.english()` that returns the date as a human-friendly string like _2nd of March 2016_. Unlike `.american()` etc., this function does not need to allow the currently stored date be updated. You may find it helpful to add some private lookup tables to aid you in your work.
 
 You can test your functions with the following code:
@@ -629,7 +629,7 @@ pbs.say("I'm looking forward to getting presents on the " + nextXMas.english());
 
 ## The CSS Attribute Selectors
 
-It’s been a long time since we’ve learned a new CSS selector, but now that we’re moving on to HTML forms, there’s a whole class of CSS selector that it would be good to know about – the attribute selectors.
+It’s been a long time since we’ve learned a new CSS selector, but now that we’re moving on to HTML forms, there’s a whole class of CSS selectors that it would be good to know about – the attribute selectors.
 
 ### Attribute Presence (`[attribute_name]`)
 
@@ -673,7 +673,7 @@ img[src$=".gif"]{
 
 ### Attribute Value Contains (`[attribute_name*="some_value"]`)
 
-You can style elements based on the value of a given attribute containing a given value as a sub-string using this selector. For example, you could add a green border to any image who’s `alt` attribute contains the word `boogers` with something like:
+You can style elements based on the value of a given attribute containing a given value as a substring using this selector. For example, you could add a green border to any image whose `alt` attribute contains the word `boogers` with something like:
 
 ```css
 img[alt*="boogers"]{
@@ -683,7 +683,7 @@ img[alt*="boogers"]{
 
 ### Attribute Value Contains Word (`[attribute_name~="some_word"]`)
 
-Some HTML attributes can contain a space-delimited list of values. For example, the `rel` attribute on links. We know it can contain `noopener` to specify that a window opened by clicking the link should not get a JavaScript `opener` object. But we can also set the `rel` attribute to `nofollow` to tell search engines not to follow the link when crawling the site. To specify that a link should have rel values of both noopener and nofollow, you would place both values into the same attribute separate by a space, like so:
+Some HTML attributes can contain a space-delimited list of values. For example, the `rel` attribute on links. We know it can contain `noopener` to specify that a window opened by clicking the link should not get a JavaScript `opener` object. But we can also set the `rel` attribute to `nofollow` to tell search engines not to follow the link when crawling the site. To specify that a link should have rel values of both noopener and nofollow, you would place both values into the same attribute separated by a space, like so:
 
 ```html
 <a href="http://www.bartb.ie/" rel="noopener nofollow">Bart's Home Page</a>
@@ -705,33 +705,34 @@ The above selector would turn all the following links grey:
 <a href="http://www.bartb.ie/" rel="nofollow noopener">Bart's Home Page</a>
 ```
 
-Like with all other selectors, the attribute selectors can be combined with the selectors we already know, so you could style all links with the class `pbs` that have a `href` attribute that starts with `https://` with be the selector `a.pbs[href^="https://"]`.
+As with all other selectors, the attribute selectors can be combined with the selectors we already know. You could style all links with the class `pbs` that have a `href` attribute that starts with `https://` with the selector `a.pbs[href^="https://"]`.
 
 ## The HTML 5 `button` Tag
 
 A button is a clickable inline element. In general, most buttons just contain text, but they can contain other HTML elements.
 
 You should always specify a `type` attribute on your buttons. You can choose from the following values:
+<dl>
+<dt><code>type="submit"</code> (the default)</dt>
 
-`type="submit"` (the default)
+<dd>Clicking on the button will submit the form it belongs to.</dd>
 
-Clicking on the button will submit the form it belongs to.
+<dt><code>type="reset"</code></dt>
 
-`type="reset"`
+<dd>Clicking on the button will reset all form inputs within the form the button belongs to to their initial values.</dd>
 
-Clicking on the button will reset all form inputs within the form the button belongs to to their initial values.
+<dt><code>type="button"</code></dt>
 
-`type="button"`
+<dd>A plain button that will do nothing unless a JavaScript event handler is added to it.</dd>
+</dl>
 
-A plain button that will do nothing unless a JavaScript event handler is added to it.
+As mentioned in the previous instalment, if no type is supplied or an invalid value is specified, `type="submit"` is assumed.
 
-As mentioned in the previous instalment, if no type is supplied, or an invalid value is specified, `type="submit"` is assumed.
+Buttons can also contain a `value` attribute. This attribute has no visible effect on the button, but it can be accessed via JavaScript and jQuery. It will be passed to the server when a form is submitted.
 
-Buttons can also contain a `value` attribute. This attribute has no visible effect on the button, but it can be accessed via JavaScript and jQuery, and it will be passed to server when a form is submitted.
+Buttons can be styled with CSS and the CSS attribute selectors can be used to style different types of buttons differently. It’s common to use different colours for the different types of button, and to use a bold font on submit buttons.
 
-Buttons can be styled with CSS, and the CSS attribute selectors can be used to style different types of button differently. It’s common to use different colours for the different types of button, and, to use a bold font on submit buttons.
-
-In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2017/01/pbs28.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs28.zip) you’ll find just one HTML page, and a few images. Below is the code for the page, which contains nine buttons in three sets of three. First, un-styled examples of each of the three kinds of button, then styled examples of each kind of button, and finally, one of each kind of button where images are used to make the buttons easier to understand.
+In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2017/01/pbs28.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs28.zip) you’ll find just one HTML page, and a few images. Below is the code for the page, which contains nine buttons in three sets of three. First, unstyled examples of each of the three kinds of button, then styled examples of each kind of button, and finally, one of each kind of button where images are used to make the buttons easier to understand.
 
 ```html
 <!DOCTYPE HTML>
@@ -811,6 +812,6 @@ In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uplo
 
 ## Final Thoughts
 
-We have still only touched the tip of the web form iceberg. We’ll start the next instalment by showing some draw-backs to using image files for icons within buttons and other form elements. There is a better way to include useful pictograms, and we’ll learn all about it. We’ll also learn how to tell a screen reader that a piece of a web page is just decoration, and that it should be hidden from screen readers so as to give visually impaired users a better experience.
+We have still only touched the tip of the web form iceberg. We’ll start the next instalment by showing some drawbacks to using image files for icons within buttons and other form elements. There is a better way to include useful pictograms, and we’ll learn all about it. We’ll also learn how to tell a screen reader that a piece of a web page is just decoration, and that it should be hidden from screen readers so as to give visually impaired users a better experience.
 
 We’ll also continue on our revision of JavaScrip prototypes in parallel with all that.

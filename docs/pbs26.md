@@ -8,7 +8,7 @@ Finally, as a practical worked example, we’ll build a better clock API for All
 
 As usual I’ve packaged all the files needed for the worked example into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/12/pbs26.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs26.zip).
 
-# Matching Podcast Episode 467
+## Matching Podcast Episode 467
 
 Listen Along: Chit Chat Across the Pond Episode 467
 
@@ -106,7 +106,7 @@ var pbs = pbs ? pbs : {};
 
 I want to draw your attention to two points within my solution.
 
-Firstly, the use of closures within `pbs.renderClock()`. Three variables are created to represent the parts of the clock (`$hours`, `$separator` & `$minutes`), and they are created in `pbs.renderClock()`‘s scope. The function for updating the clock is defined within `pbs.renderClock()`, so, thanks to closures, it retains access to these variables permanently.
+Firstly, the use of closures within `pbs.renderClock()`. Three variables are created to represent the parts of the clock (`$hours`, `$separator` & `$minutes`), and they are created in `pbs.renderClock()`‘s scope. The function for updating the clock is defined within `pbs.renderClock()`. So, thanks to closures, it retains access to these variables permanently.
 
 Secondly, my code uses a jQuery function we have not seen before – `.fadeTo()`. This function gradually shifts the opacity of a DOM element to a given value over a given amount of time. The first argument is the time to take for the fade in milliseconds, and the second the target opacity as a number between 0 and 1 inclusive (0 is fully transparent and 1 is fully opaque).
 
@@ -128,7 +128,7 @@ Data attributes should be named in all lower case, and different parts of the na
 
 Using jQuery, you can both read and write data attributes. The only slight confusion is that jQuery follows the HTML5 spec, and applies a mapping to data attribute names, converting them to camel case. So, the raw HTML data attribute `data-unit-price` becomes `unitPrice` in jQuery.
 
-The jQuery for interacting with data attributes is `.data()`. The first argument is always the name of the data attribute (in the short camel case format). If there is no second argument, the function returns the current value of the data attribute, if there is a second argument, then the function use it as the new value for the data attribute.
+The jQuery for interacting with data attributes is `.data()`. The first argument is always the name of the data attribute (in the short camel case format). If there is no second argument, the function returns the current value of the data attribute. If there is a second argument, then the function uses it as the new value for the data attribute.
 
 For example, given the following HTML snippet:
 
@@ -156,7 +156,7 @@ When setting data attributes in HTML, you are limited to setting string values, 
 
 ## An Improved Design Pattern for APIs
 
-To see data attributes in action, and, to remind ourselves how to create our own prototypes, we’ll build a better clock API that allows arbitrarily many clocks to be added to a single page by building a prototype. Before we start our API, that let’s remind ourselves of how we build a basic prototype:
+To see data attributes in action, and to remind ourselves how to create our own prototypes, we’ll build a better clock API that allows arbitrarily many clocks to be added to a single page by building a prototype. Before we start our API, let’s remind ourselves of how we build a basic prototype:
 
 ```javascript
 // define a constructor
@@ -196,7 +196,7 @@ x.stuff('thingys');
 console.log(x.toString());
 ```
 
-Now that we know about self executing anonymous functions and namespaces, let’s update that template to make it adhere to more best-practices.
+Now that we know about self executing anonymous functions and namespaces, let’s update that template to make it adhere to more best practices.
 
 ```javascript
 // init the PBS namespace
@@ -250,15 +250,15 @@ I want to draw your attention to the start and end of the self-executing anonymo
 })(pbs, jQuery);
 ```
 
-When we define the function, we say that we will name the first argument `pbs`, the second `$`, and the third `undefined`. When we call the function we only pass two arguments, `pbs`, and `jQuery`.
+When we define the function, we say that we will name the first argument `pbs`, the second `$`, and the third `undefined`. When we call the function, we only pass two arguments, `pbs`, and `jQuery`.
 
-The first argument is exactly like we have seen before, we pass the namespace, and we use the same name for it within the anonymous function.
+The first argument is exactly like we have seen before: we pass the namespace and we use the same name for it within the anonymous function.
 
 In our previous examples, there were no other arguments, so what is going on with the other two?
 
-When ever you use the jQuery library, it is always presented as a function object named `jQuery`. By default, the variable named `$` is assigned equal to `jQuery`. This default can be over-ridden. It is possible to use `jQuery`, without `$` existing. Obviously, `$` is much shorter to write, so, it would be nice to be able to safely use `$` within our API’s code. That is what the second argument achieves. When defining what we will refer to the arguments as within the anonymous function we name the second argument `$`, but when calling the function, we pass `jQuery`.
+Whenever you use the jQuery library, it is always presented as a function object named `jQuery`. By default, the variable named `$` is assigned equal to `jQuery`. This default can be overridden. It is possible to use `jQuery`, without `$` existing. Obviously, `$` is much shorter to write. So it would be nice to be able to safely use `$` within our API’s code. That is what the second argument achieves. When defining what we will refer to the arguments within the anonymous function, we name the second argument `$`, but when calling the function, we pass `jQuery`.
 
-Finally, there are bad developers in this world, and they sometimes do silly hacky things, like, defining a variable named `undefined`. When you assign a value to `undefined`, you effectively re-defining undefinedness. To be absolutely sure `undefined` really is undefined within our function, we name the third argument `undefined`, and then only pass two arguments.
+Finally, there are bad developers in this world. They sometimes do silly hacky things, like defining a variable named `undefined`. When you assign a value to `undefined`, you effectively redefining undefinedness. To be absolutely sure `undefined` really is undefined within our function, we name the third argument `undefined`, and then only pass two arguments.
 
 ## Worked Example – a Better Clock API
 
@@ -271,7 +271,7 @@ The main features of this new API will be:
 *   It will be possible to set the timezone for clocks in the HTML through the use of data attributes.
 *   It will be possible to have clocks automatically initialise when the page loads.
 
-The final code will be included below, but let’s built it up piece-by-piece. It’s good practice to validate data passed to the functions in your API, so let’s start by defining some data validation functions.
+The final code will be included below, but let’s built it up piece-by-piece. It’s good practice to validate data passed to the functions in your API. So let’s start by defining some data validation functions.
 
 Our API relies on jQuery, so we should write a function to test if a value is a reference to a jQuery object:
 
@@ -287,7 +287,7 @@ var isjQuery = function(obj){
 };
 ```
 
-Our API transforms single HTML span elements into clocks, so we also need a function to check if a given value is a reference to a jQuery object representing exactly one `span` element:
+Our API transforms single HTML span elements into clocks. So we also need a function to check if a given value is a reference to a jQuery object representing exactly one `span` element:
 
 ```javascript
 var isSingleSpan = function($s){
@@ -304,7 +304,7 @@ var isSingleSpan = function($s){
 };
 ```
 
-Since the whole point of this API is to support clocks in any timezone, as also need a function to check that a given value is a valid timezone specifier. What matters is not so much that the timezone makes sense to humans, but, that the timezone makes sense to the API our code will rely on for dealing with time – MomentJS.
+Since the whole point of this API is to support clocks in any timezone, we also need a function to check that a given value is a valid timezone specifier. What matters is not so much that the timezone makes sense to humans, but, that the timezone makes sense to the API our code will rely on for dealing with time – MomentJS.
 
 The MomentJS API provides a function `moment.tz.names()` which returns an array of all valid timezone names as strings. For a value to be a valid timezone, it must be a string, and, it must be in the array returned by `moment.tz.names()`.
 
@@ -326,7 +326,7 @@ var daysOfTheWeek = {
 };
 ```
 
-We can now write a function to test if a given string is a day if the week like so:
+We can now write a function to test if a given string is a day of the week like so:
 
 ```javascript
 function isDayOfTheWeek(d){
@@ -350,7 +350,7 @@ var isValidTimeZone = function(tz){
 };
 ```
 
-With that groundwork laid, let’s write the constructor for our world clock prototype. Because our API transforms HTML `span` elements into clocks, the first argument to the constructor must be a jQuery object representing a single `span` element. Clocks also need a timezone, but we can be a little more flexible there. We should allow the timezone to be specified as a second argument to the constructor, but, we should also allow the timezone to be directly specified within the HTML of the `<span>` tag using the data attribute `data-timezone`. Finally, we can have a default timezone if none is provided by either of the possible mechanisms – I’ve chosen London, because that’s where Greenwich is. Because there are multiple possible sources of the timezone information, we need to decide on their order of importance. I’ve chosen to give the constructor the highest precedence, then the data attribute, and then the default.
+With that groundwork laid, let’s write the constructor for our world clock prototype. Because our API transforms HTML `span` elements into clocks, the first argument to the constructor must be a jQuery object representing a single `span` element. Clocks also need a timezone, but we can be a little more flexible there. We should allow the timezone to be specified as a second argument to the constructor, but we should also allow the timezone to be directly specified within the HTML of the `<span>` tag using the data attribute `data-timezone`. Finally, we can have a default timezone if none is provided by either of the possible mechanisms – I’ve chosen London, because that’s where Greenwich is. Because there are multiple possible sources of the timezone information, we need to decide on their order of importance. I’ve chosen to give the constructor the highest precedence, then the data attribute, and then the default.
 
 Here’s the code for the constructor for the `pbs.WorldClock` prototype:
 
@@ -448,7 +448,7 @@ var renderClock = function(clock){
 };
 ```
 
-We can now add function for starting and stopping clocks into the prototype:
+We can now add functions for starting and stopping clocks into the prototype:
 
 ```javascript
 /**
@@ -962,7 +962,7 @@ You can see the API in use in `pbs26.html`:
 
 <p>The <code>pbs.WorldClock</code> API can be used to insert live clocks into a web page showing the current time in any timezone.</p>
 
-<p>The clocks can be styled with CSS, allowing them to appear how ever your wish. Clocks can be explicitly craeted using the constructor, or they can be automatically initialised if they are given the appropriate CSS class.</p>
+<p>The clocks can be styled with CSS, allowing them to appear however you wish. Clocks can be explicitly craeted using the constructor, or they can be automatically initialised if they are given the appropriate CSS class.</p>
 
 <p>For example, it's now <span id="clock1"></span> in Dublin (Ireland). This first example is an a clock that has been styled to appear inline, and was explicitly created using the constructor.</p>
 
@@ -974,7 +974,7 @@ You can see the API in use in `pbs26.html`:
 </html>
 ```
 
-The HTML file will only work if it is in the same folder as the `contrib` and `lib` folders from the ZIP file. Assuming you extracted the ZIP into your local web server’s document root, and that your local web server is running, you should be able to see the example in action at `http://localhost/pbs26/pbs26.html`. Alternatively, you can [see it in action on my web server](https://www.bartbusschots.ie/pbsdemos/pbs26/pbs26.html).
+The HTML file will only work if it is in the same folder as the `contrib` and `lib` folders from the ZIP file. Assuming that you extracted the ZIP into your local web server’s document root, and that your local web server is running, you should be able to see the example in action at `http://localhost/pbs26/pbs26.html`. Alternatively, you can [see it in action on my web server](https://www.bartbusschots.ie/pbsdemos/pbs26/pbs26.html).
 
 You can generate the public documentation for this API by opening a terminal in the folder you extracted the ZIP file to, and running the command:
 
@@ -984,17 +984,17 @@ You can generate the developer documentation, including all the private variable
 
 `jsdoc lib/pbs.WorldClock.js --destination docs-dev --private -c jsdoc.conf.json`
 
-Assuming you extracted the ZIP file into your local web server’s document root, and that your local web server is running, you should now be able to access the public documentation at `http://localhost/pbs26/docs/`, and the developer documentation at `http://localhost/pbs26/docs-dev/`. Alternatively, you can access both sets of documentation on my web server: [public docs](https://www.bartbusschots.ie/pbsdemos/pbs26/docs/) & [private docs](https://www.bartbusschots.ie/pbsdemos/pbs26/docs-dev/).
+Assuming that you extracted the ZIP file into your local web server’s document root, and that your local web server is running, you should now be able to access the public documentation at `http://localhost/pbs26/docs/`, and the developer documentation at `http://localhost/pbs26/docs-dev/`. Alternatively, you can access both sets of documentation on my web server: [public docs](https://www.bartbusschots.ie/pbsdemos/pbs26/docs/) & [private docs](https://www.bartbusschots.ie/pbsdemos/pbs26/docs-dev/).
 
 In this example we initialise the first clock ourselves by explicitly calling the constructor of our `pbs.WorldClock` prototype, while we allow the second clock to be automatically initialised. In the first case we pass the timezone to the constructor as an argument, but in the second case we never call the constructor ourselves, so we can’t do that. Instead, we specify the desired timezone directly in the HTML using a data attribute.
 
-We did not just use data attributes to allow a timezone to be specified, we also had the constructor add a reference to the object representing a clock into the span that contains it using a data attribute. This linkage can be useful, for example, you could enter the following in the console to stop clock 1:
+We did not just use data attributes to allow a timezone to be specified. We also had the constructor add a reference to the object representing a clock into the span that contains it, using a data attribute. This linkage can be useful, for example, you could enter the following in the console to stop clock 1:
 
 ```javascript
 $('#clock1').data('pbsWorldclock').stop()
 ```
 
-We can later re-start it with:
+We can later restart it with:
 
 ```javascript
 $('#clock1').data('pbsWorldclock').start()
@@ -1010,12 +1010,12 @@ The API above is functional, but not very configurable. To make it more useful, 
 
 Each of these options should be configurable in three ways – via data attributes, via the constructor, and via accessor methods.
 
-Finally, create two functions, `pbs.WorldClock.stopAll()` and `pbs.WorldClock.startAll()` to allow users to easily stop and start all the clocks on a page. For bonus credit, can you write the functions such that they accept a jQuery object as an optional argument. If the argument is present, only the clocks contained within elements represented by the jQuery object should be stopped or started, and if the argument is not present, all the clocks in the entire document should be stopped or started.
+Finally, create two functions, `pbs.WorldClock.stopAll()` and `pbs.WorldClock.startAll()` to allow users to easily stop and start all the clocks on a page. For bonus credit, can you write the functions such that they accept a jQuery object as an optional argument? If the argument is present, only the clocks contained within elements represented by the jQuery object should be stopped or started. If the argument is not present, all the clocks in the entire document should be stopped or started.
 
 Feel free to use your own namespace for your version of the library. If you choose to do that, it would be good practice to acknowledge where the original code came from in your documentation.
 
 ## Final Thoughts
 
-At this stage we’ve learned how to define the structure of web pages with HTML, to style them with CSS, and alter the structure of web pages with JavaScript. We’ve learned to use APIs written by others, and, to write our own APIs, either for private code re-use, or, for sharing with the world.
+At this stage we’ve learned how to define the structure of web pages with HTML, to style them with CSS, and alter the structure of web pages with JavaScript. We’ve learned to use APIs written by others, and to write our own APIs, either for private code reuse or for sharing with the world.
 
-So far, we’ve omitted an entire facet of the web – user input. Web forms allow users to enter information, and to trigger events. We need to learn the HTML markup to define them, the CSS to style them, and the JavaScript to bring them to life – that’s where this series is heading next.
+So far, we’ve omitted an entire facet of the web – user input. Web forms allow users to enter information and to trigger events. We need to learn the HTML markup to define them, the CSS to style them, and the JavaScript to bring them to life – that’s where this series is heading next.
