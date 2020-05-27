@@ -1,12 +1,12 @@
 # PBS 34 of x – More JS Testing with QUnit
 
-In [the previous instalment](https://bartificer.net/pbs33) we had our first look at [QUnit](http://qunitjs.com/), an open source Unit testing framework for JavaScript by the jQuery project. In this instalment we’ll finish our exploration of QUnit with a look at a few more advanced QUnit features. We’ll be making regular use of QUnit in future JavaScript challenges.
+In [the previous instalment](https://pbs.bartificer.net/pbs33) we had our first look at [QUnit](http://qunitjs.com/), an open source unit testing framework for JavaScript by the jQuery project. In this instalment we’ll finish our exploration of QUnit with a look at a few more advanced QUnit features. We’ll be making regular use of QUnit in future JavaScript challenges.
 
 Wrapping up our brief detour into testing a QUnit leaves us free to move back to HTML forms and more JavaScript practice in the next instalment. The aim is to slowly bring those two streams back together through a new multi-instalment project. Over the next few instalments we’ll be building up a web app that makes use of both web forms and JavaScript prototypes.
 
 As usual, I’ve collected the code referenced in this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs34.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs34.zip).
 
-# Matching Podcast Episode 484
+## Matching Podcast Episode 484
 
 Listen Along: Chit Chat Across the Pond Episode 484
 
@@ -18,19 +18,19 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge set at the end of the previous instalment was to write a QUnit test suite for all or part of some or all of the date and time related prototypes we built together over recent instalments – specifically `pbs.Date`, `pbs.Time` and `pbs.DateTime`. The reason I left the assignment so open-ended is that writing complete test suites for all the feature and functions of this quite large API is a mammoth task that involves quite a bit of repetition. Writing some of the tests will definitely help cement what we learned about QUnit in your minds, but writing everything would likely be too much repetition, and just make you cranky. I figure you guys would stop when you’d had enough, and call it a day.
 
-Unfortunately, in order to provide a complete sample solution which covers all possible sub-sets of the API you guys could choose to write your tests for, I did have to a complete test suite, and it was a lot of work, and there were times when it did make me a little cranky 😉
+Unfortunately, in order to provide a complete sample solution which covers all possible subsets of the API you guys could choose to write your tests for, I did have to do a complete test suite, and it was a lot of work, and there were times when it did make me a little cranky 😉
 
 You’ll find my full sample test suite in the ZIP file for this instalment. It’s simply too big to copy-and-paste it all into the body of this post, but I will paste in a few snippets as illustrations throughout this instalment.
 
 ### A QUnit Test Suite is a Regular Web Page
 
-There is nothing special about a web page that happens to import the QUnit framework, it is still a web page, so that means that everything we have ever learned about HTML, CSS, and JavaScript can be incorporated into your test suites. You can declare variables if you find that a helpful thing to do. You can declare functions if you’d find that a helpful thing to do. And, you can of course use all the control structures you’ve learned about, including loops, to reduce the amount of copying-and-pasting in your test suites.
+There is nothing special about a web page that happens to import the QUnit framework. It is still a web page. That means that everything we have ever learned about HTML, CSS, and JavaScript can be incorporated into your test suites. You can declare variables if you find that a helpful thing to do. You can declare functions if you’d find that a helpful thing to do. And, you can of course use all the control structures you’ve learned about, including loops, to reduce the amount of copying-and-pasting in your test suites.
 
-In short – you can use everything you know about JavaScript to make your test suites easier to write, and more effective.
+In short – you can use everything you know about JavaScript to make your test suites easier to write and more effective.
 
 To illustrate this larger point, I want to draw your attention to a few aspects of my sample solution.
 
-Firstly, because there is so much to test here, it made my life easier to split my test suite into multiple files. One which defines some variables and functions I make use of thought my test suite, and that includes a few very general tests, and then a separate file for the tests for each of the three prototypes. So, four `.js` files in total.
+Firstly, because there is so much to test here, it made my life easier to split my test suite into multiple files. One file defines some variables and functions I make use of thoughout my test suite, including a few very general tests. Then three separate files define the tests for each of the three prototypes. So, four `.js` files in total.
 
 If you look at my QUnit test runner (`test/index.html`), you’ll see how easy it is to split up your tests – create the files, then import each into the test runner with a separate `<script>` tag:
 
@@ -65,7 +65,7 @@ If you look at my QUnit test runner (`test/index.html`), you’ll see how easy i
 </html>
 ```
 
-While writing my test suite I quickly realised that I would need similar pieces of dummy data over and over again. Rather than re-defining that dummy data each time, I chose to build a data structure to store it, which I named `DUMMY_DATA`.
+While writing my test suite, I quickly realised that I would need similar pieces of dummy data over and over again. Rather than redefining that dummy data each time, I chose to build a data structure to store it, which I named `DUMMY_DATA`.
 
 The `DUMMY_DATA` variable is a plain object where the names are short abbreviations that describe the piece of sample data, and the values are themselves plain objects. These inner plain objects each contain two name-value pairs, a textual description of the piece of sample data with the name `desc`, and the actual piece of sample data with the name `val`.
 
@@ -99,7 +99,7 @@ DUMMY_DATA = {
 };
 ```
 
-When I had this collection of sample data built up, I soon realised that a sub-set of that data was different to the rest – when testing argument validation I needed samples of each of the basic data types in JavaScript over and over again, and, I needed to be able to quickly check that the function throws an error on all the basic types except for the one or two that the function expects.
+When I had this collection of sample data built up, I soon realised that a subset of that data was different to the rest – when testing argument validation, I needed samples of each of the basic data types in JavaScript over and over again. I needed to be able to quickly check that the function throws an error on all the basic types except for the one or two that the function expects.
 
 For example, the `.hours()` accessor function in the `pbs.Time` prototype should throw an error when given any basic type except a number or the special value `undefined`.
 
@@ -152,9 +152,9 @@ function dummyBasicTypesExcept(){
 
 So, with these data structures and this helper function in place, I was able to save myself a lot of copying and pasting. To illustrate this point, let’s look at the tests for the data validation for hours in the `pbs.Time` prototype.
 
-The first thing to note is that the prototype supports two ways to get an hour value into an instance of `pbs.Time`, the constructor, and the `.hours()` accessor. The same inputs should be accepted or rejected regardless of which route is used, so it makes sense to group the assertions for both together within the one test.
+The first thing to note is that the prototype supports two ways to get an hour value into an instance of `pbs.Time`: the constructor and the `.hours()` accessor. The same inputs should be accepted or rejected, regardless of which route is used. So it makes sense to group the assertions for both together within the one test.
 
-The logic of this test breaks down as follows – first name sure that the basic types that should throw an error do. In other words, if anything other than a number of the special value undefined gets passed, throw an error. Once those assertions have run, you have ruled out most of the possible invalid values, but not all. All valid hours are numbers, but not all numbers are valid hours, so the test next makes sure that hours that are not whole numbers throw an error. Next, the test checks that numbers outside the range of zero to twenty three throw errors, and finally, the test makes sure that valid whole numbers do not throw errors.
+The logic of this test breaks down as follows – first make sure that the basic types that should throw an error do. In other words, if anything other than a number or the special value `undefined` gets passed, throw an error. Once those assertions have run, you have ruled out most of the possible invalid values, but not all. All valid hours are numbers, but not all numbers are valid hours. So the test next makes sure that hours that are not whole numbers throw an error. Next, the test checks that numbers outside the range of zero to twenty-three throw errors. Finally, the test makes sure that valid whole numbers do not throw errors.
 
 I particularly want to draw your attention to the first step in this process because I implemented it by calling the helper function and then looping through the returned types, testing that each type that should throw an error does indeed do so. Here’s the test in full:
 
@@ -245,7 +245,7 @@ Firstly, we use the `dummyBasicTypesExcept()` helper function to get a list of a
 var must_throw = dummyBasicTypesExcept('undef', 'num');
 ```
 
-Until we know how many basic types must throw, we can’t know how many assertions to expect, hence, this function call is made before the call to `a.expect()`, and the calculation of the value passed to `a.expect()` incorporates the length of the `must_throw` array:
+Until we know how many basic types must throw errors, we can’t know how many assertions to expect. Hence, this function call is made before the call to `a.expect()`, and the calculation of the value passed to `a.expect()` incorporates the length of the `must_throw` array:
 
 ```javascript
 a.expect((must_throw.length * 2) + 10);
@@ -290,7 +290,7 @@ A proper clone has three distinctive characteristics:
 2.  The clone has the prototype of the original object.
 3.  Every value stored in the clone is the same as that stored in the original object.
 
-We know how to easily test for non-equality (`assert.notEqual()` or `assert.notStrictEqual()`), and we can use `assert.ok()` in conjunction with the `instanceof` operator to test the clone’s prototype, but we have not yet met a good assertion for testing that the attribute values match. That’s precisely what `assert.propEqual()` is for. The assertion expects three arguments – two objects, and a description. If all the properties in both objects have the same value, the assertion passes. You can see this assertion in use in the test for the `.clone()` function in the `pbs.Time` prototype:
+We know how to easily test for non-equality (`assert.notEqual()` or `assert.notStrictEqual()`), and we can use `assert.ok()` in conjunction with the `instanceof` operator to test the clone’s prototype. However we have not yet met a good assertion for testing that the attribute values match. That’s precisely what `assert.propEqual()` is for. The assertion expects three arguments – two objects, and a description. If all the properties in both objects have the same value, the assertion passes. You can see this assertion in use in the test for the `.clone()` function in the `pbs.Time` prototype:
 
 ```javascript
 QUnit.test('cloning works', function(a){
@@ -305,33 +305,35 @@ QUnit.test('cloning works', function(a){
 
 ## Callbacks & Hooks
 
-QUnit allows you to specify custom code that will be executed when ever various events occur during the execution of a suite of tests. There are six main functions that each take an anonymous function/callback as the only argument:
+QUnit allows you to specify custom code that will be executed whenever various events occur during the execution of a suite of tests. There are six main functions that each take an anonymous function/callback as the only argument:
 
-`QUnit.begin(callback)`
+<dl>
+<dt><code>QUnit.begin(callback)</code></dt>
 
-The callback passed to this function will get executed once at the beginning of the execution of the test suite.
+<dd>The callback passed to this function will get executed once at the beginning of the execution of the test suite.</dd>
 
-`QUnit.done(callback)`
+<dt><code>QUnit.done(callback)</code></dt>
 
-The callback passed to this function will get executed once at the end of the execution of the test suite.
+<dd>The callback passed to this function will get executed once at the end of the execution of the test suite.</dd>
 
-`QUnit.moduleStart(callback)`
+<dt><code>QUnit.moduleStart(callback)</code></dt>
 
-The callback passed to this function will get executed each time the test suite starts processing a module.
+<dd>The callback passed to this function will get executed each time the test suite starts processing a module.</dd>
 
-`QUnit.moduleDone(callback)`
+<dt><code>QUnit.moduleDone(callback)</code></dt>
 
-The callback passed to this function will get executed each time the test suite finishes processing a module.
+<dd>The callback passed to this function will get executed each time the test suite finishes processing a module.</dd>
 
-`QUnit.testStart(callback)`
+<dt><code>QUnit.testStart(callback)</code></dt>
 
-The callback passed to this function will get executed before each test in the test suite.
+<dd>The callback passed to this function will get executed before each test in the test suite.</dd>
 
-`QUnit.testDone(callback)`
+<dt><code>QUnit.testDone(callback)</code></dt>
 
-The callback passed to this function will get executed each time the test suite finished processing a test.
+<dd>The callback passed to this function will get executed each time the test suite finished processing a test.</dd>
+</dl>
 
-When QUnit runs the callbacks it will pass them one argument, a plain object containing relevant details. You can see each of these callbacks in action by adding the following to one of your test suites – note that this will generate a **lot** of alerts, and will be very annoying!
+When QUnit runs the callbacks, it will pass them one argument, a plain object containing relevant details. You can see each of these callbacks in action by adding the following to one of your test suites – note that this will generate a **lot** of alerts, and will be very annoying!
 
 ```javascript
 QUnit.begin(function(details){
@@ -354,7 +356,7 @@ QUnit.testDone(function(details){
 });
 ```
 
-In general, these callbacks are most useful when integrating QUnit with some kind of logging system. However, they do have other uses, so its good to know they exist.
+In general, these callbacks are most useful when integrating QUnit with some kind of logging system. However, they do have other uses, so it's good to know they exist.
 
 In fact, my sample solution makes use of one of these callback functions – `QUnit.testStart()`. The two helper variables DUMMY\_DATA and DUMMY\_BASIC\_TYPES are both defined in the global scope, but they are created without any contents:
 
@@ -363,7 +365,7 @@ var DUMMY_DATA = {};
 var DUMMY_BASIC_TYPES = {};
 ```
 
-The dummy data is defined, or rather re-defined, before every test because the values for both of these variables are set within the anonymous function passed to `QUnit.testStart()`:
+The dummy data is defined, or rather redefined, before every test because the values for both of these variables are set within the anonymous function passed to `QUnit.testStart()`:
 
 ```javascript
 QUnit.testStart(function() {
@@ -390,29 +392,34 @@ QUnit.testStart(function() {
 });
 ```
 
-The reason for re-defining these variables before every test is to help ensure atomicity – if the code under test messes with an object passed as an argument, then all tests that run after that test will be working with altered data. By re-defining the variables after each test, we can be sure they are clean. Basically, we’re protecting ourselves from weird _spooky action at a distance_ bugs.
+The reason for redefining these variables before every test is to help ensure atomicity – if the code under test messes with an object passed as an argument, then all tests that run after that test will be working with altered data. By redefining the variables after each test, we can be sure they are clean. Basically, we’re protecting ourselves from weird _spooky action at a distance_ bugs.
 
-As useful as these global callbacks are, note that the same code gets executed before every test, and before every module, you are not defining per-module actions.
+As useful as these global callbacks are, note that the same code gets executed before every test, and before every module. You are not defining per-module actions.
 
 The second argument to `QUnit.module`, the so-called hooks object, allows you to specify module-specific callbacks. The following four hook names are supported:
 
-`before`
+<dl>
+<dt><code>before</code></dt>
 
-Executed once during each run of the test suite when processing of the module starts.
+<dd>Executed once during each run of the test suite when processing of the module starts.</dd>
 
-`after`
+<dt><code>after</code></dt>
 
-Executed once during each run of the test suite when processing of the module ends.
+<dd>Executed once during each run of the test suite when processing of the module ends.</dd>
 
-`beforeEach`
 
-Executed before each test within the module.
+<dt><code>beforeEach</code></dt>
 
-`afterEach`
+<dd>Executed before each test within the module.</dd>
 
-Executed after each test within the module.
 
-Using the following as the second argument to QUnit.module() somewhere within your test suite will illustrate when these hooks get executed, again, this code will generate a lot of alerts and be very annoying!
+<dt><code>afterEach</code></dt>
+
+<dd>Executed after each test within the module.</dd>
+
+</dl>
+
+Using the following as the second argument to QUnit.module() somewhere within your test suite will illustrate when these hooks get executed. Again, this code will generate a lot of alerts and be very annoying!
 
 ```javascript
 {
@@ -431,9 +438,9 @@ Using the following as the second argument to QUnit.module() somewhere within yo
 }
 ```
 
-Just a reminder that so far, in all our sample code, we’ve been passing an empty object (`{}`) as the second argument in all our calls to `QUnit.module()`. From now on you can pass as an object that defines as many or as few of the four possible hooks as you require – it’s not a case that you have to pass all the hooks or none of them, it’s fine to only pass one, or two, or three.
+Just a reminder that so far, in all our sample code, we’ve been passing an empty object (`{}`) as the second argument in all our calls to `QUnit.module()`. From now on you can pass as an object that defines as many or as few of the four possible hooks as you require – it’s not a case that you have to pass all the hooks or none of them. It’s fine to only pass one, or two, or three.
 
-Note that QUnit ensures that the special `this` variable accessible within each of these four hooks is the same `this` variable that’s available within each test within the module, so, if you set `this.x` to some value within the `before` or `beforeEach` hooks, then you can access that variable from within any test within the module. This mechanism allows you to define some standard pieces of data which you can use in each of a set of related tests.
+Note that QUnit ensures that the special `this` variable accessible within each of these four hooks is the same `this` variable that’s available within each test within the module. So, if you set `this.x` to some value within the `before` or `beforeEach` hooks, then you can access that variable from within any test within the module. This mechanism allows you to define some standard pieces of data which you can use in each of a set of related tests.
 
 My sample test suite contains a number of examples of the use of these hooks, including the one below which shows the use of the `before` hook in a module containing the tests for the string generation functions in the `pbs.Time` prototype:
 
@@ -486,13 +493,13 @@ Notice that we declare four `pbs.Time` objects and save them into the special `t
 
 ## Using the Fixture to Test DOM-Manipulating Code
 
-So far, we’ve been testing JavaScript code that doesn’t interact with the browser in any way. In other words, the code we’ve tested so far doesn’t interact with the DOM. QUnit can of course be used to test code that does interact with the DOM because it was created by the jQuery people to test jQuery, which is all about DOM manipulation!
+So far, we’ve been testing JavaScript code that doesn’t interact with the browser in any way. In other words, the code we’ve tested so far doesn’t interact with the DOM. QUnit can, of course, be used to test code that does interact with the DOM because it was created by the jQuery people to test jQuery, which is all about DOM manipulation!
 
-The key to testing code that interacts with the DOM is the QUnit \*fixture\*. Every QUnit test runner page must contain an HTML element with the ID `qunit-fixture`. This is where you should add the HTML that the code you’re testing will interact with. What QUnit promises is that each time a new test starts, the fixture will have been restored to its original state. So, think if the fixture as a little sandbox that gets put back exactly as it was when the page loaded between each test finishing and the next one starting. Your tests can mess around with it as much as they want, but nothing they do will have any effect on future tests, because QUnit will have restored the fixture to its original state after ever test finishes.
+The key to testing code that interacts with the DOM is the QUnit \*fixture\*. Every QUnit test runner page must contain an HTML element with the ID `qunit-fixture`. This is where you should add the HTML that the code you’re testing will interact with. What QUnit promises is that each time a new test starts, the fixture will have been restored to its original state. So, think of the fixture as a little sandbox that gets put back exactly as it was when the page loaded between each test finishing and the next one starting. Your tests can mess around with it as much as they want, but nothing they do will have any effect on future tests, because QUnit will have restored the fixture to its original state after every test finishes.
 
 Let’s illustrate the concept with a practical example – let’s make a start at writing some tests for the [bartificer.linkToolkit API](https://github.com/bbusschots/bartificer_linkToolkit_js) we developed earlier in the series.
 
-You can find a copy of the code in this instalment’s ZIP file, or, you can download a copy from the API’s GitHub page. The code for the API is contained in the file `bartificer.linkToolkit.js` in the `lib` folder. We’ll add our test suite in a new folder which we’ll name `test`, which will contain two files – our QUnit test runner (`index.html`), and our QUnit tests (`test.js`).
+You can find a copy of the code in this instalment’s ZIP file, or you can download a copy from the API’s GitHub page. The code for the API is contained in the file `bartificer.linkToolkit.js` in the `lib` folder. We’ll add our test suite in a new folder which we’ll name `test`, which will contain two files – our QUnit test runner (`index.html`), and our QUnit tests (`test.js`).
 
 We’ll start with a blank `test.js`, and a basic `index.html` that imports the API to be tested, the QUnit framework, and our currently empty test suite:
 
@@ -535,7 +542,7 @@ We’ll start with a blank `test.js`, and a basic `index.html` that imports the 
 
 A key feature of this API is that it tries to classify links as being _local_ or _external_. For our tests to work reliably we need to know where the test suite is running. The only solution I could come up with to address this requirement was to simply decree that the test suite must always be run from `localhost`.
 
-To make this decree obvious, let’s start our `test.js` file with a callback that will be executed before the test suite runs that will complain if the test runner is running on any domain other than `localhost`:
+To make this decree obvious, let’s start our `test.js` file with a callback that will be executed before the test suite runs and that will complain if the test runner is running on any domain other than `localhost`:
 
 ```javascript
 //
@@ -566,7 +573,7 @@ QUnit.test('namespace exists', function(a){
 });
 ```
 
-The most critical function within the API is `bartificer.linkToolkit.isLocalUrl()` – this function should correctly identify which URLs lead to a page on the same site as the current page, and which don’t. Since this function doesn’t interact with the DOM, we already know everything we need to implement some tests for it:
+The most critical function within the API is `bartificer.linkToolkit.isLocalUrl()` – this function should correctly identify which URLs lead to a page on the same site as the current page, and which URLs don’t. Since this function doesn’t interact with the DOM, we already know everything we need to implement some tests for it:
 
 ```javascript
 //
@@ -632,7 +639,7 @@ QUnit.module('isLocalUrl()', {}, function(){
 });
 ```
 
-Notice that to save a lot of typing, and to make the code more readable, I created a local variable named `isLocalUrl` to store a reference to the function `bartificer.linkToolkit.isLocalUrl`. This means that the following two lines of code are effectively identical:
+Notice that, to save a lot of typing, and to make the code more readable, I created a local variable named `isLocalUrl` to store a reference to the function `bartificer.linkToolkit.isLocalUrl`. This means that the following two lines of code are effectively identical:
 
 ```javascript
 window.alert(bartificer.linkToolkit.isLocalUrl('/boogers.html'));
@@ -643,7 +650,7 @@ I made heavy use of the documentation for the function when designing these test
 
 Next, let’s try write some tests for the `bartificer.linkToolkit.noopenerFix()` function ([also documented on GitHub](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix)).
 
-This function searches some or all of an HTML document for links to URLs that are not local that have a `target` of `_blank`, but who’s `rel` attribute doesn’t contain `noopener`, and adds `noopener` to the `rel` attribute. In other words, the function alters the DOM (by adding new `rel` attributes or altering the values of existing ones).
+This function searches some or all of an HTML document for links to URLs that are not local that have a `target` of `_blank`, but whose `rel` attribute doesn’t contain `noopener`, and adds `noopener` to the `rel` attribute. In other words, the function alters the DOM (by adding new `rel` attributes or altering the values of existing ones).
 
 This means that, for the first time in our exploration of QUnit, we need to make use of the so-called _fixture_.
 
@@ -826,7 +833,7 @@ QUnit.module('noopenerFix()', {}, function(){
 });
 ```
 
-Remember that the fixture gets reset after every test, not after every assertion, so, each test starts by calling the function under test on the fixture. Again, the structure of my tests was very much dictated by the documentation for the function. First, I test the function without any options specified to check that its default behaviour is as expected, then I test each option listed in the documentation in turn, defining a separate test for each.
+Remember that the fixture gets reset after every test, not after every assertion, so, each test starts by calling the function under test on the fixture. Again, the structure of my tests was very much dictated by the documentation for the function. First, I test the function without any options specified to check that its default behaviour is as expected. Then I test each option listed in the documentation in turn, defining a separate test for each.
 
 Also notice the use of jQuery within the various assertions to determine whether or not the DOM was altered as required.
 
@@ -834,7 +841,7 @@ The ZIP file for this assignment contains the test suite for this API up to this
 
 ## Assignment
 
-We’ve just finished writing the tests for the [`isLocalUrl()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.isLocalUrl) and [noopenerFix()](https://bartificer.net/pbs34) functions. Either starting from scratch, or, using the code in this instalment’s ZIP file as a starting point, write tests for some more of the functions in the [`bartificer.linkToolkit`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix) API. I would suggest starting with the function [`markExternal()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.markExternal).
+We’ve just finished writing the tests for the [`isLocalUrl()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.isLocalUrl) and [`noopenerFix()`](https://bartificer.net/pbs34) functions. Either starting from scratch, or using the code in this instalment’s ZIP file as a starting point, write tests for some more of the functions in the [`bartificer.linkToolkit`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix) API. I would suggest starting with the function [`markExternal()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.markExternal).
 
 ## Final Thoughts (And Two Book Recommendations)
 
@@ -849,4 +856,4 @@ You don’t need to understand the historical or scientific context for Conway�
 1.  [_Chaos: Making a New Science_, by James Gleick](https://en.wikipedia.org/wiki/Chaos:_Making_a_New_Science)
 2.  [_Complexity: The Emerging Science at the Edge of Order and Chaos_ by M. Mitchell Waldrop](https://smile.amazon.com/COMPLEXITY-EMERGING-SCIENCE-ORDER-CHAOS/dp/0671872346?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0&deviceType=desktop&ie=UTF8&pldnNewCustomer=1&ref_=smi_ge_s_cnf_smi_T2)
 
-These two books are by different authors, but they compliment each other perfectly, both having a similar narrative style where you learn about the science by following the researchers on their journeys of discovery – you get to see real people go from _huh – that’s odd’_ to _I wonder what would happen if …_ through to _aha!_. _Complexity_ picks up the story at pretty much the exact point in the story where _Chaos_ finishes.
+These two books are by different authors, but they compliment each other perfectly. Both have a similar narrative style where you learn about the science by following the researchers on their journeys of discovery – you get to see real people go from _huh – that’s odd’_ to _I wonder what would happen if …_ through to _aha!_. _Complexity_ picks up the story at pretty much the exact point in the story where _Chaos_ finishes.

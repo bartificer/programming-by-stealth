@@ -1,6 +1,6 @@
 # PBS 33 of x – JS Testing with QUnit
 
-I had intended to continue running parallel JavaScript and HTML streams for this instalment, but when preparing the notes for the JavaScript stream it became obvious I’d need the dedicate the entire instalment to JavaScript.
+I had intended to continue running parallel JavaScript and HTML streams for this instalment, but when preparing the notes for the JavaScript stream, it became obvious I’d need to dedicate the entire instalment to JavaScript.
 
 What we’ll be doing in this instalment is taking a first look at the concept of software testing. Testing is a vital tool in a software developer’s toolbox. In particular we’ll be looking at two useful concepts, and a tool to help us build and run our test suites. We’ll be looking at the concepts of Test Driven Development (TDD), and Unit Testing (UT). We won’t be religiously adhering to either – instead, I want to encourage you to pick and choose the aspects of these things that work for you.
 
@@ -8,7 +8,7 @@ The tool we’ll be looking at to implement our JavaScript test suites is [QUnit
 
 All code files used in this instalment are contained in a single ZIP file which you can download [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/pbs33.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs33.zip).
 
-# Matching Podcast Episode 482
+## Matching Podcast Episode 482
 
 Listen Along: Chit Chat Across the Pond Episode 482
 
@@ -18,9 +18,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to PBS 32 Challenge
 
-In [the previous instalment](https://bartificer.net/pbs32) we looked at using `throw`, `try` & `catch` for error handling in JavaScript.
+In [the previous instalment](https://pbs.bartificer.net/pbs32), we looked at using `throw`, `try` & `catch` for error handling in JavaScript.
 
-The assignment was to create a web page that contains five dropdown menus allowing the user to select an hour, minute, day, month, and year, and a button that when pushed renders the selected date and time in ISO8601 format (the format outputted by `pbs.DateTime.prototype.toString()`), as well as all permutations of American and European date formats and 12 and 24 hour time formats. When the user chooses an impossible date, the page should handle that error in a sane way.
+The assignment was to create a web page that contains five drop-down menus allowing the user to select an hour, minute, day, month, and year, and a button that, when pushed, renders the selected date and time in ISO8601 format (the format outputted by `pbs.DateTime.prototype.toString()`), as well as all permutations of American and European date formats and 12 and 24 hour time formats. When the user chooses an impossible date, the page should handle that error in a sane way.
 
 Below is my solution, which you’ll also find in this instalment’s ZIP file as `pbs32-challenge-solution/index.html`:
 
@@ -209,7 +209,7 @@ Below is my solution, which you’ll also find in this instalment’s ZIP file a
 </html>
 ```
 
-My solution is largely similar to the example `pbs32a.html` from the previous instalment’s zip file. The biggest difference being the addition of more dropdown menus to allow the time to be chosen as well as the date. One difference is that for clarity, I choose to group the date and time dropdown menus into separate list items, and, to mark them up as form groups using the relevant ARIA markup – `role="group"` and the `aria-labelledby` attribute.
+My solution is largely similar to the example `pbs32a.html` from the previous instalment’s zip file. The biggest difference is the addition of more drop-down menus to allow the time to be chosen as well as the date. One difference is that, for clarity, I choose to group the date and time drop-down menus into separate list items, and to mark them up as form groups using the relevant ARIA markup – `role="group"` and the `aria-labelledby` attribute.
 
 ## Test Driven Development (TDD)
 
@@ -221,15 +221,15 @@ TDD is a methodology for writing code. The basic process involves repeating the 
 4.  Run all your tests (repeat this step and the one above until all new tests pass)
 5.  From time-to-time, refactor your code if it starts to get needlessly complicated
 
-There are all sorts of advantages to TDD. Firstly, it forces you to stop and think before you write a single line of code. It makes you decide on what to do about edge cases as you write the tests, and, as your code base develops over time, the library of tests should prevent you from accidentally breaking things that worked before, i.e. to avoid regressions.
+There are all sorts of advantages to TDD. Firstly, it forces you to stop and think before you write a single line of code. It makes you decide on what to do about edge cases as you write the tests. As your code base develops over time, the library of tests should prevent you from accidentally breaking things that worked before, i.e. to avoid regressions.
 
-In order to make use of the TDD methodology, you need some kind of testing framework/API which allows you to define and run your tests in an orderly manner. You could write your own testing functions from scratch, but that would be re-inventing the wheel, and I’m not generally in favour of doing that – I think it’s much better to use an existing framework instead.
+In order to make use of the TDD methodology, you need some kind of testing framework/API which allows you to define and run your tests in an orderly manner. You could write your own testing functions from scratch, but that would be reinventing the wheel, and I’m not generally in favour of doing that – I think it’s much better to use an existing framework instead.
 
 ## Introducing QUnit – a JS Unit Testing Framework
 
-TDD is a design philosophy or process, unit testing is an approach to running tests. Unit Testing involves atomising your tests so that previous tests have no effect on future tests. Basically, you define a set of initial conditions, known as your _fixture_, and you run each test against a new clone of that fixture. A lot of the time, the fixture is actually totally empty BTW.
+TDD is a design philosophy or process, and unit testing is an approach to running tests. Unit Testing involves atomising your tests so that previous tests have no effect on future tests. Basically, you define a set of initial conditions, known as your _fixture_, and you run each test against a new clone of that fixture. A lot of the time, the fixture is actually totally empty BTW.
 
-[QUnit](https://qunitjs.com) is an open source framework for unit-testing JavaScript code that has been developed by the jQuery people, who use it for all the various jQuery projects like the core jQuery library and jQuery UI. QUnit can be run in two modes – on the command line through NodeJS, or, in the browser. We’ll be using QUnit in the browser.
+[QUnit](https://qunitjs.com) is an open source framework for unit-testing JavaScript code that has been developed by the jQuery people, who use it for all the various jQuery projects like the core jQuery library and jQuery UI. QUnit can be run in two modes – on the command line through NodeJS, or in the browser. We’ll be using QUnit in the browser.
 
 When doing testing, you don’t want to include your tests in the same file as your code – you don’t want your tests included in your live running code. Instead, you want to add your tests to a separate file, or set of files, that sits next to your code in your development environment, and is never copied to your live website.
 
@@ -237,55 +237,61 @@ When using QUnit in the browser you’ll end up with three files:
 
 1.  A `.js` file containing the API (or other JS code) you’re testing
 2.  A `.js` file containing your tests (for big projects you might split this file up into multiple files for convenience)
-3.  A simple HTML page that imports QUnit, imports the `.js` files above, and, defines your fixture. QUnit will automatically inject a form into this page that that will allow you to run your defined tests, and, see the results
+3.  A simple HTML page that imports QUnit, imports the `.js` files above, and defines your fixture. QUnit will automatically inject a form into this page that will allow you to run your defined tests and see the results
 
 ### Assertions
 
 Each of your tests will contain one or more _assertions_. You can think of assertions as statements of expected fact – if your code is working correctly, all your assertions will be true.
 
-QUnit ships with an impressive collection of ready-to-use assertions, and, it provides the functionality for adding your own custom assertions too. For now, we’ll limit ourselves to just a few of the most basic assertions:
+QUnit ships with an impressive collection of ready-to-use assertions, and it provides the functionality for adding your own custom assertions too. For now, we’ll limit ourselves to just a few of the most basic assertions:
 
-`assert.ok(state [, message])`
+<dl>
+<dt><code>assert.ok(state [, message])</code></dt>
 
-This is the simplest of the assertions, it passes if the first argument evaluates to any truthy value of any kind.
+<dd>This is the simplest of the assertions. It passes if the first argument evaluates to any truthy value of any kind.</dd>
 
-`assert.equal(actual, expected [, message])`
+<dt><code>assert.equal(actual, expected [, message])</code></dt>
 
-Tests `actual` against `expected` using the `==` operator and if that comparison returns `true`, the assertion passes.
+<dd>Tests <code>actual</code> against <code>expected</code> using the <code>==</code> operator. If that comparison returns <code>true</code>, the assertion passes.</dd>
 
-`assert.strictEqual(actual, expected [, message])`
+<dt><code>assert.strictEqual(actual, expected [, message])</code></dt>
 
-Tests `actual` against `expected` using the `===` operator and if that comparison returns `true`, the assertion passes.
+<dd>Tests <code>actual</code> against <code>expected</code> using the <code>===</code> operator. If that comparison returns <code>true</code>, the assertion passes.</dd>
 
-`assert.notEqual(actual, expected [, message])`
+<dt><code>assert.notEqual(actual, expected [, message])</code></dt>
 
-This test is the inverse of `assert.equal()` – it tests `actual` against `expected` using the `!=` operator.
+<dd>This test is the inverse of <code>assert.equal()</code> – it tests <code>actual</code> against <code>expected</code> using the <code>!=</code> operator.</dd>
 
-`assert.notStrictEqual(actual, expected [, message])`
+<dt><code>assert.notStrictEqual(actual, expected [, message])</code></dt>
 
-This test is the inverse of `assert.strictEqual()` – it tests `actual` against `expected` using the `!==` operator.
+<dd>This test is the inverse of <code>assert.strictEqual()</code> – it tests <code>actual</code> against <code>expected</code> using the <code>!==</code> operator.</dd>
 
-`assert.deepEqual(actual, expected [, message])`
+<dt><code>assert.deepEqual(actual, expected [, message])</code></dt>
 
-Like `assert.equal()`, but for comparing nested data like arrays rather than single values.
+<dd>Like <code>assert.equal()</code>, but for comparing nested data like arrays rather than single values.</dd>
 
-`throws(blockFn, [expected , message])`
+<dt><code>throws(blockFn, [expected , message])</code></dt>
 
-Tests whether the callback `blockFn` throws the `expected` error. You can accept any error at all by omitting `expected`. You can specify the error string you expect, a regular expression, or, the prototype of the expected error.
+<dd>Tests whether the callback <code>blockFn</code> throws the <code>expected</code> error. You can accept any error at all by omitting <code>expected</code>. You can specify the error string you expect, a regular expression, or, the prototype of the expected error.</dd>
+</dl>
 
 ### A Worked Example
 
 Let’s work through a simple practical example – let’s develop a very basic API that collects together a few maths functions using the following specification:
 
-> The API should be named `pbs.math`, and should provide the following functions:
->
-> `factorial(n)`
->
-> The function should return the factorial of `n` (the first argument) as an integer. The function should throw a new `Error` if `n` is not a positive integer. You’ll find a [definition of factorials on Wikipedia](https://en.wikipedia.org/wiki/Factorial).
->
-> `fibonacciSeries(n)`
->
-> The function should return the fibonacci series up to and possibly including `n` as an array of integers. The function should throw an error if `n` is not a number, and return an empty array if `n` has a value below 0. You should use the modern variant of the sequence which uses `[0, 1]` as the starting point for the series. You’ll find a [definition of the Fibonacci Series on Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).
+<blockquote>
+The API should be named `pbs.math`, and should provide the following functions:
+
+<dl>
+<dt><code>factorial(n)</code></dt>
+
+ <dd>The function should return the factorial of <code>n</code> (the first argument) as an integer. The function should throw a new <code>Error</code> if <code>n</code> is not a positive integer. You’ll find a <a href="https://en.wikipedia.org/wiki/Factorial/" title="Factorial" target="_blank">definition of factorials on Wikipedia </a>.</dd>
+
+<dt><code>fibonacciSeries(n)</code></dt>
+
+ <dd>The function should return the fibonacci series up to and possibly including <code>n</code> as an array of integers. The function should throw an error if <code>n</code> is not a number, and return an empty array if <code>n</code> has a value below 0. You should use the modern variant of the sequence which uses <code>[0, 1]</code> as the starting point for the series. You’ll find a <a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank">definition of the Fibonacci Series on Wikipedia</a>.</dd>
+</dl>
+</blockquote>
 
 We’ll start with by creating the following three blank files (paths relative to the base folder for the project):
 
@@ -293,7 +299,7 @@ We’ll start with by creating the following three blank files (paths relative t
 2.  `test/index.html` – the QUnit test runner.
 3.  `test/pbs.math.test.js` – the file that will contain our tests.
 
-Remember, with TDD you shouldn’t write code until you’ve defined some tests for that code to pass, so once we have the three blank files created, the next step is to set up our QUnit test runner in `test/index.html`:
+Remember, with TDD, you shouldn’t write code until you’ve defined some tests for that code to pass. So once we have the three blank files created, the next step is to set up our QUnit test runner in `test/index.html`:
 
 ```html
 <!DOCTYPE HTML>
@@ -347,9 +353,9 @@ QUnit.test( "namespaces exist", function( assert ) {
 
 Let’s take a moment to break this down. Firstly, we said earlier that tests consist of one or more assertions – in this case, you can see two assertions inside one test.
 
-The function `QUnit.test()` adds a test into the test suite. The first argument is the title of the test. The second argument is a callback or anonymous function which defines the code for the test. The anonymous function names the first argument `assert`. The QUnit documentation specifies that the callback/anonymous function will be called with a reference to `QUnit.assert`, an object that defines all the standard assertion functions. We could name this first argument anything we liked, but, what ever we chose to name it, we would have to use that name instead of `assert` when calling any of the assertion functions. Hence, I strongly recommend you stick with QUnit convention, and name the first argument to the callback/anonymous function in calls to `QUnit.test` `assert`, or, at least something sensible like `a`.
+The function `QUnit.test()` adds a test into the test suite. The first argument is the title of the test. The second argument is a callback or anonymous function which defines the code for the test. The anonymous function names the first argument `assert`. The QUnit documentation specifies that the callback/anonymous function will be called with a reference to `QUnit.assert`, an object that defines all the standard assertion functions. We could name this first argument anything we liked, but, whatever we chose to name it, we would have to use that name instead of `assert` when calling any of the assertion functions. Hence, I strongly recommend you stick with QUnit convention, and name the first argument to the callback/anonymous function in calls to `QUnit.test` `assert`, or at least something sensible like `a`.
 
-Finally, within our anonymous function we call two assertions, first, we check that the outer namespace `pbs` exists using the simple `ok()` assertion function, then we check that the nested namespace `pbs.math` exists in the same way.
+Finally, within our anonymous function, we call two assertions: first, we check that the outer namespace `pbs` exists using the simple `ok()` assertion function, then we check that the nested namespace `pbs.math` exists in the same way.
 
 The `ok()` assertion function expects two arguments, the value to test for truthiness, and a string describing the test.
 
@@ -362,7 +368,7 @@ As expected, we see a big red error message (since we haven’t added anything i
 > 1 tests completed in 4 milliseconds, with 1 failed, 0 skipped, and 0 todo.
 > 0 assertions of 1 passed, 1 failed.
 
-The first line is fine, we do indeed only have one test. But the second line, that looks odd – it says 0 assertions of 1 passed. But there are two assertions in the test, what gives?
+The first line is fine; we do indeed only have one test. But the second line, that looks odd – it says 0 assertions of 1 passed. But there are two assertions in the test. What gives?
 
 All QUnit assertions throw an error when they fail, so, because there was no `pbs` namespace, the first assertion failed, an exception was thrown, and execution of the anonymous function ended there, with only one assertion seen by QUnit. To get sane error reporting, you need to tell QUnit in advance how many assertions to expect within a given test. You can do this with the `.expect()` pseudo-assertion like so:
 
@@ -379,7 +385,7 @@ If you save the file and re-refresh the test suite you’ll now see the expected
 > 1 tests completed in 4 milliseconds, with 1 failed, 0 skipped, and 0 todo.
 > 0 assertions of 2 passed, 2 failed.
 
-OK – now that our tests are working as we want, we can finally start writing some code for our API. We need to start with the boiler-plate to set up our name spaces. Let’s start by setting up just the `pbs` namespace. Use the following as the initial content of `pbs.math.js`:
+OK – now that our tests are working as we want, we can finally start writing some code for our API. We need to start with the boilerplate to set up our name spaces. Let’s start by setting up just the `pbs` namespace. Use the following as the initial content of `pbs.math.js`:
 
 ```javascript
 // A simple API containing miscellaneous mathematical functions
@@ -503,9 +509,9 @@ Notice that we have not yet tested that valid values do not throw errors. That w
 
 OK, now that we have some more tests written, we can write some more code.
 
-BTW, if you’re wondering how many tests it’s OK to write before writing the code that gets them to pass – that’s up to you, but TDD fundamentalists will insist it’s one test, then code, then one test etc.. I don’t find that at all practical – instead, I take what I consider a _mouthful-sized_ number of tests approach – when I think the tests I’ve written make a nice easy to chew mouthful, I switch from tests to code. The exact number depends on the complexity of the tests. Basically, I make a judgement call each time.
+BTW, if you’re wondering how many tests it’s OK to write before writing the code that gets them to pass – that’s up to you, but TDD fundamentalists will insist it’s one test, then code, then one test etc. I don’t find that at all practical – instead, I take what I consider a _mouthful-sized_ number of tests approach – when I think the tests I’ve written make a nice easy to chew mouthful, I switch from tests to code. The exact number depends on the complexity of the tests. Basically, I make a judgement call each time.
 
-Let’s add the stub of our function to our API, and include the code for argument validation. Add the following into `pbs.math.js` by appending it to the self-exectuting anonymous function:
+Let’s add the stub of our function to our API, and include the code for argument validation. Add the following into `pbs.math.js` by appending it to the self-executing anonymous function:
 
 ```javascript
     //
@@ -591,7 +597,7 @@ Below is the updated version of the `pbs.math.factorial()` function in `pbs.math
     };
 ```
 
-Refreshing the test suite shows that this function now works as expected, so we can move on to the next cycle, and develop some initial tests for the next function, `pbs.math.fibonacciSeries()`.
+Refreshing the test suite shows that this function now works as expected. So we can move on to the next cycle and develop some initial tests for the next function, `pbs.math.fibonacciSeries()`.
 
 Append the following to `test/pbs.math.test.js`:
 
@@ -704,7 +710,7 @@ QUnit.test("inputs to pbs.math.fibonacciSeries() give expected outputs", functio
 });
 ```
 
-Notice that this test uses an assertion function we’ve not seen before – `.deepEqual()`. This assertion function allows us to use more complex data structures in the expected field. The QUnit docs say the function supports potentially nested data of the following types: primitive types, arrays, objects, regular expressions, dates and functions. In this case, we are using `.deepEqual()` because the `pbs.math.fibonacciSeries()` returns an array of numbers.
+Notice that this test uses an assertion function we’ve not seen before – `.deepEqual()`. This assertion function allows us to use more complex data structures in the expected field. The QUnit docs say the function supports potentially nested data of the following types: primitive types, arrays, objects, regular expressions, dates, and functions. In this case, we are using `.deepEqual()` because the `pbs.math.fibonacciSeries()` returns an array of numbers.
 
 The first argument is the values to test, the second is the expected value, and the final argument is a textual description of the test.
 
@@ -757,15 +763,17 @@ Now that we have our tests written, we can finish our implementation of the `pbs
 
 This implementation passes all our tests.
 
-> ### Aside – the JavaScript `.slice()` Function
->
-> Notice that the function makes use of the `.slice()` function from the `Array` prototype. I know Allison has been using this function in her code for some time, but it’s not one we’ve ever discussed as part of the series.
->
-> What this function does is return a sub-set, or slice, of an array. You can use no arguments at all, in which case you’ll get the whole array back.
->
-> If you choose to pass it, the first argument will be interpreted as your starting point – use a value of 0 to begin at the start of the array. Positive integer values will move the starting array index forward, so `.slice(2)` will exclude the first three items of the array from the result (remember, arrays are zero-indexed). You can also use negative numbers to work from the back of the array forwards when defining your start point. The last element in the array is considered to be at index -1. The returned array is still in the normal forward order. So, `.slice(-3)` returns the last three elements in the array in the same order they were originally present in the array.
->
-> Finally, if you choose to pass it, the second argument sets the index **before** which to stop the returned array at. So, `.slice(1, 3)` returns the second and third elements of the array (those at indexes 1 & 2). You can also use negative indexes in the second argument. To slice everything but the first and last elements, you could use `.slice(1, -1)`. If you don’t specify and second argument, the length of the array is used, i.e. the slice runs to the end of the array.
+<blockquote>
+<h3>Aside &#8211; the JavaScript <code>.slice()</code> Function</h3>
+
+ <p>Notice that the function makes use of the <code>.slice()</code> function from the <code>Array</code> prototype. I know Allison has been using this function in her code for some time, but it’s not one we’ve ever discussed as part of the series.</p>
+
+ <p>What this function does is return a subset, or slice, of an array. You can use no arguments at all, in which case you’ll get the whole array back.</p>
+
+ <p>If you choose to pass it, the first argument will be interpreted as your starting point – use a value of 0 to begin at the start of the array. Positive integer values will move the starting array index forward, so <code>.slice(2)</code> will exclude the first three items of the array from the result (remember, arrays are zero-indexed). You can also use negative numbers to work from the back of the array forwards when defining your start point. The last element in the array is considered to be at index -1. The returned array is still in the normal forward order. So, <code>.slice(-3)</code> returns the last three elements in the array in the same order they were originally present in the array.</p>
+
+ <p>Finally, if you choose to pass it, the second argument sets the index <strong>before</strong> which to stop the returned array at. So, <code>.slice(1, 3)</code> returns the second and third elements of the array (those at indexes 1 & 2). You can also use negative indexes in the second argument. To slice everything but the first and last elements, you could use <code>.slice(1, -1)</code>. If you don’t specify a second argument, the length of the array is used, i.e. the slice runs to the end of the array.</p>
+</blockquote>
 
 So far, because we’ve been working on quite simplistic code, there has been no need to do any refactoring at the end of any of our cycles. This time though, there is some room for refactoring, though it’s in the test code, not the API itself.
 
@@ -775,7 +783,7 @@ Right now, all our tests are together in one big group. It would be great if we 
 
 `QUnit.module()` expects three arguments, a name for the module as a string, an object which can be used to define hooks (we’ll have a look at some of those in the next instalment), and a callback/anonymous function within which all the tests for the group should be defined. You can also define modules within the callback of another module to create nested modules, and your nesting can go as deep as you like. Obviously, the smaller the project the less need there is for nesting. A project as small as our sample here doesn’t require nesting of modules within modules.
 
-So, let’s refactor our test suite so it groups the tests for each function together. Since we’ll only be editing `test/pbs.math.test.js`, we’ll know we got it right if the same number of total tests and assertions are executed before and after we make our changes, and, if they all continue to pass.
+So, let’s refactor our test suite so it groups the tests for each function together. Since we’ll only be editing `test/pbs.math.test.js`, we’ll know we got it right if the same number of total tests and assertions are executed before and after we make our changes, and if they all continue to pass.
 
 While editing the code I’m also going to tidy up some other little cosmetic things that I’ve changed my mind on as I worked up the example.
 
@@ -967,7 +975,7 @@ QUnit.module('pbs.math.fibonacciSeries()', {}, function(){
 });
 ```
 
-Notice that because we have no need for any hooks, we use an empty function literal (`{}`) as the second argument to `QUnit.module()`.
+Notice that, because we have no need for any hooks, we use an empty function literal (`{}`) as the second argument to `QUnit.module()`.
 
 At this stage our three files are complete. You can find the final versions of all three in the instalment’s ZIP file in the `pbs33a` folder.
 
@@ -978,27 +986,29 @@ Let’s have a more detailed look at the test runner now that we have a pretty f
 [![](../assets/pbs33/Screen-Shot-2017-04-14-at-15.24.32-300x103.png)
 Click to Enlarge](https://www.bartbusschots.ie/s/wp-content/uploads/2017/04/Screen-Shot-2017-04-14-at-15.24.32.png)
 
-The first thing I want to draw your attention to is the drop-down at the right of the tool bar labeled _Module_. Using this dropdown we can instruct QUnit to only run the tests for a given sub-set of modules, allowing us to cut down on clutter as we focus on specific parts of our code.
+The first thing I want to draw your attention to is the drop-down at the right of the tool bar labeled _Module_. Using this drop-down we can instruct QUnit to only run the tests for a given subset of modules, allowing us to cut down on clutter as we focus on specific parts of our code.
 
-![QUnit Modules Dropdown](../assets/pbs33/Screen-Shot-2017-04-14-at-15.35.33.png)
+![QUnit Modules Drop-down](../assets/pbs33/Screen-Shot-2017-04-14-at-15.35.33.png)
 
-Next to that dropdown is a text box labeled _Filter_, this allows us to show only tests that match a given search string. You apply the filter by clicking the _Go_ button next to the text box. Again, this is a mechanism to allow us to filter out clutter and help focus our attention. The bigger your code base, and hence your test suite, the more valuable this filter box becomes.
+Next to that drop-down is a text box labeled _Filter_. This allows us to show only tests that match a given search string. You apply the filter by clicking the _Go_ button next to the text box. Again, this is a mechanism to allow us to filter out clutter and help focus our attention. The bigger your code base, and hence your test suite, the more valuable this filter box becomes.
 
 ![QUnit Filter Text Box](../assets/pbs33/Screen-Shot-2017-04-14-at-15.39.14.png)
 
 Finally, the toolbar contains a collection of three checkboxes:
 
-_Hide passed tests_
+<dl>
+<dt><em>Hide passed tests</em></dt>
 
-Pretty self explanatory, again, a way of cutting down clutter so you can see all your failing tests more easily.
+<dd>Pretty self explanatory, again, a way of cutting down clutter so you can see all your failing tests more easily.</dd>
 
-_Check for Globals_
+<dt><em>Check for Globals</em></dt>
 
-If you’ve written your tests properly, then all test should be completely atomic, they should have no effect on the global scope at all. If you suspect one of your tests might be leaking stuff into the global scope, check this checkbox to test for that. How this works is that a snapshot is taken of the global scope before and after each test runs, if the global scope has changed, then that fact is flagged by failing the test, and appending a message to it specifying which variables within the global scope have been altered by the test. This checkbox comes with a bit of a health warning, it adds overhead to every test, so it could have a noticeable effect on the execution time of large test suites.
+<dd>If you’ve written your tests properly, then all testing should be completely atomic. They should have no effect on the global scope at all. If you suspect one of your tests might be leaking stuff into the global scope, check this checkbox to test for that. How this works is that a snapshot is taken of the global scope before and after each test runs. If the global scope has changed, then that fact is flagged by failing the test, and appending a message to it specifying which variables within the global scope have been altered by the test. This checkbox comes with a bit of a health warning, it adds overhead to every test. It could have a noticeable effect on the execution time of large test suites.</dd>
 
-_No try-catch_
+<dt><em>No try-catch</em></dt>
 
-Ordinarily, QUnit wraps every test in a try/catch block so it can continue beyond tests that throw errors. If you check this text box, that wrapper is removed, so, the test runner will stop the first time an error is thrown. This can actually be a useful way to work through the failing tests one-by-one.
+<dd>Ordinarily, QUnit wraps every test in a try/catch block so it can continue beyond tests that throw errors. If you check this text box, that wrapper is removed, so the test runner will stop the first time an error is thrown. This can actually be a useful way to work through the failing tests one-by-one.</dd>
+</dl>
 
 ## An (Optional) Challenge
 
@@ -1006,4 +1016,4 @@ If you’ve like a challenge, and it really is a challenge, write a test suite a
 
 ## Final Thoughts
 
-We now have an introduction to some testing concepts, and, some experience with the QUnit testing framework. So far, we’ve only used QUnit to test JavaScript code that does not interact with the DOM, and does not use the fixture, or, any hooks. In the next instalment we’ll take our testing up a notch by looking at how you can use QUnit to test code that interacts with the DOM using things like jQuery, and how you can save yourself a lot of code repetition within your test suite by using event handlers and hooks.
+We now have an introduction to some testing concepts, and some experience with the QUnit testing framework. So far, we’ve only used QUnit to test JavaScript code that does not interact with the DOM, and does not use the fixture or any hooks. In the next instalment we’ll take our testing up a notch by looking at how you can use QUnit to test code that interacts with the DOM using things like jQuery, and how you can save yourself a lot of code repetition within your test suite by using event handlers and hooks.

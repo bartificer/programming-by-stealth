@@ -1,12 +1,13 @@
 # PBS 31 of x – JS Static Functions | Checkboxes & Radio Buttons
 
-We’re going to continue our twin-track approach in this instalment – first some JavaScript, then some HTML Forms. We’ll start with my sample solution to the challenge set in [the previous instalment](https://bartificer.net/pbs30), then we’ll look at one final new concept related to JavaScript prototypes – static functions. We’ll wrap up our revision and deeper dive into JavaScript prototypes with a final, finished, version of our algorithm for generating prototypes.
+We’re going to continue our twin-track approach in this instalment – first some JavaScript, then some HTML Forms. We’ll start with my sample solution to the challenge set in [the previous instalment](https://pbs.bartificer.net/pbs30). Then we’ll look at one final new concept related to JavaScript prototypes – static functions. We’ll wrap up our revision and deeper dive into JavaScript prototypes with a final, finished
+ version of our algorithm for generating prototypes.
 
-Switching our focus on HTML forms, we’ll look at some important form-specific ARIA roles, we’ll introduce two useful tags for enclosing forms, or parts of forms `<fieldset>` & `<legend>`, and we’ll introduce the concept of form data. With those foundations laid, we’ll look at how to add checkboxes and radio buttons to web forms, and how to interact with them through jQuery.
+Switching our focus on HTML forms, we’ll look at some important form-specific ARIA roles, we’ll introduce two useful tags for enclosing forms, or parts of forms, `<fieldset>` & `<legend>`. We’ll introduce the concept of form data. With those foundations laid, we’ll look at how to add checkboxes and radio buttons to web forms, and how to interact with them through jQuery.
 
 You can download a ZIP file containing the code files for this instalment [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs31.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs31.zip).
 
-# Matching Podcast Episode 478
+## Matching Podcast Episode 478
 
 Listen Along: Chit Chat Across the Pond Episode 478
 
@@ -212,15 +213,15 @@ console.log(dt4.isBefore(dt1)); // false
 console.log(dt4.isAfter(dt1)); // true
 ```
 
-Our prototypes are now pretty complete – they have constructors, accessors, various functions for outputting the data as strings of various formats, support for cloning, and, comparison functions.
+Our prototypes are now pretty complete – they have constructors, accessors, various functions for outputting the data as strings of various formats, support for cloning, and comparison functions.
 
 ## Instance Functions
 
 The functions we have written to build out our prototypes can be divided into three categories:
 
-- There are the un-published private helper functions which are not really part of the prototypes, but rather, are utility functions used by the functions that do make up the prototype to avoid needless code reuse. When I say _unpublished_, I mean they are not available in the global scope.
+- There are the unpublished private helper functions which are not really part of the prototypes, but rather, are utility functions used by the functions that do make up the prototype to avoid needless code reuse. When I say _unpublished_, I mean they are not available in the global scope.
 - Constructors – the published functions that build instances of our prototypes
-- All the other functions that make up our prototypes. We have not explicitly stated it before, but those functions all have something in common, they are all so-called _instance functions_ (or _instance methods_).
+- All the other functions that make up our prototypes. We have not explicitly stated it before, but those functions all have something in common. They are all so-called _instance functions_ (or _instance methods_).
 
 What does it mean to be an instance function? As the name suggests, instance functions are functions that are written to be called **on instances** of a prototype.
 
@@ -231,7 +232,7 @@ var t = new pbs.Time(16);
 console.log(t.time12());
 ```
 
-On the first line, we create an instance of the prototype `pbs.Time`, and name that object `t`. So, `t` is an object, and, more specifically, `t` is an instance of the prototype `pbs.Time`.
+On the first line, we create an instance of the prototype `pbs.Time` and name that object `t`. So, `t` is an object, and, more specifically, `t` is an instance of the prototype `pbs.Time`.
 
 On the second line we call the function `time12()` on `t`. In other words, we call the function `time12()` on an instance of the `pbs.Time` prototype.
 
@@ -245,9 +246,9 @@ You can recognise an instance function being invoked because the thing on the le
 
 ## Static Functions
 
-Prototypes can contain another category of functions, so-called _static functions_, or colloquially, _class functions_. These functions are not called on instances of prototypes, instead, they are properties of the prototype itself. Static functions are used to add functionality to the prototype as a whole, not to instances of the prototype.
+Prototypes can contain another category of functions, so-called _static functions_, or colloquially, _class functions_. These functions are not called on instances of prototypes. Instead, they are properties of the prototype itself. Static functions are used to add functionality to the prototype as a whole, not to instances of the prototype.
 
-I’m sure that sounds both abstract and confusing, so let’s try make it more concrete with an example. The concept of a leap years is definitely related to the concept of dates, so it has relevance of our `pbs.Date` prototype. However, leap years are not dates, so a function for checking if a given year is a leap year doesn’t make sense as an instance function. If you wanted to find out if 1900 was a leap year, it would not make sense to have to write code like this:
+I’m sure that sounds both abstract and confusing. So let’s try make it more concrete with an example. The concept of a leap years is definitely related to the concept of dates; so it has relevance of our `pbs.Date` prototype. However, leap years are not dates. So a function for checking if a given year is a leap year doesn’t make sense as an instance function. If you wanted to find out if 1900 was a leap year, it would not make sense to have to write code like this:
 
 ```javascript
 var testYear = 1900;
@@ -259,7 +260,7 @@ if(tempDate.isLeapYear()){
 }
 ```
 
-That code just doesn’t make sense – it’s definitely a bad smell! I’d argue that the following code snippet makes a lot more sense, and makes for much more readable code:
+That code just doesn’t make sense – it’s definitely a bad smell! I’d argue that the following code snippet makes a lot more sense and makes for much more readable code:
 
 ```javascript
 var testYear = 1900;
@@ -311,7 +312,7 @@ console.log(pbs.Date.isLeapYear(2001)); // false
 console.log(pbs.Date.isLeapYear(2004)); // true
 ```
 
-My version of our prototypes makes use of a private helper function named `isValidateDMYCombo` for checking if a given day, month, and year combination is valid. That function has to check if a given year is a leap year every time the given month is February. Here is the full code for the function as it stands:
+My version of our prototype makes use of a private helper function named `isValidateDMYCombo` for checking if a given day, month, and year combination is valid. That function has to check if a given year is a leap year every time the given month is February. Here is the full code for the function as it stands:
 
 ```javascript
 // helper function to validate a given combination of day, month, and year
@@ -444,11 +445,11 @@ console.log(pbs.DateTime.areEqual(dt1, dt2, dt3)); // false
 console.log(pbs.DateTime.areEqual(dt3, dt4, dt5)); // true
 ```
 
-You can use your own version of our three prototypes as your starting point, or, you can use the file `pbs31-challengeStartingPoint.js` in this instalment’s ZIP file.
+You can use your own version of our three prototypes as your starting point, or you can use the file `pbs31-challengeStartingPoint.js` in this instalment’s ZIP file.
 
 ## Final JavaScript Prototype Algorithm
 
-Given all we have learned over the past few instalments, we need to update our original six-step process for creating prototypes one last time to the following 9 step process:
+Given all we have learned over the past few instalments, we need to update our original six-step process for creating prototypes one last time to the following nine-step process:
 
 1.  Gather your requirements, specifically:
     1.  What data do your objects need to store
@@ -465,19 +466,19 @@ Given all we have learned over the past few instalments, we need to update our o
 
 ## HTML Form-related ARIA Roles & Fieldsets
 
-Switching our focus back to HTML forms, we need to lay a little more generic ground-work before we can look at checkboxes and radio buttons.
+Switching our focus back to HTML forms, we need to lay a little more generic groundwork before we can look at checkboxes and radio buttons.
 
 ARIA recommends that regions of a page that together make up a form should be contained inside an element with the ARIA landmark role `form`, unless the form’s purpose is to provide a search box, in which case it should get the ARIA landmark role `search`.
 
 If your form is complex, containing groups of related form inputs, you should group them inside elements with the ARIA role `group`.
 
-If you add `form`, `search`, or `group` roles to elements, you should also provide labels for those elements, and tie them to the landmark with the `aria-labelledby` attribute. Note that we mean _label_ in the generic sense, you don’t have to use the `<label>` tag, other tags are often more appropriate, e.g. `<h3>`.
+If you add `form`, `search`, or `group` roles to elements, you should also provide labels for those elements, and tie them to the landmark with the `aria-labelledby` attribute. Note that we mean _label_ in the generic sense. You don’t have to use the `<label>` tag. Other tags are often more appropriate, e.g. `<h3>`.
 
 To use `aria-labelledby`, you need to give the element that will act as the label an ID. You then add the `aria-labelledby` attribute to the element that has the role, and use the ID of the label element as the value of the attribute. This is very similar to how the `<label>` tag’s `for` attribute works.
 
-One pair of related HTML tags lends itself to this kind of form grouping and labelling particularly well – the `<fieldset>` and `<legend>` tags. The `<fieldset>` tag is a block-level tag that can contain pretty much any other tags you like, including other `<fieldset>` tags. A fieldset can have one legend, and if present, the legend must be the first element within the fieldset. Legends are defined with the `<legend>` tag. By default, fieldsets are rendered as a box with a border, and if present, the legend is inset into the top border of the box. The `<fieldset>` tag is well suited for the ARIA roles `form`, `search`, and `group`, and the `<legend>` tag is well suited to acting as the matching label.
+One pair of related HTML tags lends itself to this kind of form grouping and labelling particularly well – the `<fieldset>` and `<legend>` tags. The `<fieldset>` tag is a block-level tag that can contain pretty much any other tags you like, including other `<fieldset>` tags. A fieldset can have one legend. If present, the legend must be the first element within the fieldset. Legends are defined with the `<legend>` tag. By default, fieldsets are rendered as a box with a border, and if present, the legend is inset into the top border of the box. The `<fieldset>` tag is well suited for the ARIA roles `form`, `search`, and `group`, and the `<legend>` tag is well suited to acting as the matching label.
 
-Many screen readers will automatically assume a legend describes the fieldset it belongs to, so it could be argued that the `aria-labelledby` attribute is redundant when using these tags. However, I couldn’t find anything in the ARIA spec to indicate that relying on this default behaviour complies with the spec, so I’ll be adding the `aria-labelledby` attribute in my examples.
+Many screen readers will automatically assume a legend describes the fieldset it belongs to. So it could be argued that the `aria-labelledby` attribute is redundant when using these tags. However, I couldn’t find anything in the ARIA spec to indicate that relying on this default behaviour complies with the spec. So I’ll be adding the `aria-labelledby` attribute in my examples.
 
 We’ll see an example use of both the `<fieldset>` and `<legend>` tags shortly.
 
@@ -485,11 +486,11 @@ We’ll see an example use of both the `<fieldset>` and `<legend>` tags shortly.
 
 Before we look at how to add form inputs of various kinds to our forms, we should take a moment to remember the origins of HTML forms, because those origins still have implications for how form inputs behave today.
 
-As we mentioned before, originally, forms were designed to be submitted to a server for processing – when a submit button is pushed, all the data in the form is encoded, and sent to the URL specified by the `action` attribute. Today, many forms are never submitted anywhere, but instead processed on the client-side using JavaScript. This is what we’ll be doing in this series, at least for the short to medium term.
+As we mentioned before, originally, forms were designed to be submitted to a server for processing – when a submit button is pushed, all the data in the form is encoded and sent to the URL specified by the `action` attribute. Today, many forms are never submitted anywhere, but instead are processed on the client-side using JavaScript. This is what we’ll be doing in this series, at least for the short to medium term.
 
 When forms are submitted, the data the form represents is encoded as name-value pairs. That means that all the various types of form input – checkboxes, radio buttons, dropdowns, text fields, etc. – must produce name-value pairs.
 
-There are multiple different mechanisms for submitting form data to a server, but one of them (GET) involves adding the encoded data to the end of the URL, using the `?` character to mark the start of the form data, the `=` character to separate the names from the values within each name-value pair, and the `&` character to separate the name-value pairs from each other. You may well recognise this description, you’ve probably seen many thousands of URLs with form data encoded into them in your life! E.g. in the URL for Allison’s Amazon affiliate link: `https://www.amazon.com/?tag=httppodfeecom-20`.
+There are multiple different mechanisms for submitting form data to a server, but one of them (GET) involves adding the encoded data to the end of the URL, using the `?` character to mark the start of the form data, the `=` character to separate the names from the values within each name-value pair, and the `&` character to separate the name-value pairs from each other. You may well recognise this description. You’ve probably seen many thousands of URLs with form data encoded into them in your life! An example is in the URL for Allison’s Amazon affiliate link: `https://www.amazon.com/?tag=httppodfeecom-20`.
 
 ## Checkboxes & Radio Buttons
 
@@ -499,7 +500,7 @@ A checkbox is a stand-alone binary input. It has two states, checked, and unchec
 
 ### Checkboxes in HTML
 
-We use the `<input>` tag with the `type` attribute set to `checkbox` to create a checkbox. The `name` attribute is used to specify the name part of the associated name-value pair, and the `value` attribute to specify the value part. If you don’t plan to submit your form, you can safely leave out the `name` and `value` attributes.
+We use the `<input>` tag with the `type` attribute set to `checkbox` to create a checkbox. The `name` attribute is used to specify the name part of the associated name-value pair and the `value` attribute to specify the value part. If you don’t plan to submit your form, you can safely leave out the `name` and `value` attributes.
 
 Here’s a simple sample checkbox:
 
@@ -507,7 +508,7 @@ Here’s a simple sample checkbox:
 <input type="checkbox" name="tos_agree" value="yes" />
 ```
 
-A checkbox without a label is useless to everyone, sighted and visually impaired alike, so remember to add labels to your checkboxes. You can either wrap a `<label>` tag around your checkbox, or, have the `<label>` tag be separate, but linked by ID using the `for` attribute:
+A checkbox without a label is useless to everyone, sighted and visually impaired alike, so remember to add labels to your checkboxes. You can either wrap a `<label>` tag around your checkbox, or have the `<label>` tag be separate, but linked by ID using the `for` attribute:
 
 ```html
 <!-- either -->
@@ -529,9 +530,9 @@ Radio buttons are very similar to checkboxes – they’re also created using th
 
 You use one `<input>` tag for each radio button in a group. The `name` attribute is used to tie the separate radio buttons together into a radio button group – all `<input>` tags with a `type` of `radio` that share the same `name` are interpreted as belonging to the same radio button group.
 
-When a form containing a radio button group is submitted while none of the radio buttons in the group are checked, the name-value pair is entirely omitted, like with checkboxes. However, if one of the radio buttons in the group is checked, then that radio button’s value is used (along with the group’s shared name).
+When a form containing a radio button group is submitted while none of the radio buttons in the group are checked, the name-value pair is entirely omitted, as with checkboxes. However, if one of the radio buttons in the group is checked, then that radio button’s value is used (along with the group’s shared name).
 
-Each radio button in a group should be labeled using either of the two techniques shown above for checkboxes – i.e. by wrapping the radio button and the text that describes it in a `<label>` tag, or, by giving the radio button an ID and linking `<label>` tag elsewhere in the document to the radio button using the `for` attribute (on the `<label>` tag).
+Each radio button in a group should be labeled using either of the two techniques shown above for checkboxes – i.e. by wrapping the radio button and the text that describes it in a `<label>` tag, or by giving the radio button an ID and linking `<label>` tag elsewhere in the document to the radio button using the `for` attribute (on the `<label>` tag).
 
 To make your radio button groups accessible, all the radio buttons that make up a group should be enclosed within a single tag of your choice, and that tag should be given the ARIA role `radiogroup`. Finally, ARIA recommends that a label be added for the entire radio group. This is done by giving the label an ID, and adding that ID as the value for the `aria-labelledby` attribute on the element with the role `radiogroup`. I’m using the world _label_ in the descriptive sense here – you can use the `<label>` tag if you like, but you can also use any other tag that makes sense, e.g. `<h3>`.
 
@@ -551,7 +552,7 @@ Below is a sample radio button group:
 
 ### The `checked` Property
 
-Both checkboxes and radio buttons default to not being checked. You can have individual checkboxes or radio buttons default to being checked using the `checked` attribute, and giving it the value `checked`.
+Both checkboxes and radio buttons default to not being checked. You can have individual checkboxes or radio buttons default to being checked using the `checked` attribute and giving it the value `checked`.
 
 For example, the following checkbox would be checked by default:
 
@@ -631,7 +632,7 @@ We’re not going to focus on it now, but in case you’re curious, you can use 
 
 When it comes to interacting with both checkboxes and radio buttons, the three most important aspects are the names, the values, and the checked status. We can use jQuery to both get and set all three of these things.
 
-To play along with the examples in this section, open `pbs31.html` in the browser of your choice, and activate the web/javascript console.
+To play along with the examples in this section, open `pbs31.html` in the browser of your choice and activate the web/javascript console.
 
 We can use jQuery’s `.val()` function to get or set the value associated with a checkbox or an individual radio button. For example, we can get the value associated with the checkbox on our example page by entering the following in the console:
 
@@ -651,7 +652,7 @@ Now, push the button again, and notice that `tos_agree=yes` has become `tos_agre
 
 Before we continue, do a shift+refresh on the page to get everything back to normal.
 
-To get or set the name associated with a checkbox or a radio button we need to use jQuery’s `.attr()` function with `'name'` as the first argument.
+To get or set the name associated with a checkbox or a radio button, we need to use jQuery’s `.attr()` function with `'name'` as the first argument.
 
 We can get the name associated with the checkbox with the ID `tos_agree_cb` by entering the following in the console:
 
@@ -669,7 +670,7 @@ $('#tos_agree_cb').attr('name', 'boogers_agree')
 
 If we hit the button again, we can see that `tos_agree=yes` has become `boogers_agree=yes`.
 
-We can also make use of the CSS attribute selectors we learned about in [instalment 28](https://bartificer.net/pbs28) to search for elements in the page by name. For example, enter the following in the console to see how many inputs on the page have the name `nerd`:
+We can also make use of the CSS attribute selectors we learned about in [instalment 28](https://pbs.bartificer.net/pbs28) to search for elements in the page by name. For example, enter the following in the console to see how many inputs on the page have the name `nerd`:
 
 ```javascript
 $('input[name="nerd"]').length
@@ -721,6 +722,6 @@ $('input[type="radio"][name="nerd"]:checked').val()
 
 ## Final Thoughts
 
-Now that we’ve learned about static functions, and updated our algorithm for creating prototypes to the final 9-step version, we are finished with our second look at JavaScript prototypes. Before we are ready to look at test-driven-development (TDD), we need to revisit JavaScript’s exception handling features – specifically the `throw`, `try`, and `catch` keywords. This is what we’ll do in the JavaScript portion of the next instalment.
+Now that we’ve learned about static functions, and updated our algorithm for creating prototypes to the final nine-step version, we are finished with our second look at JavaScript prototypes. Before we are ready to look at test-driven-development (TDD), we need to revisit JavaScript’s exception handling features – specifically the `throw`, `try`, and `catch` keywords. This is what we’ll do in the JavaScript portion of the next instalment.
 
 On the HTML side we have now learned a little more about forms in general, and how to add checkboxes and radio button groups into our forms. In the next instalment we’ll look at adding dropdown menus to our forms, and perhaps some of the many text-based inputs supported by HTML 5.

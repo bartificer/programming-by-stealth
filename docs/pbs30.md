@@ -1,18 +1,18 @@
 # PBS 30 of x – Comparing JS Objects | Introducing WAI-ARIA
 
-In this instalment we’re going to continue with our dual-track approach, first, looking at some more JavaScript prototypes, then switching tack to HTML forms again.
+In this instalment we’re going to continue with our dual-track approach, first looking at some more JavaScript prototypes, then switching tack to HTML forms again.
 
-We’ll start with my sample solution to the challenge set in [the previous instalment](https://bartificer.net/pbs29). Then, we’ll move on to add an important enhancement to our prototypes – support for object comparisons. Strictly speaking, this won’t actually be revision – we haven’t looked at the intricacies of comparing objects before.
+We’ll start with my sample solution to the challenge set in [the previous instalment](https://pbs.bartificer.net/pbs29). Then, we’ll move on to add an important enhancement to our prototypes – support for object comparisons. Strictly speaking, this won’t actually be a revision – we haven’t looked at the intricacies of comparing objects before.
 
 We’ll finish our JavaScript section with another challenge.
 
-When we switch back to HTML we’ll take a big-picture look at an important accessibility standard named WAI-ARIA. We want to build our forms in a screen-reader-friendly way from day one, and to do that, we need to begin learning about ARIA. ARIA is really quite big, so all we’ll be doing this time is taking in an overview so we understand why it exists, and the basic concepts its built around.
+When we switch back to HTML we’ll take a big picture look at an important accessibility standard named WAI-ARIA. We want to build our forms in a screen-reader-friendly way from day one, and to do that, we need to begin learning about ARIA. ARIA is really quite big. So all we’ll be doing this time is taking in an overview so we understand why it exists and the basic concepts that it's built around.
 
 We’ll finish by creating a final, fully accessible, button complete with a pretty scalable icon.
 
-In the next instalment we’ll finally be ready to move on to some more different form inputs, specifically, checkboxes and radio buttons.
+In the next instalment we’ll finally be ready to move on to some more different form inputs, specifically checkboxes and radio buttons.
 
-# Matching Podcast Episode 476
+## Matching Podcast Episode 476
 
 Listen Along: Chit Chat Across the Pond Episode 476
 
@@ -513,7 +513,7 @@ The core JavaScript language does not provide any mechanism for meaningful objec
 
 Not only does JavaScript not provide you with a mechanism for object comparison, there is not even an agreed standard approach to this problem. The closest we can come to any kind of _right way_ of doing this is to follow some community conventions.
 
-Basically, what many people choose to do in JavaScript is to follow Java’s comparison rules (Java does not rely on conventions, there is a formally defined correct way of making Java objects comparable). That is to say, many JavaScript programmers choose to add two comparison functions to each of their prototypes – `.equals()`, and `.compareTo()`.
+Basically, what many people choose to do in JavaScript is to follow Java’s comparison rules (Java does not rely on conventions. There is a formally defined correct way of making Java objects comparable). That is to say, many JavaScript programmers choose to add two comparison functions to each of their prototypes – `.equals()`, and `.compareTo()`.
 
 The first of these, `.equals()` should take one argument, return `true` if that argument is a reference to an object that should be considered to have the same value as the object the function was called on, and return `false` in all other situations.
 
@@ -606,12 +606,12 @@ Again, there should be symmetry in the outputs, if `t1.compareTo(t2)` returns `0
 
 ## Updated JavaScript Prototype Algorithm
 
-Given all we have learned over the past few instalments, we need to update our original six-step process for creating prototypes to the following 8 step process:
+Given all we have learned over the past few instalments, we need to update our original six-step process for creating prototypes to the following eight-step process:
 
-1.  Gather your requirements, specifically, what data do your objects need to store, and, what functions need to be provided.
+1.  Gather your requirements, specifically, what data do your objects need to store, and what functions need to be provided.
 2.  Initialise your namespace and start a self-executing anonymous function within which you’ll define your prototype.
-3.  Write your constructor. In general, your constructor should accept initial values for all your object’s pieces of data, and if none are provided, a sane default should be used. You should validate all data from the user and throw an exception if it’s not usable.
-4.  Write your accessor methods – one for each piece of data your objects need to store. When called with no arguments, the accessor methods should get the current value, when called with an argument, they should set the value. Again, when setting, validate the data and throw an exception if the passed value is unusable.
+3.  Write your constructor. In general, your constructor should accept initial values for all your object’s pieces of data. If none are provided, a sane default should be used. You should validate all data from the user and throw an exception if it’s not usable.
+4.  Write your accessor methods – one for each piece of data your objects need to store. When called with no arguments, the accessor methods should get the current value. When called with an argument, they should set the value. Again, when setting, validate the data and throw an exception if the passed value is unusable.
 5.  Write the functions you need to provide.
 6.  Provide a `.toString()` function.
 7.  Provide a `.clone()` function.
@@ -647,35 +647,35 @@ console.log(dt4.isAfter(dt1)); // true
 
 ## Making Web Forms Accessible
 
-Let’s leave JavaScript Prototypes behind, and switch context back to HTML forms.
+Let’s leave JavaScript Prototypes behind and switch context back to HTML forms.
 
 It’s been my aim in this series to skip over all the mistakes made in earlier versions of HTML, and to start by doing things _the right way_. That’s why I want to make the forms we create accessible from the start, and to that end, we should look at the relevant web standard – [WAI-ARIA](http://www.w3.org/TR/wai-aria/).
 
-## A Big-Picture Introduction to WAI-ARIA
+## A Big Picture Introduction to WAI-ARIA
 
-ARIA is big, very big. It would take us months to go through it all in any kind of detail. So, what we’ll do is start with a very high-level overview, and then learn the specifics in small bite-sizes pieces as and when we need them.
+ARIA is big, very big. It would take us months to go through it all in any kind of detail. So, what we’ll do is start with a very high-level overview, and then learn the specifics in small bite-sized pieces as and when we need them.
 
 ### The Problem to be Solved
 
-Let’s start with the problem to be solved. Historically, web pages were very simple things, so if developers remembered to do a few little things like add `alt` attributes to `<img>` tags, screen readers and other assistive devices would have no problem helping the visually impaired surf the web. However, things have changed – modern web sites are often interactive, and in fact, many modern sites would be much more accurately described as web-based apps. JavaScript and CSS have turned what was once mostly just text into a collection of complex interactive user interfaces, and assistive technologies need some help to deal with this new reality.
+Let’s start with the problem to be solved. Historically, web pages were very simple things. If developers remembered to do a few little things like add `alt` attributes to `<img>` tags, screen readers and other assistive devices would have no problem helping the visually impaired surf the web. However, things have changed – modern web sites are often interactive. In fact, many modern sites would be much more accurately described as web-based apps. JavaScript and CSS have turned what was once mostly just text into a collection of complex interactive user interfaces. Assistive technologies need some help to deal with this new reality.
 
 ### WAI-ARIA 1.0 to the Rescue
 
-This is where the [Web Accessibility Initiative](https://www.w3.org/WAI/), or WAI, comes in. The WAI are an industry group under the [World Wide Web Consortium](https://www.w3.org) (AKA the WC3) with high-profile members like Adobe, HP & IBM. They work on standards for making the web accessible.
+This is where the [Web Accessibility Initiative](https://www.w3.org/WAI/), or WAI, comes in. The WAI are an industry group under the [World Wide Web Consortium](https://www.w3.org) (AKA the WC3) with high-profile members like Adobe, HP, and IBM. They work on standards for making the web accessible.
 
 In 2014 WAI finalised the first version of the W3C recommendation on _Accessible Rich Internet Applications_, or WAI-ARIA. This is still the most recent finalised versions of ARIA. To save our sanity, from now on in this series, we’ll refer to version 1.0 of WAI-ARIA as simply ARIA.
 
 ### Three Main Components of ARIA
 
-Like I said, ARIA is big, very big, but if you zoom out far enough, you can break it into three broad topic areas:
+Like I said, ARIA is very big, but, if you zoom out far enough, you can break it into three broad topic areas:
 
 1.  ARIA Roles
 2.  ARIA States & Properties
 3.  Keyboard Navigation
 
-These concepts are quite abstract, but in practice, the actual code tends to be very human-friendly, and thankfully, most things in ARIA are well named, so I think most people will find them quite intuitive.
+These concepts are quite abstract, but in practice, the actual code tends to be very human-friendly. Thankfully, most things in ARIA are well named, so I think most people will find them quite intuitive.
 
-The most important concept is that of ARIA roles. The basic idea is that no matter what HTML tags you use, a page or web app consists of widgets that do certain things, and you should use the `role` attribute to tell assistive technologies what role different HTML elements play on your web page/web app.
+The most important concept is that of ARIA roles. The basic idea is that, no matter what HTML tags you use, a page or web app consists of widgets that do certain things. You should use the `role` attribute to tell assistive technologies what role different HTML elements play on your web page/web app.
 
 For example, you might have a `div` that contains an `h1`, an `h2`, and an image that together form your site’s banner. To make that fact clear to assistive devices, you should add a `role` attribute to the `<div>` tag with the value `banner`:
 
@@ -687,13 +687,13 @@ For example, you might have a `div` that contains an `h1`, an `h2`, and an image
 </div>
 ```
 
-The specification defines a lot of different possible roles, and they get quite granular. A very common example of a more granular role is that of `button`. For aesthetic reasons, some websites like to use images with JavaScript click handlers as buttons. Before ARIA this would totally flummox assistive technologies. Now, with ARIA roles, you simply add a `role` attribute with the value `button` to the `<img>` tag, and assistive technologies know they should treat the image as if it were a button.
+The specification defines a lot of different possible roles, and they get quite granular. A very common example of a more granular role is that of `button`. For aesthetic reasons, some websites like to use images with JavaScript click handlers as buttons. Before ARIA this would totally flummox assistive technologies. Now, with ARIA roles, you simply add a `role` attribute with the value `button` to the `<img>` tag. Then assistive technologies know they should treat the image as if it were a button.
 
-ARIA roles don’t only exist on elements with explicit `role` attributes, they also exist implicitly for HTML tags for which they make sense.
+ARIA roles don’t only exist on elements with explicit `role` attributes. They also exist implicitly for HTML tags for which they make sense.
 
 For example, the top-level `<header>` tag on any page gets the implicit ARIA role `banner`. Unsurprisingly, `<button>` tags get the implicit ARIA role `button`.
 
-Elements on a page that have an ARIA role, be that an explicit role defined with a `role` attribute or an implicit role based on the tag name, can define ARIA states and properties. From a practical point of view, there’s basically no difference between a state and a property, and they’re both defined by adding attributes to html elements who’s names start with `aria-`. The difference is so subtle that the official spec says:
+Elements on a page that have an ARIA role, be that an explicit role defined with a `role` attribute or an implicit role based on the tag name, can define ARIA states and properties. From a practical point of view, there’s basically no difference between a state and a property. They’re both defined by adding attributes to html elements whose names start with `aria-`. The difference is so subtle that the official spec says:
 
 > Because the distinction between states and properties is of little consequence to most web content authors, this specification refers to both “states” and “properties” simply as “attributes” whenever possible.
 
@@ -703,7 +703,7 @@ An example of a global property is `aria-hidden`, which can be used to tell assi
 
 An example of a role-dependent state is `aria-disabled`, which only makes sense on things with roles like `button`, which can be disabled.
 
-Finally, the ARIA spec says that everything clickable must be focusable with the keyboard. In practical terms that basically means you sometimes have to use the `tabindex` attribute when you assign an explicit ARIA role to things. For example, if you use an image as a button you should add two additional attributes to the `<img>` tag, `role="button"`, and something like `tabindex="0"`.
+Finally, the ARIA spec says that everything clickable must be focusable with the keyboard. In practical terms that basically means you sometimes have to use the `tabindex` attribute when you assign an explicit ARIA role to things. For example, if you use an image as a button, you should add two additional attributes to the `<img>` tag, `role="button"`, and something like `tabindex="0"`.
 
 ## Properly Accessible Buttons with Glyph Icons
 
@@ -716,7 +716,7 @@ Let’s finish this instalment by getting back to some specifics. In the previou
 </button>
 ```
 
-Visually, buttons of this form work fine, but for assistive technologies they contain some potentially confusing additional information – that empty `<span>` tag. This serves no purpose other than visual ornamentation. As such, we should hide it from assistive technologies by applying the `aria-hidden` property to it like so:
+Visually, buttons of this form work fine, but for assistive technologies, they contain some potentially confusing additional information – that empty `<span>` tag. This serves no purpose other than visual ornamentation. As such, we should hide it from assistive technologies by applying the `aria-hidden` property to it like so:
 
 ```html
 <button type="submit">
@@ -729,4 +729,4 @@ Visually, buttons of this form work fine, but for assistive technologies they co
 
 At this stage we’ve nearly finished our second look at JavaScript prototypes. There is just one more object-related concept we need to look at next time – _static_ functions. This is a technical term you may have encountered in the documentation for the various JavaScript APIs we have used, but it’s one we’ve neither defined nor explained in this series to date. It’s about time we rectified that oversight.
 
-Now that we’ve been introduced to WAI-ARIA, we’re ready to start learning about more types of form elements. In the next instalment we’ll look at two new types – checkboxes and radio buttons, and we’ll learn how to use them so they are compatible with accessibility tools like screen readers.
+Now that we’ve been introduced to WAI-ARIA, we’re ready to start learning about more types of form elements. In the next instalment we’ll look at two new types – checkboxes and radio buttons. We’ll learn how to use them so they are compatible with accessibility tools like screen readers.

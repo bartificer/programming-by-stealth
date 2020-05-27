@@ -2,13 +2,13 @@
 
 In this instalment we’ll continue our twin-track approach of mixing a little JavaScript revision with learning some new HTML. In this case, we’ll revise JavaScript’s error handling mechanism (`throw`, `try` & `catch`), and learn how to use the HTML `<select>` tag to create dropdown menus and multiple-selection lists.
 
-We won’t be updating our date and time prototypes, but we will be using them in example HTML pages, so in this instalment our two tracks come into direct contact with each other for the first time. We’ll use an HTML page with multiple dropdowns to allow users to select a date, and then render that date in many formats using our `pbs.Date` prototype. We’ll also use JavaScript’s error handling features to respond appropriately when a user attempts to render an impossible date like the 31st of February 2010.
+We won’t be updating our date and time prototypes, but we will be using them in example HTML pages. So in this instalment our two tracks come into direct contact with each other for the first time. We’ll use an HTML page with multiple dropdowns to allow users to select a date, and then render that date in many formats using our `pbs.Date` prototype. We’ll also use JavaScript’s error handling features to respond appropriately when a user attempts to render an impossible date like the 31st of February 2010.
 
 Finally, the challenge set at the end of this instalment will also combine our prototypes with HTML forms, and JavaScript error handling.
 
 You can download my solution to the challenge set in the previous instalment, and all the code samples for this instalment in a single ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/03/pbs32.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs32.zip).
 
-# Matching Podcast Episode 480
+## Matching Podcast Episode 480
 
 Listen Along: Chit Chat Across the Pond Episode 480
 
@@ -18,7 +18,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to PBS 31 Challenge
 
-The challenge set at the end of [the previous instalment](https://bartificer.net/pbs31) was to add four static functions to the date and time prototypes we’ve been building up over recent instalments. Because the code for these prototypes is now very long, I’m only including the relevant excerpts below. You can find my full solution in this instalment’s ZIP file (`pbs31-challengeSolution.js`).
+The challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs31) was to add four static functions to the date and time prototypes we’ve been building up over recent instalments. Because the code for these prototypes is now very long, I’m only including the relevant excerpts below. You can find my full solution in this instalment’s ZIP file (`pbs31-challengeSolution.js`).
 
 ```javascript
 // init name space
@@ -225,7 +225,7 @@ console.log(pbs.DateTime.areEqual(dt3, dt4, dt5)); // true
 
 ## JavaScript Error Handling (Revision)
 
-When writing code, errors are very much a game of two halves – determining that something has gone wrong, and deciding what to do in response. To write good code, you need the ability to separate the code for these two very different tasks from each other. This is always true, but it is especially true when you are writing re-usable code like custom JavaScript prototypes. The same prototype should be usable in all kinds of scenarios – you should be able to use it on any web page, in shell scripts, in server-side JavaScript code, and so on.
+When writing code, errors are very much a game of two halves – determining that something has gone wrong and deciding what to do in response. To write good code, you need the ability to separate the code for these two very different tasks from each other. This is always true, but it is especially true when you are writing reusable code like custom JavaScript prototypes. The same prototype should be usable in all kinds of scenarios – you should be able to use it on any web page, in shell scripts, in server-side JavaScript code, and so on.
 
 What you absolutely do not want to end up writing is something like:
 
@@ -239,7 +239,7 @@ function divBy(x, y){
 }
 ```
 
-What is wrong with this code? Well – it will only work on a web page with an element with the ID `errors`, and, whether you want it or not, your response to trying to divide by zero to always be writing out the message _“You can’t divide by zero!”_. Needless to say, this function will not behave properly when used in a shell script or within server-side Javascript code.
+What is wrong with this code? Well – it will only work on a web page with an element with the ID `errors`. Also whether you want it or not, your response to trying to divide by zero will always be writing out the message _“You can’t divide by zero!”_. Needless to say, this function will not behave properly when used in a shell script or within server-side Javascript code.
 
 We have totally blended the detection of the error with our response, and that’s the problem.
 
@@ -264,17 +264,19 @@ pbs.Time.prototype.hours = function(h){
 
 You use the `throw` keyword to throw an object representing the error that has occurred. You can define your own error prototypes if you like, but you don’t have to (and we haven’t been, and won’t be in this series). JavaScript provides a number of error prototypes we can choose from on a case-by-case basis as appropriate, including the following:
 
-`Error`
+<dl>
+<dt><code>Error</code></dt>
 
-The generic error prototype – you can always use this prototype. Many programmers never use any error prototype other than this one.
+<dd>The generic error prototype – you can always use this prototype. Many programmers never use any error prototype other than this one.</dd>
 
-`RangeError`
+<dt><code>RangeError</code></dt>
 
-Appropriate when a value is of the expected type, but its value falls outside some acceptable range. E.g. you got a negative number, but you need a positive one.
+<dd>Appropriate when a value is of the expected type, but its value falls outside some acceptable range. For example, you got a negative number, but you need a positive one.</dd>
 
-`TypeError`
+<dt><code>TypeError</code></dt>
 
-Appropriate when a value is not of the expected type. E.g. you need a boolean but you got a string, or, you need an array and you got a callback.
+<dd>Appropriate when a value is not of the expected type. For example, you need a boolean but you got a string, or you need an array and you got a callback.</dd>
+</dl>
 
 JavaScript defines a number of other error prototypes, but they are for JavaScript’s own use rather than for our use as programmers, e.g. `SyntaxError`, when we write code that the JavaScript interpreter can’t understand.
 
@@ -301,7 +303,7 @@ var myDate = new pbs.Date();
 myDate.european(30, 2, 2017);
 ```
 
-This produces and unhandled error.
+This produces an unhandled error.
 
 We can turn this into a handled error like so:
 
@@ -322,7 +324,7 @@ try{
 }
 ```
 
-In the parentheses after the keyword `catch` we define a name for the object representing the error thrown from within the `try` block. The scope of this name will be the `catch` block. Think of this like naming the arguments to functions.
+In the parentheses after the keyword `catch` we define a name for the object representing the error thrown from within the `try` block. The scope of this name will be the `catch` block. Think of this as naming the arguments to functions.
 
 All the standard JavaScript error objects contain a data attribute named `.message` which holds the error message as a string. We can use this to add extra information into our error messages to users:
 
@@ -347,9 +349,9 @@ Executing this code now results in the following being written to the console:
 
 `oops - can't do that! (invalid day, month, year combination)`
 
-These are all very contrived examples, to get a better idea of what’s going on, let’s use our date & time prototypes within a web page. Open the file `pbs32a.html` from this instalment’s ZIP file in a browser (make sure the file `pbs.datetime.js` exits in the same folder).
+These are all very contrived examples. To get a better idea of what’s going on, let’s use our date & time prototypes within a web page. Open the file `pbs32a.html` from this instalment’s ZIP file in a browser (make sure the file `pbs.datetime.js` exits in the same folder).
 
-This page lets you specify a date using three dropdown menus, and then render that date in four different formats. We’ll look at how the dropdowns work in the second half of this instalment, for now, what I want to draw your attention to is what happens when you press the button to render the date. If you press the button with a sane date like the 5th of April 2017, you’ll see the page displays that date in International, European, American, and English formats. It probably won’t surprise you to learn that it does so using our `pbs.Date` prototype.
+This page lets you specify a date using three dropdown menus, and then render that date in four different formats. We’ll look at how the dropdowns work in the second half of this instalment. For now, what I want to draw your attention to is what happens when you press the button to render the date. If you press the button with a sane date like the 5th of April 2017, you’ll see the page displays that date in International, European, American, and English formats. It probably won’t surprise you to learn that it does so using our `pbs.Date` prototype.
 
 Now, let’s see what the page does when you ask it to do the impossible – to render the 31st of February 2001.
 
@@ -389,15 +391,15 @@ $('#render_btn').click(function(){
 
 For now, please accept that `$years.val()`, `$months.val()` & `$days.val()` return the values selected in the dropdown menus, and focus instead on how errors are dealt with.
 
-The handler starts by creating a `pbs.Date` object using all default values (no arguments passed to the constructor). Then, the handler does all the risky stuff, i.e. dealing with user input, within a `try` block. Accompanying that `try` block is the `catch` block which specifies what to do should the code inside the `try` block throw an error.
+The handler starts by creating a `pbs.Date` object using all default values (no arguments passed to the constructor). Then, the handler does all the risky stuff, i.e. dealing with user input within a `try` block. Accompanying that `try` block is the `catch` block which specifies what to do should the code inside the `try` block throw an error.
 
-The key point is that when we wrote the `pbs.Date` prototype, we had no idea that it might one day be used on a web page where errors should be written to a `<div>` with the ID `error_out`. The code within the prototype simply detects that there is a problem, and throws an error. How that error should be responded to is defined within the page using the API, not within the API itself.
+The key point is that, when we wrote the `pbs.Date` prototype, we had no idea that it might one day be used on a web page where errors should be written to a `<div>` with the ID `error_out`. The code within the prototype simply detects that there is a problem, and throws an error. How that error should be responded to is defined within the page using the API, not within the API itself.
 
 ## HTML Selects
 
 In HTML, dropdown menus like those used in the above example are known as _selects_, and they are defined using the HTML tags `<select>` & `<option>`. The dropdown menu itself is described by the `<select>` tag, and each option within the dropdown by a separate `<option>` tag.
 
-As we discussed in the previous instalment, all HTML form inputs are designed to produce name-value pairs. With dropdowns, the name attribute is set on the `<select>` tag, and each `<option>` tag defines the value it represents. Like checkboxes and individual radio buttons, dropdowns should be labeled with a `<label>` tag, either by wrapping the entire dropdown and the text describing it within a `<label>` tag, or, by giving the dropdown an ID, and associating a separate `<label>` tag to the dropdown with the `for` attribute.
+As we discussed in the previous instalment, all HTML form inputs are designed to produce name-value pairs. With dropdowns, the name attribute is set on the `<select>` tag, and each `<option>` tag defines the value it represents. Like checkboxes and individual radio buttons, dropdowns should be labeled with a `<label>` tag, either by wrapping the entire dropdown and the text describing it within a `<label>` tag, or by giving the dropdown an ID, and associating a separate `<label>` tag to the dropdown with the `for` attribute.
 
 The text the user sees for each option is independent of the value that option represents, as illustrated with the following sample dropdown:
 
@@ -420,7 +422,7 @@ The user sees the contents of the `<option>` tags, while the value part of the n
 
 > ### Aside:
 >
-> A quick note for those of you using the CodeRunner editor, if you set the execution language to HTML (the dropdown next to the run button, not the syntax highlighting setting), you can _‘run’_ HTML directly in the CodeRunner console as shown in this screenshot:
+> A quick note for those of you using the CodeRunner editor: if you set the execution language to HTML (the dropdown next to the run button, not the syntax highlighting setting), you can _‘run’_ HTML directly in the CodeRunner console as shown in this screenshot:
 >
 > ![HTML in CodeRunner](../assets/pbs32/Screen-Shot-2017-03-13-at-01.08.24-e1489367406400.png)
 
@@ -447,13 +449,13 @@ What day of the Week would you like Tacos?
 </label>
 ```
 
-Note that the groupings are purely for presentation, the group labels can’t be selected because they are not actually options within the menu.
+Note that the groupings are purely for presentation. The group labels can’t be selected because they are not actually options within the menu.
 
-HTML selects don’t have to be rendered as a dropdown menu, they can also be rendered as a scrollable list. You can switch between modes using the `size` attribute. If the size is 1, you have a dropdown, if the size is greater than 1, you have a scrollable list. The HTML 5 spec does not say sizes between 1 and 4 are not allowed, but some browsers (Safari for example) will never render a scrollable menu with a size smaller than 4, regardless of what value you give the `size` attribute. If you set it to 1 you get a drop down, if you set it to 2 you get a four-row tall scrollable list, same if you set it to 3, and obviously the same if you set it to 4. For numbers above 4 Safari starts to behave as expected, expanding the scrollable list to the requested size.
+HTML selects don’t have to be rendered as a dropdown menu. They can also be rendered as a scrollable list. You can switch between modes using the `size` attribute. If the size is 1, you have a dropdown. If the size is greater than 1, you have a scrollable list. The HTML 5 spec does not say sizes between 1 and 4 are not allowed, but some browsers (Safari for example) will never render a scrollable menu with a size smaller than 4, regardless of what value you give the `size` attribute. If you set it to 1 you get a drop down; if you set it to 2 you get a four-row tall scrollable list; same if you set it to 3; and obviously the same if you set it to 4. For numbers above 4 Safari starts to behave as expected, expanding the scrollable list to the requested size.
 
-Finally, selects can allow multiple values be selected at the same time by setting the attribute `multiple="multiple"` on the `<select>` tag. Allowing multiple selections results in the select always being rendered as a scrollable list rather than a dropdown. To select multiple elements you have to use the same key combinations you would use to select multiple files in your OS’s file manager, so cmd+click on a Mac. When multiple options are selected, the form data will contain multiple name-value pairs for the select – the name of the select paired with each selected value.
+Finally, selects can allow multiple values to be selected at the same time by setting the attribute `multiple="multiple"` on the `<select>` tag. Allowing multiple selections results in the select always being rendered as a scrollable list rather than a dropdown. To select multiple elements you have to use the same key combinations you would use to select multiple files in your OS’s file manager, so cmd+click on a Mac. When multiple options are selected, the form data will contain multiple name-value pairs for the select – the name of the select paired with each selected value.
 
-Personally, I find scrollable lists ugly and multiple selection difficult for users to figure out, so I avoid using either the `size` or `multiple` attributes. If I need users to select multiple values, I prefer to give them a collection of checkboxes click on instead.
+Personally, I find scrollable lists ugly and multiple selection difficult for users to figure out. So I avoid using either the `size` or `multiple` attributes. If I need users to select multiple values, I prefer to give them a collection of checkboxes click on instead.
 
 The file `pbs32b.html` in this instalment’s ZIP file contains a sample form with examples of both uses of the `<select>` tag, and a button to show the resulting name-value pairs. Both approaches to labelling are also demonstrated:
 
@@ -522,7 +524,7 @@ The file `pbs32b.html` in this instalment’s ZIP file contains a sample form wi
 
 All examples in this section can be executed in the web console on `pbs32b.html` from this instalment’s ZIP file (shown above).
 
-Like with checkboxes and radio buttons, you can access the `name` of a `<select>` using jQuery’s `.attr()` function with the string `'name'` as the first argument. For example, you can get the name of the days dropdown with:
+As with checkboxes and radio buttons, you can access the `name` of a `<select>` using jQuery’s `.attr()` function with the string `'name'` as the first argument. For example, you can get the name of the days dropdown with:
 
 ```javascript
 $('#taco_day_sel').attr('name')
@@ -530,7 +532,7 @@ $('#taco_day_sel').attr('name')
 
 You can change the name by passing the new name as a second argument.
 
-You can get the value of the currently selected option(s) within a `<select>` element by calling jQuery’s `.val()` function on the `<select>` element. Ordinarily, the value will be returned as a string, but if the select allows multiple selections (`multiple="multiple"`, `.val()` will always return an array, even when no options are selected, or just one option is selected.
+You can get the value of the currently selected option(s) within a `<select>` element by calling jQuery’s `.val()` function on the `<select>` element. Ordinarily, the value will be returned as a string, but, if the select allows multiple selections  (`multiple="multiple"`), `.val()` will always return an array, even when no options are selected or just one option is selected.
 
 You can see `.val()`‘s normal behaviour in action by running the code below which gets the value of the currently selected day option:
 
@@ -558,13 +560,13 @@ $('#taco_fillings_sel').val(["beef", "cheese", "beans", "sweet_pepper"])
 
 Note that the value of individual options can be accessed and set by using `.val()` on a specific option rather than on the select as a whole.
 
-You don’t have to control selection using `.val()` on the `select`, you can also use `.prop()` with a first argument of `'selected'` on `option` elements to get or set their selected status. For example, we can determine whether or not cheese is a selected filling with:
+You don’t have to control selection using `.val()` on the `select`. You can also use `.prop()` with a first argument of `'selected'` on `option` elements to get or set their selected status. For example, we can determine whether or not cheese is a selected filling with:
 
 ```javascript
 $('option[value="cheese"]', $('#taco_fillings_sel')).prop('selected')
 ```
 
-Note the use of the attribute selector we learned about in [instalment 28](https://bartificer.net/pbs28), and the use of the second argument to the `$()` function to limit the search to options within a specific select.
+Note the use of the attribute selector we learned about in [instalment 28](https://pbs.bartificer.net/pbs28), and the use of the second argument to the `$()` function to limit the search to options within a specific select.
 
 We can also use this technique to set the selected state of any given option by passing a second argument to `.prop()`. For example, we can set taco day to Monday and select chilli peppers as a filling with:
 
@@ -573,7 +575,7 @@ $('option[value="1"]', $('#taco_day_sel')).prop('selected', true);
 $('option[value="chilli_pepper"]', $('#taco_fillings_sel')).prop('selected', true);
 ```
 
-Notice that regular selects behave rather like radio buttons – when a given option is selected, the others become un-selected automatically. Multi-selects on the other hand behave more like independent checkboxes – selecting chilli peppers did not deselect any other options.
+Notice that regular selects behave rather like radio buttons – when a given option is selected, the others become unselected automatically. Multi-selects on the other hand behave more like independent checkboxes – selecting chilli peppers did not deselect any other options.
 
 Finally, hand-coding long sequences of options can be very tedious. It’s often advantageous to add a DOM ready event handler to populate a select with options using some kind of loop. You can see three examples of this technique in action in the file `pbs32a.html` from this instalment’s ZIP file. The raw HTML does not define a single option in any of the three dropdowns:
 
@@ -644,16 +646,16 @@ $(function(){
 }
 ```
 
-Note the use of jQuery’s `$()` function with an HTML tag as the first argument to create new HTML elements, the use of jQuery’s `.val()` and `.text()` functions to set the value and text of the newly created `option` elements, and finally the use of jQuery’s `.append()` function to inject the newly created `option` elements into the `select` elements. Also notice that for each dropdown, jQuery’s `.prop()` function is used to select an appropriate default option.
+Note the use of jQuery’s `$()` function with an HTML tag as the first argument to create new HTML elements, the use of jQuery’s `.val()` and `.text()` functions to set the value and text of the newly created `option` elements, and finally the use of jQuery’s `.append()` function to inject the newly created `option` elements into the `select` elements. Also notice that, for each dropdown, jQuery’s `.prop()` function is used to select an appropriate default option.
 
 ## A Challenge
 
-Using the file `pbs32a.html` from this instalment’s ZIP file as either a starting point, or merely as a relevant example, create a web page that contains five dropdown menus allowing the user to select an hour, minute, day, month, and year, and a button that when pushed renders the selected date and time in ISO8601 format (the format outputted by `pbs.DateTime.prototype.toString()`), as well as all permutations of American and European date formats and 12 and 24 hour time formats. When the user chooses an impossible date, the page should handle that error in a sane way.
+Using the file `pbs32a.html` from this instalment’s ZIP file as either a starting point, or merely as a relevant example, create a web page that contains five dropdown menus allowing the user to select an hour, minute, day, month, and year, and a button that, when pushed, renders the selected date and time in ISO8601 format (the format outputted by `pbs.DateTime.prototype.toString()`), as well as all permutations of American and European date formats and 12 and 24 hour time formats. When the user chooses an impossible date, the page should handle that error in a sane way.
 
 ## Final Thoughts
 
 On our JavaScript track we have now built a collection of pretty full-featured prototypes for representing dates and times, we’ve revised how JavaScript error handling works, and what’s better, we’ve brought our prototypes into the browser and combined them with HTML forms using jQuery.
 
-We will soon be staring on a whole new suite of JavaScript prototypes, but before we do, we’ll learn our first formal piece of software engineering – Test Driven Development (TDD). All software written by humans will inevitably contain bugs, but that’s no reason not to use sound methodologies in an attempt to systematically reduce the number of mistakes we make. That’s where TDD comes in. With TDD you start by defining the tests that your finished functions must pass before you even write a single character of code for the function itself. Then, when the function is written, you can check whether or not it does what you intended it to do by running your pre-defined tests against it.
+We will soon be staring on a whole new suite of JavaScript prototypes, but before we do, we’ll learn our first formal piece of software engineering – Test Driven Development (TDD). All software written by humans will inevitably contain bugs, but that’s no reason not to use sound methodologies in an attempt to systematically reduce the number of mistakes we make. That’s where TDD comes in. With TDD you start by defining the tests that your finished functions must pass before you even write a single character of code for the function itself. Then, when the function is written, you can check whether or not it does what you intended it to do by running your predefined tests against it.
 
-As well as learning about TDD, we’ll also continue to explore HTML forms in the next instalment. I particular, we’ll be focusing on basic text input with text boxes and text areas. As similar as they sound, those two are actually very different beasts in HTML!
+As well as learning about TDD, we’ll also continue to explore HTML forms in the next instalment. In particular, we’ll be focusing on basic text input with text boxes and text areas. As similar as they sound, those two are actually very different beasts in HTML!
