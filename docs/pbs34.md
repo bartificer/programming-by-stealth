@@ -841,7 +841,7 @@ The ZIP file for this assignment contains the test suite for this API up to this
 
 ## Assignment
 
-We’ve just finished writing the tests for the [`isLocalUrl()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.isLocalUrl) and [`noopenerFix()`](https://bartificer.net/pbs34) functions. Either starting from scratch, or using the code in this instalment’s ZIP file as a starting point, write tests for some more of the functions in the [`bartificer.linkToolkit`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix) API. I would suggest starting with the function [`markExternal()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.markExternal).
+We’ve just finished writing the tests for the [`isLocalUrl()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.isLocalUrl) and [`noopenerFix()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix) functions. Either starting from scratch, or using the code in this instalment’s ZIP file as a starting point, write tests for some more of the functions in the [`bartificer.linkToolkit`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.noopenerFix) API. I would suggest starting with the function [`markExternal()`](https://bbusschots.github.io/bartificer_linkToolkit_js/bartificer.linkToolkit.html#.markExternal).
 
 ## Final Thoughts (And Two Book Recommendations)
 
