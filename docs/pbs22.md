@@ -519,6 +519,6 @@ Remember that any errors your code generates will be written to the JavaScript c
 
 We’re now well on the way to being front-end web programmers. We know how to define the structure of a web page with HTML and how to style it with CSS. We can now embed JavaScript code into web pages and get it to run when certain events or timers fire. We’ve also learned how to use jQuery to interrogate and alter the style and attributes of one or more HTML elements on a page.
 
-While we have learned a lot, we still have a lot to learn. There are many more kinds of events we can attach our code to. We have not learned anything about HTML form tags yet – buttons, text fields, dropdown, etc., and we’ve only scratched the surface of what jQuery can do. So far we’ve been using jQuery to alter existing HTML elements. We can also use it to build new elements from scratch and inject them into the DOM, and remove existing elements from the DOM.
+While we have learned a lot, we still have a lot to learn. There are many more kinds of events we can attach our code to. We have not learned anything about HTML form tags yet – buttons, text fields, drop-downs, etc. We’ve only scratched the surface of what jQuery can do. So far we’ve been using jQuery to alter existing HTML elements. We can also use it to build new elements from scratch and inject them into the DOM, and remove existing elements from the DOM.
 
 In other words, we still have a lot to look forward to!

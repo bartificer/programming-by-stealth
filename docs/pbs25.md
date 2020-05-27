@@ -89,7 +89,7 @@ This test page is designed to be run from localhost. To play with it, download t
 
 ## Project Management
 
-To make management of the project easier, I use the Node Package Manager, `npm` to install all the needed dependencies for building the various outputs, and to define and run the various build tasks. The configuration for NPM is stored in the file `package.json`.
+To make management of the project easier, I use the Node Package Manager, `npm`, to install all the needed dependencies for building the various outputs and to define and run the various build tasks. The configuration for NPM is stored in the file `package.json`.
 
 This is a very simple project. There are actually no dependencies for the code itself, only for some development tasks. Hence, the project file only defines two dependencies. Both are listed as dev dependencies. The two dependencies are JSDoc, for generating the documentation, and the [Minami JSDoc theme](https://www.npmjs.com/package/minami).
 

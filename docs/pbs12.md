@@ -26,7 +26,7 @@ JavaScript is a language on the rise – now is a great time to learn it.
 
 So, we’re going to take our first steps into JavaScript in a little playground I’ve created. BTW, the playground is entirely written in HTML, CSS, and JavaScript. So when we’ve learned a little more JavaScript, you’ll be able to go back and look under the hood and understand exactly how it works. You can download the code for the playground [here](https://www.bartbusschots.ie/s/wp-content/uploads/2016/04/pbs-JavaScriptPlayground.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs-JavaScriptPlayground.zip). You can run the playground from your local server or you can use an online version at [www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground-v1](http://www.bartb.ie/pbsdemos/pbs-JavaScriptPlayground-v1/).
 
-The playground has a text region for entering your code, some text boxes you can use to send inputs to your code, and a button to run your code. The code region uses the open-source JavaScript library [CodeMirror](https://codemirror.net) to do syntax highlighting.
+The playground has a text region for entering your code, some text boxes you can use to send inputs to your code, and a button to run your code. The code region uses the open source JavaScript library [CodeMirror](https://codemirror.net) to do syntax highlighting.
 
 When you click the `Run` button, your code will execute. The output will appear in a new popup window (so allow popups from this page when your browser asks).
 
