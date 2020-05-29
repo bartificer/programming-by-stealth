@@ -60,6 +60,23 @@ class Nerdtouche{
 		this._defaultEmoji = e;
 	}
 	
+	/**
+	 * A count of the number of Nerdtouches created.
+	 *
+	 * @type {number}
+	 */
+	static get count(){
+		return this._count || 0;
+	}
+	
+	/**
+	 * @throws {Error} Only the constructor should update the count, so 
+	 * attempts to do so directly will result in an error being thrown.
+	 */
+	static set count(c){
+		throw new Error('Only the constructor may update the counter!');
+	}
+	
 	//
 	// --- Class Functions ---
 	//
@@ -141,6 +158,15 @@ class Nerdtouche{
 		this._emoji = e.slice(0, this.constructor.length);
 	}
 	
+	/**
+	 * The unique class added to all HTML renderings of this nerdtouche.
+	 * 
+	 * @type {string}
+	 */
+	get uniqueClass(){
+		return `nerdtouch-${this._sequenceNumber}`;
+	}
+	
 	//
 	// --- Constructor ---
 	//
@@ -160,6 +186,10 @@ class Nerdtouche{
 		// store the instance data
 		this.handle = handle; // could throw error
 		this.emoji = emoji; // could throw error
+		
+		// increment the instance counter and store the sequence number
+		this.constructor._count = this.constructor.count + 1;
+		this._sequenceNumber = this.constructor.count;
 	}
 	
 	//
@@ -181,13 +211,20 @@ class Nerdtouche{
 	 * @return {jQuery}
 	 */
 	as$(){
+		// build the nerdtouche
 		const $nerdtouche = $('<span>').html(this.emoji.join('<br>'));
 		$nerdtouche.attr('title', this.handle);
 		$nerdtouche.addClass('nerdtouche badge badge-secondary badge-pill p-1 m-1 align-middle');
+		$nerdtouche.addClass(this.uniqueClass);
 		$nerdtouche.css({
 			fontSize: '0.5em',
 			lineHeight: 1.5
 		});
+		
+		// add a data attribute linking back to the instance object
+		$nerdtouche.data('nerdtouche-object', this);
+		
+		// return the nerdtouche
 		return $nerdtouche;
 	}
 	
