@@ -16,90 +16,51 @@ Well, if something is better associated with the abstract concept that with indi
 
 **Class data attributes and class functions do not get encapsulated into instance of a class**, this means they cannot be accessed via an instance of the class. Class data attributes and functions are instead accessed via the class, i.e. `SomeClass.someData` and `SomeClass.someFunction()`.
 
-If this all sounds a little too abstract, let's consider a class to represent circles again (like we did in the previous instalment). The value of Pi is clearly associated with the concept of a circle, but is it a property that varies from circle to circle? No it is not! It's related to all circles, and all circles have its one value in common. This means it should be added as a class data attribute, not an instance data attribute (like we did in the previous instalment).
+If this all sounds a little too abstract, let's consider a class to represent circles again (like we did in the previous instalment). The value of Pi is clearly associated with the concept of a circle, but is it a property that varies from circle to circle? No it is not! It's a single value that all circles have in common. This means it should be added as a class data attribute, not an instance data attribute (like we did in the previous instalment).
 
 Similarly, a function for testing whether of not a given value is a reference to an instance of our circle class is clear related to our circle class. However, it would make no sense to add it as an instance function, because it would not be encapsulated into anything that was not an instance of our class! Clearly, this should be a class function.
 
-## Class Data Attributes in JavaScript
+## Class Data Attributes & Functions in JavaScript — The `static` Keyword
 
-In this series-within-a-series we are confining ourselves to the modern JavaScript OO syntax, so, in our world, the correct way to add class data attributes is with getters and setters that have been pre-fixed with the keyword `static`.
+In this series-within-a-series we're confining ourselves to the modern JavaScript OO syntax, so, in our world, the correct way to add class data attributes is with getters and setters.
 
-In the most advanced version of our example `Circle` class from the previous instalment we used getters and setters to create a read-only instance data attribute named `π`:
+To mark a getter or setter as being for a class data attribute rather than an instance data attribute, simply pre-fix the declaration with the keyword `static`.
 
-```js
-class Circle{
-  // …
-  
-  get π(){
-    return 3.1415;
-  }
-  
-  set π(pi){
-    throw new Error('π is a read-only attribute');
-  }
-  
-  // …
-}
-```
+Similarly, to mark a function defined within a class as being a class function rather than an instance function, simply pre-fix the declaration with the keyword `static`.
 
-To convert π from an instance data attribute to a class data attribute we simple add the keyword `static` before the `get` and `set` keywords:
+Because the keyword `static` is used to mark attributes and functions as belonging to the class, many developers use *static data attribute* as a synonym for *class data attribute*, and *static function* as a synonym for *class function*.
 
-```js
-class Circle{
-  // …
-  
-  static get π(){
-    return 3.1415;
-  }
-  
-  static set π(pi){
-    throw new Error('π is a read-only attribute');
-  }
-  
-  // …
-}
-```
+## The Keyword `this` Within Class (AKA Static) Functions
 
-// TO DO create and link circle5.js and pbs97a.html
+We've already learned that within instance functions the keyword `this` is a reference to *the instance object I belong to*. Similarly, within class functions, the keyword `this` is a reference to *the class I belong to*. This means that class functions can access other class functions and class data attributes using `this`.
 
-Using the JavaScript console we can demonstrate that our `Circle` class now has a data attribute named π:
+## Accessing Class Functions from Within Instance Functions
 
-```js
-console.log( Circle.π ); // logs 3.1415
-```
+In JavaScript, every object constructed by a constructor, i.e. every instance of any class, automatically gets an instance data attribute named `constructor`. This automatically created data attribute will be a reference to the class the object is an instance of. That means that within instance functions, the class they belong to can be accessed with `this.constructor`. Since class data attributes belong to the class, they can be accessed via `this.constructor.someClassAttribute`. Similarly, class functions can be accessed via `this.constructor.someClassFunction()`.
 
-We can also prove that this data attribute is no longer encapsulated into instances of our class:
+## A Worked Example — the `Nerdtouche` Class
 
-```js
-const unitCircle = new Circle(1);
-console.log(unitCircle.π); // logs undefined
-```
+This all sounds very abstract, so let's create a worked example — a class to represent a modern-day nerd-equivalent of the [cartouches](https://en.wikipedia.org/wiki/Cartouche) ancient Egyptian pharos used. The names of pharos were recorded in inscriptions as groups of pictograms encapsulated in a pill-shaped grouping.
 
-## Class Functions in JavaScript
+In my imagination, a modern nerd equivalent would be a grouping of three emoji a person uses to represent themselves — I've decided to call them *Nerdtouches* 🙂
 
-Functions within classes are also marked as being class functions rather than instance functions by pre-fixing them with the keyword `static`.
+Since my biggest nerd loves are science, computing, and photography, I've chosen (🔭🖥️📷) as mine.
 
-For example, we can create a class function named `isCircle()` like so:
+Let's build a class to represent this nutty invention of mine.
 
-class Circle{
-  // …
-  
-  static isCircle(val){
-    if(val instanceof Circle){
-      return true;
-    }
-    return false;
-  }
-  
-  // …
-}
-```
+### A Class Function
 
-We can now use this function like so:
+TO DO
 
-```js
-const unitCircle = new Circle(1);
-const boogers = 42;
-console.log(Circle.isCircle(unitCircle)); // logs true
-console.log(Circle.isCircle(boogers)); // logs false
-```
+### Three Class Data Attributes
+
+TO DO
+
+### Two Instance Data Attributes
+
+TO DO
+
+### The Constructor
+
+TO DO
+
