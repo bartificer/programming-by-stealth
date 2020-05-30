@@ -48,13 +48,86 @@ Since my biggest nerd loves are science, computing, and photography, I've chosen
 
 Let's build a class to represent this nutty invention of mine.
 
+We'll start with a basic implemenation of the idea. You'll find the full code for this first pass at the problem in the file `Nerdtouche1.js`, and you can interact with the class via the JavaScript console on `pbs97a.html`.
+
 ### A Class Function
 
-TO DO
+Let's start by laying a useful foundation — a function for testing if a given value is a single emoji. This functionality is clearly related to the set of all Nerdtouches, and not specific to any given Nerdtouche, so it should be added as a class function.
 
-### Three Class Data Attributes
+Emoji are not characters in the traditional sense, they are Unicode graphemes, and because Unicode is ... well ... Unicode, that means you can't use string length to test for the presence of a single grapheme. You can prove this to yourself using the JavaScript console on any web page:
 
-TO DO
+```js
+'⛔'.length // 1
+'💩'.length // 2
+'🤦🏼‍'.length // 5
+```
+It's also really hard to tell which unicode grapheme is an emoji, and which is some other symbol, so I made two decisions:
+
+1. For the purposes of this class, any single grapheme will count as an emoji.
+2. I won't even try to write my own code for counting graphemes in a string, I'll use a third-party library.
+
+After a little Googling I decided to use [grapheme-splitter](https://github.com/orling/grapheme-splitter/) which provides exactly the function I need — `.countGraphemes()`!
+
+```js
+class Nerdtouche{
+
+  // …
+
+  static isEmoji(val){
+    if(is.not.string(val)){
+      return false;
+    }
+    return (new GraphemeSplitter()).countGraphemes(val) === 1;
+  }
+	
+  // …
+}
+```
+
+Because we pre-fixed the function definition with the `static` keyword we access our function via the class, not via an instance, so this function is `Nerdtouche.isEmoji()`. We can see this function in action on the JavaScript console in `pbs97a.html`:
+
+```
+Nerdtouche.isEmoji('💩') // true
+Nerdtouche.isEmoji('🐎💩') // false
+```
+
+### A Read-only Class Data Attribute
+
+Next let's add a read-only class data attribute to provide access to the number of emoji that make up a Nerdtouche:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  static get length(){
+    return 3;
+  }
+
+  static set length(l){
+    throw new Error(`Nerdtouches will always be ${this.length} emoji long!`);
+  }
+	
+  // …
+}
+```
+
+The only difference between this read-only class data attribute and a read-only instance data attribute is that both the getter and setter are pre-fixed with the keyword `static`.
+
+We can see this property in action in the console:
+
+```js
+Nerdtouche.length // 3
+Nerdtouche.length = 4 // throws Error
+```
+
+### Read/Write Class Data Attributes
+
+Next let's add a pair of class data attributes to store editable default values for the user's handle and the emoji.
+
+TO DO — LEFT OFF HERE!!!
+
+
 
 ### Two Instance Data Attributes
 

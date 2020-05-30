@@ -103,6 +103,26 @@ class Nerdtouche{
 		return (new GraphemeSplitter()).countGraphemes(val) === 1;
 	}
 	
+	/**
+	 * Find all Nerdtouches within a given container. If not container is
+	 * specified the entire document is searched.
+	 *
+	 * @param {jQuery} [$container]
+	 * @return {jQuery}
+	 * @throws {TypeError} A Type Error is thrown if a container is specified
+	 * but is not a jQuery object.
+	 */
+	static $find($container){
+		if(is.not.undefined($container)){
+			if(is.not.object($container) || !$container.jquery){
+				throw new TypeError('If passed, the container must be a jQuery object');
+			}
+		}else{
+			$container = $(document);
+		}
+		return $('.nerdtouche', $container);
+	}
+	
 	//
 	// --- Instance Data Attributes ---
 	//
@@ -235,5 +255,40 @@ class Nerdtouche{
 	 */
 	asHTML(){
 		return this.as$()[0].outerHTML;
+	}
+	
+	/**
+	 * Append this nerdtouche to a given container.
+	 * 
+	 * @param {jQuery} $container
+	 * @return {jQuery} Returns a reference to the container.
+	 * @throws {TypeError} A Type Error is thrown if a valid container is not passed.
+	 */
+	appendTo($container){
+		if(is.not.object($container) || !$container.jquery){
+			throw new TypeError('the container must be a jQuery object');
+		}
+		$container.append(this.as$());
+	}
+	
+	
+	/**
+	 * Find all coppies of this nerdtouche within a given container. If no
+	 * container is specified the entire document is searched.
+	 *
+	 * @param {jQuery} [$container]
+	 * @return {jQuery}
+	 * @throws {TypeError} A Type Error is thrown if a container is specified
+	 * but is not a jQuery object.
+	 */
+	$find($container){
+		if(is.not.undefined($container)){
+			if(is.not.object($container) || !$container.jquery){
+				throw new TypeError('If passed, the container must be a jQuery object');
+			}
+		}else{
+			$container = $(document);
+		}
+		return $(`.${this.uniqueClass}`, $container);
 	}
 }

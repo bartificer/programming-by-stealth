@@ -199,4 +199,18 @@ class Nerdtouche{
 	asHTML(){
 		return this.as$()[0].outerHTML;
 	}
+	
+	/**
+	 * Append this nerdtouche to a given container.
+	 * 
+	 * @param {jQuery} $container
+	 * @return {jQuery} Returns a reference to the container.
+	 * @throws {TypeError} A Type Error is thrown if a valid container is not passed.
+	 */
+	appendTo($container){
+		if(is.not.object($container) || !$container.jquery){
+			throw new TypeError('the container must be a jQuery object');
+		}
+		$container.append(this.as$());
+	}
 }
