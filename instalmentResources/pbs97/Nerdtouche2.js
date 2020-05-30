@@ -37,7 +37,7 @@ class Nerdtouche{
 	static set defaultHandle(h){
 		if(is.not.string(h)) throw new TypeError('Default Handle must be a string');
 		if(is.empty(h)) throw new RangeError("Default Handle can't be an empty string");
-		this._defaultEmoji = e;
+		this._defaultHandle = e;
 	}
 	
 	/**
@@ -184,7 +184,14 @@ class Nerdtouche{
 	 * @type {string}
 	 */
 	get uniqueClass(){
-		return `nerdtouch-${this._sequenceNumber}`;
+		return `nerdtouche-${this._sequenceNumber}`;
+	}
+	
+	/**
+	 *
+	 */
+	set uniqueClass(uc){
+		throw new Error("Nerdtouche's unique classes can't be changed");
 	}
 	
 	//

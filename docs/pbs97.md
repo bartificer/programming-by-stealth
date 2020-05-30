@@ -106,7 +106,14 @@ Since my biggest nerd loves are science, computing, and photography, I've chosen
 
 Let's build a class to represent this nutty invention of mine.
 
-We'll start with a basic implemenation of the idea. You'll find the full code for this first pass at the problem in the file `Nerdtouche1.js`, and you can interact with the class via the JavaScript console on `pbs97a.html`.
+We'll start with a basic implementation of the idea. You'll find the full code for this first pass at the problem in the file `Nerdtouche1.js`, and you can interact with the class via the JavaScript console on `pbs97a.html`.
+
+Note that this class assumes it will be used on pages where the following third-party libraries have been loaded:
+
+1. [jQuery](https://jquery.com)
+2. [Bootstrap 4](https://getbootstrap.com)
+3. [is.js](https://is.js.org)
+4. [grapheme-splitter](https://github.com/orling/grapheme-splitter/) (more on this in a moment)
 
 ### A Class Function
 
@@ -183,17 +190,246 @@ Nerdtouche.length = 4 // throws Error
 
 Next let's add a pair of class data attributes to store editable default values for the user's handle and the emoji.
 
-TO DO — LEFT OFF HERE!!!
+```js
+class Nerdtouche{
 
-TO DO — highlight the defaulting behaviour in the getters
+  // …
 
+  static get defaultHandle(){
+    return this._defaultHandle || 'Some Nerd';
+  }
+  static set defaultHandle(h){
+    if(is.not.string(h)) throw new TypeError('Default Handle must be a string');
+    if(is.empty(h)) throw new RangeError("Default Handle can't be an empty string");
+    this._defaultHandle = e;
+  }
 
+  static get defaultEmoji(){
+    return this._defaultEmoji || '⁉️';
+  }
+  static set defaultEmoji(e){
+    if(is.not.string(e)) throw new TypeError('Default Emoji must be a string');
+    if(!this.isEmoji(e)) throw new RangeError('Default Emoji must be a single Unicode character');
+    this._defaultEmoji = e;
+  }
+  
+  // …
+}
+```
+
+There are two things I want to draw your attention to in these short getters and setters. Firstly, both use the approach of having the getter return a default value to work around JavaScript's lack of support for static initialisers. Secondly, the setter for the default emoji calls the class function `isEmoji()` using the `this` keyword.
 
 ### Two Instance Data Attributes
 
-TO DO
+With the class functions and data attributes taken care of, let's move on to the instance data attributes — there are just two of them, one for the handle, and one for the set of emoji:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  get handle(){
+    return this._handle;
+  }
+  set handle(h){
+    if(is.not.string(h)) throw new TypeError('Handle must be a string');
+    if(is.empty(h)) throw new RangeError('Handle cannot be an empty string');
+    this._handle = h;
+  }
+	
+  get emoji(){
+    return [...this._emoji] // shallow clone with spread opperator
+  }
+  set emoji(e){
+    const errMsg = `emoji must be an array of ${this.constructor.length} single Unicode graphemes`;
+    if(is.not.array(e) || !is.all.string(e)){
+      throw new TypeError(errMsg);
+    }
+    for(const emoji of e){
+      if(!this.constructor.isEmoji(emoji)){
+        throw new RangeError('each emoji must be a single Unicode graphemes');
+      }
+    }
+    if(e.length < this.constructor.length){
+      throw new TypeError(errMsg);
+    }
+    this._emoji = e.slice(0, this.constructor.length);
+  }
+  
+  // …
+}
+```
+
+The getter and setter for the handle are very much by-the-book, but the setter for the emoji warrants a closer look.
+
+The first thing to notice is that this instance getter access the class function `isEmoji()` and the class data attribute `length` using the `this.constructor` syntax.
+
+Secondly, note that the function avoid hard-coding the number of emoji by making use of the `length` class data attribute. We know that the setter for this class data attribute prevents users of the class from altering this value, but that's no reason to hard-code the value in this getter. By making use of the read-only  `length` class attribute I'm making it easy for myself to change my mind on the length later. Should I decide some day that Nerdtouches should be 4 emoji long, I just have to edit a single line of code!
+
+Finally, notice the use of the `Array`  instance function `.slice()` to do a small amount of data coercion – the setter throws an error if passed too few emoji, but truncates any excess of emoji to just the required number.
 
 ### The Constructor
 
+Next, there is of course a constructor which we can use to build actual Nerdtouche instances:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  constructor(handle, ...emoji){
+    // set defaults if needed
+    if(is.undefined(handle)) handle = this.constructor.defaultHandle;
+    while(emoji.length < this.constructor.length){
+      emoji.push(this.constructor.defaultEmoji);
+    }
+		
+    // store the instance data
+    this.handle = handle; // could throw error
+    this.emoji = emoji; // could throw error
+  }
+  
+  // …
+}
+```
+
+This is pretty much by-the-book, but again, notice the use of `this.constructor` to access class data attributes. Also notice the use of default values to make all arguments to the constructor optional, and the use of the spread operator to bundle all arguments after the first one into an array named `emoji`.
+
+Finally, we have some instance functions for rendering our Nerdtouche in various formats — plain text, as an HTML string, and as a jQuery object — and a function to append a Nerdtouche into a desired part of the document:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  asString(){
+   return `(${this.emoji.join('')})`;
+  }
+	
+  as$(){
+    const $nerdtouche = $('<span>').html(this.emoji.join('<br>'));
+    $nerdtouche.attr('title', this.handle);
+    $nerdtouche.addClass('nerdtouche badge badge-secondary badge-pill p-1 m-1 align-middle');
+    $nerdtouche.css({
+      fontSize: '0.5em',
+      lineHeight: 1.5
+    });
+    return $nerdtouche;
+  }
+	
+  asHTML(){
+    return this.as$()[0].outerHTML;
+  }
+	
+  appendTo($container){
+    if(is.not.object($container) || !$container.jquery){
+      throw new TypeError('the container must be a jQuery object');
+    }
+    $container.append(this.as$());
+  }
+  
+  // …
+}
+```
+
+This is all very much by-the-book, making use of various standard JavaScript and jQuery functions we've seen many times throughout this series. The only new addition is the use of the fact that all jQuery objects have an instance data attribute named `jquery` to quickly and easily test whether or not an object is a jQuery object. This is in keeping with [jQuery's developer documentation](https://api.jquery.com/jquery-2/).
+
+TO DO — Show the class in action!!!
+
+## Connecting Objects to the DOM Elements
+
+In the web environment it's quite normal for instances of your classes to map to one or more elements in the DOM. If you're writing a class to represent a world clock, you'll need to display that clock on the page! Similarly, the whole point of a class to represent Nerdtouches is to embed them into web pages.
+
+I can often be very useful to create a two-way connection between our instance objects and the DOM objects representing them to the user. There is no single correct approach to this, and many possible approaches you could take.
+
+At the moment our Nerdtouche class provides no linkage at all between instances of the class and the DOM objects built by those instances. Let's add such linkages as a means of illustrating some useful concepts and approaches.
+
+With something like a world clock you would have a clear one-to-one mapping between instance objects and DOM objects, but Nerdtouches are different. There's no one-to-one mapping because each Nerdtouche can be included into the document arbitrarily many times.
+
+The final code for our updated Nerdtouche class can be found in the file `Nerdtouche2.js`, and you can interact with this class via the JavaScript console on the file `pbs97b.html`.
+
+### Unique IDs or Classes
+
+When you have a one-to-one mapping between instance objects and DOM objects you can use unique IDs to allow each instance to find it's one matching DOM element. 
+
+When you have a many-to-one mapping you can't use IDs, but you can uses classes, which is what we'll do in our worked example.
+
+However, regardless of whether you use a unique ID or class, you're left with the same fundamental problem — how do you reliably generate unique identifiers?
+
+My preferred solution is to add a counter to the class as a class data attribute. You can safely allow public read access to this counter, but you should prevent users from changing the value of the counter. Instead, the counter should get updated only by the constructor.
+
+Let's add such a counter to our class:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  static get count(){
+    return this._count || 0;
+  }
+  static set count(c){
+    throw new Error('Only the constructor may update the counter!');
+  }
+  
+  constructor(handle, ...emoji){
+    // …
+    
+    // increment the instance counter and store the sequence number
+    this.constructor._count = this.constructor.count + 1;
+    this._sequenceNumber = this.constructor.count;
+  }
+  
+  // …
+}
+```
+
+So, we have a class data attribute named `count` that gets incremented each time a new instance is created, and, each instance stores the value of the count when it was created as the private instance data attribute `_sequenceNumber`.
+
+We can now use this to generate unique class names for each instance by adding an instance data attribute named `uniqueClass`, and injecting it into the jQuery objects built by the `.as$()` instance function:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  get uniqueClass(){
+    return `nerdtouche-${this._sequenceNumber}`;
+  }
+	
+  set uniqueClass(uc){
+    throw new Error("Nerdtouche's unique classes can't be changed");
+  }
+  
+  as$(){
+    // …
+	
+	$nerdtouche.addClass(this.uniqueClass);
+	
+	// …
+  }
+  
+  // …
+}
+```
+
+We can now see that the HTML or each Nerdtouche contains a different class:
+
+```js
+const bart = new Nerdtouche('bartificer', '🔭', '🖥', '📷');
+const allison = new Nerdtouche('podfeet', '🐕', '🖥', '🚘');
+console.log(bart.asHTML());
+console.log(allison.asHTML());
+```
+
+### DOM-Storing Data Attributes
+
+TO DO — LEFT OFF HERE
+
+### DOM-searching Class & Instance Functions
+
 TO DO
 
+### Data Attributes
+
+TO DO
