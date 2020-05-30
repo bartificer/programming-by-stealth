@@ -10,11 +10,13 @@ Instance attributes and functions are accessed using the dot notation on instanc
 
 Instance attributes are designed to hold information that is unique to each instance, and instance functions are designed to operate on a specific instance's data. What if you have some data that is relevant to all instances of a class, but does not vary from instance to instance? Or what if you have functions that are related to the abstract concept a class represents, but not applicable to a single instance of the class. Where where should such data and functions go?
 
-## Class Data Attributes & Functions
+## Class Data Attributes & Functions (in Any OO Language)
 
 Well, if something is better associated with the abstract concept that with individual instances, they should be added to the class, not encapsulated into the instances. Rather unimaginatively, we refer to data attributes associated directly with a class as *class data attributes*, and functions associated directly with a class as *class functions*. Perhaps a little too imaginatively, many programmers also refer to class data attributes and class functions as *static data attributes*, and *static functions*, and many languages use the keyword `static` to mark an attribute or function as belonging to the class.
 
 **Class data attributes and class functions do not get encapsulated into instance of a class**, this means they cannot be accessed via an instance of the class. Class data attributes and functions are instead accessed via the class, i.e. `SomeClass.someData` and `SomeClass.someFunction()`.
+
+Instance data attributes get be initialised by a class's constructor function(s). Many languages support so-called **static initialiser. functions** to initialise class data attributes as the class gets loaded for the first time. However, this is not a universal concept, so in some languages you need to work around that limitation in less elegant ways (spoiler — JavaScript is one of those languages 🙁).
 
 If this all sounds a little too abstract, let's consider a class to represent circles again (like we did in the previous instalment). The value of Pi is clearly associated with the concept of a circle, but is it a property that varies from circle to circle? No it is not! It's a single value that all circles have in common. This means it should be added as a class data attribute, not an instance data attribute (like we did in the previous instalment).
 
@@ -22,19 +24,75 @@ Similarly, a function for testing whether of not a given value is a reference to
 
 ## Class Data Attributes & Functions in JavaScript — The `static` Keyword
 
-In this series-within-a-series we're confining ourselves to the modern JavaScript OO syntax, so, in our world, the correct way to add class data attributes is with getters and setters.
+Let's move from a generic description of the concept that applies to any OO language and focus in on how JavaScript implements class data attributes and functions.  Remember that in this series-within-a-series we're confining ourselves to the modern JavaScript OO syntax. Before ES6 things were done very differently, but we're ignoring that history.
 
-To mark a getter or setter as being for a class data attribute rather than an instance data attribute, simply pre-fix the declaration with the keyword `static`.
+From our ES6 and beyond point of view, the correct way to add class data attributes is with getters and setters.
 
-Similarly, to mark a function defined within a class as being a class function rather than an instance function, simply pre-fix the declaration with the keyword `static`.
+**To mark a getter or setter as being for a class data attribute** rather than an instance data attribute, simply **pre-fix the declaration with the keyword `static`**.
+
+Similarly, **to mark a function defined within a class as being a class function** rather than an instance function, simply **pre-fix the declaration with the keyword `static`**.
 
 Because the keyword `static` is used to mark attributes and functions as belonging to the class, many developers use *static data attribute* as a synonym for *class data attribute*, and *static function* as a synonym for *class function*.
 
-## The Keyword `this` Within Class (AKA Static) Functions
+### Initialising Class Data Attributes in JavaScript
+
+As mentioned above, JavaScript does not support static initialisers. This gives us two choices for how we initialise class data attributes:
+
+1. Initialise the class variables after the class definition.
+2. Write your getters in such a way that they gracefully deal with the current value being `undefined`, and behave appropriately.
+
+Let's see what the first approach looks like in a very simplified example:
+
+```js
+class A{
+  static get b(){
+    return this._b;
+  }
+  static set b(b){
+    this._b = b;
+  }
+}
+this._b = 0; // initialise after class
+```
+
+And the same simplified example using one possible variant of the second approach:
+
+```js
+class A{
+  static get b(){
+     // conditionally initialise in getter
+    if(typeof this._b === undefined) this._b = 0;
+    return this._b;
+  }
+  static set b(b){
+    this._b = b;
+  }
+}
+```
+
+And here is another:
+
+```js
+class A{
+  static get b(){
+    // don't initialise, have a default value instead
+    return typeof this._b === undefined ? 0 : this._b ;
+  }
+  static set b(b){
+    this._b = b;
+  }
+}
+```
+
+The first approach separates the initialisation from the class definition, so is only viable if you always define your classes in separate files, adding the initialisation code at the bottom of the file (after you close the `class` statement). Using a separate file is the only way to reliably insure the initialisation code won't get separated from the class definition when you share your class between projects or with others.
+
+I prefer to keep all the code for my classes within the `class` statement, so I prefer (and recommend) some variant of the second approach. That's what I'll be doing in this series.
+
+### The Keyword `this` Within Class (AKA Static) Functions
 
 We've already learned that within instance functions the keyword `this` is a reference to *the instance object I belong to*. Similarly, within class functions, the keyword `this` is a reference to *the class I belong to*. This means that class functions can access other class functions and class data attributes using `this`.
 
-## Accessing Class Functions from Within Instance Functions
+### Accessing Class Functions from Within Instance Functions
 
 In JavaScript, every object constructed by a constructor, i.e. every instance of any class, automatically gets an instance data attribute named `constructor`. This automatically created data attribute will be a reference to the class the object is an instance of. That means that within instance functions, the class they belong to can be accessed with `this.constructor`. Since class data attributes belong to the class, they can be accessed via `this.constructor.someClassAttribute`. Similarly, class functions can be accessed via `this.constructor.someClassFunction()`.
 
@@ -126,6 +184,8 @@ Nerdtouche.length = 4 // throws Error
 Next let's add a pair of class data attributes to store editable default values for the user's handle and the emoji.
 
 TO DO — LEFT OFF HERE!!!
+
+TO DO — highlight the defaulting behaviour in the getters
 
 
 
