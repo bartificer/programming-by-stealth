@@ -275,7 +275,7 @@ class Nerdtouche{
 		if(is.not.object($container) || !$container.jquery){
 			throw new TypeError('the container must be a jQuery object');
 		}
-		$container.append(this.as$());
+		return $container.append(this.as$());
 	}
 	
 	

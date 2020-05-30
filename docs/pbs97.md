@@ -1,6 +1,10 @@
 # PBS 97 of X — Class Data Attributes & Functions
 
-In this instalment we'll be introducing the penultimate concept for this series-within-a-series on Object Oriented programming in JavaScript.
+We'll start this instalment by introducing the penultimate concept for this series-within-a-series on Object Oriented programming in JavaScript — class data attributes and class functions.
+
+The theory is quite simple to lay out, but it doesn't make much sense in the abstract, so we'll spend most of this assignment making our way through a worked example.
+
+We'll also use the worked example as an opportunity to look at some techniques for creating linkages between instances of classes, and DOM objects within web pages. These techniques should prove helpful in solving the challenge set at the end of the previous instalment 😉
 
 Before we move forward, let's take a moment to summarise where we've gotten to.
 
@@ -325,7 +329,7 @@ class Nerdtouche{
     if(is.not.object($container) || !$container.jquery){
       throw new TypeError('the container must be a jQuery object');
     }
-    $container.append(this.as$());
+    return $container.append(this.as$());
   }
   
   // …
@@ -334,7 +338,29 @@ class Nerdtouche{
 
 This is all very much by-the-book, making use of various standard JavaScript and jQuery functions we've seen many times throughout this series. The only new addition is the use of the fact that all jQuery objects have an instance data attribute named `jquery` to quickly and easily test whether or not an object is a jQuery object. This is in keeping with [jQuery's developer documentation](https://api.jquery.com/jquery-2/).
 
-TO DO — Show the class in action!!!
+We can see our class in action using the JavaScript console on `pbs97a.html`:
+
+Let's start by creating some Nerdtouches that show the construtor's defaulting in action and adding them into the DOM:
+
+```js
+// everything defaulted
+const genericNerd = new Nerdtouche();
+genericNerd.appendTo($OUT_HTML);
+
+// all but handle defaulted
+const boringNerd = new Nerdtouche('unimaginator');
+boringNerd.appendTo($OUT_HTML);
+
+// just one emoji defaulted
+const indecisiveNerd = new Nerdtouche('indecisivor', '🖥', '🤷‍♂️');
+indecisiveNerd.appendTo($OUT_HTML);
+
+// nothing defaulted
+const trueNerd = new Nerdtouche('nerdificent', '🖥', '🕹', '🎮');
+trueNerd.appendTo($OUT_HTML);
+```
+
+Hover over each Nerdtouche to see the handles.
 
 ## Connecting Objects to the DOM Elements
 
@@ -424,12 +450,186 @@ console.log(allison.asHTML());
 
 ### DOM-Storing Data Attributes
 
-TO DO — LEFT OFF HERE
+Particularly in cases where there 's a one-to-one mapping between instances and DOM objects, it often makes sense to store a reference to the matching DOM object in an instance data attribute. That doesn't make apply here, so there's no example in the Nerdtouche class, but it's an approach you should bear in mind because if often does make sense.
 
 ### DOM-searching Class & Instance Functions
 
-TO DO
+If you have unique IDs or classes, it can make sense to add class and/or instance functions for searching some of all of the DOM for matching DOM elements.
+
+Since every Nerdtouche copy created by any Nerdtouche instance has the class `.nerdtouche`, we can easily write a class function that finds all copies of Nerdtouches. To make the function more powerful I chose to add an optional argument that can be used to limit the search to a sub-set of the document (like you can do with jQuery's `$()` function ):
+
+```js
+class Nerdtouche{
+
+  // …
+
+  static $find($container){
+    if(is.not.undefined($container)){
+      if(is.not.object($container) || !$container.jquery){
+        throw new TypeError('If passed, the container must be a jQuery object');
+      }
+    }else{
+      $container = $(document);
+    }
+    return $('.nerdtouche', $container);
+  }
+  
+  // …
+}
+```
+
+Because each instance's Nerdtouche copies have a unique ID, we can extend the concept to a similar instance function that will find all copies of a specific Nerdtouche:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  $find($container){
+    if(is.not.undefined($container)){
+      if(is.not.object($container) || !$container.jquery){
+        throw new TypeError('If passed, the container must be a jQuery object');
+      }
+    }else{
+      $container = $(document);
+    }
+    return $(`.${this.uniqueClass}`, $container);
+  }
+  
+  // …
+}
+```
+
+Notice that the class and instance functions are different, but, they share a name. This might seem confusing, but there will never be any doubt as to which function is being executed because one only exists in the class, and the other has been encapsulated into each instance.
+
+We can see this difference in action in the JavaScript console on `pbs98b.html` (refresh the page before executing):
+
+```js
+// create two Nerdtouche instances
+const bart = new Nerdtouche('bartificer', '🔭', '🖥', '📷');
+const allison = new Nerdtouche('podfeet', '🐕', '🖥', '🚘');
+
+// Add two copies of one and one of the other into the DOM:
+bart.appendTo($OUT_HTML);
+allison.appendTo($OUT_HTML);
+bart.appendTo($OUT_HTML);
+
+// use the class function to find all copies
+Nerdtouche.$find();
+// finds 3
+
+// use the class function to find only copies of allison
+allison.$find();
+// finds 1
+
+// use the class function find only copies of bart
+bart.$find();
+// finds 2
+```
 
 ### Data Attributes
 
-TO DO
+So far all the techniques we've looked at connect instances to DOM objects, can we go the other way? Can we teach DOM objects which instance they belong to?
+
+As it happens, we can — we can add a data attribute with a known name and a reference to the instance to the generated DOM object. We can do this by adding a single line to the `.as$()` instance function:
+
+```js
+class Nerdtouche{
+
+  // …
+
+  as$(){
+    // …
+		
+    // add a data attribute linking back to the instance object
+    $nerdtouche.data('nerdtouche-object', this);
+		
+    // …
+  }
+  
+  // …
+}
+```
+
+In this case I chose to name the data attribute 'nerdtouche-object'.
+
+To see this functionality in action, refresh `pbs97b.html` and then run the following in the console:
+
+```js
+// create a Nerdtouche and insert a copy into the document
+const dorothy = new Nerdtouche('maclurker', '🖥', '⛵️', '🏰');
+dorothy.appendTo($OUT_HTML);
+
+// get a reference to a jQuery object representing all Nerdtouches
+// since there's only one, that will be the one for dorothy
+const $dorothy = $('.nerdtouche');
+
+// access the instance via the data attribute
+$OUT_TEXT.append(`the only Nerdtouche on the page is for ${$dorothy.data('nerdtouche-object').handle}`);
+
+```
+
+This is a very contrived example, so let's make it a little more concrete. One of the biggest advantages having a reference to the instance embedded in the DOM is the ability to write one event handler than can correctly handle events on any relevant DOM object.
+
+Let's add the same click handler to ever Nerdtouche on a page and have that handler correctly interact with the appropriate instance object in every case.
+
+To really prove that we are using the data attributes, we'll add the Nerdtouches without ever saving references to the instance objects!
+
+Please start by refreshing `pbs97b.html`, then enter the following in the JavaScript Console:
+
+```js
+// create three Nerdtouches without saving them into named variables
+// anonymous Nerdtouches if you will 🙂
+(new Nerdtouche('bartificer', '🔭', '🖥', '📷')).appendTo($OUT_HTML);
+(new Nerdtouche('maclurker', '🖥', '⛵️', '🏰')).appendTo($OUT_HTML);
+(new Nerdtouche('podfeet', '🐕', '🖥', '🚘')).appendTo($OUT_HTML);
+
+// add a click handler to all Nerdtouches
+Nerdtouche.$find().click(function(){
+  // get the instance object from the data attribute
+  // this is the DOM element that was clicked on
+  const nerdtouche = $(this).data('nerdtouche-object');
+  
+  // write a message to the plain text area
+  $OUT_TEXT.append(`you clicked on ${nerdtouche.handle}'s Nerdtouche!\n`);
+});
+```
+
+Now, click on any Nerdtouche and watch how the same event handler always know which anonymous instance object to use!
+
+**An important caveat** to bear in mind is that data attributes linking to objects rather than primitive values can't be expressed in HTML, so to use data attributes you need to work exclusively with native DOM objects or jQuery objects.
+
+To illustrate this point, refresh `pbs97b.html`, and execute the following in the JavaScript console:
+
+```js
+// add one Nerdtouche as a jQuery object
+const bart = new Nerdtouche('bartificer', '🔭', '🖥', '📷');
+$OUT_HTML.append( bart.as$() );
+
+// add another as an HTML string
+const allison = new Nerdtouche('podfeet', '🐕', '🖥', '🚘'); 
+$OUT_HTML.append( allison.asHTML() );
+
+// add a click handler to all Nerdtouches and check for the data attribute
+Nerdtouche.$find().click(function(){
+  $nerdtoucheDOM = $(this);
+  nerdtoucheInstance = $nerdtoucheDOM.data('nerdtouche-object');
+  if(nerdtoucheInstance){
+    $OUT_TEXT.append(`🙂 found an instance object for ${nerdtoucheInstance.handle}\n`);
+  }else{
+    $OUT_TEXT.append(`🙁 no instance object found in DOM object with classes: ${$nerdtoucheDOM.attr('class')}\n`);
+  }
+});
+```
+
+And then click on each Nerdtouche in turn.
+
+## Final Thoughts
+
+We've now almost completed our third attempt at describing Object Oriented programming in JavaScript. We have just one more concept left to explore, and it's a big one!
+
+In the real world, concepts tend to be hierarchical. The abstract concept of a manager is a sub-set of the abstract concept of an employee, is a sub-set of the abstract concept of a person. All people have names, but only employees have employment contracts, and only managers have other employees reporting to them. As things stand, if we were to try write three classes to represent these three abstract concept we would find ourselves with a lot of code duplication. All instance data attributes and functions that apply to people apply to employees and managers too, so would be triplicated! Similarly, all instance data attributes and functions that apply to employees apply to managers too, so that would all be duplicated.
+
+Surely there must be a better way? Of course there is! If the real world can gave concept hierarchies, surely our classes should be able to have matching hierarchies? Well, they can, through the mechanism of inheritance (often referred to by the highfalutin term *polymorphism*).
+
+This simple but powerful concept will be the focus of the next instalment.
