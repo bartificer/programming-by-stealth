@@ -6,6 +6,18 @@ The theory is quite simple to lay out, but it doesn't make much sense in the abs
 
 We'll also use the worked example as an opportunity to look at some techniques for creating linkages between instances of classes, and DOM objects within web pages. These techniques should prove helpful in solving the challenge set at the end of the previous instalment 😉
 
+## Instalment Resources
+
+This instalment uses 4 example files:
+
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/5650615316b020a2664fd1a98fb0948f5c9a90f5/instalmentZips/pbs97.zip)
+* [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs97)
+* View the two HTML files in your browser:
+	* [`pbs97a.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/5650615316b020a2664fd1a98fb0948f5c9a90f5/instalmentResources/pbs97/pbs97a.html)
+	* [`pbs97b.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/5650615316b020a2664fd1a98fb0948f5c9a90f5/instalmentResources/pbs97/pbs97b.html)
+
+## Quick Summary
+
 Before we move forward, let's take a moment to summarise where we've gotten to.
 
 We have learned to use classes to allow us to construct concrete examples of abstract concepts. Each concrete example taking the form of an encapsulated object — that is to say, an object that contains both data, and, the functions to manipulate that data. We call these encapsulated objects *instances* of the class that constructed them. Because the data attributes and functions are encapsulated within each instance, we refer to them as *instance data attributes*, and *instance functions*.
