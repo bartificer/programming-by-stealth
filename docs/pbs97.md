@@ -56,7 +56,7 @@ class A{
     this._b = b;
   }
 }
-this._b = 0; // initialise after class
+A._b = 0; // initialise after class
 ```
 
 And the same simplified example using one possible variant of the second approach:
@@ -65,7 +65,7 @@ And the same simplified example using one possible variant of the second approac
 class A{
   static get b(){
      // conditionally initialise in getter
-    if(typeof this._b === undefined) this._b = 0;
+    if(typeof this._b === 'undefined') this._b = 0;
     return this._b;
   }
   static set b(b){
@@ -205,7 +205,7 @@ class Nerdtouche{
   static set defaultHandle(h){
     if(is.not.string(h)) throw new TypeError('Default Handle must be a string');
     if(is.empty(h)) throw new RangeError("Default Handle can't be an empty string");
-    this._defaultHandle = e;
+    this._defaultHandle = h;
   }
 
   static get defaultEmoji(){
@@ -242,7 +242,7 @@ class Nerdtouche{
   }
 	
   get emoji(){
-    return [...this._emoji] // shallow clone with spread opperator
+    return [...this._emoji] // shallow clone with spread operator
   }
   set emoji(e){
     const errMsg = `emoji must be an array of ${this.constructor.length} single Unicode graphemes`;
@@ -452,7 +452,7 @@ console.log(allison.asHTML());
 
 Particularly in cases where there 's a one-to-one mapping between instances and DOM objects, it often makes sense to store a reference to the matching DOM object in an instance data attribute. That doesn't make apply here, so there's no example in the Nerdtouche class, but it's an approach you should bear in mind because if often does make sense.
 
-### DOM-searching Class & Instance Functions
+### DOM-Searching Class & Instance Functions
 
 If you have unique IDs or classes, it can make sense to add class and/or instance functions for searching some of all of the DOM for matching DOM elements.
 
@@ -502,7 +502,7 @@ class Nerdtouche{
 
 Notice that the class and instance functions are different, but, they share a name. This might seem confusing, but there will never be any doubt as to which function is being executed because one only exists in the class, and the other has been encapsulated into each instance.
 
-We can see this difference in action in the JavaScript console on `pbs98b.html` (refresh the page before executing):
+We can see this difference in action in the JavaScript console on `pbs97b.html` (refresh the page before executing):
 
 ```js
 // create two Nerdtouche instances
