@@ -16,6 +16,15 @@ This instalment uses 4 example files:
 	* [`pbs97a.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/5650615316b020a2664fd1a98fb0948f5c9a90f5/instalmentResources/pbs97/pbs97a.html)
 	* [`pbs97b.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/5650615316b020a2664fd1a98fb0948f5c9a90f5/instalmentResources/pbs97/pbs97b.html)
 
+  ## Matching Podcast Episode
+
+Listen along to this instalment on [episode 640 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/05/ccatp-641/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_31.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_31.mp3" >Download the MP3</a>
+
+
 ## Quick Summary
 
 Before we move forward, let's take a moment to summarise where we've gotten to.
