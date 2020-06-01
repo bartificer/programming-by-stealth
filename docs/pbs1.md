@@ -11,7 +11,7 @@ The tool you happen to use most today is unlikely to be the one you use most a d
 15 years ago I did 90% of my programming in Java, 10 years ago, PHP, today, Perl, next year, who knows!
 
 In case you hadn’t guessed yet, I’m not going to pick a single computer language for this series of tutorials.
-I’m very deliberately going to make use of a pallet of languages, and I’m going to focus on the underlying principles, rather than the specific peculiarities of any given language.
+I’m very deliberately going to make use of a palette of languages, and I’m going to focus on the underlying principles, rather than the specific peculiarities of any given language.
 
 In order to help bring everyone along, I’m also not going to go from zero to real programming in one go.
 The plan is to sneak up on programming in small steps – hence the title of the series. We will be using computer languages from the start, but initially, they won’t be programming languages.

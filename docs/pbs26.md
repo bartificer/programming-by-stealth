@@ -942,7 +942,7 @@ You can see the API in use in `pbs26.html`:
     	border-radius: 3px;
     }
 
-    /* styles for the block level example */
+    /* styles for the block-level example */
     #clock2{
     	display: block;
     	padding: 0.25em;

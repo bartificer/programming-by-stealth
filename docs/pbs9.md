@@ -22,7 +22,7 @@ Also – it should be noted that this little web app is entirely written in HTML
 
 ## The CSS `display` Property
 
-We have already encountered the concept of block-level tags and inline tags; and we have mentioned that there are a few tags that behave a little oddly. We’ve learned that headings and paragraphs are block-level tags, that emphasis is an inline tag, and that images are an example of a tag that behaves neither exactly like an inline tag or a block level tag.
+We have already encountered the concept of block-level tags and inline tags; and we have mentioned that there are a few tags that behave a little oddly. We’ve learned that headings and paragraphs are block-level tags, that emphasis is an inline tag, and that images are an example of a tag that behaves neither exactly like an inline tag or a block-level tag.
 
 That is a simplification that omits one important point – headings are block-level tags **by default**, and emphasis tags inline tags **by default**. Using the `display` CSS property, we can override these defaults.
 
