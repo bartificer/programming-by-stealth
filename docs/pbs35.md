@@ -2,13 +2,13 @@
 
 We’ll start this instalment by rounding out our look at QUnit – first, by taking a quick look at my sample solution to the challenge from the previous instalment, and then by introducing a simple little feature that will make this instalment’s challenge more manageable.
 
-Next, we’ll make a start on text input in HTML forms. This time we’ll focus purely on free-form text, and then in the next instalment we’ll move on to formatted sub-sets of text like numbers, email addresses and so on.
+Next, we’ll make a start on text input in HTML forms. This time we’ll focus purely on free-form text. In the next instalment we’ll move on to formatted subsets of text like numbers, email addresses and so on.
 
-Finally, we’ll make a start on what will be an on-going project. The idea is to combine our understanding of HTML, CSS, JavaScript, jQuery, and QUnit to implement a zero-player with a really cool computer science back-story.
+Finally, we’ll make a start on what will be an on-going project. The idea is to combine our understanding of HTML, CSS, JavaScript, jQuery, and QUnit to implement a zero-player with a really cool computer science back story.
 
 As usual, I’ve created a ZIP file with the files for this instalment, including a sample HTML page that demonstrates text input in action, and the files that make up the starting point for this instalment’s challenge which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/pbs35.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs35.zip).
 
-# Matching Podcast Episode 487
+## Matching Podcast Episode 487
 
 Listen Along: Chit Chat Across the Pond Episode 487
 
@@ -18,18 +18,18 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to PBS 34 Challenge
 
-At the end of [the previous instalment](https://bartificer.net/pbs34) I set the challenge of creating unit tests for the `bartificer.linkToolkit.js` JavaScript API we built together much earlier in this series, and which I then finessed a little before releasing as [an open source project on GitHub](https://github.com/bbusschots/bartificer_linkToolkit_js). We made a start on the test suite together, and the assignment was to continue building tests for more of the functions, starting with the function `bartificer.linkToolkit.markExternal()`, and continuing from there for as much or as little as you felt would be helpful to your learning.
+At the end of [the previous instalment](https://pbs.bartificer.net/pbs34) I set the challenge of creating unit tests for the `bartificer.linkToolkit.js` JavaScript API we built together much earlier in this series, and which I then finessed a little before releasing as [an open source project on GitHub](https://github.com/bbusschots/bartificer_linkToolkit_js). We made a start on the test suite together. The assignment was to continue building tests for more of the functions, starting with the function `bartificer.linkToolkit.markExternal()`, and continuing from there for as much or as little as you felt would be helpful to your learning.
 
-As a quick reminder, `bartificer.linkToolkit.markExternal()` is supposed to scan an HTML document, or, part of an HTML document, find all the links that have a `target` of `_blank`, and inject an icon into the document after the link to mark the fact that the link opens in a new window/tab. Basically, it’s a courtesy to the viewers of the page to make it easier to see which links will navigate the current window/tab to a new location, and which will open up a new window/tab.
+As a quick reminder, `bartificer.linkToolkit.markExternal()` is supposed to scan an HTML document, or part of an HTML document, find all the links that have a `target` of `_blank`, and inject an icon into the document after the link to mark the fact that the link opens in a new window/tab. Basically, it’s a courtesy to the viewers of the page to make it easier to see which links will navigate the current window/tab to a new location, and which will open up a new window/tab.
 
-A test runner file was provided as part of the starting point for the challenge (`test/index.html`). It contains a `div` with the special ID `qunit-fixture`, which we’ll call _the fixture_. The fixture contains a bulleted list of links, one per list item. These links contain a nice mixture of different destination URLs, targets, and `rel` attributes. As we learned in the previous instalment, what makes the fixture special is that QUnit re-sets it back to how it was when the page loaded after each QUnit test finishes executing. This means that each test gets to work on a pristine version of the fixture. Just to highlight this point again, the reset happens after every test, not after every assertion.
+A test runner file was provided as part of the starting point for the challenge (`test/index.html`). It contains a `div` with the special ID `qunit-fixture`, which we’ll call _the fixture_. The fixture contains a bulleted list of links, one per list item. These links contain a nice mixture of different destination URLs, targets, and `rel` attributes. As we learned in the previous instalment, what makes the fixture special is that QUnit resets it back to how it was when the page loaded after each QUnit test finishes executing. This means that each test gets to work on a pristine version of the fixture. Just to highlight this point again, the reset happens after every test, not after every assertion.
 
-Bearing all this in mind, a QUnit test for a function that alters the DOM should use the following you basic approach:
+Bearing all this in mind, a QUnit test for a function that alters the DOM should use the following basic approach:
 
 1.  Call the function on the fixture – if the function works as expected, this should result in the DOM being altered.
 2.  Call one or more assertions. Using jQuery, these assertions should check that DOM has indeed been altered in the expected way.
 
-My approach to testing the `bartificer.linkToolkit.markExternal()` function is to break the task into a number of separate tests. One test to validate that the function works as expected when called without specifying any options – that is, with all the options at their default value. Then, separate tests for each of the supported options. Each of these tests starts by calling the function on the fixture with the appropriate options specified, followed by the assertions for checking that function altered the content of the fixture as expected.
+My approach to testing the `bartificer.linkToolkit.markExternal()` function is to break the task into a number of separate tests. One test is to validate that the function works as expected when called without specifying any options – that is, with all the options at their default value. Then, I added separate tests for each of the supported options. Each of these tests starts by calling the function on the fixture with the appropriate options specified, followed by the assertions for checking that the function altered the content of the fixture as expected.
 
 Since these assertions rely heavily on jQuery, this is a good opportunity for some jQuery practice/revision.
 
@@ -213,23 +213,23 @@ QUnit.module('markExternal()', {}, function(){
 
 As usual, I want to draw your attention to a few aspects of my solution.
 
-In the first test, it was important to check each link one by one to see whether or not an image was added after that link as appropriate. Some links should not have gotten an image added, some should. To avoid code duplication, I created two arrays of strings, one with the IDs of the links that should have had an icon added, and one with those that shouldn’t. Then it’s a matter of looping over both arrays and making the appropriate check.
+In the first test, it was important to check each link, one by one, to see whether or not an image was added after that link as appropriate. Some links should not have gotten an image added, while some should. To avoid code duplication, I created two arrays of strings, one with the IDs of the links that should have had an icon added, and one with those that shouldn’t. Then it’s a matter of looping over both arrays and making the appropriate check.
 
-Because the fixture was structured to have each link in its own list item, testing for the addition (or not) of images can be boiled down to counting the number of `img` tags within the `li` tag that contains the link (`a` tag) being tested. For links that should have an icon added we expect to find one image within the containing list item, and for links that shouldn’t have an icon added we expect to find no images within the containing list item. So, given the ID of the link, how do we find the number of images?
+Because the fixture was structured to have each link in its own list item, testing for the addition (or not) of images can be boiled down to counting the number of `img` tags within the `li` tag that contains the link (`a` tag) being tested. For links that should have an icon added, we expect to find one image within the containing list item, and for links that shouldn’t have an icon added, we expect to find no images within the containing list item. So, given the ID of the link, how do we find the number of images?
 
-This all comes down to remembering our jQuery from earlier in the series. Firstly, to get a jQuery object representing a link given it’s ID we call the `$` function with the ID pre-fixed with a `#` symbol as the only argument, so within my loops that’s simply:
+This all comes down to remembering our jQuery from earlier in the series. Firstly, to get a jQuery object representing a link given its ID, we call the `$` function with the ID prefixed with a `#` symbol as the only argument, so within my loops that’s simply:
 
 ```javascript
 var $a = $('#' + aId); // the link
 ```
 
-Once we have the link, we can get a jQuery object that represents the containing list item by simply calling `.parent()` on the jQuery object representing the link. In my loops that’s simply:
+Once we have the link, we can get a jQuery object that represents the containing list item by simply calling `.parent()` on the jQuery object representing the link. In my loops, that’s simply:
 
 ```javascript
 var $li = $a.parent(); // the list item containing the link
 ```
 
-Now that we have an object representing the appropriate list item, we need to create a jQuery object that represents all the images within that list item that come directly after a link. We do this by using the two-argument form of the `$` function – the first argument will be the selector specifying what to search for, and the second argument will be a jQuery object describing the sub-set of the document to confine the search within.
+Now that we have an object representing the appropriate list item, we need to create a jQuery object that represents all the images within that list item that come directly after a link. We do this by using the two-argument form of the `$` function – the first argument will be the selector specifying what to search for, and the second argument will be a jQuery object describing the subset of the document in which to confine the search.
 
 The second argument is the easy one – we want to confine our search within the list item, so simply `$li`.
 
@@ -241,7 +241,7 @@ Finally, the `length` property of a jQuery object tells you how many elements it
 $('a + img', $li).length, // the number of images after links in the list item
 ```
 
-When it comes to testing the options it’s generally not so much about testing which links did or did not get an image added, but picking a single link that should be marked as external and making sure it was altered in the appropriate way. A good example of this is the test to make sure the `altText` option does indeed set the appropriate alt text on the added images:
+When it comes to testing the options, it’s generally not so much about testing which links did or did not get an image added, but picking a single link that should be marked as external and making sure it was altered in the appropriate way. A good example of this is the test to make sure the `altText` option does indeed set the appropriate alt text on the added images:
 
 ```javascript
 QUnit.test('option altText', function(a){
@@ -262,7 +262,7 @@ QUnit.test('option altText', function(a){
 });
 ```
 
-Rather than seeking out an exact ID to use as a sample, I simply chose to examine the first added image, again, making use of jQuery. My approach was to first get all images directly after links within list items within the fixture. We’ve already see that the selector for images after links is `a + img`. To get images after links within list items we need to combine that with the selector for containment, which is simply a space. So, the selector for all images directly after links within a list item is `li a + img`.
+Rather than seeking out an exact ID to use as a sample, I simply chose to examine the first added image, again making use of jQuery. My approach was to first get all images directly after links within list items within the fixture. We’ve already see that the selector for images after links is `a + img`. To get images after links within list items we need to combine that with the selector for containment, which is simply a space. So, the selector for all images directly after links within a list item is `li a + img`.
 
 We can use this selector with the two-argument version of the `$` function to confine the search to the fixture as follows:
 
@@ -270,13 +270,13 @@ We can use this selector with the two-argument version of the `$` function to co
 $('li a + img', $('#qunit-fixture'))
 ```
 
-This results in a jQuery object representing many images, to pick a single one to test I simply used jQuery’s `.first()` function to get just the first one. Finally, what I actually need to test is the `alt` attribute, so I need to call the `.attr()` function with a single argument, the name of the attribute I want. So, the _expected_ argument for the assertion becomes:
+This results in a jQuery object representing many images. To pick a single one to test, I simply used jQuery’s `.first()` function to get just the first one. Finally, what I actually need to test is the `alt` attribute, so I need to call the `.attr()` function with a single argument, the name of the attribute I want. So, the _expected_ argument for the assertion becomes:
 
 ```javascript
 $('li a + img', $('#qunit-fixture')).first().attr('alt')
 ```
 
-Note that the containment and after selectors are also central to the test for the `iconExternal` option. This option is `true` by default, meaning images should be added directly after links by default. However if this option is set to `false`, the image should be added as the last thing inside the link:
+Note that the containment and after selectors are also central to the test for the `iconExternal` option. This option is `true` by default, meaning images should be added directly after links by default. However, if this option is set to `false`, the image should be added as the last thing inside the link:
 
 ```javascript
 QUnit.test('option iconExternal=false', function(a){
@@ -306,24 +306,24 @@ QUnit.test('option iconExternal=false', function(a){
 
 I actually wrote tests for all the functions that make up the `bartificer.linkToolkit.js` API, and added them into the project’s GitHub repository. In the process of writing the tests for the function `bartificer.linkToolkit.autoExternalise()` I actually discovered two bugs with how the function processes options, which I promptly fixed. This yet again illustrates the value of writing a test suite.
 
-Having added the test suite, and fixed the bugs, I decided to publish a new release of the API, which I tagged as version 1.0. You can [download the release on GitHub](https://github.com/bbusschots/bartificer_linkToolkit_js/releases/tag/v1.0), or, you can [view my completed test suite online](https://github.com/bbusschots/bartificer_linkToolkit_js/blob/v1.0/test/tests.js).
+Having added the test suite, and fixed the bugs, I decided to publish a new release of the API, which I tagged as version 1.0. You can [download the release on GitHub](https://github.com/bbusschots/bartificer_linkToolkit_js/releases/tag/v1.0), or you can [view my completed test suite online](https://github.com/bbusschots/bartificer_linkToolkit_js/blob/v1.0/test/tests.js).
 
 ## QUnit’s `todo` Feature
 
 Before we move away from JavaScript I briefly want to mention another useful feature in the QUnit testing framework. You can write tests for code that you’re not working on yet by using the function `todo` instead of `test`. It really is as simple as replacing `QUnit.test` with `QUnit.todo`. This will keep the test disabled until you’re ready for it. When you want to enable the test, just change `QUnit.todo` back to `QUnit.test`.
 
-Tests marked as `todo` are not run, but they also don’t vanish from the test runner’s output, as shown by the following screenshot (a sneak-peak at this instalment’s challenge starting point):
+Tests marked as `todo` are not run, but they also don’t vanish from the test runner’s output, as shown by the following screenshot (a sneak peak at this instalment’s challenge starting point):
 
 [![](../assets/pbs35/Screen-Shot-2017-05-18-at-01.25.04-234x300.png)
 Click to See Full Size](https://www.bartbusschots.ie/s/wp-content/uploads/2017/05/Screen-Shot-2017-05-18-at-01.25.04.png)
 
 ## Basic Text Input in HTML
 
-Now let’s switch tack to HTML forms. As a quick reminder, so far we’ve learned about the `form` tag for defining a form, the `fieldset` and `legend` tags for grouping form inputs into logical groupings, and using the `input` tag to create both checkboxes and radio buttons. We’ve also learned that all form inputs are designed to evaluate to name-value pairs for sending to a web server for processing.
+Now let’s switch back to HTML forms. As a quick reminder, so far we’ve learned about the `form` tag for defining a form, the `fieldset` and `legend` tags for grouping form inputs into logical groupings, and using the `input` tag to create both checkboxes and radio buttons. We’ve also learned that all form inputs are designed to evaluate to name-value pairs for sending to a web server for processing.
 
 HTML5 has much more advanced text input support than earlier versions of HTML. While we will look at type-specific text input (passwords, URLs, email addresses, numbers, etc.) soon, we’re going to confine ourselves to purely generic text input in this instalment.
 
-Regardless of the type of text you want to accept from the user, there is one universal distinction you cannot ignore – in HTML single-line text input and multi-line text input are seen as totally different things, and are accomplished using completely different tags. For simplicity we’ll refer to single-line text inputs as _text boxes_ (you may see them referred to as _text fields_ elsewhere), and multi-line text inputs as _text areas_.
+Regardless of the type of text you want to accept from the user, there is one universal distinction you cannot ignore – in HTML, single-line text input and multi-line text input are seen as totally different things, and are accomplished using completely different tags. For simplicity we’ll refer to single-line text inputs as _text boxes_ (you may see them referred to as _text fields_ elsewhere), and multi-line text inputs as _text areas_.
 
 Regardless of which kind of text input you’re using, you should always label your text inputs with the `label` tag. As we learned previously, the `label` tag can work in two ways:
 
@@ -334,7 +334,7 @@ Again, regardless of the type of text input you are using, the name part of the 
 
 ### Text Boxes
 
-Text boxes are created using the `input` tag with the `type` attribute set to `text`. Like with all other inputs, the `label` tag should be use to label text boxes. Like we have seen before, the `label` tag can be used in two ways, either it tag can contain both the label text and the `input` tag, or, the `label` and `input` tags can be separate from each other and the label can be associated with the text box by setting the `for` attribute on the `label` tag to the text box’s ID.
+Text boxes are created using the `input` tag with the `type` attribute set to `text`. As with all other inputs, the `label` tag should be use to label text boxes. And as we have seen before, the `label` tag can be used in two ways: either this tag can contain both the label text and the `input` tag, or the `label` and `input` tags can be separate from each other and the label can be associated with the text box by setting the `for` attribute on the `label` tag to the text box’s ID.
 
 Below is a very simple form with just a single text box:
 
@@ -348,7 +348,7 @@ And it looks like this:
 
 ![](../assets/pbs35/Screen-Shot-2017-05-18-at-16.43.22.png)
 
-The `value` attribute can be used to specify text that will be pre-loaded into the text box when the page loads or the form is reset:
+The `value` attribute can be used to specify text that will be preloaded into the text box when the page loads or the form is reset:
 
 ```html
 <form action="javascript:void(0);">
@@ -360,7 +360,7 @@ The form now looks like this when the page loads:
 
 ![](../assets/pbs35/Screen-Shot-2017-05-18-at-16.51.21.png)
 
-HTML 5 added the placeholder attribute for specifying place-holder text that’s visible but dimmed while the text box is empty and not focused, and invisible the rest of the time. Here we can see a placeholder used to give the user a hint as to what to enter:
+HTML 5 added the placeholder attribute for specifying placeholder text that’s visible but dimmed while the text box is empty and not focused, and invisible the rest of the time. Here we can see a placeholder used to give the user a hint as to what to enter:
 
 ```html
 <form action="javascript:void(0);">
@@ -372,7 +372,7 @@ HTML 5 added the placeholder attribute for specifying place-holder text that’s
 
 The visual size of the text box depends on the font size. The bigger the font size the taller the text box. The length of the text box is controlled by the `size` attribute, and specified as a number of characters, not a pixel size or percentage.
 
-The number of characters that can be typed before the browser will prevent further entry is controlled by the `maxlength` attribute. If you set a `size` of 10 and a `maxlength` of 3, the text box will be rendered large enough for 10 characters, but the browser will prevent the user every typing more than 3 characters. If you do it the other way around, the text box will be small, but will accept up to 10 characters of input, scrolling as needed. In general, you usually want a little more space than the maximum length, so you might set a `maxlength` of 2 and a `size` of 3:
+The number of characters that can be typed before the browser will prevent further entry is controlled by the `maxlength` attribute. If you set a `size` of 10 and a `maxlength` of 3, the text box will be rendered large enough for 10 characters, but the browser will prevent the user from ever typing more than 3 characters. If you do it the other way around, the text box will be small, but will accept up to 10 characters of input, scrolling as needed. In general, you usually want a little more space than the maximum length, so you might set a `maxlength` of 2 and a `size` of 3:
 
 ```html
 <form action="javascript:void(0);">
@@ -392,13 +392,13 @@ The `autocomplete` attribute on the other hand is a little more complex. It does
 
 The HTML tag to create a text area is `textarea`. Unlike the `input` tag, the `textarea` tag must always be closed.
 
-Unlike with text boxes, text areas don’t have a `value` attribute, instead, initial text is entered between the opening and closing `textarea` tags.
+Unlike text boxes, text areas don’t have a `value` attribute. Instead, initial text is entered between the opening and closing `textarea` tags.
 
-Like with text boxes, the `placeholder` attribute allows dimmed help text to be added when the text area is empty and not focused.
+Like text boxes, the `placeholder` attribute allows dimmed help text to be added when the text area is empty and not focused.
 
-Again, like with text boxes, you can use the `spellcheck` attribute with the values `true` or `false` to enable or disable spell checking within the text area. You can also enable or disable autocompletion with the `autocomplete` attribute, but unlike with text boxes, text areas only support `on` and `off`, not the other more advanced values like `tel` or `url`.
+Again, like text boxes, you can use the `spellcheck` attribute with the values `true` or `false` to enable or disable spell checking within the text area. You can also enable or disable autocompletion with the `autocomplete` attribute, but, unlike text boxes, text areas only support `on` and `off`, not the other more advanced values like `tel` or `url`.
 
-Like text boxes, the visual size of text areas is determined by the font size, and the dimensions are specified in characters rather than pixels or percentages. Since there are two dimensions, there are two attributes – the width of the text area in characters is specified with the `rows` attribute, and the height with the `cols` attribute.
+Like text boxes, the visual size of text areas is determined by the font size. The dimensions are specified in characters rather than pixels or percentages. Since there are two dimensions, there are two attributes – the width of the text area in characters is specified with the `rows` attribute, and the height with the `cols` attribute.
 
 ```html
 <form action="javascript:void(0);">
@@ -409,7 +409,7 @@ Like text boxes, the visual size of text areas is determined by the font size, a
 
 ![](../assets/pbs35/Screen-Shot-2017-05-19-at-00.23.36.png)
 
-There’s one final text area attribute that I want to draw your attention to – `wrap`. This attribute controls how the text area should behave when the cursor reaches the right-edge of the text box and you keep typing. There are three valid values for this attribute.
+There’s one final text area attribute that I want to draw your attention to – `wrap`. This attribute controls how the text area should behave when the cursor reaches the right edge of the text box and you keep typing. There are three valid values for this attribute.
 
 The default value for the `wrap` attribute is `soft`. This causes text areas to behave similarly to a word processor. The lines are displayed as wrapping, but there are no actual newline characters inserted into the contents of the text area. Setting `wrap` to `hard` makes the browser actually insert newline characters when text reaches the right edge of the text area. Finally, setting `wrap` to `off` causes the text area to become horizontally scrollable if a line of text has more characters than there are columns.
 
@@ -417,7 +417,7 @@ The default value for the `wrap` attribute is `soft`. This causes text areas to 
 
 When it comes to interacting with text boxes and text areas with jQuery, things are actually very straight forward. The contents can be accessed with jQuery’s `.val()` function – with no arguments to get the current contents, and with a string as the first argument to set the contents to a new value.
 
-The various attributes like `name` and `placeholder` can be accessed using jQuery’s `.attr()` function. As a quick reminder, `.attr()` expects the name of the attribute as the first argument, and if there’s no second argument it’ll return the current value, and if there is it’ll set the value to that of the second argument.
+The various attributes like `name` and `placeholder` can be accessed using jQuery’s `.attr()` function. As a quick reminder, `.attr()` expects the name of the attribute as the first argument. If there’s no second argument it’ll return the current value. If there is, it’ll set the value to that of the second argument.
 
 ### Text Input Example
 
@@ -478,15 +478,14 @@ Conway’s game of life is not a game in the traditional sense, though it does f
 
 The reason I find _Life_ fascinating is very simple – it illustrates very graphically how wrong humanity was for centuries in assuming that simple rules always lead to simple behaviours. This is true a lot of the time, but not all the time, and when that assumption breaks down, interesting things happen. The rules within _Life_ are extremely simple, but the complexity of the behaviour that emerges from those simple rules can be amazingly complex.
 
-Conway’s game of life is named for its creator, British mathematician John Horton Conway, who invented it in 1970. In fact, he didn’t just invent his game, in the process he also invented a whole new mathematical construct – the [cellular automaton](https://en.wikipedia.org/wiki/Cellular_automaton).
+Conway’s game of life is named for its creator, British mathematician John Horton Conway, who invented it in 1970. In fact, he didn’t just invent his game. In the process he also invented a whole new mathematical construct – the [cellular automaton](https://en.wikipedia.org/wiki/Cellular_automaton).
 
-A cellular automaton is a regular grid of cells, each of which has a state. In the simplest case the state is simply `on`, or `off`. The automaton rolls forward from one state to the next in unison, and the next state of each cell is determined by a function which takes as input only the following – its own current state, and the current state of the cells directly touching it in the grid.
+A cellular automaton is a regular grid of cells, each of which has a state. In the simplest case the state is simply `on` or `off`. The automaton rolls forward from one state to the next in unison, and the next state of each cell is determined by a function which takes as input only the following – its own current state, and the current state of the cells directly touching it in the grid.
 
 Conway’s Game of Life is a two-state cellular automaton where each cell can be _alive_, or _dead_, and where the next state of each cell is determined by the following rules (from Wikipedia):
 
 1.  Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
 2.  Any live cell with two or three live neighbours lives on to the next generation.
-3.  Any live cell with two or three live neighbours lives on to the next generation.
 4.  Any live cell with more than three live neighbours dies, as if by overpopulation.
 5.  Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
@@ -498,24 +497,26 @@ Given that a cellular automaton is a grid of squares in rows and columns, we’l
 
 To get our new cellular automaton project started, the challenge for this instalment is to write the prototype `bartificer.ca.Cell`. This prototype will represent a single cell within an automaton. Included in the zip file for this assignment is a folder named `pbs35-challenge-startingPoint`. This contains the stub of a project folder for what will eventually become the `bartificer.ca.js` JavaScript API. It contains a number of project management files at the root level, all of which you can safely ignore for now, and three important folders which you can’t:
 
-`docs-dev`
+<dl>
+<dt><code>docs-dev</code></dt>
 
-This folder contains developer documentation generated from my sample solution to this instalment. Because it’s developer documentation, it includes all the private variables and helper functions as well as the public API functions for the `bartificer.ca.Cell` prototype.
+<dd>This folder contains developer documentation generated from my sample solution to this instalment. Because it’s developer documentation, it includes all the private variables and helper functions as well as the public API functions for the <code>bartificer.ca.Cell</code> prototype.</dd>
 
-`lib`
+<dt><code>lib</code></dt>
 
-This folder contains an empty file named `bartificer.ca.js` into which you should add your code.
+<dd>This folder contains an empty file named <code>bartificer.ca.js</code> into which you should add your code.</dd>
 
-`test`
+<dt><code>test</code></dt>
 
-This folder contains a full test suite for the `bartificer.ca.Cell` prototype. The QUnit test runner is `test/index.html`, and the tests are contained in `test/tests.js`.
+<dd>This folder contains a full test suite for the <code>bartificer.ca.Cell</code> prototype. The QUnit test runner is <code>test/index.html</code>, and the tests are contained in <code>test/tests.js</code>.</dd>
+</dl>
 
-Using what we’ve learned about prototypes (culminating in the nine-step recipe in [instalment 31](https://bartificer.net/pbs31)), the test suite, and the provided developer documentation for the `bartificer.ca.Cell` prototype (specifically the file `docs-dev/bartificer.ca.Cell.html`), write a working version of the `bartificer.ca.Cell` prototype. You’ll know your code is correct when all the tests pass!
+Using what we’ve learned about prototypes (culminating in the nine-step recipe in [instalment 31](https://pbs.bartificer.net/pbs31)), the test suite, and the provided developer documentation for the `bartificer.ca.Cell` prototype (specifically the file `docs-dev/bartificer.ca.Cell.html`), write a working version of the `bartificer.ca.Cell` prototype. You’ll know your code is correct when all the tests pass!
 
 Note that I’ve marked all but the first test as `todo`, so you’ll need to change the tests from `QUnit.todo` to `QUnit.test` to enable them as your solution develops.
 
 ## Final Thoughts
 
-In this instalment we’ve learned how to use QUnit’s `todo` feature to effectively disable tests until we’re ready for them to be run, we’ve learned how to do basic text input on the web, and, we’ve made a start on what I hope will be a fun new JavaScript project.
+In this instalment we’ve learned how to use QUnit’s `todo` feature to effectively disable tests until we’re ready for them to be run, we’ve learned how to do basic text input on the web, and we’ve made a start on what I hope will be a fun new JavaScript project.
 
 In the next instalment we’ll learn about more specific kinds of text input on the web, and we’ll continue work on our new JavaScript project.

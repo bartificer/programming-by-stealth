@@ -1,14 +1,14 @@
 # PBS 39 of x – HTML5 Form Validation
 
-In this instalment we’ll be taking a break from our parallel approach, and focusing almost exclusively on HTML5 form validation. We’ll dedicate the entirety of the next instalment to getting our cellular automaton prototypes up and running so we can actually ‘play’ the game of life.
+In this instalment we’ll be taking a break from our parallel approach and focusing almost exclusively on HTML5 form validation. We’ll dedicate the entirety of the next instalment to getting our cellular automaton prototypes up and running, so we can actually ‘play’ the game of life.
 
-While we won’t be continuing work on our Cellular Automata prototypes this time, I will share my solution to the challenge I set way back in [instalment 36](https://bartificer.net/pbs36).
+While we won’t be continuing work on our Cellular Automata prototypes this time, I will share my solution to the challenge I set way back in [instalment 36](https://pbs.bartificer.net/pbs36).
 
-Also, before we get stuck into new content I’ll be taking a small diversion to explain a slight change in my approach to HTML coding, and how that will affect the sample code you see for the remainder of this series.
+Also, before we get stuck into new content, I’ll be taking a small diversion to explain a slight change in my approach to HTML coding, and how that will affect the sample code you see for the remainder of this series.
 
 As usual, I’ve collected the example file for this instalment and the starting point for the challenge together into [a ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs39.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs39.zip).
 
-# Matching Podcast Episode 501
+## Matching Podcast Episode 501
 
 Listen Along: Chit Chat Across the Pond Episode 501
 
@@ -20,15 +20,15 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Back in instalment 36 I set the challenge of writing a QUnit test suite for the `bartificer.ca.Automaton` prototype given the source code and the JSDoc documentation as input.
 
-Rather than including my solution in this instalment’s ZIP file, I’m going to get you into the habit of using [GitHub](https://github.com) – a cloud-based GIT server and client. [GIT](https://en.wikipedia.org/wiki/Git) is an open-source distributed version control system invented by Linus Torvalds to manage the code for the Linux kernel, and it’s my version control system of choice these days (I started on [CVS](https://en.wikipedia.org/wiki/Concurrent_Versions_System), moved to [SVN](https://en.wikipedia.org/wiki/Apache_Subversion), and am now on GIT).
+Rather than including my solution in this instalment’s ZIP file, I’m going to get you into the habit of using [GitHub](https://github.com) – a cloud-based GIT server and client. [GIT](https://en.wikipedia.org/wiki/Git) is an open source distributed version control system invented by Linus Torvalds to manage the code for the Linux kernel. It’s my version control system of choice these days (I started on [CVS](https://en.wikipedia.org/wiki/Concurrent_Versions_System), moved to [SVN](https://en.wikipedia.org/wiki/Apache_Subversion), and am now on GIT).
 
 From now on I’ll be creating a repository on GitHub for each coding project we work on as part of this series. I’ll be creating linkable releases for the starting points and solutions to each challenge. So, [here is my solution to the challenge I set in instalment 36](https://github.com/bbusschots/bartificer_ca_js/tree/PBS36-Challenge-Solution).
 
-You can browse the code online, or, you can click the big green download button to download it as a ZIP file. You can also use any GIT client (e.g. [GitHub Desktop](https://desktop.github.com), a free client from GitHub themselves, or my current favourite, the free version of [GitKraken](https://www.gitkraken.com)) to clone the repository to your local computer, and, if you set up a free GitHub account, you can fork a copy of the repository into your own account.
+You can browse the code online, or you can click the big green download button to download it as a ZIP file. You can also use any GIT client (e.g. [GitHub Desktop](https://desktop.github.com), a free client from GitHub themselves, or my current favourite, the free version of [GitKraken](https://www.gitkraken.com)) to clone the repository to your local computer, and, if you set up a free GitHub account, you can fork a copy of the repository into your own account.
 
 ## Sidenote – Fully Embracing HTML5
 
-Up until now, I’ve been reluctant to give up my old XHTML habits. All the HTML we’ve written in the series has been valid HTML5, but only because HTML5 is back-wards compatible with XHTML in some ways. I’ve been insisting on closing empty tags, quoting all attribute values, and giving boolean attributes explicit values. In other words, I’ve been writing things like `<br />` and `<option value="4" selected="selected">Four</option>`.
+Up until now, I’ve been reluctant to give up my old XHTML habits. All the HTML we’ve written in the series has been valid HTML5, but only because HTML5 is backwards compatible with XHTML in some ways. I’ve been insisting on closing empty tags, quoting all attribute values, and giving boolean attributes explicit values. In other words, I’ve been writing things like `<br />` and `<option value="4" selected="selected">Four</option>`.
 
 Not anymore – over our little summer hiatus I’ve decided it’s time to get with the times and fully embrace the more concise HTML5 syntax. So, from now on I’ll be writing my empty tags without the trailing `/`, I won’t be quoting attribute values religiously, and I won’t be giving values to boolean attributes. In other words, from now on I’ll be writing things like
 `<br>` and `<option value=4 selected>Four</option>`.
@@ -64,7 +64,7 @@ input[type="text"]:invalid{
 
 ### Required Text Fields
 
-The most basic type of form validation is the ability to mark a text box or text area as being required. You do this with the HTML5 boolean attribute `required`. To mark an input as required, you specify the attribute, to mark it as not required, i.e. optional, you omit the attribute.
+The most basic type of form validation is the ability to mark a text box or text area as being required. You do this with the HTML5 boolean attribute `required`. To mark an input as required, you specify the attribute. To mark it as not required, i.e. optional, you omit the attribute.
 
 So, the following text box is not required:
 
@@ -89,7 +89,7 @@ The following snippet from `pbs39.html` from this instalment’s ZIP file shows 
 <input type="text" name="name" required id="name_tb">
 ```
 
-If you try submit the form without entering a value in this text box while using Safari you’ll see the following:
+If you try submit the form without entering a value in this text box while using Safari, you’ll see the following:
 
 ![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.11.02.png)
 
@@ -110,7 +110,7 @@ In general browser will prevent users from entering more characters than `maxlen
 
 ### Numeric Bounds
 
-On `input` elements with `type="number"` the `max` and `min` attributes are considered by the browser when determining if an entered value is valid or not.
+On `input` elements with `type="number"`, the `max` and `min` attributes are considered by the browser when determining if an entered value is valid or not.
 
 The following snippet from `pbs39.html` shows a numeric text area with a defined valid range:
 
@@ -119,17 +119,17 @@ The following snippet from `pbs39.html` shows a numeric text area with a defined
 <input type="number" name="percent" id="percent_tb" min=0 max=100>
 ```
 
-If you enter a non-numeric value and try submit the form Safari shows the following error:
+If you enter a nonnumeric value and try to submit the form, Safari shows the following error:
 
 ![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.24.38.png)
 
-If you enter a number outside of the valid range Safari gives error messages of the following form:
+If you enter a number outside of the valid range, Safari gives error messages of the following form:
 
 ![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.25.56.png)
 
 ### Text Patterns
 
-In [instalment 36](https://bartificer.net/pbs36) we learned that the `input` element supports a number of special values for the `type` attribute to indicate that a certain type of data is expected. Specifically we learned about `type="number"`, `type="url"`, `type="email"`, and `type="tel"`. If you use one of these types, and the value entered by the user isn’t a valid number, URL, email address, or telephone number, the browser will apply the `:invalid` CSS pseudo-class to the `input` element.
+In [instalment 36](https://pbs.bartificer.net/pbs36) we learned that the `input` element supports a number of special values for the `type` attribute to indicate that a certain type of data is expected. Specifically we learned about `type="number"`, `type="url"`, `type="email"`, and `type="tel"`. If you use one of these types, and the value entered by the user isn’t a valid number, URL, email address, or telephone number, the browser will apply the `:invalid` CSS pseudo-class to the `input` element.
 
 These special input types combined with the `required` attribute and length constraints are often all you need, but, if you do need more powerful text validation, you can use regular expressions! The pattern attribute can be used to specify a JavaScript-style regular expression.
 
@@ -140,7 +140,7 @@ The following snippet from `pbs39.html` shows a text area that requires a valid 
 <input type="text" name="twitter" id="twitter_tb" pattern="^[@][\w]+$" placeholder="@username">
 ```
 
-While browsers can give very meaningful error messages when you use pre-fedinef text types like email or URL, they can’t be nearly as smart with generic patterns, hence, Safari shows the following very generic message when you enter and invalid value in the above text box and hit submit:
+While browsers can give very meaningful error messages when you use predefined text types like email or URL, they can’t be nearly as smart with generic patterns. Hence, Safari shows the following very generic message when you enter an invalid value in the above text box and hit submit:
 
 ![](../assets/pbs39/Screen-Shot-2017-09-15-at-00.29.40.png)
 
@@ -244,7 +244,7 @@ The code below is included in this instalment’s zip file as `pbs39.html`.
 
 ## A Challenge
 
-Using the HTML file in the pbs39-challenge-startingPoint folder in this instalment’s ZIP file, create a web form for entering information about a movie into a hypothetical movie database. I’ll leave the details of what information you want to collect, and what form elements you think would work best to collect them to you. Feel free to use all the different form elements we’ve learned about in the last few months – checkboxes, radio buttons, selects, and text inputs of all kinds. What ever form elements you choose to use, be sure to use HTML5 form validation to make your form as robust as possible.
+Using the HTML file in the pbs39-challenge-startingPoint folder in this instalment’s ZIP file, create a web form for entering information about a movie into a hypothetical movie database. I’ll leave the details of what information you want to collect, and what form elements you think would work best to collect them to you. Feel free to use all the different form elements we’ve learned about in the last few months – checkboxes, radio buttons, selects, and text inputs of all kinds. Whatever form elements you choose to use, be sure to use HTML5 form validation to make your form as robust as possible.
 
 ## Final Thoughts
 
