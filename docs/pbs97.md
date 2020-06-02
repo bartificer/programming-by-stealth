@@ -471,7 +471,7 @@ console.log(allison.asHTML());
 
 ### DOM-Storing Data Attributes
 
-Particularly in cases where there 's a one-to-one mapping between instances and DOM objects, it often makes sense to store a reference to the matching DOM object in an instance data attribute. That doesn't make apply here, so there's no example in the Nerdtouche class, but it's an approach you should bear in mind because if often does make sense.
+Particularly in cases where there 's a one-to-one mapping between instances and DOM objects, it often makes sense to store a reference to the matching DOM object in an instance data attribute. That doesn't apply here, so there's no example in the Nerdtouche class, but it's an approach you should bear in mind because if often does make sense.
 
 ### DOM-Searching Class & Instance Functions
 
