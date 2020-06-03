@@ -1,12 +1,12 @@
 # PBS 43 of x – Introducing JavaScript ES6
 
-Because its been a while since we focused on JavaScript, the bulk of this instalment will focus on solving the challenge set at the end of the previous instalment. We’ll work through the solution in detail, step-by-step.
+Because it's been a while since we focused on JavaScript, the bulk of this instalment will focus on solving the challenge set at the end of the previous instalment. We’ll work through the solution in detail, step-by-step.
 
-We’ll finish the instalment by making a start on moving from JavaScript version 5, to JavaScript version 6, or ECMAScript 6, usually just called ES6. When we started our look at JavaScript about a year and a half ago it made sense to use JavaScript 5, but now it’s time to upgrade our knowledge. ES6 was a very big change indeed, so we won’t bit it all off at once. Instead, we’ll focus on just one very important change in this instalment — ES6’s new take on variables.
+We’ll finish the instalment by making a start on moving from JavaScript version 5 to JavaScript version 6, or ECMAScript 6, usually just called ES6. When we started our look at JavaScript about a year and a half ago, it made sense to use JavaScript 5, but now it’s time to upgrade our knowledge. ES6 was a very big change indeed, so we won’t bite it all off at once. Instead, we’ll focus on just one very important change in this instalment — ES6’s new take on variables.
 
-There’s no zip file for this instalment as such, instead, I’ve published [my sample solution as a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-Solution) instead. You can use the big green _clone or download_ button to either copy the code using GIT, or download it as a ZIP file.
+There’s no zip file for this instalment as such. Instead, I’ve published [my sample solution as a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-Solution) instead. You can use the big green _clone or download_ button to either copy the code using GIT, or download it as a ZIP file.
 
-# Matching Podcast Episode 509
+## Matching Podcast Episode 509
 
 Listen Along: Chit Chat Across the Pond Episode 509
 
@@ -16,35 +16,35 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 42 Challenge Sample Solution
 
-The [starting point for the challenge](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-StartingPoint) was a working initial version of the Cellular Automata prototypes, and web app (HTML page) that uses those prototypes to implement Conway’s Game of Life. The only UI on the page was a single button to move the CA one step forward.
+The [starting point for the challenge](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-StartingPoint) was a working initial version of the Cellular Automata prototypes and web app (HTML page) that uses those prototypes to implement Conway’s Game of Life. The only UI on the page was a single button to move the CA one step forward.
 
 ### Part 1 — An Automatic Step Mode
 
-The first part of the challenge was to add an automatic mode to the page so the user can click a button to start the Game of Life running, and it should then keep running until the user stops it.
+The first part of the challenge was to add an automatic mode to the page, so the user can click a button to start the Game of Life running. It should then keep running until the user stops it.
 
-This features is not in any way specific to the game of life, but something you’d want to be able to do to any CA, so it makes sense to add the functionality into the prototypes rather than into the Game of Life web app.
+This feature is not in any way specific to the game of life, but something you’d want to be able to do to any CA. So it makes sense to add the functionality into the prototypes rather than into the Game of Life web app.
 
-There’s no single correct way to implemented an automated mode like this, but two obvious options spring to mind — an interval that calls the `.step()` function repeatedly, or, a recursive timeout that calls the `.step()` function and then calls itself again. (For documentation on both see [MDN’s article on JavaScript Timers](https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers)).
+There’s no single correct way to implement an automated mode like this. Two obvious options spring to mind — an interval that calls the `.step()` function repeatedly, or a recursive timeout that calls the `.step()` function and then calls itself again. (For documentation on both, see [MDN’s article on JavaScript Timers](https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers)).
 
-This is one of those situations where the is no obvious right answer, both an interval and a recursive timeout can be made to work, and indeed, to work well. It comes down to preference really.
+This is one of those situations where there is no obvious right answer. Both an interval and a recursive timeout can be made to work, and indeed, to work well. It comes down to preference really.
 
-When you take into account the fact that as well as starting and stopping the automation we also want the ability to control its speed, our two options boil down to the following big-picture algorithms:
+When you take into account the fact that, as well as starting and stopping the automation, we also want the ability to control its speed, our two options boil down to the following big-picture algorithms:
 
 For an interval:
 
 *   The start button starts a new interval and saves the ID
 *   The stop button cancels the interval and blanks the ID
-*   Changing the speed cancels the interval and then re-starts it with new settings and saves the new ID
+*   Changing the speed cancels the interval and then restarts it with new settings and saves the new ID
 
 For a recursive timeout:
 
 *   The start button sets a flag to indicate automatic mode is active, takes a step, then sets a timeout (based on the current speed) that calls a helper function which does the following:
     *   Checks the auto-run flag, if not present, does nothing
-    *   If the auto-run flag was present it sets a new timeout to call itself with the delay being based off the currently selected speed.
-*   The stop button removes the auto-run flag — the next time the timeout executes it will do nothing, so execution will stop
-*   Changing the speed doesn’t require any action — the next time the timeout executes it will use the new speed automatically
+    *   If the auto-run flag was present, it sets a new timeout to call itself with the delay being based off the currently selected speed.
+*   The stop button removes the auto-run flag — the next time the timeout executes, it will do nothing, so execution will stop
+*   Changing the speed doesn’t require any action — the next time the timeout executes, it will use the new speed automatically
 
-There is no right answer, it’s purely down to preference. I like recursion, so I consider the second option easier, so that’s what I chose. Many of you probably made the other choice. As long as your code works, no problem!
+There is no right answer. It’s purely down to preference. I like recursion, so I consider the second option easier, so that’s what I chose. Many of you probably made the other choice. As long as your code works, no problem!
 
 Regardless of which approach you chose, the ultimate goal will be to add two functions to the `bartificer.ca.Automaton` prototype, `.start()` and `.stop()`.
 
@@ -74,7 +74,7 @@ this._autoStepID = 0;
 this._autoStepMS = 500;
 ```
 
-When ever we add new functionality we should add matching tests to our test suite, so, let’s do that by adding the following two assertions to the bottom of the _‘bartificer.ca.Automaton prototype > constructor: argument processing’_ test:
+Whenever we add new functionality, we should add matching tests to our test suite. So, let’s do that by adding the following two assertions to the bottom of the _‘bartificer.ca.Automaton prototype > constructor: argument processing’_ test:
 
 ```javascript
 // make sure the auto-step variables initialise to the expected default values
@@ -84,7 +84,7 @@ a.strictEqual(ca1._autoStepMS, 500, 'auto step timout initialised to 500MS');
 
 Our `.start()` and `.stop()` functions will take care of the value stored in `._autoStepID`, but we need to provide a public accessor function for the delay between automatic steps (`._autoStepMS`).
 
-I’v chosen to store the delay between automatic steps as a whole number of milliseconds, so before we write the public accessor we should create a private validation function to test if an arbitrary value is valid as a delay:
+I’v chosen to store the delay between automatic steps as a whole number of milliseconds. Before we write the public accessor, we should create a private validation function to test if an arbitrary value is valid as a delay:
 
 ```javascript
 /**
@@ -136,7 +136,7 @@ bartificer.ca.Automaton.prototype.autoStepIntervalMS = function(ms){
 };
 ```
 
-Again, we’ve added new functionality to our prototype, so, we need to update our test suite. This time by adding a whole new test:
+Again, we’ve added new functionality to our prototype. So, we need to update our test suite: this time by adding a whole new test:
 
 ```javascript
 QUnit.test('.autoStepIntervalMS()', function(a){
@@ -198,7 +198,7 @@ QUnit.test('.autoStepIntervalMS()', function(a){
 });
 ```
 
-Now that we have the instance variables and accessors we need to store the data that will control our automatic mode, we’re ready to implement it. Let’s start with the `.start()` function::
+Now that we have the instance variables and accessors, we need to store the data that will control our automatic mode. We’re ready to implement it. Let’s start with the `.start()` function::
 
 ```javascript
 /**
@@ -297,9 +297,9 @@ If you refresh `sample.html` you’ll see that we now have working play and stop
 
 ### Part 2 — A Generation Counter
 
-The second part of the challenge was to implement as counter showing the current generation of the automaton (each step is a generation).
+The second part of the challenge was to implement a counter showing the current generation of the automaton (each step is a generation).
 
-The first step is obviously to add another instance variable to the `bartificer.ca.Automaton` prototype to store the generation count. Again, initialised in the constructor:
+The first step is obviously to add another instance variable to the `bartificer.ca.Automaton` prototype to store the generation count. Here it is initialised in the constructor:
 
 ```javascript
 /**
@@ -310,7 +310,7 @@ The first step is obviously to add another instance variable to the `bartificer.
 this._generation = 0;
 ```
 
-Like before, we should add a test case to the _bartificer.ca.Automaton prototype > constructor: argument processing_ test:
+As before, we should add a test case to the _bartificer.ca.Automaton prototype > constructor: argument processing_ test:
 
 ```javascript
 // make sure the generation counter initialise to the expected initial value
@@ -357,7 +357,7 @@ QUnit.test('.generation()', function(a){
 });
 ```
 
-At this stage we have a variable for holding our generation count, and, a function for accessing it, but we’re not yet actually counting the generations! Clearly, we need to increment the counter when ever we move from one step to the next, and, we need to set it back to zero when ever we re-set the automaton to a fresh state.
+At this stage we have a variable for holding our generation count and a function for accessing it, but we’re not yet actually counting the generations! Clearly, we need to increment the counter whenever we move from one step to the next, and we need to set it back to zero whenever we reset the automaton to a fresh state.
 
 To do that we need to add the following line to `bartificer.ca.Automaton.prototype.step()`:
 
@@ -400,15 +400,15 @@ QUnit.test('Generation Counting', function(a){
 
 Now that our prototype can count its generations, how do we show that count in the UI?
 
-A good prototype is generic and re-usable, so we absolutely don’t want to hard-code the counter UI into the `bartificer.ca.Automaton` prototype. What we need is functionality to allow developers using the prototype to pass the prototype a callback that the prototype will then promise to execute each time the generation changes. In other words, we need to add basic support for events.
+A good prototype is generic and reusable, so we absolutely don’t want to hard-code the counter UI into the `bartificer.ca.Automaton` prototype. What we need is functionality to allow developers using the prototype to pass the prototype a callback that the prototype will then promise to execute each time the generation changes. In other words, we need to add basic support for events.
 
-Let’s start by adding another instance variable to the `bartificer.ca.Automaton` prototype to store a reference to the function to execute when ever the generation changes. Mind you — why only add support for a single callback? Why not allow developers to add as many listeners as they like to our generation change event? How? With an array!
+Let’s start by adding another instance variable to the `bartificer.ca.Automaton` prototype to store a reference to the function to execute whenever the generation changes. Mind you — why only add support for a single callback? Why not allow developers to add as many listeners as they like to our generation change event? How? With an array!
 
 As with all other instance variables, we need to initialise this new variable within the constructor:
 
 ```javascript
 /**
- * The callbacks to execute when ever the generation changes.
+ * The callbacks to execute whenever the generation changes.
  * @private
  * @type {function[]}
  * @default
@@ -423,11 +423,11 @@ Again, we should update the test for our constructor to make sure this variable 
 a.deepEqual(ca1._generationChange, [], 'generation change event handler list initialised to empty array');
 ```
 
-Now we need to write a function for adding callbacks into our array. Given that our prototypes rely on jQuery, it probably makes sense to copy jQuery’s convention when it comes to event handlers, and have the function add an event handler when passed a callback, and execute all currently registered callbacks when called with no parameters (like `.click()` etc.):
+Now we need to write a function for adding callbacks into our array. Given that our prototypes rely on jQuery, it probably makes sense to copy jQuery’s convention when it comes to event handlers. Have the function add an event handler when passed a callback and execute all currently registered callbacks when called with no parameters (like `.click()` etc.):
 
 ```javascript
 /**
- * A function for adding a callback to be executed when ever the generation
+ * A function for adding a callback to be executed whenever the generation
  * changes, or, to execute all registered geneation-change callbacks.
  *
  * When called with no parameters all callbacks are execute, when called
@@ -544,7 +544,7 @@ sampleCA.generationChange(function(){
 
 ### Part 3 (for extra credit) — Variable Speed
 
-The final, optional, part of the challenge was to add a control to the UI to allow users to vary the speed of the automatic mode. IMO a slider seems like the most intuitive UI for this kind of functionality, so that’s how I choose to do it. You could just as well have chosen a numeric field, a radio button group, or even a drop-down menu.
+The final, optional, part of the challenge was to add a control to the UI to allow users to vary the speed of the automatic mode. In my opinion, a slider seems like the most intuitive UI for this kind of functionality, so that’s how I choose to do it. You could just as well have chosen a numeric field, a radio button group, or even a drop-down menu.
 
 I chose to have my slider represent the speed in frames per second, that way sliding right increases the speed. Here’s the HTML markup for my slider:
 
@@ -593,7 +593,7 @@ sampleCA = new bartificer.ca.Automaton(
 );
 ```
 
-With the cells touching directly the patterns became more visible, but the red and green became utterly over-powering, so I change the render function to render _dead_ cells in a lighter shade of red:
+With the cells touching directly the patterns became more visible, but the red and green became utterly overpowering, so I changed the render function to render _dead_ cells in a lighter shade of red:
 
 ```javascript
 // a render function to render live cells green and dead cells red
@@ -607,7 +607,7 @@ function renderRedGreen($td, s){
 }
 ```
 
-Finally, when I started to really play with the Game of Life I found myself wanting a button to re-seed the game to a fresh random state, so I added a button for that:
+Finally, when I started to really play with the Game of Life, I found myself wanting a button to reseed the game to a fresh random state, so I added a button for that:
 
 ```html
 <button type="button" id="respawn_btn">Respawn</button>
@@ -622,17 +622,17 @@ $('#respawn_btn').click(function(){
 });
 ```
 
-The finally version of this code with all the changes mentioned is [published on GitHub as a tagged release](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-Solution).
+The final version of this code with all the changes mentioned is [published on GitHub as a tagged release](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-Solution).
 
 ## Introducing JavaScript ES6 (EMAScript Version 6)
 
-When we started our exploration of JavaScript back in [instalment 12](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/) I had to make a decision — what version of JavaScript should we use? ES6 was out, but browser support was patchy at best, so I chose to stick with the previous version — ECMAScript 5. So, all the JavaScript you’ve seen in this series to date has been ES5.
+When we started our exploration of JavaScript back in [instalment 12](https://pbs.bartificer.net/pbs12), I had to make a decision — what version of JavaScript should we use? ES6 was out, but browser support was patchy at best, so I chose to stick with the previous version — ECMAScript 5. So, all the JavaScript you’ve seen in this series to date has been ES5.
 
-Well — a year and a half is a long time in tech, so things have moved on. ES7 is now the new kid on the block with the patchy support, and ES6 is now well supported in all modern browsers. So, I think the time has come to embrace ES6, and to abandon some old practices. ES6 was a very substantial upgrade to the language, so it’s going to take us a few instalments to make the transition.
+Well — a year and a half is a long time in tech, and things have moved on. ES7 is now the new kid on the block with the patchy support, and ES6 is now well supported in all modern browsers. So, I think the time has come to embrace ES6, and to abandon some old practices. ES6 was a very substantial upgrade to the language. It’s going to take us a few instalments to make the transition.
 
 ## Good Bye `var`, Hello `let` & `const`
 
-IMO, the most significant change brought by ES6 is a complete re-think on scope, bringing JavaScript into line with just about every other language I’ve ever used. For backwards compatibility reasons, the old behaviour is not going away, but you can choose not to use it anymore by abandoning the `var` keyword. In ES6, when you use `var`, the old rules apply, any when you use either of the new declaration keywords (`let` & `const`), the new rules apply. In very rare occasions you may actually want the old behaviour, in which case you should make the conscious decision to use `var`, but 99.9% of the time you almost certainly don’t want to do that.
+In my opinion, the most significant change brought by ES6 is a complete rethink on scope, bringing JavaScript into line with just about every other language I’ve ever used. For backwards compatibility reasons, the old behaviour is not going away, but you can choose not to use it anymore by abandoning the `var` keyword. In ES6, when you use `var`, the old rules apply. However, when you use either of the new declaration keywords (`let` & `const`), the new rules apply. In very rare occasions you may actually want the old behaviour, in which case you should make the conscious decision to use `var`, but 99.9% of the time you almost certainly don’t want to do that.
 
 ### What’s Wrong with `var`?
 
@@ -642,11 +642,11 @@ Pre-ES6 JavaScript uses _function scope_ — i.e., when you declare a variable, 
 
 ES6 moves JavaScript into line with the norm by moving from function scope to block scope. For backwards compatibility reasons, the change is not total. ES6 lets us have our cake and eat it by adding two new variable declaration keywords — `let` and `const`.
 
-If you use `var`, you get a function-scoped variable, but if you use `let` or `const`, get a block-scoped variable.
+If you use `var`, you get a function-scoped variable, but, if you use `let` or `const`, you get a block-scoped variable.
 
-I now have to make a confession — I’ve been perpetuating a white lie through omission. ES5 variables are not just function scoped, they are also _hoisted_. Most of the time, variable hoisting has no noticeable effect on your code, and, many people find it very confusing, so, I’ve simply avoided mentioning it.
+I now have to make a confession — I’ve been perpetuating a white lie through omission. ES5 variables are not just function scoped, they are also _hoisted_. Most of the time, variable hoisting has no noticeable effect on your code, and many people find it very confusing, so, I’ve simply avoided mentioning it.
 
-However, in ES6, variables declared with `var` will continue to be hoisted, but variables defined with `let` or `const` won’t, so it now becomes important to understand that difference.
+However, in ES6, variables declared with `var` will continue to be hoisted, but variables defined with `let` or `const` won’t. Now it becomes important to understand that difference.
 
 Rather than tell you what hoisting does, I’ll show you with this very simple contrived example:
 
@@ -667,17 +667,23 @@ fn();
 
 What do you expect the output to be when this little snippet is run?
 
-Those of you not familiar with the subtitles of variable hoisting are probably expecting it to be:
+Those of you not familiar with the subtleties of variable hoisting are probably expecting it to be:
 
+```
+I'm a global!
+now I'm local!
+```
+
+But, if you pop that code into a JavaScript console and run it, you’ll get the following instead:
+
+```
 undefined
-
-But if you pop that code into a JavaScript console and run it, you’ll get the following instead:
-
-undefined
+now I'm local!
+```
 
 Huh? What’s going on here?
 
-Variable hoisting means that JavaScript effectively re-wrote the function above to the following before executing it:
+Variable hoisting means that JavaScript effectively rewrote the function above to the following before executing it:
 
 ```javascript
 function fn(){
@@ -698,7 +704,7 @@ My single favourite ES6 feature is the keyword `let`. That’s mainly because it
 
 `let` is just like `var` except that it creates variables that are block-scoped, and don’t get hoisted.
 
-Let’s re-visit our example from above, but replace `var` with `let`:
+Let’s revisit our example from above, but replace `var` with `let`:
 
 ```javascript
 // declare a global variable
@@ -717,7 +723,7 @@ fn();
 
 Executing the function now gives us an error: _“ReferenceError: can’t access lexical declaration \`msg’ before initialization”_.
 
-Why? Because even in ES6, you can’t have your cake and eat it. Within any single scope a variable has to be either local, or from a containing scope, it can’t be both.
+Why? Because even in ES6, you can’t have your cake and eat it. Within any single scope a variable has to be either local or from a containing scope; it can’t be both.
 
 With block-level scopes we do have a simple solution though, just make another scope!:
 
@@ -748,13 +754,13 @@ now I'm local!
 
 ```
 
-One final thing to note is that re-declaring the same variable within the same scope with `let` will generate an error. Re-declaration isn’t something you’d ever want to do, it’s always a bug, so having ES6 throw an error when it happens is a good thing IMO.
+One final thing to note is that redeclaring the same variable within the same scope with `let` will generate an error. Redeclaration isn’t something you’d ever want to do. It’s always a bug, so having ES6 throw an error when it happens is a good thing IMO.
 
 ## Declaring Constants with `const`
 
-Before ES6 JavaScript had no concept of a constant. Anything you declared with `var` could have its value changed later in the code. In other C-style languages there is generally a mechanism for marking a ‘variable’ as being un-changable, or, as being _constant_. For example, the value of the gravitational constant (G) doesn’t change, so if your code were to be doing gravitational calculations, it would be good to be able to store G in a variable where accidentally attempting to change it would result in an error being thrown. That would nip all sorts of subtle bugs in the bud!
+Before ES6 JavaScript had no concept of a constant. Anything you declared with `var` could have its value changed later in the code. In other C-style languages there is generally a mechanism for marking a ‘variable’ as being unchangeable, or as being _constant_. For example, the value of the gravitational constant (G) doesn’t change. So if your code were to be doing gravitational calculations, it would be good to be able to store G in a variable where accidentally attempting to change it would result in an error being thrown. That would nip all sorts of subtle bugs in the bud!
 
-That’s what the const keyword is for. It behaves just like let, except that any attempt to alter the value after declaration will result in an error.
+That’s what the `const` keyword is for. It behaves just like `let`, except that any attempt to alter the value after declaration will result in an error.
 
 Here’s a simple example:
 
@@ -771,9 +777,9 @@ function gravitationalForce(mass1KG, mass2KG, distanceM){
 console.log(gravitationalForce(6e24, 7.35e22, 384400000));
 ```
 
-Remember, variables hold primitive values and references to objects, so if you declare an object with const you can still alter the contents of the object, but you can never change the object that variable points to.
+Remember, variables hold primitive values and references to objects. So if you declare an object with `const`, you can still alter the contents of the object. But you can never change the object that variable points to.
 
-To illustrate the point, the this will generate an error:
+To illustrate the point, this will generate an error:
 
 ```javascript
 const x = 2;
@@ -795,7 +801,7 @@ x.z = 6; // also no error
 
 ## Aside — Function Hoisting
 
-Since we’ve now mentioned the concept of hoisting, I should point out that variables aren’t the only things that get hoisted in JavaScript, function declarations do too, and that hasn’t changed in ES6.
+Since we’ve now mentioned the concept of hoisting, I should point out that variables aren’t the only things that get hoisted in JavaScript. Function declarations do too, and that hasn’t changed in ES6.
 
 The following works in all versions of JavaScript, including ES6:
 
@@ -815,8 +821,8 @@ In the real world, you often need to change the internals of a library of code w
 
 Over the next few instalments we’re going to refactor our cellular automaton prototypes into ES6 classes. As a first step, the challenge for this week is to refactor the prototypes so they use `let` and/or `const` as appropriate.
 
-It’s very easy to accidentally break code while refactoring, that’s where the test suite we’ve been building up concurrently with the code comes in. Be sure to test your refactored code as you go, that way you should be able to avoid introducing new bugs.
+It’s very easy to accidentally break code while refactoring. That’s where the test suite we’ve been building up concurrently with the code comes in. Be sure to test your refactored code as you go; that way you should be able to avoid introducing new bugs.
 
 ## Final Thoughts
 
-While the change from var to let and const is significant, it’s just the beginning of our journey into the joys of ES6. In the next instalment we’ll learn about new types of loops, and about default values for function arguments.
+While the change from `var` to `let` and `const` is significant, it’s just the beginning of our journey into the joys of ES6. In the next instalment we’ll learn about new types of loops, and about default values for function arguments.

@@ -1,12 +1,12 @@
 # PBS 44 of x – ES6 Arguments & Objects
 
-In [the previous instalment](https://bartificer.net/pbs43) we started our exploration of the new features ES6 brought to JavaScript with a look at block scoped variables. We learned that `var` will continue to work as it always has, defining function-scoped variables, but that we can now use `let` and `const` to define block-spoped variables and constants.
+In [the previous instalment](https://pbs.bartificer.net/pbs43) we started our exploration of the new features ES6 brought to JavaScript with a look at block-scoped variables. We learned that `var` will continue to work as it always has, defining function-scoped variables, but that we can now use `let` and `const` to define block-scoped variables and constants.
 
 We’ll continue our exploration of ES6 today by looking at how function arguments have been improved, and learning about a new type of loop designed to make looping over object properties easier.
 
-There is no ZIP file for this instalment, instead, I’ve published my solution to the challenge from the previous instalment (which is also the starting point for the next challenge) as [a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS43-Challenge-Solution). You can download it using the big green button labeled _Clone or Download_.
+There is no ZIP file for this instalment. Instead, I’ve published my solution to the challenge from the previous instalment (which is also the starting point for the next challenge) as [a tagged release on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS43-Challenge-Solution). You can download it using the big green button labeled _Clone or Download_.
 
-# Matching Podcast Episode 511
+## Matching Podcast Episode 511
 
 Listen Along: Chit Chat Across the Pond Episode 511
 
@@ -20,7 +20,7 @@ The challenge set at the end of the previous instalment was very simple — upda
 
 I’ve published my sample solution to GitHub as [the tagged release `PBS43-Challenge-Solution` of `bartificer.ca.js`](https://github.com/bbusschots/bartificer_ca_js/tree/PBS43-Challenge-Solution).
 
-For the most part this was simply a matter of replacing the `var` keyword with the `let` keyword, but there were a few subtitles that I want to draw your attention to.
+For the most part this was simply a matter of replacing the `var` keyword with the `let` keyword, but there were a few subtleties that I want to draw your attention to.
 
 Firstly, safely declaring shared global namespaces like `bartificer` still needs to be done with `var`. Why? Because the same namespace is used as the parent namespace for many separate APIs, and it needs to be possible to use multiple such APIs within a single page.
 
@@ -30,7 +30,7 @@ In other words, this line needs to remain as it is:
 var bartificer = bartificer ? bartificer : {};
 ```
 
-You can try re-write it with `let` or `const`, but you’ll run into a brick wall
+You can try rewrite it with `let` or `const`, but you’ll run into a brick wall.
 
 If you were to try do the following, what would happen?
 
@@ -40,11 +40,11 @@ let bartificer = bartificer ? bartificer : {};
 
 You’ll get an error. Why? Because, as we learned last time, `let` declarations don’t get hoisted.
 
-Remember, the assignment operator (`=`) has the lowest precedence (we learned about operator precedence way back in [instalment 12](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/)), so it happens after the ternary operator. That means the ternary operator tries to access the `bartificer` variable before it’s been declared. The reason this weird line of code works with `var` is that `var` declarations do get hoisted.
+Remember, the assignment operator (`=`) has the lowest precedence (we learned about operator precedence way back in [instalment 12](https://pbs.bartificer.net/pbs12), so it happens after the ternary operator. That means the ternary operator tries to access the `bartificer` variable before it’s been declared. The reason this weird line of code works with `var` is that `var` declarations do get hoisted.
 
-Even if `let` variables were hoisted, there would be an even bigger problem with using `let` to conditionally initialise a shared global namespace that may already be initialised like `bartificer` — `let` throws an error if you try to use it to re-declare an already declared variable!
+Even if `let` variables were hoisted, there would be an even bigger problem with using `let` to conditionally initialise a shared global namespace that may already be initialised like `bartificer` — `let` throws an error if you try to use it to redeclare an already declared variable!
 
-The second subtly I want to draw your attention to is that there were opportunities to reduce the scope of some variables, which is generally better. It’s a good rule of thumb that you want the scope of your variables to be as small as needed, but no smaller.
+The second subtlety I want to draw your attention to is that there are opportunities to reduce the scope of some variables, which is generally better. It’s a good rule of thumb that you want the scope of your variables to be as small as needed, but no smaller.
 
 As an example, let’s look at `bartificer.ca.Automaton.prototype.step()`:
 
@@ -87,7 +87,7 @@ bartificer.ca.Automaton.prototype.step = function(){
 };
 ```
 
-Because `var` is function-scoped, the two sets of for loops share the same `x` and `y` variables. That’s not something we want, we just didn’t have a choice in the matter with `var`.
+Because `var` is function-scoped, the two sets of for loops share the same `x` and `y` variables. That’s not something we want; we just didn’t have a choice in the matter with `var`.
 
 We could just replace `var` with `let`, and leave the scope as-is, but while that would result in working code, it wouldn’t be in keeping with the spirit of ES6, or our aim of minimising variable scope. So, instead, we should create separate instances of `x` and `y` for each set of loops:
 
@@ -133,11 +133,11 @@ For clarity, I’ve highlighted the scopes of the two separate `x` variables in 
 
 ## ES6 — Improved Function Arguments
 
-ES6 improves function argument handling in two important ways. Firstly, it allows default values to be specified for optional arguments, and secondly, it provides a nice new mechanism for capturing arbitrarily many arguments.
+ES6 improves function argument handling in two important ways. Firstly, it allows default values to be specified for optional arguments. Secondly, it provides a nice new mechanism for capturing arbitrarily many arguments.
 
 ### Default Argument Values
 
-It’s quite common to have functions with optional arguments. When the function is called without an optional argument your code needs to provide a default value to use instead. In previous versions of JavaScript you had to do this defaulting within the body of the function, so default values were not easy to see at a glance.
+It’s quite common to have functions with optional arguments. When the function is called without an optional argument, your code needs to provide a default value to use instead. In previous versions of JavaScript you had to do this defaulting within the body of the function, so default values were not easy to see at a glance.
 
 Let’s use a trivially simple example to illustrate the point — a function to increment a value. The first argument must be the value to increment, and the second optional argument is the amount to increment by, which defaults to one:
 
@@ -158,9 +158,9 @@ function inc(n, i){
 }
 ```
 
-However, regardless of which of those implementations you choose, the fact that `i` defaults to `1` is not immediately obvious at a glance — you have to work through the logic of the function to figure that out. This is a contrived overly simple example with just one optional argument, in reality the code for defaulting arguments will be mixed in with many more lines of code, so the default values will be even less obvious.
+However, regardless of which of those implementations you choose, the fact that `i` defaults to `1` is not immediately obvious at a glance — you have to work through the logic of the function to figure that out. This is a contrived overly simple example with just one optional argument. In reality the code for defaulting arguments will be mixed in with many more lines of code, so the default values will be even less obvious.
 
-With ES6 we can give default values right within the function declaration, so our function now becomes just:
+With ES6 we can give default values right within the function declaration. Our function now becomes just:
 
 ```javascript
 function inc(n, i = 1){
@@ -172,7 +172,7 @@ I think you’ll agree that’s much clearer!
 
 ### _Variadic_ AKA _Rest_ Arguments
 
-Way back in [instalment 16](https://www.bartbusschots.ie/s/2016/06/08/programming-by-stealth-16-of-x-javascript-function-objects/) we learned how to write functions that can process arbitrarily many arguments by looping over the special `arguments` object that exists within each function. We illustrated the point with this sample function which multiplies together arbitrarily many numbers:
+Way back in [instalment 16](https://pbs.bartificer.net/pbs16) we learned how to write functions that can process arbitrarily many arguments by looping over the special `arguments` object that exists within each function. We illustrated the point with this sample function which multiplies together arbitrarily many numbers:
 
 ```javascript
 function product(){
@@ -203,7 +203,7 @@ The above code works, but it’s not at all clear from the function declaration 
 
 ES6 adds a feature some other languages have had for many years, so-called _variadic_ or _rest_ arguments. A function can only define a single variadic argument, and it has to be the last argument. Why? Because a variadic argument collects all the remaining arguments together into a single array. You can think of a variadic argument as _‘all the rest of the arguments’_, hence the nickname _rest arguments_.
 
-In ES6 you define an argument as being variadic by pre-fixing the name with three periods. So, we could re-write the above example like so:
+In ES6 you define an argument as being variadic by prefixing the name with three periods. So, we could rewrite the above example like so:
 
 ```javascript
 // define the product function
@@ -228,7 +228,7 @@ console.log(product(1, 2, 3, 4, 5)); // 120
 
 This has two obvious advantages. Firstly, the fact that this function accepts arbitrarily many arguments is now obvious from the function declaration, and secondly, because `n` is now a true array, we can use functions from the `Array` prototype on it (like `.forEach()`).
 
-In the above example the variadic argument is the only argument, but that doesn’t have to be the case, the variadic argument just has to be last.
+In the above example the variadic argument is the only argument. That doesn’t have to be the case. The variadic argument just has to be last.
 
 For example, the following function takes an operator as the first argument, and then applies that operator to all the other arguments passed. So, it has one regular argument, and then all other arguments passed get collapsed into the variadic argument:
 
@@ -272,7 +272,7 @@ Note that you can’t assign a default value to a variadic argument.
 
 ## ES6 — Looping Over Objects with `for ... in` Loops
 
-Way back in [instalment 17](https://bartificer.net/pbs17) we learned how to loop over objects with the help of the `Object.keys()` function. We used the following example to illustrate the point:
+Way back in [instalment 17](https://pbs.bartificer.net/pbs17) we learned how to loop over objects with the help of the `Object.keys()` function. We used the following example to illustrate the point:
 
 ```javascript
 // create an object representing three letter acronyms

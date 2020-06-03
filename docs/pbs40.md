@@ -1,12 +1,12 @@
 # PBS 40 of x – HTML5 Custom Validations with jQuery
 
-At the end of the previous instalment I promised we were done with HTML form validation, and insisted we were ready to move on to finishing our Cellular Automata, but it turns out that was a little premature. While working on my sample solution for the [previous instalment](https://bartificer.net/pbs39)‘s challenge I realised I’d forgotten to cover something very important – the fact that you can use jQuery to deal with situations where the HTML5 form validation attributes are not powerful enough for your needs. So – we need to rectify that oversight, and that’s going to take this entire instalment to do.
+At the end of the previous instalment I promised we were done with HTML form validation, and insisted we were ready to move on to finishing our Cellular Automata, but it turns out that was a little premature. While working on my sample solution for the [previous instalment](https://pbs.bartificer.net/pbs39)‘s challenge, I realised I’d forgotten to cover something very important – the fact that you can use jQuery to deal with situations where the HTML5 form validation attributes are not powerful enough for your needs. So – we need to rectify that oversight, and that’s going to take this entire instalment to do.
 
-Then, while doing her homework, Allison discovered another oversight that needs to be remedied before we move away from HTML forms – we need to look at how to support keyboard-only interactions. Why? In a word – accessibility. So, in the next instalment we’ll start by looking at the narrow case of supporting keyboard input in forms, but we’ll then move on and look at keyboard interactions a little more broadly, and we’ll learn how to add keyboard shortcuts to our web apps. This will come in useful when we do then finally move on to getting our cellular automata working the following instalment.
+Then, while doing her homework, Allison discovered another oversight that needs to be remedied before we move away from HTML forms – we need to look at how to support keyboard-only interactions. Why? In a word – accessibility. So, in the next instalment, we’ll start by looking at the narrow case of supporting keyboard input in forms, but we’ll then move on and look at keyboard interactions a little more broadly. We’ll learn how to add keyboard shortcuts to our web apps. This will come in useful when we do  finally move on to getting our cellular automata working in the following instalment.
 
 As usual, I’ve collected all the files for this instalment into a single ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/09/pbs40.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs40.zip).
 
-# Matching Podcast Episode 503
+## Matching Podcast Episode 503
 
 Listen Along: Chit Chat Across the Pond Episode 503
 
@@ -18,7 +18,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 At the end of the previous instalment I set the challenge of creating a web form for entering details about movies for some kind of movie database. I left the assignment intentionally vague and open-ended so you could really let your imagination run wild.
 
-Because the assignment was so open-ended, everyone’s solution is going to be very different, so my sample solution really is a sample, and it may look nothing like what you came up with. Anyhow, below is my code, and you can find a copy in this instalment’s ZIP file as `pbs39-challenge-sampleSollution/pbs39-challenge.html`:
+Because the assignment was so open-ended, everyone’s solution is going to be very different. My sample solution really is a sample, and it may look nothing like what you came up with. Anyhow, below is my code, and you can find a copy in this instalment’s ZIP file as `pbs39-challenge-sampleSollution/pbs39-challenge.html`:
 
 ```html
 <!DOCTYPE HTML>
@@ -329,7 +329,7 @@ I don’t want to go through my solution line-by-line, but I do want to draw you
 
 When creating a complex form, it often makes things much easier for users to break the form into groups of related form elements. In HTML, the appropriate elements for doing so are `<fieldset>` and `<legend>`. You should have one `<fieldset>` surrounding the entire form, and you can then nest further `<fieldset>` elements inside each other as deeply as needed for your particular form.
 
-As we learned back in [instalment 31](https://bartificer.net/pbs31), you need to use the ARIA spec to help screen readers understand the layout of your form. To do that you need to use the role attribute to specific which `<fieldset>` represents the entire form (`role="form"`), and which represent groups of inputs (`role="group"`). You should also make it clear which text is serving as the label for the form as a whole, and for each group with the `aria-labelledby` attribute.
+As we learned back in [instalment 31](https://pbs.bartificer.net/pbs31), you need to use the ARIA spec to help screen readers understand the layout of your form. To do that you need to use the role attribute to specify which `<fieldset>` represents the entire form (`role="form"`), and which represent groups of inputs (`role="group"`). You should also make it clear which text is serving as the label for the form as a whole, and for each group with the `aria-labelledby` attribute.
 
 This snippet from my sample solution illustrates my use of field sets:
 
@@ -360,15 +360,15 @@ This snippet from my sample solution illustrates my use of field sets:
 
 When designing a form, the first thing you need to do is figure out what information you want to extract from the user.
 
-Once you have a list of pieces of information, you need to go through that list item by item and decide which of the many possible form elements would work best. Don’t assume there will be a one-to-one mapping between the data you want and form elements. Sometimes you’ll use many form elements to capture one piece of information. E.g. it makes sense to use multiple drop-down-lists to collect date information. Ultimately, it’s about choosing the form elements that will make it as easy as possible for the users to instinctively do the right thing, and as hard as possible to do the wrong thing.
+Once you have a list of pieces of information, you need to go through that list item by item and decide which of the many possible form elements would work best. Don’t assume there will be a one-to-one mapping between the data you want and form elements. Sometimes you’ll use many form elements to capture one piece of information. For example, it makes sense to use multiple drop-down lists to collect date information. Ultimately, it’s about choosing the form elements that will make it as easy as possible for the users to instinctively do the right thing, and as hard as possible to do the wrong thing.
 
 ### Always Remember that Markup and Presentation are Loosely Coupled
 
 Let me just repeat my mantra – _“HTML is for defining what something is, CSS is for defining how it should look”_.
 
-Try to avoid altering your HTML to suit your presentation preferences. Instead, start by writing logical HTML that captures the structure of your form, then, style it. You’d be surprised how disconnected markup and look can be.
+Try to avoid altering your HTML to suit your presentation preferences. Instead, start by writing logical HTML that captures the structure of your form, then style it. You’d be surprised how disconnected markup and look can be.
 
-As an example, in my HTML markup, my fields and their matching labels are contained within unordered lists. Despite this fact, there is not a single bullet character visible on the page! The reason for this is that I chose to style my lists without bullets, but fundamentally, the genre section really is just a list of genres, so the HTML markup reflects that.
+As an example, in my HTML markup, my fields and their matching labels are contained within unordered lists. Despite this fact, there is not a single bullet character visible on the page! The reason for this is that I chose to style my lists without bullets. Fundamentally, the genre section really is just a list of genres, so the HTML markup reflects that.
 
 Here is a snippet of the HTML for my genre section:
 
@@ -414,7 +414,7 @@ ul.inlined > li{
 
 What does this CSS do? It removes the left-padding that usually accompanies unordered lists, it removes the bullets, it sets each list item to be an inline block element, it ensures that no list item will ever be split over multiple lines (i.e. that the checkbox and label will move to a new line together), and it adds a little padding between each of the genres to make them easier to read.
 
-As well as changing how something is displayed, you can also choose not to display it at all. The _Basics_ section provides a good example of this concept. This grouping of related inputs captures three pieces of information – the movie’s title, year, and MPAA rating. The section is marked up as an un-ordered list with an element for each piece of information, and each list item contains a label and a form element:
+As well as changing how something is displayed, you can also choose not to display it at all. The _Basics_ section provides a good example of this concept. This grouping of related inputs captures three pieces of information – the movie’s title, year, and MPAA rating. The section is marked up as an unordered list with an element for each piece of information. Each list item contains a label and a form element:
 
 ```html
 <fieldset id="basics_fs" role="group" aria-labelledby="basics_fs_desc">
@@ -444,9 +444,9 @@ As well as changing how something is displayed, you can also choose not to displ
 </fieldset>
 ```
 
-Displaying each element on a separate line with bullets would be a waste of space, so the first thing I did was inline the list (similar to the genre example we’ve already seen).
+Displaying each element on a separate line with bullets would be a waste of space. So the first thing I did was inline the list (similar to the genre example we’ve already seen).
 
-The next thing to note is that the year and the rating are effectively self-documenting. Does having the label visible add clarity? Or does it just add confusing clutter? I would argue that those two specific labels add unhelpful clutter, and that the form would be clearer without them. I could have deleted the labels form the markup, but that would be a terrible thing to do – why? Because accessibility tools rely on the presence of those labels! Instead, the correct thing to do is to use CSS to hide just those two labels:
+The next thing to note is that the year and the rating are effectively self-documenting. Does having the label visible add clarity? Or does it just add confusing clutter? I would argue that those two specific labels add unhelpful clutter, and that the form would be clearer without them. I could have deleted the labels from the markup, but that would be a terrible thing to do – why? Because accessibility tools rely on the presence of those labels! Instead, the correct thing to do is to use CSS to hide just those two labels:
 
 ```css
 /* Custom styling for the basics input group */
@@ -455,29 +455,29 @@ label[for="year_tb"], label[for="rating_sel"]{
 }
 ```
 
-Finally, notice that I used CSS’s flex box feature to lay out the form. We covered flexbox way way way back in [instalment 9](https://www.bartbusschots.ie/s/2016/02/19/programming-by-stealth-9-of-x-more-css-positioning/).
+Finally, notice that I used CSS’s flex box feature to lay out the form. We covered flexboxes way way way back in [instalment 9](https://pbs.bartificer.net/pbs9).
 
 ### Validation Shortcomings
 
 Notice that this sample solution’s validation has at least two significant shortcomings.
 
-Firstly, there is no way with pure HTML5 form validation to check the validity of the content entered into the cast text area. We can’t even use a regular expression because the `pattern` attribute is only supported on the `input` element, not the `textarea` element.
+Firstly, there is no way, with pure HTML5 form validation, to check the validity of the content entered into the cast text area. We can’t even use a regular expression because the `pattern` attribute is only supported on the `input` element, not the `textarea` element.
 
 Secondly, we can’t enforce the requirement that the user select at least one genre.
 
-These serve as good examples of two common classes of edge-case – single inputs that need more powerful validation than that offered by the HTML5 validation attributes, and, constraints that are spread between multiple form elements.
+These serve as good examples of two common classes of edge-case – single inputs that need more powerful validation than that offered by the HTML5 validation attributes, and constraints that are spread between multiple form elements.
 
 ## HTML5 Form Validation & JavaScript
 
-To add custom form validation you need to understand two things – the `.setCustomValidity()` function provided by the DOM, and, event handlers. The `.setCustomValidity()` function allows you to attach a validation error of your choice to any form element, and event handlers allow you to trigger code when a user interacts with a form.
+To add custom form validation you need to understand two things – the `.setCustomValidity()` function provided by the DOM and event handlers. The `.setCustomValidity()` function allows you to attach a validation error of your choice to any form element. Event handlers allow you to trigger code when a user interacts with a form.
 
 ### The `.setCustomValidity()` DOM Function
 
-In this series I’ve generally avoided direct DOM manipulation, and instead uses the much more human-friendly jQuery API to interact with the DOM on our behalf. This is one of the few instances where jQuery can’t help us, and we have to interact with the DOM directly – the `.setCustomValidity()` is not a jQuery function, it’s a native DOM function that exists on form elements.
+In this series I’ve generally avoided direct DOM manipulation. Instead I've used the much more human-friendly jQuery API to interact with the DOM on our behalf. This is one of the few instances where jQuery can’t help us and we have to interact with the DOM directly – the `.setCustomValidity()` is not a jQuery function, it’s a native DOM function that exists on form elements.
 
-Before we go any further, let’s do some quick revision on how jQuery works. When you use the jQuery function (the shortcut `$()` or the full `jQuery()`) to query a page for a collection of HTML elements, what you get in effect is an object that contains an array of raw DOM objects. You can access these raw DOM objects directly using standard array notation. For example, you can get the raw DOM object for the first paragraph on a page with `$('p')[0]`. There is a better way though – jQuery’s `.get()` function provides easy access to the underlying DOM objects, and it offers the advantage of supporting negative indexes – that is to say, you can count from the front or the back! For example, you can get the DOM object for the first paragraph on a page with `$('p').get(0)`, and for the last with `$('p').get(-1)`. If you specify an invalid index, or an index that goes out of range, `undefined` will be returned. You’ll find a [full description of the `.get()` function in the jQuery docs](https://api.jquery.com/get/).
+Before we go any further, let’s do some quick revision on how jQuery works. When you use the jQuery function (the shortcut `$()` or the full `jQuery()`) to query a page for a collection of HTML elements, what you get in effect is an object that contains an array of raw DOM objects. You can access these raw DOM objects directly using standard array notation. For example, you can get the raw DOM object for the first paragraph on a page with `$('p')[0]`. There is a better way though – jQuery’s `.get()` function provides easy access to the underlying DOM objects. It offers the advantage of supporting negative indexes – that is to say, you can count from the front or the back! For example, you can get the DOM object for the first paragraph on a page with `$('p').get(0)`, and for the last with `$('p').get(-1)`. If you specify an invalid index, or an index that goes out of range, `undefined` will be returned. You’ll find a [full description of the `.get()` function in the jQuery docs](https://api.jquery.com/get/).
 
-So – to use the `.setCustomValidity()` function we need to either use the array syntax on a jQuery object, or, jQuery’s `.get()` function.
+So – to use the `.setCustomValidity()` function, we need to either use the array syntax on a jQuery object or jQuery’s `.get()` function.
 
 As well as supporting the validation attributes we’ve already seen like `required`, `minlength`, `pattern`, etc., HTML5 also supports the concept of a custom validity. If an item within a form’s DOM object has a custom validity property with any value other than an empty string, the browser considers that item to be in an invalid state. The `.setCustomValidity()` function allows us to alter the value of this DOM property. If you set the value of this property to a string of your choice, then form validation will fail, and the browser will display the string in a standard HTML form validation error message dialogue.
 
@@ -493,15 +493,15 @@ You could later remove this validation error with:
 $('#input1_tb').get(0).setCustomValidity('');
 ```
 
-Calling `.setCustomValidity()` sets the validation state of the form item indefinitely – it in no way instructions the browser how to re-calculate the validity in the future. To do that, we’ll need event handlers.
+Calling `.setCustomValidity()` sets the validation state of the form item indefinitely – it in no way instructs the browser on how to recalculate the validity in the future. To do that, we’ll need event handlers.
 
 ### Event Handlers in Forms (Mostly Revision)
 
-We learned about jQuery event handlers way back in [instalment 22](https://bartificer.net/pbs22), but let’s remind ourselves of the basics again.
+We learned about jQuery event handlers way back in [instalment 22](https://pbs.bartificer.net/pbs22), but let’s remind ourselves of the basics again.
 
-The DOM defines a finite set of events that can occur within a browser window. Most events are triggered by some kind of human interaction, and most have a target associated with them. For example, a user can click on a specific button, or type into a specific text box. Every element in a web page maintains a list of mappings between events that can be triggered on that element, and the functions to call should such an event occur. In web development jargon we would describe adding such a mapping between an event and a function to an element as _adding a listener_ or _adding an event handler_ to that element.
+The DOM defines a finite set of events that can occur within a browser window. Most events are triggered by some kind of human interaction, and most have a target associated with them. For example, a user can click on a specific button or type into a specific text box. Every element in a web page maintains a list of mappings between events that can be triggered on that element, and the functions to call should such an event occur. In web development jargon we would describe adding such a mapping between an event and a function to an element as _adding a listener_ or _adding an event handler_ to that element.
 
-There are two ways of adding an event handler to one or more objects in jQuery, we can either use the generic `.on()` function, or, we can use one of the many convenient shortcut functions jQuery provides. To add a click handler to every checkbox on a page we could do something like:
+There are two ways of adding an event handler to one or more objects in jQuery: we can either use the generic `.on()` function or we can use one of the many convenient shortcut functions jQuery provides. To add a click handler to every checkbox on a page, we could do something like:
 
 ```javascript
 $('input[type="checkbox"]').on('click', function(){
@@ -517,15 +517,15 @@ $('input[type="checkbox"]').click(function(){
 });
 ```
 
-When it comes to validation forms, the events we’re interested in are user clicks, changes in the state of an item (selected to un-selected, checked to un-checked etc.), text entry, and form submission. In jQuery terms that means the `.click()`, `.change()`, `.keyup()`, and `.submit()` shortcut functions.
+When it comes to validation forms, the events we’re interested in are user clicks, changes in the state of an item (selected to unselected, checked to unchecked, etc.), text entry, and form submission. In jQuery terms that means the `.click()`, `.change()`, `.keyup()`, and `.submit()` shortcut functions.
 
-Remember that when a jQuery event handler is called, the value of the special `this` variable within the body of the function will be a reference to the DOM object the event was triggered on. In the above examples, `this` would be a reference to the DOM object representing the exact checkbox that was clicked on. Also remember that you can convert a DOM object into a jQuery object by passing it to the jQuery function as the only argument, so you can convert `this` to a jQuery object like so: `$(this)`.
+Remember that, when a jQuery event handler is called, the value of the special `this` variable within the body of the function will be a reference to the DOM object the event was triggered on. In the above examples, `this` would be a reference to the DOM object representing the exact checkbox that was clicked on. Also remember that you can convert a DOM object into a jQuery object by passing it to the jQuery function as the only argument, so you can convert `this` to a jQuery object like so: `$(this)`.
 
 Finally, also remember that you can call all the registered event handlers on an element using the same shortcut functions but without arguments.
 
 ### Worked Example – Adding Custom Validation to PBS 39 Sample Solution
 
-Let’s start by adding validation to the cast text box. What we need to ensure is that there is text in the text area, and that each line consists of a character name and an actor’s name separated by a colon character. We’ll create a function to perform this validation for us, remembering that when we use the function as an event handler, the special `this` variable will contain a reference to the DOM object representing the text area.
+Let’s start by adding validation to the cast text box. What we need to ensure is that there is text in the text area, and that each line consists of a character name and an actor’s name separated by a colon character. We’ll create a function to perform this validation for us, remembering that, when we use the function as an event handler, the special `this` variable will contain a reference to the DOM object representing the text area.
 
 ```javascript
 // an event handler to validate the cast list
@@ -559,7 +559,7 @@ function validateCastList(){
 }
 ```
 
-We now need to attach this function to the keyboard event on the text area. This needs to be done after the DOM has loaded. Remember that when you pass the jQuery function a callback as the only argument, this callback will be added as an event handler for the DOM read event. The sample solution already has a DOM ready event handler:
+We now need to attach this function to the keyboard event on the text area. This needs to be done after the DOM has loaded. Remember that, when you pass the jQuery function a callback as the only argument, this callback will be added as an event handler for the DOM read event. The sample solution already has a DOM ready event handler:
 
 ```javascript
 // add a document ready event handler
@@ -577,7 +577,7 @@ $(function(){
 });
 ```
 
-We should add our code the end of the anonymous function like so:
+We should add our code to the end of the anonymous function like so:
 
 ```javascript
 // add a document ready event handler
@@ -632,7 +632,7 @@ function validateGenres(){
 }
 ```
 
-Now that we have this function we need to attach it to the change handler for every genre checkbox so the validity gets re-calculated each time any genre is checked or un-checked. Again, we do this by adding our code to the bottom of the existing document ready event handler:
+Now that we have this function we need to attach it to the change handler for every genre checkbox so the validity gets recalculated each time any genre is checked or unchecked. Again, we do this by adding our code to the bottom of the existing document ready event handler:
 
 ```javascript
 // add a document ready event handler

@@ -4,7 +4,7 @@ In this instalment it’s finally time to bring our Cellular Automaton prototype
 
 As usual, I’ve collected the code files for this instalment into a ZIP file which you can [download here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs42.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs42.zip). As well as the ZIP file, I’ve also published [a tagged release of the bartificer.ca.js code on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-StartingPoint) which you’ll need for this instalment’s challenge.
 
-# Matching Podcast Episode 507
+## Matching Podcast Episode 507
 
 Listen Along: Chit Chat Across the Pond Episode 507
 
@@ -14,7 +14,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 41 Challenge — Sample Solution
 
-I used the file `pbs40.html` from the ZIP file for [instalment 40](https://bartificer.net/pbs40) as my starting point for the challenge.
+I used the file `pbs40.html` from the ZIP file for [instalment 40](https://pbs.bartificer.net/pbs40) as my starting point for the challenge.
 
 The first change I made was to add a star rating field:
 
@@ -121,19 +121,19 @@ You’ll find my full solution in this instalment’s zip file as `pbs41-challen
 
 ## Back to Cellular Automata & Conway’s Game of Life
 
-We’ll be using my sample solution from the challenge set way back in [instalment 36](https://bartificer.net/pbs36) as the starting point for our work today. We’ll be updating the core JavaScript prototypes in `lib/bartificer.ca.js`, we’ll be adding test cases to `test/tests.js`, viewing the results of our tests via `test/index.html`, and finally we’ll update `sample.html` to become an implementation of [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). The sample solution is [available on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS36-Challenge-Solution).
+We’ll be using my sample solution from the challenge set way back in [instalment 36](https://pbs.bartificer.net/pbs36) as the starting point for our work today. We’ll be updating the core JavaScript prototypes in `lib/bartificer.ca.js`. We’ll be adding test cases to `test/tests.js` and viewing the results of our tests via `test/index.html`. Finally we’ll update `sample.html` to become an implementation of [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). The sample solution is [available on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS36-Challenge-Solution).
 
 As you can probably infer from the list of files we’ll be editing, we’ll be exercising many of the skills we’ve built up throughout this series — JavaScript prototypes, unit testing with QUnit, HTML forms, and jQuery. While we won’t be focusing on it much, all the sample code will also contain JSDoc comments.
 
 ## A Quick Refresher
 
-It’s been a few months since we last worked on these prototypes, so let’s refresh our memory a little before we dive in.
+It’s been a few months since we last worked on these prototypes. So let’s refresh our memory a little before we dive in.
 
 Firstly — the prototypes we are building model a mathematical construct known as a _cellular automaton_, or CA. BTW — the correct plural is _cellular automata_.
 
-A CA consists of a grid of cells, each of which has a current state. That state is just a value, and it can be anything — a number, some text, an abstract concept, anything! Like a CPU, a CA moves forward in time in discrete steps. Each time it steps forward the state of all each cell is re-calculated according so some pre-defined set of rules, and that new state can be based on the preset state of the cell itself, and the present state of all eight of the cells that touch it (referred to as _neighbouring cells_). What differentiates one CA from another is the set of possible states for each cell, and the rule set used to calculate the next state.
+A CA consists of a grid of cells, each of which has a current state. That state is just a value, and it can be anything — a number, some text, an abstract concept, anything! Like a CPU, a CA moves forward in time in discrete steps. Each time it steps forward, the state of all each cell is recalculated according to some predefined set of rules. That new state can be based on the preset state of the cell itself and the present state of all eight of the cells that touch it (referred to as _neighbouring cells_). What differentiates one CA from another is the set of possible states for each cell, and the rule set used to calculate the next state.
 
-Conway’s Game of Life is a specific CA where each cell can be in one of two states, _alive_, or _dead_, and where the next state of each cell is determined by the following four rules (wording form Wikipedia):
+Conway’s Game of Life is a specific CA where each cell can be in one of two states, _alive_, or _dead_, and where the next state of each cell is determined by the following four rules (wording from Wikipedia):
 
 1.  Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
 2.  Any live cell with two or three live neighbours lives on to the next generation.
@@ -142,7 +142,7 @@ Conway’s Game of Life is a specific CA where each cell can be in one of two st
 
 Our aim in this project is to build a collection of prototypes that can be used to add any arbitrary CA into a web page. We’ll test our prototypes by implementing Conway’s game of life.
 
-The prototypes we’re building will be contained within the namespace `bartificer.ca`, and there will be two of them. The CAs generated with these prototypes will be rendered on web pages as tables — a single table representing the CA as a whole, and a table cell for each cell within the CA.
+The prototypes we’re building will be contained within the namespace `bartificer.ca`. There will be two of them. The CAs generated with these prototypes will be rendered on web pages as tables — a single table representing the CA as a whole, and a table cell for each cell within the CA.
 
 ### The `bartificer.ca.Cell` Prototype
 
@@ -166,7 +166,7 @@ The `bartificer.ca.Automaton` prototype is where we’ll be focusing our work in
 
 Let’s start by writing a function to set the state of each cell in the CA to some initial value. We’ll name this new function `.setState()`.
 
-This function will need one argument, the new state information, and it will need to pass the same validation as the optional sixth argument already supported by the constructor. Rather than duplicating the constructor code in both functions, we should re-factor the validation code into a private helper function that can then be called from both the constructor and the new `.setState()` function. In fact, I’m going to implement this as two functions, one that throws errors with detailed error messages, and one which simply returns `true` or `false`:
+This function will need one argument, the new state information. It will need to pass the same validation as the optional sixth argument already supported by the constructor. Rather than duplicating the constructor code in both functions, we should refactor the validation code into a private helper function that can then be called from both the constructor and the new `.setState()` function. In fact, I’m going to implement this as two functions, one that throws errors with detailed error messages, and one which simply returns `true` or `false`:
 
 ```javascript
 /**
@@ -248,14 +248,14 @@ if(typeof s !== 'undefined' && !isAutomatonState(s, rows, cols)){
 }
 ```
 
-In theory, these changes to the code’s structure should have had no effect on the code’s functionality. That’s literally what it means to re-factor code. Before we proceed we should validate that we haven’t introduced any bugs during our refactoring by re-running the QUnit test suite (`test/index.html`).
+In theory, these changes to the code’s structure should have had no effect on the code’s functionality. That’s literally what it means to refactor code. Before we proceed we should validate that we haven’t introduced any bugs during our refactoring by rerunning the QUnit test suite (`test/index.html`).
 
 We’re now ready to write our function for setting the state of a CA.
 
 We’ll add support for specifying the state in one of three formats:
 
 1.  A single state as a number, string, or boolean. This single state should be applied to each cell.
-2.  A 2D array of states, i.e., a 2D array of numbers, strings, or booleans. This grid must have exactly the same dimensions as the CA itself, and each cell in the CA will have its state updated to match the value of the corresponding array element.
+2.  A 2D array of states, i.e., a 2D array of numbers, strings, or booleans. This grid must have exactly the same dimensions as the CA itself. Each cell in the CA will have its state updated to match the value of the corresponding array element.
 3.  A callback that takes the x and y coordinates of the cell as arguments, and returns a valid state, i.e. a boolean, number, or string. This function will be called once for each cell to determine its new state.
 
 We now know everything needed to implement the function:
@@ -343,7 +343,7 @@ if(typeof s !== 'undefined'){
 }
 ```
 
-Finally, we need to add tests for this new functionality to our QUnit test suite. We should add tests to check that both the constructor, and the `.setState()` function both correctly set the state of a CA.
+Finally, we need to add tests for this new functionality to our QUnit test suite. We should add tests to check that both the constructor and the `.setState()` function both correctly set the state of a CA.
 
 Let’s start by adding tests to verify that the constructor successfully initialises all cells to a given state when passed a state as an optional sixth argument. I did this by adding the following code to the bottom of the _‘bartificer.ca.Automaton prototype > constructor: argument processing’_ test:
 
@@ -434,7 +434,7 @@ QUnit.test('.setState()', function(a){
 });
 ```
 
-Now that we know this much of the code is working we should update our sample page so it initialises the CA to a random state automatically. We do this by updating the initialisation code in `sample.html` to:
+Now that we know this much of the code is working, we should update our sample page so it initialises the CA to a random state automatically. We do this by updating the initialisation code in `sample.html` to:
 
 ```javascript
 // a globally scoped variable to hold the automaton object
@@ -474,14 +474,14 @@ $(function(){
 
 ## Add a Step Function
 
-Now that we can set an initial state on our CAs the next thing we need the ability to tick the CA forward by one step, updating the state of all the cells using the step function.
+Now that we can set an initial state on our CAs, the next thing we need is the ability to tick the CA forward by one step, updating the state of all the cells using the step function.
 
 We’ll do that by adding a function named `.step()` to the `bartificer.ca.Automaton` prototype. This function will do the following:
 
 1.  Loop through the entire grid and set the next state of each cell
-2.  Loop through the entire grid and advance and re-render each cell
+2.  Loop through the entire grid and advance and rerender each cell
 
-In order to calculate the next state of any given cell we need to call the step function with the current state of the cell, and the current state of all it’s neighbouring cells. This means that before we can write `.step()`, we need to write a function for returning the current state of all the neighbours of a given cell. We’ll name this function `.cellNeighbourStates()`, and have it return an array of eight cell states where the state in position zero is the one from the cell directly above the current cell, and then clockwise from there.
+In order to calculate the next state of any given cell, we need to call the step function with the current state of the cell and the current state of all it’s neighbouring cells. This means that, before we can write `.step()`, we need to write a function for returning the current state of all the neighbours of a given cell. We’ll name this function `.cellNeighbourStates()`, and have it return an array of eight cell states where the state in position zero is the one from the cell directly above the current cell, and then clockwise from there.
 
 ```javascript
 /**
@@ -556,7 +556,7 @@ QUnit.test('.cellNeighbourStates()', function(a){
 });
 ```
 
-Now that we know `.cellNeighbourStates()` works correctly we’re ready to write `.step()`:
+Now that we know `.cellNeighbourStates()` works correctly, we’re ready to write `.step()`:
 
 ```javascript
 /**
@@ -630,7 +630,7 @@ QUnit.test('.step()', function(a){
 });
 ```
 
-To test our step function visually, let’s update `sample.html` to go from using an anonymous function that always sets the next state to `true`, to one that inverts the state of each cell. We can do this by changing the anonymous function passed to the `bartificer.ca.Automaton` constructor from:
+To test our step function visually, let’s update `sample.html` to go from using an anonymous function that always sets the next state to `true` to one that inverts the state of each cell. We can do this by changing the anonymous function passed to the `bartificer.ca.Automaton` constructor from:
 
 ```javascript
 function(){ return true; }, // always set the state to true
@@ -642,7 +642,7 @@ To:
 function(cs){ return cs ? false : true; }, // always invert the state
 ```
 
-If we now re-load `sample.html` in our browser we can see `.step()` in action by entering the following in the JavaScript console:
+If we now reload `sample.html` in our browser, we can see `.step()` in action by entering the following in the JavaScript console:
 
 ```javascript
 sampleCA.step();
@@ -682,7 +682,7 @@ function lifeStep(currentState, neighbourStates){
 }
 ```
 
-With that function written we can again update our call to the `bartificer.ca.Automaton` constructor so it uses this step function. The Game of Life needs a littler more room to really work, so let’s also update our call to the constructor to build a CA with more rows and columns:
+With that function written, we can again update our call to the `bartificer.ca.Automaton` constructor so it uses this step function. The Game of Life needs a little more room to really work. Let’s also update our call to the constructor to build a CA with more rows and columns:
 
 ```javascript
 // use the constructor to build an automaton
@@ -703,7 +703,7 @@ sampleCA.step();
 
 ## Adding a Step Button
 
-Now that we can advance the game of life one step at a time using the JavaScript console we’re ready to add a button to the page to expose that functionality to users.
+Now that we can advance the game of life one step at a time using the JavaScript console, we’re ready to add a button to the page to expose that functionality to users.
 
 First, we’ll need some HTML markup for the button. At the moment the entire `<main>` element is used as the container for the CA. We should move the CA into a `<div>` within `<main>` so we can also add the button into `<main>`. This gives us the following new markup for the main section of the page:
 
@@ -728,7 +728,7 @@ $('#step1_btn').click(function(){
 });
 ```
 
-Now that our sample page implements Conway’s Game of Life, it makes sense to tweak the text a little, so with all that done, the full source for the final sample page is included below:
+Now that our sample page implements Conway’s Game of Life, it makes sense to tweak the text a little. With all that done, the full source for the final sample page is included below:
 
 ```html
 <!DOCTYPE HTML>
@@ -847,6 +847,6 @@ Using `sample.html` from [the release named PBS42-Challenge-StartingPoint on Git
 
 It’s great to finally get to the point in the series where our three threads — HTML, CSS & JavaScript — have come together into an actual app. We really have created our own zero-player online game!
 
-From a CSS & HTML point of view the next step in the series will be to learn about responsive web design, and we’ll do that using the free and open source Bootstrap 4 library. From a JavaScript point of view the next step will be to upgrade ourselves from JavaScript ES5 to ES6. When we started our explorations of JavaScript ES 6 existed, but there just wasn’t enough browser support to consider using it. Thankfully that has now changed, so it’s time we started to benefit from the improvements ES6 has to offer us.
+From a CSS & HTML point of view, the next step in the series will be to learn about responsive web design. We’ll do that using the free and open source Bootstrap 4 library. From a JavaScript point of view the next step will be to upgrade ourselves from JavaScript ES5 to ES6. When we started our explorations of JavaScript, ES 6 existed, but there just wasn’t enough browser support to consider using it. Thankfully that has now changed. It’s time we started to benefit from the improvements ES6 has to offer us.
 
 I was in two minds which to do first, Bootstrap or ES6, but working on this instalment made that decision very easy — we’ll be looking at ES6 in the next instalment. Why? For purely selfish reasons — I’ve been using ES7 in work for the past few months, so being forced to write ES5 code now is just painful! I wish browser support was good enough to go all the way to ES7 in this series, but it’s not, so I’ll have to settle for ES6 for now 🙂

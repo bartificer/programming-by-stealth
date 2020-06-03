@@ -1,16 +1,16 @@
 # PBS 41 of x – Form Events
 
-In this instalment we’ll tie up the last few loose ends related to web forms. With web forms under our belts, we’ll then be ready to pick up where we left off with our cellular automata JavaScript prototypes, and combine our HTML, JavaScript, and CSS skills together to make our first web app – an implementation of [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
+In this instalment we’ll tie up the last few loose ends related to web forms. With web forms under our belts, we’ll then be ready to pick up where we left off with our cellular automata JavaScript prototypes and combine our HTML, JavaScript, and CSS skills together to make our first web app – an implementation of [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
-This instalment breaks down into two distinct parts – our first look at keyboard interaction with web forms, and a final look at form-related events.
+This instalment breaks down into two distinct parts – our first look at keyboard interaction with web forms and a final look at form-related events.
 
-When it comes to keyboard interaction we’ll start by looking at how browsers treat regular web forms, and then we’ll move on to supporting keyboard interaction with custom web form UI elements like the star-rating example from [instalment 36](https://bartificer.net/pbs36).
+When it comes to keyboard interaction, we’ll start by looking at how browsers treat regular web forms. Then we’ll move on to supporting keyboard interaction with custom web form UI elements like the star-rating example from [instalment 36](https://pbs.bartificer.net/pbs36).
 
 Finally, we’ll wrap up with a handy reference table summarising the most important webform-related JavaScripts events, giving some guidance on their use.
 
 There’s just one sample file associated with this instalment, and it’s available for download as a ZIP file [here](https://www.bartbusschots.ie/s/wp-content/uploads/2017/10/pbs41.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs41.zip).
 
-# Matching Podcast Episode 505
+## Matching Podcast Episode 505
 
 Listen Along: Chit Chat Across the Pond Episode 505
 
@@ -22,19 +22,19 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 A decade ago I could have said that all standard form elements as rendered by all browsers could be controlled with the keyboard. I would simply have said that you tabbed from form element to form element and used the spacebar, enter key and arrow keys to manipulate the values. Tab to a checkbox, hit space to toggle its state, then tab to a drop-down and use the arrow keys to change the value, then tab to a button and hit the spacebar to activate it.
 
-That still works in most browsers today, but no longer in all – Safari is the odd-ball in this story. By default, Safari only tabs to text boxes, text areas, and drop-down menus – Checkboxes, radio buttons, and buttons are skipped over. If you want to use the keyboard to activate radio buttons, checkboxes, or buttons you have to option+tab, or, go to the _Advanced_ tab in Safari’s preferences and enable the _Press Tab to highlight each item on a web page_ setting.
+That still works in most browsers today, but no longer in all – Safari is the oddball in this story. By default, Safari only tabs to text boxes, text areas, and drop-down menus – Checkboxes, radio buttons, and buttons are skipped over. If you want to use the keyboard to activate radio buttons, checkboxes, or buttons, you have to option+tab, or go to the _Advanced_ tab in Safari’s preferences and enable the _Press Tab to highlight each item on a web page_ setting.
 
-The people for whom keyboard navigation is by far the most important are those who, for one reason or another, can’t use a pointing device — perhaps they can’t see the screen, or perhaps they don’t have the dexterity to manipulate a pointer. Thankfully, Safari plays nice with the built-in accessibility tools in macOS, so the non-standard behaviour regular folks encounter doesn’t mess things up for our friends with special needs.
+The people for whom keyboard navigation is by far the most important are those who, for one reason or another, can’t use a pointing device — perhaps they can’t see the screen, or perhaps they don’t have the dexterity to manipulate a pointer. Thankfully, Safari plays nice with the built-in accessibility tools in macOS. So the non-standard behaviour regular folks encounter doesn’t mess things up for our friends with special needs.
 
-I think Apple’s logic is that people generally only want to tab between things they can type in, so while Safari’s default behaviour is non-standard, it might be more in line with the expectations of regular human beings. I have no strong opinion either way though – as a user I find it convenient to be able to quickly tab form text box to text box without having to tab past a sea of checkboxes and radio buttons, but as a developer I find this unique behaviour irksome – conventions are for following, not flouting!
+I think Apple’s logic is that people generally only want to tab between things they can type in. So while Safari’s default behaviour is non-standard, it might be more in line with the expectations of regular human beings. I have no strong opinion either way though – as a user I find it convenient to be able to quickly tab form text box to text box without having to tab past a sea of checkboxes and radio buttons, but as a developer I find this unique behaviour irksome – conventions are for following, not flouting!
 
-The key point though is that if you confine yourself to using only standard form elements then your web forms will automatically be accessible.
+The key point though is that, if you confine yourself to using only standard form elements, then your web forms will automatically be accessible.
 
-However, that’s not always realistic — there simply aren’t stand form elements for all possible user interactions you might want to include in your web forms or web apps. We looked at an example of this back in instalment 36 when we learned how to build a custom UI for star ratings. At the time I did my best to make that custom UI accessible by adding ARIA attributes, but, when Allison tried to use that code as part of her solution to the challenge from instalment 36, she discovered a rather important oversight on my part. I forgot to add keyboard support to the UI! This oversight made the custom UI worse than useless for anyone relying on accessibility tools, because those tools simulate keyboard interactions. Because the ARIA tags were present, the accessibility tools registered the existence of the custom UI, but when users tried to interact with the UI, nothing happened, because the keyboard events they were generating were being ignored by my code — how frustrating that must have been!
+However, that’s not always realistic — there simply aren’t standard form elements for all possible user interactions you might want to include in your web forms or web apps. We looked at an example of this back in instalment 36 when we learned how to build a custom UI for star ratings. At the time I did my best to make that custom UI accessible by adding ARIA attributes, but, when Allison tried to use that code as part of her solution to the challenge from instalment 36, she discovered a rather important oversight on my part. I forgot to add keyboard support to the UI! This oversight made the custom UI worse than useless for anyone relying on accessibility tools, because those tools simulate keyboard interactions. Because the ARIA tags were present, the accessibility tools registered the existence of the custom UI, but when users tried to interact with the UI, nothing happened, because the keyboard events they were generating were being ignored by my code — how frustrating that must have been!
 
 ## Custom UIs with Keyboard Support
 
-Rather than just retro-fitting keyboard support into the star rating UI from last time, we’re going to build a different custom UI from scratch, with keyboard support.
+Rather than just retrofitting keyboard support into the star rating UI from last time, we’re going to build a different custom UI from scratch, with keyboard support.
 
 What we’re going to build is a Netflix-style rating UI – it will have three states, no rating, a thumbs up, and a thumbs down.
 
@@ -42,12 +42,12 @@ The big-picture design will take the following form:
 
 *   The rating will be stored in a hidden form element — an empty string for no rating, a 1 for a thumbs up, and a -1 for a thumbs down
 *   The UI itself will consist of an outer containing span which contains two inner spans which will act as radio buttons, one for thumbs up, and one for thumbs down
-*   Both faux-buttons will be glyph-icon
-*   ARIA attributes will be used to make the UI understandable by screen readers – it will be marked up as behaving like a radio button group (since setting thumbs up will un-set thumbs down and _vica-versa_)
-*   Click handlers will be added to both faux-buttons to update the value in the hidden input.
+*   Both faux buttons will be glyph-icon
+*   ARIA attributes will be used to make the UI understandable by screen readers – it will be marked up as behaving like a radio button group (since setting thumbs up will unset thumbs down and _vice-versa_)
+*   Click handlers will be added to both faux buttons to update the value in the hidden input.
 *   A change handler will be added to the hidden input so the ARIA attributes and icons can be kept consistent with the value stored in the input
 *   The two button spans will be marked as tab targets so they can be highlighted with the keyboard.
-*   Keyboard event handlers will be added to both button spans to trigger the click handlers when ever the space bar is pressed while the span is highlighted
+*   Keyboard event handlers will be added to both button spans to trigger the click handlers whenever the space bar is pressed while the span is highlighted
 
 Let’s start with the HTML markup:
 
@@ -60,21 +60,21 @@ Let’s start with the HTML markup:
 <input type="hidden" name="rating" id="rating_ipt">
 ```
 
-At the very simplest level we have a label, a span that contains the entire UI, and inside that, a span for thumbs up, and one for thumbs down. We use ARIA attributes to associate the label with the UI, and to mark the container span as a button group, and each inner span as an un-checked radio button.
+At the very simplest level we have a label, a span that contains the entire UI, and inside that, a span for thumbs up, and one for thumbs down. We use ARIA attributes to associate the label with the UI, and to mark the container span as a button group, and each inner span as an unchecked radio button.
 
 The one thing in the code above we haven’t seen before is the tabindex attribute – that was the first oversight in the star rating UI!
 
 ### The `tabindex` Attribute
 
-The `tabindex` attribute is used to mark an HTML element as being part of the tab-sequence of the page. By default, most HTML elements don’t appear in the tab-sequence, because they default to having a `tabindex` of `-1`. For an element to appear in the tab sequence it has to have a numeric `tabindex` greater than or equal to zero. Form elements have a default `tabindex` of `0`, hence, they can be tabbed to by default.
+The `tabindex` attribute is used to mark an HTML element as being part of the tab-sequence of the page. By default, most HTML elements don’t appear in the tab-sequence, because they default to having a `tabindex` of `-1`. For an element to appear in the tab sequence, it has to have a numeric `tabindex` greater than or equal to zero. Form elements have a default `tabindex` of `0`, hence, they can be tabbed to by default.
 
-The order elements appear in the tab sequence is determined by two things – the element’s position within the page source, and the value of the element’s `tabindex` attribute. The sequence goes as follows — first, all elements with a `tabindex` of zero, starting at the top of the source, then all those with a `tabindex` of one, again, starting at the top of the source, then all those with a `tabindex` of two, and so on until there are no elements left to tab to, at which point the cycle repeats.
+The order elements appear in the tab sequence is determined by two things – the element’s position within the page source and the value of the element’s `tabindex` attribute. The sequence goes as follows — first, all elements with a `tabindex` of zero, starting at the top of the source, then all those with a `tabindex` of one, again, starting at the top of the source, then all those with a `tabindex` of two, and so on until there are no elements left to tab to, at which point the cycle repeats.
 
-Usually, unless you’re doing something unusual like using CSS to re-arrange large chunks of your form, a `tabindex` of zero on all form elements will probably give you the behaviour you want. Since the standard form elements all default to a `tabindex` of zero anyway, that means you usually only have to explicitly add the `tabindex` attribute to custom UI elements like our thumb rating example, and you’ll almost always be setting it to zero.
+Usually, unless you’re doing something unusual like using CSS to rearrange large chunks of your form, a `tabindex` of zero on all form elements will probably give you the behaviour you want. Since the standard form elements all default to a `tabindex` of zero anyway, that means you usually only have to explicitly add the `tabindex` attribute to custom UI elements like our thumb rating example, and you’ll almost always be setting it to zero.
 
 ### Making Custom UI Elements Look Clickable
 
-With the help of a little CSS we can use the shape of the mouse pointer to help regular users understand that they can click on our thumbs up and thumbs down icons. We might also use the `:hover` pseudo-class for the same reason. The CSS below does both:
+With the help of a little CSS, we can use the shape of the mouse pointer to help regular users understand that they can click on our thumbs up and thumbs down icons. We might also use the `:hover` pseudo-class for the same reason. The CSS below does both:
 
 ```css
 /* Style the Ratings UI */
@@ -89,7 +89,7 @@ span#rating_ui > span:hover {
 
 ### Making the UI Reflect the Value of the Input
 
-The first step to bringing our custom UI to life is to add a change handler to the hidden input that will update the UI to reflect its current value. As we’ve seen many times before, we need to add this change handler inside a document-ready event handler.
+The first step to bringing our custom UI to life is to add a change handler to the hidden input that will update the UI to reflect its current value. As we’ve seen many times before, we need to add this change handler inside a document ready event handler.
 
 ```javascript
 // add a change handler to the rating hidden input
@@ -137,11 +137,11 @@ $('#rating_ipt').val(1).change(); // set thumbs up
 $('#rating_ipt').val('').change(); // blank the rating
 ```
 
-Notice that because we are altering the value programmatically, we have to explicitly invoke the change handler we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
+Notice that, because we are altering the value programmatically, we have to explicitly invoke the change handler we added by calling `.change()` on the jQuery object representing the hidden input without arguments.
 
 ### Making the UI Work with a Mouse and Touch
 
-The next step is to add a click handler to both buttons – because we have added data attributes containing the values represented by the faux-buttons to the spans themselves, we can add the identical handler to both. The handler simply updates the value in the hidden input, and calls the change handler, just like we did from the console:
+The next step is to add a click handler to both buttons – because we have added data attributes containing the values represented by the faux buttons to the spans themselves, we can add the identical handler to both. The handler simply updates the value in the hidden input, and calls the change handler, just like we did from the console:
 
 ```javascript
 // add click handlers to the thumbs up and down buttons
@@ -150,7 +150,7 @@ $('span#rating_ui > span').click(function(){
 });
 ```
 
-We should now be able to alter our rating by clicking to tapping on the thumb icons.
+We should now be able to alter our rating by clicking or tapping on the thumb icons.
 
 ### Making the UI Work with the Keyboard
 
@@ -164,11 +164,11 @@ It’s very important to note that you can’t register your handler to only be 
 
 Up until this point in the series there has been no need to mention that every jQuery event handler is actually passed an argument when triggered by an event. When a jQuery event handler is invoked, the first argument passed will be a jQuery event object ([see jQuery API for details](http://api.jquery.com/category/events/event-object/)). Up until now we have been ignoring this argument, but we need to stop doing that now. By convention, and only by convention, I’ll be naming that first argument `e` — I strongly suggest you do the same, since that’s what every jQuery developer expects to see.
 
-I’m not going to go into a deep explanation of every function and property provided by jQuery event objects (that’s what the API documentation is for 😉), instead, I’m just going to explain the functionality we need in this instance.
+I’m not going to go into a deep explanation of every function and property provided by jQuery event objects (that’s what the API documentation is for 😉). Instead, I’m just going to explain the functionality we need in this instance.
 
 Firstly, once we have handled the keypress, we want to stop the event bubbling up through the DOM. We do that by calling `.stopPropagation()` on the event (which we will be naming `e`).
 
-Secondly, we need to figure out what key was pressed, was it the space, or was it some other key we don’t care about? For this we use the event’s `.which` property. Most annoyingly, this will give us the numeric code for the pressed key, not a string value. For our purposes all we need to know is that the code for the spacebar is `32`, but should you need any other codes, [this great web app](http://keycode.info/) will show you them.
+Secondly, we need to figure out what key was pressed: was it the space? or was it some other key we don’t care about? For this we use the event’s `.which` property. Most annoyingly, this will give us the numeric code for the pressed key, not a string value. For our purposes all we need to know is that the code for the spacebar is `32`, but should you need any other codes, [this great web app](http://keycode.info/) will show you them.
 
 Finally, what exactly do we want to do when the spacebar is pressed? Well – we’d like pressing the space to be the equivalent of clicking the icon, so the simplest thing to do is to simply call the `click` handler from the `keypress` handler.
 
@@ -392,12 +392,12 @@ Before we finish with forms, I want take a final look at event form-related even
 
 | Element                                                    | Event(s)           | Usage                                                                                                                                                                                                                                                 |
 | ---------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<form>`                                                   | `submit` & `reset` | If the form contains elements with custom validations, they should be re-evaluated by handlers tied to both of these events. If the form contains custom UI elements, there should be a `reset` handler to ensure the custom element resets properly. |
+| `<form>`                                                   | `submit` & `reset` | If the form contains elements with custom validations, they should be reevaluated by handlers tied to both of these events. If the form contains custom UI elements, there should be a `reset` handler to ensure the custom element resets properly. |
 | `<button>`                                                 | `click`            | Use this handler to attach an action to a button.                                                                                                                                                                                                     |
-| `<input type=checkbox>`, `<input type=radio>` & `<select>` | `change`           | If custom validation is needed on any of these elements it should be attached to this handler.                                                                                                                                                        |
-| `<input type=text>` & `<textarea>`                         | `input`            | If custom validation is needed on text fields it should be attached to this handler.                                                                                                                                                                  |
+| `<input type=checkbox>`, `<input type=radio>` & `<select>` | `change`           | If custom validation is needed on any of these elements, it should be attached to this handler.                                                                                                                                                        |
+| `<input type=text>` & `<textarea>`                         | `input`            | If custom validation is needed on text fields, it should be attached to this handler.                                                                                                                                                                  |
 
-Note that in the previous instalment we used the `keyup` event for text inputs rather than the `input` event suggested here. That was the old way of doing things, and as listener Jill pointed out, that event has significant short-comings — not all text comes from typing! Text fields can auto-complete, and users can paste with the mouse, and in those scenarios, the `keyup` event will not fire. Thankfully the newer `input` event will fire in those scenarios because it fires on all input, regardless of the source.
+Note that in the previous instalment we used the `keyup` event for text inputs rather than the `input` event suggested here. That was the old way of doing things, and as listener Jill pointed out, that event has significant shortcomings — not all text comes from typing! Text fields can autocomplete, and users can paste with the mouse, and in those scenarios, the `keyup` event will not fire. Thankfully the newer `input` event will fire in those scenarios because it fires on all input, regardless of the source.
 
 ## Useful Links
 
@@ -406,11 +406,11 @@ Note that in the previous instalment we used the `keyup` event for text inputs r
 *   MDN’s Event Reference — a definitive list of all possible events fired by browsers with links to the documentation describing each – [developer.mozilla.org/…](https://developer.mozilla.org/en-US/docs/Web/Events)
 *   The `.validate()` jQuery plugin – [jqueryvalidation.org](https://jqueryvalidation.org)
 
-We’ve taken HTML 5 form validation as far as it can go today. It’s a new feature, and it can’t do everything you might conceivably need. Should you find yourself in need of more powerful validation, you’ll have two choices – write your own validation functions from scratch using your JavaScript and jQuery skills, or, find and use an existing third-party library. Basically, the age old question, do you re-invent the wheel, or seek out a good wheel created by someone else. There are pros and cons to both approaches, and you’ll hear passionate arguments on all sides.
+We’ve taken HTML 5 form validation as far as it can go today. It’s a new feature, and it can’t do everything you might conceivably need. Should you find yourself in need of more powerful validation, you’ll have two choices – write your own validation functions from scratch using your JavaScript and jQuery skills, or find and use an existing third-party library. Basically, the age old question, do you reinvent the wheel, or seek out a good wheel created by someone else? There are pros and cons to both approaches, and you’ll hear passionate arguments on all sides.
 
 For what its worth, my advice is to default to using a third-party library, and to fall back on writing your own only when that fails for some reason.
 
-Should you choose to use a third-party library for more advanced form validation, then I would recommend you give the `.validate()` jQuery plugin a go. It’s a mature project that’s under active development, it’s heavily used in the community, and it leverages off jQuery, which you already know. To give you some idea of the project’s pedigree — it’s been on the go since 2006, and its lead developer is a developer with the jQuery project, and the maintainer of the QUnit testing suite we’ve used throughout much of this series.
+Should you choose to use a third-party library for more advanced form validation, then I would recommend you give the `.validate()` jQuery plugin a go. It’s a mature project that’s under active development, it’s heavily used in the community, and it leverages off jQuery, which you already know. To give you some idea of the project’s pedigree — it’s been on the go since 2006, and its lead developer is a developer with the jQuery project and the maintainer of the QUnit testing suite we’ve used throughout much of this series.
 
 ## A Challenge
 
@@ -423,4 +423,4 @@ Update the web form you created in the previous challenge in the following ways:
 
 ## Final Thoughts
 
-We now have a good grounding in HTML forms, so we’re finally ready to return to our cellular automata prototypes and bring them to life as a web app.
+We now have a good grounding in HTML forms. We’re finally ready to return to our cellular automata prototypes and bring them to life as a web app.
