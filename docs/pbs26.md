@@ -126,9 +126,9 @@ Data attributes should be named in all lower case, and different parts of the na
 
 ## jQuery and Data Attributes
 
-Using jQuery, you can both read and write data attributes. The only slight confusion is that jQuery follows the HTML5 spec, and applies a mapping to data attribute names, converting them to camel case. So, the raw HTML data attribute `data-unit-price` becomes `unitPrice` in jQuery.
+Using jQuery, you can both read and write data attributes. The only slight confusion is that jQuery follows the HTML5 spec, and applies a mapping to data attribute names, converting them to camel-case. So, the raw HTML data attribute `data-unit-price` becomes `unitPrice` in jQuery.
 
-The jQuery for interacting with data attributes is `.data()`. The first argument is always the name of the data attribute (in the short camel case format). If there is no second argument, the function returns the current value of the data attribute. If there is a second argument, then the function uses it as the new value for the data attribute.
+The jQuery for interacting with data attributes is `.data()`. The first argument is always the name of the data attribute (in the short camel-case format). If there is no second argument, the function returns the current value of the data attribute. If there is a second argument, then the function uses it as the new value for the data attribute.
 
 For example, given the following HTML snippet:
 

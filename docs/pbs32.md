@@ -1,8 +1,8 @@
 # PBS 32 of x – JS Error Handling Revision | HTML Selects
 
-In this instalment we’ll continue our twin-track approach of mixing a little JavaScript revision with learning some new HTML. In this case, we’ll revise JavaScript’s error handling mechanism (`throw`, `try` & `catch`), and learn how to use the HTML `<select>` tag to create dropdown menus and multiple-selection lists.
+In this instalment we’ll continue our twin-track approach of mixing a little JavaScript revision with learning some new HTML. In this case, we’ll revise JavaScript’s error handling mechanism (`throw`, `try` & `catch`), and learn how to use the HTML `<select>` tag to create drop-down menus and multiple-selection lists.
 
-We won’t be updating our date and time prototypes, but we will be using them in example HTML pages. So in this instalment our two tracks come into direct contact with each other for the first time. We’ll use an HTML page with multiple dropdowns to allow users to select a date, and then render that date in many formats using our `pbs.Date` prototype. We’ll also use JavaScript’s error handling features to respond appropriately when a user attempts to render an impossible date like the 31st of February 2010.
+We won’t be updating our date and time prototypes, but we will be using them in example HTML pages. So in this instalment our two tracks come into direct contact with each other for the first time. We’ll use an HTML page with multiple drop-downs to allow users to select a date, and then render that date in many formats using our `pbs.Date` prototype. We’ll also use JavaScript’s error handling features to respond appropriately when a user attempts to render an impossible date like the 31st of February 2010.
 
 Finally, the challenge set at the end of this instalment will also combine our prototypes with HTML forms, and JavaScript error handling.
 
@@ -351,7 +351,7 @@ Executing this code now results in the following being written to the console:
 
 These are all very contrived examples. To get a better idea of what’s going on, let’s use our date & time prototypes within a web page. Open the file `pbs32a.html` from this instalment’s ZIP file in a browser (make sure the file `pbs.datetime.js` exits in the same folder).
 
-This page lets you specify a date using three dropdown menus, and then render that date in four different formats. We’ll look at how the dropdowns work in the second half of this instalment. For now, what I want to draw your attention to is what happens when you press the button to render the date. If you press the button with a sane date like the 5th of April 2017, you’ll see the page displays that date in International, European, American, and English formats. It probably won’t surprise you to learn that it does so using our `pbs.Date` prototype.
+This page lets you specify a date using three drop-down menus, and then render that date in four different formats. We’ll look at how the drop-downs work in the second half of this instalment. For now, what I want to draw your attention to is what happens when you press the button to render the date. If you press the button with a sane date like the 5th of April 2017, you’ll see the page displays that date in International, European, American, and English formats. It probably won’t surprise you to learn that it does so using our `pbs.Date` prototype.
 
 Now, let’s see what the page does when you ask it to do the impossible – to render the 31st of February 2001.
 
@@ -389,7 +389,7 @@ $('#render_btn').click(function(){
 }).click();
 ```
 
-For now, please accept that `$years.val()`, `$months.val()` & `$days.val()` return the values selected in the dropdown menus, and focus instead on how errors are dealt with.
+For now, please accept that `$years.val()`, `$months.val()` & `$days.val()` return the values selected in the drop-down menus, and focus instead on how errors are dealt with.
 
 The handler starts by creating a `pbs.Date` object using all default values (no arguments passed to the constructor). Then, the handler does all the risky stuff, i.e. dealing with user input within a `try` block. Accompanying that `try` block is the `catch` block which specifies what to do should the code inside the `try` block throw an error.
 
@@ -397,11 +397,11 @@ The key point is that, when we wrote the `pbs.Date` prototype, we had no idea th
 
 ## HTML Selects
 
-In HTML, dropdown menus like those used in the above example are known as _selects_, and they are defined using the HTML tags `<select>` & `<option>`. The dropdown menu itself is described by the `<select>` tag, and each option within the dropdown by a separate `<option>` tag.
+In HTML, drop-down menus like those used in the above example are known as _selects_, and they are defined using the HTML tags `<select>` & `<option>`. The drop-down menu itself is described by the `<select>` tag, and each option within the drop-down by a separate `<option>` tag.
 
-As we discussed in the previous instalment, all HTML form inputs are designed to produce name-value pairs. With dropdowns, the name attribute is set on the `<select>` tag, and each `<option>` tag defines the value it represents. Like checkboxes and individual radio buttons, dropdowns should be labeled with a `<label>` tag, either by wrapping the entire dropdown and the text describing it within a `<label>` tag, or by giving the dropdown an ID, and associating a separate `<label>` tag to the dropdown with the `for` attribute.
+As we discussed in the previous instalment, all HTML form inputs are designed to produce name-value pairs. With drop-downs, the name attribute is set on the `<select>` tag, and each `<option>` tag defines the value it represents. Like checkboxes and individual radio buttons, drop-downs should be labeled with a `<label>` tag, either by wrapping the entire drop-down and the text describing it within a `<label>` tag, or by giving the drop-down an ID, and associating a separate `<label>` tag to the drop-down with the `for` attribute.
 
-The text the user sees for each option is independent of the value that option represents, as illustrated with the following sample dropdown:
+The text the user sees for each option is independent of the value that option represents, as illustrated with the following sample drop-down:
 
 ```html
 <label>
@@ -422,11 +422,11 @@ The user sees the contents of the `<option>` tags, while the value part of the n
 
 > ### Aside:
 >
-> A quick note for those of you using the CodeRunner editor: if you set the execution language to HTML (the dropdown next to the run button, not the syntax highlighting setting), you can _‘run’_ HTML directly in the CodeRunner console as shown in this screenshot:
+> A quick note for those of you using the CodeRunner editor: if you set the execution language to HTML (the drop-down next to the run button, not the syntax highlighting setting), you can _‘run’_ HTML directly in the CodeRunner console as shown in this screenshot:
 >
 > ![HTML in CodeRunner](../assets/pbs32/Screen-Shot-2017-03-13-at-01.08.24-e1489367406400.png)
 
-By default, the first option in a dropdown is automatically selected, but you can have any option be the default by adding the attribute `selected="selected"` to the `<option>` tag of your choice.
+By default, the first option in a drop-down is automatically selected, but you can have any option be the default by adding the attribute `selected="selected"` to the `<option>` tag of your choice.
 
 Options can also be arranged into labeled groups with the `optgroup` tag. For example, we can enhance our example above like so:
 
@@ -451,9 +451,9 @@ What day of the Week would you like Tacos?
 
 Note that the groupings are purely for presentation. The group labels can’t be selected because they are not actually options within the menu.
 
-HTML selects don’t have to be rendered as a dropdown menu. They can also be rendered as a scrollable list. You can switch between modes using the `size` attribute. If the size is 1, you have a dropdown. If the size is greater than 1, you have a scrollable list. The HTML 5 spec does not say sizes between 1 and 4 are not allowed, but some browsers (Safari for example) will never render a scrollable menu with a size smaller than 4, regardless of what value you give the `size` attribute. If you set it to 1 you get a drop down; if you set it to 2 you get a four-row tall scrollable list; same if you set it to 3; and obviously the same if you set it to 4. For numbers above 4 Safari starts to behave as expected, expanding the scrollable list to the requested size.
+HTML selects don’t have to be rendered as a drop-down menu. They can also be rendered as a scrollable list. You can switch between modes using the `size` attribute. If the size is 1, you have a drop-down. If the size is greater than 1, you have a scrollable list. The HTML 5 spec does not say sizes between 1 and 4 are not allowed, but some browsers (Safari for example) will never render a scrollable menu with a size smaller than 4, regardless of what value you give the `size` attribute. If you set it to 1 you get a drop-down; if you set it to 2 you get a four-row tall scrollable list; same if you set it to 3; and obviously the same if you set it to 4. For numbers above 4 Safari starts to behave as expected, expanding the scrollable list to the requested size.
 
-Finally, selects can allow multiple values to be selected at the same time by setting the attribute `multiple="multiple"` on the `<select>` tag. Allowing multiple selections results in the select always being rendered as a scrollable list rather than a dropdown. To select multiple elements you have to use the same key combinations you would use to select multiple files in your OS’s file manager, so cmd+click on a Mac. When multiple options are selected, the form data will contain multiple name-value pairs for the select – the name of the select paired with each selected value.
+Finally, selects can allow multiple values to be selected at the same time by setting the attribute `multiple="multiple"` on the `<select>` tag. Allowing multiple selections results in the select always being rendered as a scrollable list rather than a drop-down. To select multiple elements you have to use the same key combinations you would use to select multiple files in your OS’s file manager, so cmd+click on a Mac. When multiple options are selected, the form data will contain multiple name-value pairs for the select – the name of the select paired with each selected value.
 
 Personally, I find scrollable lists ugly and multiple selection difficult for users to figure out. So I avoid using either the `size` or `multiple` attributes. If I need users to select multiple values, I prefer to give them a collection of checkboxes click on instead.
 
@@ -524,7 +524,7 @@ The file `pbs32b.html` in this instalment’s ZIP file contains a sample form wi
 
 All examples in this section can be executed in the web console on `pbs32b.html` from this instalment’s ZIP file (shown above).
 
-As with checkboxes and radio buttons, you can access the `name` of a `<select>` using jQuery’s `.attr()` function with the string `'name'` as the first argument. For example, you can get the name of the days dropdown with:
+As with checkboxes and radio buttons, you can access the `name` of a `<select>` using jQuery’s `.attr()` function with the string `'name'` as the first argument. For example, you can get the name of the days drop-down with:
 
 ```javascript
 $('#taco_day_sel').attr('name')
@@ -577,7 +577,7 @@ $('option[value="chilli_pepper"]', $('#taco_fillings_sel')).prop('selected', tru
 
 Notice that regular selects behave rather like radio buttons – when a given option is selected, the others become unselected automatically. Multi-selects on the other hand behave more like independent checkboxes – selecting chilli peppers did not deselect any other options.
 
-Finally, hand-coding long sequences of options can be very tedious. It’s often advantageous to add a DOM ready event handler to populate a select with options using some kind of loop. You can see three examples of this technique in action in the file `pbs32a.html` from this instalment’s ZIP file. The raw HTML does not define a single option in any of the three dropdowns:
+Finally, hand-coding long sequences of options can be very tedious. It’s often advantageous to add a DOM ready event handler to populate a select with options using some kind of loop. You can see three examples of this technique in action in the file `pbs32a.html` from this instalment’s ZIP file. The raw HTML does not define a single option in any of the three drop-downs:
 
 ```html
 <ul>
@@ -602,7 +602,7 @@ Finally, hand-coding long sequences of options can be very tedious. It’s often
 </ul>
 ```
 
-Instead, all three of the dropdowns are populated using jQuery in a DOM ready event handler:
+Instead, all three of the drop-downs are populated using jQuery in a DOM ready event handler:
 
 ```javascript
 // the DOM ready event handler
@@ -646,11 +646,11 @@ $(function(){
 }
 ```
 
-Note the use of jQuery’s `$()` function with an HTML tag as the first argument to create new HTML elements, the use of jQuery’s `.val()` and `.text()` functions to set the value and text of the newly created `option` elements, and finally the use of jQuery’s `.append()` function to inject the newly created `option` elements into the `select` elements. Also notice that, for each dropdown, jQuery’s `.prop()` function is used to select an appropriate default option.
+Note the use of jQuery’s `$()` function with an HTML tag as the first argument to create new HTML elements, the use of jQuery’s `.val()` and `.text()` functions to set the value and text of the newly created `option` elements, and finally the use of jQuery’s `.append()` function to inject the newly created `option` elements into the `select` elements. Also notice that, for each drop-down, jQuery’s `.prop()` function is used to select an appropriate default option.
 
 ## A Challenge
 
-Using the file `pbs32a.html` from this instalment’s ZIP file as either a starting point, or merely as a relevant example, create a web page that contains five dropdown menus allowing the user to select an hour, minute, day, month, and year, and a button that, when pushed, renders the selected date and time in ISO8601 format (the format outputted by `pbs.DateTime.prototype.toString()`), as well as all permutations of American and European date formats and 12 and 24 hour time formats. When the user chooses an impossible date, the page should handle that error in a sane way.
+Using the file `pbs32a.html` from this instalment’s ZIP file as either a starting point, or merely as a relevant example, create a web page that contains five drop-down menus allowing the user to select an hour, minute, day, month, and year, and a button that, when pushed, renders the selected date and time in ISO8601 format (the format outputted by `pbs.DateTime.prototype.toString()`), as well as all permutations of American and European date formats and 12 and 24 hour time formats. When the user chooses an impossible date, the page should handle that error in a sane way.
 
 ## Final Thoughts
 

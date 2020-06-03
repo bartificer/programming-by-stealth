@@ -488,7 +488,7 @@ Before we look at how to add form inputs of various kinds to our forms, we shoul
 
 As we mentioned before, originally, forms were designed to be submitted to a server for processing – when a submit button is pushed, all the data in the form is encoded and sent to the URL specified by the `action` attribute. Today, many forms are never submitted anywhere, but instead are processed on the client-side using JavaScript. This is what we’ll be doing in this series, at least for the short to medium term.
 
-When forms are submitted, the data the form represents is encoded as name-value pairs. That means that all the various types of form input – checkboxes, radio buttons, dropdowns, text fields, etc. – must produce name-value pairs.
+When forms are submitted, the data the form represents is encoded as name-value pairs. That means that all the various types of form input – checkboxes, radio buttons, drop-downs, text fields, etc. – must produce name-value pairs.
 
 There are multiple different mechanisms for submitting form data to a server, but one of them (GET) involves adding the encoded data to the end of the URL, using the `?` character to mark the start of the form data, the `=` character to separate the names from the values within each name-value pair, and the `&` character to separate the name-value pairs from each other. You may well recognise this description. You’ve probably seen many thousands of URLs with form data encoded into them in your life! An example is in the URL for Allison’s Amazon affiliate link: `https://www.amazon.com/?tag=httppodfeecom-20`.
 
@@ -724,4 +724,4 @@ $('input[type="radio"][name="nerd"]:checked').val()
 
 Now that we’ve learned about static functions, and updated our algorithm for creating prototypes to the final nine-step version, we are finished with our second look at JavaScript prototypes. Before we are ready to look at test-driven-development (TDD), we need to revisit JavaScript’s exception handling features – specifically the `throw`, `try`, and `catch` keywords. This is what we’ll do in the JavaScript portion of the next instalment.
 
-On the HTML side we have now learned a little more about forms in general, and how to add checkboxes and radio button groups into our forms. In the next instalment we’ll look at adding dropdown menus to our forms, and perhaps some of the many text-based inputs supported by HTML 5.
+On the HTML side we have now learned a little more about forms in general, and how to add checkboxes and radio button groups into our forms. In the next instalment we’ll look at adding drop-down menus to our forms, and perhaps some of the many text-based inputs supported by HTML 5.

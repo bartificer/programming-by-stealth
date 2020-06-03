@@ -14,7 +14,7 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 Back in [the third instalment](https://pbs.bartificer.net/pbs3) we learned about three kinds of list in HTML: ordered lists, unordered lists, and definition lists. We’ll now revisit the first two of these from a CSS point of view, looking at some CSS properties that can be used to alter the appearance of ordered and unordered lists.
 
-The HTML for lists creates an outer box, the `<ol>` or `<ul>` tag, containing a series of inner boxes, the `<li>` tags. By default, the `<ol>` and `<ul>` tags have a wide left-padding. By default, the bullets or numbers are placed outside the content region of the the `<li>` tags, and hence, over the wide left padding of the list they are contained within.
+The HTML for lists creates an outer box, the `<ol>` or `<ul>` tag, containing a series of inner boxes, the `<li>` tags. By default, the `<ol>` and `<ul>` tags have a wide left padding. By default, the bullets or numbers are placed outside the content region of the the `<li>` tags, and hence, over the wide left padding of the list they are contained within.
 
 The positioning of the bullet or number outside the content region is a default, but it is not set in stone. The CSS property `list-style-position` controls the positioning. Valid values are `inside` and `outside`. If you position the bullets or numbers `outside`, be aware that, if there is insufficient space for them, they will cover up whatever is to the left of the list, or perhaps even vanish off the left edge of the page!
 

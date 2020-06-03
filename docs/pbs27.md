@@ -300,7 +300,7 @@ I believe the only way to get comfortable creating your own prototypes is to cre
 
 I’ve chosen dates and times as the basis for these challenges because everyone understands what they are without my needing to explain them. JavaScript has its own prototypes for dealing with these things. Those prototypes are infinitely superior to those we will be creating here. The point here is not to create better date or time prototypes than JavaScript provides, but to practice creating prototypes.
 
-To avoid clashing with the names of JavaScript’s built in prototypes, we’ll be working inside the `pbs` namespace, and we’ll go back to using the [PBS JavaScript playground](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
+To avoid clashing with the names of JavaScript’s built-in prototypes, we’ll be working inside the `pbs` namespace, and we’ll go back to using the [PBS JavaScript playground](https://www.bartbusschots.ie/pbsdemos/pbs-JavaScriptPlayground/).
 
 Before we get stuck in, let’s remind ourselves what prototypes are for and how we create our own.
 

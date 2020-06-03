@@ -236,7 +236,7 @@ So, in JavaScript, defining a custom object prototype is a two-step process:
 1.  Define a constructor function – the name of that function will be the name of your prototype. This function should initialise any data attribute objects created from this prototype (using the `this` keyword).
 2.  Add functions to the prototype that belongs to your constructor function.
 
-By convention, JavaScript constructor functions, and hence, prototypes, are named in camel case with a leading capital, hence the built-in prototypes `Array`, `String`, `Boolean`, and `Object`.
+By convention, JavaScript constructor functions, and hence, prototypes, are named in camel-case with a leading capital, hence the built-in prototypes `Array`, `String`, `Boolean`, and `Object`.
 
 The constructor function and its accompanying prototype act as a blueprint that can be used to build as many objects as you like. Each object built with a given constructor is said to be an _instance_ of that constructor’s _prototype_.
 
