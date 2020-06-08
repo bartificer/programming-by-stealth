@@ -1,12 +1,12 @@
 # PBS 46 of x – ES6 Spread Operator, Arrow Functions & Classes
 
-We’ll start this instalment by having a look at my sample solutions to the previous two instalments, and then we’ll move on to looking at three ES6 features, two of which are extremely significant. We’ll start by addressing an accidental oversight from the previous instalment when we looked at arrays. I had intended to cover the so-called _spread operator_ together with `Array.from()` and the `for...of` loop, but it slipped mind. Once we’ve dealt with my little oversight we’ll introduce an entirely new type of function that removes the need for the `const self = this` kludge for callbacks. So-called _arrow functions_ greatly simplify the use of callback in JavaScript, and in modern JavaScript, callbacks are everywhere!
+We’ll start this instalment by having a look at my sample solutions to the previous two instalments. Then we’ll move on to looking at three ES6 features, two of which are extremely significant. We’ll start by addressing an accidental oversight from the previous instalment when we looked at arrays. I had intended to cover the so-called _spread operator_ together with `Array.from()` and the `for...of` loop, but it slipped my mind. Once we’ve dealt with my little oversight, we’ll introduce an entirely new type of function that removes the need for the `const self = this` kludge for callbacks. So-called _arrow functions_ greatly simplify the use of the callback in JavaScript, and in modern JavaScript, callbacks are everywhere!
 
 Finally, we’ll make a start on my personal favourite new feature in ES6 — classes. This major change brings JavaScript into line with the other C-style languages, and, more importantly, into line with how most programmers are used to working. This takes JavaScript objects from weird esoteric things only those initiated into the JS cult can understand at a glance to intuitively understandable constructs. For those of you for whom JavaScript is your first language, classes will be nice, but for those of you coming to JavaScript form other languages, classes will be a blessed relief!
 
 We’ll only be covering the basics of the class keyword in this instalment. In the next instalment we’ll take things up a notch when we finally explore the concept of _polymorphism_, the heart and soul of object oriented programming.
 
-# Matching Podcast Episode 516
+## Matching Podcast Episode 516
 
 Listen Along: Chit Chat Across the Pond Episode 516
 
@@ -76,7 +76,7 @@ I’ve published an updated version of my sample solution to GitHub as a [releas
 
 The challenge was to apply our new knowledge of ES6 arrays and strings to both the `bartificer.ca` prototypes, and to the test suite.
 
-The most common opportunity for change I found was plenty of opportunities to replace ugly string concatenation with template literals. The following test from the test suite serves as a nice example, going from:
+The most common opportunity for change I found was  to replace ugly string concatenation with template literals. The following test from the test suite serves as a nice example, going from:
 
 ```javascript
 a.ok(
@@ -152,7 +152,7 @@ I’ve published my sample solution to GitHub as a [release tagged `PBS45-Challe
 
 ## The Spread Operator (`...`)
 
-Imagine you have an array, and you want to create a new array that consists of some new elements, and, all the elements from the first array. To do that with pre-ES6 versions of JavaScript you would need to do something like:
+Imagine you have an array and you want to create a new array that consists of some new elements and all the elements from the first array. To do that with pre-ES6 versions of JavaScript, you would need to do something like:
 
 ```javascript
 const firstArray = ['boogers', 'snot'];
@@ -170,7 +170,7 @@ console.log(secondArray);
 // [ 'bogies', 'boogers', 'snot' ]
 ```
 
-Wouldn’t it be great to be able to just include the elements of the first array in the second as you declare it? Let’s try just include the first array in the second without the new spread operator, what happens?
+Wouldn’t it be great to be able to just include the elements of the first array in the second as you declare it? Let’s try just including the first array in the second without the new spread operator and see what happens.
 
 ```javascript
 const firstArray = ['boogers', 'snot'];
@@ -204,7 +204,7 @@ console.log(secondArray);
 // [ 'bogies', 'boogers', 'snot' ]
 ```
 
-A particularly common use of the spread operator is to clone a simple flat array. Remember, arrays are objects, so variables hold references to arrays, not the arrays themselves, so if you have an array, you can’t just make a copy like you would with a number or a string:
+A particularly common use of the spread operator is to clone a simple flat array. Remember, arrays are objects, so variables hold references to arrays, not the arrays themselves. If you have an array, you can’t just make a copy like you would with a number or a string:
 
 ```javascript
 const firstArray = ['boogers', 'snot'];
@@ -267,21 +267,21 @@ console.log(secondArray);
 
 ## Arrow Functions (AKA _Fat Arrow Functions_)
 
-In JavaScript, every regular function gets two special variables of its own within its scope — `arguments`, and `this`.
+In JavaScript, every regular function gets two special variables of its own within its scope — `arguments` and `this`.
 
-The second of these two can be a little inconvenient. For example, when defining an instance function within a prototype, the `this` variable is a reference to the object (an instance of the prototype) the function was invoked on. Modern JavaScript makes heavy use of callbacks, so you often end up defining anonymous functions within instance functions. Within the anonymous function, `this` is no longer a reference to the object the instance function was called on, because every regular function gets its own `this`. To get around this problem a convention has become established, before defining any anonymous functions within instance functions a variable named `self` and assigned equal to `this`:
+The second of these two can be a little inconvenient. For example, when defining an instance function within a prototype, the `this` variable is a reference to the object (an instance of the prototype) the function was invoked on. Modern JavaScript makes heavy use of callbacks, so you often end up defining anonymous functions within instance functions. Within the anonymous function, `this` is no longer a reference to the object the instance function was called on, because every regular function gets its own `this`. To get around this problem a convention has become established: before defining any anonymous functions within instance functions, define a variable named `self` and assigned equal to `this`:
 
 ```javascript
 var self = this;
 ```
 
-Because of how scopes get nested in JavaScript, the `self` variable is available within the anonymous function, so it can then be used as a reference to the object the instance function was called on.
+Because of how scopes get nested in JavaScript, the `self` variable is available within the anonymous function. So it can then be used as a reference to the object the instance function was called on.
 
-This is messy, and, worse still error-prone. Each time you go to type `this` you remember to ask yourself whether or not you should be using `self` instead.
+This is messy, and, worse still error-prone. Each time you go to type `this`, you remember to ask yourself whether or not you should be using `self` instead.
 
 This is where arrow functions come to the rescue!
 
-An arrow function does have its own `arguments` object, but it doesn’t have its own `this`, instead, it inherits its `this` from the nearest regular function that contains it.
+An arrow function does have its own `arguments` object, but it doesn’t have its own `this`. Instead, it inherits its `this` from the nearest regular function that contains it.
 
 The syntax for an arrow function takes the following form (which explain the name):
 
@@ -360,11 +360,11 @@ bartificer.ca.Automaton.prototype.start = function(ms){
 };
 ```
 
-It’s only one line less of code, but now all code within the `.start()` function shares the same `this` variable, making the code a lot easier to understand, and, to maintain.
+It’s only one line less of code, but now all code within the `.start()` function shares the same `this` variable, making the code a lot easier to understand and to maintain.
 
 ## Introducing Classes
 
-JavaScript is a prototyped language, so you define your own object types by creating a custom prototype. In versions of JavaScript prior to ES6 you had to assemble the prototype from scratch without the help of any special syntax. ES6 does not in any way change how prototypes work, but, it does provide a nicer syntax for defining them. You can now create prototypes using the `class` keyword.
+JavaScript is a prototyped language. You can define your own object types by creating a custom prototype. In versions of JavaScript prior to ES6 you had to assemble the prototype from scratch without the help of any special syntax. ES6 does not in any way change how prototypes work, but it does provide a nicer syntax for defining them. You can now create prototypes using the `class` keyword.
 
 To see how this works, let’s consider a very simplistic prototype written in the way we’re used to seeing:
 
@@ -442,7 +442,7 @@ console.log('there are ' + Booger.synonyms().length + " synonyms for 'booger'");
 // there are 3 synonyms for 'booger'
 ```
 
-With ES6 we can re-write the prototype definition using the `class` keyword instead:
+With ES6 we can rewrite the prototype definition using the `class` keyword instead:
 
 ```javascript
 /**
@@ -501,13 +501,13 @@ I want to draw your attention to three things.
 
 Firstly, notice that all the code for the prototype is contained within a single code block, making it much easier to see where a prototype definition starts and ends, especially in files that define multiple prototypes.
 
-Secondly, the name of the constructor function is not arbitrary, the constructor for an ES6 class must be named `constructor`.
+Secondly, the name of the constructor function is not arbitrary. The constructor for an ES6 class must be named `constructor`.
 
 Finally, by default, all functions are assumed to be instance functions, unless they’re explicitly marked as static functions by prefixing their definition with the keyword `static`.
 
 ### Classes & Namespaces
 
-The `class` keyword, like the `function` keyword can be used in two ways. As a reminder, you can declare a function like this:
+The `class` keyword, like the `function` keyword, can be used in two ways. As a reminder, you can declare a function like this:
 
 ```javascript
 // declare a function
@@ -584,16 +584,16 @@ console.log(myBooger.toString());
 // a bright green booger
 ```
 
-BTW, notice the use of an arrow function when defining the self executing anonymous function.
+By the way, notice the use of an arrow function when defining the self-executing anonymous function.
 
 ## Challenge
 
 Using your own code or [my solution to the previous challenge](https://github.com/bbusschots/bartificer_ca_js/tree/PBS45-Challenge-Solution) as your starting point, convert the `bartificer.ca` prototypes to ES6 classes, and convert the many callbacks in both the prototypes and the test suite to arrow functions as appropriate.
 
-When it comes to converting functions to arrow functions, how many you convert is largely a matter of taste, the only ones that absolutely should be converted are the ones that use the old `const self = this` anti-pattern. Similarly, there are anonymous functions that absolutely cannot be changed to arrow functions because they need to have their own `this`.
+When it comes to converting functions to arrow functions, how many you convert is largely a matter of taste. The only ones that absolutely should be converted are the ones that use the old `const self = this` anti-pattern. Similarly, there are anonymous functions that absolutely cannot be changed to arrow functions because they need to have their own `this`.
 
 ## Final Thoughts
 
 We’ve now covered the majority of the major changes brought to JavaScript by ES6. Most significantly we have new variable scopes, better argument handling, a whole new type of function, new types of loops, a replacement for tedious string concatenations, and an entirely new mechanism for defining prototypes. That really is quite the overhaul! Some time within the next year we’ll make the move into ES7, but don’t expect the changes to be anything even nearly as dramatic as this.
 
-JavaScript has always had the ability to support _polymorphism_, a concept at the very heart of object oriented programming, but the syntax was so counter-intuitive before ES6 that I’ve simply avoided the whole topic for fear it would alienate every reader/listener we have! The `class` keyword in combination with the `extends` keyword we’ll meet in the next instalment changes all that. We’re now finally ready to explore proper object orientation, and that’s exactly what we’ll be doing next time.
+JavaScript has always had the ability to support _polymorphism_, a concept at the very heart of object oriented programming, but the syntax was so counterintuitive before ES6 that I’ve simply avoided the whole topic for fear it would alienate every reader/listener we have! The `class` keyword in combination with the `extends` keyword we’ll meet in the next instalment changes all that. We’re now finally ready to explore proper object orientation, and that’s exactly what we’ll be doing next time.

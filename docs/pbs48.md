@@ -1,10 +1,10 @@
 # PBS 48 of x – A Closer Look at ‘this’ and ‘static’
 
-I had initially planned to return to our Cellular Automata classes and Conway’s Game of Life for this instalment, but based on some listener feedback I’ve decided to delay that by at least one instalment and dedicate this entire instalment to a closer look at just two JavaScript keywords – `this` and `static` instead. The two are more closely related that you might think.
+I had initially planned to return to our Cellular Automata classes and Conway’s Game of Life for this instalment. However, based on some listener feedback, I’ve decided to delay that by at least one instalment and dedicate this entire instalment to a closer look at just two JavaScript keywords – `this` and `static` instead. The two are more closely related that you might think.
 
-[The ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/01/pbs48.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs48.zip) contains my sample solution to the challenge set at the end of [the previous instalment](https://bartificer.net/pbs47), the starting point for the next challenge, and a JavaScript file containing all the example code snippets that appear in this instalment.
+[The ZIP file for this instalment](https://www.bartbusschots.ie/s/wp-content/uploads/2018/01/pbs48.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs48.zip) contains my sample solution to the challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs47), the starting point for the next challenge, and a JavaScript file containing all the example code snippets that appear in this instalment.
 
-# Matching Podcast Episode 519
+## Matching Podcast Episode 519
 
 Listen Along: Chit Chat Across the Pond Episode 519
 
@@ -18,7 +18,7 @@ The challenge set at the end of the previous instalment consisted of making four
 
 ### Part 1 — Create a `Chicken` Class
 
-This is very straight forward, it really is just about choosing some emoji really:
+This is very straightforward. It really is just about choosing some emoji really:
 
 ```javascript
 class Chicken extends Animal{
@@ -103,7 +103,7 @@ $(function(){
 
 ### Part 3 — Create an `EggLayer` Class and Re-factor `Duck` & `Chicken` to Inherit from it
 
-Again, this is very straight forward:
+Again, this is very straightforward:
 
 ```javascript
 class EggLayer extends Animal{
@@ -127,7 +127,7 @@ class Chicken extends EggLayer{
 
 ### Part 4 — Override `.getProduce()` so Egg Layers Produce Eggs
 
-Were the challenge simply to be to get egg layers to produce eggs on demand every time the code would simply be:
+Were the challenge simply to be to get egg layers to produce eggs on demand every time, the code would simply be:
 
 ```javascript
 class EggLayer extends Animal{
@@ -184,11 +184,11 @@ class EggLayer extends Animal{
 
 ## A Closer Look at `this`
 
-I firmly believe that the `this` keyword is one of the most challenging things for novice programmers to get their heads around. When you get fluent at programming you’ll intuitively get what `this` will mean in any given context, but, if someone asks you to explain it in one sentence, or even one paragraph, you’ll be totally flummoxed. With my excuses made up front, I’m going to try explain the `this` keyword as best as I can.
+I firmly believe that the `this` keyword is one of the most challenging things for novice programmers to get their heads around. When you get fluent at programming, you’ll intuitively get what `this` will mean in any given context, but, if someone asks you to explain it in one sentence, or even one paragraph, you’ll be totally flummoxed. With my excuses made up front, I’m going to try explain the `this` keyword as best as I can.
 
-Firstly, **`this` only makes sense within functions**, so, when talking about `this`, we will always be talking about it from the point of view of the function it’s being used within.
+Firstly, **`this` only makes sense within functions**. So, when talking about `this`, we will always be talking about it from the point of view of the function it’s being used within.
 
-Secondly, **`this` is a placeholder**, and its value is determined at the moment a function is executed. If the same function executes multiple times, its this placeholder can have a different value each time. What determines that value? Context, or more specifically, the way in which the function is invoked (much more on this shortly).
+Secondly, **`this` is a placeholder**, and its value is determined at the moment a function is executed. If the same function executes multiple times, its `this` placeholder can have a different value each time. What determines that value? Context, or more specifically, the way in which the function is invoked (much more on this shortly).
 
 At various points in this series I’ve described functions as blackboxes with the arguments forming the inputs, and the return value the outputs. To understand `this` you need to broaden the analogy to allow for two separate types of input — the arguments object, and the value of `this`.
 
@@ -196,16 +196,16 @@ At various points in this series I’ve described functions as blackboxes with t
 
 As stated previously, the value of the `this` placeholder is determined at the moment a function is invoked (executed), and it’s the way the function is invoked that determines the value. There are four ways in which a function can be invoked, three of which we’ve seen before, and one of which I’ll be introducing you to for the first time in a moment:
 
-1.  **Direct Invocation (AKA Simple Call)**, e.g. `myFunction()` — the value of `this` will be determined by the JavaScript engine. In the web browser the global variable `window` is used. Also, note that if strict mode is enabled (we haven’t covered strict mode yet) the value will be different, probably `undefined`. To avoid weird bugs it’s best not to use `this` when writing functions designed to be directly invoked.
-2.  **Indirect Invocation** (with the `.` operator), e.g. `myObject.myFunction()`, or `MyClass.myFunction()` — `this` will be a reference to the object to the left of the `.` operator. For instance functions that will be a reference to an instance of a class, and for static functions that will be a reference to the class/prototype the function belongs to (remember, in JavaScript just about everything is an object, including functions and classes/prototypes).
+1.  **Direct Invocation (AKA Simple Call)**, e.g. `myFunction()` — the value of `this` will be determined by the JavaScript engine. In the web browser the global variable `window` is used. Also, note that, if strict mode is enabled (we haven’t covered strict mode yet), the value will be different, probably `undefined`. To avoid weird bugs it’s best not to use `this` when writing functions designed to be directly invoked.
+2.  **Indirect Invocation** (with the `.` operator), e.g. `myObject.myFunction()`, or `MyClass.myFunction()` — `this` will be a reference to the object to the left of the `.` operator. For instance functions, that will be a reference to an instance of a class. For static functions, that will be a reference to the class/prototype the function belongs to (remember, in JavaScript just about everything is an object, including functions and classes/prototypes).
 3.  **Constructor Invocation** (with the `new` keyword), e.g. `new MyClass()` — the value of `this` within a constructor is a reference to the object (instance) being constructed.
-4.  **Programmatic Invocation** (with `.apply()` or `.call()`) — the value for `this` is directly specified while invoking the function. Don’t worry if this doesn’t look familiar to you, there’s a very good reason for that — we haven’t covered these functions yet in this series!
+4.  **Programmatic Invocation** (with `.apply()` or `.call()`) — the value for `this` is directly specified while invoking the function. Don’t worry if this doesn’t look familiar to you. There’s a very good reason for that — we haven’t covered these functions yet in this series!
 
 ### Programmatic Function Invocation with `.call()` and `.apply()`
 
 All functions in JavaScript are objects, and more specifically, all function are instances of the class/prototype `Function`. The `Function` class/prototype provides two functions which can be used to execute a function with specific values for that function’s `this` placeholder and `arguments` object. These two functions are `.apply()` and `.call()`.
 
-The `.apply()` and `.call()` functions are extremely similar — both take the value to use for the function being invoked’s `this` placeholder as the first argument, and then the values to for the function’s `arguments` object. The difference is in how the argument values are specified.
+The `.apply()` and `.call()` functions are extremely similar — both take the value to use for the function being invoked’s `this` placeholder as the first argument, and then the values to use for the function’s `arguments` object. The difference is in how the argument values are specified.
 
 The `.apply()` function expects the values for the arguments object to be passed as an array, while the `.call()` function expects the values for the arguments object to be passed as zero or more separate values (variadic). Assuming a function named `myFunction` exists, the following two lines of code have the identical effect:
 
@@ -214,7 +214,7 @@ myFunction.apply('dummy this value', ['arg 1', 'arg 2', 'arg 3']);
 myFunction.call('dummy this value', 'arg 1', 'arg 2', 'arg 3');
 ```
 
-It’s the existence of `.apply()` and `.call()` that make it possible for 3rd party libraries like jQuery to control the value of `this` within callbacks.
+It’s the existence of `.apply()` and `.call()` that make it possible for third-party libraries like jQuery to control the value of `this` within callbacks.
 
 Let’s look at an example:
 
@@ -242,9 +242,9 @@ selfConfess.call('this value', 'first arg', 'second arg');
 
 ## Revision: Instance -v- Static
 
-Before we look at why you would choose to use a static function instead of an instance function when designing a class/prototype, let’s start by re-visiting the difference between these two species of function.
+Before we look at why you would choose to use a static function instead of an instance function when designing a class/prototype, let’s start by revisiting the difference between these two species of function.
 
-Both instance and static functions will always be called indirectly, that is to say, with the `.` (dot/period) operator. What differentiates them is what’s to the left of that operator. If the thing to the left is a class/prototype then you are explicitly calling a static function, and if the thing to the left is an instance of a class/prototype then you’re explicitly calling an instance function. The biggest difference between static and instance functions is the value of their `this` placeholder. Within a static function `this` is always a reference to the class/prototype the function belongs to. Within an instance function `this` will be a reference to which ever instance the function was invoked on.
+Both instance and static functions will always be called indirectly, that is to say, with the `.` (dot/period) operator. What differentiates them is what’s to the left of that operator. If the thing to the left is a class/prototype, then you are explicitly calling a static function. If the thing to the left is an instance of a class/prototype, then you’re explicitly calling an instance function. The biggest difference between static and instance functions is the value of their `this` placeholder. Within a static function `this` is always a reference to the class/prototype the function belongs to. Within an instance function `this` will be a reference to whichever instance the function was invoked on.
 
 Let’s build up a little dummy class to illustrate these points. Our class will have one instance property, one static property, one instance function, and one static function:
 
@@ -271,7 +271,7 @@ class Explainer{
 Explainer.staticName = 'the explainer class';
 ```
 
-The key thing to remember is that static functions and static properties are properties of the class/prototype, not of instances of that class/prototype, so, we can use them without ever instantiating a single instance of the class:
+The key thing to remember is that static functions and static properties are properties of the class/prototype, not of instances of that class/prototype. So, we can use them without ever instantiating a single instance of the class:
 
 ```javascript
 // demo static property and function
@@ -284,7 +284,7 @@ Explainer.staticFn();
 // static name = 'the explainer class'
 ```
 
-Notice that the call to the static function is an indirect call, and that the thing to the left of the `.` (dot/period) operator is the class/prototype itself (`Explainer`). This means that when the function `staticFn()` executes, its `this` placeholder will be a reference to `Explainer`, hence, `this.staticName` is a placeholder for `Explainer.staticName`.
+Notice that the call to the static function is an indirect call, and that the thing to the left of the `.` (dot/period) operator is the class/prototype itself (`Explainer`). This means that, when the function `staticFn()` executes, its `this` placeholder will be a reference to `Explainer`, hence `this.staticName` is a placeholder for `Explainer.staticName`.
 
 What happens if we try to call an instance function in a static context:
 
@@ -296,7 +296,7 @@ Explainer.instanceFn();
 // TypeError: Explainer.instanceFn is not a function
 ```
 
-Instance functions can’t be called on the class/prototype itself, they have to be called on an instance of the class/prototype. You can’t call instance functions without an instance!
+Instance functions can’t be called on the class/prototype itself. They have to be called on an instance of the class/prototype. You can’t call instance functions without an instance!
 
 Let’s create two instances and access our instance property and function on each:
 
@@ -331,7 +331,7 @@ firstInstance.staticFn();
 // TypeError: firstInstance.staticFn is not a function
 ```
 
-In this initial simple example I chose not to name any static and instance properties or functions with the same name as each other. However, since they are actually completely different things, there is no reason not use the same name. A static property named `myName` and an instance property named `myName` are completely different things, as are a static function named `logName` and an instance function named `logName`. We can illustrate this point with an updated dummy class:
+In this initial simple example, I chose not to name any static and instance properties or functions with the same name as each other. However, since they are actually completely different things, there is no reason not use the same name. A static property named `myName` and an instance property named `myName` are completely different things, as are a static function named `logName` and an instance function named `logName`. We can illustrate this point with an updated dummy class:
 
 ```javascript
 class BetterExplainer{
@@ -413,9 +413,9 @@ This doesn’t look very useful at first glance, but it becomes much more so whe
 
 Firstly, static functions are inherited.
 
-Secondly, when the static function is run, its `this` placeholder will contain a reference to the class it was called on. Why? Because it will be the thing to the left of the `.` (dot/period) operator. Perhaps somewhat counter-intuitively, this means that if you call a static function that is defined in the parent class on the child class, the function’s `this` placeholder will not hold a reference to the class that defined it, but instead, to the class that inherited it!
+Secondly, when the static function is run, its `this` placeholder will contain a reference to the class it was called on. Why? Because it will be the thing to the left of the `.` (dot/period) operator. Perhaps somewhat counterintuitively, this means that, if you call a static function that is defined in the parent class on the child class, the function’s `this` placeholder will not hold a reference to the class that defined it, but instead, to the class that inherited it!
 
-To illustrate this let’s first create a third even better explainer class that contains a static function that logs its class name to the console:
+To illustrate this, let’s first create a third even better explainer class that contains a static function that logs its class name to the console:
 
 ```javascript
 class EvenBetterExplainer{
@@ -458,7 +458,7 @@ class PointlessSubClass extends EvenBetterExplainer{
 }
 ```
 
-We can now prove both that static functions are inherited, and, that the `this` placeholder within them behaves as described like so:
+We can now prove both that static functions are inherited, and that the `this` placeholder within them behaves as described like so:
 
 ```javascript
 PointlessSubClass.logClassName();
@@ -472,7 +472,7 @@ PointlessSubClass.logClassName();
 
 Remember that the new `class` syntax is nothing more than syntactic sugar for producing a prototype. As you may remember from before we learned about the `class` keyword (or you may have purged it from your mind since the new `class` syntax is so much nicer), the constructor for a prototype is a function with the same name as the prototype itself.
 
-When you use the keyword `new` to create an instance of a prototype JavaScript inserts a reference to the constructor function used into the instance as an instance property named `constructor`.
+When you use the keyword `new` to create an instance of a prototype, JavaScript inserts a reference to the constructor function used into the instance as an instance property named `constructor`.
 
 Because, within an instance function, `this` is a placeholder for the instance itself, you can access the constructor function that was used to create the instance with `this.constructor`. And because this function has the same name as the prototype (by definition), `this.constructor.name` will give you access to the name of an instance’s class.
 
@@ -546,13 +546,9 @@ To better understand the difference between instance and static functions, let�
 
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
 
-    **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
-
 2.  `.test()`, e.g. `let myRE = /\bbooger(s)?\b/gi; console.log(myRE.test('I like boogers!'));`
 
     Instance or Static?
-
-    **Instance** — because the thing on the left of the `.` is an instance of the built-in class `RegExp`
 
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `RegExp`
 
@@ -562,13 +558,9 @@ To better understand the difference between instance and static functions, let�
 
     **Static** — because the thing on the left of the `.` is the built-in class `Array`
 
-    **Static** — because the thing on the left of the `.` is the built-in class `Array`
-
 4.  `.toUpperCase()`, e.g. `let myString = 'boogers'; console.log(myString.toUpperCase());`
 
     Instance or Static?
-
-    **Instance** — because the thing on the left of the `.` is an instance of the built-in class `String`
 
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `String`
 
@@ -578,11 +570,9 @@ To better understand the difference between instance and static functions, let�
 
     **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
 
-    **Instance** — because the thing on the left of the `.` is an instance of the built-in class `Array`
-
 ### Static or not?
 
-I know what Allison and others were hoping for was a little one-line rule to tell them when to use `static`. I don’t think that’s possible. At the end of the day programming remains an art — as programmers we have a range of well-defined building-blocks at our disposal, but we still have to creatively assemble those blocks into a whole that meets our needs. What I can do in this series is strive to explain what each building block does and how it works, but I can’t give you a universal set of rules for assembling the blocks that will allow you to solve any problem — if that were possible, all programmers could be replaced with a single program that implements that algorithm!
+I know what Allison and others were hoping for was a little one-line rule to tell them when to use `static`. I don’t think that’s possible. At the end of the day programming remains an art — as programmers we have a range of well-defined building blocks at our disposal, but we still have to creatively assemble those blocks into a whole that meets our needs. What I can do in this series is strive to explain what each building block does and how it works, but I can’t give you a universal set of rules for assembling the blocks that will allow you to solve any problem — if that were possible, all programmers could be replaced with a single program that implements that algorithm!
 
 The best I can do is offer some guidance for the use of `static`.
 

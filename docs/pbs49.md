@@ -8,17 +8,23 @@ We’ll also take some time to revise the basics of JavaScript objects.
 
 Note that this instalment is split over two podcast episodes, only one has been recorded to date.
 
-# Matching Podcast Episode 521
+## Matching Podcast Episode 521 & 522
 
 Listen Along (Part 1 of 2): Chit Chat Across the Pond Episode 521
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
-You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_03.mp3?autoplay=0&loop=0&controls=1" >Download the MP3 for Part 1</a>
+
+Listen Along (Part 2 of 2): Chit Chat Across the Pond Episode 522
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_10.mp3">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_02_10.mp3?autoplay=0&loop=0&controls=1" >Download the MP3 for Part 2</a>
 
 ## Challenge Solution
 
-At the end of [the previous instalment](https://bartificer.net/pbs48) I set a challenge based on our farm from the previous challenge. Six changes were requested, so let’s go through them one by one. Reminder, the full source code for my sample solution is in this instalment’s ZIP file.
+At the end of [the previous instalment](https://pbs.bartificer.net/pbs48), I set a challenge based on our farm from the previous challenge. Six changes were requested, so let’s go through them one by one. Reminder, the full source code for my sample solution is in this instalment’s ZIP file.
 
 ### Part 1 — Add a `.species()` function to `Animal`
 
@@ -36,7 +42,7 @@ We can test our function by opening `index.html` in our favourite browser and en
 
 The second part of the challenge was to make use of the `.species()` function we just added to `Animal` to add an instance function to the `Farm` class named `.speciesInventory()` which will return a plain object where the keys are species names, and the values head-counts for that species.
 
-This function is a little longer, but not much more complicated. They key is that instances of the Farm class store their list of animals in an instance variable named `._animals` that’s an array. We simply need to loop over this array and count how many of each species we meet:
+This function is a little longer, but not much more complicated. The key is that instances of the Farm class store their list of animals in an instance variable named `._animals` that is an array. We simply need to loop over this array and count how many of each species we meet:
 
 ```javascript
 speciesInventory(){
@@ -121,7 +127,7 @@ addAnimal(a){
 
 ### Part 5 — Add a Static `isAnimal()` to `Animal`
 
-The penultimate part of the challenge was to add a static function named `isAnimal()` to the `Animal` class which expects one argument, and returns `true` if that argument is an instance of `Animal` or any subclass there-of, and `false` otherwise.
+The penultimate part of the challenge was to add a static function named `isAnimal()` to the `Animal` class which expects one argument, and returns `true` if that argument is an instance of `Animal` or any subclass thereof, and `false` otherwise.
 
 They key here is to understand that the `instanceof` operator is aware of inheritance, and will follow the inheritance tree. In our farm example, an instance of `Cow` would be an instance of `Animal` because the class `Cow` extends the class `Animal`. Similarly, an instance of `Duck` would also be an instance of `Animal` because `Duck` extends `EggLayer` which extends `Animal`.
 
@@ -140,7 +146,7 @@ We can use the JavaScript console to test this function:
 
 ### Part 6 — Add a Static `areSameSpecies()` function to `Animal`
 
-The final part of the challenge is to add another static function to the `Animal` class, but this one should be named `areSameSpecies()`. As the name suggests, this function should take two arguments, and only return `true` is both are animals of the same species.
+The final part of the challenge is to add another static function to the `Animal` class, but this one should be named `areSameSpecies()`. As the name suggests, this function should take two arguments, and only return `true` if both are animals of the same species.
 
 The only small complication is that you need to be a little careful in how you structure your tests so as to avoid generating errors when passed non-objects to test. The key is to first make sure both arguments are instance of the `Animal` class using the static function we created in step 5 before calling the `.species()` instance function on both arguments and comparing the results:
 
@@ -184,9 +190,9 @@ const myObject = {
 };
 ```
 
-The keys are the items to the left of the colon, and the values the items to the right. The values can be primitives like numbers or strings, or they can be references to objects. Since just about everything in JavaScript is an object, that means you can store references to things like arrays, functions, or even regular expressions within objects.
+The keys are the items to the left of the colon, and the values are the items to the right. The values can be primitives like numbers or strings, or they can be references to objects. Since just about everything in JavaScript is an object, that means you can store references to things like arrays, functions, or even regular expressions within objects.
 
-If a key is a valid JavaScript variable name (as described way back in [instalment 12](https://www.bartbusschots.ie/s/2016/04/01/programming-by-stealth-12-of-x-javascript-intro/)), then it doesn’t have to be quoted but if the key contains even a single character that can’t appear in a variable name then it must be quoted. So, we can re-write the above sample as:
+If a key is a valid JavaScript variable name (as described way back in [instalment 12](https://pbs.bartificer.net/pbs12)), then it doesn’t have to be quoted. But, if the key contains even a single character that can’t appear in a variable name, then it must be quoted. So, we can rewrite the above sample as:
 
 ```javascript
 const myObject = {
@@ -206,7 +212,7 @@ In reality, keys are usually valid variable names, so you rarely see the quoted 
 
 ### Accessing Members
 
-The primary way of accessing the members of an object is with the square-bracket notation. Given our example above we can access each element as follows:
+The primary way of accessing the members of an object is with the square bracket notation. Given our example above, we can access each element as follows:
 
 ```javascript
 // access a value directly
@@ -250,7 +256,7 @@ if(anObj['someVal']){
 }
 ```
 
-That will behave as expected for they key `someVal`, but not for the key `someOtherVal`! To be sure a key really is undefined you have to check its type:
+That will behave as expected for the key `someVal`, but not for the key `someOtherVal`! To be sure a key really is undefined you have to check its type:
 
 ```javascript
 if(typeof anObj['someOtherVal'] !== 'undefined'){
@@ -260,7 +266,7 @@ if(typeof anObj['someOtherVal'] !== 'undefined'){
 }
 ```
 
-For the sub-set of keys that are valid JavaScript names you can use the shorter dot notation to access object members. The above access examples can be re-written like so:
+For the subset of keys that are valid JavaScript names, you can use the shorter dot notation to access object members. The above access examples can be rewritten like so:
 
 ```javascript
 // access a value directly
@@ -322,7 +328,7 @@ for(const k in myObj){
 // key boogers maps to value: false
 ```
 
-If you need to process the keys in order you need to first extract them form the object with `Object.keys()` which returns an array, then sort that array with the instance function `.sort()` which returns another array, and only then can you loop over the keys with a `for...of` loop.
+If you need to process the keys in order, you need to first extract them from the object with `Object.keys()` which returns an array, then sort that array with the instance function `.sort()` which returns another array, and only then can you loop over the keys with a `for...of` loop.
 
 Explicitly, this is what you need to do:
 
@@ -353,7 +359,7 @@ for(const k of myObjSortedKeys){
 // key x maps to value: y
 ```
 
-In the real world we would never write the whole process out so explicitly, we would instead collapse it to simply:
+In the real world, we would never write the whole process out so explicitly. We would instead collapse it to simply:
 
 ```javascript
 const myObj = {
@@ -397,8 +403,6 @@ What will the following code snippets output to the console?
 
     `31` (`10 + 12 + 9`)
 
-    `31` (`10 + 12 + 9`)
-
 2.  What will the value of z be at the end of this code snippet?
 
     ```javascript
@@ -407,22 +411,6 @@ What will the following code snippets output to the console?
     ```
 
     Click to show Answer
-
-    Answer: `boogers`
-
-    ```
-    // Explanation:
-    const z = x[x.y];
-    //  |
-    // x.y == 'x'
-    //  ↓
-    const z = x['x'];
-    //  |
-    // x['x'] == 'boogers'
-    //  ↓
-    const z = 'boogers';
-
-    ```
 
     Answer: `boogers`
 
@@ -452,8 +440,6 @@ What will the following code snippets output to the console?
     ```
 
     Click to show Answer
-
-    `what?`
 
     `what?`
 
@@ -490,23 +476,6 @@ What will the following code snippets output to the console?
 
     ```
 
-    Answer: `undefined`
-
-    ```
-    // Explanation:
-    console.log(whatchamagig[thingy]);
-    //  |
-    // thingy == 'huh?'
-    //  ↓
-    console.log(whatchamagig['huh?']);
-    //  |
-    // whatchamagig['huh?'] == undefined
-    //  |
-    //  V
-    console.log(undefined);
-
-    ```
-
 5.  What will the value of `yokie` be after this snippet executes?
 
     ```javascript
@@ -519,34 +488,6 @@ What will the following code snippets output to the console?
     ```
 
     Click to show Answer
-
-    `huh?`
-
-    ```
-    // Explanation:
-    const yokie = whatchamagig[whatchamagig.stuff.replace(/[?]/, '') + 'sit'].thingamabob;
-    //  |
-    // whatchamagig.stuff == 'what?'
-    //  ↓
-    const yokie = whatchamagig['what?'.replace(/[?]/, '') + 'sit'].thingamabob;
-    //  |
-    // 'what?'.replace(/[?]/, '') == 'what'
-    //  ↓
-    const yokie = whatchamagig['what' + 'sit'].thingamabob;
-    //  |
-    // 'what' + 'sit' == 'whatsit'
-    //  ↓
-    const yokie = whatchamagig['whatsit'].thingamabob;
-    //  |
-    // whatchamagig['whatsit'] == { thingamabob: 'huh?' }
-    //  ↓
-    const yokie = { thingamabob: 'huh?' }.thingamabob;
-    //  |
-    // { thingamabob: 'huh?' }.thingamabob == 'huh?'
-    //  ↓
-    const yokie = 'huh?';
-
-    ```
 
     `huh?`
 
@@ -616,33 +557,9 @@ What will the following code snippets output to the console?
 
     ```
 
-    `srsly?`
-
-    ```
-    // Explanation:
-    console.log(whatchamagig[stuff][whatsit]);
-    //  |
-    // stuff == 'whatsit'
-    //  ↓
-    console.log(whatchamagig['whatsit'][whatsit]);
-    //  |
-    // whatchamagig['whatsit'] == { thingamabob: 'huh?', yoke: 'srsly?' }
-    //  ↓
-    console.log({ thingamabob: 'huh?', yoke: 'srsly?' }[whatsit]);
-    //  |
-    // whatsit == thingy == 'yoke'
-    //  ↓
-    console.log({ thingamabob: 'huh?', yoke: 'srsly?' }['yoke']);
-    //  |
-    // { thingamabob: 'huh?', yoke: 'srsly?' }['yoke'] == 'srsly?'
-    //  ↓
-    console.log('srsly?');
-
-    ```
-
 ## Worked Example — Improving Our Cellular Automata with more Classes
 
-To continue our knowledge consolidation, let’s return to our [cellular automata classes](https://github.com/bbusschots/bartificer_ca_js). Specifically, I’ll be using my sample solution to the challenge set in instalment 46 as the starting point for our enhancements (tagged release `[PBS46-Challenge-Solution](https://github.com/bbusschots/bartificer_ca_js/tree/PBS46-Challenge-Solution)`).
+To continue our knowledge consolidation, let’s return to our [cellular automata classes](https://github.com/bbusschots/bartificer_ca_js). Specifically, I’ll be using my sample solution to the challenge set in instalment 46 as the starting point for our enhancements [tagged release `PBS46-Challenge-Solution` on GitHub](https://github.com/bbusschots/bartificer_ca_js/tree/PBS46-Challenge-Solution).
 
 ### Better States
 
@@ -652,7 +569,7 @@ When you think about it, for any given CA, the set of possible states is as much
 
 The first step is to write a simple new class to represent an individual state. It will need just two properties — the state’s underlying value, and a label. The value should be primitive (boolean, number, or string), and the description a string. I’m going to name the class `bartificer.ca.State`.
 
-However, before we can write the class itself we should to lay some ground-work. We’ll need validation functions for primitive values and non-empty strings, so let’s add those:
+However, before we can write the class itself we should to lay some groundwork. We’ll need validation functions for primitive values and non-empty strings, so let’s add those:
 
 ```javascript
 /**
@@ -784,7 +701,7 @@ bartificer.ca.State = class{
 
 That looks like a lot of code, but really, most of it’s JSDoc comments. On closer inspection all we really have is a class with two private instance properties (`._value` & `._label`), a pair of matching read-only accessor instance functions (`.value()` & `.label()`), a constructor, and the customary `.toString()` and `.clone()` instance functions.
 
-I also added tests for this new class to the test suite, but I won’t clutter this post by copying-and-pasting them here, they’re available via the GitHub repository.
+I also added tests for this new class to the test suite, but I won’t clutter this post by copying-and-pasting them here. They’re available via the GitHub repository.
 
 Now that we’ve created this class to represent a state, we need to update the `isCellState()` function so it only considers instances of `bartificer.ca.State` to be valid states:
 
@@ -805,9 +722,9 @@ function isCellState(s){
 }
 ```
 
-With the exception of a little re-wording in the JSDoc comments, no changes are needed to either the `bartificer.ca.Cell` or `bartificer.ca.Automaton` classes.
+With the exception of a little rewording in the JSDoc comments, no changes are needed to either the `bartificer.ca.Cell` or `bartificer.ca.Automaton` classes.
 
-While no changes were needed to the two main classes themselves, huge changes needed to be made to their QUnit test modules. Each test that used a state had to be updated from using a dummy value like `true` to using an instance of `bartificer.ca.State`. Again, I’m not going to clutter this post by pasting in a copy of the test suite, it’s available on GitHub.
+While no changes were needed to the two main classes themselves, huge changes needed to be made to their QUnit test modules. Each test that used a state had to be updated from using a dummy value like `true` to using an instance of `bartificer.ca.State`. Again, I’m not going to clutter this post by pasting in a copy of the test suite. It’s available on GitHub.
 
 Finally, we need to update the `sample.html` page. Specifically, we need to update the initialisation, step, and render functions so they use each state’s `.value()` function to get at a state’s underlying value, and return `bartificer.ca.State` objects as appropriate.
 
@@ -858,7 +775,7 @@ function lifeStep(currentState, neighbourStates){
 }
 ```
 
-For the most part this was just a case of replacing comparisons to a state to use the state’s `.value()` accessor, and returning `bartificer.ca.State` objects instead of raw values, but there is one subtlety I do want to draw your attention to. The `neighbourStates` array uses `null` to represent a non-existent neighbour for cells at the edge of the grid. `null` evaluates to `false` without error, but `null.value()` throws an error, hence the need to add a check for `null` on line 25 above.
+For the most part this was just a case of replacing comparisons to a state to use the state’s `.value()` accessor, and returning `bartificer.ca.State` objects instead of raw values. There is one subtlety I do want to draw your attention to. The `neighbourStates` array uses `null` to represent a non-existent neighbour for cells at the edge of the grid. `null` evaluates to `false` without error, but `null.value()` throws an error, hence the need to add a check for `null` on line 25 above.
 
 I’ve published an updated version of this code, including the updated test suite, [on GitHub as the tag release `PBS49-Challenge-StartingPoint`](https://github.com/bbusschots/bartificer_ca_js/tree/PBS49-Challenge-StartingPoint).
 
@@ -870,9 +787,9 @@ Using [the tagged release `PBS49-Challenge-StartingPoint` on GitHub](https://git
 
 An instance function named `.equals()` should be added to the `bartificer.ca.State` class. The function should take one argument, the thing to test. If the thing to test is an instance of `bartificer.ca.State`, and, it has the same value and label as the instance the function was called on, then it should return `true`, otherwise, it should return `false`.
 
-### Part 2 — Re-factor the `bartificer.ca.Automaton` constructor
+### Part 2 — Refactor the `bartificer.ca.Automaton` constructor
 
-**Note:** updated 19 Feb 2018 to correctly reflect the fact that the constructor in the starting point code has 5 required arguments, not three like original stated.
+**Note:** *updated 19 Feb 2018 to correctly reflect the fact that the constructor in the starting point code has 5 required arguments, not three like original stated.*
 
 At the moment the constructor in the `bartificer.ca.Automaton` class takes 6 arguments, five required arguments, and one optional. We’re going to need to add another argument to allow a set of allowed states to be passed, so that would take the constructor to a whopping 7 arguments. Any more than 5 arguments is generally considered confusing and a bad smell, so even before we add another we’ve already got a problem. What can we do?
 
@@ -880,7 +797,7 @@ The first thing we can do is reduce the number of required arguments by implemen
 
 Since name-value pairs are much less confusing to look at than long lists of anonymous values, it’s common practice to collapse some or all of the arguments into an object that can then be passed as a single argument. A pattern you’ll often see is that required arguments are passed directly, and all optional arguments collapsed into a plain object, often named `opts`. That’s the approach we’ll take here.
 
-So, the four required arguments should be left as-is, and the remaining two optional arguments collapsed into a single optional object named `opts` which will expect zero of more of the keys `renderFunction`, and `initialState`.
+So, the four required arguments should be left as-is, and the remaining two optional arguments collapsed into a single optional object named `opts` which will expect zero or more of the keys `renderFunction` and `initialState`.
 
 This means that the first line of the constructor needs to change from:
 
@@ -894,7 +811,7 @@ to:
 constructor($container, rows, cols, stepFn, opts){
 ```
 
-As an example of how the re-factored constructor would be used, the call to the constructor in `sample.html` will become:
+As an example of how the refactored constructor would be used, the call to the constructor in `sample.html` will become:
 
 ```javascript
 // use the constructor to build an automaton
@@ -919,17 +836,17 @@ Finally, the constructor should build a lookup table to allow states be looked u
 
 A read-only accessor function named _.cellStates()_ should be added. This accessor should return a new array containing references to the values in the internal array (to avoid _spooky action at a distance_).
 
-A special read-only accessor named `.stateFromValue()` should be added. This function required one argument, a valid state value, and it should use the `._statesByValue` lookup table to get the matching state and return it. If there is no matching state, `undefined` should be returned.
+A special read-only accessor named `.stateFromValue()` should be added. This function required one argument, a valid state value. It should use the `._statesByValue` lookup table to get the matching state and return it. If there is no matching state, `undefined` should be returned.
 
-Finally, an instance function named `.hasState()` should be added. This function should accept one argument. If the value is passed is an instance of `bartificer.ca.State`, then `true` should be returned if a state exists in the `._cellStates` array that’s equal to the passed state, otherwise, `false` should be returned. If the value is not a `bartificer.ca.State` object, then `true` should be returned if one of the states in `._cellStates` has a value that’s equal to the passed argument, otherwise `false` should be returned.
+Finally, an instance function named `.hasState()` should be added. This function should accept one argument. If the value is passed is an instance of `bartificer.ca.State`, then `true` should be returned if a state exists in the `._cellStates` array that’s equal to the passed state, otherwise `false` should be returned. If the value is not a `bartificer.ca.State` object, then `true` should be returned if one of the states in `._cellStates` has a value that’s equal to the passed argument, otherwise `false` should be returned.
 
 ### Part 4 — Improve `.step()` in `bartificer.ca.Automaton`
 
 The `.step()` function in the `bartificer.ca.Automaton` class uses the step function to calculate the next state for every cell in the automaton. The function needs to be improved in two ways.
 
-Firstly, if the step function returns something other than an instance of `bartificer.ca.State`, it should try convert it to a state using the `.stateFromValue()` function you created earlier. If this fails, a `TypeError` should be thrown.
+Firstly, if the step function returns something other than an instance of `bartificer.ca.State`, it should try to convert it to a state using the `.stateFromValue()` function you created earlier. If this fails, a `TypeError` should be thrown.
 
-Secondly, the next state needs to be checked against the list of allowed states (`._cellStates`), a `TypeError` should be thrown.
+Secondly, the next state needs to be checked against the list of allowed states (`._cellStates`), thowing a `TypeError` if not found.
 
 ## Final Thoughts
 
