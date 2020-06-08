@@ -101,7 +101,7 @@ $(function(){
 });
 ```
 
-### Part 3 — Create an `EggLayer` Class and Re-factor `Duck` & `Chicken` to Inherit from it
+### Part 3 — Create an `EggLayer` Class and Refactor `Duck` & `Chicken` to Inherit from it
 
 Again, this is very straightforward:
 
