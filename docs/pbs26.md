@@ -196,7 +196,7 @@ x.stuff('thingys');
 console.log(x.toString());
 ```
 
-Now that we know about self executing anonymous functions and namespaces, let’s update that template to make it adhere to more best practices.
+Now that we know about self-executing anonymous functions and namespaces, let’s update that template to make it adhere to more best practices.
 
 ```javascript
 // init the PBS namespace
