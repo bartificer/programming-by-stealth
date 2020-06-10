@@ -387,7 +387,7 @@ Hover over each Nerdtouche to see the handles.
 
 In the web environment it's quite normal for instances of your classes to map to one or more elements in the DOM. If you're writing a class to represent a world clock, you'll need to display that clock on the page! Similarly, the whole point of a class to represent Nerdtouches is to embed them into web pages.
 
-I can often be very useful to create a two-way connection between our instance objects and the DOM objects representing them to the user. There is no single correct approach to this, and many possible approaches you could take.
+It can often be very useful to create a two-way connection between our instance objects and the DOM objects representing them to the user. There is no single correct approach to this, and many possible approaches you could take.
 
 At the moment our Nerdtouche class provides no linkage at all between instances of the class and the DOM objects built by those instances. Let's add such linkages as a means of illustrating some useful concepts and approaches.
 
