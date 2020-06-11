@@ -1,12 +1,12 @@
 # PBS 51 of x — Cellular Automata Wrap-up
 
-This instalment will be the last before we go on hiatus for a few weeks while Allison goes off exploring Europe. When Allison comes back we’ll be changing gears and switching for focusing on JavaScript to focusing on HTML and CSS. We’ll learn about the free and open source Bootstrap 4 CSS library. This library provides many useful features, but we’ll start simple. Firstly, the library providers modern and elegant default styles for all the HTML elements we already know and love. It also provides a handful of simple CSS classes for defining page layouts (columns, rows, that kind of thing), and thirdly, it provides simple CSS classes for creating so-called _responsive_ web pages, i.e. pages who’s layout changes automatically depending on screen size.
+This instalment will be the last before we go on hiatus for a few weeks while Allison goes off exploring Europe. When Allison comes back, we’ll be changing gears and switching from focusing on JavaScript to focusing on HTML and CSS. We’ll learn about the free and open source Bootstrap 4 CSS library. This library provides many useful features, but we’ll start simple. Firstly, the library provides modern and elegant default styles for all the HTML elements we already know and love. It also provides a handful of simple CSS classes for defining page layouts (columns, rows, that kind of thing), and thirdly, it provides simple CSS classes for creating so-called _responsive_ web pages, i.e. pages whose layout changes automatically depending on screen size.
 
-As this is the last instalment before the hiatus we’ll use it to wrap up our work on the Cellular Automata prototypes. We’ll start with a sample solution to the challenge from the previous instalment, and finish with a worked example where we use our prototypes to create three distinct CAs.
+As this is the last instalment before the hiatus, we’ll use it to wrap up our work on the Cellular Automata prototypes. We’ll start with a sample solution to the challenge from the previous instalment, and finish with a worked example where we use our prototypes to create three distinct CAs.
 
 The final code for the worked example is included in [this instalment’s ZIP file which you can download here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/03/pbs51.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs51.zip).
 
-# Matching Podcast Episode 530
+## Matching Podcast Episode 530
 
 Listen along to this instalment on [episode 530 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/03/ccatp-530/)
 
@@ -14,9 +14,11 @@ Listen along to this instalment on [episode 530 of the Chit Chat Across the Pond
 
 You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_03_03.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
 
-Since episode 50 was a special episode, it’s been a while since we last looked at these prototypes, so let’s take a moment for a quick summary of what we’re trying to achieve.
+## A Quick summary
 
-Conceptually, a Cellular Automaton (CA) is a grid of cells, each of which is on one of a finite set of states. CAs move from a current state to a next state in lock-step, that is to say, all the cells change from their current state to their next state in one step. Each CA defines its own set of rules for how the next state of each cell should be calculated. This set of rules has only two inputs — the current state of the cell itself, and the current state of all neighbouring cells. Practically, we need a way of seeing our automaton, so each CA also needs to define a set of rules for how to display a given state.
+Since episode 50 was a special episode, it’s been a while since we last looked at these prototypes. So let’s take a moment for a quick summary of what we’re trying to achieve.
+
+Conceptually, a Cellular Automaton (CA) is a grid of cells, each of which is in one of a finite set of states. CAs move from a current state to a next state in lockstep, that is to say, all the cells change from their current state to their next state in one step. Each CA defines its own set of rules for how the next state of each cell should be calculated. This set of rules has only two inputs — the current state of the cell itself and the current state of all neighbouring cells. Practically, we need a way of seeing our automaton, so each CA also needs to define a set of rules for how to display a given state.
 
 An example of a specific cellular automaton is [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). In this specific example there are only two possible states for each cell — _alive_ & _dead_, and the set of rules for calculating the next state of each cell are:
 
@@ -27,9 +29,9 @@ An example of a specific cellular automaton is [Conway’s Game of Life](https:/
 
 We’ve modelled the abstract concept of Cellular Automata with three prototypes — one to represent a CA as a whole (`bartificer.ca.Automaton`), one to represent a single cell (`bartificer.ca.Cell`), and one to represent a cell state (`bartificer.ca.State`). Every Automaton contains a grid of Cells, and every Cell has a current State.
 
-Within the Automaton prototype we store the set of rules for calculating the next state of each cell as a reference to a function, and we refer to it as the _step function_.
+Within the Automaton prototype, we store the set of rules for calculating the next state of each cell as a reference to a function. We refer to it as the _step function_.
 
-We also store the set of rules for displaying a state as a reference to a function, and we refer to that as the _render function_.
+We also store the set of rules for displaying a state as a reference to a function. We refer to that as the _render function_.
 
 As things stand at the start of the challenge, we do not store the set of allowed states at all, and since we don’t even store it, we definitely can’t enforce it. That’s the problem the challenge asked you to solve.
 
@@ -39,7 +41,7 @@ You’ll find the full source code for my sample solution as [the named release 
 
 ### Part 1 — Add a `.equals()` Function to `bartificer.ca.State`
 
-We get started with a quick and easy little function. Since this is an instance function, it will be invoked on an instance of the class bartificer.ca.State. The function will take one argument, and should compare the instance it was called on (`this`) to that one argument. If the passed value is a `bartificer.ca.State`, and, has the same value and label as the instance itself, it should return `true`, otherwise, it should return `false`:
+We get started with a quick and easy little function. Since this is an instance function, it will be invoked on an instance of the class bartificer.ca.State. The function will take one argument, and should compare the instance it was called on (`this`) to that one argument. If the passed value is a `bartificer.ca.State` and has the same value and label as the instance itself, it should return `true`. Otherwise, it should return `false`:
 
 ```javascript
 /**
@@ -83,7 +85,7 @@ QUnit.test('.equals()', (a)=>{
 });
 ```
 
-### Part 2 — Re-factor the `bartificer.ca.Automaton` constructor
+### Part 2 — Refactor the `bartificer.ca.Automaton` constructor
 
 The first step in refactoring the constructor is to convert the renderFn argument from required to optional by adding a default render function that renders _truthy_ states as green, and _falsy_ states as red.
 
@@ -114,7 +116,7 @@ if(typeof renderFn === 'undefined'){
 }
 ```
 
-Now we’re ready to collapse all the optional arguments into a single object. This involves a lot of changes to the constructor, so I’ve included the complete constructor below with the modified regions marked:
+Now we’re ready to collapse all the optional arguments into a single object. This involves a lot of changes to the constructor. So I’ve included the complete constructor below with the modified regions marked:
 
 ```javascript
 /**
@@ -325,7 +327,7 @@ constructor($container, rows, cols, stepFn, opts){
 }
 ```
 
-Changing how the constructor works also required much of the test suite to be re-written, not just the tests for the constructor itself, but all calls to the constructor in all tests. The changes are too extensive to include in the show notes, but they are all committed to GitHub.
+Changing how the constructor works also required much of the test suite to be rewritten, not just the tests for the constructor itself, but all calls to the constructor in all tests. The changes are too extensive to include in the show notes, but they are all committed to GitHub.
 
 Finally, with the constructor refactored, we now need to update the call to the constructor in `sample.html`:
 
@@ -348,8 +350,8 @@ The idea here to add the ability of a cellular automata to know what states are 
 
 The first step is to update the constructor so it performs the following two tasks:
 
-1.  Stores a set of states in a private instance variable named `._cellStates`. These states can come from the user via the `cellStates` key in the `opts` argument, or, a default set of _Alive_ and _Dead_ can be used.
-2.  Builds a matching looking table named `._statesByValue`.
+1.  Stores a set of states in a private instance variable named `._cellStates`. These states can come from the user via the `cellStates` key in the `opts` argument or a default set of _Alive_ and _Dead_ can be used.
+2.  Builds a matching lookup table named `._statesByValue`.
 
 Below is my updated constructor with the changes highlighted:
 
@@ -605,7 +607,7 @@ constructor($container, rows, cols, stepFn, opts){
 }
 ```
 
-Next we need a simple read-only accessor for `._cellStates`. This is pretty much just like all the others with the small exception that it returns a fresh array rather than a reference to the original. This is to prevent _spooky action at a distance_. If we returned a reference to the internal array the user could inadvertently alter it and cause very weird and difficult to track down bugs.
+Next we need a simple read-only accessor for `._cellStates`. This is pretty much just like all the others with the small exception that it returns a fresh array rather than a reference to the original. This is to prevent _spooky action at a distance_. If we returned a reference to the internal array, the user could inadvertently alter it and cause very weird and difficult to track down bugs.
 
 ```javascript
 /**
@@ -673,11 +675,11 @@ hasState(val){
 }
 ```
 
-Note that while I’m not including the code here, the GitHub release also contains an updated version of the test suite with updated tests for the constructor, and new tests for the newly added functions.
+Note that, while I’m not including the code here, the GitHub release also contains an updated version of the test suite with updated tests for the constructor, and new tests for the newly added functions.
 
 ### Part 4 — Improve `.step()` in `bartificer.ca.Automaton`
 
-At this stage our automaton can store a set of allowed states, but it doesn’t in any way enforce them. Our step function is literally anarchy, it will accept any value what so ever returned by the instance’s user-supplied step function:
+At this stage our automaton can store a set of allowed states, but it doesn’t in any way enforce them. Our step function is literally anarchy; it will accept any value whatsoever returned by the instance’s user-supplied step function:
 
 ```javascript
 // calculate the next state
@@ -704,14 +706,14 @@ nextState(ns){
 }
 ```
 
-What we need if for our `.step()` function to be as helpful as possible and pass what the user meant to `.nextStep()` rather than the exact value they returned. In CS jargon, our `.step()` function should _coerce_ the value returned by the user’s step function into a `bartificer.ca.State` object if possible.
+What we need is for our `.step()` function to be as helpful as possible and pass what the user meant to `.nextStep()` rather than the exact value they returned. In CS jargon, our `.step()` function should _coerce_ the value returned by the user’s step function into a `bartificer.ca.State` object if possible.
 
-Let’s illustrate this point with a hypothetical example. Imagine the user of our API has created a CA and specified that it supports following two states:
+Let’s illustrate this point with a hypothetical example. Imagine the user of our API has created a CA and specified that it supports the following two states:
 
 1.  _Alive_ (`true`)
 2.  _Dead_ (`false`)
 
-If the user’s step function `true` or `false`, then there is no ambiguity, so our `.step()` function should be able to translate those primitive values into their matching `bartificer.ca.State` objects, and pass those objects on to `.nextState()` rather than the original primitive value.
+If the user’s step function returns `true` or `false`, then there is no ambiguity. Our `.step()` function should be able to translate those primitive values into their matching `bartificer.ca.State` objects and pass those objects on to `.nextState()` rather than the original primitive value.
 
 Because we’ve already added the `.stateFromValue()` function, there’s not actually much more we need to do:
 
@@ -758,11 +760,11 @@ step(){
 }
 ```
 
-Again, I updated the test suite for the `.step()` function so it checks that coercions are being applied, and you can find that code in [the git release](https://github.com/bbusschots/bartificer_ca_js/tree/PBS49-Challenge-Solution).
+Again, I updated the test suite for the `.step()` function, so it checks that coercions are being applied. You can find that code in [the git release](https://github.com/bbusschots/bartificer_ca_js/tree/PBS49-Challenge-Solution).
 
 ## A Final Example — Multiple Different CAs
 
-While we’ve focused on Conway’s Game of Life, that is not the only CA in town. Firstly, there are a myriad of simple variations of the Game of Life where you keep the concept of two states, but change the number of neighbours needed to be born or to die, together, all these rule sets are known the _Life_ class of CAs, [you can see man of them described here](http://www.mirekw.com/ca/rullex_life.html). We’ll implement one of these, the so-called _Maze Rule_.
+While we’ve focused on Conway’s Game of Life, that is not the only CA in town. Firstly, there are a myriad of simple variations of the Game of Life where you keep the concept of two states, but change the number of neighbours needed to be born or to die. Together, all these rule sets are known the _Life_ class of CAs, [you can see many of them described here](http://www.mirekw.com/ca/rullex_life.html). We’ll implement one of these, the so-called _Maze Rule_.
 
 But of course, there’s no need to limit yourself to just two states! To prove that point we’ll implement the best known of the three-state rules, _Brian’s Brain_.
 
@@ -819,7 +821,7 @@ Let’s start with a basic HTML 5 page that loads jQuery and our bartificer.ca p
 </html>
 ```
 
-Let’s start on familiar territory and create the Game of Life CA. To do that we’ll need three things:
+Let’s start on familiar territory and create the Game of Life CA. To do that, we’ll need three things:
 
 1.  A set of allowed states (alive & dead)
 2.  A render function that can render aliveness and deadness
@@ -885,7 +887,7 @@ function randomAliveness(){
 }
 ```
 
-We’re now ready to create the Game of Life CA and set it running. Because the constructor interacts with the DOM (inserts a table) we have to do this inside the jQuery document ready handler:
+We’re now ready to create the Game of Life CA and set it running. Because the constructor interacts with the DOM (inserts a table), we have to do this inside the jQuery document ready handler:
 
 ```javascript
 // declare variables to hold references to the CAs
@@ -917,7 +919,7 @@ $(function(){
 
 At this stage our sample page loads the game of life and starts it running. Nothing really new so far. Now, let’s implement the Maze!
 
-The Maze uses the same set of allowed states, so we don’t need to define a new set of states, or create a new rendering function, or create a new function for generating random states, we can re-use those we already created. All we need to do is create a new step function that implements the rules for the Maze:
+The Maze uses the same set of allowed states. So we don’t need to define a new set of states, or create a new rendering function, or create a new function for generating random states. We can reuse those we already created. All we need to do is create a new step function that implements the rules for the Maze:
 
 1.  If alive, must have between 1 and 5 live neighbours to stay alive, otherwise, die
 2.  If dead, must have exactly 3 live neighbours to come to life, otherwise, stay dead
@@ -990,18 +992,18 @@ $(function(){
 
 Now let’s really shake things up with Brian’s Brain.
 
-Brian’s Brain doesn’t have live and dead cells, instead, each cell is imagined to be a neurone in Brian’s Brain, so it’s in on of three states:
+Brian’s Brain doesn’t have live and dead cells. Instead, each cell is imagined to be a neuron in Brian’s Brain, in one of three states:
 
 1.  Ready to Fire
 2.  Firing
 3.  Recharging
 
-Given those three states the following rules apply:
+Given those three states, the following rules apply:
 
-1.  All cells cycle from ready, to firing, to recharging and back to ready, no other transitions are possible
+1.  All cells cycle from ready to firing to recharging and back to ready. No other transitions are possible
 2.  A cell only fires when exactly two of its neighbours are firing
-3.  When a cell fires it stays in that state for exactly one step
-4.  When a cell is re-charging it also stays in that state for exactly one step
+3.  When a cell fires, it stays in that state for exactly one step
+4.  When a cell is recharging, it also stays in that state for exactly one step
 
 So let’s translate that into code. First, the set of states:
 
@@ -1039,7 +1041,7 @@ function brainStep(currentState, neighbourStates){
 }
 ```
 
-Now we need to get practical — our existing render function can only deal with two states, so we need to write another one for dealing with three states:
+Now we need to get practical — our existing render function can only deal with two states. We need to write another one for dealing with three states:
 
 ```javascript
 function renderNeuron($td, s){
@@ -1101,10 +1103,10 @@ I’ve included the entire file as `pbs51.html` in this instalment’s ZIP file.
 
 ## A Challenge
 
-Given that we’ve just wrapped up one chapter, and will be starting something completely fresh next time, there isn’t really an obvious challenge to set. But, if you would like to practice your coding skills while we’re on hiatus, I suggest you set yourself the same challenge I set myself for [instalment 50](https://bartificer.net/pbs50).
+Given that we’ve just wrapped up one chapter, and will be starting something completely fresh next time, there isn’t really an obvious challenge to set. But, if you would like to practice your coding skills while we’re on hiatus, I suggest you set yourself the same challenge I set myself for [instalment 50](https://pbs.bartificer.net/pbs50).
 
 ## Final Thoughts
 
-At this stage we’ve come a very long way indeed. We’ve learned how to define the structure of a web page with HTML, how to alter the presentation of a page with CSS, and how bring that page to life with JavaScript. We’ve learned how to use jQuery to interact with the DOM, and how to create our own classes. We’ve now put all that together to create an API for building Cellular Automata. We’ve not just created a web app, we’ve created an API that enables others to create web apps of their own which can display any 2D cellular automaton they care to dream up!
+At this stage we’ve come a very long way indeed. We’ve learned how to define the structure of a web page with HTML, how to alter the presentation of a page with CSS, and how to bring that page to life with JavaScript. We’ve learned how to use jQuery to interact with the DOM and how to create our own classes. We’ve now put all that together to create an API for building Cellular Automata. We’ve not just created a web app; we’ve created an API that enables others to create web apps of their own which can display any 2D cellular automaton they care to dream up!
 
 When we return we’ll switch our focus away from JavaScript and back onto HTML and CSS with an introduction to the popular and powerful open source CSS library [Bootstrap 4](https://getbootstrap.com).
