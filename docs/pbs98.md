@@ -24,3 +24,24 @@ Throughout this instalment we'll build a suite of classes that together will all
 
 ## Step 1 — A Class to Represent Denominations
 
+This class does not have a lot of work to do — it simply provides getters and setters for two properties (`name` & `symbol`), a constructor, and a `.clone()` instance function.
+
+TO DO — INSERT CODE
+
+## Step 2 — A Basic Class to Represent Currencies in General
+
+Rather than trying to write one class that can handle all three currency types, let's start by creating a simple class that represents things all our currency types will have in common.
+
+Again, this class doesn't have much to do just yet. For now it simply provides getters and setters for two real properties (`name` & `imaginary`), getters and setters for a virtual property `real` which is simply the inverse of `imaginary`, and a constructor.
+
+TO DO — INSERT CODE
+
+## Inheritance — the *is-a* Relationship
+
+We now have a class that represents the things common to all currency types. We now need to write separate classes for each type of currency, but we want to do so without needless code duplication. What we really want is for each of our three classes to somehow absorb our `Currency` class. The mechanism for doing just that is *inheritance*.
+
+When class `B` absorbs all the functionality from class `A` it's said to *inherit from* `A`. We can also say that `A`  is `B`'s *parent class*, and `B` is a *child class* of `A`.
+
+We can also say that `B` *is an* `A`.
+
+LEFT OFF HERE
