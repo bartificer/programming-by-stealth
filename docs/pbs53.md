@@ -18,13 +18,13 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge set last time was extremely simple — it was basically to write a recipe for a food or drink of your choice using the appropriate HTML elements, and include Bootstrap into the resulting page.
 
-This challenge was not really about Bootstrap, it was really just a nice simple task to get you back into the HTML5 groove since it’ve been a while since we’ve practiced that muscle. Because it’s such a simplistic task, there’s nothing I particularly want to draw your attention to in my solution. You’ll find my solution in [this instalment’s ZIP file](http://<a href=).
+This challenge was not really about Bootstrap, it was really just a nice simple task to get you back into the HTML5 groove since it’ve been a while since we’ve practiced that muscle. Because it’s such a simplistic task, there’s nothing I particularly want to draw your attention to in my solution. You’ll find my solution in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs53.zip).
 
 ## A Custom Playground
 
 The best way to see the effect of a CSS class is to add it to some HTML. To that end I’ve set up a very simplistic basic HTML 5 page into which you can quickly and easily add the classes to see what they do.
 
-You can use the HTML page below (also in [the instalment’s ZIP file](http://<a href=) as `pbs53.html`), or, [this live interactive playground](https://www.bootply.com/7wouLw6Mgk).
+You can use the HTML page below (also in [the instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/05/pbs53.zip) as `pbs53.html`), or, [this live interactive playground](https://www.bootply.com/7wouLw6Mgk).
 
 ```html
 <!DOCTYPE HTML>
