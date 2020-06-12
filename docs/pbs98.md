@@ -19,3 +19,32 @@ The *has-a* relationship really is very simple to describe — instances of one 
 Our ultimate aim in this worked example is to represent an amount of money. We'll achieve that goal by writing classes to represent three inter-related concepts — *amounts of money* will be in a given *currency*, and each currency will contain one or more *denominations*. For example, the sum of money $5.45 is in US Dollars which have two denominations, dollars and cents. We'll achieve our aim by building three classes `Denomination`, `Currency`, and `Monetary Amount`.
 
 An amount of money has a currency, and a currency has denominations, so we have at least two *has-a* relationships to deal with here.
+
+You'll find the full code for the worked example in the file `money.js`.
+
+## Step 1 — The `Denomination` Class
+
+For this worked example we'll keep things nice and simple — a denomination simply has a name and a symbol. All our class will need is getters and setters for the `name` and `symbol` instance data attributes and a constructor.
+
+TO DO — insert code
+
+## Step 2 — The `Currency` Class
+
+While we'll keep this class as simple as we can, it does need to be a little more complex than the `Denomination`.
+
+### Needed Instance Data Attributes
+
+* `name` — the currency's name, e.g. *US Dollar* or *Sterling*.
+* `denomination` — the currency's main denomination, e.g. *Dollar* or *Pound*.
+* `subDenomination` — the currency's secondary denomination, e.g. *Cent* or *Penny*. This is optional, some currencies like the Japanese Yen don't have a sub-denomination.
+* `subDenominationOrder` — the power of ten that relates the secondary denomination to the primary. I.e. the number of decimal places that correspond to the sub-denomination. Almost always 2 because most currencies have 100 of their sub-denominations making up one of their primary denominations. Will always be set to zero if there is no sub-denomination, and should default to 2.
+* `imaginary` — whether or not the currency is imaginary
+* `real` — whether or not the currency is real (always the inverse of imaginary!)
+
+TO DO — include code
+
+TO DO — point out subDenomination getter and setter	
+
+TO DO — point out the subDenominationOrder getter & setter
+
+TO DO — point out the imaginary & real getters & setters
