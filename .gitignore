@@ -2,3 +2,5 @@
 .DS_Store
 
 *.komodoproject
+
+*.html.tmp.html
