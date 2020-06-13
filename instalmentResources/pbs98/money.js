@@ -4,32 +4,6 @@
 
 class Denomination{
 	//
-	// The 'name' property
-	//
-	
-	/**
-	 * @type {string}
-	 */
-	get name(){
-		return this._name;
-	}
-	
-	/**
-	 * @type {string}
-	 * @throws {TypeError}
-	 * @throws {RangeError}
-	 */
-	set name(n){
-		if(is.not.string(n)){
-			throw new TypeError('name must be a string');
-		}
-		if(is.empty(n)){
-			throw new RangeError('name cannot be empty');
-		}
-		this._name = n;
-	}
-	
-	//
 	// The 'symbol' property
 	//
 	
@@ -56,19 +30,89 @@ class Denomination{
 	}
 	
 	//
+	// The 'singularName', 'pluralName' & 'name' properties
+	//
+	
+	/**
+	 * @type {string}
+	 */
+	get singularName(){
+		return this._singularName;
+	}
+	
+	/**
+	 * @type {string}
+	 * @throws {TypeError}
+	 * @throws {RangeError}
+	 */
+	set singularName(sn){
+		if(is.not.string(sn)){
+			throw new TypeError('singularName must be a string');
+		}
+		if(is.empty(sn)){
+			throw new RangeError('singularName cannot be empty');
+		}
+		this._singularName = sn;
+	}
+	
+	/**
+	 * @type {string}
+	 */
+	get pluralName(){
+		return this._pluralName;
+	}
+	
+	/**
+	 * @type {string}
+	 * @throws {TypeError}
+	 * @throws {RangeError}
+	 */
+	set pluralName(pn){
+		if(is.not.string(pn)){
+			throw new TypeError('pluralName must be a string');
+		}
+		if(is.empty(pn)){
+			throw new RangeError('pluralName cannot be empty');
+		}
+		this._pluralName = pn;
+	}
+	
+	/**
+	 * An alias for `singularName`.
+	 * 
+	 * @type {string}
+	 */
+	get name(){
+		return this.singularName;
+	}
+	
+	/**
+	 * An alias for `singularName`.
+	 * @type {string}
+	 * @throws {TypeError}
+	 * @throws {RangeError}
+	 */
+	set name(n){
+		this.singularName = n; // could throw error
+	}
+	
+	//
 	// The Cosntructor
 	//
 	
 	/**
-	 * @param {string} [name='Coin']
 	 * @param {string} [symbol='#']
+	 * @param {string} [singularName='Coin']
+	 * @param {string} [pluralName] - defaults to the singular name with an 's' appended.
 	 * @throws {TypeError}
 	 * @throws {RangeError}
 	 */
-	constructor(name, symbol){
-		if(!name) name = 'Coin';
+	constructor(symbol, singularName, pluralName){
+		if(!singularName) singularName = 'Coin';
+		this.singularName = singularName; // could throw error
+		if(!pluralName) pluralName = `${this.singularName}s`;
+		this.pluralName = pluralName; // could throw error
 		if(!symbol) symbol = '#';
-		this.name = name; // could throw error
 		this.symbol = symbol; // could throw error
 	}
 }
@@ -78,6 +122,35 @@ class Denomination{
 //
 
 class Currency{
+	//
+	// Class Functions (helper functions in this case)
+	//
+	
+	/**
+	 * Coerce a value to a floating point number if possible.
+	 *
+	 * @param {number} amount
+	 * @return {string}
+	 * @throws {TypeError}
+	 */
+	static coerceAmount(amount){
+		amount = parseFloat(amount);
+		if(is.nan(amount)) throw new TypeError('amount must be a number');
+		return amount;
+	}
+	
+	/**
+	 * Convert an amount to a human-friendly integer string, e.g. 1234.56 → '1,235'.
+	 *
+	 * @param {number} amount
+	 * @return {string}
+	 * @throws {TypeError}
+	 */
+	static amountAsHumanInt(amount){
+		amount = this.coerceAmount(amount);
+		return numeral(amount).format('0,0');
+	}
+	
 	//
 	// The 'name' property
 	//
@@ -242,7 +315,7 @@ class Currency{
 			this.name = details.name; // could throw error
 		}
 		if(is.undefined(details.denomination)){
-			this.denomination = new Denomination('Dollar', '$');
+			this.denomination = new Denomination('$', 'Dollar');
 		}else{
 			this.denomination = details.denomination;
 		}
@@ -250,7 +323,7 @@ class Currency{
 			this.subDenominationOrder = 0;
 		}else{
 			if(is.undefined(details.subDenomination)){
-				this.subDenomination = new Denomination('Cent', '¢');
+				this.subDenomination = new Denomination('¢', 'Cent');
 			}else{
 				this.subDenomination = details.subDenomination;
 			}
@@ -272,37 +345,95 @@ class Currency{
 	//
 	
 	/**
+	 * Convert an amount to a human-friendly sting with the appropriate number of decimal
+	 * places based on the subDenominationOrder. E.g. 1234.567 with order 2 → '1,124.57'.
+	 *
+	 * @param {number} amount
+	 * @return {string}
+	 * @throws {TypeError}
+	 */
+	amountAsHumanFloat(amount){
+		amount = this.constructor.coerceAmount(amount); // could throw error
+		
+		// short-curcuit the case where there is no secondary denomination
+		if(this.subDenominationOrder === 0){
+			return this.constructor.amountAsHumanInt(amount);
+		}
+		
+		// build a format string with the appropriate number of decimal places
+		const formatString = `0,0[.]${'0'.repeat(this.subDenominationOrder)}`;
+		
+		// format and return
+		return numeral(amount).format(formatString);
+	}
+	
+	/**
 	 * Split a decimal amount into a number of primary and secondary denominations.
 	 * The secondary denomination will be rounded to the nearest whole number.
 	 *
 	 * @param {number} amount
-	 * @return {number[]}
+	 * @return {number[]} The primary and secondary amouns as an array of two integers.
 	 * @throws {TypeError}
 	 */
 	splitAmount(amount){
 		amount = parseFloat(amount);
 		if(is.nan(amount)) throw new TypeError('amount must be a number');
 		
+		// short-circuit the simple case were there is no seconardy denomination
+		if(this.subDenominationOrder === 0){
+			return [Math.round(amount), 0];
+		}
+		
+		// short-circuit the case where the amount is an integer
+		if(is.integer(amount)){
+			return [amount, 0];
+		}
+		
+		//
+		// calculate the primary amount
+		//
+		
 		// NOTE - Math.floor() does not behave as expected with negative numbers
-		// so use the absolute value when calculating the primary amount, then
-		// re-negate if needed
+		// so need the absolute value before flooring.
+		
+		// keep a record of whether or not the amount is negative
 		const isNegative = amount < 0;
-		let primaryAmount = Math.floor(Math.abs(amount));
-		let secondaryAmount = 0;
-		if(this.subDenominationOrder > 0){
-			secondaryAmount = Math.abs(amount) - primaryAmount;
-			secondaryAmount *= Math.pow(10, this.subDenominationOrder);
-			secondaryAmount = Math.round(secondaryAmount);
-			if(secondaryAmount === Math.pow(10, this.subDenominationOrder)){
-				secondaryAmount = 0;
-				if(isNegative){
-					primaryAmount--;
-				}else{
-					primaryAmount++;
-				}
+		
+		// get the absolute value of the amount
+		const absAmount = Math.abs(amount);
+		
+		// get the absolute and actual values of the primary amount
+		const absPrimaryAmount = Math.floor(absAmount);
+		let primaryAmount = isNegative ? 0 - absPrimaryAmount : absPrimaryAmount;
+		
+		//
+		// calculate the secondary amount
+		//
+		
+		// start with just the decimal part of the amount, e.g. 0.123
+		let secondaryAmount = Math.abs(amount) - absPrimaryAmount;
+		
+		// calculate the number of secondary units in one primary based on the order
+		const numSecInPri = Math.pow(10, this.subDenominationOrder); // e.g. 100
+		
+		// multiply by the number of secondary units in one primary, e.g. 12.3
+		secondaryAmount *= numSecInPri;
+		
+		// round to the nearest whole number, e.g. 12
+		secondaryAmount = Math.round(secondaryAmount);
+		
+		// deal with the special case where the secondary amount gets rounded
+		// up to be a whole primary unit
+		if(secondaryAmount === numSecInPri){
+			secondaryAmount = 0;
+			if(isNegative){
+				primaryAmount--;
+			}else{
+				primaryAmount++;
 			}
 		}
-		if(isNegative) primaryAmount = 0 - primaryAmount;
+		
+		// return the two amounts
 		return [primaryAmount, secondaryAmount];
 	}
 	
@@ -310,19 +441,19 @@ class Currency{
 	 * Render an amount as a string using the primary denomination's symbol
 	 * and the default number of decimal places.
 	 *
+	 * Note that for negative amounts the minus sign will be pre-fixed before
+	 * the symbol.
+	 *
 	 * @param {number} amount
-	 * @return {string}
+	 * @return {string} E.g. '$12.34' and '-$12.34'
 	 * @throws {TypeError}
 	 */
 	amountAsString(amount){
 		amount = parseFloat(amount);
-		if(is.nan(amount)) throw new TypeError('amount must be a number');
-		let ans = this.symbol;
-		if(this.subDenominationOrder === 0){
-			ans += numeral(amount).format('0,0');
-		}else{
-			ans += numeral(amount).format('0,0[.]' + '0'.repeat(this.subDenominationOrder));
-		}
+		
+		// build and return the string
+		let ans = `${is.negative(amount) ? '-' : ''}${this.denomination.symbol}`;
+		ans += this.amountAsHumanFloat(Math.abs(amount));
 		return ans;
 	}
 	
@@ -335,17 +466,15 @@ class Currency{
 	 */
 	amountAsHumanString(amount){
 		amount = parseFloat(amount);
-		if(is.nan(amount)) throw new TypeError('amount must be a number');
-		const (primaryAmount, secondaryAmount) = this.splitAmount(amount);
+		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
 		
-		let ans = is.negative(primaryAmount) ? '-' : '';
-		ans += this.denomination.symbol;
-		ans += numeral(Math.abs(primaryAmount)).format('0,0');
+		// build and return the string
+		let ans = `${is.negative(primaryAmount) ? '-' : ''}${this.denomination.symbol}`;
+		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
 		if(secondaryAmount > 0 && this.subDenominationOrder > 0){
-			ans += ' & ' + this.subDenomination.symbol;
-			ans += numeral(secondaryAmount).format('0,0');
+			ans += ` & ${this.subDenomination.symbol}`;
+			ans += this.constructor.amountAsHumanInt(Math.abs(secondaryAmount));	
 		}
-		
 		return ans;
 	}
 	
@@ -358,20 +487,20 @@ class Currency{
 	 */
 	amountAsEnglishString(amount){
 		amount = parseFloat(amount);
-		if(is.nan(amount)) throw new TypeError('amount must be a number');
-		const (primaryAmount, secondaryAmount) = this.splitAmount(amount);
+		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
 		
-		let ans = is.negative(primaryAmount) ? 'minus ' : '';
-		ans += numeral(Math.abs(primaryAmount)).format('0,0')
-		ans += ' ' + this.denomination.name;
-		if(primaryAmount > 1) ans += 's';
+		// build and return the string
+		let ans = `${is.negative(primaryAmount) ? ' minus ' : ''}`;
+		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
+		ans += ` ${primaryAmount === 1 ? this.denomination.singularName : this.denomination.pluralName}`;
 		if(secondaryAmount > 0 && this.subDenominationOrder > 0){
-			ans += ' and ';
-			ans += numeral(secondaryAmount).format('0,0');
-			ans += ' ' + this.subDenomination.name;
-			if(secondaryAmount > 1) ans += 's';
+			ans += ` and ${this.constructor.amountAsHumanInt(secondaryAmount)} `;
+			if(secondaryAmount === 1){
+				ans += this.subDenomination.singularName;
+			}else{
+				ans += this.subDenomination.pluralName;
+			}
 		}
-		
 		return ans;
 	}
 }
@@ -398,7 +527,7 @@ class MonetaryAmount{
 	 */
 	set currency(c){
 		if(!(c instanceof Currency)){
-			throw new TypeError('currency must be an instanece of the class Currency');
+			throw new TypeError('currency must be an instance of the class Currency');
 		}
 		this._currency = c;
 	}
@@ -419,11 +548,7 @@ class MonetaryAmount{
 	 * @throws {TypeError}
 	 */
 	set amount(a){
-		a = parseFloat(a);
-		if(is.nan(a)){
-			throw new TypeError('amount must be a number');
-		}
-		this._amount = a;
+		this._amount = Currency.coerceAmount(a); // could throw error
 	}
 	
 	//
@@ -431,23 +556,20 @@ class MonetaryAmount{
 	//
 	
 	/**
-	 * @param {Object} [details]
-	 * @param {Currency} [details.currency] - the currency, defaults to the defaults for the Currency constructor.
-	 * @param {number} [details.amount=0]
+	 * @param {number} [amount=0]
+	 * @param {Currency} [currency] - the currency, defaults to the defaults for the Currency constructor.
 	 * @throws {TypeError}
 	 */
-	constructor(details){
-		if(is.not.object(details)){
-			details = {};
-		}
-		if(is.undefined(details.amount)){
+	constructor(amount, currency){
+		if(is.undefined(amount)){
 			this.amount = 0;
 		}else{
-			details.amount = parseFloat(details.amount);
-			if(is.nan(details.amount)){
-				throw new TypeError('amount must be a number');
-			}
-			this.amount = details.amount;
+			this.amount = Currency.coerceAmount(amount); // could throw error
+		}
+		if(is.undefined(currency)){
+			this.currency = new Currency();
+		}else{
+			this.currency = currency; // could throw error
 		}
 	}
 	
@@ -470,12 +592,11 @@ class MonetaryAmount{
 			}
 			this.amount += amount.amount;
 		}else{
-			amount = parseFloat(amount);
-			if(is.nan(amount)){
-				throw new TypeError('amount must be a number or an instance of MonetaryAmount');
-			}
-			this.amount += amount;
+			this.amount += Currency.coerceAmount(amount); // could throw error
 		}
+		
+		// return a reference to self to facilitate function chaining
+		return this;
 	}
 	
 	/**
