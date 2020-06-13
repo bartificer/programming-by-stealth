@@ -289,7 +289,7 @@ class Currency{
 	}
 
 	//
-	// The Cosntructor
+	// The Constructor
 	//
 
 	/**
@@ -552,7 +552,7 @@ class MonetaryAmount{
 	}
 
 	//
-	// The Cosntructor
+	// The Constructor
 	//
 
 	/**
