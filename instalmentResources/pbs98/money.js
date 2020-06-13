@@ -108,12 +108,12 @@ class Denomination{
 	 * @throws {RangeError}
 	 */
 	constructor(symbol, singularName, pluralName){
+		if(!symbol) symbol = '#';
+		this.symbol = symbol; // could throw error
 		if(!singularName) singularName = 'Coin';
 		this.singularName = singularName; // could throw error
 		if(!pluralName) pluralName = `${this.singularName}s`;
 		this.pluralName = pluralName; // could throw error
-		if(!symbol) symbol = '#';
-		this.symbol = symbol; // could throw error
 	}
 }
 
@@ -194,7 +194,7 @@ class Currency{
 	 */
 	set denomination(d){
 		if(!(d instanceof Denomination)){
-			throw new TypeError('denomination must be an instanece of the class Denomination');
+			throw new TypeError('denomination must be an instance of the class Denomination');
 		}
 		this._denomination = d;
 	}
@@ -220,7 +220,7 @@ class Currency{
 			this._subDenominationOrder = 0;
 		}
 		if(!(sd instanceof Denomination)){
-			throw new TypeError('subDenomination must be an instanece of the class Denomination');
+			throw new TypeError('subDenomination must be an instance of the class Denomination');
 		}
 		this._subDenomination = sd;
 	}
