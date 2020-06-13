@@ -1,6 +1,6 @@
 # PBS 98 of X — Building with Classes Part 1 — *Has-A*
 
-I had promised that this instalment would focus on the very important concept of *inheritance*, but as I started to try write the notes I realised we need to build some more context before we're ready for that final piece of the object orientation puzzle.
+I had promised that this instalment would focus on the very important concept of *inheritance*, but as I started to try to write the notes I realised we need to build some more context before we're ready for that final piece of the object orientation puzzle.
 
 Both this instalment and the next, when we will finally meet inheritance, share a theme — using individual classes as building blocks for larger abstractions. We've said that classes allow us to represent things or concepts in code, well, things and concepts interact with each other to form larger systems, and so can classes!
 
@@ -10,7 +10,7 @@ In the object-oriented world view classes can be related in of two ways.
 
 Firstly, classes can have instances of another classes as properties — a hypothetical class representing a forest would definitely contain some instances of a class representing trees! In addition it would probably contain some instances of a class representing wild flowers too, and maybe even some instances of a class representing bears! Many programmers refer to this kind of a relationship as a *has-a* relationship. This the type of relationship we'll be focusing on in this instalment.
 
-Secondly, classes can be more specific versions of other classes. A hypothetical class to represent Poodles could a more specific version of a class to represent dogs in general. Many programmers call this an *is-a* relationship, and those will be the focus of the next instalment. As you may have guessed, the mechanism for implementing *is-a* relationships is inheritance.
+Secondly, classes can be more specific versions of other classes. A hypothetical class to represent Poodles could be a more specific version of a class to represent dogs in general. Many programmers call this an *is-a* relationship, and those will be the focus of the next instalment. As you may have guessed, the mechanism for implementing *is-a* relationships is inheritance.
 
 ## *has-a* Relationships are Simple
 
@@ -22,9 +22,9 @@ I could finish this instalment here, but instead, let's spend the remainder of t
 
 ## A Worked Example — Currency Amounts
 
-In this example we'll build a suite if classes to represent amounts of money in a specific currencies.
+In this example we'll build a suite of classes to represent amounts of money in specific currencies.
 
-We'll model this requirement using three inter-related concepts — *amounts of money* have a given *currency*, and a currency has one or two *denominations*. For example, the sum of money $5.45 is in *US Dollars* which have two denominations, *Dollars* and *Cents*. We'll write three classes to represent these three concepts — `MonetaryAmount`, `Currency`, and `Denomination`.
+We'll model this requirement using three interrelated concepts.  *Amounts of money* have a given *currency*, and a *currency* has one or two *denominations*. For example, the sum of money $5.45 is in *US Dollars*, which have two denominations, *Dollars* and *Cents*. We'll write three classes to represent these three concepts — `MonetaryAmount`, `Currency`, and `Denomination`.
 
 There will be two *has-a* relationships between our classes — monetary amounts have a currency, and currencies have one or two denominations.
 
@@ -99,7 +99,7 @@ den1.name = new Date(); // throws TypeError
 
 Finally, we can use this simple class to remind ourselves of some best practices for constructors.
 
-As a general rule, constructors should work when no arguments are passed at all, and should use sane defaults for each of the instance data attributes. You should also try order the optional arguments by likely-hood that users want to specify a custom value for them.
+As a general rule, constructors should work when no arguments are passed at all, and should use sane defaults for each of the instance data attributes. You should also try to order the optional arguments by likelihood that users want to specify a custom value for them.
 
 ```js
 constructor(symbol, singularName, pluralName){
@@ -112,9 +112,9 @@ constructor(symbol, singularName, pluralName){
 }
 ```
 
-Notice that I chose to order my arguments symbol, then singular name, then plural name. The defaults for the symbol and singular name are very much by-the-book, but the default fo the plural name is a little more clever — it defaults to the singular name with an `'s'` appended.
+Notice that I chose to order my arguments symbol, then singular name, then plural name. The defaults for the symbol and singular name are very much by-the-book, but the default for the plural name is a little more clever — it defaults to the singular name with an `'s'` appended.
 
-Also note that constructors should avoid duplicating validation code needlessly — instead, they should leverage the class's setters which should already be doing all the needed validation. Finally, notice that I like to leave comments to my future self reminding me that calls to the setters could throw errors.
+Also note that constructors should avoid duplicating validation code needlessly. Instead, they should leverage the class's setters which should already be doing all the needed validation. Finally, notice that I like to leave comments to my future self reminding me that calls to the setters could throw errors.
 
 We can now see this constructor in action on the JavaScript console:
 
@@ -140,7 +140,7 @@ console.log(`${penny.symbol}, ${penny.singularName}, ${penny.pluralName}`);
 
 Now that we have defined the concept of a denomination with our `Denomination` class we can move on to the `Currency` class. This is the most complex class in the suite. It has class (AKA static) functions, many instance data attributes implemented with getters and setters, a constructor, and many instance functions.
 
-I want to use a pair of similar functions to illustrate when something should be a class function, and when it should be an instance function. Functions that don't interact with any instance data attributes **should** be class functions, functions that do **must** be instance functions (or they can't work!).
+I want to use a pair of similar functions to illustrate when something should be a class function, and when it should be an instance function. Functions that don't interact with any instance data attributes **should** be class functions, functions that do **must** be instance functions, or they can't work!
 
 In this case we have a function that takes a number and converts it to a human-friendly integer string, i.e. something like `4567.89` to `4,568`. This function does not interact with any instance data attributes, so it's implemented as a class function:
 
@@ -295,7 +295,7 @@ asEnglishString(){
 }
 ```
 
-I do however want to take a moment to look at the `.add()` instance function because it serves as a nice example of a function that accepts more than one argument signature. The function is written so that the amount to be added to the current amount can be passed in one of two ways — as a `CurrencyAmount` object with the same currency, or, as a number.  This means that the function has to decide how to process the argument by testing it to figure out what it is first:
+I do however want to take a moment to look at the `.add()` instance function because it serves as a nice example of a function that accepts more than one argument signature. The function is written so that the amount to be added to the current amount can be passed in one of two ways — as a `CurrencyAmount` object with the same currency, or as a number.  This means that the function has to decide how to process the argument by testing it to figure out what it is first:
 
 ```js
 add(amount){

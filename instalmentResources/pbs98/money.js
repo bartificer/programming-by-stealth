@@ -6,14 +6,14 @@ class Denomination{
 	//
 	// The 'symbol' property
 	//
-	
+
 	/**
 	 * @type {string}
 	 */
 	get symbol(){
 		return this._symbol;
 	}
-	
+
 	/**
 	 * @type {string}
 	 * @throws {TypeError}
@@ -28,18 +28,18 @@ class Denomination{
 		}
 		this._symbol = s;
 	}
-	
+
 	//
 	// The 'singularName', 'pluralName' & 'name' properties
 	//
-	
+
 	/**
 	 * @type {string}
 	 */
 	get singularName(){
 		return this._singularName;
 	}
-	
+
 	/**
 	 * @type {string}
 	 * @throws {TypeError}
@@ -54,14 +54,14 @@ class Denomination{
 		}
 		this._singularName = sn;
 	}
-	
+
 	/**
 	 * @type {string}
 	 */
 	get pluralName(){
 		return this._pluralName;
 	}
-	
+
 	/**
 	 * @type {string}
 	 * @throws {TypeError}
@@ -76,16 +76,16 @@ class Denomination{
 		}
 		this._pluralName = pn;
 	}
-	
+
 	/**
 	 * An alias for `singularName`.
-	 * 
+	 *
 	 * @type {string}
 	 */
 	get name(){
 		return this.singularName;
 	}
-	
+
 	/**
 	 * An alias for `singularName`.
 	 * @type {string}
@@ -95,11 +95,11 @@ class Denomination{
 	set name(n){
 		this.singularName = n; // could throw error
 	}
-	
+
 	//
-	// The Cosntructor
+	// The Constructor
 	//
-	
+
 	/**
 	 * @param {string} [symbol='#']
 	 * @param {string} [singularName='Coin']
@@ -125,7 +125,7 @@ class Currency{
 	//
 	// Class Functions (helper functions in this case)
 	//
-	
+
 	/**
 	 * Coerce a value to a floating point number if possible.
 	 *
@@ -138,7 +138,7 @@ class Currency{
 		if(is.nan(amount)) throw new TypeError('amount must be a number');
 		return amount;
 	}
-	
+
 	/**
 	 * Convert an amount to a human-friendly integer string, e.g. 1234.56 → '1,235'.
 	 *
@@ -150,18 +150,18 @@ class Currency{
 		amount = this.coerceAmount(amount);
 		return numeral(amount).format('0,0');
 	}
-	
+
 	//
 	// The 'name' property
 	//
-	
+
 	/**
 	 * @type {string}
 	 */
 	get name(){
 		return this._name;
 	}
-	
+
 	/**
 	 * @type {string}
 	 * @throws {TypeError}
@@ -176,18 +176,18 @@ class Currency{
 		}
 		this._name = n;
 	}
-	
+
 	//
 	// The 'denomination' property
 	//
-	
+
 	/**
 	 * @type {Denomination}
 	 */
 	get denomination(){
 		return this._denomination;
 	}
-	
+
 	/**
 	 * @type {Denomination}
 	 * @throws {TypeError}
@@ -198,18 +198,18 @@ class Currency{
 		}
 		this._denomination = d;
 	}
-	
+
 	//
 	// The 'subDenomination' property
 	//
-	
+
 	/**
 	 * @type {Denomination}
 	 */
 	get subDenomination(){
 		return this._subDenomination || null;
 	}
-	
+
 	/**
 	 * @type {Denomination}
 	 * @throws {TypeError}
@@ -224,18 +224,18 @@ class Currency{
 		}
 		this._subDenomination = sd;
 	}
-	
+
 	//
 	// The 'subDenominationOrder'
 	//
-	
+
 	/**
 	 * @type {number}
 	 */
 	get subDenominationOrder(){
 		return this._subDenominationOrder || 0;
 	}
-	
+
 	/**
 	 * Must be a whole number greater than or equal to zero.
 	 * @type {number}
@@ -255,43 +255,43 @@ class Currency{
 			this._subDenomination = null;
 		}
 	}
-	
+
 	//
 	// The 'imaginary' & 'real' properties
 	//
-	
+
 	/**
 	 * @type {boolean}
 	 */
 	get imaginary(){
 		return this._imaginary;
 	}
-	
+
 	/**
 	 * @type {boolean}
 	 */
 	set imaginary(i){
 		this._imaginary = i ? true : false;
 	}
-	
+
 	/**
 	 * @type {boolean}
 	 */
 	get real(){
 		return !this._imaginary;
 	}
-	
+
 	/**
 	 * @type {boolean}
 	 */
 	set real(r){
 		this._imaginary = r ? false : true;
 	}
-	
+
 	//
 	// The Cosntructor
 	//
-	
+
 	/**
 	 * @param {Object} [details]
 	 * @param {string} [details.name="Generic Dollar"] - defaults to an imaginary generic dollar.
@@ -339,11 +339,11 @@ class Currency{
 			this.imaginary = details.imaginary;
 		}
 	}
-	
+
 	//
 	// The Instance Functions
 	//
-	
+
 	/**
 	 * Convert an amount to a human-friendly sting with the appropriate number of decimal
 	 * places based on the subDenominationOrder. E.g. 1234.567 with order 2 → '1,124.57'.
@@ -354,19 +354,19 @@ class Currency{
 	 */
 	amountAsHumanFloat(amount){
 		amount = this.constructor.coerceAmount(amount); // could throw error
-		
+
 		// short-curcuit the case where there is no secondary denomination
 		if(this.subDenominationOrder === 0){
 			return this.constructor.amountAsHumanInt(amount);
 		}
-		
+
 		// build a format string with the appropriate number of decimal places
 		const formatString = `0,0[.]${'0'.repeat(this.subDenominationOrder)}`;
-		
+
 		// format and return
 		return numeral(amount).format(formatString);
 	}
-	
+
 	/**
 	 * Split a decimal amount into a number of primary and secondary denominations.
 	 * The secondary denomination will be rounded to the nearest whole number.
@@ -378,50 +378,50 @@ class Currency{
 	splitAmount(amount){
 		amount = parseFloat(amount);
 		if(is.nan(amount)) throw new TypeError('amount must be a number');
-		
+
 		// short-circuit the simple case were there is no seconardy denomination
 		if(this.subDenominationOrder === 0){
 			return [Math.round(amount), 0];
 		}
-		
+
 		// short-circuit the case where the amount is an integer
 		if(is.integer(amount)){
 			return [amount, 0];
 		}
-		
+
 		//
 		// calculate the primary amount
 		//
-		
+
 		// NOTE - Math.floor() does not behave as expected with negative numbers
 		// so need the absolute value before flooring.
-		
+
 		// keep a record of whether or not the amount is negative
 		const isNegative = amount < 0;
-		
+
 		// get the absolute value of the amount
 		const absAmount = Math.abs(amount);
-		
+
 		// get the absolute and actual values of the primary amount
 		const absPrimaryAmount = Math.floor(absAmount);
 		let primaryAmount = isNegative ? 0 - absPrimaryAmount : absPrimaryAmount;
-		
+
 		//
 		// calculate the secondary amount
 		//
-		
+
 		// start with just the decimal part of the amount, e.g. 0.123
 		let secondaryAmount = Math.abs(amount) - absPrimaryAmount;
-		
+
 		// calculate the number of secondary units in one primary based on the order
 		const numSecInPri = Math.pow(10, this.subDenominationOrder); // e.g. 100
-		
+
 		// multiply by the number of secondary units in one primary, e.g. 12.3
 		secondaryAmount *= numSecInPri;
-		
+
 		// round to the nearest whole number, e.g. 12
 		secondaryAmount = Math.round(secondaryAmount);
-		
+
 		// deal with the special case where the secondary amount gets rounded
 		// up to be a whole primary unit
 		if(secondaryAmount === numSecInPri){
@@ -432,11 +432,11 @@ class Currency{
 				primaryAmount++;
 			}
 		}
-		
+
 		// return the two amounts
 		return [primaryAmount, secondaryAmount];
 	}
-	
+
 	/**
 	 * Render an amount as a string using the primary denomination's symbol
 	 * and the default number of decimal places.
@@ -450,13 +450,13 @@ class Currency{
 	 */
 	amountAsString(amount){
 		amount = parseFloat(amount);
-		
+
 		// build and return the string
 		let ans = `${is.negative(amount) ? '-' : ''}${this.denomination.symbol}`;
 		ans += this.amountAsHumanFloat(Math.abs(amount));
 		return ans;
 	}
-	
+
 	/**
 	 * Render an amount as a short human string.
 	 *
@@ -467,17 +467,17 @@ class Currency{
 	amountAsHumanString(amount){
 		amount = parseFloat(amount);
 		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
-		
+
 		// build and return the string
 		let ans = `${is.negative(primaryAmount) ? '-' : ''}${this.denomination.symbol}`;
 		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
 		if(secondaryAmount > 0 && this.subDenominationOrder > 0){
 			ans += ` & ${this.subDenomination.symbol}`;
-			ans += this.constructor.amountAsHumanInt(Math.abs(secondaryAmount));	
+			ans += this.constructor.amountAsHumanInt(Math.abs(secondaryAmount));
 		}
 		return ans;
 	}
-	
+
 	/**
 	 * Render an amount as an English string.
 	 *
@@ -488,7 +488,7 @@ class Currency{
 	amountAsEnglishString(amount){
 		amount = parseFloat(amount);
 		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
-		
+
 		// build and return the string
 		let ans = `${is.negative(primaryAmount) ? ' minus ' : ''}`;
 		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
@@ -513,14 +513,14 @@ class MonetaryAmount{
 	//
 	// The 'currency' property
 	//
-	
+
 	/**
 	 * @type {Currency}
 	 */
 	get currency(){
 		return this._currency;
 	}
-	
+
 	/**
 	 * @type {Currency}
 	 * @throws {TypeError}
@@ -531,18 +531,18 @@ class MonetaryAmount{
 		}
 		this._currency = c;
 	}
-	
+
 	//
 	// The 'amount' property
 	//
-	
+
 	/**
 	 * @type {number}
 	 */
 	get amount(){
 		return this._amount;
 	}
-	
+
 	/**
 	 * @type {number}
 	 * @throws {TypeError}
@@ -550,11 +550,11 @@ class MonetaryAmount{
 	set amount(a){
 		this._amount = Currency.coerceAmount(a); // could throw error
 	}
-	
+
 	//
 	// The Cosntructor
 	//
-	
+
 	/**
 	 * @param {number} [amount=0]
 	 * @param {Currency} [currency] - the currency, defaults to the defaults for the Currency constructor.
@@ -572,11 +572,11 @@ class MonetaryAmount{
 			this.currency = currency; // could throw error
 		}
 	}
-	
+
 	//
 	// The Instance Functions
 	//
-	
+
 	/**
 	 * Add an amount to this amount.
 	 *
@@ -594,11 +594,11 @@ class MonetaryAmount{
 		}else{
 			this.amount += Currency.coerceAmount(amount); // could throw error
 		}
-		
+
 		// return a reference to self to facilitate function chaining
 		return this;
 	}
-	
+
 	/**
 	 * Split the amount into a number of primary and secondary denominations.
 	 * The secondary denomination will be rounded to the nearest whole number.
@@ -608,7 +608,7 @@ class MonetaryAmount{
 	split(){
 		return this.currency.splitAmount(this.amount);
 	}
-	
+
 	/**
 	 * Render the amount as a string using the primary denomination's symbol
 	 * and the default number of decimal places.
@@ -618,7 +618,7 @@ class MonetaryAmount{
 	asString(){
 		return this.currency.amountAsString(this.amount);
 	}
-	
+
 	/**
 	 * Render the amount as a short human string.
 	 *
@@ -627,7 +627,7 @@ class MonetaryAmount{
 	asHumanString(){
 		return this.currency.amountAsHumanString(this.amount);
 	}
-	
+
 	/**
 	 * Render the amount as an English string.
 	 *
