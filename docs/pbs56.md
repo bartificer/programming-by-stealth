@@ -6,7 +6,7 @@ In the next instalment we’ll move on to the most powerful aspect of Bootstrap,
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip).
 
-# Matching Podcast Episode 551
+## Matching Podcast Episode 551
 
 Listen along to this instalment on [episode 551 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-551/)
 
@@ -16,9 +16,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 55 Challenge Solution
 
-The challenge set at the end of [the previous instalment](https://bartificer.net/pbs55) was to continue to improve the recipes we’ve been working on over the last few instalments.
+The challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs55) was to continue to improve the recipes we’ve been working on over the last few instalments.
 
-The first part of the challenge was to convert the page header to a display heading. I chose to break my title into two parts, a main part, and a sub-title using the `<small>` tag:
+The first part of the challenge was to convert the page header to a display heading. I chose to break my title into two parts, a main part, and a subtitle using the `<small>` tag:
 
 ```html
 <h1 class="display-1 sticky-top bg-white border-bottom">Roasted Cucumber<br> <small class="text-muted">with Red Onion &amp; Dill</small></h1>
@@ -78,13 +78,13 @@ I’ve included my full sample solution within the folder named `pbs55-challenge
 
 ## Playground
 
-Like last time I’ve created an HTML document with some pre-created elements and empty class attributes which you can use to play along with this instalment. This time the source is very long because it contains tabular data, so I’m not including the source below, but you’ll find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip) as `pbs56a.html`, and in [this interactive Bootply playground](https://www.bootply.com/84ZKahLphH).
+Like last time, I’ve created an HTML document with some previously created elements and empty class attributes which you can use to play along with this instalment. This time the source is very long because it contains tabular data. So I’m not including the source below, but you’ll find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs56.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs56.zip) as `pbs56a.html`, and in [this interactive Bootply playground](https://www.bootply.com/84ZKahLphH).
 
 ## Images & Figures
 
 For the most part, images in Bootstrap are styled in the same way as any other block-like element — you use the border utilities to control the border, the spacing utilities to control the margin, and the positioning utilities to float images left or right if so desired.
 
-For example, to add a rounded red border, float left, and add a margin to all sides but the left you could do something like:
+For example, to add a rounded red border, float left, and add a margin to all sides but the left, you could do something like:
 
 ```
 <img class="border border-danger rounded float-left m-3 ml-0" src="img.jpeg" alt="an image">
@@ -96,11 +96,11 @@ Bootstrap does provide one notable additional image feature though — the abili
 
 ### Responsive/Fluid Images
 
-A responsive image is one that shrinks so it’s width is never wider than its containing block. Note that the aspect ratio will be preserved, and that an image that’s too small to fill the container’s width won’t get stretched — responsive images shrink, they do not stretch!
+A responsive image is one that shrinks so its width is never wider than its containing block. Note that the aspect ratio will be preserved, and that an image that’s too small to fill the container’s width won’t get stretched — responsive images shrink, they do not stretch!
 
 To mark an image as responsive, simply give it the class `img-fluid`.
 
-To see this in action, let’s add the class `img-fluid` to the first image that appears in the dummy page (the one of the posters with the ID `fig1`). Notice that while your viewport is larger than the width of the image it’s displayed in the normal way. Now, shrink your viewport by shrinking the width of your browser window, watch the image scale so it never overflows the page!
+To see this in action, let’s add the class `img-fluid` to the first image that appears in the dummy page (the one of the posters with the ID `fig1`). Notice that, while your viewport is larger than the width of the image, it’s displayed in the normal way. Now, shrink your viewport by shrinking the width of your browser window and watch the image scale so it never overflows the page!
 
 ### Figures
 
@@ -123,7 +123,7 @@ Also note that I left the `img-fluid` class in place because I still want the im
 
 You’ll see that the changes adding these tags make are subtle. The spacing is adjusted a little, and the caption is rendered in a subtle font.
 
-A very likely next step would be to float the figure, so let’s do that by adding the classes `w-25` (to set the width), and `float-right` to the `<figure>` tag:
+A very likely next step would be to float the figure; so let’s do that by adding the classes `w-25` (to set the width), and `float-right` to the `<figure>` tag:
 
 ```html
 <figure class="figure w-25 float-right">
@@ -131,9 +131,9 @@ A very likely next step would be to float the figure, so let’s do that by addi
 </figure>
 ```
 
-You may not want your figure to float, instead, you might want to centre it within the page, this can be done too, but there’s a subtly you’ll need to remember.
+You may not want your figure to float. Instead, you might want to centre it within the page. This can be done too, but there’s a subtlety you’ll need to remember.
 
-Let’s start by giving the components that make up our second figure (the map) the standard Bootstrap classes for figures (`figure`, `figure-img` & `figure-caption`). We should also make the image responsive by giving it the class `img-fluid`, and centre the text within the caption by giving it the Bootstrap utility class `text-center`. This will format the caption nicely, but it won’t centre the figure:
+Let’s start by giving the components that make up our second figure (the map) the standard Bootstrap classes for figures (`figure`, `figure-img`, & `figure-caption`). We should also make the image responsive by giving it the class `img-fluid`, and centre the text within the caption by giving it the Bootstrap utility class `text-center`. This will format the caption nicely, but it won’t centre the figure:
 
 ```html
 <figure class="figure">
@@ -161,11 +161,11 @@ And with that, we now have a nicely centred and nicely formatted figure.
 
 Probably the most striking of the Bootstrap content classes are those for tables. Native HTML tables leave a lot to be desired, and Bootstrap really addresses the shortcomings.
 
-Bootstrap assumes proper table markup, so be sure to enclose your header rows inside a `<thead>` tag, and your table’s body inside a `<tbody>` tag. Also, if your table has footer rows they need to go within a `<tfoot>`.
+Bootstrap assumes proper table markup, so be sure to enclose your header rows inside a `<thead>` tag, and your table’s body inside a `<tbody>` tag. Also, if your table has footer rows, they need to go within a `<tfoot>`.
 
-### The basics
+### The Basics
 
-To apply Bootstrap styling to a table, you have to give it the class `table`. That will give you the default Bootstrap styling for tables, which includes nice typography, and subtle borders at the top of each row. IMO the look is elegant and modern. To see for yourself, add the class `table` to both of the tables in the sandbox.
+To apply Bootstrap styling to a table, you have to give it the class `table`. That will give you the default Bootstrap styling for tables, which includes nice typography, and subtle borders at the top of each row. In my opinion the look is elegant and modern. To see for yourself, add the class `table` to both of the tables in the sandbox.
 
 Once you’ve applied this basic class, you can apply additional classes to customise your table further. In general, these additional classes have been designed with the intention that they be combined with each other, at least where the combinations make sense.
 
@@ -173,11 +173,11 @@ Once you’ve applied this basic class, you can apply additional classes to cust
 
 Firstly, the most dramatic change you can make to your tables is to invert them from their default dark on light rendering to light on dark. You do this with the class `table-dark`.
 
-If inverting the entire table is a bit too dramatic for your taste, you can invert just the header by applying the class `thead-dark` to the `<thead>` tag, or if even that’s a little to stark, you can get a more subtle grey background with the class `thead-light`.
+If inverting the entire table is a bit too dramatic for your taste, you can invert just the header by applying the class `thead-dark` to the `<thead>` tag. If even that’s a little too stark, you can get a more subtle grey background with the class `thead-light`.
 
-You can experiment with all these options with the tables in the sandbox page, but I’m going to keep things subtle by adding the more subtle grey background to the first, smaller, table in our sandbox with the class `thead-light`, and the darker heading to the second (larger) table with the class `thead-dark`.
+You can experiment with all these options with the tables in the sandbox page, but I’m going to keep things subtle by adding the more subtle grey background to the first, smaller table in our sandbox with the class `thead-light`, and the darker heading to the second (larger) table with the class `thead-dark`.
 
-Finally, there are table-specific variants of the colour utility classes, and they can be used to set background colours at both the row and cell level. The following are available, and do what you would expect them to do:
+Finally, there are table-specific variants of the colour utility classes. They can be used to set background colours at both the row and cell level. The following are available, and do what you would expect them to do:
 
 *   `table-primary`
 *   `table-secondary`
@@ -197,7 +197,7 @@ As an example, let’s give the row with the votes in favour within the first (s
 
 As your tables grow, and especially if they become very wide, it can be hard to follow the rows with your eyes. To make this easier, Bootstrap provides the class `table-striped` which, as its name suggests, alternates the background colour of each subsequent row.
 
-Let’s see this in action by adding the class `table-striped` to the second, larger, table in our sandbox page.
+Let’s see this in action by adding the class `table-striped` to the second, larger table in our sandbox page.
 
 Another technique for helping users view large tables is to highlight the row the mouse is hovering over. This can be done with the `table-hover` class.
 
@@ -211,11 +211,11 @@ Again, both of these classes work on regular and dark tables.
 
 You can experiment with both of these classes in the sandbox, but I’m going to leave the borders on the larger table as they are, and make the first, smaller table fully bordered by adding the class `table-bordered`.
 
-### Smaller more Subtle Tables
+### Smaller More Subtle Tables
 
 In keeping with Bootstrap’s modern look, its default rendering to tables has a lot of white space, and uses quite large fonts. Sometimes you need your tables to be a little more compact, and that’s what the `table-sm` class is for!
 
-The smaller of the two tables in the sandbox is well suited to shrinking down a little, so let’s give it the class `table-sm`.
+The smaller of the two tables in the sandbox is well suited to shrinking down a little. Let’s give it the class `table-sm`.
 
 Let’s take things a little further and shrink the table and float it right by adding the class `w-50` and `float-right`.
 
@@ -247,7 +247,7 @@ The HTML spec allows tables to define captions using the `<caption>` tag. Note t
 
 ### Horizontally Scrolling Tables
 
-Normally, when a table becomes too wide to fit into its container it overflows through the right edge of the container. That’s unlikely to be what you want, so if you have a big table, Bootstrap gives you the option of having it automatically develop a horizontal scroll bar when ever it would ordinarily overflow.
+Normally, when a table becomes too wide to fit into its container, it overflows through the right edge of the container. That’s unlikely to be what you want. So if you have a big table, Bootstrap gives you the option of having it automatically develop a horizontal scroll bar whenever it would ordinarily overflow.
 
 This kind of automatic scrolling is made available via the `table-responsive` class, but unlike most of the other table-related classes, this one is not applied to the `<table>` tag, or even to a tag within the table. Instead, you have to wrap the table with another tag, usually a `<div>`, and give it the class `table-responsive`.
 
@@ -283,4 +283,4 @@ For this challenge we’ll continue to improve the recipe we’ve been building 
 
 ## Final Thoughts
 
-We’ve now covered two of Bootstrap’s four aspects — the utility classes, and the content classes. Next we’ll move on to the layout classes. Bootstrap’s layout engine is very powerful, and it has a lot of features, so unsurprisingly, it will take us a few instalments to make our way through it. When we’re done we’ll be able to lay out our pages just the way we want, and in such a way that they’ll look great on any screen. Bootstrap doesn’t just do layouts, it does responsive layouts!
+We’ve now covered two of Bootstrap’s four aspects — the utility classes and the content classes. Next we’ll move on to the layout classes. Bootstrap’s layout engine is very powerful, and it has a lot of features. So unsurprisingly, it will take us a few instalments to make our way through it. When we’re done we’ll be able to lay out our pages just the way we want, and in such a way that they’ll look great on any screen. Bootstrap doesn’t just do layouts, it does responsive layouts!

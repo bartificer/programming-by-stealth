@@ -1,12 +1,12 @@
 # PBS 55 of X — Bootstrap Content
 
-In this instalment we’ll continue our exploration of Bootstrap, making a start on the second of the four main aspects of Bootstrap — _content_. This is the word the Bootstrap team have used to describe Bootstrap’s styling of regular HTML tags for things like headers, paragraphs, lists, tables, etc.. In the previous two instalments we looked at the first of the four aspects, the utility classes, and when we finish with the content aspect we’ll move in to look at the third aspect — layout.
+In this instalment we’ll continue our exploration of Bootstrap, making a start on the second of the four main aspects of Bootstrap — _content_. This is the word the Bootstrap team have used to describe Bootstrap’s styling of regular HTML tags for things like headers, paragraphs, lists, tables, etc. In the previous two instalments we looked at the first of the four aspects, the utility classes. When we finish with the content aspect we’ll move in to look at the third aspect — layout.
 
 It’s going to take us at least two instalments to look at Bootstrap content. We’ll make a start in this instalment by focusing on the most important classes related to the HTML elements Bootstrap’s documentation (somewhat confusingly IMO) bundles together under the sub-heading _Typography_ (under _Content_). Specifically that means headings, paragraphs, block quotations, and lists.
 
 You can [download the ZIP file for this instalment here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip).
 
-# Matching Podcast Episode 549
+## Matching Podcast Episode 549
 
 Listen along to this instalment on [episode 549 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/06/ccatp-549/)
 
@@ -18,7 +18,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge set at the end of the previous instalment was to continue to improve the recipe you’ve been working on for the past few instalments in a number of ways.
 
-The first part of the challenge was to find something in your recipe that defaults to displaying as a block, and have it display inline instead, or _vica-versa_. I chose to re-visit the _Did you Know_ section so as to make it more compact. This small section of the page consists of an `<aside>` tag which contains a heading and a paragraph. By default both the heading and paragraph are blocks, so they each start a new line. To make the aside more compact I chose to have the header display as inline block (with the `d-inline-block` class), and the paragraph as inline (with the `d-inline` class). The reason for choosing inline block for the heading is to be able to vertically align it (with the `align-middle` class), and the reason for choosing inline for the paragraph is to allow it flow over multiple lines if needed. Below is the relevant code segment:
+The first part of the challenge was to find something in your recipe that defaults to displaying as a block, and have it display inline instead, or _vice-versa_. I chose to revisit the _Did you Know_ section so as to make it more compact. This small section of the page consists of an `<aside>` tag which contains a heading and a paragraph. By default both the heading and paragraph are blocks, so they each start a new line. To make the aside more compact I chose to have the header display as inline block (with the `d-inline-block` class), and the paragraph as inline (with the `d-inline` class). The reason for choosing *inline block* for the heading is to be able to vertically align it (with the `align-middle` class). The reason for choosing *inline* for the paragraph is to allow it flow over multiple lines if needed. Below is the relevant code segment:
 
 ```html
 <aside class="m-5 border border-info rounded p-2">
@@ -27,7 +27,7 @@ The first part of the challenge was to find something in your recipe that defaul
 </aside>
 ```
 
-The second part of the challenge was to make the page header stick to the top of the viewport. The key to doing this is the `sticky-top` class, but there is a little more to it. By default headings have no background, so they are transparent blocks. this makes a bit of a mess when you scroll down and the text behind is visible through your sticky heading! To get around this I made the background white (with the `bg-white` class) and added a bottom border (with the `border-bottom` class). I also decided to make the heading stand out a little more by making it primary with the `text-primary` and `border-primary` classes.
+The second part of the challenge was to make the page header stick to the top of the viewport. The key to doing this is the `sticky-top` class, but there is a little more to it. By default headings have no background, so they are transparent blocks. This makes a bit of a mess when you scroll down and the text behind is visible through your sticky heading! To get around this I made the background white (with the `bg-white` class) and added a bottom border (with the `border-bottom` class). I also decided to make the heading stand out a little more by making it primary with the `text-primary` and `border-primary` classes.
 
 Below is the code for my header:
 
@@ -45,11 +45,9 @@ The third part of the challenge was to adjust the width of the ingredients table
 
 The last prescriptive part of the challenge called for the creation of a list of needed equipment as a bulleted list, and the display of this list as a flex row with icons from any source of your choosing.
 
-I chose to use the latest free version of the [” rel=”noopener” target=”\_blank”>Font Awesome](http://
+I chose to use the latest free version of the [Font Awesome](http://fontawesome.io) glyphicon library we learned about way back in [instalment 29](https://pbs.bartificer.net/pbs29).
 
-<table class=) glyphicon library we learned about way back in [instalment 29](https://bartificer.net/pbs29).
-
-The key to making this work is to display the list itself as a flex row by adding the `d-flex` and `flex-row` classes. This will make the list items behave like flex items, but they are still being displayed as list items, so they still have their bullets. The best way we currently know about to fix this is to explicitly display these elements as blocks by adding the class `d-block` to each. Finally, to distribute the flex items nicely within the row, and to centre the content of each list item I also added the `justify-content-around` and `text-center` classes to the list as a whole. A representative sample of my code is shown below:
+The key to making this work is to display the list itself as a flex row by adding the `d-flex` and `flex-row` classes. This will make the list items behave like flex items, but they are still being displayed as list items, so they still have their bullets. The best way we currently know to fix this is to explicitly display these elements as blocks by adding the class `d-block` to each. Finally, to distribute the flex items nicely within the row, and to centre the content of each list item, I also added the `justify-content-around` and `text-center` classes to the list as a whole. A representative sample of my code is shown below:
 
 ```html
 <ul class="d-flex flex-row justify-content-around text-center">
@@ -65,7 +63,7 @@ You can find my full sample solution in the `pbs54-challengeSolution` folder in 
 
 ## Playground
 
-Like last time I’ve created an HTML document with some pre-created elements and empty class attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip) as `pbs55a.html`, and in [this interactive Bootply playground](https://www.bootply.com/tMgnvjSRCT#).
+Like last time, I’ve created an HTML document with some previously created elements and empty class attributes which you can use to play along with this instalment. I’m including the source below, but you’ll also find it in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs55.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs55.zip) as `pbs55a.html`, and in [this interactive Bootply playground](https://www.bootply.com/tMgnvjSRCT#).
 
 ```html
 <!DOCTYPE HTML>
@@ -152,7 +150,7 @@ Like last time I’ve created an HTML document with some pre-created elements an
 
 ## Bootstrap 4 Paragraphs & Headings
 
-For regular headings and paragraphs you don’t need to add any Bootstrap CSS classes, however, Bootstrap does provide you with some useful classes for dealing with some special cases.
+For regular headings and paragraphs you don’t need to add any Bootstrap CSS classes. However, Bootstrap does provide you with some useful classes for dealing with some special cases.
 
 ### Heading-like Elements
 
@@ -169,7 +167,7 @@ As a practical example, let’s update the heading in the aside so it’s not di
 </aside>
 ```
 
-Also notice the user of the colour and display utility classes to colour and layout the aside nicely.
+Also notice the user of the colour and display utility classes to colour and lay out the aside nicely.
 
 ### Display Headings
 
@@ -177,11 +175,11 @@ All headings are not equal — some headers need to stand out more than others. 
 
 Another nice feature of display headings is that they have support for sub-headings using the `<small>` tag within the heading, perhaps combined with the `text-muted` utility class.
 
-We can experiment with this by adding the class display-1 to the top-level heading in our sandbox, and then using the utility classes `text-info`, `bg-light`, `w-25`, and `float-right`.
+We can experiment with this by adding the class `display-1` to the top-level heading in our sandbox, and then using the utility classes `text-info`, `bg-light`, `w-25`, and `float-right`.
 
 ### Lead Paragraphs
 
-It’s quite common to have one paragraph of text that needs to stand out from the others. You often see this used in news papers and on news sites where the first paragraph is emphasised by the use of larger type, or some other font-related differentiation. Bootstrap provides a class for this, `lead`.
+It’s quite common to have one paragraph of text that needs to stand out from the others. You often see this used in newspapers and on news sites where the first paragraph is emphasised by the use of larger type, or some other font-related differentiation. Bootstrap provides a class for this, `lead`.
 
 We can try this with the first paragraph in our playground:
 
@@ -191,9 +189,9 @@ We can try this with the first paragraph in our playground:
 
 ## Quotations
 
-By default Bootstrap does not significantly style block quotes. If you’d like a given block quote to be styled by Bootstrap you need to give it the class `blockquote`. This seems a little odd at first, but as you’ll see, this is a design pattern Bootstrap uses a lot.
+By default Bootstrap does not significantly style block quotes. If you’d like a given block quote to be styled by Bootstrap, you need to give it the class `blockquote`. This seems a little odd at first, but as you’ll see, this is a design pattern Bootstrap uses a lot.
 
-If you choose to give a block quote the class `blockquote` you can also style the author of the quote in a nice way by wrapping the author in a footer tag and giving it the class `blockquote-footer`.
+If you choose to give a block quote the class `blockquote`, you can also style the author of the quote in a nice way by wrapping the author in a footer tag and giving it the class `blockquote-footer`.
 
 We can see the effect of both of these things in our playground:
 
@@ -228,17 +226,17 @@ This changes the fonts, but doesn’t highlight the box itself in any way. You c
 </blockquote>
 ```
 
-Notice the use of the colour utilities (`bg-white`, `bg-light` & `text-info`), the border utilities (`border`, `rounded` & `border-info`), the sizing utilities (`w-25` & `w-75`), the spacing utilities (`mx-auto`, `my-5`, `p-3` & `p-4`), the positioning utilities (`d-inline` & `float-right`), and the content classes `display-4` & `lead`.
+Notice the use of the colour utilities (`bg-white`, `bg-light`, & `text-info`), the border utilities (`border`, `rounded`, & `border-info`), the sizing utilities (`w-25` & `w-75`), the spacing utilities (`mx-auto`, `my-5`, `p-3`, & `p-4`), the positioning utilities (`d-inline` & `float-right`), and the content classes `display-4` & `lead`.
 
 ## Lists
 
 In general there is no need to apply additional styles to lists, but Bootstrap does provide two useful classes for altering the display of lists. While you’ll generally only be applying these classes to bulleted lists, they do also work on numbered lists.
 
-### Un-styled Lists
+### Unstyled Lists
 
 In the previous instalment, and in the challenge solution at the start of this instalment, I mentioned that setting the display of list items to block to hide bullets was a hack, and that we’d learn better ways to control lists later. This is that later 🙂
 
-Bootstrap allows us to remove the bullets from adding the class `list-unstyled` to the `<ul>` tag. Note that this class only affects list items that are direct children of that tag, nested lists are not affected, which can be very useful when marking up sidebars on websites.
+Bootstrap allows us to remove the bullets from adding the class `list-unstyled` to the `<ul>` tag. Note that this class only affects list items that are direct children of that tag. Nested lists are not affected, which can be very useful when marking up sidebars on websites.
 
 We can see this in action by removing the bullets from the list of other recommended poems in our playground:
 
@@ -251,7 +249,7 @@ We can see this in action by removing the bullets from the list of other recomme
 
 ### Unstyled Lists as Flex Boxes
 
-Armed with this new information, if we wanted to display the links in the playground’s footer as a flex box we can now do it much more simply:
+Armed with this new information, if we wanted to display the links in the playground’s footer as a flex box, we can now do it much more simply:
 
 ```
 <ul class="d-flex flex-row justify-content-around list-unstyled">
@@ -267,7 +265,7 @@ Armed with this new information, if we wanted to display the links in the playgr
 </ul>
 ```
 
-Note that there’s no need to apply any classes to the list items themselves now, all the styling is done on the `<ul>` tag itself.
+Note that there’s no need to apply any classes to the list items themselves now. All the styling is done on the `<ul>` tag itself.
 
 ### Inlined Lists
 
@@ -303,9 +301,9 @@ Make the following changes to the recipe you’ve been building up over the past
 2.  If you don’t already have one, add a short pithy description of the recipe directly below the page heading. Add your description as an `<h2>` with the text _‘Description’_, and a paragraph styled as a lead paragraph. The header is helpful to screen readers and search engines, but is not needed visually, so hide it with the `sr-only` utility class.
 3.  Use one of the `h1` … `h6` classes to style the heading of the ingredients table appropriately.
 4.  Update the quotation so it uses the appropriate content classes, and so it uses a `<footer>` tag with the appropriate class for the attribution of the quotation.
-5.  Update the equipment flex box to make use of the `list-unstyled` class and remove the `d-block` work-around.
+5.  Update the equipment flex box to make use of the `list-unstyled` class and remove the `d-block` workaround.
 6.  Make any other improvements you think are appropriate.
 
 ## Final Thoughts
 
-We’re now well into the second Bootstrap’s four aspects. We made a first pass through the first aspect, the _utility classes_, in the previous two instalments, we’ve now made a good start on the second, Bootstrap’s so-called _content classes_, and we’ll probably finish that out in the next instalment with a look at tables, images, and figures. When that’s done we’ll move on to the most significant aspect of all — the _layout_ classes. Finally, quite a few instalments from now, we’ll have a look at some of the custom _components_ Bootstrap provides (things like modal dialogues, collapsible sections, etc.).
+We’re now well into the second of Bootstrap’s four aspects. We made a first pass through the first aspect, the _utility classes_, in the previous two instalments. We’ve now made a good start on the second, Bootstrap’s so-called _content classes_. And we’ll probably finish that out in the next instalment with a look at tables, images, and figures. When that’s done we’ll move on to the most significant aspect of all — the _layout_ classes. Finally, quite a few instalments from now, we’ll have a look at some of the custom _components_ Bootstrap provides (things like modal dialogues, collapsible sections, etc.).
