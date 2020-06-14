@@ -111,7 +111,7 @@ However, the focus of this challenge was the overall structure, and that’s eas
 
 To support responsive design, Bootstrap is built around five named viewport width ranges known as _breakpoints_.
 
-The first range is named `xs`, for _extra small_, and it’s intended for phones in portrait orientation. This is the default breakpoint, and it actually covers all possible viewport widths, being defined as any viewport with a minimum width of zero! Because `xs` is the default, you won’t see it’s name used very often.
+The first range is named `xs`, for _extra small_, and it’s intended for phones in portrait orientation. This is the default breakpoint, and it actually covers all possible viewport widths, being defined as any viewport with a minimum width of zero! Because `xs` is the default, you won’t see its name used very often.
 
 The second range is named `sm`, for _small_, and is intended for phones in landscape mode. It’s defined as all viewports with a minimum width of 576px.
 
