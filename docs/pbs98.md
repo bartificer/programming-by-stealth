@@ -4,6 +4,23 @@ I had promised that this instalment would focus on the very important concept of
 
 Both this instalment and the next, when we will finally meet inheritance, share a theme — using individual classes as building blocks for larger abstractions. We've said that classes allow us to represent things or concepts in code, well, things and concepts interact with each other to form larger systems, and so can classes!
 
+## Instalment Resources
+
+This instalment uses 3 example files:
+
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/cb5c0b3c7bd1ee2e359015033aa9b707191c8841/instalmentZips/pbs98.zip)
+* [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs98)
+* View the HTML file in your browser:
+	* [`pbs98.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/cb5c0b3c7bd1ee2e359015033aa9b707191c8841/instalmentResources/pbs98/pbs98.html)
+
+## Matching Podcast Episode
+
+Listen along to this instalment on [episode 642 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/05/ccatp-642/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_13.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_13.mp3" >Download the MP3</a>
+
 Regardless of the app you're building, the chances are high it will require representing more than a single concept or thing. If you're writing a note-taking app you may only need a few classes — perhaps one to represent notes and one to represent folders. But, if you're writing something bigger like a game you're very likely to need tens, or even hundreds, of classes — just think about all the characters, things, and concepts that fill a virtual world!
 
 In the object-oriented world view classes can be related in of two ways.
