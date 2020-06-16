@@ -118,7 +118,8 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 94 — Basic JavaScript OO with Class](./pbs94)
 * [PBS 95 — Better JavaScript Class Attributes](./pbs95)
 * [PBS 96 — World Clock Challenge Solution](./pbs96)
-* [PBS 97 — Class Data Attributes & Function](./pbs97)
+* [PBS 97 — Class Data Attributes & Functions](./pbs97)
+* [PBS 98 — Building with Classes Part 1: *Has-A*](./pbs98)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 

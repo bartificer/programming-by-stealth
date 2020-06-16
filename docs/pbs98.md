@@ -1,4 +1,4 @@
-# PBS 98 of X — Building with Classes Part 1 — *Has-A*
+# PBS 98 of X — Building with Classes Part 1: *Has-A*
 
 I had promised that this instalment would focus on the very important concept of *inheritance*, but as I started to try to write the notes I realised we need to build some more context before we're ready for that final piece of the object orientation puzzle.
 
@@ -20,6 +20,8 @@ Listen along to this instalment on [episode 642 of the Chit Chat Across the Pond
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_13.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
 You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_13.mp3" >Download the MP3</a>
+
+## Building with Classes
 
 Regardless of the app you're building, the chances are high it will require representing more than a single concept or thing. If you're writing a note-taking app you may only need a few classes — perhaps one to represent notes and one to represent folders. But, if you're writing something bigger like a game you're very likely to need tens, or even hundreds, of classes — just think about all the characters, things, and concepts that fill a virtual world!
 
@@ -48,6 +50,15 @@ There will be two *has-a* relationships between our classes — monetary amounts
 Note that some currencies, both real and imagined, have only a primary denomination, they do not have anything analogous to Cents. A good real-world example of this is the Japanese Yen.
 
 You'll find the full code for the worked example in the file `money.js`, and you can interact with this file via the JavaScript console on the file `pbs98.html`.
+
+As you can see, the code in `money.js` is long! The intention is not to go through every line of the file in detail, but instead, to focus on a few highlights that serve to illustrate important concepts. I commented the code heavily in the hope that it would make sense by itself.
+
+Note that the code in `money.js` assumes that two open-source libraries have been loaded before loading `money.js`:
+
+1. The [is.js](https://is.js.org) type-checking library.
+2. The [numeral.js](http://numeraljs.com) number formatting library.
+
+## Where to Begin?
 
 When working on a programming task like this, one question you may well have is where to begin? What should be your starting point? Simple — start with the most fundamental building blocks. In this case amounts have currencies which have denominations, so the denominations are the most fundamental block. Until you've defined those you can't define currencies, and until you've defined currencies you can't define monetary amounts.
 
@@ -218,6 +229,8 @@ set denomination(d){
 
 The only thing that makes this attribute in any way remarkable is that it's value must be an instance of the class `Denomination`. When I said there was no special syntax for *has-a* relationships I really wasn't kidding 😉
 
+Note the use of the `instanceof` operator for data validation (see [instalment 94](https://bartificer.net/pbs94) for more).
+
 The other *has-a* relationship is the optional secondary denomination (the Cent to the Dollar as it were) which I chose to name `subDenomination`. This instance data attribute is related to the number of decimal places (stored as an attribute named `subDenominationOrder` for mathematical reasons). If there is no secondary denomination, like with the Japanese Yen, then the number of decimal places must be zero. I also chose to implement there not being a secondary denomination by setting `subDenomination` to `null`.
 
 Because we have two related attributes, both of their setters must call each other:
@@ -366,3 +379,5 @@ console.log(allisonMoney.add(100).asString()); // $300
 Hopefully this worked example has illustrated the power of *has-a* relationships, and, cemented concepts we've recently encountered like instance & class data attributes & functions, constructors, and getters & setters.
 
 We're now ready to learn about inheritance, and the power of *is-a* relationships in the next instalment.
+
+Note that with the addition of this un-planned instalment, you all have an extra two weeks to work on your solutions to the challenge set at the end of [instalment 96](https://bartificer.net/pbs96) 🙂
