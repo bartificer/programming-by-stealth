@@ -1,10 +1,10 @@
 # PBS 64 of X — Bootstrap Form Layouts
 
-In the previous few instalments we’ve been learning about Bootstrap forms. We first learned how to include standard HTML form controls like text areas, text boxes, checkboxes, radio buttons, and dropdowns into the default form layout. Then we learned about buttons and button groups. Now it’s time to learn about three alternative form layouts — inline forms, horizontal forms, and grid-based forms.
+In the previous few instalments we’ve been learning about Bootstrap forms. We first learned how to include standard HTML form controls like text areas, text boxes, checkboxes, radio buttons, and drop-downs into the default form layout. Then we learned about buttons and button groups. Now it’s time to learn about three alternative form layouts — inline forms, horizontal forms, and grid-based forms.
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs64.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs64.zip).
 
-# Matching Podcast Episode 566
+## Matching Podcast Episode 566
 
 Listen along to this instalment on [episode 566 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/10/ccatp-566/)
 
@@ -12,15 +12,15 @@ Listen along to this instalment on [episode 566 of the Chit Chat Across the Pond
 
 You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_10_04.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
 
-Before we start, please note that all the examples in this instalment are contained in the file `pbs64a.html` in the instalment’s ZIP. If you open that file in a browser window you can see what each of the forms looks like at different breakpoints.
+Before we start, please note that all the examples in this instalment are contained in the file `pbs64a.html` in the instalment’s ZIP. If you open that file in a browser window, you can see what each of the forms looks like at different breakpoints.
 
 ## Inline forms
 
-When you have small forms that need very little information from the user it often makes sense to collapse the entire form into a single line. This is what inline forms were designed to facilitate. A classic example might be a login form which needs only two text boxes and a button.
+When you have small forms that need very little information from the user, it often makes sense to collapse the entire form into a single line. This is what inline forms were designed to facilitate. A classic example might be a login form which needs only two text boxes and a button.
 
-Bootstrap implements inline forms using flexbox, so you can use any of the flexbox-related utility classes with inline form element. You can also use Bootstrap’s sizing utility classes as needed. Bootstrap’s documentation is also very clear that while you generally don’t want to show labels within inline forms, you really should add them to support accessibility tools, so the recommendation to use `sr-only` utility class to hide them.
+Bootstrap implements inline forms using flexbox. You can use any of the flexbox-related utility classes with inline form element. You can also use Bootstrap’s sizing utility classes as needed. Bootstrap’s documentation is also very clear that, while you generally don’t want to show labels within inline forms, you really should add them to support accessibility tools. So the recommendation to use `sr-only` utility class to hide them.
 
-One final point to note is that inline forms become regular forms at the smallest breakpoint and below. This makes sense because on tiny screens there just isn’t any room to inline even two form elements.
+One final point to note is that inline forms become regular forms at the smallest breakpoint and below. This makes sense because, on tiny screens, there just isn’t any room to inline even two form elements.
 
 When creating inline forms the markup is simpler than when creating regular forms. You wrap the inline form within an element that has the class `form-inline`, then you just add the form elements and labels directly within that container, giving each form element the class `form-control` as normal. The element you give the class `form-inline` to becomes a flex container, and each element within it a flex item. You don’t use `form-group`s within inline forms.
 
@@ -37,7 +37,7 @@ Let’s have a look at a simple example:
 </p>
 ```
 
-When the viewport is larger than the first breakpoint we get an inline form:
+When the viewport is larger than the first breakpoint, we get an inline form:
 
 ![](../assets/pbs64/Screenshot-2018-10-02-at-23.45.45.png)
 
@@ -47,7 +47,7 @@ However, when we shrink the viewport down the form elements stack:
 
 I want to draw your attention to a few key points in this code. Firstly, note the use of the `sr-only` utility class to hide the labels from everything but assistive devices.
 
-The second thing I want to draw your attention to is the use of the sizing utility classes `mr-sm-2` and `mb-2`. The first adds a small right margin at all breakpoints above the very smallest. I.e., when ever the form is not stacked a small right margin is added to stop the elements touching off each other. The `mb-2` ensures that when the form is stacked that there is vertical space between the elements. Removing these classes results in a very ugly form indeed!
+The second thing I want to draw your attention to is the use of the sizing utility classes `mr-sm-2` and `mb-2`. The first adds a small right margin at all breakpoints above the very smallest. That is, whenever the form is not stacked, a small right margin is added to stop the elements touching off each other. The `mb-2` ensures that, when the form is stacked, there is vertical space between the elements. Removing these classes results in a very ugly form indeed!
 
 ![](../assets/pbs64/Screenshot-2018-10-02-at-23.53.54.png)
 
@@ -55,7 +55,7 @@ The second thing I want to draw your attention to is the use of the sizing utili
 
 ## Form Sizes
 
-This seems like the opportune time to mention that form elements, like buttons, come in three sizes, small, regular, and large. To make a form element small add the class `form-control-sm` in addition to `form-control`. You can use the class `form-control-lg` to make form elements large. Note that these classes are designed to be used alongside small and large buttons (`btn-sm` and `btn-lg`).
+This seems like the opportune time to mention that form elements, like buttons, come in three sizes, small, regular, and large. To make a form element small, add the class `form-control-sm` in addition to `form-control`. You can use the class `form-control-lg` to make form elements large. Note that these classes are designed to be used alongside small and large buttons (`btn-sm` and `btn-lg`).
 
 Small forms work particularly well with inline forms, allowing you to make much more subtle forms. A classic example might be a small admin login form on a blog:
 
@@ -101,11 +101,11 @@ Similarly, you could use a large form to encourage users to subscribe to a news 
 
 Another very popular alternative to the default vertically stacked forms are horizontal forms, where the labels appear to the left of the form elements.
 
-In structure horizontal forms are very similar to regular forms, you must use form groups (wrappers with the class `form-group`), but you treat those form groups as a special kind of row by adding the class `form-row`, and then divide the contents of those special rows into columns using the usual bootstrap grid classes. You should use the label as the first column within each row, and to get its vertical alignment correct, give it the additional class `col-form-label`.
+In structure, horizontal forms are very similar to regular forms. You must use form groups (wrappers with the class `form-group`), but you treat those form groups as a special kind of row by adding the class `form-row`, and then divide the contents of those special rows into columns using the usual bootstrap grid classes. You should use the label as the first column within each row, and to get its vertical alignment correct, give it the additional class `col-form-label`.
 
-So, what you and up with is a wrapper with the classes `form-group` and `form-row`, containing a `<label>` with a `col` class (e.g. `col-sm-3`) and the class `col-form-label`. After the `<label>` you add one or more wrappers with a `col` class into which you add your form elements.
+So, what you end up with is a wrapper with the classes `form-group` and `form-row`, containing a `<label>` with a `col` class (e.g. `col-sm-3`) and the class `col-form-label`. After the `<label>`, you add one or more wrappers with a `col` class into which you add your form elements.
 
-Unlike inline forms, horizontal forms will not collapse down to stacked forms at small breakpoints automatically, if you want that behaviour you’ll need to make use of the usual grid classes and breakpoints to achieve it.
+Unlike inline forms, horizontal forms will not collapse down to stacked forms at small breakpoints automatically. If you want that behaviour, you’ll need to make use of the usual grid classes and breakpoints to achieve it.
 
 As a simple example, the following login form is horizontal for all but the smallest breakpoint, then it collapses into a stacked form:
 
@@ -141,9 +141,9 @@ I do want to draw your attention to one subtle detail in this form that makes us
 
 ## Grid-based Forms
 
-Finally, you can use a regular Bootstrap grid to lay our your form. The markup here is almost identical to a regular grid layout, but with the option to use narrower gutters between columns by replacing `row` with `form-row`.
+Finally, you can use a regular Bootstrap grid to lay out your form. The markup here is almost identical to a regular grid layout, but with the option to use narrower gutters between columns by replacing `row` with `form-row`.
 
-To illustrate this point, the following grid-based form has three different behaviours — at the smallest breakpoint it stacks, then it becomes horizontal form, then it becomes a two-line form, an finally, a single-line form:
+To illustrate this point, the following grid-based form has three different behaviours — at the smallest breakpoint it stacks, then it becomes a horizontal form, then it becomes a two-line form, and finally, a single-line form:
 
 ```html
 <fieldset class="container-fluid" role="form" aria-labelledby="login_gd_fm_desc">
@@ -175,15 +175,15 @@ To illustrate this point, the following grid-based form has three different beha
 
 ## Challenge
 
-Rather than working with an empty page for this challenge, we’ll use the final version of the recipe we build as part of the earlier Bootstrap-related challenges. You can either use the final version of your own recipe as your starting point for this challenge, or the final version of mine, which I’ve included in the instalment’s ZIP.
+Rather than working with an empty page for this challenge, we’ll use the final version of the recipe we built as part of the earlier Bootstrap-related challenges. You can either use the final version of your own recipe as your starting point for this challenge, or the final version of mine, which I’ve included in the instalment’s ZIP.
 
-Which ever recipe you choose to use as your starting point, add the following:
+Whichever recipe you choose to use as your starting point, add the following:
 
 1.  A footer containing a small inline form to allow an imaginary admin to log in.
 
     The form should provide a text box for the username, a password field, and a login button.
 
-    When the user clicks the login button they should get a message letting them know that the form is just a dummy form, and that it’s impossible to actually log in.
+    When the user clicks the login button, they should get a message letting them know that the form is just a dummy form, and that it’s impossible to actually log in.
 
 2.  A form for sharing the recipe with a friend. This form should allow the user to enter the following information:
 
@@ -192,7 +192,7 @@ Which ever recipe you choose to use as your starting point, add the following:
     3.  A message
     4.  A Send Button
 
-    When the user submits the form it should let them know the form doesn’t actually do anything.
+    When the user submits the form, it should let them know the form doesn’t actually do anything.
 
 When you’re finished, your entire recipe page, including these two new forms, should be well behaved, readable, and usable at all breakpoints.
 
@@ -200,4 +200,4 @@ When you’re finished, your entire recipe page, including these two new forms, 
 
 We’re nearing the end of our first look at forms in Bootstrap 4. This is by no means a comprehensive guide to every single form-related feature in Bootstrap, far from it, but we will have a nice overview by the time we’re done.
 
-To date we’ve learned how to take input from users, lay out our forms, and work with buttons. In the next instalment we’ll learn how to create richer inputs using Bootstrap’s _Input Group_ component, and in the instalment after that we’ll round things out with an introduction to Bootstrap’s form validation features.
+To date we’ve learned how to take input from users, lay out our forms, and work with buttons. In the next instalment we’ll learn how to create richer inputs using Bootstrap’s _Input Group_ component, and in the instalment after that, we’ll round things out with an introduction to Bootstrap’s form validation features.
