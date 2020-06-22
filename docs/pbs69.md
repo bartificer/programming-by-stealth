@@ -1,10 +1,10 @@
 # PBS 69 of X — Bootstrap Navbars
 
-In the previous instalment we learned how to use Navs for creating navigation bars, and learned how to use Dropdowns to add expandable menus to our Navs. In this instalment we’ll meet Bootstrap’s ultimate navigation component, the Navbar. This is a powerful component designed to act as the menubar at the top of websites or web apps.
+In the previous instalment we learned how to use Navs for creating navigation bars and learned how to use Drop-downs to add expandable menus to our Navs. In this instalment we’ll meet Bootstrap’s ultimate navigation component, the Navbar. This is a powerful component designed to act as the menubar at the top of websites or web apps.
 
 You can [download this instalment’s ZIP file here.](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip).
 
-# Matching Podcast Episode 578
+## Matching Podcast Episode 578
 
 Listen along to this instalment on [episode 578 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/01/ccatp573/)
 
@@ -14,7 +14,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 68 Challenge Solution
 
-The challenge set at the end of [the previous instalment](https://bartificer.net/pbs68) was quite straight forward, update either your recipe or mine to make use of a tabbed content region.
+The challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs68) was quite straightforward: update either your recipe or mine to make use of a tabbed content region.
 
 My recipe used the grid layout to position the list of required equipment and the glossary next to each other on larger screens and underneath each other on smaller screens. The structure of the code was essentially the following:
 
@@ -29,7 +29,7 @@ My recipe used the grid layout to position the list of required equipment and th
 </div>
 ```
 
-I re-structured it to replace the two cols with a single col containing two tabbed panes. The structure became:
+I restructured it to replace the two cols with a single col containing two tabbed panes. The structure became:
 
 ```html
 <div class="row">
@@ -51,7 +51,7 @@ I re-structured it to replace the two cols with a single col containing two tabb
 </div>
 ```
 
-I still have a single row, but instead of that row containing two cols, it now contains just one col. That single col now contains a nav that will act as the tabs controlled the tabbed panes, and a collection of panes that will be tabbed between, one for each section.
+I still have a single row, but instead of that row containing two cols, it now contains just one col. That single col now contains a nav that will act as the tabs controlling the tabbed panes, and a collection of panes that will be tabbed between, one for each section.
 
 The result looks like so:
 
@@ -71,19 +71,19 @@ Regardless of how much fancy content you add, all Navbars share the same basic s
 
 Navbars are entirely contained within a tag of your choosing that must be given the class `.navbar`. You could use any tag, but to aid accessibility, you should generally use the `<nav>` tag. If you use any other tag, be sure to mark the tag as a navigation by giving it the ARIA role `navigation`, i.e. add the attribute `role="navigation"` to the tag.
 
-When it comes to styling Navbars, Bootstrap only styles the foreground elements, leaving the choice of background to you. You can use CSS to specify any arbitrary background colour or image you like, or, you can use one of Bootstrap’s colour utilities, e.g. `.bg-primary`. There’s a foreground style for use against light backgrounds (`.navbar-light`), and one for use against dark backgrounds (`.navbar-dark`). Every Navbar should have one of these two classes.
+When it comes to styling Navbars, Bootstrap only styles the foreground elements, leaving the choice of background to you. You can use CSS to specify any arbitrary background colour or image you like, or you can use one of Bootstrap’s colour utilities, e.g. `.bg-primary`. There’s a foreground style for use against light backgrounds (`.navbar-light`), and one for use against dark backgrounds (`.navbar-dark`). Every Navbar should have one of these two classes.
 
 Navbars will expand to fill their containing tag, so unless you enclose them within a container of some sort, they will take up the full width of the page.
 
-Navbars have two distinct modes of operation, an expanded mode intended for use on larger screens, and a collapsed mode for use on smaller screens. As with everything else Bootstrap, Navbars are mobile-first, and default to the collapsed mode. If you only give a Navbar the classes `.navbar` and `.navbar-light` or `.navbar-dark` it will remain in the collapsed mode at all breakpoints.
+Navbars have two distinct modes of operation: an expanded mode intended for use on larger screens, and a collapsed mode for use on smaller screens. As with everything else Bootstrap, Navbars are mobile-first, and default to the collapsed mode. If you only give a Navbar the classes `.navbar` and `.navbar-light` or `.navbar-dark` it will remain in the collapsed mode at all breakpoints.
 
-The exact breakpoint that’s appropriate for switching from collapsed mode to expanded mode will entirely depend on the Navbar’s content, so Bootstrap leaves it up to the developer to specify when to expand with the `.navbar-expand-BREAKPOINT` classes. For example, a Navbar that should use the expanded mode for medium screens and up should be given the class `.navbar-expand-md`. Finally, if you want your Nav never to use the collapsed mode you can give it the class `.navbar-expand`.
+The exact breakpoint that’s appropriate for switching from collapsed mode to expanded mode will entirely depend on the Navbar’s content. So Bootstrap leaves it up to the developer to specify when to expand with the `.navbar-expand-BREAKPOINT` classes. For example, a Navbar that should use the expanded mode for medium screens and up should be given the class `.navbar-expand-md`. Finally, if you want your Nav never to use the collapsed mode, you can give it the class `.navbar-expand`.
 
 The expanded mode is the easiest to understand, so let’s start there. In this mode all the elements that make up the Navbar appear next to each other left-aligned on a single row.
 
-In the collapsed mode some of the Navbar’s elements will be hidden by default, represented by an icon which will be left-aligned. The remaining non-hidden elements will still appear horizontally, but will be right-aligned. When a user clicks or taps on the icon, the Navbar will expand vertically, and all the hidden elements will appear one under the other stacked vertically below the originally visible part of the Navbar. Clicking or tapping on the icon again will hide the additional elements again.
+In the collapsed mode, some of the Navbar’s elements will be hidden by default, represented by an icon which will be left-aligned. The remaining nonhidden elements will still appear horizontally, but will be right-aligned. When a user clicks or taps on the icon, the Navbar will expand vertically. All the hidden elements will appear one under the other stacked vertically below the originally visible part of the Navbar. Clicking or tapping on the icon again will hide the additional elements again.
 
-Officially the button for showing/hiding the elements is known as the _Toggler_, and you’ll see it referred to as such in the CSS class names and the documentation, but when web designers are talking amongst themselves they’ll refer to it by its colloquial name — _the hamburger button_. The reason for this is that the most commonly used icon for buttons which hide and show menus on the web is three horizontal parallel lines, which, with enough imagination, look like to halves of a bun with a meat patty between them. Bootstrap Navbars use this icon by default. I want to be clear, neither the concept of having menus show and hide on small screens, not the choice of default icon are in any way Bootstrap-specific (nor indeed is the colloquial name for the icon).
+Officially the button for showing/hiding the elements is known as the _Toggler_. You’ll see it referred to as such in the CSS class names and the documentation, but when web designers are talking amongst themselves, they’ll refer to it by its colloquial name — _the hamburger button_. The reason for this is that the most commonly used icon for buttons which hide and show menus on the web is three horizontal parallel lines, which, with enough imagination, look like two halves of a bun with a meat patty between them. Bootstrap Navbars use this icon by default. I want to be clear, neither the concept of having menus show and hide on small screens, nor the choice of default icon are in any way Bootstrap-specific (nor indeed is the colloquial name for the icon).
 
 So, to summarise, all Navbars will have the class `.navbar`, one of the classes `.navbar-light` or `.navbar-dark`, and one of `.navbar-expand-sm`, `.navbar-expand-md`, `.navbar-expand-lg`, `.navbar-expand-xl`, or `.navbar-expand`.
 
@@ -91,9 +91,9 @@ I’ve repeatedly referred to a Navbar as having elements within it, so what ele
 
 All Navbars will contain some or all the following:
 
-*   A so-called _hamburger button_ (or _Navbar toggler_ in Bootstrap-jargon) to provide access to the Navbar’s content on screens small enough to collapse the bar. A Navbar should only have one toggler, and it must have the class `.navbar-toggler`.
-*   A site title and/or logo (referred to as the _brand_ in Bootstrap jargon). A Navbar should only have one brand, and it must have the class `.navbar-brand`.
-*   A nav containing links, and perhaps links within Dropdowns. A Navbar can contain as many or as few Navs as you like, but they must all have the class `.navbar-nav`.
+*   A so-called _hamburger button_ (or _Navbar toggler_ in Bootstrap jargon) to provide access to the Navbar’s content on screens small enough to collapse the bar. A Navbar should only have one toggler. It must have the class `.navbar-toggler`.
+*   A site title and/or logo (referred to as the _brand_ in Bootstrap jargon). A Navbar should only have one brand. It must have the class `.navbar-brand`.
+*   A nav containing links, and perhaps links within Drop-downs. A Navbar can contain as many or as few Navs as you like, but they must all have the class `.navbar-nav`.
 *   Text regions. Navbars can have as many or as few text regions as you like, but they must all have the class `.navbar-text`.
 *   Inline Forms. Navbars can contain as many or as few forms as you like, but they must all have the class `.form-inline`.
 *   An optional grouping of the above elements defining the part of the Navbar that should collapse into the _hamburger button_ on small screens. The grouping must have both the classes `.collapse` & `.navbar-collapse`.
@@ -114,9 +114,9 @@ All you have to do is replace `COLLAPSIBLE_REGION_ID` with the actual ID of the 
 
 ### A Basic Collapsing Navbar
 
-Below is the code for a Navbar that will collapse for breakpoints smaller than medium and that contains just a single Nav consisting of two links, and a dropdown containing three additional links. You’ll find this example as the first Navbar in `pbs69a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip).
+Below is the code for a Navbar that will collapse for breakpoints smaller than medium and that contains just a single Nav consisting of two links, and a drop-down containing three additional links. You’ll find this example as the first Navbar in `pbs69a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip).
 
-Re-size the window to see the Navbar collapse into just a hamburger button at small sizes. Click the Hamburger to hide and show the Nav items on small screens.
+Resize the window to see the Navbar collapse into just a hamburger button at small sizes. Click the Hamburger to hide and show the Nav items on small screens.
 
 ```html
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" id="navbar1">
@@ -147,13 +147,13 @@ Re-size the window to see the Navbar collapse into just a hamburger button at sm
 </nav>
 ```
 
-As you can seem the entire Navbar is contained within a `<nav>` tag with the classes `.navbar` (to turn it into a Navbar), `.navbar-expand-md` (to signify that it should collapse for all breakpoints below medium), and `.navbar-dark.bg-dark` (to use the dark style).
+As you can see, the entire Navbar is contained within a `<nav>` tag with the classes `.navbar` (to turn it into a Navbar), `.navbar-expand-md` (to signify that it should collapse for all breakpoints below medium), and `.navbar-dark.bg-dark` (to use the dark style).
 
 The first child element within the Navbar is the hamburger button which specifies that the element with the ID `#navbar1_content` should be hidden and shown as the Navbar collapses and expands.
 
-The second element is the collapsible region of the Navbar, a `<div>` with `id="navbar1_content"`. This collapsible region contains just one element, a Nav. Apart from the fact that is has the additional class .navbar-nav this Nav is completely standard, just as described in [the previous instalment](https://bartificer.net/pbs68).
+The second element is the collapsible region of the Navbar, a `<div>` with `id="navbar1_content"`. This collapsible region contains just one element, a Nav. Apart from the fact that it has the additional class `.navbar-nav`, this Nav is completely standard, just as described in [the previous instalment](https://pbs.bartificer.net/pbs68).
 
-This is what the Navbar looks like un-expanded in collapsed mode:
+This is what the Navbar looks like unexpanded in collapsed mode:
 
 ![](../assets/pbs69/Screenshot-2019-01-13-at-23.55.52.png)
 
@@ -171,7 +171,7 @@ Because one of their primary roles is as a site-wide navigation bar, most Navbar
 
 You can use any tag to contain the brand as long as you give it the class `.nav-brand`, but the Bootstrap documentation warns that using tags other than `<a>` may require the use of additional utility classes to get the spacing to look right. Another good reason for using the `<a>` tag is that it’s extremely common to use the brand section of Navbars as links to a site’s front page.
 
-Generally speaking a Bootstrap brand really is as simple as a single `<a>` tag with the class `.navbar-brand` containing an image and/or some text. For example, here’s the code for the brand in the second example Navbar in `pbs69a.html` in this [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip):
+Generally speaking, a Bootstrap brand really is as simple as a single `<a>` tag with the class `.navbar-brand` containing an image and/or some text. For example, here’s the code for the brand in the second example Navbar in `pbs69a.html` in this [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip):
 
 ```html
 <a class="navbar-brand" href="http://www.bartbusschots.ie" target="_blank" rel="noopener">
@@ -188,13 +188,13 @@ Generally speaking a Bootstrap brand really is as simple as a single `<a>` tag w
 
 Note that I chose to use the light style (`.navbar-light`) in conjunction with the light background (`.bg-light`) from Bootstrap’s colour utilities for this Navbar.
 
-Also note that because I placed the brand outside of the collapsing region (`.collapse.navbar-collapse`) it remains visible on small screens. In fact, Bootstrap has done more than just leave it visible, it has also right-aligned it in the collapsed view so it acts as a nice counter-point to the hamburger button.
+Also note that, because I placed the brand outside of the collapsing region (`.collapse.navbar-collapse`), it remains visible on small screens. In fact, Bootstrap has done more than just leave it visible. It has also right-aligned it in the collapsed view so it acts as a nice counterpoint to the hamburger button.
 
-Finally, notice that the Nav now appears to be right-aligned, separating it nicely from the brand and tagline. Everything is still actually left aligned, it just looks like the Nav isn’t because its left margin has been expanded to take up all available space. How? By simply adding the spacing utility class `.ml-auto` to it. The reason for this approach over others like perhaps floating some of the content is that this works without any undesired side-effects in both expanded and collapsed modes.
+Finally, notice that the Nav now appears to be right-aligned, separating it nicely from the brand and tagline. Everything is still actually left aligned. It just looks like the Nav isn’t because its left margin has been expanded to take up all available space. How? By simply adding the spacing utility class `.ml-auto` to it. The reason for this approach over others like perhaps floating some of the content is that this works without any undesired side effects in both expanded and collapsed modes.
 
 ### Navbar Text
 
-To add some text into a Navbar simply wrap it in a tag of your choosing and give that tag the class `.navbar-text`. You can of course use any tag, but `<span>` is generally used.
+To add some text into a Navbar, simply wrap it in a tag of your choosing and give that tag the class `.navbar-text`. You can of course use any tag, but `<span>` is generally used.
 
 As an example, the third Navbar in `pbs69a.html` contains a tag line (_‘An Irish Voice Online’_) which has been added to the front of the collapsing part of the Navbar. The collapsible part of the Navbar is now structured as follows:
 
@@ -220,7 +220,7 @@ The tagline really is as simple as a `<span>` with the class `.navbar-text`.
 
 ### Forms
 
-Inline forms can be added directly into a Navbar or into the section of the Navbar that collapses. There is no Navbar-specific markup needed, simply add the form as we learned in [instalment 64](https://bartificer.net/pbs64). Because these are totally normal inline forms, you can use all the fancy elements we’ve seen before like [input groups (instalment 65)](https://bartificer.net/pbs65) and [button groups (instalment 63)](https://bartificer.net/pbs63).
+Inline forms can be added directly into a Navbar or into the section of the Navbar that collapses. There is no Navbar-specific markup needed. Simply add the form as we learned in [instalment 64](https://pbs.bartificer.net/pbs64). Because these are totally normal inline forms, you can use all the fancy elements we’ve seen before like [input groups (instalment 65)](https://pbs.bartificer.net/pbs65) and [button groups (instalment 63)](https://pbs.bartificer.net/pbs63).
 
 As an example, let’s add a search form to our Navbar:
 
@@ -264,13 +264,13 @@ This is the fourth sample Navbar in `pbs69a.html`.
 
 ![](../assets/pbs69/Screenshot-2019-01-14-at-00.10.14.png)
 
-Note that in order to get the Navbar to look good at all breakpoints I had to make a choice. At the medium breakpoint there was no enough room to contain everything in an expanded Navbar, so I had to choice to keep the Navbar collapsed for the medium breakpoint, or, to hide something. I chose to hide the tagline for just the medium breakpoint by giving it the additional classes `.d-md-none`, and `.d-lg-inline`.
+Note that, in order to get the Navbar to look good at all breakpoints, I had to make a choice. At the medium breakpoint there was not enough room to contain everything in an expanded Navbar. So I had to choose to keep the Navbar collapsed for the medium breakpoint, or to hide something. I chose to hide the tagline for just the medium breakpoint by giving it the additional classes `.d-md-none` and `.d-lg-inline`.
 
 ![](../assets/pbs69/Screenshot-2019-01-14-at-00.12.14.png)
 
 ### A Note on Positioning Navbars
 
-The sample Navbars in `pbs69a.html` all appear inline within the page, but on real-world websites they would usually be positioned at the top of the page using one of the [Bootstrap positioning utilities](https://getbootstrap.com/docs/4.2/utilities/position/), usually `.fixed-top` or `.sticky-top`.
+The sample Navbars in `pbs69a.html` all appear inline within the page, but on real world websites they would usually be positioned at the top of the page using one of the [Bootstrap positioning utilities](https://getbootstrap.com/docs/4.2/utilities/position/), usually `.fixed-top` or `.sticky-top`.
 
 ## A Challenge
 
@@ -278,4 +278,4 @@ Build a Navbar for use on your personal web page.
 
 ## Final Thoughts
 
-We’ve looked at all the Bootstrap components I want to cover except for one, the modal dialogue, so that’s what we’ll cover in the next instalment. At that stage we’ll be one step closer to finishing our first pass through the highlights of Bootstrap 4. We’ll then go on to look at a few of the JavaScript plugins included with Bootstrap. We’ve seen some of these in action within components like Alerts, Dropdowns, and Navbars, but they are worth looking at in a little more detail. That will them set things up for one final big Bootstrap adventure — creating our own customised version of Bootstrap itself, allowing us to define our own colours etc..
+We’ve looked at all the Bootstrap components I want to cover except for one, the modal dialogue. So that’s what we’ll cover in the next instalment. At that stage we’ll be one step closer to finishing our first pass through the highlights of Bootstrap 4. We’ll then go on to look at a few of the JavaScript plugins included with Bootstrap. We’ve seen some of these in action within components like Alerts, Drop-downs, and Navbars, but they are worth looking at in a little more detail. That will then set things up for one final big Bootstrap adventure — creating our own customised version of Bootstrap itself, allowing us to define our own colours etc.

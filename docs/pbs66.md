@@ -4,7 +4,7 @@ Over the past few instalments we’ve been making our way though the various for
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/11/pbs66.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs66.zip).
 
-# Matching Podcast Episode 570
+## Matching Podcast Episode 570
 
 Listen along to this instalment on [episode 570 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/11/ccatp-570/)
 
@@ -22,13 +22,13 @@ My starting point was a simple inline form with a label for the overall form, tw
 
 I started by simplifying the form and removing all the labels and replacing them with `aria-label` attributes on the form’s container and each of the inputs. This simplified the markup without compromising accessibility.
 
-With the `<label>` tags removed I then wrapped all three elements in `<span>` with the classes `input-group` & `input-group-sm` and removed the spacing utility classes and `form-control-sm`/`btn-sm` classes from the individual inputs and the button.
+With the `<label>` tags removed, I then wrapped all three elements in `<span>` with the classes `input-group` & `input-group-sm` and removed the spacing utility classes and `form-control-sm`/`btn-sm` classes from the individual inputs and the button.
 
-At this point I had three equal-width elements in my group, the username field, the password field, and the login button. To demote the button from a full-member of the input group requiring an equal share of the width to an append I wrapped the button in a `<span>` with the class `input-group-append`.
+At this point I had three equal-width elements in my group, the username field, the password field, and the login button. To demote the button from a full member of the input group requiring an equal share of the width to an append, I wrapped the button in a `<span>` with the class `input-group-append`.
 
-Finally I added an icon to the front of the input group by inserting a `<span>` with the class `input-group-prepend` as the first element within the input group. Next I added another `<span>` with the class `input-group-text` within prepend, a finally a Font Awesome icon within that.
+Finally I added an icon to the front of the input group by inserting a `<span>` with the class `input-group-prepend` as the first element within the input group. Next I added another `<span>` with the class `input-group-text` within the prepend, and finally a Font Awesome icon within that.
 
-After all that I was left with the following simple markup:
+After all that, I was left with the following simple markup:
 
 ```html
 <footer class="mt-3 p-2 bg-light" role="form" aria-label="Admin Login">
@@ -51,9 +51,9 @@ Which looks like:
 
 ![](../assets/pbs66/Screenshot-2018-10-29-at-14.44.11.png)
 
-The second form needed much less work. I simply converted the four text boxes to input groups with single text add-ons front and back, and a single Font Awesome icon in each. I used the appends to signify whether or not the field applied to the sender of the receiver with the use of arrow icons, and the prepend to signify the expect value in the field with an icon for name, and another for email.
+The second form needed much less work. I simply converted the four text boxes to input groups with single text add-ons front and back, and a single Font Awesome icon in each. I used the appends to signify whether or not the field applied to the sender or the receiver with the use of arrow icons, and the prepend to signify the expected value in the field with an icon for name, and another for email.
 
-The only mildly interesting thing I did was to force all the prepends and appends to be the exact same width by explicitly setting it to 2.5em with an inline `style` attribute on the `<span>` with the class `input-group-text`.
+The only mildly interesting thing I did was to force all the prepends and appends to be the exact same width by explicitly setting it to `2.5em` with an inline `style` attribute on the `<span>` with the class `input-group-text`.
 
 As an example, here’s the code for just the sender’s name field:
 
@@ -78,11 +78,11 @@ The updated form now looks like this:
 
 ![](../assets/pbs66/Screenshot-2018-10-29-at-19.24.07.png)
 
-You can find my full sample solution in the `pbs65-challenge-solution` folder in [“>this instalment’s ZIP file](http://<a href=).
+You can find my full sample solution in the `pbs65-challenge-solution` folder in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/11/pbs66.zip).
 
 ## Bootstrap Form Validation
 
-We learned about HTML5’s built-in form validation features back in instalments [39](https://bartificer.net/pbs39) & [40](https://bartificer.net/pbs40). Given that previous versions of HTML had no form validation at all, these new built-in features are a great leap forward, but, they are far from perfect. Each browser implements the built-in validation messages differently, and they can’t be styled with CSS.
+We learned about HTML5’s built-in form validation features back in instalments [39](https://pbs.bartificer.net/pbs39) & [40](https://pbs.bartificer.net/pbs40). Given that previous versions of HTML had no form validation at all, these new built-in features are a great leap forward, but they are far from perfect. Each browser implements the built-in validation messages differently, and they can’t be styled with CSS.
 
 Bootstrap offers us a spectrum of choices when it comes to showing validation information to users. The least Bootstrap can do is literally nothing! This is also what Bootstrap does by default. At the other end of the spectrum Bootstrap provides you with all the styles you need to take total control of the presentation of validation information from the browser. Doing nothing involves very little work (obviously), and taking full control involves writing a little HTML and a lot of JavaScript. The in-between options involve just a little JavaScript and no HTML.
 
@@ -92,7 +92,7 @@ We’ll work our way from one end of the spectrum to the other with a worked exa
 
 We’ll use an updated version of the sample donation form from the previous instalment as our starting point. You’ll find this file in this instalment’s ZIP as `pbs66a.html`.
 
-The key points to note about this file are that I have added the relevant HTML5 form validation attributes to the form elements. Specifically I’ve added the flag attribute `required` to the required fields, and `min=1` to the amount field. Note that the text boxes already had the appropriate HTML5 type attributes, if not, I would have had to update the amount text box to `type="number"` and URL text box to `type="url"`.
+The key points to note about this file are that I have added the relevant HTML5 form validation attributes to the form elements. Specifically I’ve added the flag attribute `required` to the required fields, and `min=1` to the amount field. Note that the text boxes already had the appropriate HTML5 type attributes. If not, I would have had to update the amount text box to `type="number"` and URL text box to `type="url"`.
 
 I also added an event handler to show a standard browser alert box when the form successfully submits:
 
@@ -106,11 +106,11 @@ $(function(){
 });
 ```
 
-If you load this page in a browser you can remind yourself how standard HTML5 form validation presents itself.
+If you load this page in a browser, you can remind yourself how standard HTML5 form validation presents itself.
 
 ### Always-on Bootstrap Validation Styles
 
-Back in instalment 39 we learned that HTML5 provides us with two CSS pseudo-classes that we can use to style form elements depending on their validity, i.e. invalid form elements have the pseudo-class `:invalid`, and valid ones get `:valid`.
+Back in [instalment 39](https://pbs.bartificer.net/pbs39), we learned that HTML5 provides us with two CSS pseudo-classes that we can use to style form elements depending on their validity, i.e. invalid form elements have the pseudo-class `:invalid`, and valid ones get `:valid`.
 
 Unsurprisingly, Bootstrap has built-in styling for form validation states. Like with other opinionated Bootstrap styling, you have to opt into these styles by adding the class `.was-validated` to the form.
 
@@ -120,9 +120,9 @@ You can see this in action in `pbs66b.html` in this instalment’s ZIP.
 
 ### On-First-Interaction Bootstrap Validation Styles
 
-Having a form you haven’t even touched already be visually cranky at you with lots of red borders is sub-optimal. A nice improvement would be to have the Bootstrap validation states only show up when the form is first submitted. We can do this by not adding the class `.was-validated` into the form in our markup, but adding it via appropriate event handlers later.
+Having a form you haven’t even touched already be visually cranky at you with lots of red borders is suboptimal. A nice improvement would be to have the Bootstrap validation states only show up when the form is first submitted. We can do this by not adding the class `.was-validated` into the form in our markup, but adding it via appropriate event handlers later.
 
-The two relevant event handlers are the forms `submit` handler, and each validated form element’s `invalid` handler. You might imagine just the form’s `submit` handler might be enough, but you’d soon find that doesn’t work, because that handler only fires when the form passes validation. The `invalid` event is fired when ever validation fails on a given element, so we need to catch that event too.
+The two relevant event handlers are the forms `submit` handler, and each validated form element’s `invalid` handler. You might imagine just the form’s `submit` handler might be enough, but you’d soon find that doesn’t work, because that handler only fires when the form passes validation. The `invalid` event is fired whenever validation fails on a given element. We need to catch that event too.
 
 We can see this in action in `pbs66c.html` from this instalment’s ZIP.
 
@@ -153,7 +153,7 @@ The additional code first saves a reference to a jQuery object representing the 
 
 Next the code defines a function named `enableBootstrapValiationStyles()` which simply adds the class `.was-validated` to the form.
 
-Finally, the additional codes adds this function as a handler for the form’s `submit` event, and as a handler to each input within the form’s `invalid` event.
+Finally, the additional code adds this function as a handler for the form’s `submit` event, and as a handler to each input within the form’s `invalid` event.
 
 Remember, when you pass the `$()` function a CSS selector as the first argument and a jQuery object as the second, it returns a jQuery object representing all elements matching the selector contained within the elements represented by the second argument. In this case `$('input', $form)` means _all input tags within our form_.
 
@@ -161,17 +161,17 @@ Remember, when you pass the `$()` function a CSS selector as the first argument 
 
 The final step is to take full control and remove the standard HTML5 UI completely, and replace it with custom Bootstrap UI. The first thing we have to do to enable this is tell HTML5 not to show its built-in validation messages by adding the flag attribute `novalidate` to the `<form>`. Doing this will not prevent the browser from doing the validation, so the `:valid` and `:invalid` pseudo-classes will continue to exist and be updated, but it will prevent the browser from showing validation feedback, and even invalid forms will now submit.
 
-Before we look at what Bootstrap has to offer us, we need to remind ourselves of some jQuery, because we’ve now taken responsibility for preventing form submission when there are validation errors. The jQuery way of achieving that goal is to call the `.stopPropagation()` function on the jQuery event object representing the `submit` event. The first argument passed to an event handler in JavaScript is always the relevant jQuery event object, so we simply need to name the first argument to our submit handler and then call `.stopPropagation()` on that name. For clarity I’ll be using the name `event` in my example, but you really could choose anything.
+Before we look at what Bootstrap has to offer us, we need to remind ourselves of some jQuery, because we’ve now taken responsibility for preventing form submission when there are validation errors. The jQuery way of achieving that goal is to call the `.stopPropagation()` function on the jQuery event object representing the `submit` event. The first argument passed to an event handler in JavaScript is always the relevant jQuery event object. So we simply need to name the first argument to our submit handler and then call `.stopPropagation()` on that name. For clarity I’ll be using the name `event` in my example, but you really could choose anything.
 
-The other thing we need to remind ourselves of is how to tell if an input is in a valid or invalid state using jQuery. We can do this by combining jQuery’s `.is()` function with the HTML5 `:valid` or `:invalid` CSS pseudo-classes. As an example, if you load pbs66d.html into your favourite browser and enable the JavaScript console you can use that to query the validation state of the first name text box with: `$('#name_first_tb').is(':valid')`.
+The other thing we need to remind ourselves of is how to tell if an input is in a valid or invalid state using jQuery. We can do this by combining jQuery’s `.is()` function with the HTML5 `:valid` or `:invalid` CSS pseudo-classes. As an example, if you load `pbs66d.html` into your favourite browser and enable the JavaScript console, you can use that to query the validation state of the first name text box with: `$('#name_first_tb').is(':valid')`.
 
 With those two piece of jQuery knowledge fresh in our minds again, let’s now look at the tools Bootstrap provides us.
 
-Because Bootstrap’s default behaviour is to only show form validity styling when the form has the class `.was-validated`, by default either all the fields within a form get styled, or none. That’s not always the desired behaviour, so Bootstrap also provides the classes `.is-valid` & `.is-invalid` which can be applied to individual form elements to cause them to show their styling regardless of the presence or absence of `.was-validated` on their containing `<form>`.
+Because Bootstrap’s default behaviour is to only show form validity styling when the form has the class `.was-validated`, by default either all the fields within a form get styled, or none. That’s not always the desired behaviour, so Bootstrap also provides the classes `.is-valid` & `.is-invalid` which can be applied to individual form elements to cause them to show their styling, regardless of the presence or absence of `.was-validated` on their containing `<form>`.
 
 Bootstrap also gives us pre-made styles for showing validation success and failure messages. Specifically, it provides `.valid-feedback` & `.invalid-feedback`. Both of these classes are hidden by default.
 
-For simple forms that have the `.was-validated` class you can have these messages automatically show and hide themselves by placing a `<div>` with the relevant class either directly after a regular form element, or as the last children within an input group.
+For simple forms that have the `.was-validated` class, you can have these messages automatically show and hide themselves by placing a `<div>` with the relevant class either directly after a regular form element, or as the last children within an input group.
 
 Alternatively, you can manually show and hide these messages using jQuery’s `.show()` and `.hide()` functions.
 
@@ -179,9 +179,9 @@ To see all this in action, let’s look at a final version of our form with full
 
 I’ve chosen to enable validation on each field in the form one-by-one as its interacted with, and not to enable form-wide validation until the first time the form is submitted. I think this approach gives the most pleasing user experience. You can try it for yourself with `pbs66d.html` in the ZIP.
 
-My solution relies on using Bootstrap’s `.was-validated`, `.is-valid`, `.is-invalid`, `.valid-feedback` & `.invalid-feedback` CSS classes, and the `submit`, `invalid`, `input`, & `change` JavaScript events, and jQuery’s `.is()`, `.val()`, `.prop()`, `.text()`, `.empty()`, `.addClass()`, `.removeClass()`, `.show()`, `.hide()`, `.focus()`, `.on()`, `.submit()` & `.first()` functions. All the relevant JavaScript code is contained within the jQuery document ready handler.
+My solution relies on using Bootstrap’s `.was-validated`, `.is-valid`, `.is-invalid`, `.valid-feedback` & `.invalid-feedback` CSS classes, and the `submit`, `invalid`, `input`, & `change` JavaScript events, and jQuery’s `.is()`, `.val()`, `.prop()`, `.text()`, `.empty()`, `.addClass()`, `.removeClass()`, `.show()`, `.hide()`, `.focus()`, `.on()`, `.submit()`, & `.first()` functions. All the relevant JavaScript code is contained within the jQuery document ready handler.
 
-Big-picture-wise the code is architected as follows:
+Big-picture-wise, the code is architected as follows:
 
 - A `<div>` with an ID has been added after each input that needs validation. This `<div>` will be used to display any needed feedback.
 - There is a validation function for each text box that sets the `.is-valid` or `.is-invalid` class
@@ -215,7 +215,7 @@ $(function(){
 }
 ```
 
-Let’s start with a relatively simple case, the name fields. What makes this relatively simple is that we only want to give one kind of feedback, an error message as needed. This simplicity means we can write the message straight into the markup and only use JavaScript to apply the appropriate style to the text boxes themselves, and to show or hide the error message.
+Let’s start with a relatively simple case, the name fields. What makes this relatively simple is that we only want to give one kind of feedback: an error message as needed. This simplicity means we can write the message straight into the markup and only use JavaScript to apply the appropriate style to the text boxes themselves, and to show or hide the error message.
 
 In terms of markup I simply added the following div below the input group that contains the two name fields:
 
@@ -253,9 +253,9 @@ Note the use of `.is(':valid')` to test for validity, the use of `.addClass()` a
 
 This get marginally more complicated on fields where we want to show both success and error messages, but not much. Let’s look at the amount field as an example.
 
-In this case we have just a single text box, but we what to thank people when they enter a valid amount, and give them an error message when they enter an invalid amount.
+In this case we have just a single text box, but we want to thank people when they enter a valid amount, and give them an error message when they enter an invalid amount.
 
-Rather than hard-coding the message into the `<div>` I chose to create a single completely empty `div` with just an ID to act as both the success and error message as needed:
+Rather than hard-coding the message into the `<div>`, I chose to create a single completely empty `div` with just an ID to act as both the success and error message as needed:
 
 ```html
 <div id="amount_vf"></div>
@@ -283,9 +283,9 @@ const validateAmount = function(){
 };
 ```
 
-Like in our previous example `.is(':valid')` is used to check the validity, `.addClass()` & `.removeClass()` are used to update the classes. and `.show()` is used to show the message. In addition to this we’re now using `.val()` to read the text box’s value, and `.text()` to update the feedback text.
+As in our previous example, `.is(':valid')` is used to check the validity, `.addClass()` & `.removeClass()` are used to update the classes. and `.show()` is used to show the message. In addition to this, we’re now using `.val()` to read the text box’s value, and `.text()` to update the feedback text.
 
-One additional complication is optional fields. In this case there are three scenarios, an invalid value, and two possible valid conditions, no value, and a valid value. When there is no value the input is in a valid state, but we don’t want to display our success message, instead, we want to display no message at all.
+One additional complication is optional fields. In this case there are three scenarios, an invalid value, and two possible valid conditions, no value, and a valid value. When there is no value, the input is in a valid state, but we don’t want to display our success message. Instead, we want to display no message at all.
 
 We’ll use the Twitter field as an example. Again, the markup is an empty `<div>` with an ID:
 
@@ -319,7 +319,7 @@ const validateTwitter = function(){
 
 Notice the use of `.empty()` to empty the feedback `<div>` as needed.
 
-Having declared these validation functions we now need to attach them as handlers to the relevant events. Each time a user inputs some text into a text box we need to call the relevant validation function, and each time a user check or un-checks a radio button we need to respond as well. We use jQuery’s `.on()` function to bind the validation functions to the relevant events:
+Having declared these validation functions, we now need to attach them as handlers to the relevant events. Each time a user inputs some text into a text box, we need to call the relevant validation function. Each time a user checks or unchecks a radio button, we need to respond as well. We use jQuery’s `.on()` function to bind the validation functions to the relevant events:
 
 ```javascript
 // add input handlers to the text boxes etc
@@ -358,11 +358,11 @@ $form.submit(function(event){
 });
 ```
 
-Notice the use of `.first()` and `.focus()` in conjunction with the `$()` function to focus the first invalid input within the form. We are calling the $() function with two arguments, a CSS selector and jQuery object, so the result of that call will be a jQuery object representing all elements matching the selector within the elements represented by the second argument. In this case, all `<input>` tags with the pseudo-class `:invalid` contained within our form. This will result in a jQuery object representing all invalid text boxes, but we can only focus one, so the call to `.first()` returns a new jQuery object representing only the first invalid text box. Finally, `.focus()` focuses that single text box.
+Notice the use of `.first()` and `.focus()` in conjunction with the `$()` function to focus the first invalid input within the form. We are calling the $() function with two arguments, a CSS selector and jQuery object. The result of that call will be a jQuery object representing all elements matching the selector within the elements represented by the second argument. In this case, all `<input>` tags with the pseudo-class `:invalid` contained within our form. This will result in a jQuery object representing all invalid text boxes, but we can only focus one, so the call to `.first()` returns a new jQuery object representing only the first invalid text box. Finally, `.focus()` focuses that single text box.
 
 ## Challenge
 
-We’ll yet again be building on the output from the previous challenge for this one. You can use your own solution as your starting point, or my sample solution.
+We’ll be building yet again on the output from the previous challenge for this one. You can use your own solution as your starting point, or my sample solution.
 
 Update the two forms on the page to add form validations of your choice.
 
@@ -370,4 +370,4 @@ For bonus credit, find the documentation for Bootstrap form validation tooltips 
 
 ## Final Thoughts
 
-We’ve not completed our first look at Bootstrap’s form-related features. We’re now ready to move on to a related but subtly different set of Bootstrap features — web app UI elements.
+We’ve now completed our first look at Bootstrap’s form-related features. We’re now ready to move on to a related but subtly different set of Bootstrap features — web app UI elements.

@@ -1,10 +1,10 @@
-# PBS 67 of X — Introducing Bootstrap Dropdowns
+# PBS 67 of X — Introducing Bootstrap Drop-downs
 
-In this instalment we’ll start a two-part look at the Bootstrap Dropdown component. This component can be used to add pretty dropdown menus to both web app UIs and website navigation bars. In this instalment we’ll look at the first of those uses, and then in the next instalment we’ll look at navigation bars in general, which we’ve not seen before, and then Dropdowns within navigation bars.
+In this instalment we’ll start a two-part look at the Bootstrap Drop-down component. This component can be used to add pretty drop-down menus to both web app UIs and website navigation bars. In this instalment we’ll look at the first of those uses, and then in the next instalment we’ll look at navigation bars in general, which we’ve not seen before, and then Drop-downs within navigation bars.
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs67.zip).
 
-# Matching Podcast Episode 573
+## Matching Podcast Episode 573
 
 Listen along to this instalment on [episode 573 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/12/ccatp-573/)
 
@@ -16,13 +16,13 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge was to continue updating the recipe we have worked on for many recent challenges by adding form validation.
 
-The first step is to add the HTML markup for HTML5 form validation features. In this case that meant ensuring the email address fields were `<input>` tags with `type="email"`, and adding the `required` attribute to all required fields.
+The first step was to add the HTML markup for HTML5 form validation features. For now, that meant ensuring the email address fields were `<input>` tags with `type="email"`, and adding the `required` attribute to all required fields.
 
-To facilitate Bootstrap validation I updated both forms to give them an ID, changed the buttons to have `type="submit"`, and changed the click handlers on those buttons to submit handlers on their relevant forms.
+To facilitate Bootstrap validation, I updated both forms to give them an ID, changed the buttons to have `type="submit"`, and changed the click handlers on those buttons to submit handlers on their relevant forms.
 
-With the HTML5 markup in place on both forms I moved on to adding bootstrap validation to each form in turn.
+With the HTML5 markup in place on both forms, I moved on to adding bootstrap validation to each form in turn.
 
-For the sharing form I opted to use HTML5 form validation on first submit. To enable this I added the following to the document ready handler:
+For the sharing form I opted to use HTML5 form validation on first submit. To enable this, I added the following to the document ready handler:
 
 ```javascript
 // add on-first-submit form validation to the sharing form
@@ -34,11 +34,11 @@ $shareForm.submit(enableShareValidation);
 $('input, textarea', $shareForm).on('invalid', enableShareValidation);
 ```
 
-For the login form I decided to use full custom Bootstrap validation with popover notifications in order to earn the offered extra credit. [The documentation for validation tooltips can be found here](http://getbootstrap.com/docs/4.1/components/forms/#tooltips).
+For the login form, I decided to use full custom Bootstrap validation with popover notifications in order to earn the offered extra credit. [The documentation for validation tooltips can be found here](http://getbootstrap.com/docs/4.1/components/forms/#tooltips).
 
 The fist step in accomplishing this is disabling the standard HTML5 form validation messages by adding the `novalidate` attribute to the relevant `<form>` tag.
 
-Next, I added a `<div>` that will serve as a tooltip with a validation message whenever the form is validated and found to be invalid. Invalid tooltip into the input group. This `<div>` needs to be added inside the input group but not as the first or last element. I added it after the inputs but before the `input-group-append`.
+Next, I added a `<div>` that will serve as a tooltip with a validation message whenever the form is validated and found to be invalid. This `<div>` needs to be added inside the input group but not as the first or last element. I added it after the inputs but before the `input-group-append`.
 
 The documentation clearly states that the tooltip must be contained within an HTML element with CSS `position` property `relative`. I achieved this by adding an inline style to the input group itself to set its `position` to `relative`.
 
@@ -95,15 +95,15 @@ $loginForm.submit(function(e){
 $('input', $loginForm).on('input', validateLoginForm);
 ```
 
-The first thing above codes does is define a validation function which checks whether or not both of the inputs in the form are valid, and then shows or hides the validation tooltip and enables or disables the login button. The validity check is done in one simple line:
+The first thing the above code does is define a validation function which checks whether or not both of the inputs in the form are valid, and then shows or hides the validation tooltip and enables or disables the login button. The validity check is done in one simple line:
 
 ```javascript
 const allOK = $('input:valid', $loginForm).length === 2;
 ```
 
-The first thing to remember is that the result of a comparison operator is a boolean, so `allOK` will have a value of `true` or `false` depending on whether or not the statement to the left of the `===` evaluates to exactly 2.
+The first thing to remember is that the result of a comparison operator is a boolean. So `allOK` will have a value of `true` or `false`, depending on whether or not the statement to the left of the `===` evaluates to exactly 2.
 
-So, what about the thing to the left of the `===`? It is a call to the jQuery `$()` function with two arguments, a CSS selector, and a jQuery object. When passed these two arguments jQuery searches for all elements matching the CSS selector contained within the elements represented by the jQuery object. In this case we are looking for all `<input>` tags with the pseudo-class `:valid` contained within the login form. Since there are only two `<input>` tags within this form, the `$()` function will return a jQuery object representing zero, one, or two valid inputs. Remember that a jQuery object’s `.length` property reveals the number of elements the object represents. So, since there are two inputs in total, then of there are two valid inputs, the form is valid.
+So, what about the thing to the left of the `===`? It is a call to the jQuery `$()` function with two arguments, a CSS selector, and a jQuery object. When passed these two arguments, jQuery searches for all elements matching the CSS selector contained within the elements represented by the jQuery object. In this case, we are looking for all `<input>` tags with the pseudo-class `:valid` contained within the login form. Since there are only two `<input>` tags within this form, the `$()` function will return a jQuery object representing zero, one, or two valid inputs. Remember that a jQuery object’s `.length` property reveals the number of elements the object represents. So, since there are two inputs in total, then if there are two valid inputs, the form is valid.
 
 The other line within the validation function I want draw attention to is this one:
 
@@ -111,9 +111,9 @@ The other line within the validation function I want draw attention to is this o
 $('button[type=submit]', $loginForm).prop('disabled', false);
 ```
 
-Again, this is a call to jQuery’s `$()` function with two arguments, a CSS selector and a jQuery object, but in this case, the selector uses the CSS Attribute selector which we’ve not seen in quite some time. Within a CSS selector square brackets are used to match on an HTML attribute, so, the CSS selector `button[type=submit]` queries for `<button>` tags with their `type` attribute set to `submit`. So, the call to the `$()` function will return a jQuery object representing the submit button within the login form. We then use jQuery’s `.prop()` function to set the value of the button’s `disabled` property.
+Again, this is a call to jQuery’s `$()` function with two arguments, a CSS selector and a jQuery object. However in this case, the selector uses the CSS Attribute selector which we’ve not seen in quite some time. Within a CSS selector, square brackets are used to match on an HTML attribute. The CSS selector `button[type=submit]` queries for `<button>` tags with their `type` attribute set to `submit`. So the call to the `$()` function will return a jQuery object representing the submit button within the login form. We then use jQuery’s `.prop()` function to set the value of the button’s `disabled` property.
 
-With the validation function declared the code then goes on to add a new submit handler for the login form. Since we have taken full control of validation, we need to either do what ever we want to do on submission, or, detect validation errors and prevent submission. The submit handler uses the validation function to determine whether or not to proceed, and then either pops up a message to tell the user their form would have been submitted if it were real, or, it blocks the submit.
+With the validation function declared, the code then goes on to add a new submit handler for the login form. Since we have taken full control of validation, we need to either do whatever we want to do on submission, or detect validation errors and prevent submission. The submit handler uses the validation function to determine whether or not to proceed, and then either pops up a message to tell the user their form would have been submitted if it were real, or it blocks the submit.
 
 Finally, I added an event handler to all inputs within the login form to validate the form each time data is input.
 
@@ -121,43 +121,43 @@ With all that done we can now see what our validation tooltip looks like:
 
 ![](../assets/pbs67/Screenshot-2018-11-28-at-15.27.26.png)
 
-At first glance this looks OK, but there actually is a problem. Bootstrap validation tooltips appear directly below form inputs, and since this form is at the very bottom of the page within the footer, it’s adding extra scrolling and a white bar below the subtle grey footer. We really want the tooltip above the inputs. Unfortunately, while control of the positioning has been requested as an open issue on Bootstrap’s GitHub page, it hasn’t been implemented yet. We can fix it ourselves though with a little CSS.
+At first glance this looks OK, but there actually is a problem. Bootstrap validation tooltips appear directly below form inputs. Since this form is at the very bottom of the page within the footer, it’s adding extra scrolling and a white bar below the subtle grey footer. We really want the tooltip above the inputs. Unfortunately, while control of the positioning has been requested as an open issue on Bootstrap’s GitHub page, it hasn’t been implemented yet. We can fix it ourselves though with a little CSS.
 
-Using the developer tools I was able to determine that the tooltip is positioned `absolute` with `top` set to `31px`. This means we can alter the position of the tooltip by setting a different value for the tooltip’s `top` CSS property. With a little experimentation I found that `-2.5em` worked well, so I added the following inline CSS attribute to the tooltip’s `<div>` tag: `style="top: -2.5em"`. With that subtle change made things look much better!
+Using the developer tools I was able to determine that the tooltip is positioned `absolute` with `top` set to `31px`. This means we can alter the position of the tooltip by setting a different value for the tooltip’s `top` CSS property. With a little experimentation I found that `-2.5em` worked well. So I added the following inline CSS attribute to the tooltip’s `<div>` tag: `style="top: -2.5em"`. With that subtle change made, things look much better!
 
 ![](../assets/pbs67/Screenshot-2018-11-28-at-15.37.45.png)
 
-## Introducing Bootstrap Dropdowns
+## Introducing Bootstrap Drop-downs
 
-Let’s nip something in the bud straight away — a Bootstrap Dropdown is not an HTML `<select>` tag. It’s not trying to replace the `<select>` tag, and without some serious bodging, you can’t use it as one. The reason this is confusing is that we often refer to `<select>`s as _dropdowns_.
+Let’s nip something in the bud straight away — a Bootstrap Drop-down is not an HTML `<select>` tag. It’s not trying to replace the `<select>` tag, and without some serious bodging, you can’t use it as one. The reason this is confusing is that we often refer to `<select>`s as _drop-downs_.
 
-So if a Bootstrap Dropdown is not a form dropdown, what it is? It’s a dropdown menu. I’ve taught myself to imagine a silent _Menu_ after _Bootstrap Dropdown_.
+So if a Bootstrap Drop-down is not a form drop-down, what is it? It’s a drop-down menu. I’ve taught myself to imagine a silent _Menu_ after _Bootstrap Drop-down_.
 
-Bootstrap dropdowns are useful in two distinct contexts, and they come in two distinct variants — one based around `<a>` tags, and one based around `<button>` tags. The first variant is intended to be used in navigation menus, and the second in web app UIs.
+Bootstrap drop-downs are useful in two distinct contexts, and they come in two distinct variants — one based around `<a>` tags, and one based around `<button>` tags. The first variant is intended to be used in navigation menus, and the second in web app UIs.
 
-In this instalment we’ll focus on the web app UI variant, i.e. Bootstrap Dropdowns built with `<button>` tags. We’ll look at Bootstrap Navigation bars in general and navigation bars with Dropdowns in the next instalment.
+In this instalment we’ll focus on the web app UI variant, i.e. Bootstrap Drop-downs built with `<button>` tags. We’ll look at Bootstrap Navigation bars in general and navigation bars with Drop-downs in the next instalment.
 
-## The Anatomy of a Bootstrap Dropdown
+## The Anatomy of a Bootstrap Drop-down
 
-Before we narrow our focus to button-based Bootstrap Dropdowns, let’s look at the big-picture design, because that remains consistent between variants.
+Before we narrow our focus to button-based Bootstrap Drop-downs, let’s look at the big-picture design, because that remains consistent between variants.
 
-Firstly, Bootstrap Dropdown components require the Bootstrap JavaScript libraries be loaded.
+Firstly, Bootstrap Drop-down components require the Bootstrap JavaScript libraries be loaded.
 
-Dropdowns consist of two related parts; a _toggle_, and a _menu_ containing _menu items_. The entire dropdown (toggle and menu) must be contained within another Bootstrap component that supports dropdowns, and as we’ll see, quite a few of them do!
+Drop-downs consist of two related parts; a _toggle_, and a _menu_ containing _menu items_. The entire drop-down (toggle and menu) must be contained within another Bootstrap component that supports drop-downs, and as we’ll see, quite a few of them do!
 
 For accessibility reasons, the element being used as the toggle should define the ARIA attributes `aria-haspopup="true"` and `aria-expanded="false"`.
 
-The simplest form of a dropdown is the stand-alone form. In this case, the container is simply a tag (usually a `<div>`) with the class `.dropdown`.
+The simplest form of a drop-down is the stand-alone form. In this case, the container is simply a tag (usually a `<div>`) with the class `.dropdown`.
 
-## Bootstrap Dropdown Menus as Web App UI
+## Bootstrap Drop-down Menus as Web App UI
 
 Note that all the examples below can be found in the file `pbs67a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs67.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs67.zip).
 
-### A Basic Dropdown Menu
+### A Basic Drop-down Menu
 
-To create a basic button-based Bootstrap Dropdown start with a container tag of your choosing, usually a `<div>`, and give it the class `.dropdown`.
+To create a basic button-based Bootstrap Drop-down, start with a container tag of your choosing, usually a `<div>`, and give it the class `.dropdown`.
 
-Within the container add the button that will act as the trigger for the menu. This button will be the only visible part of the menu when it is not expanded. Bootstrap will automatically add a triangular icon to this button to indicate that it’s a dropdown. To make the button act as the trigger for the dropdown we need to do a number of things:
+Within the container, add the button that will act as the trigger for the menu. This button will be the only visible part of the menu when it is not expanded. Bootstrap will automatically add a triangular icon to this button to indicate that it’s a drop-down. To make the button act as the trigger for the drop-down, we need to do a number of things:
 
 1.  Opt the `<button>` into the opinionated Bootstrap types for buttons in the usual way, i.e. give it the class `.btn` and one of the standard Bootstrap styles like `.btn-secondary`.
 2.  Give the `<button>` the class `.dropdown-toggle`.
@@ -166,11 +166,11 @@ Within the container add the button that will act as the trigger for the menu. T
 5.  Give the `<button>` the ARIA attributes `aria-haspopup="true" aria-expanded="false"`.
 6.  Give the button an ID so we can use it as the ARIA label for the menu.
 
-With the trigger added, the next thing we need is the menu. This will consist of a container tag, again, usually a `<div>` with the class `.dropdown-menu`. To make the menu accessible it should use the `aria-labelledby` attribute to connect it to the trigger.
+With the trigger added, the next thing we need is the menu. This will consist of a container tag, again, usually a `<div>` with the class `.dropdown-menu`. To make the menu accessible, it should use the `aria-labelledby` attribute to connect it to the trigger.
 
-Within this new container we then add the buttons that will make up the menu’s contents. Each of these buttons should have the class `.dropdown-item` and `type="button"`.
+Within this new container, we then add the buttons that will make up the menu’s contents. Each of these buttons should have the class `.dropdown-item` and `type="button"`.
 
-Putting all that together we get the following simple example:
+Putting all that together, we get the following simple example:
 
 ```html
 <div class="dropdown">
@@ -189,7 +189,7 @@ Putting all that together we get the following simple example:
 
 ### Controlling Direction
 
-By default the Dropdown will prefer to drop downwards, but if it’s at the bottom of the page it will ‘drop’ upwards. If you want to force a particular direction you can do so by replacing the .dropdown class on the container with one of `.dropup`, `.dropright`, or `.dropleft`.
+By default the Drop-down will prefer to drop downwards, but, if it’s at the bottom of the page it will ‘drop’ upwards. If you want to force a particular direction, you can do so by replacing the `.dropdown` class on the container with one of `.dropup`, `.dropright`, or `.dropleft`.
 
 The following shows a menu set to drop right:
 
@@ -208,15 +208,15 @@ The following shows a menu set to drop right:
 
 ![](../assets/pbs67/Screenshot-2018-12-01-at-19.25.01.png)
 
-### Adding Headings, Help Text & Dividers
+### Adding Headings, Help Text, & Dividers
 
-When you look at menus in the apps you use you’ll see they contain more than just menu items, they also contain additional un-clickable items that add context like dividers, section headings, and help text.
+When you look at menus in the apps you use, you’ll see they contain more than just menu items. They also contain additional unclickable items that add context like dividers, section headings, and help text.
 
-To add a divider in a menu simply add an empty tag of your choice (usually a `<div>`) as a sibling to the buttons with the class `.dropdown-divider`.
+To add a divider in a menu, simply add an empty tag of your choice (usually a `<div>`) as a sibling to the buttons with the class `.dropdown-divider`.
 
-To add a heading add a tag of your choice (again, usually a `<div>`) which contains the heading text and has the class `.dropdown-header`.
+To add a heading, add a tag of your choice (again, usually a `<div>`) which contains the heading text and has the class `.dropdown-header`.
 
-Finally, to add some help text add a tag of your choice (usually a `<p>`) containing the text. You don’t need to add any classes, but you can use the usual utility classes if you want to add some padding or things like that.
+Finally, to add some help text, add a tag of your choice (usually a `<p>`) containing the text. You don’t need to add any classes, but you can use the usual utility classes if you want to add some padding or things like that.
 
 Here’s a sample menu using all three of the above:
 
@@ -241,19 +241,19 @@ Here’s a sample menu using all three of the above:
 
 ![](../assets/pbs67/Screenshot-2018-12-01-at-19.27.21.png)
 
-### Disabled Dropdown Menu Items
+### Disabled Drop-down Menu Items
 
-Note that if you set a button in a dropdown menu to be disabled, Bootstrap will style it appropriately (see the Facebook option in the menu above).
+Note that, if you set a button in a drop-down menu to be disabled, Bootstrap will style it appropriately (see the Facebook option in the menu above).
 
-## Dropdown in Button Groups
+## Drop-down in Button Groups
 
-Normally, the only thing visible on a collapsed dropdown is the trigger, and the only thing that happens when you click the trigger is that the menu expands.
+Normally, the only thing visible on a collapsed drop-down is the trigger, and the only thing that happens when you click the trigger is that the menu expands.
 
-You’ll often see a subtly different design in UIs, the so-called _split button_ where the main body of the toggle is a separate button that performs a default action, and next to it is a triangle icon which expands the dropdown which shows related actions.
+You’ll often see a subtly different design in UIs, the so-called _split button_ where the main body of the toggle is a separate button that performs a default action, and next to it is a triangle icon which expands the drop-down which shows related actions.
 
-With Bootstrap you can achieve this using a button group as the container for the default button, the trigger button, and the dropdown menu. The button group does **not** get the class `.dropdown`, but if you want to drop in a different direction you do need give the button group the class `.dropup`, `.dropleft`, or `.dropright`.
+With Bootstrap, you can achieve this using a button group as the container for the default button, the trigger button, and the drop-down menu. The button group does **not** get the class `.dropdown`, but if you want to drop in a different direction, you do need give the button group the class `.dropup`, `.dropleft`, or `.dropright`.
 
-When creating a split button the button to toggle the dropdown should not contain any visible text, it should be left apparently empty and Bootstrap will insert and triangle icon. However, to support screen readers we should add some text wrapped inside a `<span>` with the class `.sr-only` stating that button expands the dropdown. To allow Bootstrap to lay out the icon correctly, we also need to give the toggle button the classes `.dropdown-toggle` and `.dropdown-toggle-split`.
+When creating a split button, the button to toggle the drop-down should not contain any visible text. It should be left apparently empty and Bootstrap will insert a triangle icon. However, to support screen readers, we should add some text wrapped inside a `<span>` with the class `.sr-only` stating that button expands the drop-down. To allow Bootstrap to lay out the icon correctly, we also need to give the toggle button the classes `.dropdown-toggle` and `.dropdown-toggle-split`.
 
 You can see all this in action in the following example:
 
@@ -272,9 +272,9 @@ You can see all this in action in the following example:
 
 ![](../assets/pbs67/Screenshot-2018-12-01-at-19.32.30.png)
 
-While you can only have one dropdown per button group, you can have more than one regular button in the button group along with the dropdown:
+While you can only have one drop-down per button group, you can have more than one regular button in the button group along with the drop-down:
 
-```
+```html
 <div class="btn-group">
   <button type="button" class="btn btn-primary">Save</button>
   <button type="button" class="btn btn-primary">Send</button>
@@ -290,13 +290,13 @@ While you can only have one dropdown per button group, you can have more than on
 
 ![](../assets/pbs67/Screenshot-2018-12-01-at-19.33.52.png)
 
-### Dropdowns in Input Groups
+### Drop-downs in Input Groups
 
-You can’t add a dropdown just anywhere in an input group, but you can add a regular dropdown or a split button as either an input group’s append or prepend element.
+You can’t add a drop-down just anywhere in an input group, but you can add a regular drop-down or a split button as either an input group’s append or prepend element.
 
 You do this by using the `.input-group-prepend` or `.input-group-append` in the same way we used a button group in the previous section.
 
-An example using a regular dropdown:
+An example using a regular drop-down:
 
 ```html
 <div class="input-group">
@@ -338,10 +338,10 @@ An example using a split button:
 
 ## A Challenge
 
-Continuing on with our recipe, update the login form so it uses a split button to offer three login options; a default simply labeled “Admin Login”, and two additional options in the dropdown labeled “Login for 5 minutes” and “Login for 1 hour”.
+Continuing on with our recipe, update the login form so it uses a split button to offer three login options; a default simply labeled “Admin Login”, and two additional options in the drop-down labeled “Login for 5 minutes” and “Login for 1 hour”.
 
 ## Final Thoughts
 
-We’ve now seen how we can add dropdown menus to our web app UIs. We’ve not actually covered everything you use a Bootstrap Dropdown menu for in this context — you can actually add form elements inside dropdowns, but I’ll leave that advanced topic as some optional additional reading for those interested. You’ll find [the relevant documentation here](http://getbootstrap.com/docs/4.1/components/dropdowns/#forms).
+We’ve now seen how we can add drop-down menus to our web app UIs. We’ve not actually covered everything you use a Bootstrap Drop-down menu for in this context — you can actually add form elements inside drop-downs, but I’ll leave that advanced topic as some optional additional reading for those interested. You’ll find [the relevant documentation here](http://getbootstrap.com/docs/4.1/components/dropdowns/#forms).
 
-In the next instalment we’ll look at navigation menus in Bootstrap in general, and then at adding dropdowns into navigation menus.
+In the next instalment we’ll look at navigation menus in Bootstrap in general, and then at adding drop-downs into navigation menus.

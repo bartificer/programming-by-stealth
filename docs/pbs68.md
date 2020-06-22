@@ -1,10 +1,10 @@
 # PBS 68 of X — Bootstrap Navs
 
-In this instalment we’ll get our first look at Bootstrap’s so-call _Nav_ component, a menu designed to facilitate navigation around a website, within a page, or within a web app. In the previous instalment we met Dropdowns for the first time, and saw how Dropdowns filled with buttons can be used within web app UIs. We ended by noting that Dropdowns come in two flavours, buttons and links. In this instalment we’ll learn how to use the link-flavour of Dropdowns within Navs. Finally, we’ll learn how to use Navs to create tabbed content regions within a web page or web app.
+In this instalment we’ll get our first look at Bootstrap’s so-called _Nav_ component, a menu designed to facilitate navigation around a website, within a page, or within a web app. In the previous instalment we met Drop-downs for the first time, and saw how Drop-downs filled with buttons can be used within web app UIs. We ended by noting that Drop-downs come in two flavours, buttons and links. In this instalment we’ll learn how to use the link-flavour of Drop-downs within Navs. Finally, we’ll learn how to use Navs to create tabbed content regions within a web page or web app.
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
 
-# Matching Podcast Episode 575
+## Matching Podcast Episode 575
 
 Listen along to this instalment on [episode 575 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/12/ccatp-575/)
 
@@ -14,7 +14,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 67 Challenge Solution
 
-The challenge set at the end of the previous instalment was simply to update the pretend login form at the bottom of our ever-expanding recipe page with a new feature — instead of simply having a single login button, that button should be expanded to become a split dropdown with logging in permanently as the default option, and two drop-down options to log in for shorter times, specifically 5 minutes and 1 hour.
+The challenge set at the end of the previous instalment was simply to update the pretend login form at the bottom of our ever-expanding recipe page with a new feature — instead of simply having a single login button, that button should be expanded to become a split drop-down with logging in permanently as the default option, and two drop-down options to log in for shorter times, specifically 5 minutes and 1 hour.
 
 As a quick reminder, this is what the code looked like when we last left it:
 
@@ -34,9 +34,9 @@ As a quick reminder, this is what the code looked like when we last left it:
 
 The entire form, a username text box, password box, and submit button, is contained within a single input group, with the single submit button as an appended input group add-on. There is also a nice icon prepended to the front of the group, also as add-on.
 
-The only thing we need to change is the appended add-on, converting it from a single button to a split dropdown.
+The only thing we need to change is the appended add-on, converting it from a single button to a split drop-down.
 
-The first thing we’ll need to do is add a second button into the add-on to act as the trigger for the dropdown:
+The first thing we’ll need to do is add a second button into the add-on to act as the trigger for the drop-down:
 
 ```html
 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="login_dd_t" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button">
@@ -44,9 +44,9 @@ The first thing we’ll need to do is add a second button into the add-on to act
 </button>
 ```
 
-The important things to note are that the button needs to have the classes `dropdown-toggle` & `dropdown-toggle-split` (in addition to the usual Bootstrap button classes), the data attribute `data-toggle="dropdown"`, and that for accessibility reasons, it should have an ID and define the ARIA attributes `aria-haspopup="true"` & `aria-expanded="false"`. Again, for accessibility reasons, note that the only thing the button contains is a `<span>` with a label describing what the button does that’s only visible to screen readers (i.e. has the Bootstrap utility class `.sr-only`).
+The important things to note are that the button needs to have the classes `dropdown-toggle` & `dropdown-toggle-split` (in addition to the usual Bootstrap button classes), the data attribute `data-toggle="dropdown"`, and that for accessibility reasons, it should have an ID and define the ARIA attributes `aria-haspopup="true"` and `aria-expanded="false"`. Again, for accessibility reasons, note that the only thing the button contains is a `<span>` with a label describing what the button does that’s only visible to screen readers (i.e. has the Bootstrap utility class `.sr-only`).
 
-The next piece of markup we need is the code for the dropdown itself, we add this after the newly added trigger button:
+The next piece of markup we need is the code for the drop-down itself. We add this after the newly added trigger button:
 
 ```html
 <span class="dropdown-menu" aria-labelledby="login_dd_t">
@@ -55,13 +55,13 @@ The next piece of markup we need is the code for the dropdown itself, we add thi
 </span>
 ```
 
-The key points to note are that the `<span>` that’s serving as the dropdown menu has the class `dropdown-menu`, that the buttons within the menu have the class `dropdown-item`, and that for accessibility reasons there is an `aria-labelledby` attribute connecting the menu to the trigger (using the trigger’s ID).
+The key points to note are that the `<span>` that’s serving as the drop-down menu has the class `dropdown-menu`, that the buttons within the menu have the class `dropdown-item`, and that, for accessibility reasons, there is an `aria-labelledby` attribute connecting the menu to the trigger (using the trigger’s ID).
 
-We now have a visually functioning menu, and because both buttons in the dropdown have `type="submit"`, they both work to submit the form:
+We now have a visually functioning menu, and because both buttons in the drop-down have `type="submit"`, they both work to submit the form:
 
 ![](../assets/pbs68/Screenshot-2018-12-15-at-10.27.24.png)
 
-The challenge did have one small twist, the message displayed when the form is submitted should tell the user how long they would be pretend logged in for. The current submit event handler on the form always shows the same message, regardless of which button was used to trigger the login.
+The challenge did have one small twist: the message displayed when the form is submitted should tell the user how long they would be pretend logged in for. The current submit event handler on the form always shows the same message, regardless of which button was used to trigger the login.
 
 This is the starting code for the event handler:
 
@@ -76,7 +76,7 @@ $loginForm.submit(function(e){
 });
 ```
 
-There are multiple ways to address this problem, for example, you could write separate event handlers for each button, but I decided to go a slightly different route that would scale more easily if there were more items in the menu.
+There are multiple ways to address this problem. For example, you could write separate event handlers for each button, but I decided to go a slightly different route that would scale more easily if there were more items in the menu.
 
 I started by adding a hidden input to the form to store the login duration — no value would be interpreted as a permanent login, and any other durations would be represented by simple string values like `5 minutes` or `1 hour`:
 
@@ -84,7 +84,7 @@ I started by adding a hidden input to the form to store the login duration — n
 <input type="hidden" id="login_duration_hdn" value="">
 ```
 
-Next I changed the buttons in the dropdown from `type="submit"` to `type="button"`, gave them both `value` attributes, and gave the menu as a whole and ID:
+Next I changed the buttons in the drop-down from `type="submit"` to `type="button"`, gave them both `value` attributes, and gave the menu as a whole and ID:
 
 ```html
 <span class="dropdown-menu" aria-labelledby="login_dd_t" id="login_dd_m">
@@ -138,13 +138,13 @@ You can find the full code for my sample solution in the folder `pbs67-challenge
 
 ## Basic Bootstrap Nav Bars
 
-A Bootstrap _Nav_ component is designed to allow a user to navigate in some way. Bootstrap Navs are implemented using CSS3 flex boxes, and come in a few different styles. Within a traditional website you might use them to allow your visitors move between sections of your site, and in a web app you might use them to move between different screens in your app, or even different panels within a pallet of controls or something like that.
+A Bootstrap _Nav_ component is designed to allow a user to navigate in some way. Bootstrap Navs are implemented using CSS3 flex boxes, and come in a few different styles. Within a traditional website you might use them to allow your visitors move between sections of your site, and in a web app you might use them to move between different screens in your app, or even different panels within a pallette of controls or something like that.
 
-Regardless of how simple or complex your nav, they will all be contained within a single tag, and that tag will have the class `.nav`. Navs contain items, and with one exception, nav items should have the class `.nav-item`. To make links within navs easier to click/tap they should all be given the class `.nav-link` which gives them extra large padding and ensures they’re rendered appropriately.
+Regardless of how simple or complex your nav, they will all be contained within a single tag, and that tag will have the class `.nav`. Navs contain items, and with one exception, nav items should have the class `.nav-item`. To make links within navs easier to click/tap, they should all be given the class `.nav-link` which gives them extra large padding and ensures they’re rendered appropriately.
 
 For the very simplest of navs, the nav items can be omitted, so you can have a single tag with the class `.nav` containing only links with the class `.nav-link`.
 
-For the simple pure-link variant of the nav bar you could use any containing tag, but from a semantic point of the view obvious tag to use is the HTML5 `<nav>` tag (for _navigation_).
+For the simple pure-link variant of the nav bar, you could use any containing tag, but, from a semantic point of view, the obvious tag to use is the HTML5 `<nav>` tag (for _navigation_).
 
 So, a basic nav really can be this simple:
 
@@ -156,11 +156,11 @@ So, a basic nav really can be this simple:
 </nav>
 ```
 
-Note that you’ll find this example an all the others below in the file `pbs68a.html` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
+Note that you’ll find this example and all the others below in the file `pbs68a.html` in [this instalment’s ZIP](https://www.bartbusschots.ie/s/wp-content/uploads/2018/12/pbs68.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs68.zip).
 
 ![](../assets/pbs68/Screenshot-2018-12-16-at-11.03.44.png)
 
-A basic nav like this could almost be described as un-styled, it’s just a left-aligned horizontal list of links with very generous padding. You can add basic styling to your navs using the standard Bootstrap utility classes. The [flex utilities](http://getbootstrap.com/docs/4.1/utilities/flex/) are particularly relevant since Bootstrap navs are flex boxes!
+A basic nav like this could almost be described as unstyled. It’s just a left-aligned horizontal list of links with very generous padding. You can add basic styling to your navs using the standard Bootstrap utility classes. The [flex utilities](http://getbootstrap.com/docs/4.1/utilities/flex/) are particularly relevant since Bootstrap navs are flex boxes!
 
 Here’s a first practical example:
 
@@ -178,17 +178,17 @@ In this case I made use of the [colour utilities](http://getbootstrap.com/docs/4
 
 ### Nav Pills
 
-As well as using the standard utilities, bootstrap also provides an additional custom style which allows the active item in a nav to be highlighted. For example, the current page on a website could be marked as active in a nav used for site navigation. You enable pills by giving the relevant nav the additional class `.nav-pills`, and the active link the class `.active`.
+As well as using the standard utilities, Bootstrap also provides an additional custom style which allows the active item in a nav to be highlighted. For example, the current page on a website could be marked as active in a nav used for site navigation. You enable pills by giving the relevant nav the additional class `.nav-pills`, and the active link the class `.active`.
 
 All navs, whether using pills or not, also support `.disabled` to mark an item in the navigation as being disabled.
 
 ### Controlling Nav Item Widths
 
-By default the width of flex items is determined by their content. When using pills the size of the active item becomes very obvious, so you might not want the default minimalist sizing.
+By default the width of flex items is determined by their content. When using pills, the size of the active item becomes very obvious, so you might not want the default minimalist sizing.
 
-Until now we have not use the .nav-item class at all, but we now need to. In simple navigations the `<a>` tags can be made do double-duty as both nav items and nav links by giving them both the `.nav-item` and `.nav-link` classes. We’ll need to do that in order to control the item widths.
+Until now we have not used the `.nav-item` class at all, but we now need to. In simple navigations, the `<a>` tags can be made to do double-duty as both nav items and nav links by giving them both the `.nav-item` and `.nav-link` classes. We’ll need to do that in order to control the item widths.
 
-Adding `.nav-fill` to an overall nav where each item has the class `.nav-item` will remove the empty space around each of the items. This won’t make them all the same width though, to do that we should give the nav the class `.nav-justified` instead of `.nav-fill`.
+Adding `.nav-fill` to an overall nav where each item has the class `.nav-item` will remove the empty space around each of the items. This won’t make them all the same width though. To do that, we should give the nav the class `.nav-justified` instead of `.nav-fill`.
 
 Putting all that together, below is the markup for a simple justified nav including an active link and a disabled link:
 
@@ -205,7 +205,7 @@ Putting all that together, below is the markup for a simple justified nav includ
 
 ### Nav Tabs
 
-Now that our links are doing double duty as both nav items and nav links we have one more display style at our disposal — tabs. To use tabs rather than pills simply replace `.nav-pills` with `.nav-tabs`.
+Now that our links are doing double duty as both nav items and nav links, we have one more display style at our disposal — tabs. To use tabs rather than pills, simply replace `.nav-pills` with `.nav-tabs`.
 
 ```html
 <nav class="nav nav-tabs nav-justified">
@@ -222,9 +222,9 @@ Now that our links are doing double duty as both nav items and nav links we have
 
 Before we can move on to some more advanced nav features we need to loop back and learn the second markup option available to us — list-based navs.
 
-A list-based nav consist of a containing tag with the class `.nav` (usually a `<ul>`) containing tags with the class `.nav-item` (usually `<li>`s) containing links with the class `.nav-link` as well as any additional markup needed for the more advanced features.
+A list-based nav consists of a containing tag with the class `.nav` (usually a `<ul>`) containing tags with the class `.nav-item` (usually `<li>`s) containing links with the class `.nav-link` as well as any additional markup needed for the more advanced features.
 
-Re-writing the previous example we get:
+Rewriting the previous example, we get:
 
 ```html
 <ul class="nav nav-tabs nav-justified">
@@ -245,13 +245,13 @@ Re-writing the previous example we get:
 
 The resulting Nav is visually identical to the original `<nav>`\-based version.
 
-## Dropdown Menus for Navigation
+## Drop-down Menus for Navigation
 
-Using the more advanced list-based navs we can now add Dropdowns into our navs quite easily.
+Using the more advanced list-based navs, we can now add Drop-downs into our navs quite easily.
 
-The nav item will become the container for the dropdown, so it should get the additional class `.dropdown`. The nav link will become the trigger for the dropdown, so it will get the additional class `.dropdown-toggle` as well as the usual data and ARIA attributes `data-toggle="dropdown"`, `aria-haspopup="true"` & `aria-expanded="false"`. In addition to all that the link should also get `role="button"`, and it should be a link to the exact current location, i.e. `href="#"`. Finally, we should give the link an ID so we can use it as the ARIA label for the menu.
+The nav item will become the container for the drop-down, so it should get the additional class `.dropdown`. The nav link will become the trigger for the drop-down, so it will get the additional class `.dropdown-toggle` as well as the usual data and ARIA attributes `data-toggle="dropdown"`, `aria-haspopup="true"` and `aria-expanded="false"`. In addition to all that, the link should also get `role="button"`, and it should be a link to the exact current location, i.e. `href="#"`. Finally, we should give the link an ID so we can use it as the ARIA label for the menu.
 
-The menu should then be added into the nav item directly after the nav link. Since this dropdown is for navigation we should use slightly different markup to what we saw in [the previous instalment](https://bartificer.net/pbs67). Rather than filling our menu with buttons, we’ll be filling it with links instead:
+The menu should then be added into the nav item directly after the nav link. Since this drop-down is for navigation, we should use slightly different markup to what we saw in [the previous instalment](https://pbs.bartificer.net/pbs67). Rather than filling our menu with buttons, we’ll be filling it with links instead:
 
 ```html
 <ul class="nav nav-justified bg-light border-top border-bottom">
@@ -279,7 +279,7 @@ You might be wondering why Bootstrap comes with a nav styled to look like tabs. 
 
 Note that this feature requires that the Bootstrap JavaScript files be loaded into the page.
 
-To create a tabbed region within a page you’ll need two things — a nav to navigate between the tabbed panes, and a collection of panes to navigate between.
+To create a tabbed region within a page, you’ll need two things — a nav to navigate between the tabbed panes, and a collection of panes to navigate among.
 
 While the nav appears above the tab panes in the markup and on the page, let’s start with the tab panes.
 
@@ -289,9 +289,9 @@ Moving on to the nav bar, it’s mostly a regular nav bar, and can be either `.n
 
 The container for the nav should get `role="tablist"` to facilitate assistive technology.
 
-When it comes to the individual links there are a lot of requirements. Firstly, they all need to have IDs so they can be referenced by the `aria-labelledby` attributes on the matching panes. Next, they need to be connected to their matching pane by giving them the data attribute `data-toggle="tab"` (or `data-toggle="pill"` with `.nav-pills`) and setting their href attribute to the CSS selector for the ID of the pane they control, e.g. for a pane with `id="tab1"` the link should have `href="#tab1"`. For accessibility each link should get `role="tab"`, an `aria-controls` attribute with the value of the ID of the matching pane, e.g. `aria-controls="home"` and an `aria-selected` attribute with a value of `true` if the controlled tab is currently shown, or `false` otherwise. Finally, if the link is controlling the tab that’s currently shown it should also get the class `.active`.
+When it comes to the individual links, there are a lot of requirements. Firstly, they all need to have IDs so they can be referenced by the `aria-labelledby` attributes on the matching panes. Next, they need to be connected to their matching pane by giving them the data attribute `data-toggle="tab"` (or `data-toggle="pill"` with `.nav-pills`) and setting their href attribute to the CSS selector for the ID of the pane they control. For example, for a pane with `id="tab1"`, the link should have `href="#tab1"`. For accessibility, each link should get `role="tab"`, an `aria-controls` attribute with the value of the ID of the matching pane, e.g. `aria-controls="home"` and an `aria-selected` attribute with a value of `true` if the controlled tab is currently shown, or `false` otherwise. Finally, if the link is controlling the tab that’s currently shown, it should also get the class `.active`.
 
-For a nice visual effect you probably want to add a border on three sides of the .tab-content container (all but the top), and to round the bottom two corners. You may also want to add a little padding to the sides. To achieve all this I like to add the following utility classes: `.border` & `.border-top-0` to add a border on all sides then remove the top one, `.rounded-bottom` to round just the bottom corners, and `px-3` to add just the sides.
+For a nice visual effect, you probably want to add a border on three sides of the `.tab-content` container (all but the top), and to round the bottom two corners. You may also want to add a little padding to the sides. To achieve all this, I like to add the following utility classes: `.border` & `.border-top-0` to add a border on all sides, then remove the top one, `.rounded-bottom` to round just the bottom corners, and `px-3` to add just the sides.
 
 That sounds very complicated, but it’s not actually that bad when you see it all together:
 
@@ -325,8 +325,8 @@ Using either your solution to the previous challenge or mine as your starting po
 
 ## Final Thoughts
 
-We’ve seen how Bootstrap Navs can be used to make basic navigation menus, as well as somewhat more advanced navigation menus containing Dropdowns. We’ve also seen how we can use navs to create tabbed content panes, which can be a nice way of compressing content on a page, or of organising pallets of form controls within a web app.
+We’ve seen how Bootstrap Navs can be used to make basic navigation menus, as well as somewhat more advanced navigation menus containing Drop-downs. We’ve also seen how we can use navs to create tabbed content panes, which can be a nice way of compressing content on a page, or of organising pallettes of form controls within a web app.
 
-Bootstrap has one more nav-related trick up its sleeve though — what it refers to as the _Navbar_ component. This component is designed to be used as the navigation bar at the top of web pages or web apps. It supports simply links and Dropdowns just like a regular Nav, but it also supports the addition of small inline forms for things like login or site search functionality, non-link text, a site logo, and it even has built-in support for smaller devices through the now ubiquitous so-called _hamburger button_.
+Bootstrap has one more nav-related trick up its sleeve though — what it refers to as the _Navbar_ component. This component is designed to be used as the navigation bar at the top of web pages or web apps. It supports simple links and Drop-downs just like a regular Nav, but it also supports the addition of small inline forms for things like login or site search functionality, non-link text, or a site logo. It even has built-in support for smaller devices through the now ubiquitous so-called _hamburger button_.
 
 Because the Navbar is so powerful, we’ll be dedicating the entire next instalment to it.

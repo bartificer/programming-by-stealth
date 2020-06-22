@@ -4,7 +4,7 @@ This will be the penultimate instalment of our introduction to Bootstrap forms. 
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2018/10/pbs65.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs65.zip).
 
-# Matching Podcast Episode 568
+## Matching Podcast Episode 568
 
 Listen along to this instalment on [episode 568 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2018/10/ccatp-568/)
 
@@ -43,7 +43,7 @@ $(function(){
 });
 ```
 
-The second form was a feedback form, and you were free to use any layout that you felt worked well, as long as it was usable at all breakpoints. I chose to use a horizontal form:
+The second form was a feedback form. You were free to use any layout that you felt worked well, as long as it was usable at all breakpoints. I chose to use a horizontal form:
 
 ```html
 <fieldset class="col" role="form" aria-labelledby="share_fm_desc">
@@ -88,7 +88,7 @@ The second form was a feedback form, and you were free to use any layout that yo
 </fieldset>
 ```
 
-To make the form behave well at all breakpoints I simply varied the relative widths of the columns depending on the breakpoint by allowing the column containing the form elements to take all available space, and setting the labels to have specific widths at specific breakpoints with: `class="col-sm-5 col-md-4 col-lg-3 col-xl-2 col-form-label"`.
+To make the form behave well at all breakpoints, I simply varied the relative widths of the columns depending on the breakpoint by allowing the column containing the form elements to take all available space, and setting the labels to have specific widths at specific breakpoints with: `class="col-sm-5 col-md-4 col-lg-3 col-xl-2 col-form-label"`.
 
 The click handler was basically the same as the one for the first form.
 
@@ -96,23 +96,23 @@ The click handler was basically the same as the one for the first form.
 
 Bootstrap provides a nice mechanism for enhancing text inputs with little additions. Since text boxes are created with `<input>` tag, the Bootstrap developers named these components _Input Groups_. For some bonus confusion, note that you can use `<textarea>` tags instead of `<input>` tags within input groups!
 
-Note that like with most Bootstrap features covered in this series, this won’t be an exhaustive description of every single input group feature, we’ll just be looking at some of the highlights.
+Note that, like most Bootstrap features covered in this series, this won’t be an exhaustive description of every single input group feature. We’ll just be looking at some of the highlights.
 
-Like a button group, an input groups takes the place of a single form element within a form, so it does not replace a Bootstrap form group.
+Like a button group, an input group takes the place of a single form element within a form. So it does not replace a Bootstrap form group.
 
 Input groups are contained within an element given the class `.input-group`. You can use any tag you like for this, but `<div>`s are most commonly used.
 
 ## Input Group Text Add-ons
 
-The simplest thing you can use button groups for it to append or prepend a text add-on to one or both sides of a text box or text area. You can do this to give additional context, or, in some instances, to remove the need for a separate visible label. Note that if you do choose to replace a visible label with a text add-on, you still need provide a label for assistive devices. You have the usual three choices for this — a hidden label with the class `.sr-only`, or either an `aria-label` or `aria-labelledby` attribute on the text box itself.
+The simplest thing you can use button groups for is to append or prepend a text add-on to one or both sides of a text box or text area. You can do this to give additional context, or, in some instances, to remove the need for a separate visible label. Note that, if you do choose to replace a visible label with a text add-on, you still need provide a label for assistive devices. You have the usual three choices for this — a hidden label with the class `.sr-only`, or either an `aria-label` or `aria-labelledby` attribute on the text box itself.
 
 Each add-on should be wrapped in a container with either the class `.input-group-prepend` or `.input-group-append`. Again, any tag can be used as this container, but `<div>` is most commonly used. The actual text within the add-on needs to be further wrapped in a tag with the class `.input-group-text`. Again, any element can be used, but `<span>`s are most common.
 
-That sounds more complicated than it is — big-picture you have an input group which contains one or more of a pre-pend add-on, an input, and append add-on. For now, each add-on contains add-on text, but as we’ll see later, they can contain other things too.
+That sounds more complicated than it is — big-picture, you have an input group which contains one or more prepend add-ons, an input, and append add-ons. For now, each add-on contains add-on text, but as we’ll see later, they can contain other things too.
 
-This all sounds very complicated, so let’s see some practical examples.
+This all sounds very complicated. So let’s see some practical examples.
 
-First, you can use a pre-pend to make it clear that you don’t want a user to enter some kind of prefix into the form by providing it for them in an add-on. A great example of this would be a Twitter handle where you could pre-pend the @ symbol to make clear you just want the bit after that:
+First, you can use a prepend to make it clear that you don’t want a user to enter some kind of prefix into the form by providing it for them in an add-on. A great example of this would be a Twitter handle where you could prepend the @ symbol to make clear you just want the bit after that:
 
 ```html
 <div class="form-group form-row">
@@ -153,7 +153,7 @@ The above snippet uses a Font Awesome glyphicon and looks like this:
 
 ![](../assets/pbs65/Screenshot-2018-10-20-at-15.06.14.png)
 
-Another very common way to show context with text add-ons is currency amounts. You can use a pre-pend add-on to show the currency, and an append add-on to show that you want the user to enter just the major part of the amount. For example, here is an input group asking for a Euro amount to the nearest Euro:
+Another very common way to show context with text add-ons is currency amounts. You can use a prepend add-on to show the currency, and an append add-on to show that you want the user to enter just the major part of the amount. For example, here is an input group asking for a Euro amount to the nearest Euro:
 
 ```html
 <div class="form-group form-row">
@@ -174,7 +174,7 @@ Another very common way to show context with text add-ons is currency amounts. Y
 
 ![](../assets/pbs65/Screenshot-2018-10-20-at-15.08.45.png)
 
-You can use a text add-on as a label, but just remember to use the appropriate ARIA attributes to support assistive technologies:
+You can use a text add-on as a label. Just remember to use the appropriate ARIA attributes to support assistive technologies:
 
 ```html
 <div class="form-row">
@@ -195,7 +195,7 @@ Note that the add-on text was given the ID `#message_ta_lbl`, and the text area 
 
 ## Checkboxes/Radio Buttons as Input Group Add-ons
 
-As mentioned previously, add-ons can be more than just text, the can also contain other related form elements like checkboxes or radio buttons. Rather confusingly, you simply add these extra elements into the .`input-group-text` element within the add-on.
+As mentioned previously, add-ons can be more than just text. They can also contain other related form elements like checkboxes or radio buttons. Rather confusingly, you simply add these extra elements into the .`input-group-text` element within the add-on.
 
 A great example of why you might want to do this would be on a form where you ask a user for a piece of information that they may or may not want to do something with.
 
@@ -269,7 +269,7 @@ Note the use of `aria-label` attributes to give each input an individual label f
 
 ## Input Group Selects
 
-You can add a dropdown into your input groups by giving it the class `.custom-select`.
+You can add a drop-down into your input groups by giving it the class `.custom-select`.
 
 ```html
 <div class="form-group form-row">
@@ -289,11 +289,11 @@ You can add a dropdown into your input groups by giving it the class `.custom-se
 </div>
 ```
 
-Note that this is not a standard select, but a bootstrap-special that keeps its colour scheme more in tune with the input group as a whole. The difference is not that striking when the select s collapsed:
+Note that this is not a standard select, but a bootstrap-special select that keeps its colour scheme more in tune with the input group as a whole. The difference is not that striking when the select is collapsed:
 
 ![](../assets/pbs65/Screenshot-2018-10-20-at-16.33.08.png)
 
-But it’s very noticeably when its expanded:
+But it’s very noticeable when it's expanded:
 
 ![](../assets/pbs65/Screenshot-2018-10-20-at-16.33.41.png)
 
@@ -305,7 +305,7 @@ A very common use-case is for search boxes (see example in next section).
 
 ## Input Group Sizes
 
-Just like with button groups, there are three sizes of input group, small, default, and large. You make an entire input group small by adding the class `.input-group-sm` to the containing tag, and you make one large by adding `.input-group-lg`.
+Just like button groups, there are three sizes of input group: small, default, and large. You make an entire input group small by adding the class `.input-group-sm` to the containing tag, and you make one large by adding `.input-group-lg`.
 
 As an example, let’s make a simple small search box:
 
