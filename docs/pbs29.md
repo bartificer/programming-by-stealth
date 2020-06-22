@@ -680,7 +680,7 @@ In the previous instalment, we saw how we could use images to enhance the clarit
 
 Because this is a very common problem, an interesting solution has been devised that combines a collection of technologies to produce a solution that’s powerful, and yet simple to use. The solution combines scalable vector graphics, web fonts, and CSS. The resulting icons are often generally referred to as _glyphs_, or _glyph icons_, and collections of these icons as _glyph icon sets_, or _iconic fonts_.
 
-While premade glyph icon sets are very easy to use, creating your own is quite laborious. Thankfully, you don’t have to! You can buy commercial glyph icon sets like [Glyphicons](http://glyphicons.com), or you can use free open source glyph icon sets like the one provided by [Font Awesome](http://fontawesome.io). That’s what we’ll be using in this series.
+While pre-made glyph icon sets are very easy to use, creating your own is quite laborious. Thankfully, you don’t have to! You can buy commercial glyph icon sets like [Glyphicons](http://glyphicons.com), or you can use free open source glyph icon sets like the one provided by [Font Awesome](http://fontawesome.io). That’s what we’ll be using in this series.
 
 ### Using Font Awesome
 
