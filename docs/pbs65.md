@@ -289,7 +289,7 @@ You can add a drop-down into your input groups by giving it the class `.custom-s
 </div>
 ```
 
-Note that this is not a standard select, but a bootstrap-special select that keeps its colour scheme more in tune with the input group as a whole. The difference is not that striking when the select is collapsed:
+Note that this is not a standard select, but a Bootstrap-special select that keeps its colour scheme more in tune with the input group as a whole. The difference is not that striking when the select is collapsed:
 
 ![](../assets/pbs65/Screenshot-2018-10-20-at-16.33.08.png)
 
@@ -333,4 +333,4 @@ Using your own solution to the previous challenge, or mine, improve both forms o
 
 ## Final Thoughts
 
-We’re now almost done with our introduction to forms in Bootstrap. We can take input from users in all sorts of very powerful and pretty ways, and we can lay out our forms in many and varied ways. What we haven’t learned how to do in a Bootstrap-way is validate our forms, so that’s what we’ll be looking at next time.
+We’re now almost done with our introduction to forms in Bootstrap. We can take input from users in all sorts of very powerful and pretty ways, and we can lay out our forms in many and varied ways. What we haven’t learned how to do in a Bootstrap-way is validate our forms. So that’s what we’ll be looking at next time.
