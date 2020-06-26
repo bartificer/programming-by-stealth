@@ -208,6 +208,28 @@ class Currency{
 	set real(r){
 		this._imaginary = r ? false : true;
 	}
+	
+	//
+	// The abstract 'length' property
+	//
+	
+	/**
+	 * The number of denominations making up the currency. Each child class
+	 * must implement a getter for this property.
+	 *
+	 * @abstract
+	 * @type {number}
+	 */
+	get length(){
+		throw new Error('not implemented by child class');
+	}
+	
+	/**
+	 * @throws {Error}
+	 */
+	set length(l){
+		throw new Error('read-only attribute');
+	}
 
 	//
 	// The Constructor
@@ -396,7 +418,18 @@ class DecimalCurrency extends Currency{
 			this._subDenomination = null;
 		}
 	}
-
+	
+	//
+	// Implement abstract 'length' property.
+	//
+	
+	/**
+	 * @type {number}
+	 */
+	get length(){
+		return this.subDenominationOrder ? 2 : 1;
+	}
+	
 	//
 	// The Constructor
 	//
@@ -478,13 +511,14 @@ class DecimalCurrency extends Currency{
 	 * The amount in the secondary denomination will be rounded to the nearest
 	 * whole number.
 	 *
+	 * If teh amount is negative, both returned values will also be negative.
+	 *
 	 * @param {number} amount
 	 * @return {number[]} The primary and secondary amouns as an array of two integers.
 	 * @throws {TypeError}
 	 */
 	splitAmount(amount){
-		amount = parseFloat(amount);
-		if(is.nan(amount)) throw new TypeError('amount must be a number');
+		amount = this.constructor.coerceAmount(amount); // could throw error
 
 		// short-circuit the simple case were there is no seconardy denomination
 		if(this.subDenominationOrder === 0){
@@ -495,50 +529,49 @@ class DecimalCurrency extends Currency{
 		if(is.integer(amount)){
 			return [amount, 0];
 		}
-
-		//
-		// calculate the primary amount
-		//
-
+		
 		// NOTE - Math.floor() does not behave as expected with negative numbers
 		// so need the absolute value before flooring.
 
 		// keep a record of whether or not the amount is negative
 		const isNegative = amount < 0;
 
+		//
+		// calculate the primary amount
+		//
+
 		// get the absolute value of the amount
 		const absAmount = Math.abs(amount);
 
 		// get the absolute and actual values of the primary amount
 		const absPrimaryAmount = Math.floor(absAmount);
-		let primaryAmount = isNegative ? 0 - absPrimaryAmount : absPrimaryAmount;
 
 		//
 		// calculate the secondary amount
 		//
 
 		// start with just the decimal part of the amount, e.g. 0.123
-		let secondaryAmount = Math.abs(amount) - absPrimaryAmount;
+		let absSecondaryAmount = Math.abs(amount) - absPrimaryAmount;
 
 		// calculate the number of secondary units in one primary based on the order
 		const numSecInPri = Math.pow(10, this.subDenominationOrder); // e.g. 100
 
 		// multiply by the number of secondary units in one primary, e.g. 12.3
-		secondaryAmount *= numSecInPri;
+		absSecondaryAmount *= numSecInPri;
 
 		// round to the nearest whole number, e.g. 12
-		secondaryAmount = Math.round(secondaryAmount);
+		absSecondaryAmount = Math.round(absSecondaryAmount);
 
 		// deal with the special case where the secondary amount gets rounded
 		// up to be a whole primary unit
-		if(secondaryAmount === numSecInPri){
-			secondaryAmount = 0;
-			if(isNegative){
-				primaryAmount--;
-			}else{
-				primaryAmount++;
-			}
+		if(absSecondaryAmount === numSecInPri){
+			absSecondaryAmount = 0;
+			absPrimaryAmount++;
 		}
+		
+		// re-negate if needed
+		let primaryAmount = isNegative ? 0 - absPrimaryAmount : absPrimaryAmount;
+		let secondaryAmount = isNegative ? 0 - absSecondaryAmount : absSecondaryAmount;
 
 		// return the two amounts
 		return [primaryAmount, secondaryAmount];
@@ -558,7 +591,7 @@ class DecimalCurrency extends Currency{
 	 * @throws {TypeError}
 	 */
 	amountAsString(amount){
-		amount = parseFloat(amount);
+		amount = this.constructor.coerceAmount(amount); // could throw error
 
 		// build and return the string
 		let ans = `${is.negative(amount) ? '-' : ''}${this.denomination.symbol}`;
@@ -575,15 +608,17 @@ class DecimalCurrency extends Currency{
 	 * @throws {TypeError}
 	 */
 	amountAsHumanString(amount){
-		amount = parseFloat(amount);
+		amount = this.constructor.coerceAmount(amount); // could throw error
 		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
+		const absPrimaryAmount = Math.abs(primaryAmount);
+		const absSecondaryAmount = Math.abs(secondaryAmount);
 
 		// build and return the string
 		let ans = `${is.negative(primaryAmount) ? '-' : ''}${this.denomination.symbol}`;
-		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
-		if(secondaryAmount > 0 && this.subDenominationOrder > 0){
+		ans += this.constructor.amountAsHumanInt(absPrimaryAmount);
+		if(absSecondaryAmount > 0 && this.subDenominationOrder > 0){
 			ans += ` & ${this.subDenomination.symbol}`;
-			ans += this.constructor.amountAsHumanInt(Math.abs(secondaryAmount));
+			ans += this.constructor.amountAsHumanInt(absSecondaryAmount);
 		}
 		return ans;
 	}
@@ -597,16 +632,18 @@ class DecimalCurrency extends Currency{
 	 * @throws {TypeError}
 	 */
 	amountAsEnglishString(amount){
-		amount = parseFloat(amount);
+		amount = this.constructor.coerceAmount(amount); // could throw error
 		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
+		const absPrimaryAmount = Math.abs(primaryAmount);
+		const absSecondaryAmount = Math.abs(secondaryAmount);
 
 		// build and return the string
-		let ans = `${is.negative(primaryAmount) ? ' minus ' : ''}`;
-		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
-		ans += ` ${primaryAmount === 1 ? this.denomination.singularName : this.denomination.pluralName}`;
-		if(secondaryAmount > 0 && this.subDenominationOrder > 0){
-			ans += ` and ${this.constructor.amountAsHumanInt(secondaryAmount)} `;
-			if(secondaryAmount === 1){
+		let ans = is.negative(primaryAmount) ? 'minus ' : '';
+		ans += `${this.constructor.amountAsHumanInt(absPrimaryAmount)} `;
+		ans += absPrimaryAmount === 1 ? this.denomination.singularName : this.denomination.pluralName;
+		if(absSecondaryAmount > 0 && this.subDenominationOrder > 0){
+			ans += ` and ${this.constructor.amountAsHumanInt(absSecondaryAmount)} `;
+			if(absSecondaryAmount === 1){
 				ans += this.subDenomination.singularName;
 			}else{
 				ans += this.subDenomination.pluralName;
@@ -726,6 +763,22 @@ class DenominatedCurrency extends Currency{
 	}
 	
 	/**
+	 * The primary denomination.
+	 *
+	 * @type {Denomination}
+	 */
+	get denomination(){
+		return this._denominationList[0];
+	}
+	
+	/**
+	 * @throws {Error}
+	 */
+	set denomination(d){
+		throw new Error('read-only property, set .denominations instead');
+	}
+	
+	/**
 	 * @type {Denomination[]}
 	 */
 	get denominationList(){
@@ -751,6 +804,17 @@ class DenominatedCurrency extends Currency{
 	 */
 	set RateList(rl){
 		throw new Error('read-only property, set .denominations instead');
+	}
+	
+	//
+	// Implement abstract 'length' property.
+	//
+	
+	/**
+	 * @type {number}
+	 */
+	get length(){
+		return this._denominationList.length;
 	}
 
 	//
@@ -797,8 +861,10 @@ class DenominatedCurrency extends Currency{
 	/**
 	 * Override the function to convert an amount to a human-friendly sting.
 	 *
-	 * The returned string will have no decimal places.
-	 * E.g. 1234.567 → '1,235'.
+	 * For single denominations the conversion from the Currency class will be
+	 * used. For currencies with multiple denominations, the number of decimal
+	 * places will be the order of magnitude of the rate between the largest
+	 * and smallest denominations.
 	 *
 	 * @param {number} amount
 	 * @return {string}
@@ -806,7 +872,27 @@ class DenominatedCurrency extends Currency{
 	 */
 	amountAsHumanFloat(amount){
 		amount = this.constructor.coerceAmount(amount); // could throw error
-		return this.constructor.amountAsHumanInt(amount);
+		
+		// default single-denomination currencies to the parent class
+		if(this.length === 1){
+			return super.amountAsHumanFloat(amount);
+		}
+		
+		// calculate the total rate between the smallest and largest denominations
+		let totalRate = 1;
+		for(const rate of this.rateList){
+			totalRate *= rate;
+		}
+		
+		// get the order of magnitude of the total rate
+		// simply the number of digits minus one
+		const order = String(totalRate).length - 1;
+		
+		// build a format string with the appropriate number of decimal places
+		const formatString = `0,0[.]${'0'.repeat(order)}`;
+
+		// format and return
+		return numeral(amount).format(formatString);
 	}
 
 	/**
@@ -828,7 +914,7 @@ class DenominatedCurrency extends Currency{
 		amount = this.constructor.coerceAmount(amount); // could throw error
 		
 		// if there's only one denomination, use the default implementation from the parent class
-		if(this.denominationList.length === 1){
+		if(this.length === 1){
 			return super.splitAmount(amount);
 		}
 		
@@ -851,7 +937,6 @@ class DenominatedCurrency extends Currency{
 		
 		// keep just the decimal part
 		absAmount = absAmount - currentAbsAmount;
-		console.log(`whole=${currentAbsAmount} & decimal=${absAmount}`);
 		
 		//loop over the remaining denominations
 		for(let rate of this.rateList){
@@ -896,27 +981,27 @@ class DenominatedCurrency extends Currency{
 		// return the amounts
 		return amounts;
 	}
-	
-	// LEFT OFF HERE!!!
 
 	/**
 	 * Implement the abstract function to render an amount as a string.
 	 *
-	 * THe returned string will use the primary denomination's symbol and the
-	 * default number of decimal places.
-	 *
+	 * The returned string will consist of the symbol for the largest
+	 * denomination followed by the number as a human-friendly floating
+	 * point number.
+	 * 
 	 * Note that for negative amounts the minus sign will be pre-fixed before
-	 * the symbol.
+	 * the first symbol.
 	 *
 	 * @param {number} amount
-	 * @return {string} E.g. '$12.34' and '-$12.34'
+	 * @return {string}
 	 * @throws {TypeError}
 	 */
 	amountAsString(amount){
-		amount = parseFloat(amount);
+		amount = this.constructor.coerceAmount(amount); // could throw error
 
 		// build and return the string
-		let ans = `${is.negative(amount) ? '-' : ''}${this.denomination.symbol}`;
+		let ans = is.negative(amount) ? '-' : '';
+		ans += this.denomination.symbol;
 		ans += this.amountAsHumanFloat(Math.abs(amount));
 		return ans;
 	}
@@ -925,23 +1010,46 @@ class DenominatedCurrency extends Currency{
 	 * Implement the abstract function to render an amount as a short human
 	 * string.
 	 *
+	 * The amount will be rendered as a list if denomination symbols and
+	 * amounts, with zero-valued denominations skipped. If the amount is
+	 * zero the largest denomination symbol will be shown, followed by a
+	 * zero.
+	 *
+	 * If the amount is negative the minus sign will be pre-fixed before the
+	 * symbold for the largest denomination.
+	 *
 	 * @param {number} amount
 	 * @return {string}
 	 * @throws {TypeError}
 	 */
 	amountAsHumanString(amount){
-		amount = parseFloat(amount);
-		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
-
-		// build and return the string
-		let ans = `${is.negative(primaryAmount) ? '-' : ''}${this.denomination.symbol}`;
-		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
-		if(secondaryAmount > 0 && this.subDenominationOrder > 0){
-			ans += ` & ${this.subDenomination.symbol}`;
-			ans += this.constructor.amountAsHumanInt(Math.abs(secondaryAmount));
+		amount = this.constructor.coerceAmount(amount); // could throw error
+		
+		// short-circut zero
+		if(amount === 0){
+			return `${this.denomination.symbol}0`;
 		}
-		return ans;
+		
+		// split the amount into denominations
+		const denominatedAmounts = this.splitAmount(amount);
+		
+		// filter down to non-zero amounts, pre-fix symbols, and format
+		const formattedAmounts = [];
+		for(let i = 0; i < denominatedAmounts.length; i++){
+			// skip zero amounts
+			if(denominatedAmounts[i] === 0) continue;
+			
+			// format the amount
+			let formattedAmount = this.denominationList[i].symbol;
+			formattedAmount += this.constructor.amountAsHumanInt(Math.abs(denominatedAmounts[i]));
+			formattedAmounts.push(formattedAmount);
+		}
+		
+		// assemble the final answer and return it
+		return `${is.negative(amount) ? '-' : ''}${formattedAmounts.join(' ')}`;
 	}
+	
+	// LEFT OFF HERE!!!
 
 	/**
 	 * Implement the abstract function to render an amount as an English
@@ -952,22 +1060,35 @@ class DenominatedCurrency extends Currency{
 	 * @throws {TypeError}
 	 */
 	amountAsEnglishString(amount){
-		amount = parseFloat(amount);
-		const [primaryAmount, secondaryAmount] = this.splitAmount(amount);
-
-		// build and return the string
-		let ans = `${is.negative(primaryAmount) ? ' minus ' : ''}`;
-		ans += this.constructor.amountAsHumanInt(Math.abs(primaryAmount));
-		ans += ` ${primaryAmount === 1 ? this.denomination.singularName : this.denomination.pluralName}`;
-		if(secondaryAmount > 0 && this.subDenominationOrder > 0){
-			ans += ` and ${this.constructor.amountAsHumanInt(secondaryAmount)} `;
-			if(secondaryAmount === 1){
-				ans += this.subDenomination.singularName;
-			}else{
-				ans += this.subDenomination.pluralName;
-			}
+		amount = this.constructor.coerceAmount(amount); // could throw error
+		
+		// short-circut zero
+		if(amount === 0){
+			return `zero ${this.denomination.pluralName}`;
 		}
-		return ans;
+		
+		// split the amount into denominations
+		const denominatedAmounts = this.splitAmount(amount);
+		
+		// filter down to non-zero amounts, format, and post-fix names
+		const formattedAmounts = [];
+		for(let i = 0; i < denominatedAmounts.length; i++){
+			// skip zero amounts
+			if(denominatedAmounts[i] === 0) continue;
+			
+			// format the amount
+			const absDenominatedAmount = Math.abs(denominatedAmounts[i]);
+			let formattedAmount = this.constructor.amountAsHumanInt(absDenominatedAmount) + ' ';
+			if(absDenominatedAmount === 1){
+				formattedAmount += this.denominationList[i].singularName;
+			}else{
+				formattedAmount += this.denominationList[i].pluralName;
+			}
+			formattedAmounts.push(formattedAmount);
+		}
+		
+		// assemble the final answer and return it
+		return `${is.negative(amount) ? 'minus ' : ''}${humanJoiner.oxAnd.join(formattedAmounts)}`;
 	}
 }
 
