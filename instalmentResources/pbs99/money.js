@@ -621,17 +621,17 @@ class DecimalCurrency extends Currency{
 //
 
 /**
- * A list of denominations and the rates between them as an array of 
- * alternating Denomination objects and whole numbers greater than one,
- * starting with the smallest denomination.
+ * A list of the denominations that make up a currecny and the rates between
+ * them as an array of Denomination objects separated by whole numbers greater
+ * than one.
  *
- * E.g. If a currency has three denominations, the smallest being the Slip,
- * then the Strip which consists of 100 Slips, and finally the Bar which
- * consists of 20 Strips, then the correct representation would be:
+ * E.g. If a currency's larget denomination is the Bar, and each Bar consists
+ * of 20 Strips, and each Strip 100 Slips, then the correct representation
+ * would be:
  *
- * `[Slip, 100, Strip, 20, Bar]`
+ * `[Bar, 20, Strip, 100, Slip]`
  * 
- * @typedef {Array} DenominationList
+ * @typedef {Array} DenominationRateList
  */
 
 class DenominatedCurrency extends Currency{
@@ -640,59 +640,59 @@ class DenominatedCurrency extends Currency{
 	//
 	
 	/**
-	 * Coerce a value to a denomination ratio if possible.
+	 * Coerce a value to a denomination rate if possible.
 	 *
-	 * A denomination ratio is the number of a smaller denomination that makes
+	 * A denomination rate is the number of a smaller denomination that makes
 	 * up one of the next largest denomination, so, it must be a whole number
 	 * greater than one.
 	 *
-	 * @param {*} ratio
+	 * @param {*} rate
 	 * @return {number}
 	 * @throws {TypeError}
 	 * @throws {RangeError}
 	 */
-	static coerceDenominationRatio(ratio){
-		const errMsg = 'ratio must be a whole number greater than one';
-		ratio = parseInt(ratio);
-		if(is.nan(ratio)) throw new TypeError(errMsg);
-		if(ratio <= 1) throw new RangeError(errMsg);
-		return ratio;
+	static coerceDenominationRate(rate){
+		const errMsg = 'rate must be a whole number greater than one';
+		rate = parseInt(rate);
+		if(is.nan(rate)) throw new TypeError(errMsg);
+		if(rate <= 1) throw new RangeError(errMsg);
+		return rate;
 	}
 	
 	/**
-	 * Coerce a value to a denomination list if possible.
+	 * Coerce a value to a denomination rate list if possible.
 	 *
 	 * @param {*} list
-	 * @return {DenominationList}
+	 * @return {DenominationRateList}
 	 * @throws {TypeError}
 	 * @throws {RangeError}
 	 */
-	static coerceDenominationList(list){
+	static coerceDenominationRateList(list){
 		const errMsg = 'list must be an array of denominations separated by rates';
 		if(is.not.array(list)) throw new TypeError(errMsg);
 		if(list.length < 1) throw new RangeError('list cannot be empty');
-		const denominationList = [];
-		const ratioList = [];
+		const denominationRateList = [];
+		const rateList = [];
 		const listCopy = [...list]; // a shallow copy
 		
-		// start with the smallest denomination
+		// start with the largest denomination
 		if(!(listCopy[0] instanceof Denomination)){
 			throw new TypeError(errMsg);
 		}
-		denominationList.push(listCopy.shift());
+		denominationRateList.push(listCopy.shift());
 		
 		// then move forward in pairs
 		while(listCopy.length > 0){
-			const ratio = this.coerceDenominationRatio(listCopy.shift());
+			const rate = this.coerceDenominationRate(listCopy.shift());
 			const denomination = listCopy.shift();
 			if(!(denomination instanceof Denomination)){
 				throw new TypeError(errMsg);
 			}
-			denominationList.push(ratio, denomination);
+			denominationRateList.push(rate, denomination);
 		}
 		
 		// return the list
-		return denominationList;
+		return denominationRateList;
 	}
 	
 	//
@@ -700,12 +700,12 @@ class DenominatedCurrency extends Currency{
 	//
 
 	/**
-	 * @type {DenominationList}
+	 * @type {DenominationRateList}
 	 */
 	get denominations(){
 		const ans = [this._denominationList[0]];
-		for(const i = 1; i < this._denominationList.length; i++){
-			ans.push(this._ratioList[i - 1], this._denominationList[i]);
+		for(let i = 1; i < this._denominationList.length; i++){
+			ans.push(this._rateList[i - 1], this._denominationList[i]);
 		}
 		return ans;
 	}
@@ -715,13 +715,13 @@ class DenominatedCurrency extends Currency{
 	 * @throws {TypeError}
 	 * @throws {RangeError}
 	 */
-	set denominations(dl){
-		dl = this.constructor.coerceDenominationList(dl);
-		this._denominationList = [dl[0]];
-		this._ratioList = [];
-		for(const i = 1; i < dl.length; i += 2){
-			this._ratioList.push(dl[i]);
-			this._denominationList.push(dl[i + 1]);
+	set denominations(drl){
+		drl = this.constructor.coerceDenominationRateList(drl);
+		this._denominationList = [drl[0]];
+		this._rateList = [];
+		for(let i = 1; i < drl.length; i += 2){
+			this._rateList.push(drl[i]);
+			this._denominationList.push(drl[i + 1]);
 		}
 	}
 	
@@ -742,14 +742,14 @@ class DenominatedCurrency extends Currency{
 	/**
 	 * @type {number[]}
 	 */
-	get ratioList(){
-		return [...this._ratioList]; // shallow clone
+	get rateList(){
+		return [...this._rateList]; // shallow clone
 	}
 	
 	/**
 	 * @throws {Error}
 	 */
-	set RatioList(rl){
+	set RateList(rl){
 		throw new Error('read-only property, set .denominations instead');
 	}
 
@@ -760,7 +760,7 @@ class DenominatedCurrency extends Currency{
 	/**
 	 * @param {Object} [details]
 	 * @param {string} [details.name='Buttons']
-	 * @param {DenominationList} [details.denominations] - the denominations and the ratios between them from smallest to largest. Defaults to a single denomination of Buttons.
+	 * @param {DenominationRateList} [details.denominations] - the denominations and the ratios between them from the largest to the smallest. Defaults to a single denomination of Buttons.
 	 * @param {boolean} [details.imaginary=false] - whether or not the currency is imaginary.
 	 * Generally defaults to false, but defaults to true if no name is passed.
 	 * @throws {TypeError}
@@ -798,7 +798,7 @@ class DenominatedCurrency extends Currency{
 	 * Override the function to convert an amount to a human-friendly sting.
 	 *
 	 * The returned string will have no decimal places.
-	 * E.g. 1234.567 → '1,125'.
+	 * E.g. 1234.567 → '1,235'.
 	 *
 	 * @param {number} amount
 	 * @return {string}
@@ -812,17 +812,13 @@ class DenominatedCurrency extends Currency{
 	/**
 	 * Override the function to split a decimal amount into ammounts of each
 	 * denomination.
-	
-	// LEFT OFF HERE!!!
-	
-	// NEEDS TOTAL re-do in largest denomination, not smallest :(
-	
 	 *
-	 * The amount will be interpreted as being in the smallest denomination,
-	 * and will be rounded to the nearest whole number before being split into
-	 * denominations.
+	 * The amount will be interpreted as being in the largest denomination.
 	 *
-	 * If the oringal number is negative, all returned sub-amounts will be negative.
+	 * The amount in the smallest denomination will be rounded to the nearest
+	 * whole number.
+	 *
+	 * If the amount is negative, all returned sub-amounts will be negative.
 	 *
 	 * @param {number} amount
 	 * @return {number[]} The amounts as an array of integers, largest denomination first.
@@ -847,22 +843,52 @@ class DenominatedCurrency extends Currency{
 		
 		// to avoid rounding problems, convert to absolute value if negative and remember
 		const isNegative = amount < 0;
-		const absAmount = Math.abs(amount);
+		let absAmount = Math.abs(amount);
 		
-		// break up the number in the smallest denomination, starting with the biggest
-		const reversedRatios = this.ratioList.reverse();
-		for(const i = 0; i < reversedRatios.length; i++){
-			const fullRate = 1;
-			for(const j = i; j < reversedRatios.length; j++){
-				fullRate *= reversedRatios[j];
+		// Start with the amount in the largest denomination
+		let currentAbsAmount = Math.floor(absAmount);
+		amounts.push(currentAbsAmount);
+		
+		// keep just the decimal part
+		absAmount = absAmount - currentAbsAmount;
+		console.log(`whole=${currentAbsAmount} & decimal=${absAmount}`);
+		
+		//loop over the remaining denominations
+		for(let rate of this.rateList){
+			// if there's nothing left, exit the loop
+			if(absAmount === 0) break;
+			
+			// multiple by the current rate
+			absAmount *= rate;
+			
+			// get and store the whole number part
+			currentAbsAmount = Math.floor(absAmount);
+			amounts.push(currentAbsAmount);
+			
+			// keep just the decimal part
+			absAmount = absAmount - currentAbsAmount;
+		}
+		
+		// if the decimal part is >= 0.5, increment the lowest denomination by 1 and ripple up if needed
+		if(absAmount >= 0.5){
+			// increment the lowest denomination
+			amounts[amounts.length - 1]++;
+			
+			// ripple the increment up the denominations if needed
+			let doneRippling = false;
+			for(let i = this.rateList.length - 1; !doneRippling && i >= 0; i--){
+				if(amounts[i+1] === this.rateList[i]){
+					amounts[i+1] = 0;
+					amounts[i]++;
+				}else{
+					doneRippling = true;
+				}
 			}
-			amounts.push(Math.floor(absAmount / fullRate));
-			absAmount %= fullRate;
 		}
 		
 		// re-negate if needed
 		if(isNegative){
-			for(const i = 0; i < amount.length; i++){
+			for(let i = 0; i < amounts.length; i++){
 				amounts[i] = 0 - amounts[i];
 			}
 		}
@@ -870,6 +896,8 @@ class DenominatedCurrency extends Currency{
 		// return the amounts
 		return amounts;
 	}
+	
+	// LEFT OFF HERE!!!
 
 	/**
 	 * Implement the abstract function to render an amount as a string.
