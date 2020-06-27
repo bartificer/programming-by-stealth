@@ -533,7 +533,7 @@ The big advantage to using data URLs within JavaScript code is that you can shar
 
 ## Introducing `URI.js`
 
-The final piece we need to build our link enhancer is the ability to parse URLs into their component parts so we can analyse them. We could do this with regular expressions, but that’s not as straight forward as you might imagine – the specification defining valid URLs is actually quite complex.
+The final piece we need to build our link enhancer is the ability to parse URLs into their component parts so we can analyse them. We could do this with regular expressions, but that’s not as straightforward as you might imagine – the specification defining valid URLs is actually quite complex.
 
 When you encounter a common problem like this, reinventing the wheel is not a good approach. Instead, you should look to see if there’s an open source project that has already solved your problem for you. I don’t mean copying and pasting snippets of code from a web forum. I mean using a well packaged and well documented library of code that has been specifically designed to be reused.
 

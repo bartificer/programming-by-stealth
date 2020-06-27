@@ -90,7 +90,7 @@ $('span', $('#avg_rating_ui')).keypress(function(e){
 
 To make the form look right I also moved some things around when I added the stars, but I’m not going to focus on that kind of cosmetic change here.
 
-Next, I added a reset button. The HTML markup is straight forward:
+Next, I added a reset button. The HTML markup is straightforward:
 
 ```html
 <button type="reset" id="reset_btn">Reset</button>

@@ -415,7 +415,7 @@ The default value for the `wrap` attribute is `soft`. This causes text areas to 
 
 ### Text Inputs and jQuery
 
-When it comes to interacting with text boxes and text areas with jQuery, things are actually very straight forward. The contents can be accessed with jQuery’s `.val()` function – with no arguments to get the current contents, and with a string as the first argument to set the contents to a new value.
+When it comes to interacting with text boxes and text areas with jQuery, things are actually very straightforward. The contents can be accessed with jQuery’s `.val()` function – with no arguments to get the current contents, and with a string as the first argument to set the contents to a new value.
 
 The various attributes like `name` and `placeholder` can be accessed using jQuery’s `.attr()` function. As a quick reminder, `.attr()` expects the name of the attribute as the first argument. If there’s no second argument it’ll return the current value. If there is, it’ll set the value to that of the second argument.
 
