@@ -129,16 +129,12 @@ The best we can do is work around this shortcoming by implementing a default ver
 
 ### Inheritance and the `instanecof` Operator
 
-JavaScript's `instanceof` operator is aware of inheritane. If class `B` extends class `A`, and object `b` is an instance of class `B`, them both of the following will evaluate to `true`:
+JavaScript's `instanceof` operator is aware of inheritance. If class `B` extends class `A`, and object `b` is an instance of class `B`, them both of the following will evaluate to `true`:
 
 ```js
 b instanceof A;
 b in stanceof B;
 ```
-
-## Polymorphism
-
-TO DO — Might leave till after the worked example
 
 ## A Worked Example — Monetary Amounts Revisited
 
@@ -229,6 +225,72 @@ Let's take a closer look at the structure our three classes:
 	* An implementation of the mandated instance function `amountAsString(amount)`
 	* An implementation of the mandated instance function `amountAsHumanString(amount)`
 	* An implementation of the mandated instance function `amountAsEnglishString(amount)`
+
+### Inheritance in Action
+
+Before we peep under the hood, let's demonstrate the three goals of inheritance in action.
+
+All the examples in this section are intended to be run from the JavaScript console on the file `pbs99.html`, and you should not refresh the page between the examples.
+
+Let's start by creating instances of all three classes:
+
+```js
+const uselessCurrency = new Currency({
+  name: 'Useless Currency',
+  imaginary: true
+});
+const sterling = new DecimalCurrency({
+  name: 'Sterling',
+  imaginary: false,
+  denomination: new Denomination('£', 'Pound'),
+  subDenomination: new Denomination('p', 'Penny', 'Pence')
+});
+const wizardingMoney = new DenominatedCurrency({
+  name: "Wizarding Money",
+  imaginary: true,
+  denominations: [
+    new Denomination('G', 'Galleon'),
+    17, new Denomination('S', 'Sickle'),
+    29, new Denomination('K', 'Knut')
+  ]
+});
+```
+
+#### 1. Shared Functionality
+
+The class `Currency` defines a class function `coerceAmount(amount)` and this function is not re-defined in either of the child classes.
+
+As expected, it continues to work when called on the parent class:
+
+```js
+console.log(Currency.coerceAmount("42")); // 42
+console.log(Currency.coerceAmount("boggers")); // throws TypeError
+```js
+
+Thanks to inheritance, both child classes got a copy of this function automatically:
+
+```js
+console.log(DecimalCurrency.coerceAmount("42")); // 42
+console.log(DecimalCurrency.coerceAmount("boggers")); // throws TypeError
+console.log(DenominatedCurrency.coerceAmount("42")); // 42
+console.log(DenominatedCurrency.coerceAmount("boggers")); // throws TypeError
+```
+
+The class `Currency` defines a getter and setter for the instance data attribute `name`, and these getters and setters are not re-defined in either child class. Again, the attribute exists on instances of the parent class as expected, but also on instances of the child classes:
+
+```js
+console.log(uselessCurrency.name); // Useless Currency
+console.log(sterling.name); // Sterling
+console.log(wizardingMoney.name); // Wizarding Money
+```
+
+#### 2. Default Implementations
+
+TO DO
+
+#### 3. Requirements Child Classes Must Meet
+
+TO DO
 
 ### Illustrate `instanceof` & Polymorphism
 
