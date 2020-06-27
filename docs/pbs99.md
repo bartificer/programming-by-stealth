@@ -168,13 +168,73 @@ Note that the code in `money.js` assumes that three open-source libraries have b
 2. The [numeral.js](http://numeraljs.com) number formatting library.
 3. My open-source [humanJoin.js](https://github.com/bbusschots/human-join#readme) array-joining library.
 
-### Illustrate Constructors
+### Implementing Inheritance — The Design of the 3 Currency Classes
+
+Let's start with the very big picture — we'll be implementing the following three classes:
+
+1. `Currency` — the parent class for all currency types.
+2. `DecimalCurrency` — a child class of `Currency` representing the typical currencies we use in the modern world, usually with 2 denominations (like Sterling with Pounds & Pence, and the US Dollar with Dollars Cents), but occasionally with just one (like the Japanese Yen).
+3. `DenominatedCurrency` — a child class of `Currency` representing currencies with arbitrarily many denominations like those commonly seen in various fictional genres like sci-fi & fantasy.
+
+This simple class hierarchy (one parent two children) is created with the following class definitions:
+
+```js
+class Currency{
+  // …
+}
+
+class DecimalCurrency extends Currency{
+  // …
+}
+
+class DenominatedCurrency extends Currency{
+  // …
+}
+```
+
+Before we go any further, let's look in detail at the contents of these three classes:
+
+Let's take a closer look at the structure our three classes:
+1. The parent class `Currency` provides:
+	* The shared class  function `static coerceAmount(amount)`
+	* The shared class function `static amountAsHumanInt(amount)`
+	* The shared instance attribute `name`
+	* The shared instance attributes `imaginary` & `real`
+	* The requirement that all child-classes provide an instance data attribute named `length` (i.e. an *abstract* instance data attribute)
+	* A constructor
+	* The default instance function `amountAsHumanFloat(amount)`
+	* The default instance function `splitAmount(amount)`
+	* The requirement that all child-classes provide an instance function `amountAsString(amount)` (i.e. and *abstract* instance function)
+	* The requirement that all child-classes provide an instance function `amountAsHumanString(amount)` (i.e. and *abstract* instance function)
+	* The requirement that all child-classes provide an instance function `amountAsEnglishString(amount)` (i.e. and *abstract* instance function)
+2. The child class `DecimalCurrency` Provides:
+	* The instance data attribute `denomination`
+	* The instance data attribute `subDenomination`
+	* The instance data attribute `subDenominationOrder`
+	* An implementation of the mandated instance attribute `length`
+	* A constructor which calls the parent class's constructor
+	* A custom version of the instance function `amountAsHumanFloat(amount)` replacing the default from `Currency`
+	* An implementation of the mandated instance function `splitAmount(amount)`
+	* An implementation of the mandated instance function `amountAsString(amount)`
+	* An implementation of the mandated instance function `amountAsHumanString(amount)`
+	* An implementation of the mandated instance function `amountAsEnglishString(amount)`
+3. The child class `DenominatedCurrency` provides:
+	* The class function `coerceDenominationRate(rate)`
+	* The class function `coerceDenominationRateList(list)`
+	* The instance data attributes `denominations`, `denomination`, `denominationList` & `rateList`
+	* An implementation of the mandated instance attribute `length`
+	* A constructor which calls the parent class's constructor
+	* A custom version of the instance function `amountAsHumanFloat(amount)` replacing the default from `Currency` (calls the version from the parent class using `super`)
+	* An implementation of the mandated instance function `splitAmount(amount)`
+	* An implementation of the mandated instance function `amountAsString(amount)`
+	* An implementation of the mandated instance function `amountAsHumanString(amount)`
+	* An implementation of the mandated instance function `amountAsEnglishString(amount)`
+
+### Illustrate `instanceof` & Polymorphism
 
 ### Illustrate Shared Class Functions
 
 ### Illustrate Shared Instance Functions
-
-### Demo `instanceof` — Polymorphism!
 
 ## Final Thoughts
 
