@@ -127,9 +127,18 @@ JavaScript simply does not provide this functionality. There is no JavaScript ve
 
 The best we can do is work around this shortcoming by implementing a default version of the function in the parent class that always throws an error. If the child class doesn't override the function the error will get thrown, if the child class does override the function it won't.
 
+### Inheritance and the `instanecof` Operator
+
+JavaScript's `instanceof` operator is aware of inheritane. If class `B` extends class `A`, and object `b` is an instance of class `B`, them both of the following will evaluate to `true`:
+
+```js
+b instanceof A;
+b in stanceof B;
+```
+
 ## Polymorphism
 
-TO DO
+TO DO — Might leave till after the worked example
 
 ## A Worked Example — Monetary Amounts Revisited
 
@@ -139,17 +148,33 @@ As a quick reminder, we chose to model monetary amounts using three interrelated
 
 There were two *has-a* relationships between those classes — monetary amounts had a currency, and currencies had one or two denominations.
 
-TO DO — explain the new concept
+Our `Currency` class from the previous instalment can not be used to represent currencies with more than two denominations. If you're a Harry Potter fan and want to implement Wizarding Money, you're out of luck because J.K. Rowling's wizards use Gallions, which divide into Sickles, which divide into Knuts. Similarly, Star Trek fans know the Frengi use Gold Pressed Latinum as their currency, and it consists of Bars, which divide into Strips, which divid into Slips.
 
-As you can see, the code in `money.js` is long! The intention is not to go through every line of the file in detail, but instead, to focus on a few highlights that serve to illustrate important concepts. I commented the code heavily in the hope that it would make sense by itself.
+What we need is another class to represent this other type of currency, but that class would share a lot of code with our existing class.
 
-Note that the code in `money.js` assumes that two open-source libraries have been loaded before loading `money.js`:
+Inheritance to the rescue!
+
+My process was to re-name my existing `Currency` class to `DecimalCurrency`, create a new class for the new type of currency named `DenominatedCurrency`, and then to create a new parent class for both of these classes named `Currency`.
+
+The functionality shared by `DecimalCurrency` and `DenominatedCurrency` was moved to the new `Currency` parent class, freeing the two child classes to implement only the things that differentiate them.
+
+This set up two *is-a* relationships — `DecimalCurrency` is a `Currency`, and `DenominatedCurrency` is a `Currency`.
+
+As you can see, the code in `money.js` is long! The intention is not to go through every line of the fine in detail, but instead, to focus on a few highlights that serve to illustrate important concepts. I commented the code heavily in the hope that it would make sense by itself.
+
+Note that the code in `money.js` assumes that three open-source libraries have been loaded before loading `money.js`:
 
 1. The [is.js](https://is.js.org) type-checking library.
 2. The [numeral.js](http://numeraljs.com) number formatting library.
 3. My open-source [humanJoin.js](https://github.com/bbusschots/human-join#readme) array-joining library.
 
-TO DO — show concepts in action
+### Illustrate Constructors
+
+### Illustrate Shared Class Functions
+
+### Illustrate Shared Instance Functions
+
+### Demo `instanceof` — Polymorphism!
 
 ## Final Thoughts
 
