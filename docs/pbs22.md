@@ -117,7 +117,7 @@ Let’s start with the most important event of all – the one triggered when th
 
 Let’s start by creating a simple function we want to run when the DOM finishes loading – let’s call it `fixLinks()`. This function will find all links on the page, and set their `target` attribute to `_blank`, and another attribute called `rel` to `noopener`.
 
-_**Note:** we’ve not talked about the `rel` attribute in this series so far, but its something we’ll be looking at in detail in a future instalment. For now, I’ll just say that for security reasons, you should always set `rel` to `noopener` whenever you set `target` to `_blank`._
+_**Note:** we’ve not talked about the `rel` attribute in this series so far, but it's something we’ll be looking at in detail in a future instalment. For now, I’ll just say that for security reasons, you should always set `rel` to `noopener` whenever you set `target` to `_blank`._
 
 This simple function would look something like:
 
