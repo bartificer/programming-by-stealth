@@ -142,7 +142,7 @@ As a quick reminder, we chose to model monetary amounts using three interrelated
 
 There were two *has-a* relationships between those classes — monetary amounts had a currency, and currencies had one or two denominations.
 
-Our `Currency` class from the previous instalment cannot be used to represent currencies with more than two denominations. If you're a Harry Potter fan and want to implement Wizarding Money, you're out of luck because J.K. Rowling's wizards use Gallions, which divide into Sickles, which divide into Knuts. Similarly, Star Trek fans know the Ferengi use Gold-Pressed Latinum as their currency, and it consists of Bars, which divide into Strips, which divide into Slips.
+Our `Currency` class from the previous instalment cannot be used to represent currencies with more than two denominations. If you're a Harry Potter fan and want to implement Wizarding Money, you're out of luck because J.K. Rowling's wizards use Galleons, which divide into Sickles, which divide into Knuts. Similarly, Star Trek fans know the Ferengi use Gold-Pressed Latinum as their currency, and it consists of Bars, which divide into Strips, which divide into Slips.
 
 What we need is another class to represent this other type of currency, but that class would share a lot of code with our existing class.
 
