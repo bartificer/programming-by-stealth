@@ -221,7 +221,7 @@ class Currency{
 	 * @type {number}
 	 */
 	get length(){
-		throw new Error('not implemented by child class');
+		throw new Error('abstract instance data attribute .length not implemented by child class');
 	}
 	
 	/**
@@ -307,7 +307,7 @@ class Currency{
 	 * @throws {Error}
 	 */
 	amountAsString(amount){
-		throw new Error('not implemented by child class');
+		throw new Error('abstract instance function .amountAsString() not implemented by child class');
 	}
 
 	/**
@@ -319,7 +319,7 @@ class Currency{
 	 * @throws {Error}
 	 */
 	amountAsHumanString(amount){
-		throw new Error('not implemented by child class');
+		throw new Error('abstract instance function .amountAsHumanString() not implemented by child class');
 	}
 
 	/**
@@ -331,7 +331,7 @@ class Currency{
 	 * @throws {Error}
 	 */
 	amountAsEnglishString(amount){
-		throw new Error('not implemented by child class');
+		throw new Error('abstract instance function .amountAsEnglishString() not implemented by child class');
 	}
 }
 
@@ -447,9 +447,9 @@ class DecimalCurrency extends Currency{
 	 */
 	constructor(details){
 		// call the parent class's constructor
-		super(details)
+		super(details);
 		
-		// deal with data attribubtes unique to this child class
+		// deal with data attributes unique to this child class
 		if(is.not.object(details)){
 			details = {};
 		}
@@ -847,7 +847,7 @@ class DenominatedCurrency extends Currency{
 		// call the parent class's constructor
 		super(details);
 		
-		// deal with data attribubtes unique to this child class
+		// deal with data attributes unique to this child class
 		if(is.undefined(details.denominations)){
 			this.denominations = [new Denomination('B', 'Button')];
 		}else{
@@ -1087,7 +1087,7 @@ class DenominatedCurrency extends Currency{
 		}
 		
 		// assemble the final answer and return it
-		return `${is.negative(amount) ? 'minus ' : ''}${humanJoiner.oxAnd.join(formattedAmounts)}`;
+		return `${is.negative(amount) ? 'minus ' : ''}${humanJoiner.join(formattedAmounts)}`;
 	}
 }
 

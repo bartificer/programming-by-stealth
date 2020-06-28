@@ -113,11 +113,9 @@ The `super` keyword has three different meanings depending on context:
 
 Let's return to the subtleties of using the `super()` keyword within constructors.
 
-When describing the mental model for inheritance I said to imagine all the constructors for all parent classes getting execute in order, starting at the top of the tree and working down until you get to the constructor actually invoked by the programmer. I'm afraid things are not quite that simple in reality, at least not in JavaScript.
+Within a child class's constructor `super()` is a reference to the parent class's constructor. You call it like a function, and can pass it any arguments you wish.
 
-The instance functions provided by the parent classes do alway get copied in, but the actual constructor functions do not execute automatically, you have to make that happen, and you can choose not to!
-
-To execute the parent classes constructor, call `super()` with any arguments you wish to pass to that constructor. If you choose to call the parent class's constructor **you must call `super()` before the first time you use the `this` keyword!**
+There are however two important rules when it comes to using `super()` within constructors. Firstly, **you must call `super()` within a child class's constructor**. This makes sense because if you don't there would be no mechanism by which the instance data attributes provided by the parent class could get initialised. Secondly, **you can't use the `this` keyword before you call `super()`**.
 
 ### Working Around the Lack of an `abstract` Keyword
 
@@ -163,6 +161,8 @@ Note that the code in `money.js` assumes that three open-source libraries have b
 1. The [is.js](https://is.js.org) type-checking library.
 2. The [numeral.js](http://numeraljs.com) number formatting library.
 3. My open-source [humanJoin.js](https://github.com/bbusschots/human-join#readme) array-joining library.
+
+Finally, note that the `Denomination` and `MonetaryAmount` classes are completely un-changed from their implementation in the previous instalment, so we will be entirely focusing our attention on the three currency classes.
 
 ### Implementing Inheritance — The Design of the 3 Currency Classes
 
@@ -354,14 +354,255 @@ But, there is a more nuanced answers — notice that the version of the function
 
 #### 3. Requirements Child Classes Must Meet
 
-TO DO
+For our currency classes to behave in a predictable way, we want all child classes to provide the following:
 
-### Illustrate `instanceof` & Polymorphism
+1. A read-only instance data attribute `.length` representing the number of denominations making up the currency.
+2. The instance functions `.amountAsString()`, `.amountAsHumanString()` & `.amountAsEnglishString()`
 
-TO DO
+Remember that unlike many other languages, JavaScript doesn't have a mechanism for specifying attributes or functions all child classes must provide, so the best we can do is a commonly accepted work-around — implement the attribute or function in the parent class so that it always throws an error complaining that it was not implemented in the child class.
+
+We can see this approach with the read-only `.length` property:
+
+```js
+class Currency{
+  // …
+  
+  /**
+   * The number of denominations making up the currency. Each child class
+   * must implement a getter for this property.
+   * 
+   * @abstract
+   * @type {number}
+   */
+  get length(){
+    throw new Error('abstract instance data attribute .length not implemented by child class');
+  }
+  
+  /**
+   * @throws {Error}
+   */
+  set length(l){
+    throw new Error('read-only attribute');
+  }
+  
+  // …
+}
+```
+
+Note that if this was a regular read/write instance data attribute the error thrown in the setter would be the same as that thrown in the getter.
+
+We can see this approach in action if we try to implement a child class without its own length getter:
+
+```js
+// define a child class that does not implement any of the required
+// 'abstract' data attributes or functions
+class BadCurrency extends Currency{
+  constructor(){
+    super();
+  }
+};
+
+// try use the abstract .length property
+const naughtyMoney = new BadCurrency();
+console.log(naughtyMoney.length); // throws error
+```
+
+The instance functions that child classes must implement are similarly constructed, here's one example:
+
+```js
+class Currency{
+  // …
+  
+  /**
+   * All child classes must override this function to render an amount as a
+   * string.
+   * 
+   * @abstract
+   * @param {number} amount
+   * @return {string} E.g. '$12.34' and '-$12.34'
+   * @throws {Error}
+   */
+  amountAsString(amount){
+    throw new Error('abstract instance function .amountAsString() not implemented by child class');
+  }
+  
+  // …
+}
+```
+
+Again, we can see this in action in the JavaScript console:
+
+```js
+console.log(naughtyMoney.amountAsString(42)); // throws error
+```
+
+### The Constructors
+
+Remember the two rules when it comes to `super()` in child class constructors:
+
+1. You **must** call `super()`
+2. You cannot use `this` before you call `super()`
+
+When you use a dictionary to contain all your constructor arguments you usually simply call `super()` on the first line of the constructor and pass it the one dictionary argument. Once that's done you initialise the instance data attributes that are unique to the sub-class, knowing the parent class's constructor has taken care of the rest. The constructor in the `DecimalCurrency` class follows this model:
+
+```js
+class DecimalCurrency extends Currency{
+  // …
+  
+  constructor(details){
+    // call the parent class's constructor
+    super(details);
+    
+    // deal with data attributes unique to this child class
+    if(is.not.object(details)){
+      details = {};
+    }
+    if(is.undefined(details.denomination)){
+      this.denomination = new Denomination('$', 'Dollar');
+    }else{
+      this.denomination = details.denomination;
+    }
+    
+    // …
+  }
+  
+  // …
+}
+```
+
+You are free to construct alternative arguments for the parent class's constructor before calling `super()`, just so long as you don't use the `this` keyword in the process.
+
+You can see an example of this in the constructor for the `DenominatedCurrency` class:
+
+```js
+class DenominatedCurrency extends Currency{
+  // …
+  
+  constructor(details){
+    if(is.not.object(details)){
+      details = {};
+    }
+    
+    // default the name and imaginary status before calling the parent constructor
+    if(is.undefined(details.name)){
+      details.name = "Buttons";
+      if(is.undefined(details.imaginary)){
+        details.imaginary = true;
+      }
+    }
+    
+    // call the parent class's constructor
+    super(details);
+    
+    // deal with data attributes unique to this child class
+    if(is.undefined(details.denominations)){
+      this.denominations = [new Denomination('B', 'Button')];
+    }else{
+      this.denominations = details.denominations;
+    }
+  }
+  
+  // …
+}
+```
+
+### Inheritance,  `instanceof` Operator & Polymorphism
+
+At the top of the worked example I mentioned that the code for the `Denomination` and `MonetaryAmount` classes were un-changed since the previous instalment. That means that `MonetaryAmount` is expecting to work with instances of the class `Currency`, can it use instances of `DecimalCurrency` or `DenominatedCurrency`?
+
+Let's find out!
+
+We'll start by creating new instances of each of the two classes:
+
+```js
+const renminbi = new DecimalCurrency({
+  name: "People's Renminbi",
+  denomination: new Denomination('元', 'Yuán', 'Yuán'),
+  subDenomination: new Denomination('分', 'Fēn', 'Fēn')
+});
+const latinum = new DenominatedCurrency({
+  name: 'Gold Pressed Latinum',
+  imaginary: true,
+  denominations: [
+    new Denomination('B', 'Bar'),
+    20, new Denomination('S', 'Strip'),
+    100, new Denomination('s', 'slip')
+  ]
+});
+```
+
+Now let's try make some monetary amounts with these instances:
+
+```js
+const infrastructureLoan = new MonetaryAmount(42_000_000, renminbi);
+console.log(`We just got a loan of ${infrastructureLoan.asHumanString()}!`);
+// logs: We just got a loan of 元42,000,000!
+
+const quarksTab = new MonetaryAmount(42.7, latinum);
+console.log(`My bar tab at Qurarks is now ${quarksTab.asEnglishString()}!`);
+// logs: My bar tab at Qurarks is now 42 Bars & 14 Strips!
+```
+
+Why does this work?
+
+Looking at the *setter* for the `.currency` instance data attribute in the `MonetaryAmount` class we can see the `instanceof` operator being used to test whether or not the currency is an instance of `Currency`:
+
+```js
+class MonetaryAmount{
+  // …
+  
+  set currency(c){
+    if(!(c instanceof Currency)){
+      throw new TypeError('currency must be an instance of the class Currency');
+    }
+    this._currency = c;
+  }
+  
+  // …
+}
+```
+
+That implies that the `instancecof` operator considers both the `infrastructureLoan` and `quarksTab` objects to be instances of `Currency`.
+
+This brings us to one of the most important concepts in OO — **instances of a child class are also considered to be instances of their parent class**.
+
+We can prove this for ourselves:
+
+```js
+function showInstanceOf(c){
+  console.log(`${c.name}:`);
+  console.log(`* is Currency? ${c instanceof Currency ? 'YES' : 'no'}`);
+  console.log(`* is DecimalCurrency? ${c instanceof DecimalCurrency ? 'YES' : 'no'}`);
+  console.log(`* is DenominatedCurrency? ${c instanceof DenominatedCurrency ? 'YES' : 'no'}`);
+}
+
+showInstanceOf(renminbi);
+// People's Renminbi:
+// * is Currency? YES
+// * is DecimalCurrency? YES
+// * is DenominatedCurrency? no
+
+showInstanceOf(latinum);
+Gold Pressed Latinum:
+* is Currency? YES
+* is DecimalCurrency? no
+* is DenominatedCurrency? YES
+```
+
+So, we can say that the Renminbi is a decimal currency, and it is also a currency, hence the *is-a* relationship between the `DecimalCurrency` and `Currency` classes.
+
+The important take-away is that instance of child classes can be used anywhere instances of the parent class can be used. In this example, the `MonetaryAmount` class can work with many (*poly*) forms (*morph*) of currency, hence the often confusing piece of programming jargon *polymorphism*.
+
+**When programmers talk about *polymorphism* they're simply referring to the fact that instances of child classes can be used anywhere instances of their parent class can be used!**
 
 ## Final Thoughts
 
-TO DO
+I hope you can now appreciate just how powerful inheritance is, and why it's so central to object oriented design. By combining classes together using *is-a* and *has-a* relationships you can model just about any concept or thing in your code. Designing those collections of related classes is what object oriented programming is all about.
 
-The next instalment will be our final JavaScript instalment, at least for now, and will focus on my sample solution to the challenge set at the end of [instalment 96](https://bartificer.net/pbs96).
+We've now reached a very important milestone in this series. Not only have we finished our series-within-a-series on Object Oriented programming in JavaScript, we've finished learning new concepts in this first pass at the JavaScript language. That doesn't mean we won't be seeing any more JavaScript though, we just won't be learning any new JavaScript syntax for the foreseeable future.
+
+In fact, the next instalment will be entirely dedicated to JavaScript because it will be built around my sample solution to the challenge set at the end of [instalment 96](https://bartificer.net/pbs96).
+
+Instalment 101 will see us take a break from programming itself so we can focus on some of the tools developers have at their disposal for managing coding projects. We'll be paying particular attention to the distributed version control system [GIT](https://en.wikipedia.org/wiki/Git), and the free GIT service offered by Microsoft at [GitHub.com](https://github.com).
+
+Once we've learned the basics of GIT and GitHub we'll shift our focus from the web browser to the web server, and we'll use that as an opportunity to meet a new language — [PHP](https://en.wikipedia.org/wiki/PHP).
