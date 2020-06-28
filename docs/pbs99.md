@@ -257,22 +257,22 @@ const wizardingMoney = new DenominatedCurrency({
 
 #### 1. Shared Functionality
 
-The class `Currency` defines a class function `coerceAmount(amount)` and this function is not re-defined in either of the child classes.
+The class `Currency` defines a class function `coerceAmount(amount)` and this function is not redefined in either of the child classes.
 
 As expected, it continues to work when called on the parent class:
 
 ```js
 console.log(Currency.coerceAmount("42")); // 42
-console.log(Currency.coerceAmount("boggers")); // throws TypeError
+console.log(Currency.coerceAmount("boogers")); // throws TypeError
 ```js
 
 Thanks to inheritance, both child classes got a copy of this function automatically:
 
 ```js
 console.log(DecimalCurrency.coerceAmount("42")); // 42
-console.log(DecimalCurrency.coerceAmount("boggers")); // throws TypeError
+console.log(DecimalCurrency.coerceAmount("boogers")); // throws TypeError
 console.log(DenominatedCurrency.coerceAmount("42")); // 42
-console.log(DenominatedCurrency.coerceAmount("boggers")); // throws TypeError
+console.log(DenominatedCurrency.coerceAmount("boogers")); // throws TypeError
 ```
 
 The class `Currency` defines a getter and setter for the instance data attribute `name`, and these getters and setters are not re-defined in either child class. Again, the attribute exists on instances of the parent class as expected, but also on instances of the child classes:
@@ -345,11 +345,11 @@ const jordanianDinar = new DecimalCurrency({
 console.log(jordanianDinar.amountAsHumanFloat(1234.5678)); // 1,234.568
 ```
 
-The `DenomimnatedCurrency` class also overrides the default `.amountAsHumanFloat()` instance function, so what purpose does it serve?
+The `DenominatedCurrency` class also overrides the default `.amountAsHumanFloat()` instance function, so what purpose does it serve?
 
 The obvious first answer is that just because two sub-classes choose to override a default does not mean a third, fourth, or one millions sub-class won't!
 
-But, there is a more nuanced answers — notice that the version of the function defined in the `DecimalCurrency` class calls the default version provided by the parent class in the special case where the amount is an integer. It does so using the `super` keyword. The same is true of the implementation of this function in the `DenominatedCurrency` class too BTW.
+But, there is a more nuanced answers — notice that the version of the function defined in the `DecimalCurrency` class calls the default version provided by the parent class in the special case where the amount is an integer. It does so using the `super` keyword. The same is true of the implementation of this function in the `DenominatedCurrency` class too by the way.
 
 #### 3. Requirements Child Classes Must Meet
 
@@ -401,7 +401,7 @@ class BadCurrency extends Currency{
   }
 };
 
-// try use the abstract .length property
+// try to use the abstract .length property
 const naughtyMoney = new BadCurrency();
 console.log(naughtyMoney.length); // throws error
 ```
@@ -442,7 +442,7 @@ Remember the two rules when it comes to `super()` in child class constructors:
 1. You **must** call `super()`
 2. You cannot use `this` before you call `super()`
 
-When you use a dictionary to contain all your constructor arguments you usually simply call `super()` on the first line of the constructor and pass it the one dictionary argument. Once that's done you initialise the instance data attributes that are unique to the sub-class, knowing the parent class's constructor has taken care of the rest. The constructor in the `DecimalCurrency` class follows this model:
+When you use a dictionary to contain all your constructor arguments you usually simply call `super()` on the first line of the constructor and pass it the one dictionary argument. Once that's done you initialise the instance data attributes that are unique to the subclass, knowing the parent class's constructor has taken care of the rest. The constructor in the `DecimalCurrency` class follows this model:
 
 ```js
 class DecimalCurrency extends Currency{
@@ -507,7 +507,7 @@ class DenominatedCurrency extends Currency{
 
 ### Inheritance,  `instanceof` Operator & Polymorphism
 
-At the top of the worked example I mentioned that the code for the `Denomination` and `MonetaryAmount` classes were un-changed since the previous instalment. That means that `MonetaryAmount` is expecting to work with instances of the class `Currency`, can it use instances of `DecimalCurrency` or `DenominatedCurrency`?
+At the top of the worked example I mentioned that the code for the `Denomination` and `MonetaryAmount` classes were unchanged since the previous instalment. That means that `MonetaryAmount` is expecting to work with instances of the class `Currency`, can it use instances of `DecimalCurrency` or `DenominatedCurrency`?
 
 Let's find out!
 
@@ -538,8 +538,8 @@ console.log(`We just got a loan of ${infrastructureLoan.asHumanString()}!`);
 // logs: We just got a loan of 元42,000,000!
 
 const quarksTab = new MonetaryAmount(42.7, latinum);
-console.log(`My bar tab at Qurarks is now ${quarksTab.asEnglishString()}!`);
-// logs: My bar tab at Qurarks is now 42 Bars & 14 Strips!
+console.log(`My bar tab at Quark's is now ${quarksTab.asEnglishString()}!`);
+// logs: My bar tab at Quark's is now 42 Bars & 14 Strips!
 ```
 
 Why does this work?
@@ -590,7 +590,7 @@ Gold Pressed Latinum:
 
 So, we can say that the Renminbi is a decimal currency, and it is also a currency, hence the *is-a* relationship between the `DecimalCurrency` and `Currency` classes.
 
-The important take-away is that instance of child classes can be used anywhere instances of the parent class can be used. In this example, the `MonetaryAmount` class can work with many (*poly*) forms (*morph*) of currency, hence the often confusing piece of programming jargon *polymorphism*.
+The important take-away is that instances of child classes can be used anywhere instances of the parent class can be used. In this example, the `MonetaryAmount` class can work with many (*poly*) forms (*morph*) of currency, hence the often confusing piece of programming jargon *polymorphism*.
 
 **When programmers talk about *polymorphism* they're simply referring to the fact that instances of child classes can be used anywhere instances of their parent class can be used!**
 
