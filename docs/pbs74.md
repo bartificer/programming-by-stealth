@@ -116,9 +116,7 @@ We’d like to use it to render the following output:
 Without using functions, the closest we could get would be the following:
 
 ```javascript
-{% raw %}
-Mustache.render('It will be {{tempC}}&deg;C in {{place}} tomorrow.', demoView1);
-{% endraw %}
+{% raw %}Mustache.render('It will be {{tempC}}&deg;C in {{place}} tomorrow.', demoView1);{% endraw %}
 ```
 
 Which would render:
@@ -155,10 +153,8 @@ Note that our section key, `humanTemp`, is a function that returns a function th
 We can now use `humanTemp` as a _section key_:
 
 ```javascript
-{% raw %}
-const demoTpl2 = 'It will be {{#humanTemp}}{{tempC}}{{/humanTemp}} in {{place}} tomorrow.';
-Mustache.render(demoTpl2, demoView2);
-{% endraw %}
+{% raw %}const demoTpl2 = 'It will be {{#humanTemp}}{{tempC}}{{/humanTemp}} in {{place}} tomorrow.';
+Mustache.render(demoTpl2, demoView2);{% endraw %}
 ```
 
 This will now render:
@@ -170,8 +166,7 @@ So how does this work? When the anonymous function defined in the view is called
 If the conversion is only needed once, it doesn’t make sense to add it to the view as a function, but if you need it more than once, it starts to make more sense:
 
 ```javascript
-{% raw %}
-const tempView3 = {
+{% raw %}const tempView3 = {
   place: "LA",
   minC: 18, // temperature in degrees C
   maxC: 28, // temperature in degrees C
@@ -184,8 +179,7 @@ const tempView3 = {
 
 const tempTpl3 = 'It will be between {{#humanTemp}}{{minC}}{{/humanTemp}} and {{#humanTemp}}{{maxC}}{{/humanTemp}} in {{place}} tomorrow.';
 
-Mustache.render(tempTpl3, tempView3);
-{% endraw %}
+Mustache.render(tempTpl3, tempView3);{% endraw %}
 ```
 
 This will render:
@@ -205,12 +199,10 @@ Let’s see this in action with a pair of examples. You can see these in their f
 First, let's create two partials, one for links to external sites and one for a ‘new’ badge.
 
 ```javascript
-{% raw %}
-const pbs74bPartials = {
+{% raw %}const pbs74bPartials = {
   extLink: '<a href="{{{url}}}" target="_blank" rel="noopener noreferrer">{{text}} <i class="fas fa-external-link-alt"></i></a>',
   newBadge: '<span class="badge badge-pill badge-danger">New!</span>'
-};
-{% endraw %}
+};{% endraw %}
 ```
 
 We can now use these partials in our templates. Let’s start with the following template:

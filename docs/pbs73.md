@@ -93,14 +93,12 @@ The script tag above will add the Mustache API into the global name space as `Mu
 Let’s see it in action with a very simple example (copy and paste into the JavaScript console on any page that has imported the Mustache API, e.g. `pbs73a.html` from the ZIP file):
 
 ```javascript
-{% raw %}
-const greetingTpl = "Hi there {{name}} the {{nationality}}!";
+{% raw %}const greetingTpl = "Hi there {{name}} the {{nationality}}!";
 const personView1 = {
   name: 'Bart',
   nationality: 'Belgian'
 };
-console.log(Mustache.render(greetingTpl, personView1));
-{% endraw %}
+console.log(Mustache.render(greetingTpl, personView1));{% endraw %}
 ```
 
 The above will log:
@@ -112,14 +110,12 @@ As you can see, Mustache uses double curly braces as its delimiter, hence the na
 Because Mustache was built with the web in mind, it takes care of HTML escaping special character for you. You can see this automatic escaping in action with this simple example:
 
 ```javascript
-{% raw %}
-const mottoTpl = 'As {{name}} says "{{motto}}"';
+{% raw %}const mottoTpl = 'As {{name}} says "{{motto}}"';
 const personView2 = {
   name: 'Bart',
   motto: "live & learn!"
 };
-console.log(Mustache.render(mottoTpl, personView2));
-{% endraw %}
+console.log(Mustache.render(mottoTpl, personView2));{% endraw %}
 ```
 
 The above will log:
@@ -129,14 +125,12 @@ The above will log:
 This is usually what you want, but not always. You can disable HTML escaping by using triple curly braces:
 
 ```javascript
-{% raw %}
-const unEscapedMottoTpl = 'As {{{name}}} says "{{{motto}}}"';
+{% raw %}const unEscapedMottoTpl = 'As {{{name}}} says "{{{motto}}}"';
 const personView3 = {
   name: 'Bart',
   motto: "live & learn!"
 };
-console.log(Mustache.render(unEscapedMottoTpl, personView3));
-{% endraw %}
+console.log(Mustache.render(unEscapedMottoTpl, personView3));{% endraw %}
 ```
 
 The above will log:
@@ -165,14 +159,14 @@ In the main body of the file, you’ll find a placeholder `<div>` into which the
 
 Near the bottom of the file, you’ll find the template definition:
 
+<!-- {% raw %} -->
 ```html
-{% raw %}
 <!-- Define the Template String -->
 <script type="text/html" id="pbs73_tpl">
   <p>As {{name}} the {{nationality}} would say, "{{motto}}"</p>
 </script>
-{% endraw %}
 ```
+<!-- {% endraw %} -->
 
 You’ll find the view object defined in the global scope inside a regular script tag:
 
@@ -276,15 +270,15 @@ A value in a view can also be a function. When you try to add a value to a templ
 
 The template `vars_tpl1` in `pbs73b.html` illustrates all of the above:
 
+<!-- {% raw %} -->
 ```html
-{% raw %}
 <!-- Demo 1: Variables -->
 <script type="text/html" id="vars_tpl1">
   <p>{{name.first}} {{name.last}} is {{nationality}} and {{pronoun}} produces {{podcasts.length}} podcasts.</p>
   <p>{{name.first}} speaks: {{languageList}}</p>
 </script>
-{% endraw %}
 ```
+<!-- {% endraw %} -->
 
 ## Sections in Mustache Templates
 
@@ -306,8 +300,8 @@ You can invert the logic of a conditional section by using a `^` instead of a `#
 
 You can combine these types of section to create if/else logic in your templates. You can see an example of this in `cond_tpl1` in `pbs73b.html`.
 
+<!-- {% raw %} -->
 ```html
-{% raw %}
 <!-- Demo 2: Conditional Sections -->
 <script type="text/html" id="cond_tpl1">
   <p>
@@ -319,8 +313,8 @@ You can combine these types of section to create if/else logic in your templates
     {{/facebook}}
   </p>
 </script>
-{% endraw %}
 ```
+<!-- {% endraw %} -->
 
 ### Looped Sections
 
@@ -328,8 +322,8 @@ If the variable controlling a section is a non-empty array, then the section wil
 
 You can see both a loop over an array of strings and a loop over an array of objects in `loop_tpl1` in the file `pbs73b.html`.
 
+<!-- {% raw %} -->
 ```html
-{% raw %}
 <!-- Demo 3: Looped Sections -->
 <script type="text/html" id="loop_tpl1">
   <p>{{name.first}} Speaks the following languages:</p>
@@ -348,8 +342,8 @@ You can see both a loop over an array of strings and a loop over an array of obj
     {{/podcasts}}
   </ul>
 </script>
-{% endraw %}
 ```
+<!-- {% endraw %} -->
 
 ## A Challenge
 
