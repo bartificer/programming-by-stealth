@@ -276,7 +276,7 @@ With that we have what I consider to be a perfect solution to the challenge. You
 
 ## Introducing Templates
 
-Templating is an extremely broad topic — templates come in many forms, and they fill many different needs in many different ways. While I haven’t focused on the word, we have been making extensive use of one form of JavaScript templates throughout most of the JavaScript-focused instalments in this series. [Strings defined within back-ticks](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are officially \*Template literals\* (formerly \*Template strings\*). Using the `${}` operator we can inject data into these strings:
+Templating is an extremely broad topic — templates come in many forms, and they fill many different needs in many different ways. While I haven’t focused on the word, we have been making extensive use of one form of JavaScript templates throughout most of the JavaScript-focused instalments in this series. [Strings defined within back-ticks](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are officially *Template literals* (formerly *Template strings*). Using the `${}` operator we can inject data into these strings:
 
 ```javascript
 const like = 'ice cream';
