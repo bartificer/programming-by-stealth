@@ -492,9 +492,10 @@ class DecimalCurrency extends Currency{
 	amountAsHumanFloat(amount){
 		amount = this.constructor.coerceAmount(amount); // could throw error
 
-		// short-curcuit the case where there is no secondary denomination
+		// short-circuit the case where there is no secondary denomination
+		// call the parent class's default function
 		if(this.subDenominationOrder === 0){
-			return this.constructor.amountAsHumanInt(amount);
+			return super.amountAsHumanInt(amount);
 		}
 
 		// build a format string with the appropriate number of decimal places
@@ -1048,8 +1049,6 @@ class DenominatedCurrency extends Currency{
 		// assemble the final answer and return it
 		return `${is.negative(amount) ? '-' : ''}${formattedAmounts.join(' ')}`;
 	}
-	
-	// LEFT OFF HERE!!!
 
 	/**
 	 * Implement the abstract function to render an amount as an English

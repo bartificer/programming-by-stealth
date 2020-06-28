@@ -286,7 +286,71 @@ console.log(wizardingMoney.name); // Wizarding Money
 
 #### 2. Default Implementations
 
-TO DO
+The parent class `Currency` provides a default implementation of the instance function `.amountAsHumanFloat()`:
+
+```js
+class Currency{
+  // …
+  
+  amountAsHumanFloat(amount){
+    amount = this.constructor.coerceAmount(amount); // could throw error
+    return numeral(amount).format('0,0[.]00');
+  }
+  
+  // …
+}
+```
+
+This default implementation returns the amount as a string with thousand separators, no decimal places for whole numbers, and two decimal places for floating point numbers. We can see this in action from the JavaScript console:
+
+```js
+console.log(uselessCurrency.amountAsHumanFloat(1234)); // 1,234
+console.log(uselessCurrency.amountAsHumanFloat(1234.567)); // 1,234.57
+```
+
+The class `DecimalCurrency` overrides this instance function with a version that alters the number of decimal places as appropriate for the currency:
+
+```js
+class DecimalCurrency extends Currency{
+  // …
+  
+  amountAsHumanFloat(amount){
+    amount = this.constructor.coerceAmount(amount); // could throw error
+    
+    // short-circuit the case where there is no secondary denomination
+    // call the parent class's default function
+    if(this.subDenominationOrder === 0){
+      return super.amountAsHumanInt(amount);
+    }
+    
+    // build a format string with the appropriate number of decimal places
+    const formatString = `0,0[.]${'0'.repeat(this.subDenominationOrder)}`;
+    
+    // format and return
+    return numeral(amount).format(formatString);
+  }
+  
+  // …
+}
+```
+
+We can see this function in action if we call it on a decimal currency with three decimal places:
+
+```js
+const jordanianDinar = new DecimalCurrency({
+  name: 'Jordanian Dinar',
+  denomination: new Denomination('ع.د', 'Dinar'),
+  subDenomination: new Denomination('د.إ', 'Fils', 'Fulūs'),
+  subDenominationOrder: 3
+});
+console.log(jordanianDinar.amountAsHumanFloat(1234.5678)); // 1,234.568
+```
+
+The `DenomimnatedCurrency` class also overrides the default `.amountAsHumanFloat()` instance function, so what purpose does it serve?
+
+The obvious first answer is that just because two sub-classes choose to override a default does not mean a third, fourth, or one millions sub-class won't!
+
+But, there is a more nuanced answers — notice that the version of the function defined in the `DecimalCurrency` class calls the default version provided by the parent class in the special case where the amount is an integer. It does so using the `super` keyword. The same is true of the implementation of this function in the `DenominatedCurrency` class too BTW.
 
 #### 3. Requirements Child Classes Must Meet
 
@@ -294,9 +358,7 @@ TO DO
 
 ### Illustrate `instanceof` & Polymorphism
 
-### Illustrate Shared Class Functions
-
-### Illustrate Shared Instance Functions
+TO DO
 
 ## Final Thoughts
 
