@@ -10,10 +10,10 @@ The previous instalment was built around a worked example, this one will be the 
 
 This instalment uses 3 example files:
 
-* [Download ZIP File]()
+* [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/079bad43f4040990b60cb15b5f6bc4e2b9f80401/instalmentZips/pbs99.zip)
 * [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs99)
 * View the HTML file in your browser:
-	* [`pbs99.html`]()
+	* [`pbs99.html`](https://rawcdn.githack.com/bartificer/programming-by-stealth/079bad43f4040990b60cb15b5f6bc4e2b9f80401/instalmentResources/pbs99/pbs99.html)
 
 ## Matching Podcast Episode
 
