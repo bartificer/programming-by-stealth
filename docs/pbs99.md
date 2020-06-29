@@ -17,11 +17,11 @@ This instalment uses 3 example files:
 
 ## Matching Podcast Episode
 
-Listen along to this instalment on [episode ?? of the Chit Chat Across the Pond Podcast]().
+Listen along to this instalment on [episode 643 of the Chit Chat Across the Pond Podcast]().
 
-<audio controls src="?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_28.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
-You can also <a href="" >Download the MP3</a>
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_28.mp3" >Download the MP3</a>
 
 ## Class Inheritance
 
