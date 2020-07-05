@@ -161,7 +161,7 @@ Finally, we are calling the `httpEcho` URL for the plain-text version of the out
 
 When we run the command we get a lot of output!
 
-```shell
+<pre>
 bart-imac2018:~ bart$ curl -v --data-urlencode d1=val1 --data-urlencode d2=val2 --cookie 'c1=cookie; c2=monster' https://www.bartbusschots.ie/utils/httpEcho/text?p1=param1Val\&p2=param2Val
 *   Trying 37.139.7.12...
 * TCP_NODELAY set
@@ -240,7 +240,7 @@ bart-imac2018:~ bart$ curl -v --data-urlencode d1=val1 --data-urlencode d2=val2 
 - Software:     nginx/1.12.2
 - CGI Revision: CGI/1.1
 * Connection #0 to host www.bartbusschots.ie left intact
-```
+</pre>
 
 Again, let’s break it down.
 
@@ -248,7 +248,7 @@ The first thing we see is some information about what `curl` is doing. You see i
 
 At this stage `curl` is finally ready to send the HTTP request, so the next thing we see is that request:
 
-```shell
+<pre>
 > POST /utils/httpEcho/text?p1=param1Val&p2=param2Val HTTP/1.1
 > Host: www.bartbusschots.ie
 > User-Agent: curl/7.54.0
@@ -256,13 +256,13 @@ At this stage `curl` is finally ready to send the HTTP request, so the next thin
 > Cookie: c1=cookie; c2=monster
 > Content-Length: 15
 > Content-Type: application/x-www-form-urlencoded
-```
+</pre>
 
 Notice that `curl` uses the `User-Agent` header to identify itself, and the `Cookie` header to pass our two cookies to the server.
 
 The next thing we see is the HTTP response from the servers, starting with the status code and the response headers:
 
-```shell
+<pre>
 < HTTP/1.1 200 OK
 < Server: nginx/1.12.2
 < Date: Sat, 06 Apr 2019 15:19:04 GMT
@@ -270,13 +270,13 @@ The next thing we see is the HTTP response from the servers, starting with the s
 < Transfer-Encoding: chunked
 < Connection: keep-alive
 < X-Powered-By: PHP/5.6.39
-```
+</pre>
 
 Notice we got a `200 OK` status, and the use of the `Content-Type` HTTP response header to specify both the MIME Type and the text encoding of the returned data.
 
 Finally, we see the actual data returned by the server, in this case, the plain-text echoing of the data the server received just as it would appear in a browser window:
 
-```shell
+<pre>
 # Client
 - IP:                          46.7.114.231
 - Browser (User Agent String): curl/7.54.0
@@ -308,7 +308,7 @@ Finally, we see the actual data returned by the server, in this case, the plain-
 - Name:         bartbusschots.ie
 - Software:     nginx/1.12.2
 - CGI Revision: CGI/1.1
-```
+</pre>
 
 ## Final Thoughts
 
