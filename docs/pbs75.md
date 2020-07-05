@@ -1,10 +1,10 @@
 # PBS 75 of X — AJAX Intro
 
-Having wrapped up our introduction to Mustache templates we’re going to spend the next few instalments learning about AJAX, a very powerful JavaScript technique for loading information from a given URL. In future instalments we’ll use this technique to load external templates and data for use with our Mustache templates.
+Having wrapped up our introduction to Mustache templates, we’re going to spend the next few instalments learning about AJAX, a very powerful JavaScript technique for loading information from a given URL. In future instalments we’ll use this technique to load external templates and data for use with our Mustache templates.
 
-AJAX is a mechanism for making a HTTP requests via JavaScript, so before we’re ready to learn about AJAX we need to take the time to learn about the HTTP protocol itself. Unless you understand the mechanics and the terminology of HTTP, AJAX-related documentation simply won’t make any sense.
+AJAX is a mechanism for making a HTTP requests via JavaScript. So before we’re ready to learn about AJAX, we need to take the time to learn about the HTTP protocol itself. Unless you understand the mechanics and the terminology of HTTP, AJAX-related documentation simply won’t make any sense.
 
-# Matching Podcast Episode 589
+## Matching Podcast Episode 589
 
 Listen along to this instalment on [episode 589 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/04/ccatp-589/)
 
@@ -14,7 +14,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 74 Challenge Extension & Hint
 
-I’ve decided to give everyone an extension on the challenge set at the end of [the previous instalment](https://bartificer.net/pbs74).
+I’ve decided to give everyone an extension on the challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs74).
 
 Based on some listener feedback, I’d also like to give a little hint you might find helpful.
 
@@ -22,11 +22,11 @@ The JSON object is not intended to be used as the actual view object when render
 
 ## HTTP Overview
 
-Rather that look at all of HTTP in great detail, I’m going to focus this overview on the parts of the HTTP spec that are relevant to AJAX. If you’d like to know more I’d. suggest checking out instalments [34](https://www.bartbusschots.ie/s/2015/05/09/taming-the-terminal-part-34-of-n-introducing-http/) and [35](https://www.bartbusschots.ie/s/2015/07/05/taming-the-terminal-part-35-of-n-http-commands/) of the [Taming the Terminal series](https://bartb.ie/ttt).
+Rather than look at all of HTTP in great detail, I’m going to focus this overview on the parts of the HTTP spec that are relevant to AJAX. If you’d like to know more, I’d suggest checking out instalments [34](https://www.bartbusschots.ie/s/2015/05/09/taming-the-terminal-part-34-of-n-introducing-http/) and [35](https://www.bartbusschots.ie/s/2015/07/05/taming-the-terminal-part-35-of-n-http-commands/) of the [Taming the Terminal series](https://bartb.ie/ttt).
 
-Starting with the very basics, HTTP is the _Hyper-Text Transfer Protocol_. Web browsers use this protocol to fetch data for URLs starting with `http://` and `https://`. HTTP is a client-server request-response protocol — clients (web browsers in our case) send HTTP requests to web servers, and web servers respond with HTTP responses. The protocol is stateless, so each request+response is seen as un-related to every other request+response. In the modern world we’re accustomed to having web servers remember who we are from click to click, so how is that possible? Cookies were literally invented to work around the fact that HTTP is a stateless protocol. A cookie is simply a token a web server can include in an HTTP response that the client then inserts into all future requests so the web server can recognise you.
+Starting with the very basics, HTTP is the _Hyper-Text Transfer Protocol_. Web browsers use this protocol to fetch data for URLs starting with `http://` and `https://`. HTTP is a client-server request-response protocol — clients (web browsers in our case) send HTTP requests to web servers, and web servers respond with HTTP responses. The protocol is stateless, so each request+response is seen as unrelated to every other request+response. In the modern world we’re accustomed to having web servers remember who we are from click to click, so how is that possible? Cookies were literally invented to work around the fact that HTTP is a stateless protocol. A cookie is simply a token a web server can include in an HTTP response that the client then inserts into all future requests so the web server can recognise you.
 
-Note that HTTPS is just HTTP with a TLS (Transport Layer Security) wrapper around it, so from a Javascript point of view, `http://` and `https://` URLs are equivalent.
+Note that HTTPS is just HTTP with a TLS (Transport Layer Security) wrapper around it. From a Javascript point of view, `http://` and `https://` URLs are equivalent.
 
 At the very highest level, HTTP requests contain a URL, and HTTP responses contain the data at the requested URL, or some information about the data at the requested URL.
 
@@ -47,12 +47,12 @@ URLs are surprisingly complex things, and they can contain a lot of information.
 
 1.  A _URL Scheme_, or _Protocol_ followed by the symbols `://`. For our purposes, the scheme will always be one of `http`, `https`, or `file`.
 2.  A _host_, or server (if relevant), e.g. `localhost`, `bartb.ie`, or `podfeet.com`. The host is appended to the scheme, but separated from it by the `://` symbols. The `file` scheme omits the host part of the URL completely.
-3.  A _port number_, implied or explicit (if appropriate). Explicit port numbers are appended to the host, separated from it with the `:` symbol. URL schemes imply port numbers where appropriate, so you can usually omit them. `http` implies port `80`, and `https` implies port `443`, so `http://bartb.ie` actually implies `http://bartb.ie:80`. The `file` scheme omits port numbers completely.
+3.  A _port number_, implied or explicit (if appropriate). Explicit port numbers are appended to the host, separated from it with the `:` symbol. URL schemes imply port numbers where appropriate, so you can usually omit them. `http` implies port `80`, and `https` implies port `443`. So `http://bartb.ie` actually implies `http://bartb.ie:80`. The `file` scheme omits port numbers completely.
 4.  A _path_ or _file path_ which specifies a location on a host. The file path always starts with a `/` character.
 5.  An optional _page fragment_ which specifies a named location within a page. If present, the fragment is appended after the file path, separated from it with a `#` symbol.
 6.  An optional _query string_ which specifies an arbitrary number of name-value pairs known as _query parameters_. If present, the query string is appended after the page fragment (or file path if there is no page fragment), and separate from it with the `?` symbol. Each name-value pair is separated from the others with an `&` symbol, and the names are separated from the values with an `=` symbol.
 
-Note that special characters have to be escaped in URLs. They’re escaped using the `%` symbol followed by two hexadecimal characters. Since we’ll be using JavaScript to make our AJAX queries we’ll have API functions to translate the special characters for us, so we don’t need to know them. If you’re curious, you’ll find more details on [this W3Schools page](https://www.w3schools.com/tags/ref_urlencode.asp).
+Note that special characters have to be escaped in URLs. They’re escaped using the `%` symbol followed by two hexadecimal characters. Since we’ll be using JavaScript to make our AJAX queries, we’ll have API functions to translate the special characters for us, so we don’t need to know them. If you’re curious, you’ll find more details on [this W3Schools page](https://www.w3schools.com/tags/ref_urlencode.asp).
 
 Let’s tie all that together with an example URL:
 
@@ -65,7 +65,7 @@ We can then say the following:
 *   The _port_ is `8080`
 *   The _file path_ is `/testFolder/testFile.html`
 *   The _page fragment_ is `section1`
-*   The _query string_ is param1=boogers&param2=some%20stuff
+*   The _query string_ is `param1=boogers&param2=some%20stuff`
 *   There are. two _query parameters_; `param1` and `param2`
 *   The value of the _query parameter_ `param1` is `'boogers'`
 *   The value of the _query parameter_ `param2` is `'some stuff'` (`%20` is the URL escape code for the space symbol).
@@ -92,13 +92,13 @@ Cookies are actually passed to the server using the `Cookie` HTTP header.
 
 ### Seeing an HTTP Request
 
-To help you see the innards of an HTTP request I’ve created a little server-side script that echoes back details of the HTTP request it received in an HTTP response: [https://bartb.ie/utils/httpEcho/](https://bartb.ie/utils/httpEcho/).
+To help you see the innards of an HTTP request, I’ve created a little server-side script that echoes back details of the HTTP request it received in an HTTP response: [https://bartb.ie/utils/httpEcho/](https://bartb.ie/utils/httpEcho/).
 
-As well as seeing the request in HTML you can also see it in pure JSON format at [https://bartb.ie/utils/httpEcho/json](https://bartb.ie/utils/httpEcho/json), in pretty-printed JSON format at [https://bartb.ie/utils/httpEcho/jsonText](https://bartb.ie/utils/httpEcho/jsonText), and in plain text (Markdown really) at [https://bartb.ie/utils/httpEcho/text](https://bartb.ie/utils/httpEcho/text).
+As well as seeing the request in HTML, you can also see it in pure JSON format at [https://bartb.ie/utils/httpEcho/json](https://bartb.ie/utils/httpEcho/json), in pretty-printed JSON format at [https://bartb.ie/utils/httpEcho/jsonText](https://bartb.ie/utils/httpEcho/jsonText), and in plain text (Markdown really) at [https://bartb.ie/utils/httpEcho/text](https://bartb.ie/utils/httpEcho/text).
 
 Note that you can pass query parameters to the script by adding them to the end of the URL, e.g. [https://bartb.ie/utils/httpEcho/?param1=boogers&param2=big%20snot](https://bartb.ie/utils/httpEcho/?param1=boogers&param2=big%20snot)
 
-Note that you can find [the full source code for these PHP scripts on GitHub](https://github.com/bbusschots/httpEcho.php/). Remember that one of the reasons I gave for loving Mustache is that its available in so many languages. Well, to underline that point, note that the HTML and plain-text views are both generated using Mustache templates, and that the view object used is the JSON object presented by the JSON and pretty-printed JSON scripts.
+Note that you can find [the full source code for these PHP scripts on GitHub](https://github.com/bbusschots/httpEcho.php/). Remember that one of the reasons I gave for loving Mustache is that it's available in so many languages. Well, to underline that point, note that the HTML and plain-text views are both generated using Mustache templates, and that the view object used is the JSON object presented by the JSON and pretty-printed JSON scripts.
 
 ## HTTP Responses
 
@@ -111,30 +111,31 @@ A HTTP response consists of the following:
 Servers use HTTP status codes to indicate the nature of their response. These are always 3-digit numbers, and can be accompanied by a short human-readable title/description. The one you want is `200 OK`!
 
 Under the hood HTTP status codes are grouped into categories by leading digit:
+<dl>
+<dt><code>1**</code> — Informational</dt>
 
-`1**` — Informational
+<dd>The browser deals with informational responses for us, so we don’t have to worry about them. Examples include <code>100 Continue</code>, and <code>101 Switching Protocols</code>.</dd>
 
-The browser deals with informational responses for us, so we don’t have to worry about them. Examples include `100 Continue`, and `101 Switching Protocols`.
+<dt><code>2**</code> — Successful</dt>
 
-`2**` — Successful
+<dd>For <code>GET</code> and <code>POST</code> requests, the response code you always hope to get is <code>200 OK</code>. That means the request was successfully processed, and that the response contains the requested data. There are other successful status codes for other HTTP methods, e.g. <code>201 Created</code>.</dd>
 
-For `GET` and `POST` requests, the response code you always hope to get is `200 OK`, that means the request was successfully processed, and that the response contains the requested data. There are other successful status codes for other HTTP methods, e.g. `201 Created`.
+<dt><code>3**</code> — Redirection</dt>
 
-`3**` — Redirection
+<dd>Browsers will automatically follow redirects. So JavaScript developers generally don’t have to concern themselves with following redirects. The two most commonly used redirection status codes are <code>301 Moved Permanently</code> for permanent redirects, and <code>302 Found</code> for temporary redirects. The main difference is that browsers are permitted to cache permanent redirects, but temporary redirects should be checked every time in case they’ve changed.</dd>
 
-Browsers will automatically follow redirects, so JavaScript developers generally don’t have to concern themselves with following redirects. The two most commonly used redirection status codes are `301 Moved Permanently` for permanent redirects, and `302 Found` for temporary redirects. The main difference is that browsers are permitted to cache permanent redirects, but temporary redirects should be checked every time in case they’ve changed.
+<dt><code>4**</code> — Client Errors</dt>
 
-`4**` — Client Errors
+<dd>As JavaScript developers, we hope not to see many of these errors because the browser constructs the requests for us. So unless there’s a nasty bug in our browsers, we should never see status codes like <code>400 Bad Request</code>. However, there are two client errors we are likely to encounter from time to time — the infamous <code>404 Not Found</code>, and the frustrating <code>403 Forbidden</code>.</dd>
 
-As JavaScript developers we hope not see many of these errors because the browser constructs the requests for us, so unless there’s a nasty bug in our browsers, we should never see status codes like `400 Bad Request`. However, there are two client errors we are likely to encounter from time to time — the infamous `404 Not Found`, and the frustrating `403 Forbidden`.
+<dt><code>5**</code> — Server Errors</dt>
 
-`5**` — Server Errors
+<dd>Later in the series we’ll be moving into server-side coding, at which time we’ll almost certainly get to see lots of <code>500 Internal Server Error</code> responses. For now, any server error status codes indicate problems beyond our control.</dd>
+</dl>
 
-Later in the series we’ll be moving into server-side coding, at which time we’ll almost certainly get to see lots of `500 Internal Server Error` responses. For now, any server error status codes indicate problems beyond our control.
+Bottom line, as JavaScript developers, there are only four status codes we need to keep in our minds — `200 OK`, `403 Forbidden`, `404 Not Found`, and `500 Internal Server Error`.
 
-Bottom line, as JavaScript developers there are only four status codes we need to keep in our minds — `200 OK`, `403 Forbidden`, `404 Not Found`, and `500 Internal Server Error`.
-
-When it comes to processing HTTP responses, we generally just need to deal with two cases — we got a `200 OK`, so our request was successful, or we got any other status code, so our request was not successful, and we need to handle that fact in some way.
+When it comes to processing HTTP responses, we generally just need to deal with two cases — we got a `200 OK`, so our request was successful or we got any other status code, our request was not successful, and we need to handle that fact in some way.
 
 Basically, anything other than `200 OK` means there was some kind of error, and our code needs to deal with that in some way.
 
@@ -142,7 +143,7 @@ The HTTP response headers are used by the server to send information about the r
 
 ## A Final Illustration
 
-We can use my httpEcho script in conjunction with the curl terminal command (Mac & Linux only I’m afraid) to peer inside a full HTTP transaction.
+We can use my `httpEcho` script in conjunction with the `curl` terminal command (Mac & Linux only, I’m afraid) to peer inside a full HTTP transaction.
 
 The command we’ll be using is:
 
@@ -156,7 +157,7 @@ The two `--data-urlencode` flags put `curl` into `POST` mode and add two pieces 
 
 The `--cookie` flag sets two cookies named `c1` and `c2` with the values `cookie` and `monster` respectively.
 
-Finally, we are calling the httpEcho URL for the plain-text version of the output with a query string that specifies two query string parameters named `p1` and `p2` with the values `param1Val` and `param2Val` respectively.
+Finally, we are calling the `httpEcho` URL for the plain-text version of the output with a query string that specifies two query string parameters named `p1` and `p2` with the values `param1Val` and `param2Val` respectively.
 
 When we run the command we get a lot of output!
 
@@ -311,4 +312,4 @@ Finally, we see the actual data returned by the server, in this case, the plain-
 
 ## Final Thoughts
 
-Now that we’ve seen the HTTP protocol in action we’re ready to learn how to make HTTP requests from Javascript using AJAX. Or, to be more specific, how to use jQuery’s `$.ajax()` function to make HTTP requests. That’s where we’ll start the next instalment.
+Now that we’ve seen the HTTP protocol in action, we’re ready to learn how to make HTTP requests from Javascript using AJAX. Or, to be more specific, how to use jQuery’s `$.ajax()` function to make HTTP requests. That’s where we’ll start the next instalment.
