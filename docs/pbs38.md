@@ -10,7 +10,7 @@ Listen Along: Chit Chat Across the Pond Episode 500
 
 You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_09_01.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
 
-From a big-picture point of view, what we have learned to date is that HTML is a markup language for what is in a document – this is a heading, that’s a paragraph, this is a button, and so on; CSS is for specifying how it should be displayed; and JavaScript is for bringing the document to life, adding interactions of various kinds. We started by learning about JavaScript in the abstract, and then we learned how to use JavaScript to interact with HTML documents using the DOM with the help of the 3rd party jQuery library.
+From a big-picture point of view, what we have learned to date is that HTML is a markup language for what is in a document – this is a heading, that’s a paragraph, this is a button, and so on; CSS is for specifying how it should be displayed; and JavaScript is for bringing the document to life, adding interactions of various kinds. We started by learning about JavaScript in the abstract, and then we learned how to use JavaScript to interact with HTML documents using the DOM with the help of the third-party jQuery library.
 
 Along the way we’ve also learned a little about software engineering and project management, learning about useful third-party tools like QUnit for JavaScript unit testing, and JSDoc for generating documentation for JavaScript APIs.
 
