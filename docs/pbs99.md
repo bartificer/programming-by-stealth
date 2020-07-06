@@ -264,7 +264,7 @@ As expected, it continues to work when called on the parent class:
 ```js
 console.log(Currency.coerceAmount("42")); // 42
 console.log(Currency.coerceAmount("boogers")); // throws TypeError
-```js
+```
 
 Thanks to inheritance, both child classes got a copy of this function automatically:
 
