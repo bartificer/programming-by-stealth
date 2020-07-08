@@ -140,7 +140,7 @@ JavaScript represents regular expressions with the built-in class `RegExp`. For 
 
 We're going to confine our look at this class to just two functions — those that encapsulate the two most common use-cases for regular expressions — validation, and parsing.
 
-While there is a `RegExp` constructor available for use, you're better off using RE literals to create `RegExp` objects. Why? Because the contractor takes a string as an argument, so the backslash character needs to be double-escaped, one for the string, then again for the RE. This is very confusing to look at!
+While there is a `RegExp` constructor available for use, you're better off using RE literals to create `RegExp` objects. Why? Because the constructor takes a string as an argument, so the backslash character needs to be double-escaped, one for the string, then again for the RE. This is very confusing to look at!
 
 To prove this point, the following two assignments result in `RegExp` objects representing the same pattern:
 
