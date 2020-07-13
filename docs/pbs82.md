@@ -4,7 +4,7 @@ In this instalment we finish our exploration of promises with a look at the two 
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/09/pbs82.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs82.zip).
 
-# Matching Podcast Episode 609
+## Matching Podcast Episode 609
 
 Listen along to this instalment on [episode 609 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/09/ccatp-609/)
 
@@ -16,9 +16,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 The challenge set at the end of the previous instalment was to update the number guessing game we have been working on so it loads its templates from external files using AJAX. Rather than loading the templates in series, they should be loaded in parallel using the `Promise.all()` utility function. The idea is to parallelise the loading of the templates, and then, only when they have all loaded, initialise the game.
 
-You’ll find my sample solution in the `pbs81-challengeSolution` folder in this instalment’s ZIP file. Because we’re using AJAX to load the templates the code won’t work directly from the file system (i.e. with a `file://` URL) you’ll have to run it inside your local web server (MAMP) so it has an `http://` URL.
+You’ll find my sample solution in the `pbs81-challengeSolution` folder in this instalment’s ZIP file. Because we’re using AJAX to load the templates, the code won’t work directly from the file system (i.e. with a `file://` URL). You’ll have to run it inside your local web server (MAMP) so it has an `http://` URL.
 
-Before making any changes my solution stored the template strings in `<script>` tags within `index.html`. Inside the document ready handler the code used jQuery’s `$()` function to read the strings from the `<script>` tags into a global object named `TEMPLATES`:
+Before making any changes, my solution stored the template strings in `<script>` tags within `index.html`. Inside the document ready handler, the code used jQuery’s `$()` function to read the strings from the `<script>` tags into a global object named `TEMPLATES`:
 
 ```javascript
 // get and store the needed templates
@@ -45,9 +45,9 @@ var TEMPLATES = { // Mustache template strings, loaded from script tags by docum
 };
 ```
 
-Note that each template has a name within the `TEMPLATES` object. I decided to make use of this fact to simplify my solution. I created a folder named `view`, and created a file within that folder for each template. I named the files `TEMPLATE_NAME.tpl.txt`, so, the `gameMessage` template will be `./view/gameMessage.tpl.txt`. This is a very common approach, and makes it easier to load templates within a loop of some kind.
+Note that each template has a name within the `TEMPLATES` object. I decided to make use of this fact to simplify my solution. I created a folder named `view`, and created a file within that folder for each template. I named the files `TEMPLATE_NAME.tpl.txt`. So, the `gameMessage` template will be `./view/gameMessage.tpl.txt`. This is a very common approach, and makes it easier to load templates within a loop of some kind.
 
-To load my templates I created a function named `loadTemplates()` which takes one or more template names as arguments, and returns a single promise that will resolve only when all templates are loaded. Note that the promise will reject if any one template fails to load. This function builds an array if promises, one for each template, then creates a final promise unifying them all into a single promise with `Promise.all()`:
+To load my templates I created a function named `loadTemplates()` which takes one or more template names as arguments, and returns a single promise that will resolve only when all templates are loaded. Note that the promise will reject if any one template fails to load. This function builds an array of promises, one for each template, then creates a final promise unifying them all into a single promise with `Promise.all()`:
 
 ```javascript
 function loadTemplates(...templateNames){
@@ -72,7 +72,7 @@ function loadTemplates(...templateNames){
 }
 ```
 
-With this change made it was simply a matter of re-writing the document ready handler so it called this function, then, only when the promise resolved, loaded the interface. This is my updated document ready handler with the new part highlighted:
+With this change made it was simply a matter of rewriting the document ready handler so it called this function, then, only when the promise resolved, loaded the interface. This is my updated document ready handler with the new part highlighted:
 
 ```javascript
 // The Document Ready Handler
@@ -108,7 +108,7 @@ $(function(){
 });
 ```
 
-Note that in order to show an error should the templates fail to load I use the error template. For this reason I chose to hard-code that one template straight into the `TEMPLATES` object:
+Note that, in order to show an error should the templates fail to load, I use the error template. For this reason I chose to hard-code that one template straight into the `TEMPLATES` object:
 
 ```javascript
 var TEMPLATES = { // Mustache template strings, loaded from external files via AJAX by document ready handler
@@ -145,15 +145,15 @@ With blocking I/O each line would happen in order, one after the other, waiting 
 
 This has the advantage that everything happens in a known order, but the disadvantage that everything always happens in series, which is very inefficient and slow. Given a typical web page often contains tens or even hundreds of little elements that need to be fetched from a URL, this would make the web unusably slow, and users understandably cranky!
 
-This is why non-blocking I/O was incorporated into the JavaScript language by making some built-in functions operate _asynchronously_. When JavaScript meets one of these asynchronous built-in functions it starts that function running in the background and immediately moves on to the next line and continues executing the script.
+This is why non-blocking I/O was incorporated into the JavaScript language by making some built-in functions operate _asynchronously_. When JavaScript meets one of these asynchronous built-in functions, it starts that function running in the background and immediately moves on to the next line and continues executing the script.
 
 This asynchronous approach is non-blocking because the second line is not blocked from executing by the first. There is no waiting around, execution continues!
 
-The asynchronous paradigm has the obvious advantage of being more efficient — doing many things at the same times definitely makes pages load faster! But, this efficiency comes at a price!
+The asynchronous paradigm has the obvious advantage of being more efficient — doing many things at the same time definitely makes pages load faster! But, this efficiency comes at a price!
 
-When you’re programming asynchronously you have no guarantee of the order in which things happen, and, you have no way of knowing when an operation will complete. In our above example the 4th line of code can’t run until the operation initiated by the first completes. How can we ensure that in an asynchronous world? JavaScript’s answer to this was callbacks — i.e. asynchronous functions take a reference to a function as an argument, and they execute that function when the operation completes. If the operation produces output, that output gets passed to the callback when it’s executed.
+When you’re programming asynchronously, you have no guarantee of the order in which things happen, and you have no way of knowing when an operation will complete. In our above example, the 4th line of code can’t run until the operation initiated by the first completes. How can we ensure that in an asynchronous world? JavaScript’s answer to this was callbacks — i.e. asynchronous functions take a reference to a function as an argument, and they execute that function when the operation completes. If the operation produces output, that output gets passed to the callback when it’s executed.
 
-To make our pseudo-code example work in an asynchronous world we would need to re-write it something like this:
+To make our pseudo-code example work in an asynchronous world, we would need to rewrite it something like this:
 
 ```
 const rate = fetchExchangeRate('EUR', 'USD', function(rate){ $('#rate_placeholder').text(rate); });
@@ -164,7 +164,7 @@ loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/eur.png');
 
 Voila! Thanks to callbacks, we now have a more efficient world in which the icons can load while the exchange rate is fetched, and the rate will be written into the page the moment it becomes available.
 
-This works fine when there are no inter-dependencies between the I/O operations. But, as we learned in instalment XXX, once you introduce inter-dependencies you soon find yourself in a mess of spaghetti code scathingly referred to as _callback hell_.
+This works fine when there are no interdependencies between the I/O operations. But, as we learned in [instalment 77](https://pbs.bartificer.net/pbs77), once you introduce interdependencies, you soon find yourself in a mess of spaghetti code scathingly referred to as _callback hell_.
 
 As we’ve seen in the previous two instalments, promise chains and promise utility functions like `Promise.all()` allow us a way out of hell by allowing us to write our code in a more human-readable format.
 
@@ -174,21 +174,21 @@ Enter ES 2017 (the update to the JavaScript language published in 2017)! This ve
 
 ## Asynchronous Functions with `async`
 
-Some built-in functions provided by Javascript have always worked in an asynchronous way using callbacks. Until ES2017 we’ve not had the ability to create our own truly asynchronous functions. Well, now we can, but, the functions we can create will behave differently to the original built-in functions which continue to exist.
+Some built-in functions provided by Javascript have always worked in an asynchronous way using callbacks. Until ES2017 we’ve not had the ability to create our own truly asynchronous functions. Well, now we can, but the functions we can create will behave differently to the original built-in functions which continue to exist.
 
-There’s an obvious danger for confusion here between the built-in functions and the ones we’ll be writing. To try minimise confusion I’ll refer to the asynchronous functions we’ll be creating with the `async` keyword as _async functions_.
+There’s an obvious danger for confusion here between the built-in functions and the ones we’ll be writing. To try minimise confusion, I’ll refer to the asynchronous functions we’ll be creating with the `async` keyword as _async functions_.
 
 _**Note:** the example code snippets throughout the remainder of this section are intended to be executed in the JavaScript console on `pbs82a.html` from this instalment’s ZIP file. For the examples in this section the file can be opened directly, but for the worked example in the next section the file will need to be loaded via a local web server (e.g. [MAMP](https://www.mamp.info/))._
 
-With those pre-ambles out of the way, let’s start our exploration of what we’ll refer to as _async functions_.
+With those preambles out of the way, let’s start our exploration of what we’ll refer to as _async functions_.
 
-In ES 2017 and later versions of JavaScript, functions can be explicitly marked for asynchronous execution by pre-fixing their definition with the keyword `async`. When an async function is called it immediately returns a promise for its eventual result. JavaScript automatically creates this promise, and it then executes the function in the background like it would its built-in asynchronous functions.
+In ES 2017 and later versions of JavaScript, functions can be explicitly marked for asynchronous execution by prefixing their definition with the keyword `async`. When an async function is called, it immediately returns a promise for its eventual result. JavaScript automatically creates this promise, and then executes the function in the background like it would its built-in asynchronous functions.
 
 The way I like think of it is that **async functions are automatically promised**.
 
-In practical terms this means that what ever value the async function eventually returns, the automatically generated promise will resolve to that value. Also, should the async function throw an error, the automatically generated promise will reject with that error.
+In practical terms, this means that whatever value the async function eventually returns, the automatically generated promise will resolve to that value. Also, should the async function throw an error, the automatically generated promise will reject with that error.
 
-As we’ve already seen, JavaScript has no problem dealing with a promise that resolves to another promise, so async functions can return promises if that’s convenient or desirable.
+As we’ve already seen, JavaScript has no problem dealing with a promise that resolves to another promise. Async functions can return promises if that’s convenient or desirable.
 
 As I’ve previously mentioned, functions are marked as async functions by prefixing their declaration with the `async` keyword. This works for all forms of function definition, i.e. [function statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function), [function expressions](https://developer.mozilla.org/en-US/docs/web/JavaScript/Reference/Operators/function), and [arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) (AKA _fat arrow functions_).
 
@@ -208,7 +208,7 @@ Next, call this function and save the result in the pre-existing variable named 
 demoOut = square(4);
 ```
 
-If this was a normal function the value of `demoOut` would now be 16, but this is not a normal function, it’s an async function. So, what is the value of `demoOut`? Since async functions are automatically promised, `demoOut` is a promise for the result of executing the function with 4 as the only argument. You can see this for yourself:
+If this was a normal function, the value of `demoOut` would now be 16, but this is not a normal function; it’s an async function. So, what is the value of `demoOut`? Since async functions are automatically promised, `demoOut` is a promise for the result of executing the function with 4 as the only argument. You can see this for yourself:
 
 ```javascript
 console.log(demoOut);
@@ -230,9 +230,9 @@ Finally, the example below creates another simplistic async function using an ar
 quad = async (n)=>{ return n * n * n * n };
 ```
 
-We’ve not used arrow functions very often since learning about them in [instalment 46](https://bartificer.net/pbs46), so you might want to take a moment to refresh your memory.
+We’ve not used arrow functions very often since learning about them in [instalment 46](https://pbs.bartificer.net/pbs46), so you might want to take a moment to refresh your memory.
 
-Since async functions are automatically promised we can directly call `.then()` on the value they return:
+Since async functions are automatically promised, we can directly call `.then()` on the value they return:
 
 ```javascript
 quad(4).then((ans)=>{ console.log(ans) });
@@ -244,12 +244,12 @@ The second promise-related keyword ES 2017 introduced is `await`.
 
 Before we go any further, it’s **vital** to know that **`await` can only be used within async functions**!
 
-If you try use the `await` keyword in the global scope or within a regular function you’ll get an error.
+If you try use the `await` keyword in the global scope or within a regular function, you’ll get an error.
 
 So, what does the `await` keyword do? It does three things:
 
 1.  `await` pauses execution of an async function and waits for a promise to resolve **in a non-blocking way**.
-2.  If the awaited promise resolves, `await` evaluates to the value the promise resolved to. E.g. `await square(4)` evaluates to 16.
+2.  If the awaited promise resolves, `await` evaluates to the value the promise resolved to. For example, `await square(4)` evaluates to 16.
 3.  If the awaited promise rejects, `await` throws the error the promise rejected with.
 
 The way I like to think of it is that **`await` waits for a promise and then unwraps its result**.
@@ -274,11 +274,11 @@ So what’s happening inside the `squareCube()` function when we call it?
 
 First, since we passed 2 as the only argument, within the `squareCube()` function `n` now equals 2.
 
-On the first line we see that a new variable named `ans` will store the value `await` eventually evaluates to. In this case `await` will pause execution of the function until the automatically generated promise of the result of calling the async function `cube()` resolves or rejects. Once the automatically generated promise resolves, `await` will take on the value resolved to and un-pause the execution of `cube()`. This means that the value stored in `ans` is 2 cubed, i.e. 8. The key thing to remember is that `await` both waited and then unwrapped the promise. Although `cube()` returned a promise, `ans` contains the number 8, not a promise for 8.
+On the first line we see that a new variable named `ans` will store the value `await` eventually evaluates to. In this case `await` will pause execution of the function until the automatically generated promise of the result of calling the async function `cube()` resolves or rejects. Once the automatically generated promise resolves, `await` will take on the value resolved to and unpause the execution of `cube()`. This means that the value stored in `ans` is 2 cubed, i.e. 8. The key thing to remember is that `await` both waited and then unwrapped the promise. Although `cube()` returned a promise, `ans` contains the number 8, not a promise for 8.
 
 A very similar things happens on the next line. This time `await` pauses and waits for the promise automatically generated by calling the async function `square()` to resolve. Since `ans` was 8, `await` evaluated to 8 times 8, or 64, and that value was then stored in `ans`, so `ans` became 64.
 
-Note that we just made two inter-dependent asynchronous calls which are non-blocking but written to look like basic synchronous code. We were able to achieve this without any obvious callbacks or promise chains.
+Note that we just made two interdependent asynchronous calls which are non-blocking but written to look like basic synchronous code. We were able to achieve this without any obvious callbacks or promise chains.
 
 When used together, `async` and `await` really do let us eat our cake and have it!
 
@@ -286,11 +286,11 @@ One final but important subtlety to note — while it can only be used within an
 
 ### Example 1 — A Random Number of Random Numbers
 
-Let’s tie everything we’ve learned so far together with a simple example that uses async and await to perform AJAX calls in series and parallel making use of both jQuery’s `$.ajax()` function and the `Promise.all()` utility function.
+Let’s tie everything we’ve learned so far together with a simple example that uses `async` and `await` to perform AJAX calls in series and parallel, making use of both jQuery’s `$.ajax()` function and the `Promise.all()` utility function.
 
-Because this example is a little longer than the previous ones I’ve include it into the source code for `pbs82a.html` as the function `randomNumOfRandomNums()`.
+Because this example is a little longer than the previous ones, I’ve included it in the source code for `pbs82a.html` as the function `randomNumOfRandomNums()`.
 
-This function will use the random number web service running on my personal web server to first fetch a random number between 1 and 5, and then to get that many random numbers between 1 and 100. Note that this is a more real-world example because it contains tasks that need to be executed both in series and parallel. We need to fetch the number of random numbers to fetch before we can fetch the actual random numbers, and then we should fetch all the random numbers in parallel.
+This function will use the random number web service running on my personal web server to first fetch a random number between 1 and 5, and then to get that many random numbers between 1 and 100. Note that this is a more real world example because it contains tasks that need to be executed both in series and parallel. We need to fetch the number of random numbers to fetch before we can fetch the actual random numbers, and then we should fetch all the random numbers in parallel.
 
 Let’s have a look at how the function accomplishes this task.
 
@@ -310,7 +310,7 @@ const ajaxConf = {
 
 Next we need to get our first random number. This will be the number of random numbers we generate and return.
 
-Because this is an async function we can await the promise returned by jQuery’s `$.ajax()` function:
+Because this is an async function, we can await the promise returned by jQuery’s `$.ajax()` function:
 
 ```javascript
 // Get the number of random numbers to fetch
@@ -319,7 +319,7 @@ const numRandNums = await $.ajax(ajaxConf);
 
 Now that we know how many random numbers to generate, we can generate a promise for each using jQuery’s `$.ajax()` function and store them in an array so we can use `Promise.all()` gather all the results together for returning.
 
-Before we create the promises we need to update our config object so it generates random numbers between 1 and 100 (rather than between 1 and 5):
+Before we create the promises, we need to update our config object so it generates random numbers between 1 and 100 (rather than between 1 and 5):
 
 ```javascript
 // update the ajax config to set max val to 100
@@ -385,7 +385,7 @@ async function randomNumOfRandomNums(){
 }
 ```
 
-We can execute this function by pushing the button on the page, or, by entering the following into the console:
+We can execute this function by pushing the button on the page, or by entering the following into the console:
 
 ```javascript
 randomNumOfRandomNums().then((rns)=>{console.log(rns)});
@@ -393,9 +393,9 @@ randomNumOfRandomNums().then((rns)=>{console.log(rns)});
 
 ### Bonus Tip — Async IIFEs
 
-Since `await` can only be used within async functions you might think that you always need to create a named function to make use of it. Most of the time that’s not a problem because it’s what you’d do anyway, but sometimes, particularly when writing a small simple script, it would be convenient not to have to go to that effort.
+Since `await` can only be used within async functions, you might think that you always need to create a named function to make use of it. Most of the time that’s not a problem because it’s what you’d do anyway, but sometimes, particularly when writing a small simple script, it would be convenient not to have to go to that effort.
 
-A handy tip to remember is that since `async` can be used when declaring any function, including anonymous ones, you can create async _‘self-executing functions’_, or IIFEs (**I**mmediately **I**nvoked **F**unction **E**xpressions). Making use of _fat arrow functions_, we can write them very succinctly like so:
+A handy tip to remember is that, since `async` can be used when declaring any function, including anonymous ones, you can create async _‘self-executing functions’_, or IIFEs (**I**mmediately **I**nvoked **F**unction **E**xpressions). Making use of _fat arrow functions_, we can write them very succinctly like so:
 
 ```javascript
 (async ()=>{
@@ -405,15 +405,15 @@ A handy tip to remember is that since `async` can be used when declaring any fun
 
 In this example we call the free web service that reports your IP address which you’ll find at [https://api.ipify.org/](https://api.ipify.org/).
 
-Note the use of the jQuery AJAX short-hand function `$.get(URL)`. This is simply a short-hand for `$.ajax({url: URL, method: 'get'})` ([more details in jQuery docs](https://api.jquery.com/jQuery.get/)).
+Note the use of the jQuery AJAX shorthand function `$.get(URL)`. This is simply a shorthand for `$.ajax({url: URL, method: 'get'})` ([more details in jQuery docs](https://api.jquery.com/jQuery.get/)).
 
 ## A Worked Example
 
-Example 1 in the previous section was quite realistic, but over-simplified for clarity. To avoid cluttering the code it did not do any error handling.
+Example 1 in the previous section was quite realistic, but over-simplified for clarity. To avoid cluttering the code, it did not do any error handling.
 
 One of the nice things about using `async` and `await` is that you can use traditional `try`/`catch` blocks for handling asynchronous errors. I find this much more readable than pairs of success and error callbacks.
 
-As a final worked example, let’s re-implement the function for getting your local weather from [instalment 80](https://bartificer.net/pbs80). In instalment 80 we used promise chains to achieve our ends, this time we’ll use to the `async`/`await` approach.
+As a final worked example, let’s reimplement the function for getting your local weather from [instalment 80](https://pbs.bartificer.net/pbs80). In instalment 80 we used promise chains to achieve our ends. This time we’ll use the `async`/`await` approach.
 
 You’ll find the full function in `pbs82a.html` as `fetchWeather()`.
 
@@ -439,7 +439,7 @@ try{
 }
 ```
 
-Notice we’re using `await` to wait for and automatically unwrap the promise returned by jQuery’s `$.ajax()` function. Because `await` converts rejected promises to thrown errors we can use a traditional `try`/`catch` block for our error handling. This makes it easy to tell the difference between regular code and error handling code at a glance.
+Notice we’re using `await` to wait for and automatically unwrap the promise returned by jQuery’s `$.ajax()` function. Because `await` converts rejected promises to thrown errors, we can use a traditional `try`/`catch` block for our error handling. This makes it easy to tell the difference between regular code and error handling code at a glance.
 
 Now that we know where we are, we can fetch the weather using a similar AJAX request:
 
@@ -517,6 +517,6 @@ Using either your solution to the previous challenge or mine, update the code so
 
 ## Final Thoughts
 
-This instalment wraps up our exploration of the concept of promises. We are now armed with the skills to write human-friendly asynchronous code in JavaScript, and that’s extremely important in modern JavaScript. With my work hat on I write server-side JavaScript code and JavaScrip command line apps, and in both cases it’s all about promises!
+This instalment wraps up our exploration of the concept of promises. We are now armed with the skills to write human-friendly asynchronous code in JavaScript, and that’s extremely important in modern JavaScript. With my work hat on, I write server-side JavaScript code and JavaScrip command line apps, and in both cases it’s all about promises!
 
 In the next instalment we’ll loop back to Bootstrap to wrap up a few loose ends, but we’re almost finished our exploration of that topic too. After that we’ll take an instalment or two to catch up with some new features recently added to JavaScript, focusing on classes in particular.

@@ -1,12 +1,12 @@
 # PBS 84 of X — Objects as Dictionaries in JavaScript (Redux & Update)
 
-As we near the end of our initial exploration of client-side web technologies I want to re-visit some key JavaScript features so cement what we already know, and add some new features brought to the language in more recent releases of the ECMA standard that underpins JavaScript.
+As we near the end of our initial exploration of client-side web technologies, I want to revisit some key JavaScript features to cement what we already know, and add some new features brought to the language in more recent releases of the ECMA standard that underpins JavaScript.
 
-Since objects are so ubiquitous in JavaScript I want to start there, and I want to start with their most fundamental use, as so-called _dictionaries_.
+Since objects are so ubiquitous in JavaScript, I want to start there, and I want to start with their most fundamental use, as so-called _dictionaries_.
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs84.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs84.zip).
 
-# Matching Podcast Episode 611
+## Matching Podcast Episode 611
 
 Listen along to this instalment on [episode 611 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/10/ccatp-611/)
 
@@ -18,21 +18,21 @@ You can enter all the examples on this page into the JavaScript console in the f
 
 ## Dictionaries in JavaScript
 
-_Dictionary_ is not a JavaScript keyword, and dictionaries are not formally defined in the JavaScript specification — it’s a _term-of-art_ used by programmers to describe a very common type of data structure that’s supported in just about every language. Programmers use many synonyms for the same concept, so you might also see dictionaries referred to as _hash tables_, _hashes_, or _associative arrays_.
+_Dictionary_ is not a JavaScript keyword, and dictionaries are not formally defined in the JavaScript specification — it’s a _term-of-art_ used by programmers to describe a very common type of data structure that’s supported in just about every language. Programmers use many synonyms for the same concept. You might also see dictionaries referred to as _hash tables_, _hashes_, or _associative arrays_.
 
 A dictionary is a collection of name-value pairs, also referred to as key-value pairs. A traditional dictionary contains word definitions indexed by words. The definitions are the values, and the words are the names/keys.
 
-Name-value pairs are often referred to as _properties_, so you may also see the names/keys referred to as _property names_.
+Name-value pairs are often referred to as _properties_. So you may also see the names/keys referred to as _property names_.
 
-In JavaScript we use basic objects as dictionaries. To be extremely specific, we use objects with the prototype `Object`. Because Javascript uses objects for just about everything, programmers have come up with all sorts of words and phrases for describing basic objects used as dictionaries including _plain objects_, _un-prototyped objects_, and even POJOs (an acronym for _**p**lain **o**ld **J**avaScript **o**bjects_).
+In JavaScript we use basic objects as dictionaries. To be extremely specific, we use objects with the prototype `Object`. Because Javascript uses objects for just about everything, programmers have come up with all sorts of words and phrases for describing basic objects used as dictionaries including _plain objects_, _unprototyped objects_, and even POJOs (an acronym for _**p**lain **o**ld **J**avaScript **o**bjects_).
 
 **The official Javascript documentation and built-in JavaScript function names refer to name-value pairs as _properties_, and the names as _property names_ and _keys_.**
 
 ### Creating Dictionaries with Object Literals (Redux)
 
-The simplest way to create an object is using so-called object literals. These consist of comma-separated name-value pairs where the names and values are separated by a colon character. If the name contains characters that can’t be used in variable names it must be quoted, and the value can be any valid JavaScript value, including named variables.
+The simplest way to create an object is using so-called object literals. These consist of comma-separated name-value pairs where the names and values are separated by a colon character. If the name contains characters that can’t be used in variable names, it must be quoted. The value can be any valid JavaScript value, including named variables.
 
-That sounds complicated, but let’s look at the declaration of a dictionary storing profits per day as a collection of name-value pairs where the names are abbreviations of the days of the week, and each value a number of Euro as a floating-point number. You’ll find this declaration in `pbs84a.html`:
+That sounds complicated, but let’s look at the declaration of a dictionary storing profits per day as a collection of name-value pairs where the names are abbreviations of the days of the week, and each value a number of Euro as a floating point number. You’ll find this declaration in `pbs84a.html`:
 
 ```javascript
 const dailyProfits = {
@@ -50,7 +50,7 @@ const dailyProfits = {
 
 JavaScript supports two distinct syntaxes for accessing a specific value within a dictionary.
 
-The simplest syntax to read uses the period to decent into an object. I.e. the value for a given key can be addressed as `object.key`. For example, the profits for Wednesday in the example object above are `dailyProfits.wed`. Can use this notation to access the value like we can any variable, and, we can use it to alter the value, e.g.:
+The simplest syntax to read uses the period to descend into an object. That is, the value for a given key can be addressed as `object.key`. For example, the profits for Wednesday in the example object above are `dailyProfits.wed`. We can use this notation to access the value as we can any variable, and we can use it to alter the value, e.g.:
 
 ```javascript
 // access a value within a dictionary
@@ -63,9 +63,9 @@ dailyProfits.wed = 135.32;
 console.log(`Wednesday's profits are now €${dailyProfits.wed}`);
 ```
 
-This syntax can only be used when you know the exact name of the key you wish to access, and, when the key does not contain any characters that can’t be used in variable names.
+This syntax can only be used when you know the exact name of the key you wish to access and when the key does not contain any characters that can’t be used in variable names.
 
-When our keys contain characters that can’t be used in variable names, or, when we want to use the value of another variable as the key, we need the more advanced square bracket syntax. Here we surround the value to be used as the key with square brackets and place them directly after the object name, i.e. `object[key]`. We can re-write our dot-syntax example above as:
+When our keys contain characters that can’t be used in variable names, or when we want to use the value of another variable as the key, we need the more advanced square bracket syntax. Here we surround the value to be used as the key with square brackets and place them directly after the object name, i.e. `object[key]`. We can rewrite our dot-syntax example above as:
 
 ```javascript
 // access a value within a dictionary
@@ -78,9 +78,9 @@ dailyProfits['wed'] = 138.38;
 console.log(`Wednesday's profits are now €${dailyProfits['wed']}`);
 ```
 
-Notice that the key is a string. If we left out the quotation marks JavaScript would treat `wed` as a variable name, and try use that variable’s value as the key. This is something you often want to do intentionally, especially within loops.
+Notice that the key is a string. If we left out the quotation marks JavaScript would treat `wed` as a variable name and try use that variable’s value as the key. This is something you often want to do intentionally, especially within loops.
 
-If your code often encodes data in dictionaries indexed by week day you would probably store the weekdays in an array and then use that array to loop over your keys. Below is the definition of the days array in the file `pbs84a.html`:
+If your code often encodes data in dictionaries indexed by weekday, you would probably store the weekdays in an array and then use that array to loop over your keys. Below is the definition of the days array in the file `pbs84a.html`:
 
 ```javascript
 const dayAbbrs = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
@@ -94,11 +94,11 @@ for(const d of dayAbbrs){
 }
 ```
 
-Note that `d` is not the string `'d'`, but a variable named `d` (not quoted). The first time through the loop `d` will have the value `'mon'`, so `dailyProfits[d]` will be interpreted as `dailyProfits['mon']`. The second time through the loop `d` will have the value `'tue'`, so `dailyProfits[d]` will be interpreted as `dailyProfits['tue']`, and so on.
+Note that `d` is not the string `'d'`, but a variable named `d` (not quoted). The first time through the loop, `d` will have the value `'mon'`. `dailyProfits[d]` will be interpreted as `dailyProfits['mon']`. The second time through the loop, `d` will have the value `'tue'`. `dailyProfits[d]` will be interpreted as `dailyProfits['tue']`, and so on.
 
 ### Nested Dictionaries (Redux)
 
-The value for a given key within a dictionary can itself be a dictionary (i.e. an object), and programmers refer to this kind of recursive structure as being _nested_.
+The value for a given key within a dictionary can itself be a dictionary (i.e. an object). Programmers refer to this kind of recursive structure as being _nested_.
 
 Object literals, the dot syntax, and the square bracket syntax all support nesting.
 
@@ -150,7 +150,7 @@ console.log(`dailySales['mon'].profit evaluates to: ${dailySales['mon'].profit}`
 console.log(`dailySales.mon['profit'] evaluates to: ${dailySales.mon['profit']}`);
 ```
 
-To facilitate more human-friendly outputs, `pbs84a.html` defines a better version of the array of day abbreviations. This array stores a list of dictionaries, one for each day of the week. Each of those dictionaries defines two keys, `name`, and `abbr`. The values for the `name` key are the human-friendly names of the days, and the values for the `abbr` key are the abbreviations:
+To facilitate more human-friendly outputs, `pbs84a.html` defines a better version of the array of day abbreviations. This array stores a list of dictionaries, one for each day of the week. Each of those dictionaries defines two keys: `name` and `abbr`. The values for the `name` key are the human-friendly names of the days and the values for the `abbr` key are the abbreviations:
 
 ```javascript
 const days = [
@@ -207,7 +207,7 @@ const osPrefs1 = {
 console.log(osPrefs1);
 ```
 
-Notice the annoying duplication of `bob` and `alice`. Why is this? To the left of the `:` these are key names, to the right, values. Since the variable containing the desired value has the same name as the desired key, we get duplication.
+Notice the annoying duplication of `bob` and `alice`. Why is this? To the left of the `:` these are key names; to the right, they are values. Since the variable containing the desired value has the same name as the desired key, we get duplication.
 
 Since ES 6 we can remove this duplication like so:
 
@@ -224,9 +224,9 @@ Notice that the properties are still comma-separated, but there’s no `:` in th
 
 ## The Spread Operator within Dictionaries
 
-ECMAScript 2018 brought along another nice new pice of object-related syntax — the ability to merge all the properties from an existing dictionary into a new one by adding support for the spread operator (`...`) to object literals.
+ECMAScript 2018 brought along another nice new piece of object-related syntax — the ability to merge all the properties from an existing dictionary into a new one by adding support for the spread operator (`...`) to object literals.
 
-To incorporate all the key-value pairs from an existing dictionary into a new dictionary simply pre-fix the name of the existing dictionary with `...` within an object literal. As an example, imagine we have an existing object that defines the OS preferences of all the men in the office, and we want to create a new object that includes all the men’s preference and those of the women in the office, we can do that with the spread operator:
+To incorporate all the key-value pairs from an existing dictionary into a new dictionary, simply prefix the name of the existing dictionary with `...` within an object literal. As an example, imagine we have an existing object that defines the OS preferences of all the men in the office. We want to create a new object that includes all the men’s preference and those of the women in the office. We can do that with the spread operator:
 
 ```javascript
 const menOSPrefs = {
@@ -254,11 +254,11 @@ _Object destructuring_ is a fancy term for a new syntax that allows you to reach
 
 In general you’ll recognise object destructuring because the syntax looks like an object literal on the left side of an assignment operator (`=`) instead of the right.
 
-Object destructuring is much more difficult to describe than to demonstrate, so let’s just move straight to a practical illustration of the most common use-case!
+Object destructuring is much more difficult to describe than to demonstrate. So let’s just move straight to a practical illustration of the most common use-case!
 
 ### Converting Dictionary Entries to Variables
 
-For these examples we’ll be using the dictionary userOSPerfs defined in the file pbs84a.html:
+For these examples, we’ll be using the dictionary `userOSPerfs` defined in the file `pbs84a.html`:
 
 ```javascript
 const userOSPrefs = {
@@ -268,7 +268,7 @@ const userOSPrefs = {
 };
 ```
 
-Note that because we’ll be declaring variables over and over again, you’ll need to refresh the page between examples to avoid errors caused by re-declaring the same variable.
+Note that, because we’ll be declaring variables over and over again, you’ll need to refresh the page between examples to avoid errors caused by redeclaring the same variable.
 
 Given the above dictionary, we can use object destructuring to create a variable named `bob` from the `bob` key like so:
 
@@ -291,9 +291,9 @@ This will create a variable named `alice` with the value `'macOS'` and a variabl
 
 ### Gathering the ‘Rest’
 
-The spread operator can be used within the object destructuring syntax to create a new dictionary with the name of your choice that contains all entries not already destructured into another variable. In other words, we can gather up the left overs into a new dictionary!
+The spread operator can be used within the object destructuring syntax to create a new dictionary with the name of your choice that contains all entries not already destructured into another variable. In other words, we can gather up the leftovers into a new dictionary!
 
-Again, using our above example dictionary `userOSPrefs` we can extract Bob’s record into a variable named `bob`, and everyone else into a new dictionary named `notBob` like so:
+Again, using our above example dictionary `userOSPrefs`, we can extract Bob’s record into a variable named `bob`, and everyone else into a new dictionary named `notBob` like so:
 
 ```javascript
 const {bob, ...notBob} = userOSPrefs;
@@ -335,7 +335,7 @@ console.log(`Robert evaluates to: ${Robert}`);
 console.log(`Thomas evaluates to: ${Thomas}`);
 ```
 
-Since `bob` exists in the `userOSPrefs` dictionary with the value `'Linux'`, the variable `Robert` will have the value `'Linux'`, but since `tom` does not exist in the dictionary the variable `Thomas` will have the specified default value of `'macOS'`.
+Since `bob` exists in the `userOSPrefs` dictionary with the value `'Linux'`, the variable `Robert` will have the value `'Linux'`, but since `tom` does not exist in the dictionary, the variable `Thomas` will have the specified default value of `'macOS'`.
 
 ### Destructuring into Existing Variables
 
@@ -343,7 +343,7 @@ So far all our examples have involved destructuring a dictionary into a newly cr
 
 It is possible to use destructuring to assign new values to existing variables, but there’s a catch, and it’s one that’s very likely to catch you out!
 
-Curly braces already have a meaning when not pre-fixed by a keyword like `const`, `let`, or `var` — they indicate a code block. If you try use the destructuring syntax as we’ve seen it thus far without a `const`, `let`, or `var`, you’ll get a syntax error. JavaScript will interpret the curly braces as a code block and try to read the destructuring syntax as a regular JavaScript statement, and conclude that it’s garbage! The way around this is very simple — just wrap the entire assignment in round brackets!
+Curly braces already have a meaning when not prefixed by a keyword like `const`, `let`, or `var` — they indicate a code block. If you try to use the destructuring syntax as we’ve seen it thus far without a `const`, `let`, or `var`, you’ll get a syntax error. JavaScript will interpret the curly braces as a code block and try to read the destructuring syntax as a regular JavaScript statement, and conclude that it’s garbage! The way around this is very simple — just wrap the entire assignment in round brackets!
 
 ```javascript
 let alice = 'OS/2 Warp';

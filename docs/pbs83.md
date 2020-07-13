@@ -1,12 +1,12 @@
 # PBS 83 of X — Bootstrap Cards
 
-In this instalment we’ll finish our first exploration of Bootstrap 4 with a look at one its most versatile components, the so-called _Card_. This is one of those components that’s so generic it’s hard to describe, but once you learn about it you’ll start seeing it all over the web. Cards really are ubiquitous!
+In this instalment we’ll finish our first exploration of Bootstrap 4 with a look at one its most versatile components, the so-called _Card_. This is one of those components that’s so generic it’s hard to describe, but once you learn about it, you’ll start seeing it all over the web. Cards really are ubiquitous!
 
-It’s important to stress that while we’re wrapping up our exploration of Bootstrap 4 with this instalment, that does not mean we’ve come close to covering every feature this impressive library offers. Instead, the aim was to cover the big-picture items, and leave you with enough experience to be able to learn the rest independently by reading [Bootstrap’s excellent documentation](https://getbootstrap.com/docs/).
+It’s important to stress that, while we’re wrapping up our exploration of Bootstrap 4 with this instalment, that does not mean we’ve come close to covering every feature this impressive library offers. Instead, the aim was to cover the big-picture items, and leave you with enough experience to be able to learn the rest independently by reading [Bootstrap’s excellent documentation](https://getbootstrap.com/docs/).
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/10/pbs83.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs83.zip).
 
-# Matching Podcast Episode 610
+## Matching Podcast Episode 610
 
 Listen along to this instalment on [episode 610 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/10/ccatp-610/)
 
@@ -56,9 +56,9 @@ loadTemplates('gameMessage', 'guesses', 'guessPopover', 'gameWon', 'gameGrid', '
 );
 ```
 
-Notice the standard promise handling — passing `.then()` two callbacks, the first to execute when all goes well, and the second when there is an error. Note that without the comments at the top of each callback it would not be at all obvious which part of that code is dealing with success, and which is doing the error handling, it’s just two anonymous functions as callbacks.
+Notice the standard promise handling — passing `.then()` to callbacks, the first to execute when all goes well, and the second when there is an error. Note that, without the comments at the top of each callback, it would not be at all obvious which part of that code is dealing with success and which is doing the error handling. It’s just two anonymous functions as callbacks.
 
-Let’s go ahead and re-factor the code to use `await` instead:
+Let’s go ahead and refactor the code to use `await` instead:
 
 ```javascript
 // load the templates
@@ -77,11 +77,11 @@ resetGame();
 
 Notice how much clearer it is which parts of the code are dealing with regular successful execution, and which parts are dealing with error handling.
 
-Finally, for completeness, and as a nice example of one possible use for self-executing anonymous async functions, or async IIFEs (async immediately invoked function expressions), I also updated my `resetGame()` function to make use of the await keyword.
+Finally, for completeness, and as a nice example of one possible use for self-executing anonymous async functions, or async IIFEs (async **I**mmediately **I**nvoked **F**unction **E**xpressions), I also updated my `resetGame()` function to make use of the `await` keyword.
 
-As a reminder, this function fetches a random number from a web service using AJAX, then either starts the game, or, renders an error. The function does not return anything, and deals with all potential errors internally. We don’t want to alter the functions behaviour from the point of view of the rest of our code, so when we’re done making changes it must still not return anything, and must still deal with all its errors internally. This means we can’t mark the function as async, because then it will return a promise, and all code that calls the function will need to be updated to deal with potential promise rejections. Remember, good code handles all potential promise rejections!
+As a reminder, this function fetches a random number from a web service using AJAX, then either starts the game or renders an error. The function does not return anything, and deals with all potential errors internally. We don’t want to alter the functions behaviour from the point of view of the rest of our code. So when we’re done making changes, it must still not return anything, and must still deal with all its errors internally. This means we can’t mark the function as async, because then it will return a promise, and all code that calls the function will need to be updated to deal with potential promise rejections. Remember, good code handles all potential promise rejections!
 
-So, rather than marking the entire function as async, we just want to make part of the function’s contents run asynchronously. This can be easily achieves with an async IIFE. This is what the function looks like before we refactor it:
+So, rather than marking the entire function as async, we just want to make part of the function’s contents run asynchronously. This can be easily achieved with an async IIFE. This is what the function looks like before we refactor it:
 
 ```javascript
 function resetGame(){
@@ -189,13 +189,13 @@ You’ll find the full code to my solution in the folder `pbs82-challengeSolutio
 
 ## Bootstrap Cards
 
-The single most versatile Bootstrap component is the so-called _Card_. If you need to present a small snippet of information, perhaps one of many, perhaps not, the chances are you can get what you want from the Card component. Cards support a very wide variety of optional components that can be combined in a near infinity of combinations. This makes cards very powerful, but a little daunting to try explain 🙂
+The single most versatile Bootstrap component is the so-called _Card_. If you need to present a small snippet of information, perhaps one of many, perhaps not, the chances are you can get what you want from the Card component. Cards support a very wide variety of optional components that can be combined in a near infinity of combinations. This makes cards very powerful, but a little daunting to try to explain 🙂
 
-Note that as usual, we’ll be covering the highlights, not exploring every possible feature, so you can find out more in [the relevant section of the Bootstrap documentation](https://getbootstrap.com/docs/4.3/components/card/).
+Note that as usual, we’ll be covering the highlights, not exploring every possible feature. So you can find out more in [the relevant section of the Bootstrap documentation](https://getbootstrap.com/docs/4.3/components/card/).
 
 Let’s start with the few things all cards have in common — all cards are contained within a tag with the class `.card`. Any tag can be used for cards, but the tag you’ll see used most often is `<div>`. Unless you use a Bootstrap utility class or additional CSS to alter the behaviour, Cards always expand to fill the available width. You’ll commonly find Cards used within flex boxes or within `.col`s in the Bootstrap grid.
 
-At the top level cards can contain the following (all of which are optional):
+At the top level, cards can contain the following (all of which are optional):
 
 *   A header with `.card-header`.
 *   A footer with `.card-footer`.
@@ -217,7 +217,7 @@ Finally, note that the standard Bootstrap utility classes can be used with Cards
 
 ### Kitchen Sink Example 1 — Everything but Image Caps
 
-The easiest way to illustrate Cards in use is with an example. As a first example, let’s create a Card that has everything but image caps. That is to say, a Card with a header, a regular Card image (not an image cap), a Card body, a Card list, and a Card footer. The Card body will contain a Card title, a Card sub-title, some regular Card text, and a Card link.
+The easiest way to illustrate Cards in use is with an example. As a first example, let’s create a Card that has everything but image caps. That is to say, a Card with a header, a regular Card image (not an image cap), a Card body, a Card list, and a Card footer. The Card body will contain a Card title, a Card subtitle, some regular Card text, and a Card link.
 
 ```html
 <!-- The Card -->
@@ -262,7 +262,7 @@ This produces a card that looks like this:
 
 ### Kitchen Sink Example 2 — Everything but Header & Footer
 
-Since a Card can have either a header, or, an image cap on top, and, either a footer or an image cap on the bottom, let’s look at a sample card that replaces the header and footer with a pair of image caps.
+Since a Card can have either a header, or an image cap on top, and either a footer or an image cap on the bottom, let’s look at a sample card that replaces the header and footer with a pair of image caps.
 
 ```html
 <!-- The Card -->
@@ -299,29 +299,29 @@ Since a Card can have either a header, or, an image cap on top, and, either a fo
 </div>
 ```
 
-Notice that rather confusingly, both the top and bottom image caps have the class `.card-img-top`.
+Notice that, rather confusingly, both the top and bottom image caps have the class `.card-img-top`.
 
 The code above produces a Card that looks like this:
 
 ![Kitchen Sink Card Example 2](../assets/pbs83/Screenshot-2019-10-04-at-00.19.19.png)
 
-## Collections of Card
+## Collections of Cards
 
-Cards can be used individually, perhaps to call out a piece of information that is separate form the remainder of the page, but more often than not, you’ll use a collection of cards to display multiple chunks of information of a similar type.
+Cards can be used individually, perhaps to call out a piece of information that is separate from the remainder of the page. More often than not, you’ll use a collection of cards to display multiple chunks of information of a similar type.
 
 **You can use the standard Bootstrap grid to lay out your Cards** by simply adding a single Card per `.col` within your grid.
 
 However, you can get more fancy than that — Bootstrap provides two special containers for Cards, [Card Groups](https://getbootstrap.com/docs/4.3/components/card/#card-groups), and [Card Decks](https://getbootstrap.com/docs/4.3/components/card/#card-decks).
 
-There is a third layout provided, [Card Columns](https://getbootstrap.com/docs/4.3/components/card/#card-decks), but the docs warn that this feature is still quite immature, and is not as reliable as it could be, so we’ll be ignoring them in this series, at least for now.
+There is a third layout provided, [Card Columns](https://getbootstrap.com/docs/4.3/components/card/#card-decks), but the docs warn that this feature is still quite immature, and is not as reliable as it could be. We’ll be ignoring them in this series, at least for now.
 
 ### Card Groups & Card Decks
 
 Card Groups and Card Decks are extremely similar — both will ensure that the headers and footers in each card within them line up horizontally, and both will keep the cards at an equal width as they stretch and shrink.
 
-The only noticeable difference is that in a Card Group the Cards touch each other like buttons in a [Button Group](https://getbootstrap.com/docs/4.3/components/button-group/), but in a deck each card is separate and there is some empty space between the Cards.
+The only noticeable difference is that, in a Card Group, the Cards touch each other like buttons in a [Button Group](https://getbootstrap.com/docs/4.3/components/button-group/), but in a deck, each Card is separate and there is some empty space between the Cards.
 
-Let’s start with a sample card group consisting of three cards representing some podcasts you might have heard of 😉. You’ll find the full code in the file pbs83a.html in the ZIP file, but the snippet below shows the overall structure of the Card Group:
+Let’s start with a sample card group consisting of three cards representing some podcasts you might have heard of 😉. You’ll find the full code in the file `pbs83a.html` in the ZIP file, but the snippet below shows the overall structure of the Card Group:
 
 ```html
 <div class="card-group">
@@ -334,23 +334,23 @@ Let’s start with a sample card group consisting of three cards representing so
 </div>
 ```
 
-In this case each Card is a little simpler than the kitchen sink examples above. Each Card consists of an image cap, and a Card body containing just a Card title, some regular Card text & a Card link.
+In this case, each Card is a little simpler than the kitchen sink examples above. Each Card consists of an image cap and a Card body containing just a Card title, some regular Card text, and a Card link.
 
 This produces a Card Group that looks like this:
 
 ![Card Group Example](../assets/pbs83/Screenshot-2019-10-04-at-00.33.07.png)
 
-We can convert this card group into a card deck by simply changing `card-group` to `card-deck`. When we do that we get a Card Deck that looks like this:
+We can convert this card group into a card deck by simply changing `card-group` to `card-deck`. When we do that, we get a Card Deck that looks like this:
 
 ![Card Deck Example](../assets/pbs83/Screenshot-2019-10-04-at-00.35.26.png)
 
 ## A Challenge
 
-This challenge aims to draw together many of the topics we’ve recently covered into a single real-world example.
+This challenge aims to draw together many of the topics we’ve recently covered into a single real world example.
 
 The website [exchangeratesapi.io](https://exchangeratesapi.io/) makes a list of currency exchange rates published by the European Central Bank (ECB) available via a JSON web service.
 
-When you send a GET request to the URL `https://api.exchangeratesapi.io/latest` you’ll get back a JSON string representing the current exchange rates between the Euro and a number of major world currencies. Here’s a sample of the kind of data the web service returns:
+When you send a GET request to the URL `https://api.exchangeratesapi.io/latest`, you’ll get back a JSON string representing the current exchange rates between the Euro and a number of major world currencies. Here’s a sample of the kind of data the web service returns:
 
 ```javascript
 {
@@ -395,14 +395,14 @@ When you send a GET request to the URL `https://api.exchangeratesapi.io/latest` 
 
 The currencies are all represented using their [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes. You’ll find [a full list of all codes here](https://www.xe.com/de/iso4217.php).
 
-Although the web service defaults to showing rates relative to the Euro (`base = "EUR"`), it can show the rates relative to any supported currency by passing the three letter code for the desired currency as an HTTP query parameter named base, e.g., the URL `https://api.exchangeratesapi.io/latest?base=USD` gives the rates relative to the US dollar.
+Although the web service defaults to showing rates relative to the Euro (`base = "EUR"`), it can show the rates relative to any supported currency by passing the three letter code for the desired currency as an HTTP query parameter named `base`. For example, the URL `https://api.exchangeratesapi.io/latest?base=USD` gives the rates relative to the US dollar.
 
 Using this web service, create a collection of Cards showing the exchange rate relative to a collection of currencies of your choosing against another collection of currencies of your choosing. You should show at least three cards, and each card should show at least 5 rates.
 
-You should use a Mustache template to build your cards, and that template as well as the currency information should be fetched using AJAX.
+You should use a Mustache template to build your cards. That template, as well as the currency information, should be fetched using AJAX.
 
 ## Final Thoughts
 
-We’ve now finished our exploration of Bootstrap 4. We’ve not covered even nearly everything, but we have looked at a broad range of the highlights. We’ve learned that Bootstrap can be conceptually divided into four aspects — layout, styling of existing HTML elements, custom components, and utilities. We’ve explored a representative sample of each of these aspects, and have hopefully I’ve imparted enough knowledge to empower you to research the rest independently as and when needed.
+We’ve now finished our exploration of Bootstrap 4. We’ve not covered even nearly everything, but we have looked at a broad range of the highlights. We’ve learned that Bootstrap can be conceptually divided into four aspects — layout, styling of existing HTML elements, custom components, and utilities. We’ve explored a representative sample of each of these aspects. We have hopefully imparted enough knowledge to empower you to research the rest independently as and when needed.
 
-The next thing we need to do is circle back to some recent enhancements to the core JavaScript language. That will then end our first pass at JavaScript, leaving us ready to embark on an entire new chapter within this ever expanding series.
+The next thing we need to do is circle back to some recent enhancements to the core JavaScript language. That will end our first pass at JavaScript, leaving us ready to embark on an entire new chapter within this ever-expanding series.

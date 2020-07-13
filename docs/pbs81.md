@@ -1,12 +1,12 @@
 # PBS 81 of X — The JavaScript Promise Utilities
 
-So far in our exploration of promises we’ve learned the core concept — a promise is an object that represents the status and/or result of an asynchronous task. Asynchronous tasks are inherently parallel, but we’ve learned how to use `.then()` and `.catch()` to create so-called _promise chains_, allowing promises to be executed in series. What we’ve not looked at yet is JavaScript’s native `Promise` class. This class is primarily used to create promises, but it also provides some useful utility functions. For now at least, we’re focusing on using promises rather than creating them, so we won’t be digging into how the `Promise` class’s contractor works. However, some of the utility functions are designed to help developers use promises in more powerful ways, so those will be our focus for this instalment. The most powerful of these utilities is `Promise.all()`, a function that allows us to create promise chains that perform some tasks in series, and others in parallel, allowing us to efficiently manage our asynchronous tasks.
+So far in our exploration of promises we’ve learned the core concept — a promise is an object that represents the status and/or result of an asynchronous task. Asynchronous tasks are inherently parallel, but we’ve learned how to use `.then()` and `.catch()` to create so-called _promise chains_, allowing promises to be executed in series. What we’ve not looked at yet is JavaScript’s native `Promise` class. This class is primarily used to create promises, but it also provides some useful utility functions. For now at least, we’re focusing on using promises rather than creating them; so we won’t be digging into how the `Promise` class’s contractor works. However, some of the utility functions are designed to help developers use promises in more powerful ways. Those will be our focus for this instalment. The most powerful of these utilities is `Promise.all()`, a function that allows us to create promise chains that perform some tasks in series, and others in parallel, allowing us to efficiently manage our asynchronous tasks.
 
 You can [download this instalment’s ZIP file here](https://www.bartbusschots.ie/s/wp-content/uploads/2019/07/pbs81.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs81.zip).
 
-# Matching Podcast Episode 597
+## Matching Podcast Episode 602
 
-Listen along to this instalment on [episode 597 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/06/ccatp-597/)
+Listen along to this instalment on [episode 602 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/07/ccatp-602/)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2019_07_12.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -14,11 +14,11 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 80 Challenge Solution
 
-The challenge set at the end of [the previous instalment](https://bartificer.net/pbs80) was to update either your number guessing game or mine so it uses a promise to fetch the random number, and, so it uses at least two Mustache templates.
+The challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs80) was to update either your number guessing game or mine so it uses a promise to fetch the random number, and so it uses at least two Mustache templates.
 
-My sample solution already used Mustache templates, so I didn’t have to make any changes at all for the second part of the challenge 🙂
+My sample solution already used Mustache templates. So I didn’t have to make any changes at all for the second part of the challenge 🙂
 
-The only change I needed to make was to alter the AJAX request for a random number so it used promises rather than the `success` and `error` callbacks. In my code this functionality was all contained within the function `resetGame()`. Before I started my alterations the basic structure of that function could be summarised with the following pseudo-code:
+The only change I needed to make was to alter the AJAX request for a random number so it used promises rather than the `success` and `error` callbacks. In my code this functionality was all contained within the function `resetGame()`. Before I started my alterations, the basic structure of that function could be summarised with the following pseudo-code:
 
 ```javascript
 function resetGame(){
@@ -60,7 +60,7 @@ Notice that the return value from `$.ajax()` is being ignored, that the successf
 
 The return value from `$.ajax()` is a promise, so we should not ignore it!
 
-The first step is to make use of that value, for now, let’s store it in a sensibly named variable:
+The first step is to make use of that value. For now, let’s store it in a sensibly named variable:
 
 ```javascript
 const randNumPromise = $.ajax({
@@ -81,7 +81,7 @@ randNumPromise.then(
 );
 ```
 
-There is of course no need to do this as two separate statements, we can collapse this into a single statement of the form:
+Of course there is no need to do this as two separate statements. We can collapse this into a single statement of the form:
 
 ```javascript
 $.ajax({
@@ -96,7 +96,7 @@ $.ajax({
 );
 ```
 
-With that done the `success` and `error` callbacks need to be removed from the options passed to `$.ajax()`.
+With that done, the `success` and `error` callbacks need to be removed from the options passed to `$.ajax()`.
 
 Putting it all together, my finished `resetGame()` function looks like this:
 
@@ -163,29 +163,31 @@ There are not many of these functions, but they’re extremely useful, particula
 
 There are times when it’s convenient to instantly create a resolved or rejected promise for a given piece of data or error. Perhaps an API requires a promise as an argument, and you already have the data you need to promise, or perhaps you want to start a promise chain with a default state. The `Promise` class provides the two functions we need to achieve this:
 
-`Promise.resolved(val)`
+<dl>
+<dt><code>Promise.resolved(val)</code></dt>
 
-This function returns a native JavaScript promise that has resolved to `val` (i.e. to what ever was passed as the fist argument). E.g. `Promise.resolved('boogers')` will return a `Promise` that has already resolved to the string `'boogers'`.
+<dd>This function returns a native JavaScript promise that has resolved to <code>val</code> (i.e. to whatever was passed as the first argument). For example, <code>Promise.resolved('boogers')</code> will return a <code>Promise</code> that has already resolved to the string <code>'boogers'</code>.</dd>
 
-`Promise.rejected(err)`
+<dt><code>Promise.rejected(err)</code></dt>
 
-This function returns a native JavaScript promise that has rejected with the error `err` (i.e. what ever was passed as the first argument).
+<dd>This function returns a native JavaScript promise that has rejected with the error <code>err</code> (i.e. whatever was passed as the first argument).</dd>
+</dl>
 
 ## Controlling Parallelisation
 
 Note that you’ll find all the examples for this section in the file `pbs81a.html` in this instalment’s ZIP file. You’ll need to open this file in a browser to see the demos in action.
 
-When you open this file you’ll find two columns, one with buttons for launching each demo, and one with an output area where the demos will write their output using the utility function `outputMessage()` which is defined within the file.
+When you open this file, you’ll find two columns, one with buttons for launching each demo, and one with an output area where the demos will write their output using the utility function `outputMessage()` which is defined within the file.
 
 The file also defines a utility function named `randomPromise()` which returns a promise that always resolves, but does so in a random amount of time (between 1 and 10 seconds). The promises this function creates resolve to the number of seconds they randomly hung around before resolving.
 
 ### Promises Execute Fully in Parallel by Default
 
-Before going any further it’s important to remind ourselves that the only reason we’re using promises is to make our asynchronous code easier to manage, and the only reason we’re using asynchronous code is to avoid blocking IO. The whole point of asynchronous code is that it allows the browser to process multiple tasks effectively simultaneously.
+Before going any further, it’s important to remind ourselves that the only reason we’re using promises is to make our asynchronous code easier to manage; and the only reason we’re using asynchronous code is to avoid blocking IO. The whole point of asynchronous code is that it allows the browser to process multiple tasks effectively simultaneously.
 
 By default, this is how promises behave.
 
-We can see this behaviour in action with Demo 1 in `pbs81a.html`. The click handler for that button (shown below) starts three un-related promises one after the other. You’ll see all three log that they are starting, then each will resolve or reject randomly in a random amount of seconds.
+We can see this behaviour in action with Demo 1 in `pbs81a.html`. The click handler for that button (shown below) starts three unrelated promises, one after the other. You’ll see all three log that they are starting. Then each will resolve or reject randomly in a random amount of seconds.
 
 ```javascript
 $('#demo1_btn').click(function(){
@@ -206,9 +208,9 @@ $('#demo1_btn').click(function(){
 
 ### Promise Chains are Fully Serial
 
-Sometimes the input to one task depends on the output from another. In this situation we have no choice but to perform those tasks one after the other, i.e. in series. As we learned in [the previous instalment](https://bartificer.net/pbs80), promise chains allow us to do this.
+Sometimes the input to one task depends on the output from another. In this situation we have no choice but to perform those tasks one after the other, i.e. in series. As we learned in [the previous instalment](https://pbs.bartificer.net/pbs80), promise chains allow us to do this.
 
-We can see this behaviour in action with Demo 2 in `pbs81a.html`. The click handler for this button (code below) starts three chained promises where the resolution of the first triggers the start of the second, and the resolution of the second the start of the third.
+We can see this behaviour in action with Demo 2 in `pbs81a.html`. The click handler for this button (code below) starts three chained promises where the resolution of the first triggers the start of the second, and the resolution of the second triggers the start of the third.
 
 ```javascript
 $('#demo2_btn').click(function(){
@@ -229,9 +231,9 @@ $('#demo2_btn').click(function(){
 
 ### Mixing Series & Parallel
 
-So, we can deal with tasks that can be run completely in parallel, and, with tasks that can be run completely in series. What we can’t do yet is deal with situations where we can do some tasks in parallel, but then we need to wait for all of those to finish before starting another task.
+So, we can deal with tasks that can be run completely in parallel, and with tasks that can be run completely in series. What we can’t do yet is deal with situations where we can do some tasks in parallel, but then we need to wait for all of those to finish before starting another task.
 
-In the abstract this may not sound all that useful, but it’s actually a very common problem. A great real-world example is UI rendering based on templates. To use a templating engine like Mustache without embedding all the templates and data directly into the HTML file we need to make many AJAX calls to fetch the template strings and the data to be displayed, and only when all those queries have completed, should we render our UI using the templates and the data. There’s no reason the AJAX calls to fetch all the needed components shouldn’t run in parallel, in fact we want them to, but we need the final rendering of the UI to happen in series after all the parallel requests complete.
+In the abstract this may not sound all that useful, but it’s actually a very common problem. A great real world example is UI rendering based on templates. To use a templating engine like Mustache without embedding all the templates and data directly into the HTML file, we need to make many AJAX calls to fetch the template strings and the data to be displayed. Only when all those queries have completed, should we render our UI using the templates and the data. There’s no reason the AJAX calls to fetch all the needed components shouldn’t run in parallel. In fact we want them to, but we need the final rendering of the UI to happen in series after all the parallel requests complete.
 
 With what we know so far we can’t do that — for now the best we can do is build a promise chain that fetches each template one after the other, and then each piece of data one after the other, and then finally renders the UI at the of that very long chain. This is clearly inefficient!
 
@@ -241,9 +243,9 @@ This is where the `Promise.all()` function comes to the rescue!
 
 This function takes an array of promises as the first argument, and returns a chained promise that will resolve when all the promises passed to it resolve, and reject when a single promise passed to it rejects. Assuming all the passed promises resolve, the chained promise will resolve to an array containing all the values the passed promises resolved to. The moment a single passed promise rejects, the chained promise will reject with the error that first rejecting promise rejected with. Note that the ordering of the values in the array the chained promise resolves to is determined by the ordering of the promises passed to `Promise.all()`, not by the order in which the promises resolve.
 
-We can use this function to wait for all parallelise-able tasks to complete before moving on to another tasks that depends on the values they resolve to.
+We can use this function to wait for all parallel tasks to complete before moving on to another task that depends on the values they resolve to.
 
-In the case of our hypothetical template use-case we would structure our code like this:
+In the case of our hypothetical template use-case, we would structure our code like this:
 
 ```javascript
 const tpl1Promise = $.ajax({
@@ -303,7 +305,7 @@ Promise.all([
 );
 ```
 
-Demo 3 in `pbs81a.html` shows `Promise.all()` in action. The callback for the demo 3 button (code below) creates three promises which run in parallel, then pass all three of them to `Promise.all()` to create a fourth promise which won’t resolve until all three of the original promises have resolved.
+Demo 3 in `pbs81a.html` shows `Promise.all()` in action. The callback for the demo 3 button (code below) creates three promises which run in parallel, then passes all three of them to `Promise.all()` to create a fourth promise which won’t resolve until all three of the original promises have resolved.
 
 ```javascript
 $('#demo3_btn').click(function(){
@@ -339,7 +341,7 @@ Using either your solution to the previous challenge or mine, update the code so
 
 ## Final Thoughts
 
-At this stage in our exploration of Promises we’ve learned how to uses promises to perform tasks in series, in parallel, and a mixture of both. We’ve learned all the core concepts JavaScript’s first release of the promises concept brought to the table. In other words, we’ve made it as far as 2015! JavaScript hasn’t stood still since then, and promises got a significant up-grade in 2017 with the addition of two new keywords to the language — `async` and `await`.
+At this stage in our exploration of Promises, we’ve learned how to uses promises to perform tasks in series, in parallel, and a mixture of both. We’ve learned all the core concepts JavaScript’s first release of the promises concept brought to the table. In other words, we’ve made it as far as 2015! JavaScript hasn’t stood still since then, and promises got a significant upgrade in 2017 with the addition of two new keywords to the language — `async` and `await`.
 
 With JavaScript’s original 2015 implementation of promises, you always had to use `.then()` to make use of promises. The introduction of `async` and `await` changed all that. These two keywords provide a whole new syntax for dealing with promises. I find that the new `async`/`await` syntax often results in much more readable code, making it easier to write and easier to maintain. You can of course continue to use `.then()` when it suits, but you don’t have to if you don’t want to.
 
