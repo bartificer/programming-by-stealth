@@ -126,7 +126,7 @@ chainedPromise.then(
 
 We now have an original promise that remains unresolved because we have not clicked either button on the dialogue yet. We also have a chained promise that is also unresolved because its fate will be determined by the callbacks added to the original callback with `.then()`. When we now press the _OK_ button, the original promise will resolve, and the resolved callback will execute. This callback logs the data it received and returns a value (the string `'I am new data!'`), and does not throw an error, so the chained promise will then resolve to the returned value. Finally, when the chained promise resolves, its resolved callback will execute, logging the second message to the console.
 
-So, when you click OK two messages should get logged to the console:
+So, when you click _OK_, two messages should get logged to the console:
 
 ```
 The original promise resolved with: true
@@ -351,10 +351,10 @@ To work around this limitation, I’ve written a very simple PHP proxy script wh
 **For this proxy script to work, you’ll need to access `php80a.html` via a web server that supports PHP, like MAMP.**
 
 <blockquote>
-<h3>Aside </h3>
+<h3><em>Aside </em></h3>
 
-In case you’re curious and you’d like to see another language in action, this is the code for the proxy script:
-
+<em>In case you’re curious and you’d like to see another language in action, this is the code for the proxy script:
+</em>
 <pre>
 <?php
 # Set the MIME-Type to text/plain
@@ -368,7 +368,7 @@ $url .= $_REQUEST['units'] == 'f' ? '&u' : '&c';
 echo file_get_contents($url);
 </pre>
 
-Apart from the fact that comments start with <code>#</code> instead of <code>//</code>, that strings are concatenated with <code>.</code> instead of <code>+</code>, and that variable names all start with a <code>\$</code>, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable <a href="https://en.wikipedia.org/wiki/C_(programming_language)" >C programming language</a>
+<em>Apart from the fact that comments start with <code>#</code> instead of <code>//</code>, that strings are concatenated with <code>.</code> instead of <code>+</code>, and that variable names all start with a <code>\$</code>, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable <a href="https://en.wikipedia.org/wiki/C_(programming_language)" >C programming language</a></em>
 </blockquote>
 
 
