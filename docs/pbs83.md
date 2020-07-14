@@ -313,7 +313,7 @@ Cards can be used individually, perhaps to call out a piece of information that 
 
 However, you can get more fancy than that — Bootstrap provides two special containers for Cards, [Card Groups](https://getbootstrap.com/docs/4.3/components/card/#card-groups), and [Card Decks](https://getbootstrap.com/docs/4.3/components/card/#card-decks).
 
-There is a third layout provided, [Card Columns](https://getbootstrap.com/docs/4.3/components/card/#card-decks), but the docs warn that this feature is still quite immature, and is not as reliable as it could be. We’ll be ignoring them in this series, at least for now.
+There is a third layout provided, [Card Columns](https://getbootstrap.com/docs/4.3/components/card/#card-columns), but the docs warn that this feature is still quite immature, and is not as reliable as it could be. We’ll be ignoring them in this series, at least for now.
 
 ### Card Groups & Card Decks
 
