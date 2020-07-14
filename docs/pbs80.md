@@ -368,7 +368,7 @@ $url .= $_REQUEST['units'] == 'f' ? '&u' : '&c';
 echo file_get_contents($url);
 </pre>
 
-<em>Apart from the fact that comments start with <code>#</code> instead of <code>//</code>, that strings are concatenated with <code>.</code> instead of <code>+</code>, and that variable names all start with a <code>\$</code>, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable <a href="https://en.wikipedia.org/wiki/C_(programming_language)" >C programming language</a></em>
+<em>Apart from the fact that comments start with <code>#</code> instead of <code>//</code>, that strings are concatenated with <code>.</code> instead of <code>+</code>, and that variable names all start with a <code>$</code>, the code actually looks very similar to JavaScript. That’s because both PHP and JavaScript are very heavily inspired by the venerable <a href="https://en.wikipedia.org/wiki/C_(programming_language)" >C programming language</a>.</em>
 </blockquote>
 
 
