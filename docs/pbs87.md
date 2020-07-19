@@ -13,9 +13,9 @@ You can [download this instalment’s ZIP file here](https://cdn.jsdelivr.net/gh
     [View Page](https://rawcdn.githack.com/bbusschots/pbs-resources/d5b05df809ead7deeb189618480d16ed1017efb5/instalmentResources/pbs87/pbs87b.html) or
     [View Source](https://github.com/bbusschots/pbs-resources/blob/master/instalmentResources/pbs87/pbs87b.html)
 
-## Matching Podcast Episode 615
+## Matching Podcast Episode 617
 
-Listen along to this instalment on [episode 615 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/ccatp-615)
+Listen along to this instalment on [episode 617 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2019/11/chat-617)
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2019_11_30.mp3">Your browser does not support HTML 5 audio 🙁</audio>
 
