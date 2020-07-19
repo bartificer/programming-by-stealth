@@ -272,7 +272,7 @@ squareCube(2).then((a)=>{console.log(a)});
 
 So what’s happening inside the `squareCube()` function when we call it?
 
-First, since we passed 2 as the only argument within the `squareCube()` function, `n` now equals 2.
+First, since we passed 2 as the only argument, within the `squareCube()` function, `n` now equals 2.
 
 On the first line we see that a new variable named `ans` will store the value `await` eventually evaluates to. In this case `await` will pause execution of the function until the automatically generated promise of the result of calling the async function `cube()` resolves or rejects. Once the automatically generated promise resolves, `await` will take on the value resolved to and unpause the execution of `cube()`. This means that the value stored in `ans` is 2 cubed, i.e. 8. The key thing to remember is that `await` both waited and then unwrapped the promise. Although `cube()` returned a promise, `ans` contains the number 8, not a promise for 8.
 
