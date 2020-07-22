@@ -120,6 +120,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 96 — World Clock Challenge Solution](./pbs96)
 * [PBS 97 — Class Data Attributes & Functions](./pbs97)
 * [PBS 98 — Building with Classes Part 1: *Has-A*](./pbs98)
+* [PBS 99 — Building with Classes Part 2: *Is-A*](./pbs99)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
