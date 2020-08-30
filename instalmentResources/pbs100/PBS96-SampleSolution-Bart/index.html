@@ -1,0 +1,927 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+				
+	<!-- Include Bootstrap 4 CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<!-- Include Font Awesome 5 -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	
+	<!-- Add local styles -->
+	<style>
+		/* Load the web font for the clocks */
+		@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+		
+		/* Apply the web font to the clock */
+		.clock{
+			font-family: 'Share Tech Mono', monospace;
+		}
+	</style>
+	
+	<title>This-Ti.me</title>
+</head>
+<body>
+
+<!-- The Page Heading (temporary) -->
+<header class="container my-3">
+	<div class="row">
+		<div class="col">
+			<h1 class="display-1">This-Ti.me</h1>
+		</div>
+	</div>
+</header>
+
+
+<!-- The main page body -->
+<main class="container my-3">
+	<div class="row">
+		<div class="col-12" id="problem-alerts"></div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<ul class="nav nav-tabs" id="mainNav" role="tablist">
+				<li class="nav-item h4 d-none" id="shared-tab-li" role="presentation">
+					<a class="nav-link" id="shared-tab" data-toggle="tab" href="#shared" role="tab" aria-controls="shared" aria-selected="false">Shared Time</a>
+				</li>
+				<li class="nav-item h4" role="presentation">
+					<a class="nav-link active" id="shared-tab" data-toggle="tab" href="#share" role="tab" aria-controls="share" aria-selected="true">Share a Time</a>
+				</li>
+				<li class="nav-item h4" role="presentation">
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">About</a>
+				</li>
+			</ul>
+			<div class="tab-content  mb-3" id="mainContent">
+				<div class="tab-pane fade border border-top-0 rounded-bottom p-3" id="shared" role="tabpanel" aria-labelledby="home-tab">
+					<div id="shared-intro-div"></div>
+					
+					<h1 class="h5">Your Time <small class="text-muted" id="shared-yourTime-timezone"><em>Your Timezone</em></small></h1>
+					<p id="shared-yourTime-time"></p>
+					<h1 class="h5 mt-3"><span id="shared-theirTime-name">Their</span> Time <small class="text-muted" id="shared-theirTime-timezone"><em>Their Timezone</em></small></h1>
+					<p id="shared-theirTime-time"></p>
+				</div>
+				<div class="tab-pane fade show active border border-top-0 rounded-bottom p-3" id="share" role="tabpanel" aria-labelledby="share-tab">
+					<p class="lead">Avoid timezone confusion by sharing a time with friends and colleagues around the world.</p>
+					
+					<p>Enter the date and time in your timezone, click the button to generate the link, then share it how ever you like.</p>
+					
+					<p>When your friends or colleagues open the link they'll see the time you shared in their own timezone as well as yours.</p>
+					
+					<form action="javascript:void(0);" class="form" id="share-fm" novalidate>
+						<div class="form-group">
+							<label for="share-date">Date</label>
+							<div class="input-group date" id="share-date-dp" data-target-input="nearest">
+								<input type="text" class="form-control datetimepicker-input" data-target="#share-date-dp" id="share-date-tb" required>
+								<div class="input-group-append" data-target="#share-date-dp" data-toggle="datetimepicker">
+									<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+								</div>
+							</div>
+							<small class="form-text text-muted">Enter a date in your local format, e.g. <code id="share-date-example"></code>, or click the calendar icon to bring up a date picker.</small>
+						</div>
+						<div class="form-group">
+							<label for="share-Time">Time</label>
+							<div class="input-group date" id="share-time-dp" data-target-input="nearest">
+								<input type="text" class="form-control datetimepicker-input" data-target="#share-time-dp"  id="share-time-tb" required>
+								<div class="input-group-append" data-target="#share-time-dp" data-toggle="datetimepicker">
+									<div class="input-group-text"><i class="far fa-clock"></i></div>
+								</div>
+							</div>
+							<small class="form-text text-muted">Enter a time in 24 hour format, e.g. <code>02:15</code> or <code>14:15</code>, or click the clock icon to bring up a time picker.</small>
+						</div>
+						<div class="form-group">
+							<label for="share-tb">Share Link</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-link"></i></div>
+								</div>
+								<input type="text" class="form-control" id="share-tb">
+								<div class="input-group-append">
+									<button class="btn btn-success" type="button" id="share-btn">Generate</button>
+								</div>
+							</div>
+							<small class="form-text text-muted">Share this link how ever you like. Recipients will see your shared time in their timezone and yours.</small>
+						</div>
+					</form>	
+				</div>
+				<div class="tab-pane fade border border-top-0 rounded-bottom p-3" id="about" role="tabpanel" aria-labelledby="about-tab">
+					<p>A free and open source tool for sharing times with people across different timezones.</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4">
+			 <div class="card bg-light">
+				<div class="card-header h4">
+					About You
+				</div>
+				<form action="javascript:void(0);" class="card-body form" id="you-fm" novalidate>
+					<div class="form-group">
+						<label for="you-timezone-tb">Your Time Zone</label>
+						<div class="input-group">
+							<input type="text" id="you-timezone-tb" class="form-control" autocomplete="off" required>
+							<div class="input-group-append">
+								<div class="input-group-text"><i class="fas fa-globe"></i></div>
+							</div>
+						</div>
+						<small class="form-text text-muted">Enter an <a href="https://en.wikipedia.org/wiki/Tz_database" target="_blank" rel="noopener">IANA timezone string</a>, or just start typing a city name for auto-complete suggestions.</small>
+					</div>
+					<div class="form-group">
+						<label for="you-timezone-tb">Your Name <small class="text-muted">(Optional)</small></label>
+						<div class="input-group">
+							<input type="text" id="you-name-tb" class="form-control">
+							<div class="input-group-append">
+								<div class="input-group-text"><i class="far fa-user"></i></div>
+							</div>
+						</div>
+						<small class="form-text text-muted">Recipients see the shared time in their timezone and yours. If you enter a name, your time will be labeled with your name.</small>
+					</div>
+					<div class="collapse" id="you-save-div">
+						<div class="form-group">
+							<label for="you-link-tb">Personal Link</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-link"></i></div>
+								</div>
+								<input type="text" class="form-control" id="you-link-tb">
+								<div class="input-group-append">
+									<button class="btn btn-secondary" type="button" id="you-link-btn">Generate</button>
+								</div>
+							</div>
+							<small class="form-text text-muted">This link encodes your chosen timezone and name, bookmark or save it to save yourself a little time and effort.</small>
+						</div>
+						<div class="form-group">
+							<label>Save a Cookie</label>
+							<button class="btn btn-secondary form-control" type="button" id="you-cookie-save-btn"><i class="fas fa-cookie"></i> Save to Cookie</button>
+							<small class="form-text text-muted">You can save your preferred timezone and name as a cookie in your browser. This cookie will be remembered for one year. Each time you visit the page the cookie will be refreshed for a further year.</small>
+						</div>
+						<div class="form-group d-none" id="you-cookie-delete-fg">
+							<button class="btn btn-danger form-control" type="button" id="you-cookie-delete-btn"><i class="fas fa-cookie"></i> Delete your Cookie</button>
+							<small class="form-text text-muted" id="you-cookie-desc"></small>
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-secondary form-control" type="button" id="you-save-btn" data-toggle="collapse" data-target="#you-save-div" aria-expanded="false" aria-controls="you-save-div">
+							Save as Defaults …
+						</button>
+					</div>
+				</form>
+			 </div>
+		</div>
+	</div>
+</main>
+
+<!--
+== Define Mustache Templates ==
+-->
+
+<!-- An error message -->
+<script type="text/html" id="problem-alert-tpl">
+	<div class="alert alert-{{{bootstrapColor}}} alert-dismissible fade show" role="alert"">
+		<p class="m-0"><strong><i class="fas fa-exclamation-triangle" aria-hidden></i> {{title}}:</strong> {{{message}}}</p>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden>&times;</span>
+		</button>
+	</div>
+</script>
+
+<!-- The introductory message for a shared time -->
+<script type="text/html" id="shared-intro-tpl">
+	<p class="lead">{{name}} shared a time with you, you can see it below in your timezone and in theirs.</p>
+	
+	<p>We've done our best to infer your timezone, if we got it wrong, or if you'd just like to see the time in another timezone, you can change your timezone in the <em>About You</em> box.</p>
+</script>
+
+<!-- A Clock -->
+<script type="text/html" id="clock-tpl">
+	<div class="clock display-1 text-center">
+		<div class="badge badge-{{{bootstrapColor}}}">
+			{{time}}<br>
+			<small>{{date}}</small>
+		</div>
+	</div>
+</script>
+
+<!--
+== Import JavaScript ==
+-->
+
+<!-- Include Bootstrap JavaScript from CDNs -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- Include Bootstrap 4 Autocomplete from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
+
+<!-- Include Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment-with-locales.min.js" integrity="sha256-8d6kI5cQEwofkZmaPTRbKgyD70GN5mDpTYNP9YWhTlI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data.min.js" integrity="sha256-IWYg4uIC8/erItNXYvLtyYHioRi2zT1TFva8qaAU/ww=" crossorigin="anonymous"></script>
+
+<!-- Include Tempus Dominus from CDN -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+
+<!-- Include URI.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.2/URI.min.js" integrity="sha512-YQAqeLT4VuAZV80lmk6OE3XtmMW3eDxUtNf2V2w16eypX21CDtelaVsFD1QLUBCQuJEenK3jPqYPmpNUasdktA==" crossorigin="anonymous"></script>
+
+<!-- Include Mustache.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg==" crossorigin="anonymous"></script>
+
+<!-- Include Cookie JS from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+
+<!-- Include is.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js" integrity="sha512-DvhVUdQWYI9UoF5HGHhl00nbUFcr+j6dGlg/FSrolqR3EridE8CF82nCNAZsE4iAPkw/ws0O7IrZ1jOUuJQXxg==" crossorigin="anonymous"></script>
+
+<!-- Include Human Joiner from CDN -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@bartificer/human-join/dist/index.js"></script>
+<script type="text/javascript">
+var hjn = humanJoiner;
+</script>
+
+<!-- This Page's Local JavaScript Code -->
+<script type="text/javascript">
+	//
+	// === Global Variables ===
+	//
+	
+	// cookie settings
+	var COOKIE_TTL = 365; // one year
+	
+	// template strings
+	var TEMPLATES = {
+		problemAlert: '', // the templte for warning and error alerts
+		sharedIntro: '', // the template for the introduction above the shared time
+		clock: '' // the template for rendering a clock
+	};
+	
+	// the date & time formats
+	var DATE_FORMAT = 'L';
+	var TIME_FORMAT = 'HH:mm';
+	var COMBINED_FORMAT = `${DATE_FORMAT} ${TIME_FORMAT}`;
+	
+	// jQuery preferences
+	var JQ_ANI_TIME = 250; // the number of milliseconds to use for jQuery animations
+	
+	// jQuery objects representing important UI elements
+	var $PROBLEM_ALERTS = null; // the container for any problem alerts
+	var $YOU_FM = null; // the 'you' form
+	var $YOU_TIMEZONE_TB = null; // the text box for your timezone
+	var $YOU_NAME_TB = null; // the text box for your name
+	var $YOU_SAVE_BTN = null; // the button to show/hide the save controls
+	var $YOU_SAVE_DIV = null; // the container for the save controls
+	var $YOU_LINK_TB = null; // the text box for your personal link
+	var $YOU_LINK_BTN = null; // the button for generating your personal link
+	var $YOU_COOKIE_SAVE_BTN = null; // the button for saving a cookie
+	var $YOU_COOKIE_DELETE_FG = null; // the form group for the cookie deletion UI
+	var $YOU_COOKIE_DELETE_BTN = null; // the button for deleting a cookie
+	var $YOU_COOKIE_DESC = null; // the description of the currently set cookie
+	var $SHARED_TAB_LI = null; // the nav item containing the button for the shared tab pane
+	var $SHARED_INTRO_DIV = null; // the paragraph with the shared time introdiction
+	var $SHARED_YOURTIME_TIME = null; // the placeholder for the shared time in the recipient's timezone
+	var $SHARED_YOURTIME_TIMEZONE = null; // the placeholder for the recipient's timezone
+	var $SHARED_THEIRTIME_NAME = null; // the placeholder for the label for the sender's time
+	var $SHARED_THEIRTIME_TIME = null; // the placeholder for the shared time in the sender's timezone
+	var $SHARED_THEIRTIME_TIMEZONE = null; // the placeholder for the sender's timezone
+	var $SHARE_FM = null; // the share form
+	var $SHARE_DATE_DP = null; // the date picker for the sharing date
+	var $SHARE_DATE_TB = null; // the text box for the sharing date
+	var $SHARE_TIME_DP = null; // the time picker for the sharing date
+	var $SHARE_TIME_TB = null; // the text box for the sharing time
+	var $SHARE_BTN = null; // the button for generating the share link
+	var $SHARE_TB = null; // the text box for holding the share link
+	var $ALL_FM = null; // the 'you' and share forms
+	
+	// the infomration passed in the URL (if any)
+	var URL_DATA = { timeShared: false };
+	
+	// the information saved in cookies (if any)
+	var COOKIE_DATA = {};
+	
+	//
+	// === Utility Functions ===
+	//
+	
+	/**
+	 * Test if a given value is a valid unix timestamp.
+	 *
+	 * @param val
+	 * @return {boolean}
+	 */
+	function isUTS(val){
+		// if it's not all digits it's defnitely not a UTS
+		if(!String(val).match(/^\d+$/)) return false;
+		
+		// make sure the value is within range
+		if(parseInt(val) > 2147483647) return false;
+		
+		// if we got here all is well
+		return true;
+	}
+	
+	/**
+	 * Test if a given value is a valid IANA timezone.
+	 *
+	 * @param {string} val
+	 * @return {boolean}
+	 */
+	function isIANATimezone(val){
+		// make sure it's a string
+		if(is.not.string(val)) return false;
+		
+		// make sure the zone exists
+		if(is.null(moment.tz.zone(val))) return false;
+		
+		// if we got here all is well
+		return true;
+	}
+	
+	/**
+	 * Convert an IANA timezone name to a human-friendly timezone name.
+	 *
+	 * This function simply replaces underscores with spaces.
+	 *
+	 * @param {string} ianaTZName
+	 * @return {string}
+	 */
+	function ianaTZToHuman(ianaTZName){
+		return String(ianaTZName).replaceAll('_', ' ');
+	}
+	
+	/**
+	 * Convert a human-friendly timezon name to an IANA timezone name.
+	 *
+	 * This function simply replaces spaces with underscores.
+	 *
+	 * @param {string} humanTZName
+	 * @return {string}
+	 */
+	function humanTZToIANA(humanTZName){
+		return String(humanTZName).replaceAll(' ', '_');
+	}
+	
+	/**
+	 * Sanitise a name.
+	 *
+	 * This function collapses all white space into single spaces, and trims the string.
+	 *
+	 * @param {string} name
+	 * @return {string}
+	 */
+	function sanitiseName(name){
+		return String(name).replace(/\s+/g, ' ').trim();
+	}
+	
+	//
+	// === UI Functions ===
+	//
+	
+	/**
+	 * Log a warning or error message.
+	 *
+	 * Shows a dismissable alert and logs to the console.
+	 *
+	 * @param {string} message
+	 * @param {boolean} [isError=false]
+	 * @param {Error|string} [error] - Detailed error information that will be logged to the console but not alerted to the user.
+	 */
+	function logProblem(message, isError, error){
+		// build the title
+		const title = isError ? 'Error' : 'Warning';
+		
+		// log the error
+		if(isError){
+			console.error(`${title}: ${message}`, error);
+		}else{
+			console.warn(`${title}: ${message}`, error);
+		}
+		
+		// build and init an alert
+		const $alert = $(Mustache.render(
+			TEMPLATES.problemAlert,
+			{
+				bootstrapColor: isError ? 'danger' : 'warning',
+				title,
+				message
+			}
+		)).alert();
+		
+		// inject the alert into the document
+		$PROBLEM_ALERTS.append($alert);
+	}
+	
+	/**
+	 * Read my timezone in human-friendly form.
+	 *
+	 * @return {string} Ahuman-friendly timezone name, e.g. `'America/Los Angeles'`.
+	 */
+	function myTimezone(){
+		return $YOU_TIMEZONE_TB.val();
+	}
+	
+	/**
+	 * Read my timezone as an IANA timezone name.
+	 *
+	 * @return {string} An IANA timezone name, e.g. `'America/Los_Angeles'`.
+	 */
+	function myIANATimezone(){
+		return humanTZToIANA(myTimezone());
+	}
+	
+	/**
+	 * Read my name from the form.
+	 *
+	 * This function sanitises the name.
+	 *
+	 * @return {string}
+	 */
+	function myName(){
+		return sanitiseName($YOU_NAME_TB.val());
+	}
+	
+	/**
+	 * Render a clock given a time as a moment object.
+	 *
+	 * @param {moment} time
+	 * @param {boolean} [primarClock=false]
+	 * @return {jQuery}
+	 */
+	function renderClock(time, primaryClock){
+		return $(Mustache.render(
+			TEMPLATES.clock,
+			{
+				time: time.format(TIME_FORMAT),
+				date: time.format(DATE_FORMAT),
+				bootstrapColor: primaryClock ? 'primary' : 'secondary'
+			}
+		));
+	}
+	
+	/**
+	 * Update the display of the cookie information.
+	 */
+	function updateCookieDisplay(){
+		// get the currently set cookies
+		const cookieStrings = [];
+		const mytz = Cookies.get('mytz');
+		if(mytz){
+			cookieStrings.push(`your timezone as <kbd>${ianaTZToHuman(mytz)}</kbd>`);
+		}
+		const myname = Cookies.get('myname');
+		if(myname){
+			cookieStrings.push(`your name as <kbd>${myname}</kbd>`);
+		}
+		
+		// show or hide as appropriate
+		if(cookieStrings.length > 0){
+			// there are cookies, so show them
+			
+			// write the cookie description
+			$YOU_COOKIE_DESC.html(`Your cookie currently stores ${hjn.and.j(cookieStrings)}`);
+			
+			// show the form group
+			$YOU_COOKIE_DELETE_FG.removeClass('d-none').show(JQ_ANI_TIME);
+		}else{
+			// there are not cookies, so hide the section
+			$YOU_COOKIE_DELETE_FG.hide(JQ_ANI_TIME);
+		}
+	}
+	
+	/**
+	 * Update the display of the shared time.
+	 */
+	function updateSharedTime(){
+		// make sure there is a shared time before doing anything!
+		if(!URL_DATA.timeShared){
+			console.debug('atempt to update the shared time when no time was shared - ignoring');
+			return;
+		}
+		
+		// build a moment object representing the shared time
+		const sharedTime = moment.tz(URL_DATA.uts, 'X', myIANATimezone());
+		
+		// render the time in your timezone
+		$SHARED_YOURTIME_TIME.empty().append(renderClock(sharedTime, true));
+		$SHARED_YOURTIME_TIMEZONE.text(myTimezone());
+		
+		// render the time in the sender's timezone
+		const theirTime = moment(sharedTime).tz(URL_DATA.tz);
+		let theirName = 'Their';
+		if(URL_DATA.name){
+			theirName = `${URL_DATA.name}'${ URL_DATA.name.match(/s$/i) ? '' : 's' }`;
+		}
+		$SHARED_THEIRTIME_NAME.text(theirName);
+		$SHARED_THEIRTIME_TIME.empty().append(renderClock(theirTime));
+		$SHARED_THEIRTIME_TIMEZONE.text(ianaTZToHuman(URL_DATA.tz));
+	}
+	
+	/**
+	 * Generate a personal link.
+	 *
+	 * @return {string} The generated URL.
+	 */
+	function generatePersonalLink(){
+		// validate the data
+		const mytz = myIANATimezone();
+		if(!isIANATimezone(mytz)){
+			logProblem('Failed to generate personal link - invalid timezone', false, `invalid timezone: ${mytz}`);
+			return '';
+		}
+		
+		// build the URL
+		const saveInfo = { mytz };
+		const name = myName();
+		if(name){
+			saveInfo.myname = name;
+		}
+		const saveURL = URI().query(saveInfo);
+		const personalURL = saveURL.toString();
+			
+		// write the URL to the textbox and select it
+		$YOU_LINK_TB.val(personalURL).select();
+		
+		// return the URL
+		return personalURL;
+	}
+	
+	/**
+	 * Save my settings to cookies.
+	 */
+	function saveCookies(){
+		// validate the data
+		const tz = myIANATimezone();
+		if(!isIANATimezone(tz)){
+			logProblem('Failed to save cookie, invalid timezone.', false, `invalid timezone: ${tz}`);
+			return;
+		}
+		
+		// write the cookies
+		Cookies.set('mytz', tz, { expires: COOKIE_TTL });
+		COOKIE_DATA.mytz = tz;
+		const name = myName();
+		if(name){
+			Cookies.set('myname', name, { expires: COOKIE_TTL });
+			COOKIE_DATA.myname = name;
+		}else{
+			Cookies.remove('myname');
+			delete COOKIE_DATA.myname;
+		}
+		console.info('saved personal info to cookie:', COOKIE_DATA);
+			
+		// update the cookie display
+		updateCookieDisplay();
+	}
+	
+	/**
+	 * Delete my Cookies.
+	 */
+	function deleteCookies(){
+		// delete the cookies
+		Cookies.remove('mytz');
+		delete COOKIE_DATA.mytz;
+		Cookies.remove('myname');
+		delete COOKIE_DATA.myname;
+		console.info('deleted cookies');
+			
+		// update the cookie display
+		updateCookieDisplay();
+	}
+	
+	/**
+	 * Generate a share link.
+	 *
+	 * @return {string} The generated URL.
+	 */
+	function generateShareLink(){
+		// validate the data
+		const shareTZ = myIANATimezone();
+		if(!isIANATimezone(shareTZ)){
+			logProblem('Failed to generate share link - invalid timezone', false, `invalid timezone: ${shareTZ}`);
+			return '';
+		}
+		
+		// build an object representing the date time in the appropriate timezone
+		const shareDate = moment.tz(`${$SHARE_DATE_TB.val()} ${$SHARE_TIME_TB.val()}`, COMBINED_FORMAT, shareTZ);
+		if(!shareDate.isValid()){
+			logProblem('Failed to generate shar link', false, 'moment constructor returned invalid date');
+			return '';
+		}
+			
+		// build the URL
+		const shareInfo = {
+			uts: shareDate.unix(),
+			tz: shareTZ
+		};
+		const name = myName();
+		if(name){
+			shareInfo.name = name;
+		}
+		const shareURL = URI().query(shareInfo);
+			
+			
+		// write the URL to the textbox and select it
+		const shareURLString = shareURL.toString();
+		$SHARE_TB.val(shareURLString).select();
+		
+		// return the URL
+		return shareURLString;
+	}
+	//
+	// === The Document Ready Handler ===
+	//
+	$(function(){
+		//
+		// -- init the global jQuery variables --
+		//
+		$PROBLEM_ALERTS = $('#problem-alerts');
+		$YOU_FM = $('#you-fm');
+		$YOU_TIMEZONE_TB = $('#you-timezone-tb');
+		$YOU_NAME_TB = $('#you-name-tb');
+		$YOU_SAVE_BTN = $('#you-save-btn');
+		$YOU_SAVE_DIV = $('#you-save-div');
+		$YOU_LINK_TB = $('#you-link-tb');
+		$YOU_LINK_BTN = $('#you-link-btn');
+		$YOU_COOKIE_SAVE_BTN = $('#you-cookie-save-btn');
+		$YOU_COOKIE_DELETE_FG = $('#you-cookie-delete-fg');
+		$YOU_COOKIE_DELETE_BTN = $('#you-cookie-delete-btn');
+		$YOU_COOKIE_DESC = $('#you-cookie-desc');
+		$SHARED_TAB_LI = $('#shared-tab-li');
+		$SHARED_INTRO_DIV = $('#shared-intro-div');
+		$SHARED_YOURTIME_TIME = $('#shared-yourTime-time');
+		$SHARED_YOURTIME_TIMEZONE = $('#shared-yourTime-timezone');
+		$SHARED_THEIRTIME_NAME = $('#shared-theirTime-name');
+		$SHARED_THEIRTIME_TIME = $('#shared-theirTime-time');
+		$SHARED_THEIRTIME_TIMEZONE = $('#shared-theirTime-timezone');
+		$SHARE_FM = $('#share-fm');
+		$SHARE_DATE_DP = $('#share-date-dp');
+		$SHARE_DATE_TB = $('#share-date-tb');
+		$SHARE_TIME_DP = $('#share-time-dp');
+		$SHARE_TIME_TB = $('#share-time-tb');
+		$SHARE_BTN = $('#share-btn');
+		$SHARE_TB = $('#share-tb');
+		$ALL_FM = $().add($YOU_FM).add($SHARE_FM);
+		
+		//
+		// -- load templates --
+		//
+		TEMPLATES.clock = $('#clock-tpl').html();
+		TEMPLATES.sharedIntro = $('#shared-intro-tpl').html();
+		TEMPLATES.problemAlert = $('#problem-alert-tpl').html();
+		
+		//
+		// -- extract data from URL
+		//
+		const rawURLInfo = (new URI()).query(true);
+		if(rawURLInfo.uts && rawURLInfo.tz){
+			let allOK = true;
+			if(!isUTS(rawURLInfo.uts)){
+				console.warn('Invalid UTS in URL', rawURLInfo.uts);
+				allOK = false;
+			}
+			if(!isIANATimezone(rawURLInfo.tz)){
+				console.warn('Invalid Timezone in URL', rawURLInfo.tz);
+				allOK = false;
+			}
+			if(allOK){
+				URL_DATA.timeShared = true;
+				URL_DATA.uts = rawURLInfo.uts;
+				URL_DATA.tz = rawURLInfo.tz;
+				if(rawURLInfo.name){
+					URL_DATA.name = sanitiseName(rawURLInfo.name);
+				}
+			}else{
+				logProblem('Ignored invalid data in URL', false);
+			}
+		}
+		if(rawURLInfo.mytz){
+			if(isIANATimezone(rawURLInfo.mytz)){
+				URL_DATA.mytz = rawURLInfo.mytz;
+			}else{
+				logProblem('Ignored invalid saved timezone in URL', false, `Invalid TimeZone: ${rawURLInfo.mytz}`);
+			}
+		}
+		if(rawURLInfo.myname){
+			URL_DATA.myname = sanitiseName(rawURLInfo.myname);
+		}
+		
+		//
+		// -- extract data from Cookies (and refresh if found) --
+		//
+		const rawCookieInfo = Cookies.get();
+		if(rawCookieInfo.myname){
+			COOKIE_DATA.myname = sanitiseName(rawCookieInfo.myname);
+		}
+		if(rawCookieInfo.mytz){
+			if(isIANATimezone(rawCookieInfo.mytz)){
+				COOKIE_DATA.mytz = rawCookieInfo.mytz;
+			}else{
+				logProblem('Ignored invalid saved timezone in Cookie', false, `Invalid TimeZone: ${rawCookieInfo.mytz}`);
+			}
+		}
+		updateCookieDisplay();
+		
+		//
+		// -- Init the UI --
+		//
+		
+		// build the set of timezones for use in the timezone dropdowns
+		const tzAutoCompeleSource = {};
+		let tzAutoCompleteCounter = 1;
+		for(const tzName of moment.tz.names()){
+			// break the timezone into parts
+			const tzParts = tzName.split('\/');
+			
+			// skip timezones with more than two parts
+			if(tzParts.length != 2) continue;
+					
+			// skip the artificial Etc region
+			if(tzParts[0] === 'Etc') continue;
+			
+			// if we got here, add the timezone as an option
+			tzAutoCompeleSource[ianaTZToHuman(tzName)] = tzAutoCompleteCounter;
+			tzAutoCompleteCounter++;
+		}
+		
+		// a local function for validating the pre-requisutes for saving a personal URL or cookie
+		const validateSaving = function(){
+			// get a list of all invalid inputs
+			const $invalid = $('.is-invalid', $YOU_FM);
+			
+			if($invalid.length === 0){
+				// no invalid fields
+				$YOU_LINK_BTN.prop('disabled', false);
+				$YOU_COOKIE_SAVE_BTN.prop('disabled', false);
+			}else{
+				// at least one invalid field
+				$YOU_LINK_BTN.prop('disabled', true);
+				$YOU_COOKIE_SAVE_BTN.prop('disabled', true);
+			}
+		};
+		
+		// a local function for validating the pre-requisutes for sharing
+		const validateSharing = function(){
+			// get a list of all invalid inputs
+			const $invalid = $('.is-invalid', $ALL_FM);
+			
+			if($invalid.length === 0){
+				// no invalid fields
+				$SHARE_BTN.prop('disabled', false);
+			}else{
+				// at least one invalid field
+				$SHARE_BTN.prop('disabled', true);
+			}
+		};
+		
+		// init the timezone input
+		let defaultTz = 'UTC';
+		if(URL_DATA.mytz){
+			defaultTz = URL_DATA.mytz;
+			console.info('using timezone from URL');
+		}else if(COOKIE_DATA.mytz){
+			defaultTz = COOKIE_DATA.mytz;
+			console.info('using timezone from cookie');
+		}else{
+			defaultTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+			console.info('using timezone from browser locale');
+		}
+		$YOU_TIMEZONE_TB.val(defaultTz).autocomplete({
+			source: tzAutoCompeleSource, // the autocompelte values
+			maximumItems: 10, // the maximum autocomplete suggestions
+			treshold: 1, // the minimum number of characters to search
+			onSelectItem: function(){ // event handler for selection of autocomplete suggestion
+				$YOU_TIMEZONE_TB.trigger('input');
+			}
+		}).on('input', function(){
+			// validate the timezone
+			if(isIANATimezone(myIANATimezone())){
+				// mark the field as valid
+				$YOU_TIMEZONE_TB.removeClass('is-invalid').addClass('is-valid');
+				
+				// update the shared time, if any
+				if(URL_DATA.timeShared){ updateSharedTime(); }
+			}else{
+				// timezone is invalid
+				$YOU_TIMEZONE_TB.removeClass('is-valid').addClass('is-invalid');
+			}
+			
+			// re-validate sharing & saving
+			validateSharing();
+			validateSaving();
+		});
+		
+		// init the name input
+		if(URL_DATA.myname){
+			$YOU_NAME_TB.val(URL_DATA.myname);
+			console.info('using name from URL');
+		}else if(COOKIE_DATA.myname){
+			$YOU_NAME_TB.val(COOKIE_DATA.myname);
+			console.info('using name from Cookie');
+		}
+		
+		// add an event handler to blank the personal link when any of the personal data changes
+		$('input', $YOU_FM).on('input', function(){
+			$YOU_LINK_TB.val('');
+		});
+		
+		// add handlers to update the label on the show/hide button for the save controls
+		$YOU_SAVE_DIV.on('show.bs.collapse', function(){
+			$YOU_SAVE_BTN.text('Hide Save Controls');
+		});
+		$YOU_SAVE_DIV.on('hide.bs.collapse', function(){
+			$YOU_SAVE_BTN.text('Save as Defaults …');
+		});
+		
+		// add a click handler to the personal link button
+		$YOU_LINK_BTN.click(generatePersonalLink);
+		
+		// add a click handler to the cookie save button
+		$YOU_COOKIE_SAVE_BTN.click(saveCookies);
+		
+		// add a click handler to the cookie delete button
+		$YOU_COOKIE_DELETE_BTN.click(deleteCookies);
+		
+		// if there is a shared time, use it as the default for the pickers
+		let localSharedTime = null;
+		if(URL_DATA.timeShared){
+			localSharedTime = moment.tz(URL_DATA.uts, 'X', $YOU_TIMEZONE_TB.val());
+			console.info('initialising date & time pickers from shared time');
+		}
+		
+		// init the date picker
+		const startOfDay = moment().startOf('day');
+		$('#share-date-example').text(startOfDay.format(DATE_FORMAT));
+		$SHARE_DATE_DP.datetimepicker({
+			format: DATE_FORMAT,
+			minDate: startOfDay,
+			defaultDate: localSharedTime ? localSharedTime : moment()
+        });
+		$SHARE_DATE_TB.on('input', function(){
+			// validate the date
+			const dObj = moment($SHARE_DATE_TB.val(), DATE_FORMAT, true);
+			if(dObj && dObj.isValid()){
+				// the date is valid, so mark it as such
+				$SHARE_DATE_TB.removeClass('is-invalid').addClass('is-valid');
+			}else{
+				// the date is invalid
+				$SHARE_DATE_TB.removeClass('is-valid').addClass('is-invalid');
+			}
+			
+			// revalidate sharing
+			validateSharing();
+		});
+		
+		// init the time picker
+		$SHARE_TIME_DP.datetimepicker({
+			format: TIME_FORMAT,
+			defaultDate: localSharedTime ? localSharedTime : moment().startOf('hour').add(1, 'hour'),
+			stepping: 15
+        });
+		$SHARE_TIME_TB.on('input', function(){
+			// validate the time
+			const tObj = moment($SHARE_TIME_TB.val(), TIME_FORMAT, true);
+			if(tObj && tObj.isValid()){
+				// the time is valid, so mark it as such
+				$SHARE_TIME_TB.removeClass('is-invalid').addClass('is-valid');
+			}else{
+				// the date is invalid
+				$SHARE_TIME_TB.removeClass('is-valid').addClass('is-invalid');
+			}
+			
+			// revalidate sharing
+			validateSharing();
+		});
+		
+		// add an event handler to blank the share link when any of the relevant data changes
+		$('input', $ALL_FM).on('input', function(){
+			$SHARE_TB.val('');
+		});
+		
+		// add a click handler to the generate button
+		$SHARE_BTN.click(generateShareLink);
+		
+		//
+		// -- Load The Shared Time (if any) --
+		//
+
+		if(URL_DATA.timeShared){
+			// render the introduction to the shared time
+			$SHARED_INTRO_DIV.empty().html(Mustache.render(
+				TEMPLATES.sharedIntro,
+				{ name: URL_DATA.name ? URL_DATA.name : 'Someone' }
+			));
+			
+			// render the shared time
+			updateSharedTime();
+			
+			// show the tab for the shared time
+			$SHARED_TAB_LI.removeClass('d-none');
+			
+			// activate the tab for the shared time
+			$('a', $SHARED_TAB_LI).click();
+		}
+    });
+</script>
+
+</body>
+</html>
