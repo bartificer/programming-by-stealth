@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Include Bootstrap 4 CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    <!-- Local styles -->
+	  <style type="text/css"> 
+      /* write styles here or change to a link to the style sheet if complex */
+      .mySwitches {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #007bff;  /* same color as Bootstrap "primary" */
+        vertical-align: text-top;
+      }
+     
+      /* Style the range slider for time scrolling */
+      .slidecontainer {
+        width: 100%; /* Width of the outside container */
+      }
+
+      /* The slider itself */
+      .slider {
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        width: 100%; /* Full-width */
+        height: 25px; /* Specified height */
+        background: #d3d3d3; /* Grey background */
+        outline: none; /* Remove outline */
+        opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+        -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+        transition: opacity .2s;
+      }
+
+      /* Mouse-over effects */
+      .slider:hover {
+        opacity: 1; /* Fully shown on mouse-over */
+      }
+
+      /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        width: 25px; /* Set a specific slider handle width */
+        height: 25px; /* Slider handle height */
+        background: #007bff; /* Green background */
+        cursor: pointer; /* Cursor on hover */
+      }
+
+      .slider::-moz-range-thumb {
+        width: 25px; /* Set a specific slider handle width */
+        height: 25px; /* Slider handle height */
+        background: #007bff; /* Green background */
+        cursor: pointer; /* Cursor on hover */
+      }
+
+      /* Searchboxes */
+      .mySearchboxes::placeholder {
+        /* font-size: 1.25rem; */
+        /* font-weight: bold; */
+        color: light-grey;  /* same color as Bootstrap "primary" */
+        vertical-align: text-top;
+      }
+
+      /* Stop inline check box from adding a margin-right */
+      .form-check-inline {
+        margin-right: 0;
+      }
+      /* Hide form-group from static clocks placeholder */
+      #staticClocksPlaceholder .form-group {
+        display: none;
+      }
+
+    </style>
+  </head>
+  
+    <title>Podfeet Time Shifter Clock</title>
+  </head>
+
+  <body>
+    <nav class='navbar navbar-expand-md navbar-light'>
+      <a class='navbar-brand' href="#">Helpful Resources</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://momentjs.com">Moment.js home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://momentjs.com/docs/#/use-it/browser/">Moment.js docs</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://momentjs.com/timezone/">Moment Timezone docs</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://medialize.github.io/URI.js/">URI.js</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              PBS Resources
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-divider"></div>
+              <a class="nav-link dropdown-item" href="https://www.podfeet.com/blog/pbs-index/"  rel="no opener" target="_blank">PBS Index</a>
+              <a class="nav-link dropdown-item" href="https://getbootstrap.com/docs/4.3/getting-started/introduction/"  rel="no opener" target="_blank">Bootstrap Docs</a>
+              <a class="nav-link dropdown-item" href="https://api.jquery.com"  rel="no opener" target="_blank">jQuery API</a>
+              <a class="nav-link dropdown-item" href="https://api.jquery.com/category/ajax/"  rel="no opener" target="_blank">AJAX API</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- The page heading -->
+    <header>
+      <div class="container-fluid bg bg-light mb-2 rounded">
+        <div class="row"> <!-- Open row for header -->
+          <p class="lead">
+            <div class="col-3 mr-2"><img width="75" alt="Programming by Stealth Logo" src="https://pbs.bartificer.net/assets/logo.png"></div> <!-- open/close col-2 for logo -->
+            <div class="col col-md-8"><!-- open col-6 for title and explanation button -->
+              <h1 class="row h3 d-md-inline">Time Shifter Clock</h1> <!-- row for Heading -->
+
+              <div class="row"><!-- row for current local time -->
+                <!-- Placeholder for current local time -->
+                <div class="container">
+                  <div class="row">
+                    <div class="col col-md-6">
+                      <div class="row" id="staticClocksPlaceholder"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- row for explanation button -->
+              <div class="row"> <!-- row for explanation button -->
+                <p>
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#explanationText" aria-expanded="false" aria-controls="explanationText">
+                    Push to Learn How This Works
+                  </button>
+                </p>
+                
+              </div> <!-- close row for explanation button -->
+            </div> <!-- close column for title & explanation button -->
+          </p>
+        </div> <!-- close row for header -->
+        <div class="row"> <!-- open row for explanation -->
+          <div class="collapse" id="explanationText">
+            <div class="card card-body">
+              <p>The purpose of this clock is to take the guess work out of telling someone in another time zone what time you want to meet. </p>
+              <p> Search for your own city and your partner's city and drag the shifter until you see the time you like and then hit the copy URL button.</p> <p>Send the URL to your partner and they'll see the exact times you've chosen. In turn they can offer an alternate time by using their own time shifter.</p>
+            </div>
+          </div>
+        </div>
+      </div> <!-- close container for page header -->
+    </header>
+
+    <!-- The main page body -->
+    <main>
+
+    <!-- html goes here -->
+
+      <div class="container"> <!-- open container for switches -->
+        <!-- Switch to  12 vs 24 hr clock -->
+        <div class="row pb-3 pr-1 pl-1"> <!-- row for numHrs switch -->
+          <div class="col col-md-6 form-control form-check-inline bg-light border border-dark rounded d-flex justify-content-center">
+            <!-- Description of checkbox for screen readers -->
+            <div id="hrsDesc" class="sr-only">Switch to toggle between 24 and 12 hour clocks</div> 
+            
+            <div class="custom-control custom-switch form-control-md">
+                <input type="checkbox" class="custom-control-input" checked id="numHrs" name="numHrs" >
+              <label class="custom-control-label mySwitches" for="numHrs">Toggle 12/24 Hour Clocks</label>
+            
+            </div>
+          </div>
+        </div>
+      </div> <!-- close switch 12 vs 24 hr clock -->
+      
+      <!-- TIMESHIFTER CLOCKS -->
+
+        <!-- One placeholder for all time shifting clocks using clockCards template -->
+        <div class="container">
+          <div class="row pr-1 pl-1">
+              <div class="col col-md-6" id="shiftingClocksPlaceholder"></div>
+          </div>
+        </div>
+        <!-- end clock divs -->
+      </div><!-- end container for timeshifter clocks --> 
+
+      <div class="container mt-2">  <!-- open container to hold range sliders -->
+        <div class="row">
+            <form class="col col-md-6 ">
+              <div class="form-group">
+                <div >
+                  <label class="mr2" for="changeHrs">Drag to Shift Time (hrs)</label>
+                  <button class="btn" type="button" data-toggle="collapse" data-target="#explainSlider" aria-expanded="false" aria-controls="explainSlider"><i class="fas fa-question-circle ">  Help</i></button>
+                  <div class="collapse" id="explainSlider">
+                    <div class="card card-body">
+                      As you start to slide, clocks will round down to nearest hour and shift forward from there.
+                    </div>
+                  </div>
+                  <input type="range" class="slider form-control-input" min="0" max="167.5" step=".5" value="0" data-show-value="true" id="changeHrs" data-thumbwidth="20">
+                  <p class="slider_label" id="hrsChosen"></p>
+                </div>
+              </div>
+            </form>
+          <!-- </div>  -->
+          <!-- close col for range sliders -->
+        </div> <!-- close row for range sliders -->
+      </div> <!-- close container for range sliders -->
+
+      <!-- Button to copy the times to a sendable URL -->
+      <div class="container">
+        <div class="row pr-1 pl-1">
+            <button class = "col-md-6 btn btn-danger copyBtn" id="copyBtn">Copy URL to send times</button>
+            <div id="dummy"></div>
+        </div>
+      </div>
+      <!-- Close container for Button -->
+      
+      <!-- Credits -->
+      <div class="container mb-2">
+        <div class="small" name="homage">Time Shifter Clock was inspired by Terry Brett's <a href="http://timescroller.com">TimeScroller</a> iOS app and widget for OSX</div>
+      </div>
+      <div class="container">
+        <div class="small" name="homage">Released as an open source project at <a href="https://github.com/NosillaCast/a-world-clock">github.com/NosillaCast/a-world-clock</a></div>
+      </div>
+    </main>
+    
+    <!-- The clock card template for Class clocks -->
+    <script type="text/html" id="clockCards">
+      <!-- box that the entire clock sits in -->
+      <div class="mb-2 {{boardr}} {{bgcolor}}" style="width: 100%">
+        
+        <div class="form-group row"> 
+          <label for="{{searchBoxID}}" class="sr-only" >Type 3 characters and look for dropdown</label>
+          <div id="" class="col input-group" role="combobox">
+            <div class="input-group-prepend rounded">
+              <div class=" input-group-text">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+            <div class="form-control p-0 pl-1 pt-1" id="{{searchBoxDivID}}" aria-expanded="false">
+            </div>
+          </div> 
+        </div>
+        
+        <div style="color: red" class="rounded col" id="{{timeDescriptionID}}">{{timeDescription}}
+        </div>
+        <div class="ml-5 mb-3 text-dark" id="{{timeID}}"></div> <!-- placeholder div for the actual time  -->
+      </div> 
+    </script>
+    <!-- END NEW PROBABLY WRONG STUFF -->
+
+    <!-- Include jQuery, Popper, then Bootstrap - IN THIS ORDER -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- Include Mustache.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 Autocomplete  Plugin-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
+
+    <!-- Local Bootstrap 4 Autocomplete Plugin -->
+    <!-- <script src="./bootstrap-4-autocomplete.js" crossorigin="anonymous"></script> -->
+
+    <!-- load moment.js with locales -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+
+    <!-- load moment-timezone -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data-1970-2030.min.js" integrity="sha256-ob9GYTF6HJFUyVtlWivU47nga6eeRR3Lti9VfUeFhBI=" crossorigin="anonymous"></script>
+
+    <!-- Include is.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js" integrity="sha256-lnJeulOa3e5IO2EzHr8jKJ3CbT80MBwkS5a+n2ooIr4=" crossorigin="anonymous"></script>
+    
+    <!-- Include Font Awesome -->
+    <script src="https://kit.fontawesome.com/017e626a00.js" crossorigin="anonymous"></script>
+
+    <!-- Load the local JS Code AFTER the other libraries -->
+    <script type="text/javascript" src="./script.js"></script>
+
+  </body>
+</html>
