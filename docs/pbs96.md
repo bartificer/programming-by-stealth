@@ -6,7 +6,7 @@ Finally — I'll set another challenge to tide you over for four weeks while we 
 
 ## Instalment Resources
 
-This instalment uses 4 example files:
+This instalment references the following sample solutions:
 
 * [Download ZIP File](https://rawcdn.githack.com/bartificer/programming-by-stealth/0babf18789ac253590aee2afeed3f6cae855c70c/instalmentZips/pbs96.zip)
 * [View source code online at GitHub](https://github.com/bartificer/programming-by-stealth/tree/master/instalmentResources/pbs96)
