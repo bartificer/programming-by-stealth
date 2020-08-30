@@ -17,7 +17,7 @@ This instalment uses 3 example files:
 
 ## Matching Podcast Episode
 
-Listen along to this instalment on [episode 643 of the Chit Chat Across the Pond Podcast]().
+Listen along to this instalment on [episode 643 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2020/06/ccatp-643/).
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_28.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
