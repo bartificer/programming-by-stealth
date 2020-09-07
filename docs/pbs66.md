@@ -177,7 +177,7 @@ Alternatively, you can manually show and hide these messages using jQuery’s `.
 
 To see all this in action, let’s look at a final version of our form with fully custom validation using Bootstrap’s styles.
 
-I’ve chosen to enable validation on each field in the form one-by-one as its interacted with, and not to enable form-wide validation until the first time the form is submitted. I think this approach gives the most pleasing user experience. You can try it for yourself with `pbs66d.html` in the ZIP.
+I’ve chosen to enable validation on each field in the form one-by-one as it’s interacted with, and not to enable form-wide validation until the first time the form is submitted. I think this approach gives the most pleasing user experience. You can try it for yourself with `pbs66d.html` in the ZIP.
 
 My solution relies on using Bootstrap’s `.was-validated`, `.is-valid`, `.is-invalid`, `.valid-feedback` & `.invalid-feedback` CSS classes, and the `submit`, `invalid`, `input`, & `change` JavaScript events, and jQuery’s `.is()`, `.val()`, `.prop()`, `.text()`, `.empty()`, `.addClass()`, `.removeClass()`, `.show()`, `.hide()`, `.focus()`, `.on()`, `.submit()`, & `.first()` functions. All the relevant JavaScript code is contained within the jQuery document ready handler.
 

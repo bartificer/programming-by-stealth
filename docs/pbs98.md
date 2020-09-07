@@ -227,7 +227,7 @@ set denomination(d){
 }
 ```
 
-The only thing that makes this attribute in any way remarkable is that it's value must be an instance of the class `Denomination`. When I said there was no special syntax for *has-a* relationships I really wasn't kidding 😉
+The only thing that makes this attribute in any way remarkable is that its value must be an instance of the class `Denomination`. When I said there was no special syntax for *has-a* relationships I really wasn't kidding 😉
 
 Note the use of the `instanceof` operator for data validation (see [instalment 94](https://bartificer.net/pbs94) for more).
 

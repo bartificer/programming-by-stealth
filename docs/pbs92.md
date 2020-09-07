@@ -661,6 +661,6 @@ The challenge now is to make a start on a web app for showing the current time i
 3. Whether or not the clock shows seconds.
 4. Whether or not the clock shows pulsing dividers between the parts of the time.
 
-Rather than implementing your own timezone conversion, please use either JavaScript's built-in date functions, or, better yet, an open source library dedicated to making date and time operations easy. I'd recommend using [moment.js](https://momentjs.com) with it's [optional timezone extension](https://momentjs.com/timezone/).
+Rather than implementing your own timezone conversion, please use either JavaScript's built-in date functions, or, better yet, an open source library dedicated to making date and time operations easy. I'd recommend using [moment.js](https://momentjs.com) with its [optional timezone extension](https://momentjs.com/timezone/).
 
 Instalment 95 will be dedicated to a sample solution to this challenge.

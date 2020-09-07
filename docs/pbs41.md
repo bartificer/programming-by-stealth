@@ -408,7 +408,7 @@ Note that in the previous instalment we used the `keyup` event for text inputs r
 
 We’ve taken HTML 5 form validation as far as it can go today. It’s a new feature, and it can’t do everything you might conceivably need. Should you find yourself in need of more powerful validation, you’ll have two choices – write your own validation functions from scratch using your JavaScript and jQuery skills, or find and use an existing third-party library. Basically, the age old question, do you reinvent the wheel, or seek out a good wheel created by someone else? There are pros and cons to both approaches, and you’ll hear passionate arguments on all sides.
 
-For what its worth, my advice is to default to using a third-party library, and to fall back on writing your own only when that fails for some reason.
+For what it’s worth, my advice is to default to using a third-party library, and to fall back on writing your own only when that fails for some reason.
 
 Should you choose to use a third-party library for more advanced form validation, then I would recommend you give the `.validate()` jQuery plugin a go. It’s a mature project that’s under active development, it’s heavily used in the community, and it leverages off jQuery, which you already know. To give you some idea of the project’s pedigree — it’s been on the go since 2006, and its lead developer is a developer with the jQuery project and the maintainer of the QUnit testing suite we’ve used throughout much of this series.
 
