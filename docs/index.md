@@ -122,6 +122,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 98 — Building with Classes Part 1: *Has-A*](./pbs98)
 * [PBS 99 — Building with Classes Part 2: *Is-A*](./pbs99)
 * [PBS 100 — Time Sharing Challenge Solution](./pbs100)
+* [PBS 101 — Introducing Version Control](./pbs101)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
