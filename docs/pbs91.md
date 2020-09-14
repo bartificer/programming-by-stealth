@@ -4,7 +4,7 @@ Over the past few instalments we've been looking at many of the different *hats*
 
 As a gentle reminder, Regular Expressions, also known as RegExps or simply REs, are a means of representing text patterns. 
 
-We'll start by reminding ourselves of the syntax for regular expression literals in JavaScript. Next we'll look at some of the useful functions provided by the built-in RegExp class, and how they allow us to do three extremely common RE-related tasks — checking whether or not strings match a given pattern, and using patterns to extract meaningful information from strings, or *string parsing* if you prefer fancier jargon 🙂 We'll finish be re-visiting some instance functions provided by the built-in `String` class which make use of regular expressions.
+We'll start by reminding ourselves of the syntax for regular expression literals in JavaScript. Next we'll look at some of the useful functions provided by the built-in RegExp class, and how they allow us to do three extremely common RE-related tasks — checking whether or not strings match a given pattern, and using patterns to extract meaningful information from strings, or *string parsing* if you prefer fancier jargon 🙂 We'll finish by re-visiting some instance functions provided by the built-in `String` class which make use of regular expressions.
 
 ## Matching Podcast Episode
 
@@ -43,7 +43,7 @@ const insulter = function(){
 };
 
 // a string literal
-const bothedMovieLine = 'lying, dog-faced pony soldier';
+const botchedMovieLine = 'lying, dog-faced pony soldier';
 ```
 
 In JavaScript, RE literals consist of PCRE patterns enclosed by forward slashes (`/`) followed by zero or more flags. As a simple example, here's an RE literal to match all occurrences of `cat` or `dog` in any case: 
@@ -124,7 +124,7 @@ As well as allowing us to specify which characters we want where, PCRE also allo
 
 ### Groupings (Capturing & Non-Capturing)
 
-Plain parenthesis serve a dual role in PCRE. They allow you to group parts of a pattern together so they can be addressed as a group by the various operators and quantity specifiers, but they also act as so-called *capture groups*. Each opening parenthesis starts a numbered sub-pattern, and some of the regular expression-related functions allow us to make use of these numbered sub-patterns. The sub-patterns are numbered from the left, and patterns can be nested within each other.
+Plain parentheses serve a dual role in PCRE. They allow you to group parts of a pattern together so they can be addressed as a group by the various operators and quantity specifiers, but they also act as so-called *capture groups*. Each opening parenthesis starts a numbered sub-pattern, and some of the regular expression-related functions allow us to make use of these numbered sub-patterns. The sub-patterns are numbered from the left, and patterns can be nested within each other.
 
 As an example, given the following RE: `/((\d{2}):(\d{2}))(:(\d{2}))?/`, the strings `12:01` and `12:01:02` would both match. The final set of parenthesis group the `:\d{2}` together so the `?` makes that entire piece of the pattern optional.
 
@@ -273,7 +273,7 @@ At the moment we're forced to choose between two sub-optimal options when it com
 
 ### Replacing Patterns within Strings with `.replace()`
 
-The next function I want to highlight from the `String` class is `.replace()`. This function can accept an RE object as the first argument. Depending on whether or not the passed RE has the global flag set, either the first occurrence of the pattern or the second will be replaced by the replacement string passed as the second argument.
+The next function I want to highlight from the `String` class is `.replace()`. This function can accept an RE object as the first argument. Depending on whether or not the passed RE has the global flag set, either the first occurrence of the pattern or all occurences will be replaced by the replacement string passed as the second argument.
 
 The replacement string can include a number of special values based on the regular expression. You can include the entire match in the replacement string with `$&` and the matched capture groups with `$1`, `$2` etc.. Because the `$` character has a meaning within the replacement string you need to use `$$` to represent an actual dollar character.
 

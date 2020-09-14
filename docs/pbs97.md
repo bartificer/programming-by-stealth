@@ -397,7 +397,7 @@ The final code for our updated Nerdtouche class can be found in the file `Nerdto
 
 ### Unique IDs or Classes
 
-When you have a one-to-one mapping between instance objects and DOM objects you can use unique IDs to allow each instance to find it's one matching DOM element. 
+When you have a one-to-one mapping between instance objects and DOM objects you can use unique IDs to allow each instance to find its one matching DOM element.
 
 When you have a many-to-one mapping you can't use IDs, but you can uses classes, which is what we'll do in our worked example.
 

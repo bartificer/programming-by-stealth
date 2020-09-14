@@ -94,7 +94,7 @@ console.log(`x=[${x.join()}] & y=[${y.join()}]`);
 
 This snippet outputs `x=[1,2,1,2] & y=[1,2,1,2]`.
 
-Because `x` contained a reference to an array object, when its was passed as an argument to the `arrayDoubler()` function its values was copied, that means `arr` received a copy of the reference to the array, so `x` and `arr` become **two difference names for the same array**. This is why the line `arr.push(...arr)` within the function results in more *spooky action at a distance*.
+Because `x` contained a reference to an array object, when it was passed as an argument to the `arrayDoubler()` function its value was copied, that means `arr` received a copy of the reference to the array, so `x` and `arr` became **two different names for the same array**. This is why the line `arr.push(...arr)` within the function results in more *spooky action at a distance*.
 
 Regardless of the programming language, we refer to the behaviour JavaScript displays with primitive values as *passing by value*, and the behaviour JavaScript displays with object references as *passing by reference*.
 

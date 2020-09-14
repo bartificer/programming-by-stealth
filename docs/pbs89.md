@@ -39,7 +39,7 @@ Before describing the decisions that went into building my solution, let's start
 
 Visually, the most important things to note are the following:
 
-1. My choice of UI — a [Bootstrap Input Group](https://getbootstrap.com/docs/4.4/components/input-group/) with a standard [HTML 5 number input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) at it's centre, the appropriate currency symbol as a prepend, and a conversion icon as an append.
+1. My choice of UI — a [Bootstrap Input Group](https://getbootstrap.com/docs/4.4/components/input-group/) with a standard [HTML 5 number input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) at its centre, the appropriate currency symbol as a prepend, and a conversion icon as an append.
 2. My data validation choices — I chose to use standard HTML 5 form validation (as described in [Instalment 39](https://bartificer.net/pbs39)) in conjunction with [Bootstrap's built-in form validation styles](https://getbootstrap.com/docs/4.4/components/forms/#validation). I also chose not to apply any form validation styles until the first time the user interacts with a given number field.
 3. My event handling choice — I chose to have the cards update each time the user changes the number in any way. I did this using the `input` event (not `change` or `keyup`).
 4. My error handling choice — I chose to treat invalid values as `1`.

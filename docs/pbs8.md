@@ -176,7 +176,7 @@ Offsetting a position is not something you need to do often, but, setting `posit
 
 Finally – the vertical stacking of positioned boxes can be controlled with the `z-index` property. Remember, the vertical stacking of unpositioned boxes is controlled by the nesting of the tags within the normal flow of the document, so the `z-index` property has no effect on unpositioned boxes.
 
-The `z-index` property can either be set to `auto`, where it’s `z-index` is the same as that of it’s containing box, or, to a positive or negative whole number. Boxes with bigger `z-index` values are in front of those with smaller `z-index` values.
+The `z-index` property can either be set to `auto`, where its `z-index` is the same as that of its containing box, or, to a positive or negative whole number. Boxes with bigger `z-index` values are in front of those with smaller `z-index` values.
 
 ## Worked Example
 
