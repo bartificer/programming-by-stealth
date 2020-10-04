@@ -222,7 +222,7 @@ This is the approach I recommend you take for all your reusable code. Choose one
 
 Remember that there is no reason not to nest these pseudo namespaces – you could have `pbs.util.x`, `pbs.util.y`, as well as `pbs.project1.x`, and `pbs.projec1.y`, and so on.
 
-Because my registered business name is _Bartificer_, I publish all my JavaScript APIs as `bartificer.something`. For example, I released the API that powers [subnetcalc.it](http://www. subnetcalc.it/) as `bartificer.ip`. It contains a number of prototypes for modelling IP addresses and subnets, including `bartificer.ip.IP`, `bartificer.ip.Subnet`, and `bartificer.ip.Netmask`.
+Because my registered business name is _Bartificer_, I publish all my JavaScript APIs as `bartificer.something`. For example, I released the API that powers [subnetcalc.it](http://www.subnetcalc.it/) as `bartificer.ip`. It contains a number of prototypes for modelling IP addresses and subnets, including `bartificer.ip.IP`, `bartificer.ip.Subnet`, and `bartificer.ip.Netmask`.
 
 If you choose this approach, your code will inevitably be split across multiple `.js` files, and any one project will only use a subset of those files. So how do you declare your object in the first place? You could declare it in a sort of master file that must be included in every project, but that is needlessly cumbersome. A better approach is to declare the object in every file, but only if it does not already exist. This can be done using the following code snippet:
 
