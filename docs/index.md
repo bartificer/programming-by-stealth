@@ -127,6 +127,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 103 — Getting Started With Git](./pbs103)
 * [PBS 104 — Tracking Changes in Git](./pbs104)
 * [PBS 105 — Seeing the Past with Git](./pbs105)
+* [PBS 106 of X — Time Travel with Git](./pbs106)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
