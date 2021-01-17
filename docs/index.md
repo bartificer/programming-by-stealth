@@ -131,6 +131,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 107 — Branching Basics](./pbs107)
 * [PBS 108 — Merging & Tagging](./pbs108)
 * [PBS 109 — SemVar & Structured Commits](./pbs109)
+* [PBS 110 — Merge Conflicts](./pbs110)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
