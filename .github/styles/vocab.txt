@@ -48,6 +48,8 @@ html
 http
 https
 infinitum
+initialiser
+initialisers
 inlined
 interdependencies
 interoperate
@@ -58,6 +60,7 @@ json
 jumbotron
 jumbotrons
 Kaylee
+Kernighan
 keypress
 Komodo
 Latinum
@@ -76,6 +79,8 @@ namespacing
 navbar
 navbars
 navs
+Nerdtouche
+Nerdtouches
 noopener
 npm
 objecty
@@ -84,11 +89,13 @@ passthrough
 pbs
 pbsdemos
 pbsindex
+podcasters
 poofed
 prepends
 Quatloo
 raison
 rawcdn
+Renminbi
 Ritchie
 sandboxing
 sanitisation

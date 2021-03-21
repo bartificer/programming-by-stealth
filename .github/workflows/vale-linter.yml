@@ -14,7 +14,8 @@ jobs:
           styles: |
             https://github.com/errata-ai/Microsoft/releases/latest/download/Microsoft.zip
             https://github.com/errata-ai/write-good/releases/latest/download/write-good.zip
-          files: all
-          debug: true
+          files: docs
+          debug: false
+          onlyAnnotateModifiedLines: false
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
