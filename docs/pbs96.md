@@ -335,7 +335,7 @@ Notice that this new event handler simply triggers the on-input handler we alrea
 
 One final point to note is that I chose to use a custom font for my clock. Google Fonts is a great resource for free and easy to use web fonts. Simply go to [fonts.google.com](https://fonts.google.com/), pick the font you want, then copy-and-paste the embed code.
 
-Once I'd picked my font, applying it onvolved just a few lines of CSS within a `<style>` tag in my page header:
+Once I'd picked my font, applying it involved just a few lines of CSS within a `<style>` tag in my page header:
 
 ```css
 /* Load the web font for the clock */

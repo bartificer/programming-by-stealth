@@ -81,16 +81,16 @@ If we take our imaginary currency as an example, if we named that class `Imagina
 
 In an attempt to save your sanity, here's a quick summary of all the OO jargon you've had to absorb so far:
 
-| Term | Meaning |
-|---:|:--- |
-| **Object** | A data structure that contains named pieces of data and functions. |
-| **Encapsulation** | The act of collecting the data and functions related to a concept or thing in an object. |
-| **Object Orientation** (OO) | A *paradigm* (or design philosophy) built around the concept of related groups of encapsulated objects. |
-| **Class** (or **Type**) | A definition that can be used to construct objects representing specific incarnations of a concept or thing. |
-| **Instance** | An encapsulated object built by a class that represents a specific incarnation of a concept or thing. |
-| **Constructor** | A function defined within a class that initialises instances of that class. |
-| **Attribute** | A piece of data data encapsulated within an instance. |
-| **Instance Function** | A function encapsulated within an instance. |
+|                        Term | Meaning                                                                                                      |
+| --------------------------: | :----------------------------------------------------------------------------------------------------------- |
+|                  **Object** | A data structure that contains named pieces of data and functions.                                           |
+|           **Encapsulation** | The act of collecting the data and functions related to a concept or thing in an object.                     |
+| **Object Orientation** (OO) | A _paradigm_ (or design philosophy) built around the concept of related groups of encapsulated objects.      |
+|     **Class** (or **Type**) | A definition that can be used to construct objects representing specific incarnations of a concept or thing. |
+|                **Instance** | An encapsulated object built by a class that represents a specific incarnation of a concept or thing.        |
+|             **Constructor** | A function defined within a class that initialises instances of that class.                                  |
+|               **Attribute** | A piece of data encapsulated within an instance.                                                             |
+|       **Instance Function** | A function encapsulated within an instance.                                                                  |
 
 ## JavaScript's Implementation of OO
 
