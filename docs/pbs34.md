@@ -30,7 +30,7 @@ In short – you can use everything you know about JavaScript to make your test 
 
 To illustrate this larger point, I want to draw your attention to a few aspects of my sample solution.
 
-Firstly, because there is so much to test here, it made my life easier to split my test suite into multiple files. One file defines some variables and functions I make use of thoughout my test suite, including a few very general tests. Then three separate files define the tests for each of the three prototypes. So, four `.js` files in total.
+Firstly, because there is so much to test here, it made my life easier to split my test suite into multiple files. One file defines some variables and functions I make use of throughout my test suite, including a few very general tests. Then three separate files define the tests for each of the three prototypes. So, four `.js` files in total.
 
 If you look at my QUnit test runner (`test/index.html`), you’ll see how easy it is to split up your tests – create the files, then import each into the test runner with a separate `<script>` tag:
 

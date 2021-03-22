@@ -234,11 +234,11 @@ class Circle{
         }
         this._radius = radiusNumber;
     }
-    
+
     get radius(){
         return this._radius;
     }
-    
+
     set radius(radius){
         this._radius = radius;
     }
@@ -281,11 +281,11 @@ class Circle{
     constructor(radius=1){
         this.radius = radius;
     }
-    
+
     get radius(){
         return this._radius;
     }
-    
+
     set radius(radius){
         const radiusNumber = parseFloat(radius);
         if(isNaN(radiusNumber)){
@@ -322,7 +322,7 @@ It's not unusual for a class to need to represent two pieces of data that are di
 diameter(d){
   // if no args were passed, return the current diameter
   if(arguments.length === 0) return 2 * this.radius;
-  
+
   // otherwise set the radius to half the diameter
   this.radius = d/2;
 }
@@ -396,16 +396,16 @@ get classAuthor(){
 ```
 
  We can interact with this updated version of the class using the JavaScript console on the file `pbs95d.html`:
- 
+
  ```js
  const c1 = new Circle();
  console.log(`The Circle class is by ${c1.classAuthor}`);
  c1.classAuthor = 'pesky plagerist';
  console.log(`The Circle class is by ${c1.classAuthor}`);
  ```
- 
+
  I think of this approach as being a kind of programming *white lie*. Why a lie? Because if you look at the code above, an assignment operator was executed but it neither assigned a value, nor, threw an error.  The assignment operator is supposed to assign, but it didn't, and it was silent about that fact — that's dishonest! I call it a *white lie* because in an example like this, it really doesn't matter that the assignment was silently ignored.
- 
+
 If the attempted assignment is consequential, i.e. an attempt is made to alter an attribute who's value is expected to have an effect on the class's behaviour, is it still OK to silently ignore the assignment attempt? I would argue that it's not, because it could easily confuse users of the class. And worse still, this kind of white lie can lead to some extremely frustrating and difficult to track down bugs. When you're debugging code, how often do you even consider the idea that an assignment can silently fail? I think most programmers implicitly assume that an operator as fundamental as the assignment operator will always do its job, or, throw an error if it can't. I really don't think most programmers expect assignments to silently fail to assign!
 
 My implementation of the read-only PI property in `Circle4.js` illustrates a more assertive alternative approach — don't omit the setter, define one that always throws an error instead:
@@ -414,7 +414,7 @@ My implementation of the read-only PI property in `Circle4.js` illustrates a mor
 get π(){
   return 3.1415;
 }
-	
+
 set π(pi){
   throw new Error('π is a read-only attribute');
 }
@@ -440,7 +440,7 @@ We've now covered everything I had planned to cover in this third attempt at exp
 
 The next instalment will be built around my sample solution to the challenge set in PBS 92. That instalment will set a new challenge, so the following two instalments will round out our look at OO Programming JavaScript, then we'll finish our JavaScript series with a final challenge solution instalment.
 
-So far in this series we've looked at HTML, CSS, and JavaScript. Together these three languages provide the client-side of the internet — HTML defines that structure of webpages, CSS their visual style, and JavaScript brings them to life. The world wide web is built around a client-server model, so the languages we've looked at are literally only half of the story, what about the server side? That's where PHP comes in. While there are only three prominent client-side languages, just about any language can be used on the server side. Believe it or not, you can write server-side web code in shell script, or even with Windows Batch files! So while I could pick literally any language for our move to the server (including JavaScript), I've chosen the one that's most popular in the open-source world, PHP.
+So far in this series we've looked at HTML, CSS, and JavaScript. Together these three languages provide the client-side of the internet — HTML defines that structure of web pages, CSS their visual style, and JavaScript brings them to life. The world wide web is built around a client-server model, so the languages we've looked at are literally only half of the story, what about the server side? That's where PHP comes in. While there are only three prominent client-side languages, just about any language can be used on the server side. Believe it or not, you can write server-side web code in shell script, or even with Windows Batch files! So while I could pick literally any language for our move to the server (including JavaScript), I've chosen the one that's most popular in the open-source world, PHP.
 
 It will take us some months to get comfortable on the server side, and with PHP, but when we do the next big area we'll be venturing into is data storage. Probably the single most important role server-side code plays is that of a data broker — server side web code spends the vast majority of its time reading data from a database of some kind, or writing data to a database of some kind. Databases come in all shapes and sizes, so that leaves a lot of room for future exploration!
 

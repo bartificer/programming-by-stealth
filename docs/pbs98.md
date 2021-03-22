@@ -33,7 +33,7 @@ Secondly, classes can be more specific versions of other classes. A hypothetical
 
 ## *has-a* Relationships are Simple
 
-The *has-a* relationship really is very simple to describe — instances of one class have instances of another as the values for one or more of their instance data attributes. Instead of the values of instancedata attributes being booleans or numbers or strings, they are instances of other classes.
+The *has-a* relationship really is very simple to describe — instances of one class have instances of another as the values for one or more of their instance data attributes. Instead of the values of instance data attributes being booleans or numbers or strings, they are instances of other classes.
 
 There is no new syntax to learn, it really is just as simple as assigning the value of a data attribute to an instance object.
 
@@ -74,7 +74,7 @@ As a reminder of how getters and setters can be used together with a private ins
 get symbol(){
   return this._symbol;
 }
-	
+
 set symbol(s){
   if(is.not.string(s)){
     throw new TypeError('symbol must be a string');
@@ -194,15 +194,15 @@ Because currencies can use different numbers of decimal places, the code to rend
 ```js
 amountAsHumanFloat(amount){
   amount = this.constructor.coerceAmount(amount); // could throw error
-		
+
   // short-curcuit the case where there is no secondary denomination
   if(this.subDenominationOrder === 0){
     return this.constructor.amountAsHumanInt(amount);
   }
-		
+
   // build a format string with the appropriate number of decimal places
   const formatString = `0,0[.]${'0'.repeat(this.subDenominationOrder)}`;
-		
+
   // format and return
   return numeral(amount).format(formatString);
 }
@@ -218,7 +218,7 @@ Next I want to draw your attention to our first example of a *has-a* relationshi
 get denomination(){
   return this._denomination;
 }
-	
+
 set denomination(d){
   if(!(d instanceof Denomination)){
     throw new TypeError('denomination must be an instance of the class Denomination');
@@ -270,15 +270,15 @@ Another interesting pair of instance data attributes is `real` and `imaginary`. 
 get imaginary(){
   return this._imaginary;
 }
-	
+
 set imaginary(i){
   this._imaginary = i ? true : false;
 }
-	
+
 get real(){
   return !this._imaginary;
 }
-	
+
 set real(r){
   this._imaginary = r ? false : true;
 }
@@ -337,7 +337,7 @@ add(amount){
   }else{
     this.amount += Currency.coerceAmount(amount); // could throw error
   }
-		
+
   // return a reference to self to facilitate function chaining
   return this;
 }

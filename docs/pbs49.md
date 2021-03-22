@@ -846,7 +846,7 @@ The `.step()` function in the `bartificer.ca.Automaton` class uses the step func
 
 Firstly, if the step function returns something other than an instance of `bartificer.ca.State`, it should try to convert it to a state using the `.stateFromValue()` function you created earlier. If this fails, a `TypeError` should be thrown.
 
-Secondly, the next state needs to be checked against the list of allowed states (`._cellStates`), thowing a `TypeError` if not found.
+Secondly, the next state needs to be checked against the list of allowed states (`._cellStates`), throwing a `TypeError` if not found.
 
 ## Final Thoughts
 

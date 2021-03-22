@@ -271,7 +271,7 @@ Finally, we want to group the last two sections into a third row in our inner gr
 
 At this stage we’re almost done. We just need to do a little housekeeping in the right sidebar. The table caption is not centred; so we need to give the `<caption>` tag within the small table the class `text-center`. The figure is also not centred; so we need to give it the classes `d-block`, `mx-auto`, and `text-center` (the technique we learned in the previous instalment for centring figures within their containing block).
 
-You’ll find the full source for the finished laidout page in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57e.html`, but this is the basic structure of the final page:
+You’ll find the full source for the finished laid out page in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57e.html`, but this is the basic structure of the final page:
 
 ```html
 <!DOCTYPE html>

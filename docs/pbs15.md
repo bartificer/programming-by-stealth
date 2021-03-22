@@ -109,7 +109,7 @@ pbs.say('x in the global scope has been doubled to ' + x);
 dummyFn();
 ```
 
-Sometimes you intentionally want to access a global variable from within a function – you do this by intentionally not declaring the the variable inside the function:
+Sometimes you intentionally want to access a global variable from within a function – you do this by intentionally not declaring the variable inside the function:
 
 ```javascript
 // declare a globally scoped accumulator
