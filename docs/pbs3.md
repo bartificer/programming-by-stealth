@@ -22,8 +22,11 @@ There are six heading tags in HTML – `<h1>`, `<h2>` … `<h6>`, with `<h1>` be
 
 As a general rule, pages generally have just one top-level heading, a few sub-headings, and perhaps the odd sub-sub-heading. You’ll very rarely need to use the higher-numbered heading tags. Search engines use heading tags to help them understand what a page is about.
 
+<!-- vale Vale.Repetition = NO -->
+
 No other block-level tags should be contained within heading tags, but inline tags can be (not that that is often desired).
 
+<!-- vale Vale.Repetition = YES -->
 ## Paragraphs
 
 Paragraphs of text should be contained within `<p>` tags.

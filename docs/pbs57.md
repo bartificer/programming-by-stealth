@@ -195,7 +195,7 @@ To lay out a page you need to break it down into chunks of related content, and 
 
 Let’s start with the really big-picture stuff. The page clearly has a heading; so let’s wrap that in the semantic `<header>` tag. Everything else on the page is part of the main content of the page; so let’s wrap that in a `<main>` tag.
 
-Since this is a single article, the best semantic tag for describing the distinct regions within the content is `<section>`. Let’s create sections for each of the chunks of content that begin with an `<h2>` tag. Since these headings will now becomes top-level headings within a section rather than second level heading within the page, they need tp be changed from `<h2>`s to `<h1>`s.
+Since this is a single article, the best semantic tag for describing the distinct regions within the content is `<section>`. Let’s create sections for each of the chunks of content that begin with an `<h2>` tag. Since these headings will now becomes top-level headings within a section rather than second level heading within the page, they need to be changed from `<h2>`s to `<h1>`s.
 
 Finally, to give us a meaningful sidebar to work with, I moved the small table and the small figure into a separate grouping. I chose to mark them up as an aside and removed the utility tags to set their width and to float them.
 

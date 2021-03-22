@@ -75,8 +75,11 @@ The jQuery project makes the jQuery library available via a CDN. They offer samp
 ```javascript
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 ```
+<!-- vale Vale.Repetition = NO -->
 
 You’ll see that they also suggest using another attribute – `crossorigin`. This is another security feature, telling the browser that we are intentionally downloading code from a remote server, and that that code should be granted certain privileges that would ordinarily be denied it. For those extra privileges to be granted, the server hosting the code must set a HTTP header giving its consent. CDNs hosting JavaScript code should have that header in place.
+
+<!-- vale Vale.Repetition = YES -->
 
 ### The `noscript` Tag
 

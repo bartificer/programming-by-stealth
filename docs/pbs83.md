@@ -77,7 +77,12 @@ resetGame();
 
 Notice how much clearer it is which parts of the code are dealing with regular successful execution, and which parts are dealing with error handling.
 
+<!-- vale Vale.Spelling = NO -->
+
 Finally, for completeness, and as a nice example of one possible use for self-executing anonymous async functions, or async IIFEs (async **I**mmediately **I**nvoked **F**unction **E**xpressions), I also updated my `resetGame()` function to make use of the `await` keyword.
+
+<!-- vale Vale.Spelling = YES -->
+
 
 As a reminder, this function fetches a random number from a web service using AJAX, then either starts the game or renders an error. The function does not return anything, and deals with all potential errors internally. We don’t want to alter the functions behaviour from the point of view of the rest of our code. So when we’re done making changes, it must still not return anything, and must still deal with all its errors internally. This means we can’t mark the function as async, because then it will return a promise, and all code that calls the function will need to be updated to deal with potential promise rejections. Remember, good code handles all potential promise rejections!
 

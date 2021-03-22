@@ -395,7 +395,12 @@ randomNumOfRandomNums().then((rns)=>{console.log(rns)});
 
 Since `await` can only be used within async functions, you might think that you always need to create a named function to make use of it. Most of the time that’s not a problem because it’s what you’d do anyway, but sometimes, particularly when writing a small simple script, it would be convenient not to have to go to that effort.
 
+<!-- vale Vale.Spelling = NO -->
+
 A handy tip to remember is that, since `async` can be used when declaring any function, including anonymous ones, you can create async _‘self-executing functions’_, or IIFEs (**I**mmediately **I**nvoked **F**unction **E**xpressions). Making use of _fat arrow functions_, we can write them very succinctly like so:
+
+<!-- vale Vale.Spelling = YES -->
+
 
 ```javascript
 (async ()=>{

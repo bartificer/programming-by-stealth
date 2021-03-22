@@ -70,7 +70,11 @@ Why? because it spreads over multiple lines of course!
 
 There are an infinity of possible coding and commenting styles. The only cardinal rule is consistency – whatever way you choose to lay out your code: be consistent!
 
+<!-- vale Vale.Spelling = NO -->
+
 We’ll talk more about code layout later in the series, when we’ve learned more about code blocks. For now I’ll just say that, while you are free to lay out your code however you wish, and while the most important rule is to be consistent, you should probably adopt one of the standard(ish) styles in common use. All my examples will use a variant of the so-called K&R style (named for the authors of the legendary book _The C Programming Language_, Kernighan and Ritchie). True K&R uses more spaces than I do. I hate horizontal scrolling, so I _cuddle_ my braces which is something K&R don’t do in their book.
+
+<!-- vale Vale.Spelling = YES -->
 
 There is no right answer, and all the popular styles have sound logic behind them. It’s all about which considerations you find most important, and what your brain finds the easiest to interpret. The goal is clarity: so if a style doesn’t look clear to you, don’t use it!
 

@@ -455,7 +455,11 @@ label[for="year_tb"], label[for="rating_sel"]{
 }
 ```
 
+<!-- vale Vale.Repetition = NO -->
+
 Finally, notice that I used CSS’s flex box feature to lay out the form. We covered flexboxes way way way back in [instalment 9](https://pbs.bartificer.net/pbs9).
+
+<!-- vale Vale.Repetition = YES -->
 
 ### Validation Shortcomings
 

@@ -29,7 +29,11 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Allison taking over the reigns here to talk about how I approached making the clock as our challenge from PBS 92.  You'll find the full source code for my solution in the file `pbs92-ChallengeSolution-Allison/index.html` in this instalment's ZIP file or you can [view a live version of my solution in your browser here](https://rawcdn.githack.com/bartificer/programming-by-stealth/5ad7214faac1abc4701d1c65b49685357164042a/instalmentResources/pbs96/pbs92-ChallengeSolution-Allison/index.html), or [view the source code online here](https://github.com/bartificer/programming-by-stealth/blob/master/instalmentResources/pbs96/pbs92-ChallengeSolution-Allison/index.html).
 
+<!-- vale Vale.Repetition = NO -->
+
 I really enjoyed the clock assignment, even though technically we had learned how to make clocks in Programming By Stealth many many lessons ago.  I decided not to go back and look at those instructions and start from scratch with my newly-learned tools to see if I could make it happen.
+
+<!-- vale Vale.Repetition = YES -->
 
 ### Writing Cleaner Code
 In watching the elegance of the code Bart writes, I wanted mine to look more like his. I'm not even close, but it's less of a "dog's dinner" as Bart would say.  I started using all capital letters for a certain type of variable name and it was surprisingly easier to read.  I'm also trying to do the documentation bit but I'm calling far short of my intentions so far. I do plan on documenting this (don't developer's always say that?) but I need a way to visualize how the documentation will be visualized so I can see if it's making sense.
@@ -78,7 +82,7 @@ A few challenges back, I started adding a standardized `navbar` at the top of ev
 
 Step 1 of the challenge was to allow the user to control the timezone for the clock.  No matter how you approach it, dealing with timezones is a nightmare.  Bart suggested (but didn't require) we use moment.js, and it was very sane advice.  I wrote an extensive blog post on [www.podfeet.com/... entitled Time is Weird ](https://www.podfeet.com/blog/2020/04/time-is-weird/) where I chronicled my adventures trying to figure out how to allow people to see the time in a timezone of their choosing.
 
-My main challenge was not how to find the timezone data, but how to display it simply and elegantly. I'll not bore you with the incorrect paths I took (because they're in the blog post) and in the end I went for a path that included pretty much every single available city and time offset in a giant list.  By giant, I mean 539 items in my dropdown to choose the timezone! I was inspired by Michael Westbay's clock solution to this problem that he posted in the PBS channel in our community Slack ([podfeet.com/slack](https://podfeet.com/slack)).  He provided a text input field where people can start typing a city and if there's a match, it will show it to them.  That's going to be in the next rev of my web app.  For now, enjoy scrolling.  
+My main challenge was not how to find the timezone data, but how to display it simply and elegantly. I'll not bore you with the incorrect paths I took (because they're in the blog post) and in the end I went for a path that included pretty much every single available city and time offset in a giant list.  By giant, I mean 539 items in my dropdown to choose the timezone! I was inspired by Michael Westbay's clock solution to this problem that he posted in the PBS channel in our community Slack ([podfeet.com/slack](https://podfeet.com/slack)).  He provided a text input field where people can start typing a city and if there's a match, it will show it to them.  That's going to be in the next rev of my web app.  For now, enjoy scrolling.
 
 ### Modifying the time format
 Armed with a well-formatted, if exhaustive JSON dictionary of timezone data, it was actually pretty easy to use moment.js to create a working clock. Items 2 and 3 were to allow the user to choose a 12 or 24 hour clock and whether or not to show seconds.  Moment.js documentation was pretty good at explaining how to make these different formats.
@@ -110,13 +114,13 @@ My solution was to use "12 Hour Clock" as the real label for the checkbox and to
   <div class="row pl-3 pb-3"> <!-- row for numHrs switch -->
     <div class="col col-md-6 form-control form-check-inline bg-light border border-dark rounded p-2 m3">
 	  <!-- Description of checkbox for screen readers -->
-	  <div id="hrsDesc" class="sr-only">Switch to toggle between 24 and 12 hour clock</div> 
+	  <div id="hrsDesc" class="sr-only">Switch to toggle between 24 and 12 hour clock</div>
 	  <div class="mr-2 font-weight-bold mySwitches d-none d-md-inline">24 Hour Clock</div>
 	  <div class="mr-2 font-weight-bold mySwitches d-inline d-md-none">24 Hour</div>
 	  <div class="custom-control custom-switch form-control-md" aria-describedby="hrsDesc">
 	    <input type="checkbox" class="custom-control-input" checked id="numHrs" name="numHrs" >
 	    <label class="custom-control-label mySwitches" for="numHrs">12 Hour Clock</label>
-	              
+
 	  </div>
 	</div>
 </div>
@@ -131,7 +135,7 @@ function renderTime(){
 }
 ```
 
-In this line, `#forTime` was the ID of the div to hold this clock, and "selectedZone" was the chosen value from the dropdown select.  
+In this line, `#forTime` was the ID of the div to hold this clock, and "selectedZone" was the chosen value from the dropdown select.
 
 Everything worked swimmingly until I saw the last part of the challenge, and that was whether or not to show pulsing dividers between the parts of the time.  In order to execute that part of the assignment, I would have to completely refactor how I created the formatted times. I had some ideas for a really cool feature for my clock that I was itching to work on so I made the decision that my users will not be allowed to have pulsing dividers!
 
@@ -140,7 +144,7 @@ I spent some time making the clock look pretty on mobile and I declared victory.
 ![Clock showing toggles and a choice of time](./assets/pbs96/allisonFinalClockDesign.png)
 
 ### Request from Allison
-  
+
 I've taken my clock much further than what I've described here. It has some functionality that I'm very excited about, but the UI is what my father would have described as "ugly as sin."  I'd like to ask if anyone in the Programming By Stealth community would like to step in to consult with me on how to make it less ugly and to make it obvious what the functionality is.  As it stands, I have to put in a lot of words to explain it and that always means you're doing it wrong!
 
 ## Bart's Sample Solution
@@ -182,10 +186,10 @@ let tick = true;
 						$WC_SEPARATORS.fadeTo(450, 0.25);
 					}
 				}
-				
+
 				// Always update the display of everything
 				// …
-				
+
 				// toggle the tick
 				tick = !tick;
 			},
@@ -216,7 +220,7 @@ Unless you're doing complex calculations, optimise for the benefit of the human,
 When developing my sample solution I made two design decisions that made the code simpler at the cost of a tiny bit more work for the computer to do.
 
 1. Rather than use traditional variables to store most of the clock's state information, my code reads the state of each checkbox every time it needs to know whether to use 24 or 12 hour format, whether or not to show the seconds, and whether or not to pulse the separators. It takes a few more CPU cycles to check the state of a checkbox than to read a value straight from a variable, but it removes the need for three entire event handlers, making the code easier to understand, write, debug, and maintain.
-2. Rather than only showing/hiding the seconds etc when a user pro-actively clicks on a switch, my code explicitly sets everything as it should be each time. Twice a second the code shows or hides the seconds as appropriate. That sounds really inefficient, but firstly, even if jQuery were not well written it wouldn't be that much to ask of a modern computer, and secondly, jQuery is well written, so when you call `.hide()` on something that's already hidden it very quickly realises it has nothing to do and returns. So, it's fine to keep telling a hidden element that is should hide over and over again if it makes your code easier to design, write, debug, and maintain. 
+2. Rather than only showing/hiding the seconds etc when a user pro-actively clicks on a switch, my code explicitly sets everything as it should be each time. Twice a second the code shows or hides the seconds as appropriate. That sounds really inefficient, but firstly, even if jQuery were not well written it wouldn't be that much to ask of a modern computer, and secondly, jQuery is well written, so when you call `.hide()` on something that's already hidden it very quickly realises it has nothing to do and returns. So, it's fine to keep telling a hidden element that is should hide over and over again if it makes your code easier to design, write, debug, and maintain.
 
 ### How to Show Timezones?
 
@@ -269,13 +273,13 @@ let tzAutoCompleteCounter = 1;
 for(const tzName of moment.tz.names()){
   // break the timezone into parts
   const tzParts = tzName.split('\/');
-			
+
   // skip timezones with more than two parts
   if(tzParts.length != 2) continue;
-					
+
   // skip the artificial Etc region
   if(tzParts[0] === 'Etc') continue;
-			
+
   // if we got here, add the timezone as an option
   tzAutoCompeleSource[tzName] = tzAutoCompleteCounter;
   tzAutoCompleteCounter++;
@@ -340,7 +344,7 @@ Once I'd picked my font, applying it involved just a few lines of CSS within a `
 ```css
 /* Load the web font for the clock */
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-		
+
 /* Apply the web font to the clock */
 #wc_clock{
   font-family: 'Share Tech Mono', monospace;
