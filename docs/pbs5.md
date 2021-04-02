@@ -171,7 +171,11 @@ A web browser cannot know how big an image will be until it has been downloaded.
 
 You can help the browser by telling it what size the image will be within the `<img />` tag. This is done using the `width` and `height` attributes, the value of which must be positive integers representing the appropriate dimension in pixels.
 
+<!-- vale Vale.Repetition = NO -->
+
 In the past, when our bandwidth and CPU power were much much lower, the use of `width` and `height` attributes was very important. Users would notice real speed improvements on websites that used them compared to websites that didn’t. Now that most of us have really fast internet access, and now that our CPUs are so much more powerful, the use of these attributes no longer has a noticeable effect on page load times in most real world scenarios.
+
+<!-- vale Vale.Repetition = YES -->
 
 The `width` and `height` attributes can also be used to scale an image. If an image is actually 300 pixels across, you can render it half-size by specifying a width of `150`. If you only specify one dimension, images are scaled proportionally, but if you specify both, they are stretched to fit into the defined rectangle.
 

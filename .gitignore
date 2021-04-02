@@ -4,3 +4,6 @@
 *.komodoproject
 
 *.tmp.html
+.github/styles/Microsoft/*
+.github/styles/write-good/*
+.github/styles/proselint/*

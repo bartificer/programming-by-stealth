@@ -89,7 +89,11 @@ The majority of HTML elements fall into two main categories – _block-level ele
 
 By default, HTML is rendered very plainly with only very basic formatting. To give an HTML document some character and a look, we need to use CSS. As with HTML, there have been a number of versions of the CSS language released. We’ve been using the latest, CSS 3.
 
+<!-- vale Vale.Repetition = NO -->
+
 Every element in an HTML document has many _style properties_ associated with it, e.g. `font-size`, `color`, `font-family`, `border`, and many many many more. CSS allows us to specify values for these properties using _declarations_. We group these declarations into _declaration blocks_ and apply them selectively to the elements that make up a document using _selectors_.
+
+<!-- vale Vale.Repetition = YES -->
 
 Consider the example below:
 
@@ -355,6 +359,10 @@ Once we’ve learned about ES6 and Bootstrap, it will be time to embark on a nic
 
 All that will easily tide us over into 2018, by which time we’ll be ready to make the paradigm shift from writing client-side code to writing server-side code. We’ll be doing that with NodeJS. Node already has great ES7 support. So we’ll start our exploration of Node by learning about the new features ES7 brings to JavaScript, particularly the concept of _promises_.
 
+<!-- vale Vale.Repetition = NO -->
+
 Learning server-side development with Node is likely to take many many months. My plans beyond that are not really plans, more ideas. Two things I would like to cover at that stage are databases and source control systems like GIT. Next, I think it might be good to learn another language other than JavaScript. My current thinking is to look at the most common server-side language, PHP.
+
+<!-- vale Vale.Repetition = YES -->
 
 We’ve learned a lot together over the last 37 instalments, but there is so much more for us to explore, so have no fear, this series is nowhere near winding down yet!

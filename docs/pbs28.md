@@ -719,7 +719,9 @@ You should always specify a `type` attribute on your buttons. You can choose fro
 
 <dt><code>type="reset"</code></dt>
 
+<!-- vale Vale.Repetition = NO -->
 <dd>Clicking on the button will reset all form inputs within the form the button belongs to to their initial values.</dd>
+<!-- vale Vale.Repetition = YES -->
 
 <dt><code>type="button"</code></dt>
 

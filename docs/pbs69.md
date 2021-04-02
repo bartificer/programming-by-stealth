@@ -171,7 +171,7 @@ Because one of their primary roles is as a site-wide navigation bar, most Navbar
 
 You can use any tag to contain the brand as long as you give it the class `.nav-brand`, but the Bootstrap documentation warns that using tags other than `<a>` may require the use of additional utility classes to get the spacing to look right. Another good reason for using the `<a>` tag is that it’s extremely common to use the brand section of Navbars as links to a site’s front page.
 
-Generally speaking, a Bootstrap brand really is as simple as a single `<a>` tag with the class `.navbar-brand` containing an image and/or some text. For example, here’s the code for the brand in the second example Navbar in `pbs69a.html` in this [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip):
+Generally speaking, a Bootstrap brand really is as simple as a single `<a>` tag with the class `.navbar-brand` containing an image and/or some text. For example, here’s the code for the brand in the second example Navbar in `pbs69a.html` in [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2019/01/pbs69.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs69.zip):
 
 ```html
 <a class="navbar-brand" href="http://www.bartbusschots.ie" target="_blank" rel="noopener">

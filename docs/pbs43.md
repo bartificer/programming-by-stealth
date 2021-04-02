@@ -636,7 +636,7 @@ In my opinion, the most significant change brought by ES6 is a complete rethink 
 
 ### What’s Wrong with `var`?
 
-JavaScript is generally described as being a _a C-style language_. Indeed, JavaScript is very C-like in many ways, but the big exception is variable scope.
+JavaScript is generally described as being _a C-style language_. Indeed, JavaScript is very C-like in many ways, but the big exception is variable scope.
 
 Pre-ES6 JavaScript uses _function scope_ — i.e., when you declare a variable, it exists within the function it was declared within. The other C-style languages have a narrower concept of scope — variables exist within the code block they’re declared within (_block scope_). In other words, each time you group one or more statements together within curly braces, you create a new scope.
 

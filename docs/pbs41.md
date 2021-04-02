@@ -386,7 +386,7 @@ Below is the code for `pbs41.html` (which you’ll find in this instalment’s Z
 </html>
 ```
 
-## Form Events Wrapup
+## Form Events Wrap-up
 
 Before we finish with forms, I want take a final look at event form-related event handlers, and give you some guidance for which to use on what elements.
 

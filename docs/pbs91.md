@@ -2,7 +2,7 @@
 
 Over the past few instalments we've been looking at many of the different *hats* objects wear in JavaScript. We've seen how JavaScript uses objects to implement dictionaries/hash tables, arrays, strings, functions of various kinds, and to wrap primitive values when they need object-like behaviour. In this instalment we'll be looking at our penultimate *hat* — regular expressions.
 
-As a gentle reminder, Regular Expressions, also known as RegExps or simply REs, are a means of representing text patterns. 
+As a gentle reminder, Regular Expressions, also known as RegExps or simply REs, are a means of representing text patterns.
 
 We'll start by reminding ourselves of the syntax for regular expression literals in JavaScript. Next we'll look at some of the useful functions provided by the built-in RegExp class, and how they allow us to do three extremely common RE-related tasks — checking whether or not strings match a given pattern, and using patterns to extract meaningful information from strings, or *string parsing* if you prefer fancier jargon 🙂 We'll finish by re-visiting some instance functions provided by the built-in `String` class which make use of regular expressions.
 
@@ -46,7 +46,7 @@ const insulter = function(){
 const botchedMovieLine = 'lying, dog-faced pony soldier';
 ```
 
-In JavaScript, RE literals consist of PCRE patterns enclosed by forward slashes (`/`) followed by zero or more flags. As a simple example, here's an RE literal to match all occurrences of `cat` or `dog` in any case: 
+In JavaScript, RE literals consist of PCRE patterns enclosed by forward slashes (`/`) followed by zero or more flags. As a simple example, here's an RE literal to match all occurrences of `cat` or `dog` in any case:
 
 ```js
 const schemeRE = /cat|dog/gi;
@@ -183,7 +183,7 @@ for(const val of valsToTest){
 
 ### Parsing and Extracting with `.exec()`
 
-Parsing is a little more involved than testing, and this is where *capture groups* come into their own. By parsing we mean processing text in order to extract meaningful information. 
+Parsing is a little more involved than testing, and this is where *capture groups* come into their own. By parsing we mean processing text in order to extract meaningful information.
 
 For example, we can use a regular expression with three capture groups to break a time apart into its component pieces:
 
@@ -273,7 +273,7 @@ At the moment we're forced to choose between two sub-optimal options when it com
 
 ### Replacing Patterns within Strings with `.replace()`
 
-The next function I want to highlight from the `String` class is `.replace()`. This function can accept an RE object as the first argument. Depending on whether or not the passed RE has the global flag set, either the first occurrence of the pattern or all occurences will be replaced by the replacement string passed as the second argument.
+The next function I want to highlight from the `String` class is `.replace()`. This function can accept an RE object as the first argument. Depending on whether or not the passed RE has the global flag set, either the first occurrence of the pattern or all occurrences will be replaced by the replacement string passed as the second argument.
 
 The replacement string can include a number of special values based on the regular expression. You can include the entire match in the replacement string with `$&` and the matched capture groups with `$1`, `$2` etc.. Because the `$` character has a meaning within the replacement string you need to use `$$` to represent an actual dollar character.
 

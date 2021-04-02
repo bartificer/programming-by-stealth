@@ -195,7 +195,7 @@ To lay out a page you need to break it down into chunks of related content, and 
 
 Let’s start with the really big-picture stuff. The page clearly has a heading; so let’s wrap that in the semantic `<header>` tag. Everything else on the page is part of the main content of the page; so let’s wrap that in a `<main>` tag.
 
-Since this is a single article, the best semantic tag for describing the distinct regions within the content is `<section>`. Let’s create sections for each of the chunks of content that begin with an `<h2>` tag. Since these headings will now becomes top-level headings within a section rather than second level heading within the page, they need tp be changed from `<h2>`s to `<h1>`s.
+Since this is a single article, the best semantic tag for describing the distinct regions within the content is `<section>`. Let’s create sections for each of the chunks of content that begin with an `<h2>` tag. Since these headings will now becomes top-level headings within a section rather than second level heading within the page, they need to be changed from `<h2>`s to `<h1>`s.
 
 Finally, to give us a meaningful sidebar to work with, I moved the small table and the small figure into a separate grouping. I chose to mark them up as an aside and removed the utility tags to set their width and to float them.
 
@@ -271,7 +271,7 @@ Finally, we want to group the last two sections into a third row in our inner gr
 
 At this stage we’re almost done. We just need to do a little housekeeping in the right sidebar. The table caption is not centred; so we need to give the `<caption>` tag within the small table the class `text-center`. The figure is also not centred; so we need to give it the classes `d-block`, `mx-auto`, and `text-center` (the technique we learned in the previous instalment for centring figures within their containing block).
 
-You’ll find the full source for the finished laidout page in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57e.html`, but this is the basic structure of the final page:
+You’ll find the full source for the finished laid out page in [the ZIP file](https://www.bartbusschots.ie/s/wp-content/uploads/2018/06/pbs57.zip) or [here on GitHub](https://cdn.jsdelivr.net/gh/bbusschots/pbs-resources/instalmentZips/pbs57.zip) as `pbs57e.html`, but this is the basic structure of the final page:
 
 ```html
 <!DOCTYPE html>

@@ -42,11 +42,15 @@ Any element with its `display` property set to `none` will not be displayed on t
 
 ### `display: inline-block`
 
+<!-- vale Vale.Repetition = NO -->
+
 Although we haven’t been explicit about it, we have already encountered a tag that has a default `display` value of `inline-block` – the `<img>` tag. An inline block element will behave like a letter within some text, though perhaps like a very very large letter!
 
 As an example, let’s imagine we want to make a modern-day version of an Egyptian cartouche – a group of pictograms surrounded by a rounded border that should never be split across multiple lines. Rather than using a series of ancient pictograms, we will use a two-by-two grid of images of modern emoji. (If you’re not familiar with cartouches, [this Wikipedia page](https://en.wikipedia.org/wiki/Cartouche) might be of interest to you.)
 
 The HTML markup is simply a `<span>` with the class `cartouche` containing four image tags, with a line break (`<br />`) after the second image. Unfortunately, to avoid extra space appearing between the images within the cartouche, there can’t be any white space between the relevant HTML tags, and that includes newline characters. You can obviously do this by putting the entire contents of the cartouche span onto a single line, but it will be very very long, and not easy to read. To get around this, two interesting ‘hacks’ are often used. The first technique is to insert a line break just before closing each tag. That way the empty space is not between the HTML tags:
+
+<!-- vale Vale.Repetition = YES -->
 
 ```html
 <span class="cartouche"

@@ -24,7 +24,11 @@ A dictionary is a collection of name-value pairs, also referred to as key-value 
 
 Name-value pairs are often referred to as _properties_. So you may also see the names/keys referred to as _property names_.
 
+<!-- vale Vale.Spelling = NO -->
+
 In JavaScript we use basic objects as dictionaries. To be extremely specific, we use objects with the prototype `Object`. Because Javascript uses objects for just about everything, programmers have come up with all sorts of words and phrases for describing basic objects used as dictionaries including _plain objects_, _unprototyped objects_, and even POJOs (an acronym for _**p**lain **o**ld **J**avaScript **o**bjects_).
+
+<!-- vale Vale.Spelling = YES -->
 
 **The official Javascript documentation and built-in JavaScript function names refer to name-value pairs as _properties_, and the names as _property names_ and _keys_.**
 
