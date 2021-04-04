@@ -133,6 +133,8 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 109 — SemVar & Structured Commits](./pbs109)
 * [PBS 110 — Merge Conflicts](./pbs110)
 * [PBS 111 — Stashing Changes](./pbs111)
+* [PBS 112 — Introducing Git Remotes](./pbs112)
+* [PBS 113 — My First Git Remote](./pbs113)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
