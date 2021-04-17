@@ -13,3 +13,5 @@ git remote add origin ../pbs114a-nas.git
 git fetch origin
 git push origin --all
 git push origin --tags
+cd ../$repo-nas.git
+git symbolic-ref HEAD refs/heads/main
