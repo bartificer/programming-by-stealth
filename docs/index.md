@@ -135,6 +135,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 111 — Stashing Changes](./pbs111)
 * [PBS 112 — Introducing Git Remotes](./pbs112)
 * [PBS 113 — My First Git Remote](./pbs113)
+* [PBS 114 — Tracking Git Branches](./pbs114)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
