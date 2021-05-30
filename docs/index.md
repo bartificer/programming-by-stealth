@@ -134,6 +134,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 114 — Tracking Git Branches](./pbs114)
 * [PBS 115 — The Push & Pull of Git](./pbs115)
 * [PBS 116 — Team Git](./pbs116)
+* [PBS 117 of X — Introducing GitHub](./pbs117)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
