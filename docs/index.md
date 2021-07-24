@@ -138,6 +138,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 118 — JavaScript Apps with GitHub Pages](./pbs118)
 * [PBS 119 — Open Source on GitHub](./pbs119)
 * [PBS 120 — Ignoring Files in Git](./pbs120)
+* [PBS 121 — Managing *Dot Files* and Intro to Chezmoi](./pbs121)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
