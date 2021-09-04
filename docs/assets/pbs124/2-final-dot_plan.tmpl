@@ -1,0 +1,28 @@
+{{- /* Capture a human-friendly version of the OS */ -}}
+{{- $os := "some weird OS" -}}{{- /* initialise the variable with a default value */ -}}
+{{- if eq .chezmoi.os "linux" -}}
+  {{- $os = "some Linux Distro" -}}
+{{- else if eq .chezmoi.os "windows" -}}
+  {{- $os = "Windows" -}}
+{{- else if eq .chezmoi.os "darwin" -}}
+  {{- $os = "macOS" -}}
+{{- end -}}
+
+Hi there, I'm {{ .name }} from {{ .organisation }}.
+
+I speak {{len .languages }} {{ len .languages | plural "language" "languages" }}:
+{{ range .languages | sortAlpha -}}
+* {{ . }}
+{{ end -}}
+(My first language is {{ .languages | first }})
+
+You'll find me on:
+{{ range $site, $uname := .socialMedia -}}
+* on {{ $site }} as {{$uname}}
+{{- end }}
+
+{{ repeat 80 "-" }}
+{{ len .witticisms | randInt 0 | index .witticisms | wrap 76 | indent 2 }}
+{{ repeat 80 "-" }}
+
+(This plan was generated on {{ $os }} at {{ now | date "15:04 on Jan 2 2006"}})

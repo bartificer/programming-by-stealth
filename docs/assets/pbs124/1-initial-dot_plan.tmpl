@@ -1,0 +1,10 @@
+Hi there, I'm {{ .name }} from {{ .organisation }}.
+
+I speak:
+{{ range .languages -}}
+* {{ . }}
+{{ end }}
+You'll find me on:
+{{ range $site, $uname := .socialMedia -}}
+* on {{ $site }} as {{$uname}}
+{{ end }}
