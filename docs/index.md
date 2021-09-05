@@ -141,6 +141,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 121 — Managing *Dot Files* and Intro to Chezmoi](./pbs121)
 * [PBS 122 — Managing *Dot Files* with Chezmoi](./pbs122)
 * [PBS 123 — Backing up and Syncing Dot Files with Chezmoi](./pbs123)
+* [PBS 124 — Chezmoi Templates](./pbs124)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
