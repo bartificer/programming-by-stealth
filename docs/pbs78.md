@@ -110,20 +110,20 @@ Popovers don’t exist independently in a page. Instead, they are attached to so
 That all sounds very complicated. So let’s stop thinking about this in the abstract and look at a practical example (from `pbs78a.html` in this instalment’s ZIP file). Let’s start with the HTML markup. In this case we’ll attach the popover to a button:
 
 ```html
-<button type="button" class="btn btn-secondary btn-sm" data-toggler="popover" title="A Popover Title" data-content="Some boring Popover content">
+<button type="button" class="btn btn-secondary btn-sm" data-toggle="popover" title="A Popover Title" data-content="Some boring Popover content">
   Click me!
 </button>
 ```
 
-The `data-toggler="popover"` attribute will enable the default toggling behaviour for the popover. That is to say, each time a user clicks the button, the popover’s visibility will toggle on or off. The title for the popover is read from the `title` attribute, and the body for the popover from the `data-content` attribute.
+The `data-toggle="popover"` attribute will enable the default toggling behaviour for the popover. That is to say, each time a user clicks the button, the popover’s visibility will toggle on or off. The title for the popover is read from the `title` attribute, and the body for the popover from the `data-content` attribute.
 
 Just adding this markup won’t do anything though. We need to explicitly enable the popover using the matching Bootstrap jQuery plugin. We do that by calling the `.popover()` function on the button with an empty object as the only argument. We can do this for all popovers on the page by simply adding the following to our document ready handler:
 
 ```javascript
-$('[data-toggler="popover"]').popover({});
+$('[data-toggle="popover"]').popover({});
 ```
 
-This uses the [CSS attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) to select all items on the page that have the attribute `data-toggler` with the value `popover`.
+This uses the [CSS attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) to select all items on the page that have the attribute `data-toggle` with the value `popover`.
 
 Note that you may not always want to use such a broad brush. You may want to treat some of your popovers differently from others. So you may want to use a more narrowly-focused CSS selector.
 
@@ -136,7 +136,7 @@ How a popover is activated is controlled by the `trigger` option. The default is
 An alternative to this default behaviour is to set the trigger to `hover`. You can do this in HTML with the data attribute `data-trigger="hover"`. This behaviour may not make sense on a button, but it can be useful for other things. For example, the following link shows the meaning of the acronym as a popover triggered by hovering:
 
 ```html
-<span class="mark" data-toggler="popover" data-trigger="hover" data-content="Programming by Stealth">PBS</span>
+<span class="mark" data-toggle="popover" data-trigger="hover" data-content="Programming by Stealth">PBS</span>
 ```
 
 Note that the Bootstrap CSS class `.mark` gives the highlighter-pen look to the acronym.
@@ -146,13 +146,13 @@ Yet another way to trigger popovers is on focus. This only works on elements wit
 A good example would be a popover explaining a text box that’s only visible while the text box has focus:
 
 ```html
-<input type="text" class="form-control" data-toggler="popover" data-trigger="focus" data-content="Enter Some Text!">
+<input type="text" class="form-control" data-toggle="popover" data-trigger="focus" data-content="Enter Some Text!">
 ```
 
 One of the annoying things about the default click trigger is that you have to click on the element that the popover belongs to, to get rid of it. It would be much more convenient to be able to click anywhere on the page to dismiss it! With a little trickery you can achieve this by using an `<a>` tag (the docs insist it will not work reliably with `<button>` tags) **without an `href` attribute** and **with a `tabindex` attribute** combined with the `focus` trigger and the Bootstrap button classes (`.btn` plus `.btn-primary` or similar):
 
 ```html
-<a class="btn btn-secondary btn-sm" data-toggler="popover" data-trigger="focus" title="A Dismissable Popover" data-content="Click anywhere on the page to make me go away!" tabindex="0">
+<a class="btn btn-secondary btn-sm" data-toggle="popover" data-trigger="focus" title="A Dismissable Popover" data-content="Click anywhere on the page to make me go away!" tabindex="0">
   Click me!
 </a>
 ```
@@ -164,7 +164,7 @@ Finally, you can set multiple triggers on the same element, with one exception. 
 This might sound like a strange thing to do, but combining `hover` and `click` can be quite useful. Since hovering is neither accessible nor usable on touch devices, nothing mission-critical should ever be triggered solely on hover. It’s fine to use pure hovers for optional extras, but your page/web app has to be able to function without their use. When you add both the hover and click triggers to a popover, it will behave in a non-sticky way until you click it once, and then it will become sticky until you click again:
 
 ```html
-<button type="button" class="btn btn-secondary btn-sm" data-toggler="popover" data-trigger="hover click" title="A Hoverable Pin-able Popover" data-content="Click to make me stick on, click again to un-stick me!">
+<button type="button" class="btn btn-secondary btn-sm" data-toggle="popover" data-trigger="hover click" title="A Hoverable Pin-able Popover" data-content="Click to make me stick on, click again to un-stick me!">
   Hover over or Click me!
 </button>
 ```
