@@ -140,7 +140,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 120 — Ignoring Files in Git](./pbs120)
 * [PBS 121 — Managing *Dot Files* and Intro to Chezmoi](./pbs121)
 * [PBS 122 — Managing *Dot Files* with Chezmoi](./pbs122)
-* [PBS 123 — Backing up Dot Files with Chezmoi and Into to Templating](./pbs123)
+* [PBS 123 — Backing up Dot Files with Chezmoi and Intro to Templating](./pbs123)
 * [PBS 124 — Chezmoi Templates](./pbs124)
 * [PBS 125 — Chezmoi on Multiple Computers](./pbs125)
 
