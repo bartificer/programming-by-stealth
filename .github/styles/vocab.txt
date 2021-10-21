@@ -34,6 +34,8 @@ doctype
 duplicative
 easter
 embeddable
+eslint
+eslintrc
 falsy
 Ferengi
 fibonacci
@@ -79,6 +81,7 @@ iterables
 javascript
 jquery
 js
+jsdoc
 json
 jumbotron
 jumbotrons

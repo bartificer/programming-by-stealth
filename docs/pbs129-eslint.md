@@ -266,7 +266,7 @@ function getOtherVariable {
 
 In the previous section we discussed the use of the 'require-jsdoc' rule. This rule used to be part of ESLint, but was deprecated in 2018 in favour of a plugin with the same functionality, called [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc). Having correct JSDoc comments for all functions is a good habit so it's great if ESLint helps you maintaining the JSDoc.
 
-If we follow the installtion instructions in the GitHub repository we need to add the plugin to our project and to the `.eslintrc.js` config file.
+If we follow the installation instructions in the GitHub repository we need to add the plugin to our project and to the `.eslintrc.js` config file.
 
 In the Terminal we can add the plugin with 
 
@@ -281,7 +281,7 @@ plugins: [
   'jsdoc'
 ] 
 ```
-and finally the rules. In the GitHub readme you can find all rules that are available, we will simply use the recommended set.
+and finally the rules. In the GitHub README file you can find all rules that are available, we will simply use the recommended set.
 
 So the final `.eslintrc.js` file will look like this:
 
