@@ -80,7 +80,7 @@ Then, let's try ESLint.
 
 This is the output
 
-```
+```shell
 /path/to/pbs127a-s2xmas/s2xmas.mjs
    1:20  error  Strings must use singlequote                      quotes
    1:28  error  Extra semicolon                                   semi
@@ -324,9 +324,11 @@ The [install information](https://www.npmjs.com/eslint-config-airbnb-base) expla
 npx install-peerdeps --dev eslint-config-airbnb-base
 ```
 
-```note
+<aside>
+Note
+
 Note that the command starts with `npx` not `npm`. `npx` is a command that can execute an npm package. More information can be found in the article [What are the differences between npm and npx ?](https://www.geeksforgeeks.org/what-are-the-differences-between-npm-and-npx/)
-```
+</aside>
 
 Finally, we need to change the configuration in `.eslintrc.js` to set extends to 'airbnb-base' instead of 'standard'.
 
