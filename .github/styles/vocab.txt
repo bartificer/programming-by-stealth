@@ -16,10 +16,12 @@ boolean
 booleans
 Bootply
 breakpoint
+bundler
 Busschots
 callouts
 cdnjs
 celsius
+Chezmoi
 chooseable
 cmd
 config
@@ -76,6 +78,7 @@ interdependencies
 interoperate
 iterable
 iterables
+Jasmin
 javascript
 jquery
 js
@@ -161,6 +164,7 @@ sendable
 shownotes
 sidenote
 Smultron
+soooo
 spacebar
 specificities
 strikethrough
@@ -220,6 +224,7 @@ viewports
 vip
 Waldrop
 webmail
+Webpack
 whoopsies
 wikipedia
 Wizarding
