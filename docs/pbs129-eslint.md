@@ -139,10 +139,10 @@ if (now.date() === 25 && now.month() === 11) {
 If you compare that to `s2xmas-bart.mjs` you will see more spaces around 'else', no trailing semicolons and 'moment' in the first line is now wrapped in single quotes, rather than double quotes.
 
 ## Customising
-This looks much more consistent, but I personally prefer the semicolons at the end. There are 2 ways to do this. One is to add a configuration comment to the file. This is a command tell ESLint to behave differently, but wrapped in comments so the JavaScript engine (whether a browser or NodeJS) doesn't get confused. The other method is to add a rule to `.eslintrc.js`.
+This looks much more consistent, but I personally prefer the semicolons at the end. There are 2 ways to do this. One is to add a configuration comment to the file. This is a command to tell ESLint to behave differently, but wrapped in comments so the JavaScript engine (whether a browser or NodeJS) doesn't get confused. The other method is to add a rule to `.eslintrc.js`.
 
 In this case it doesn't matter whether to use a configuration comment or a rule in the configuration file, but when we have multiple files, the configuration file is the best option. So let's do that first. In order to find the rule we need, check the [Rules section](https://eslint.org/docs/rules/) of the ESLint User Guide. In this case it's the [semi](https://eslint.org/docs/rules/semi). Do read the explanation to find out if that is the correct rule and how to set it.
-As we only want to change one rule of the `standard` code style, we use the [`extend` syntax](https://eslint.org/docs/user-guide/configuring/configuration-files#extending-configuration-files) and only add the rules we want to enforce differently to the `rules` section. ESLint has already set this up for use, so there is already an `extends` section and and empty `rules` section. We want the semicolons to be added and give an error when they are not there. So the correct configuration we want is:
+As we only want to change one rule of the `standard` code style, we use the [`extend` syntax](https://eslint.org/docs/user-guide/configuring/configuration-files#extending-configuration-files) and only add the rules we want to enforce differently to the `rules` section. ESLint has already set this up for use, so there is already an `extends` section and an empty `rules` section. We want the semicolons to be added and give an error when they are not there. So the correct configuration we want is:
 
 ```
 "semi": ["error", "always"]
@@ -176,12 +176,12 @@ First run the eslint command without the fix, so you can see that ESLint now com
 
 Running ESLint from the commandline gets tedious very fast. So we need a plugin for our code editor. I will use [VSCode](https://code.visualstudio.com) which is currently my editor of choice. And because it's free, you don't have to spring a lot of money to follow along with this instalment. However, nearly every code editor with support for plugins has an ESLint plugin.
 Since this is not a tutorial on how to install and set up VSCode, I can only refer to the documentation on their website. For installing an extension (VSCode speak for a plugin) you can find information [in this section](https://code.visualstudio.com/docs/editor/extension-marketplace).
-Install the ESLint extension. It's very popular, so it'll probably be visible right away. 
+Install the ESLint extension. It's very popular, so a short search will reveal it quickly. 
 
 ![A screenshot showing the ESLint extension in Visual Studio Code](./assets/pbs129-eslint/eslint-extension.png)
 
-Open the Settings and update the ESLint configuration. You can do this at the user level, so you only have to do it once for all projects you work on in VSCode, or you can do it per workspace. In VSCode a workspace is a folder with a project in it.
-If you prefer a setting per workspace, open the project directory first and then change the settings.
+Open the Settings for VSCode and update the ESLint configuration. You can do this at the user level, so you only have to do it once for all projects you work on in VSCode, or you can do it per workspace. In VSCode a workspace is a folder with a project in it.
+If you prefer a setting per workspace, open the project directory first and then change the settings. If you might need to use different style guides for different projects, choose to run on a per workspace basis.
 
 ![A screenshot showing the ESLint settings](./assets/pbs129-eslint/eslint-settings.png)
 
@@ -202,19 +202,19 @@ A quick way to get to the correct file in VSCode is to go to the Settings, selec
 }
 ```
 
-The first line set the colorTheme. I like a light theme, YMMV. The next settings configure ESLint in VSCode. The first is to always show the status of ESLint in the statusbar. The second sets up ESLint as a code formatter, which means that ESLint will also take care of indents and spaces. `eslint.lintTask.enable` allows ESLint to analyse all files in the workspace.
+The first line sets the colorTheme. I like a light theme, but your mileage may vary. The next settings configure ESLint in VSCode. The first is to always show the status of ESLint in the statusbar. The second sets up ESLint as a code formatter, which means that ESLint will also take care of indents and spaces. `eslint.lintTask.enable` allows ESLint to analyse all files in the workspace.
 Finally there are 2 settings I cannot live without. They make sure that when saving a file ESLint will fix all problems so your code doesn't get saved with lint errors.
 
-Let's see how this works in VSCode. Make a copy of `s2xmas-bart.mjs`, just in case. and open the copy in VSCode.
-Every line or part of the line that ESLint has a problem with, will be underscored with a red wavy line. Did you notice that the ESLint extension in VSCode picks up the ESLint configuration in `.eslintrc.js`?
+Let's see how this works in VSCode. Make a copy of `s2xmas-bart.mjs` so we can repeat what we did at the command line, and open the copy in VSCode.
+Every line or part of the line that ESLint has a problem with will be underscored with a red wavy line. Did you notice that the ESLint extension in VSCode picks up the ESLint configuration in `.eslintrc.js`?
 
 ![A screenshot of the Sleeps until Christmas code with wavy lines that indicate ESLint problems](./assets/pbs129-eslint/eslint-problems.png)
 
-If you click in such a wavy line, a little blue balloonlike icon is shown.
+If you click in each a wavy line, a little blue balloon-like icon is shown.
 
 ![A screenshot of the blue balloonlike icon that shows up when you click in a line of code](./assets/pbs129-eslint/eslint-blue-icon.png)
 
-If you click that, you will get a menu that shows several options on how to fix the problem. There are options to just fix the problem in the current line or in the entire file, fix all problems in the file, disable the problem for this line only or for the entire file and show documentation on the rules.
+If you click the blue balloon icon, you will get a menu that shows several options on how to fix the problem. There are options to just fix the problem in the current line or in the entire file, fix all problems in the file, disable the problem for this line only or for the entire file and show documentation on the rules.
 
 ![A screenshot showing a context menu after clicking on the blue balloonlike icon](./assets/pbs129-eslint/eslint-blue-info.png)
 
@@ -226,7 +226,7 @@ Because of the last settings in my `settings.json` all problems will be fixed au
 
 ## Setting up a different ESLint code style in VSCode
 
-There are several popular code styles. The one we will use here is the Airbnb JavaScript Style. They have a very detailed configuration, and also a great [Style Guide](https://airbnb.io/javascript/). Each setting is not only defined, but the reason behind it is also explained.  It is used by several big companies and results in consistent, readable code.
+There are several popular code styles. Let's take a look at a different code style called the Airbnb JavaScript Style. They have a very detailed configuration, and also a great [Style Guide](https://airbnb.io/javascript/). Each setting is not only defined, but the reason behind it is also explained.  It is used by several big companies and results in consistent, readable code.
 
 We are going to change the ESLint code style configuration from `standard` to `airbnb`.
 There are various 'flavours' of the Airbnb code style. We are going to use the `airbnb-base` version, because we're not interested in the React packages.
@@ -240,7 +240,7 @@ npx install-peerdeps --dev eslint-config-airbnb-base
 Note that the command starts with `npx` not `npm`. `npx` is a command that can execute an npm package. More information can be found in the article [What are the differences between npm and npx ?](https://www.geeksforgeeks.org/what-are-the-differences-between-npm-and-npx/)
 ```
 
-Finally, we need to change the configuration in `.eslintrc.js`.
+Finally, we need to change the configuration in `.eslintrc.js` to set extends to 'airbnb-base' instead of 'standard'.
 
 ```javascript
 module.exports = {
@@ -260,7 +260,7 @@ module.exports = {
 };
 ```
 
-I have removed the extra 'semi' rule, because it's part of the default setting in `airbnb-base`.
+I have removed the extra configuration comment for 'semi', because it's part of the default setting in `airbnb-base`.
 
 If you now open a fresh copy of `s2xmas.mjs` you will see that ESLint reports different problems and even the version that was fine with the `standard` code style, now has wavy lines.
 
@@ -280,5 +280,5 @@ ESLint works best if you add it very early on in your project when you have only
 
 Another tip, especially when you introduce ESLint in a larger project, is to separate the ESLint code changes from the actual code fixes in your git commits. It is very hard to see which code has actually changed when ESLint has added changes to almost every line. 
 
-A best practice is to have ESLint fix the linting problems, commit the changes with a commit message that indicates that all code changes were merely ESLint fixes, and then continu with the actual code change and commit that in a separate commit.
+A best practice is to have ESLint fix the linting problems, commit the changes with a commit message that indicates that all code changes were merely ESLint fixes, and then continue with the actual code change and commit that in a separate commit.
 If future self reads the commit log it's easy to skip the ESLint changes and check the code commits.
