@@ -174,7 +174,7 @@ First run the eslint command without the fix, so you can see that ESLint now com
 
 ## ESLint in the code editor
 
-Running ESLint from the commandline gets tedious very fast. So we need a plugin for our code editor. I will use [VSCode](https://code.visualstudio.com) which is currently my editor of choice. And because it's free, you don't have to spring a lot of money to follow along with this instalment. However, nearly every code editor with support for plugins has an ESLint plugin.
+Running ESLint from the command line gets tedious very fast. So we need a plugin for our code editor. I will use [VSCode](https://code.visualstudio.com) which is currently my editor of choice. And because it's free, you don't have to spring a lot of money to follow along with this instalment. However, nearly every code editor with support for plugins has an ESLint plugin.
 Since this is not a tutorial on how to install and set up VSCode, I can only refer to the documentation on their website. For installing an extension (VSCode speak for a plugin) you can find information [in this section](https://code.visualstudio.com/docs/editor/extension-marketplace).
 Install the ESLint extension. It's very popular, so a short search will reveal it quickly. 
 
@@ -202,7 +202,7 @@ A quick way to get to the correct file in VSCode is to go to the Settings, selec
 }
 ```
 
-The first line sets the colorTheme. I like a light theme, but your mileage may vary. The next settings configure ESLint in VSCode. The first is to always show the status of ESLint in the statusbar. The second sets up ESLint as a code formatter, which means that ESLint will also take care of indents and spaces. `eslint.lintTask.enable` allows ESLint to analyse all files in the workspace.
+The first line sets the colorTheme. I like a light theme, but your mileage may vary. The next settings configure ESLint in VSCode. The first is to always show the status of ESLint in the status bar. The second sets up ESLint as a code formatter, which means that ESLint will also take care of indents and spaces. `eslint.lintTask.enable` allows ESLint to analyse all files in the workspace.
 Finally there are 2 settings I cannot live without. They make sure that when saving a file ESLint will fix all problems so your code doesn't get saved with lint errors.
 
 Let's see how this works in VSCode. Make a copy of `s2xmas-bart.mjs` so we can repeat what we did at the command line, and open the copy in VSCode.
@@ -212,17 +212,105 @@ Every line or part of the line that ESLint has a problem with will be underscore
 
 If you click in each a wavy line, a little blue balloon-like icon is shown.
 
-![A screenshot of the blue balloonlike icon that shows up when you click in a line of code](./assets/pbs129-eslint/eslint-blue-icon.png)
+![A screenshot of the blue balloon-like icon that shows up when you click in a line of code](./assets/pbs129-eslint/eslint-blue-icon.png)
 
 If you click the blue balloon icon, you will get a menu that shows several options on how to fix the problem. There are options to just fix the problem in the current line or in the entire file, fix all problems in the file, disable the problem for this line only or for the entire file and show documentation on the rules.
 
-![A screenshot showing a context menu after clicking on the blue balloonlike icon](./assets/pbs129-eslint/eslint-blue-info.png)
+![A screenshot showing a context menu after clicking on the blue balloon-like icon](./assets/pbs129-eslint/eslint-blue-info.png)
 
 When you select 'Disable for this line' or 'Disable for the entire file' ESLint will add a configuration comment to the file. In the next screenshot you can see a configuration comment on line 1 that disables the rule 'space-before-blocks' for the entire file and on line 8 the rule 'keyword-spacing' is disabled only for the next line, aka line 9. As you can see the wavy line on line 9 is gone.
 
 ![A screenshot showing configuration comments in the code](./assets/pbs129-eslint/eslint-configuration-comments.png)
 
 Because of the last settings in my `settings.json` all problems will be fixed automatically when I save the file.
+
+## Rules in eslintrc vs in configuration comments
+
+In the example we selected 'Disable for this line' or 'Disable for the entire file' to solve the errors ESLint found. You can see the comments in lines 1 and 8.
+These comments need a bit more elaboration. The difference with the rules in the `.eslintrc.js` file is the scope. The rules defined in the `.eslintrc.js` file will be applied to _all_ JvaScript files in your project. The configuration comments only apply to the file they are added to.
+
+So in this example, the rule 'space-before-blocks' is disabled for the entire `s2xmas-bart copy.mjs` file, but not for the other JavaScript in this project.
+
+The same goes for the 'keyword-spacing' rule. It's only disabled for the line that comes after this configuration comment.
+
+The config comments can be used to enable as well as eslint entirely or just for one or more rules for the file they are added to.
+
+The correct syntax for these configuration comments is explained in the [ESLint documentation on configuring rules](https://eslint.org/docs/user-guide/configuring/rules#configuring-rules).
+
+Config comments are used in case you have a good reason to overrule the code style. E.g. you don't want to add JSDoc comments to getter functions, but for all other functions you want ESLint force you to add a JSDoc block.
+You could add a config comment to disable the ESLint rule 'require-jsdoc' before the section with the getter functions and enable them afterwards
+
+```javascript
+
+// javascript code here
+
+
+// eslint-disable require-jsdoc
+function getVariable() {
+  return myVariable;
+}
+
+function getOtherVariable {
+  return myOtherVariable;
+}
+
+// eslint-enable require-jsdoc
+
+
+
+// more code here
+
+```
+
+## Plugins
+
+In the previous section we discussed the use of the 'require-jsdoc' rule. This rule used to be part of ESLint, but was deprecated in 2018 in favour of a plugin with the same functionality, called [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc). Having correct JSDoc comments for all functions is a good habit so it's great if ESLint helps you maintaining the JSDoc.
+
+If we follow the installtion instructions in the GitHub repository we need to add the plugin to our project and to the `.eslintrc.js` config file.
+
+In the Terminal we can add the plugin with 
+
+```shell
+npm install eslint-plugin-jsdoc --save-dev
+```
+
+And we can add it to our eslint config file, first we need to add a plugin section:
+
+```javascript
+plugins: [
+  'jsdoc'
+] 
+```
+and finally the rules. In the GitHub readme you can find all rules that are available, we will simply use the recommended set.
+
+So the final `.eslintrc.js` file will look like this:
+
+```javascript
+module.exports = {
+  env: {
+    es2021: true,
+    node: true,
+  },
+  plugins: [
+    'jsdoc',
+  ],
+  extends: [
+    'standard',
+    'plugin:jsdoc/recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  rules: {
+    "semi": ["error", "always"]
+  },
+};
+```
+In the next screenshot the lines in the else part are moved to a function and when clicking in the function declaration you will see that now ESLint complains about a missing JSDoc comment.
+
+![A screenshot showing ESLint having a problem with missing JSDoc](./assets/pbs129-eslint/eslint-missing-jsdoc.png)
+
 
 ## Setting up a different ESLint code style in VSCode
 
@@ -248,8 +336,12 @@ module.exports = {
     es2021: true,
     node: true
   },
+  plugins: [
+    'jsdoc'
+  ],
   extends: [
-    'airbnb-base'
+    'airbnb-base',
+    'plugin:jsdoc/recommended'
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -260,7 +352,7 @@ module.exports = {
 };
 ```
 
-I have removed the extra configuration comment for 'semi', because it's part of the default setting in `airbnb-base`.
+I have removed the extra configuration in the rules section for 'semi', because it's part of the default setting in `airbnb-base`.
 
 If you now open a fresh copy of `s2xmas.mjs` you will see that ESLint reports different problems and even the version that was fine with the `standard` code style, now has wavy lines.
 
