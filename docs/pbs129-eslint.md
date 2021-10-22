@@ -379,11 +379,28 @@ Just like git has its `.gitignore` file, ESLint supports an `.eslintignore` file
 Before ending this tutorial it's best to point out that in rare cases an ESLint rule might actually cause an unwanted change to your code. That's why it's best to try and test your code before you accept and commit the changes ESLint makes. 
 If you're certain there are no unwanted changes, you can commit your code with the changes. If however there are unwanted changes, try adding a configuration comment above the line that causes the problem to tell ESLint "hands off".
 
+## Final Tips
 
-## Final tips
+### Start Linting Early
+
 ESLint works best if you add it very early on in your project when you have only a few files. If you add it when you already have hundreds of files, it becomes very tedious to check all of them. However, there is nothing stopping you from adding ESLint at any point. In fact, your code will greatly improve as it becomes more consistent. And if you use a code style like Airbnb you will probably find lots of little bugs ('lint') in your code that can cause very obscure side effects that are hard to find.
+
+### Separate ESLint Code Commits
 
 Another tip, especially when you introduce ESLint in a larger project, is to separate the ESLint code changes from the actual code fixes in your git commits. It is very hard to see which code has actually changed when ESLint has added changes to almost every line. 
 
 A best practice is to have ESLint fix the linting problems, commit the changes with a commit message that indicates that all code changes were merely ESLint fixes, and then continue with the actual code change and commit that in a separate commit.
 If future self reads the commit log it's easy to skip the ESLint changes and check the code commits.
+
+### ESLint Doesn't Know About Libraries
+
+It's important to understand that ESLint runs before your JavaScript knows what's happening over in your HTML. If you have scripts to call libraries such as jQuery and Mustache, ESLint doesn't know that they exist and will give you immediate errors. You can teach ESLint about these libraries by adding a configuration comment at the top of the file. For the two examples I've listed the configuration comments would look like this:
+
+```
+/* eslint-env jquery */
+/* global Mustache */
+```
+
+Alternatively you could add "jquery" and "Mustache" to the extends section in your configuration file.
+
+
