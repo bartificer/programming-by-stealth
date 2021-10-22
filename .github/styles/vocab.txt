@@ -10,6 +10,7 @@ automata
 automations
 backronym
 bartificer
+bbusschots
 befores
 blackboxes
 boolean
@@ -23,8 +24,10 @@ cdnjs
 celsius
 Chezmoi
 chooseable
+cli
 cmd
 config
+configs
 const
 css
 customisable
@@ -46,10 +49,12 @@ flexboxes
 flexitems
 focusable
 freemium
+Gaeilge
 gameplay
 geolocate
 geolocated
 getters
+gitconfig
 Gleick
 globals
 glyphicon
@@ -63,6 +68,7 @@ headlessness
 Helma
 Hoonatas
 Hoonyaker
+hostname
 hoverable
 href
 htdocs
@@ -98,6 +104,7 @@ Lookups
 Maynooth
 medialize
 menubar
+microblogging
 middleware
 Minami
 minimalistic
@@ -112,6 +119,7 @@ navbar
 navbars
 navigations
 navs
+Nederlands
 nerdery
 Nerdtouche
 Nerdtouches
@@ -121,6 +129,7 @@ noncapturing
 nonhidden
 nonnumeric
 noopener
+nosillacast
 npm
 objecty
 octothorp
@@ -129,6 +138,7 @@ passthrough
 pbs
 pbsdemos
 pbsindex
+pipelining
 podcasters
 Podfeet
 poofed
@@ -161,6 +171,7 @@ scrollable
 Scrollbars
 scroller
 sendable
+Shopify
 shownotes
 sidenote
 Smultron
@@ -206,11 +217,13 @@ unhighlighting
 unicode
 unintuitive
 unix
+unmanaged
 unmerged
 unnested
 unpause
 unpositioned
 unprototyped
+unstaged
 unstyled
 untracked
 untyped
@@ -222,6 +235,7 @@ Veen
 viewport
 viewports
 vip
+Vlaams
 Waldrop
 webmail
 Webpack
