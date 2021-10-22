@@ -399,7 +399,3 @@ It's important to understand that ESLint runs before your JavaScript knows what'
 /* eslint-env jquery */
 /* global Mustache */
 ```
-
-Alternatively you could add "jquery" and "Mustache" to the extends section in your configuration file.
-
-
