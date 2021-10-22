@@ -10,7 +10,7 @@ The name linter is actually derived from the fluff you find in your dryer and th
 
 **Allison fill in when episode number intro has been added**
 
-## Why do you need a linter?
+## Why Do You Need a Linter?
 You might wonder why you would need a linter. After all, you can do everything a linter does, and of course you're already trying your very best to write good and consistent code. All that is true, but how about you've nicely indented your code and then you have a bug to fix and all of your lines are changed. I find that manually reindenting my code gets old very fast.
 
 Remember a bug in SSL Bart told us about ages ago? This was caused by a programmer who added a second line of code to an if-statement and forgot to add the squiggly brackets. These kind of bugs are very difficult to spot when your code is not properly indented.
@@ -18,12 +18,11 @@ Remember a bug in SSL Bart told us about ages ago? This was caused by a programm
 A linter can do all these little chores for you and keep your code consistent. Consistent as in, "do I put my opening squiggly bracket at the end of the if-statement or function declaration or on the line below?", and "do I add spaces around operators or not?". Programmers can go to war on these questions.
 It's a matter of picking a style and sticking with it and this is exactly what a linter can do for you: enforce the code style. 
 
-## What is a code style?
+## What is a Code Style?
 
 A code style is nothing more than a set of rules that define things such as where does the opening squiggly bracket go, how much spaces to indent a line, whether to use spaces or tabs for indents, but also, always add squiggly brackets to an if-statement, and always finish a line with a semicolon.
 These rules can be wrapped up in a configuration that can be shared between projects and, more importantly, between team members. The latter prevents the wars on code styles and makes sure everyone is able to read the code another team member has written.
 Basically, it's an opinion about how the code should look and the linter is there to help you make the code look like that opinion.
-
 
 ## What is ESLint?
 
@@ -182,7 +181,7 @@ module.exports = {
 Now let's look what ESLint makes of this. First copy the `s2xmas.mjs` file to `s2xmas-standard.mjs` so you can see the difference later using `diff` or your favourite code editor.
 First run the eslint command without the fix, so you can see that ESLint now complains about missing semicolons. Use the `--fix` option again, and now ESLint has added the semicolons.
 
-## ESLint in the code editor
+## ESLint in the Code Editor
 
 Running ESLint from the command line gets tedious very quickly, so let's use a plugin for our code editor. I will use [VSCode](https://code.visualstudio.com) which is currently my editor of choice. And because it's free, you don't have to spring a lot of money to follow along with this instalment. If you don't use VSCode, it's good to know that nearly every code editor with support for plugins has an ESLint plugin.
 Since this is not a tutorial on how to install and set up VSCode, I'll refer you to the documentation on their website to get started. For installing an extension (VSCode speak for a plugin) you can find information [in this section](https://code.visualstudio.com/docs/editor/extension-marketplace)
@@ -234,7 +233,7 @@ When you select 'Disable for this line' or 'Disable for the entire file' ESLint 
 
 Because of the last settings in my `settings.json` all problems will be fixed automatically when I save the file.
 
-## Rules in eslintrc vs in configuration comments
+## Rules in eslintrc VS in Configuration Comments
 
 In the example we selected 'Disable for this line' or 'Disable for the entire file' to solve the errors ESLint found. You can see the comments in lines 1 and 8.
 These comments need a bit more elaboration. The difference with the rules in the `.eslintrc.js` file is the scope. The rules defined in the `.eslintrc.js` file will be applied to _all_ JvaScript files in your project. The configuration comments only apply to the file they are added to.
@@ -323,7 +322,7 @@ In the next screenshot below, you can see that I have moved the lines in the els
 ![A screenshot showing ESLint having a problem with missing JSDoc](./assets/pbs129-eslint/eslint-missing-jsdoc.png)
 
 
-## Setting up a different ESLint code style in VSCode
+## Setting up a Different ESLint Code Style in VSCode
 
 When we first set up ESLint, we chose the Standard code style, but there are several very popular code styles. Let's take a look at a different code style called the Airbnb JavaScript Style. They have a very detailed configuration, and also a great [Style Guide](https://airbnb.io/javascript/). Each setting is not only defined, but the reason behind it is also explained.  It is used by several big companies and results in consistent, readable code.
 
