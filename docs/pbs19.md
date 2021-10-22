@@ -16,13 +16,26 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 Using a loop of your choice, print the 12 times tables from 12 times 1 up to and including 12 times 12.
 
-### Solution
+<button type="button" class="btn btn-primary" id="toast-challenge-1">Solution</button>
+
+<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+  <div class="toast-header">
+    <strong class="mr-auto">Solution Challenge 1</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
 
 ```javascript
 for(var i = 1; i <= 12; i++){
   pbs.say('12 x ' + i + ' = ' + (12 * i));
 }
 ```
+
+  </div>
+</div>
+
 
 ## Challenge 2 – The Fibonacci Series
 
@@ -38,7 +51,16 @@ Build up your solution in the following way:
      1. Add this new value to the end of the `fibonacci` array.
 3.  Print the Fibonacci series, one element per line, by converting the `fibonacci` array into a string separated by newline characters.
 
-### Solution
+<button type="button" class="btn btn-primary" id="toast-challenge-2">Solution</button>
+
+<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+  <div class="toast-header">
+    <strong class="mr-auto">Solution Challenge 3</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
 
 ```javascript
 var fibonacci = [0, 1];
@@ -49,13 +71,26 @@ while(fibonacci[fibonacci.length -1] < 1000000){
 pbs.say(fibonacci.join('\n'));
 ```
 
+  </div>
+</div>
+
+
 ## Challenge 3 – FizzBuzz
 
 This is a total cliché, and very common as an interview question. It tests if a programmer understands programming basics like loops and conditionals.
 
 Write a program that prints the numbers from 1 to 100. But for multiples of three, print “Fizz” instead of the number. For the multiples of five, print “Buzz”. For numbers which are multiples of both three and five, print “FizzBuzz”.
 
-### Solution
+<button type="button" class="btn btn-primary" id="toast-challenge-3">Solution</button>
+
+<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+  <div class="toast-header">
+    <strong class="mr-auto">Solution Challenge 3</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
 
 ```javascript
 for(var i = 1; i <= 100; i++){
@@ -76,6 +111,9 @@ for(var i = 1; i <= 100; i++){
   }
 }
 ```
+
+  </div>
+</div>
 
 ## Challenge 4 – Factorial
 
