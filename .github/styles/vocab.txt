@@ -39,6 +39,7 @@ doctype
 duplicative
 easter
 embeddable
+endhighlight
 falsy
 Ferengi
 fibonacci
