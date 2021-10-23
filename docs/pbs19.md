@@ -288,7 +288,9 @@ Build a prototype to represent a complex number. In case you’re a little rusty
 
 Build up your solution in the following way:
 
-1.  Define a constructor function for your prototype (it must be named the same as the prototype we are building, i.e. `ComplexNumber`).
+### Step 1
+
+Define a constructor function for your prototype (it must be named the same as the prototype we are building, i.e. `ComplexNumber`).
 
     1.  For now, the constructor will not take any arguments.
     2.  In the constructor, Initialise a key named `_real` to the value 0.
@@ -334,8 +336,9 @@ Build up your solution in the following way:
 </div>
 
     
+### Step 2
 
-2.  Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
+Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
 
     1.  If no arguments are passed, the function should return the current value of the `_real` key.
     2.  If there is a first argument, make sure it’s a number. If it’s not, throw an error. If it is, set it as the value of the `_real` key, and return a reference to the current object (i.e. `this`). (This will enable a technique known as _function chaining_, which we’ll see in action shortly.)
@@ -392,8 +395,9 @@ Build up your solution in the following way:
   </div>
 </div>
 
+### Step 3
 
-3.  Create a similar accessor function for the imaginary part of the complex number, and name it `imaginary`.
+Create a similar accessor function for the imaginary part of the complex number, and name it `imaginary`.
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-3">
   Partial Solution
@@ -448,7 +452,9 @@ Build up your solution in the following way:
 </div>
 
 
-4.  Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
+### Step 4
+
+Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
 
      1. In the general case, where both real and imaginary parts are non-zero, return a string of the following form: `'(2 + 3i)'`. If the imaginary number is negative, change the `+` to a `-`.
      2. If the imaginary part is exactly 1, just show it as `i`.
@@ -539,8 +545,9 @@ Build up your solution in the following way:
 </div>
 
 
+### Step 5
 
-5.  Test what you have so far with the following code:
+Test what you have so far with the following code:
 
     ```javascript
     //
@@ -570,7 +577,9 @@ Build up your solution in the following way:
     pbs.say((new ComplexNumber()).imaginary(4.7));
     ```
 
-6.  Add a function named `parse` to the `ComplexNumber` prototype to update the value stored in the calling complex number object. This function should allow the new value be specified in a number of different ways. The following should all work:
+### Step 6
+
+Add a function named `parse` to the `ComplexNumber` prototype to update the value stored in the calling complex number object. This function should allow the new value be specified in a number of different ways. The following should all work:
 
     1.  Two numbers as arguments – first the real part, then the imaginary part.
     2.  An array of two numbers as a single argument – the first element in the array being the real part, the second the imaginary part.
@@ -658,7 +667,9 @@ Build up your solution in the following way:
 </div>
 
 
-7.  Test the parse function you just created with the following code:
+### Step 7
+
+Test the parse function you just created with the following code:
 
     ```javascript
     //
@@ -690,7 +701,9 @@ Build up your solution in the following way:
     pbs.say(cn3.toString());
     ```
 
-8.  Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code. Instead, update the constructor function to check if there are one or two arguments. If there are, call the `parse` function with the appropriate arguments.
+### Step 8
+
+Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code. Instead, update the constructor function to check if there are one or two arguments. If there are, call the `parse` function with the appropriate arguments.
 
    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-8">
   Partial Solution
@@ -742,8 +755,9 @@ Build up your solution in the following way:
   </div>
 </div>
 
+### Step 9
 
-9.  Test your updated constructor with the following code:
+Test your updated constructor with the following code:
 
     ```javascript
     //
@@ -764,7 +778,9 @@ Build up your solution in the following way:
     pbs.say( (new ComplexNumber(cn5)).toString() );
     ```
 
-10. Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
+### Step 10
+
+Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-10">
   Partial Solution
@@ -814,8 +830,9 @@ Build up your solution in the following way:
   </div>
 </div>
 
+### Step 11
 
-11. In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
+In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-11">
   Partial Solution
@@ -864,7 +881,9 @@ Build up your solution in the following way:
 </div>
 
 
-12. Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
+### Step 12
+
+Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
 
     `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
 
@@ -921,7 +940,9 @@ Build up your solution in the following way:
 </div>
 
 
-13. Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vice-versa_.
+### Step 13
+
+Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vice-versa_.
 
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-13">
     Partial Solution
@@ -961,7 +982,9 @@ Build up your solution in the following way:
   </div>
 
 
-14. Test your arithmetic functions with the following code:
+### Step 14
+
+Test your arithmetic functions with the following code:
 
 
     ```javascript
