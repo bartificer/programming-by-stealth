@@ -1173,7 +1173,7 @@ ComplexNumber.prototype.toString = function(){
 //              2) the imaginary part as a number
 //                  --OR--
 //              1) an array of two numbers, first the real
-//                 part, the the imaginary part
+//                 part, then the imaginary part
 //                  --OR--
 //              1) an imaginary number as a string
 //                  --OR--
