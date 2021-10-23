@@ -147,7 +147,7 @@ Show/Hide Iterative Solution
 // Returns    : A number (NaN if the input is invalid)
 // Arguments  : 1) the number to calcualte the factorial of
 // Throws     : NOTHING
-// Notes      : This is an itterative (loop-based) solution
+// Notes      : This is an iterative (loop-based) solution
 function factorial(n){
   // validate the input
   if(!String(n).match(/^\d+$/)){
@@ -921,7 +921,7 @@ ComplexNumber.prototype.multiplyBy = function(cn){
   var c = cn.real();
   var d = cn.imaginary();
 
-  // calcualte and store the results
+  // calculate and store the results
   this._real = (a * c) - (b * d);
   this._imaginary = (a * d) + (b * c);
 
