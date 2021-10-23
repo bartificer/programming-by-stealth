@@ -412,7 +412,6 @@ Build up your solution in the following way:
 
 {% highlight javascript %}
 
-    ```javascript
     // -- Function --
     // Purpose    : An accessor function for the imaginary part of the complex number
     // Returns    : The current imaginary part of the complex number if no arguments
@@ -437,7 +436,7 @@ Build up your solution in the following way:
       // return a reference to the current object
       return this;
     };
-    ```
+
 {% endhighlight %}
 
       </div>
