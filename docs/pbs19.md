@@ -292,9 +292,9 @@ Build up your solution in the following way:
 
 Define a constructor function for your prototype (it must be named the same as the prototype we are building, i.e. `ComplexNumber`).
 
-    1.  For now, the constructor will not take any arguments.
-    2.  In the constructor, Initialise a key named `_real` to the value 0.
-    3.  Also Initialise a key named `_imaginary` to the value 0.
+1.  For now, the constructor will not take any arguments.
+2.  In the constructor, Initialise a key named `_real` to the value 0.
+3.  Also Initialise a key named `_imaginary` to the value 0.
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-1">
   Partial Solution
@@ -340,8 +340,8 @@ Define a constructor function for your prototype (it must be named the same as t
 
 Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
 
-    1.  If no arguments are passed, the function should return the current value of the `_real` key.
-    2.  If there is a first argument, make sure it’s a number. If it’s not, throw an error. If it is, set it as the value of the `_real` key, and return a reference to the current object (i.e. `this`). (This will enable a technique known as _function chaining_, which we’ll see in action shortly.)
+1.  If no arguments are passed, the function should return the current value of the `_real` key.
+2.  If there is a first argument, make sure it’s a number. If it’s not, throw an error. If it is, set it as the value of the `_real` key, and return a reference to the current object (i.e. `this`). (This will enable a technique known as _function chaining_, which we’ll see in action shortly.)
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-2">
   Partial Solution
@@ -456,12 +456,12 @@ Create a similar accessor function for the imaginary part of the complex number,
 
 Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
 
-     1. In the general case, where both real and imaginary parts are non-zero, return a string of the following form: `'(2 + 3i)'`. If the imaginary number is negative, change the `+` to a `-`.
-     2. If the imaginary part is exactly 1, just show it as `i`.
-     3. If either of the parts are equal to zero, omit the parentheses.
-     4. If the real and imaginary parts are both zero, just return the string `'0'`.
-     5. If only the imaginary part is zero, return just the real part as a string.
-     6. If only the real part is zero, return just the imaginary part as a string followed by the letter `i`.
+1. In the general case, where both real and imaginary parts are non-zero, return a string of the following form: `'(2 + 3i)'`. If the imaginary number is negative, change the `+` to a `-`.
+2. If the imaginary part is exactly 1, just show it as `i`.
+3. If either of the parts are equal to zero, omit the parentheses.
+4. If the real and imaginary parts are both zero, just return the string `'0'`.
+5. If only the imaginary part is zero, return just the real part as a string.
+6. If only the real part is zero, return just the imaginary part as a string followed by the letter `i`.
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-4">
   Partial Solution
@@ -549,42 +549,42 @@ Add a function to the prototype named `toString`. This function should return a 
 
 Test what you have so far with the following code:
 
-    ```javascript
-    //
-    // === Test the toString() and Accessor functions ===
-    //
+  ```javascript
+  //
+  // === Test the toString() and Accessor functions ===
+  //
 
-    // create a complex number, set its values, and print it
-    var cn1 = new ComplexNumber(); // construct a ComplexNumbr object
-    cn1.real(2); // set the real part to 2
-    cn1.imaginary(3); // set the imaginary part to 3
-    pbs.say(cn1.toString()); // print it
+  // create a complex number, set its values, and print it
+  var cn1 = new ComplexNumber(); // construct a ComplexNumbr object
+  cn1.real(2); // set the real part to 2
+  cn1.imaginary(3); // set the imaginary part to 3
+  pbs.say(cn1.toString()); // print it
 
-    // create a second complex number, using 'function chianing' to do it all at once
-    // NOTE: function chaining is only possible becuase both accessor functions return
-    //       the special value this when they are used as setters.
-    var cn2 = (new ComplexNumber()).real(2).imaginary(-4);
-    pbs.say(cn2);
+  // create a second complex number, using 'function chianing' to do it all at once
+  // NOTE: function chaining is only possible becuase both accessor functions return
+  //       the special value this when they are used as setters.
+  var cn2 = (new ComplexNumber()).real(2).imaginary(-4);
+  pbs.say(cn2);
 
-    // create some more complex number, but don't bother to save them, just print them
-    pbs.say((new ComplexNumber()).real(-5.5).imaginary(1));
-    pbs.say((new ComplexNumber()).real(7).imaginary(-1));
-    pbs.say((new ComplexNumber()).real(2).imaginary(-6));
-    pbs.say((new ComplexNumber()).real(-3));
-    pbs.say((new ComplexNumber()).real(21));
-    pbs.say((new ComplexNumber()).imaginary(-1));
-    pbs.say((new ComplexNumber()).imaginary(1));
-    pbs.say((new ComplexNumber()).imaginary(4.7));
-    ```
+  // create some more complex number, but don't bother to save them, just print them
+  pbs.say((new ComplexNumber()).real(-5.5).imaginary(1));
+  pbs.say((new ComplexNumber()).real(7).imaginary(-1));
+  pbs.say((new ComplexNumber()).real(2).imaginary(-6));
+  pbs.say((new ComplexNumber()).real(-3));
+  pbs.say((new ComplexNumber()).real(21));
+  pbs.say((new ComplexNumber()).imaginary(-1));
+  pbs.say((new ComplexNumber()).imaginary(1));
+  pbs.say((new ComplexNumber()).imaginary(4.7));
+  ```
 
 ### Step 6
 
 Add a function named `parse` to the `ComplexNumber` prototype to update the value stored in the calling complex number object. This function should allow the new value be specified in a number of different ways. The following should all work:
 
-    1.  Two numbers as arguments – first the real part, then the imaginary part.
-    2.  An array of two numbers as a single argument – the first element in the array being the real part, the second the imaginary part.
-    3.  A string of the form `(a + bi)` or `(a - bi)` where `a` is a positive or negative number, and `b` is a positive number.
-    4.  An object with the prototype `ComplexNumber`.
+1.  Two numbers as arguments – first the real part, then the imaginary part.
+2.  An array of two numbers as a single argument – the first element in the array being the real part, the second the imaginary part.
+3.  A string of the form `(a + bi)` or `(a - bi)` where `a` is a positive or negative number, and `b` is a positive number.
+4.  An object with the prototype `ComplexNumber`.
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-6">
   Partial Solution
@@ -671,35 +671,35 @@ Add a function named `parse` to the `ComplexNumber` prototype to update the valu
 
 Test the parse function you just created with the following code:
 
-    ```javascript
-    //
-    // === Test the Parse() function ===
-    //
+  ```javascript
+  //
+  // === Test the Parse() function ===
+  //
 
-    var cn3 = new ComplexNumber(); // construct a ComplexNumbr object
-    pbs.say(cn3.toString());
+  var cn3 = new ComplexNumber(); // construct a ComplexNumbr object
+  pbs.say(cn3.toString());
 
-    // test the two-number form
-    cn3.parse(2, 4);
-    pbs.say(cn3.toString());
+  // test the two-number form
+  cn3.parse(2, 4);
+  pbs.say(cn3.toString());
 
-    // test the one array form
-    cn3.parse([-3, 5.5]);
-    pbs.say(cn3.toString());
+  // test the one array form
+  cn3.parse([-3, 5.5]);
+  pbs.say(cn3.toString());
 
-    // test the one string form
-    cn3.parse("(2 + 6i)");
-    pbs.say(cn3.toString());
-    cn3.parse("(2 - 6i)");
-    pbs.say(cn3.toString());
-    cn3.parse("(-2.76 + 6.2i)");
-    pbs.say(cn3.toString());
+  // test the one string form
+  cn3.parse("(2 + 6i)");
+  pbs.say(cn3.toString());
+  cn3.parse("(2 - 6i)");
+  pbs.say(cn3.toString());
+  cn3.parse("(-2.76 + 6.2i)");
+  pbs.say(cn3.toString());
 
-    // test the one complex number object form
-    var cn4 = (new ComplexNumber()).real(3).imaginary(4);
-    cn3.parse(cn4);
-    pbs.say(cn3.toString());
-    ```
+  // test the one complex number object form
+  var cn4 = (new ComplexNumber()).real(3).imaginary(4);
+  cn3.parse(cn4);
+  pbs.say(cn3.toString());
+  ```
 
 ### Step 8
 
@@ -759,24 +759,24 @@ Update your constructor so that it can accept the same arguments as the `.parse(
 
 Test your updated constructor with the following code:
 
-    ```javascript
-    //
-    // === Test the Updated Constructor ===
-    //
+  ```javascript
+  //
+  // === Test the Updated Constructor ===
+  //
 
-    // test the two-number form
-    pbs.say( (new ComplexNumber(1, 2)).toString() );
+  // test the two-number form
+  pbs.say( (new ComplexNumber(1, 2)).toString() );
 
-    // test the one array form
-    pbs.say( (new ComplexNumber([2, 3])).toString() );
+  // test the one array form
+  pbs.say( (new ComplexNumber([2, 3])).toString() );
 
-    // test the one string form
-    pbs.say( (new ComplexNumber("(2 - 6i)")).toString() );
+  // test the one string form
+  pbs.say( (new ComplexNumber("(2 - 6i)")).toString() );
 
-    // test the one complex number object form
-    var cn5 = new ComplexNumber(-2, -4);
-    pbs.say( (new ComplexNumber(cn5)).toString() );
-    ```
+  // test the one complex number object form
+  var cn5 = new ComplexNumber(-2, -4);
+  pbs.say( (new ComplexNumber(cn5)).toString() );
+  ```
 
 ### Step 10
 
@@ -883,7 +883,7 @@ In a similar vain, add function named `subtract` to the `ComplexNumber` prototyp
 
 Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
 
-    `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
+  `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-12">
   Partial Solution
@@ -985,38 +985,38 @@ Add a function named `conjugateOf` to the `ComplexNumber` prototype. This functi
 Test your arithmetic functions with the following code:
 
 
-    ```javascript
-    //
-    // === Test the Arithmentic Functions ===
-    //
+  ```javascript
+  //
+  // === Test the Arithmentic Functions ===
+  //
 
-    // create a complex number to manipulate
-    var myCN = new ComplexNumber(1, 2);
-    pbs.say(myCN);
+  // create a complex number to manipulate
+  var myCN = new ComplexNumber(1, 2);
+  pbs.say(myCN);
 
-    // add 4 + 2i to our number
-    myCN.add(new ComplexNumber(4, 2));
-    pbs.say(myCN);
+  // add 4 + 2i to our number
+  myCN.add(new ComplexNumber(4, 2));
+  pbs.say(myCN);
 
-    // subtract 2 + i from our number
-    myCN.subtract(new ComplexNumber(2, 1));
-    pbs.say(myCN);
+  // subtract 2 + i from our number
+  myCN.subtract(new ComplexNumber(2, 1));
+  pbs.say(myCN);
 
-    // set the value to 3 + 2i
-    myCN.parse(3, 2);
+  // set the value to 3 + 2i
+  myCN.parse(3, 2);
 
-    // multiply by 1 + 7i
-    myCN.multiplyBy(new ComplexNumber(1, 7));
-    pbs.say(myCN.toString()); // should be -11 + 23i
+  // multiply by 1 + 7i
+  myCN.multiplyBy(new ComplexNumber(1, 7));
+  pbs.say(myCN.toString()); // should be -11 + 23i
 
-    // get the conjugate
-    myCN = myCN.conjugateOf();
-    pbs.say(myCN.toString());
+  // get the conjugate
+  myCN = myCN.conjugateOf();
+  pbs.say(myCN.toString());
 
-    // get the conjugate again
-    myCN = myCN.conjugateOf();
-    pbs.say(myCN.toString());
-    ```
+  // get the conjugate again
+  myCN = myCN.conjugateOf();
+  pbs.say(myCN.toString());
+  ```
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-prototype">
   Completed Prototype
