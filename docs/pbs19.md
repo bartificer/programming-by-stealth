@@ -803,7 +803,17 @@ Build up your solution in the following way:
       // return a reference to the object
       return this;
     }
-    ```
+   
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 11. In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
 
@@ -1274,4 +1284,3 @@ ComplexNumber.prototype.conjugateOf = function(){
     </div>
   </div>
 </div>
-
