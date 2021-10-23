@@ -18,15 +18,15 @@ Using a loop of your choice, print the 12 times tables from 12 times 1 up to and
 
 ### Solution
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge1">
+  Solution
 </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="challenge1" tabindex="-1" aria-labelledby="challenge1Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="challenge1Label">Solution Challenge 1</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -44,7 +44,6 @@ for(var i = 1; i <= 12; i++){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -65,29 +64,39 @@ Build up your solution in the following way:
      1. Add this new value to the end of the `fibonacci` array.
 3.  Print the Fibonacci series, one element per line, by converting the `fibonacci` array into a string separated by newline characters.
 
-<button type="button" class="btn btn-primary" id="toast-challenge-2">Solution</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge2">
+  Solution
+</button>
 
-<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-  <div class="toast-header">
-    <strong class="mr-auto">Solution Challenge 3</strong>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
+<div class="modal fade" id="challenge2" tabindex="-1" aria-labelledby="challenge2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge2Label">Solution Challenge 2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-```javascript
+{% highlight javascript %}
+
 var fibonacci = [0, 1];
 while(fibonacci[fibonacci.length -1] < 1000000){
   var nextFib = fibonacci[fibonacci.length -1] + fibonacci[fibonacci.length -2];
   fibonacci.push(nextFib);
 }
 pbs.say(fibonacci.join('\n'));
-```
 
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
-
 
 ## Challenge 3 – FizzBuzz
 
@@ -95,18 +104,23 @@ This is a total cliché, and very common as an interview question. It tests if a
 
 Write a program that prints the numbers from 1 to 100. But for multiples of three, print “Fizz” instead of the number. For the multiples of five, print “Buzz”. For numbers which are multiples of both three and five, print “FizzBuzz”.
 
-<button type="button" class="btn btn-primary" id="toast-challenge-3">Solution</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge3">
+  Solution
+</button>
 
-<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-  <div class="toast-header">
-    <strong class="mr-auto">Solution Challenge 3</strong>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
+<div class="modal fade" id="challenge3" tabindex="-1" aria-labelledby="challenge3Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge3Label">Solution Challenge 3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-```javascript
+{% highlight javascript %}
+
 for(var i = 1; i <= 100; i++){
   // figure out of we are a special case or not
   if(i % 3 == 0 || i % 5 == 0){
@@ -124,10 +138,17 @@ for(var i = 1; i <= 100; i++){
     pbs.say(i);
   }
 }
-```
 
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
+
 
 ## Challenge 4 – Factorial
 
@@ -139,9 +160,25 @@ You can write your solution either using a loop of your choice or using recursio
 
 Test your function by calculating the factorial of the inputs in the PBS playground. If no inputs are set, print a message telling the user to enter numbers into the inputs.
 
-Show/Hide Iterative Solution
 
-```javascript
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge4a">
+  Solution
+</button>
+
+<div class="modal fade" id="challenge4a" tabindex="-1" aria-labelledby="challenge4aLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge4aLabel">Solution Challenge 4</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
+
 // -- Function --
 // Purpose    : calculate the factorial of a number
 // Returns    : A number (NaN if the input is invalid)
@@ -173,11 +210,35 @@ if(theInputs.length > 0){
 }else{
   pbs.say('Enter numbers in the inputs to calculate their factorial');
 }
-```
 
-### Recursive Solution
+{% endhighlight %}
 
-```javascript
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge4b">
+  Recursive Solution
+</button>
+
+<div class="modal fade" id="challenge4b" tabindex="-1" aria-labelledby="challenge4bLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge4bLabel">Recursive Solution Challenge 4</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
 // -- Function --
 // Purpose    : calculate the factorial of a number
 // Returns    : A number (NaN if the input is invalid)
@@ -208,7 +269,17 @@ if(theInputs.length > 0){
 }else{
   pbs.say('Enter numbers in the inputs to calculate their factorial');
 }
-```
+
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 ## Challenge 5 – Complex Numbers
 
@@ -222,9 +293,23 @@ Build up your solution in the following way:
     2.  In the constructor, Initialise a key named `_real` to the value 0.
     3.  Also Initialise a key named `_imaginary` to the value 0.
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-1">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-1" tabindex="-1" aria-labelledby="challenge5-1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-1Label">Partial Solution Challenge 5.1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
     // -- Function --
     // Purpose    : Constructor function for the ComplexNumber prototype
     // Returns    : NOTHING
@@ -236,16 +321,41 @@ Build up your solution in the following way:
       this._real = 0;
       this._imaginary = 0;
     }
-    ```
+
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
 
 2.  Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
 
     1.  If no arguments are passed, the function should return the current value of the `_real` key.
     2.  If there is a first argument, make sure it’s a number. If it’s not, throw an error. If it is, set it as the value of the `_real` key, and return a reference to the current object (i.e. `this`). (This will enable a technique known as _function chaining_, which we’ll see in action shortly.)
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-2">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-2" tabindex="-1" aria-labelledby="challenge5-2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-2Label">Partial Solution Challenge 5.2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
     // -- Function --
     // Purpose    : An accessor function for the real part of the complex number
     // Returns    : The current real part of the complex number if no arguments
@@ -270,11 +380,36 @@ Build up your solution in the following way:
       // return a reference to the current object
       return this;
     };
-    ```
+
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 3.  Create a similar accessor function for the imaginary part of the complex number, and name it `imaginary`.
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-3">
+  Partial Solution
+</button>
+
+<div class="modal fade" id="challenge5-3" tabindex="-1" aria-labelledby="challenge5-3Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-3Label">Partial Solution Challenge 5.3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
 
     ```javascript
     // -- Function --
@@ -302,6 +437,16 @@ Build up your solution in the following way:
       return this;
     };
     ```
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 4.  Add a function to the prototype named `toString`. This function should return a string representation of the complex number. The rendering should adhere to the following rules:
 
@@ -312,9 +457,23 @@ Build up your solution in the following way:
      5. If only the imaginary part is zero, return just the real part as a string.
      6. If only the real part is zero, return just the imaginary part as a string followed by the letter `i`.
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-4">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-4" tabindex="-1" aria-labelledby="challenge5-4Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-4Label">Partial Solution Challenge 5.4</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
     // -- Function --
     // Purpose    : Render a complex number as a string
     // Returns    : A string
@@ -368,7 +527,18 @@ Build up your solution in the following way:
       // if we got here, then the imaginary part must be zero
       return String(this._real); // force to a string
     };
-    ```
+
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 5.  Test what you have so far with the following code:
 
@@ -407,9 +577,24 @@ Build up your solution in the following way:
     3.  A string of the form `(a + bi)` or `(a - bi)` where `a` is a positive or negative number, and `b` is a positive number.
     4.  An object with the prototype `ComplexNumber`.
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-6">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-6" tabindex="-1" aria-labelledby="challenge5-6Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-6Label">Partial Solution Challenge 5.6</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
+
     // -- Function --
     // Purpose    : Set the value of a complex number object
     // Returns    : A reference to the object
@@ -461,7 +646,17 @@ Build up your solution in the following way:
       // return a reference to the object
       return this;
     }
-    ```
+  
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 7.  Test the parse function you just created with the following code:
 
@@ -497,9 +692,23 @@ Build up your solution in the following way:
 
 8.  Update your constructor so that it can accept the same arguments as the `.parse()` function. Do not copy and paste the code. Instead, update the constructor function to check if there are one or two arguments. If there are, call the `parse` function with the appropriate arguments.
 
-    ### Partial Solution
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-8">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-8" tabindex="-1" aria-labelledby="challenge5-8Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-8Label">Partial Solution Challenge 5.8</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
     // -- Function --
     // Purpose    : Constructor function for the ComplexNumber prototype
     // Returns    : NOTHING
@@ -522,7 +731,17 @@ Build up your solution in the following way:
         this.parse(arguments[0], arguments[1]);
       }
     }
-    ```
+  
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 9.  Test your updated constructor with the following code:
 
@@ -547,7 +766,23 @@ Build up your solution in the following way:
 
 10. Add a function named `add` to the `ComplexNumber` prototype which accepts one argument, a complex number object, and adds it to the object the function is called on. Note that you add two complex numbers by adding the real parts together, and adding the imaginary parts together.
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-10">
+  Partial Solution
+</button>
+
+<div class="modal fade" id="challenge5-10" tabindex="-1" aria-labelledby="challenge5-10Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-10Label">Partial Solution Challenge 5.10</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
 
     ```javascript
     // -- Function --
@@ -572,9 +807,23 @@ Build up your solution in the following way:
 
 11. In a similar vain, add function named `subtract` to the `ComplexNumber` prototype. You subtract complex numbers by subtracting the real and imaginary parts.
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-11">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-11" tabindex="-1" aria-labelledby="challenge5-11Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-11Label">Partial Solution Challenge 5.11</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
     // -- Function --
     // Purpose    : Subtract another complex number from the object
     // Returns    : A reference to the object
@@ -593,15 +842,39 @@ Build up your solution in the following way:
       // return a reference to the object
       return this;
     }
-    ```
+
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 12. Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for multiplying complex numbers is, appropriately enough, quite complex. It can be summed up by the following rule:
 
     `(a+bi) x (c+di) = (ac−bd) + (ad+bc)i`
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-12">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-12" tabindex="-1" aria-labelledby="challenge5-12Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-12Label">Partial Solution Challenge 5.12</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
     // -- Function --
     // Purpose    : Sultiply another complex number into the object
     // Returns    : A reference to the object
@@ -626,13 +899,37 @@ Build up your solution in the following way:
       // return a reference to the object
       return this;
     };
-    ```
+
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 13. Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vice-versa_.
 
-    ### Partial Solution
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-13">
+  Partial Solution
+</button>
 
-    ```javascript
+<div class="modal fade" id="challenge5-13" tabindex="-1" aria-labelledby="challenge5-13Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-13Label">Partial Solution Challenge 5.13</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
     ComplexNumber.prototype.conjugateOf = function(){
       // if the imaginary part is positive, make a new CN with a negative version
       if(this.imaginary() &gt; 0){
@@ -642,7 +939,17 @@ Build up your solution in the following way:
       // otherwise, the imaginary part was negative or 0, so use the absolute value
       return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
     };
-    ```
+    
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 14. Test your arithmetic functions with the following code:
 
@@ -680,9 +987,23 @@ Build up your solution in the following way:
     pbs.say(myCN.toString());
     ```
 
-### Completed Prototype
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-prototype">
+  Completed Prototype
+</button>
 
-```javascript
+<div class="modal fade" id="challenge5-prototype" tabindex="-1" aria-labelledby="challenge5-prototypeLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="challenge5-prototypeLabel">Challenge 5 Completed prototype</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+{% highlight javascript %}
+
 //
 // === Define the ComplexNumber Prototype ===
 //
@@ -943,4 +1264,14 @@ ComplexNumber.prototype.conjugateOf = function(){
   // otherwise, the imaginary part was negative or 0, so use the absolute value
   return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
 };
-```
+
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
