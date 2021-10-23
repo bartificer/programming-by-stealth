@@ -12,6 +12,9 @@ Listen Along: Chit Chat Across the Pond Episode 449
 
 You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_08_08.mp3?autoplay=0&loop=0&controls=1" >Download the MP3</a>
 
+
+<!-- vale Vale.Spelling = NO -->
+
 ## Challenge 1 – The 12 Times Tables
 
 Using a loop of your choice, print the 12 times tables from 12 times 1 up to and including 12 times 12.
