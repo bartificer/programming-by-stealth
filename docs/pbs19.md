@@ -16,24 +16,37 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 Using a loop of your choice, print the 12 times tables from 12 times 1 up to and including 12 times 12.
 
-<button type="button" class="btn btn-primary" id="toast-challenge-1">Solution</button>
+### Solution
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
       <div class="modal-header">
-<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-  <div class="toast-header">
-    <strong class="mr-auto">Solution Challenge 1</strong>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-```javascript
+{% highlight javascript %}
+
 for(var i = 1; i <= 12; i++){
   pbs.say('12 x ' + i + ' = ' + (12 * i));
 }
-```
 
+{% endhighlight %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
 </div>
 
