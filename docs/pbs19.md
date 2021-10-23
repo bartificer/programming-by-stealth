@@ -1284,3 +1284,5 @@ ComplexNumber.prototype.conjugateOf = function(){
     </div>
   </div>
 </div>
+
+<!-- vale Vale.Spelling = YES -->
