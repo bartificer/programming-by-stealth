@@ -19,8 +19,6 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 Using a loop of your choice, print the 12 times tables from 12 times 1 up to and including 12 times 12.
 
-### Solution
-
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge1">
   Solution
 </button>
