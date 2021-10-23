@@ -18,6 +18,7 @@ Using a loop of your choice, print the 12 times tables from 12 times 1 up to and
 
 <button type="button" class="btn btn-primary" id="toast-challenge-1">Solution</button>
 
+      <div class="modal-header">
 <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
   <div class="toast-header">
     <strong class="mr-auto">Solution Challenge 1</strong>
