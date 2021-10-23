@@ -799,8 +799,6 @@ Add a function named `add` to the `ComplexNumber` prototype which accepts one ar
 
 {% highlight javascript %}
 
-
-    ```javascript
     // -- Function --
     // Purpose    : Add another complex number to the object
     // Returns    : A reference to the object
