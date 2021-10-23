@@ -923,42 +923,42 @@ Build up your solution in the following way:
 
 13. Add a function named `conjugateOf` to the `ComplexNumber` prototype. This function should return a new ComplexNumber object with the sign of the imaginary part flipped. I.e. `2 + 3i` becomes `2 - 3i` and _vice-versa_.
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-13">
-  Partial Solution
-</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#challenge5-13">
+    Partial Solution
+  </button>
 
-<div class="modal fade" id="challenge5-13" tabindex="-1" aria-labelledby="challenge5-13Label" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="challenge5-13Label">Partial Solution Challenge 5.13</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" id="challenge5-13" tabindex="-1" aria-labelledby="challenge5-13Label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="challenge5-13Label">Partial Solution Challenge 5.13</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
 
-{% highlight javascript %}
+  {% highlight javascript %}
 
-    ComplexNumber.prototype.conjugateOf = function(){
-      // if the imaginary part is positive, make a new CN with a negative version
-      if(this.imaginary() &gt; 0){
-        return new ComplexNumber(this.real(), 0 - this.imaginary());
-      }
+      ComplexNumber.prototype.conjugateOf = function(){
+        // if the imaginary part is positive, make a new CN with a negative version
+        if(this.imaginary() &gt; 0){
+          return new ComplexNumber(this.real(), 0 - this.imaginary());
+        }
 
-      // otherwise, the imaginary part was negative or 0, so use the absolute value
-      return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
-    };
-    
-{% endhighlight %}
+        // otherwise, the imaginary part was negative or 0, so use the absolute value
+        return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
+      };
+      
+  {% endhighlight %}
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 14. Test your arithmetic functions with the following code:
