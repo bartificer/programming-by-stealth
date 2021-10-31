@@ -2,6 +2,7 @@
 import moment from "moment";
 
 // define and export our code as a function
+// Note: the function is exported as the default
 export default function s2xmas(){
 	const now = moment();
 if(now.date() === 25 && now.month() === 11){

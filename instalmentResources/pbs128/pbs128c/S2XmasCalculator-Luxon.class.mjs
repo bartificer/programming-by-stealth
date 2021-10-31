@@ -1,12 +1,18 @@
 // import the needed modules (just Luxon)
 import { DateTime } from "luxon"; // using a named export, no default from the luxon module
 
-// define and export our code as a class
-export default class S2XmasCalculator{
+// define and export the default icons as a named export
+export const defaultIcons = {
+	sleep: '💤',
+	christmas: '🎅'
+};
+
+// define and export the class as a named export
+export class S2XmasCalculator{
 	// define a basic constructor
 	constructor(){
-		this._sleepIcon = '😴';
-		this._christmasIcon = '🎄';
+		this._sleepIcon = defaultIcons.sleep;
+		this._christmasIcon = defaultIcons.christmas;
 	}
 	
 	// add some simple getters and setters
@@ -44,3 +50,6 @@ export default class S2XmasCalculator{
 		}
 	}
 };
+
+// also export the class as the default export
+export { S2XmasCalculator as default };
