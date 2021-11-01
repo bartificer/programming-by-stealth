@@ -18,6 +18,7 @@ booleans
 Bootply
 breakpoint
 bundler
+bundlers
 Busschots
 callouts
 cdnjs
@@ -40,6 +41,7 @@ duplicative
 easter
 embeddable
 endhighlight
+facto
 falsy
 Ferengi
 fibonacci
@@ -102,6 +104,7 @@ Komodo
 Latinum
 Lodash
 Lookups
+Luxon
 Maynooth
 medialize
 menubar
@@ -169,6 +172,7 @@ rerender
 reusability
 Ritchie
 rollout
+Rollup
 sandboxing
 sanitisation
 screenreader
@@ -184,6 +188,7 @@ Smultron
 soooo
 spacebar
 specificities
+spidering
 strikethrough
 subclassing
 subcommand
@@ -234,6 +239,7 @@ unstyled
 untrack
 untracked
 untyped
+URIs
 url
 utils
 validator
