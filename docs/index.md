@@ -145,6 +145,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 125 — Chezmoi on Multiple Computers](./pbs125)
 * [PBS 126 — Introducing Phase 2](./pbs126)
 * [PBS 127 — Introducing NPM (and Node)](./pbs127)
+* [PBS 128 — JavaScript Module Basics](./pbs128)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
