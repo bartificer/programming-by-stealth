@@ -1,0 +1,17 @@
+{
+  "name": "s2xmas",
+  "version": "1.1.1",
+  "description": "Sleeps to Christmas calculator as an ES 6 Javascript module.",
+  "main": "main.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bart Busschots",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "documentation": "^13.2.5"
+  }
+}
