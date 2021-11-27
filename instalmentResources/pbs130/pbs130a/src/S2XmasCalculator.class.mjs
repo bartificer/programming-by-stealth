@@ -4,12 +4,15 @@
 import { DateTime } from "luxon"; // using a named export, no default from the luxon module
 
 /**
- * A sleeps-to-Christmas calculator.
+ * A class for calculating and printing the number of sleeps until Christmas.
+ * @example
+ * const calc = new S2XmasCalculator();
+ * console.log(`just ${calc.numSleeps()} sleeps till Christmas!`);
+ * calc.printSleeps();
  */
 export class S2XmasCalculator{
 	/**
 	 * The default icons.
-	 * 
 	 * @type {{sleep: string, christmas: string}}
 	 */
 	static get defaultIcons(){
@@ -20,18 +23,18 @@ export class S2XmasCalculator{
 	}
 
 	/**
+	 * If no arguments are passed, the default icons are used.
 	 * @param {object} [icons] - the icons to use.
 	 * @param {sting} [icons.sleep] - an emoji to represent sleep.
 	 * @param {string} [icons.christmas] - an emoji to reprsent Christmas.
 	 */
 	constructor(){
 		this._sleepIcon = this.constructor.defaultIcons.sleep;
-		this._christmasIcon = this.constructor.defaultIcons;
+		this._christmasIcon = this.constructor.defaultIcons.christmas;
 	}
 	
 	/**
 	 * The Emoji representing sleep.
-	 * 
 	 * @type {string}
 	 */
 	get sleepIcon(){
@@ -43,7 +46,6 @@ export class S2XmasCalculator{
 	
 	/**
 	 * The Emoji reprsenting Christmas.
-	 * 
 	 * @type {string}
 	 */
 	get christmasIcon(){
@@ -55,7 +57,6 @@ export class S2XmasCalculator{
 
 	/**
 	 * The date for the next Christmas.
-	 * 
 	 * @returns {LuxonDateTime}
 	 */
 	static nextChristmas(){
@@ -70,7 +71,6 @@ export class S2XmasCalculator{
 	
 	/**
 	 * The number of sleeps until Christmas.
-	 * 
 	 * @returns {number}
 	 */
 	static numSleeps(){
@@ -83,7 +83,6 @@ export class S2XmasCalculator{
 
 	/**
 	 * Generate the sleeps message.
-	 * 
 	 * @returns {string}
 	 */
 	sleeps(){
@@ -100,7 +99,7 @@ export class S2XmasCalculator{
 	}
 
 	/**
-	 * Write the number of sleeps till Christmas to STDOUT.
+	 * Write the number of sleeps till Christmas to `STDOUT`.
 	 */
 	printSleeps(){
 		console.log(this.sleeps());
