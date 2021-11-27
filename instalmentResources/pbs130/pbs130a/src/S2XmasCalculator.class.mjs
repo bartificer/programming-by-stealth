@@ -1,10 +1,12 @@
+/** @module s2xmas */
+
 // import the needed modules (just Luxon)
 import { DateTime } from "luxon"; // using a named export, no default from the luxon module
 
 /**
  * A sleeps-to-Christmas calculator.
  */
-export default class S2XmasCalculator{
+export class S2XmasCalculator{
 	/**
 	 * The default icons.
 	 * 
@@ -23,8 +25,8 @@ export default class S2XmasCalculator{
 	 * @param {string} [icons.christmas] - an emoji to reprsent Christmas.
 	 */
 	constructor(){
-		this._sleepIcon = this.constructor.defaulIcons.sleep;
-		this._christmasIcon = this.constructor.defaulIcons;
+		this._sleepIcon = this.constructor.defaultIcons.sleep;
+		this._christmasIcon = this.constructor.defaultIcons;
 	}
 	
 	/**
@@ -104,3 +106,5 @@ export default class S2XmasCalculator{
 		console.log(this.sleeps());
 	}
 };
+
+export { S2XmasCalculator as default};

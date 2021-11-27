@@ -9,9 +9,9 @@
   "author": "Bart Busschots",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.29.1"
+    "luxon": "^2.1.1"
   },
   "devDependencies": {
-    "documentation": "^13.2.5"
+    "jsdoc": "^3.6.7"
   }
 }
