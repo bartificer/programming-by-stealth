@@ -1,0 +1,23 @@
+{
+    "opts": {
+        "encoding": "utf8",
+        "readme": "./README.md",
+        "recurse": false,
+        "template": "./node_modules/clean-jsdoc-theme"
+    },
+    "source": {
+        "include": ["src/"],
+        "includePattern": ".+\\.(mjs|jsdoc)$"
+    }, 
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "tags": {
+        "allowUnknownTags": false,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    }
+}

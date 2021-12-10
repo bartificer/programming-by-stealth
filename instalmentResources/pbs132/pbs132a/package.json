@@ -1,0 +1,20 @@
+{
+  "name": "s2xmas",
+  "version": "2.0.2",
+  "description": "A JavaScript module providing a class to calculate the number of sleeps until Christmas.",
+  "main": "main.mjs",
+  "scripts": {
+    "docs": "docDir='./docs'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\"",
+    "docs-dev": "docDir='./docs-dev'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bart Busschots",
+  "license": "ISC",
+  "dependencies": {
+    "luxon": "^2.1.1"
+  },
+  "devDependencies": {
+    "clean-jsdoc-theme": "^3.3.1",
+    "jsdoc": "^3.6.7"
+  }
+}

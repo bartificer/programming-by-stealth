@@ -1,0 +1,5 @@
+/**
+ * A Luxon DateTime object.
+ * @see {@link https://moment.github.io/luxon/}
+ * @typedef {class} LuxonDateTime
+ */
