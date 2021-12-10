@@ -1,20 +1,15 @@
 {
-  "name": "s2xmas",
-  "version": "2.0.2",
-  "description": "A JavaScript module providing a class to calculate the number of sleeps until Christmas.",
+  "name": "pbs131a",
+  "version": "1.0.0",
+  "description": "A demo NPM project for instalment 131 of the Programming by Stealth series",
   "main": "main.mjs",
   "scripts": {
-    "docs": "docDir='./docs'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\"",
-    "docs-dev": "docDir='./docs-dev'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bart Busschots",
   "license": "ISC",
   "dependencies": {
-    "luxon": "^2.1.1"
-  },
-  "devDependencies": {
-    "clean-jsdoc-theme": "^3.2.10",
-    "jsdoc": "^3.6.7"
+    "is_js": "^0.9.0",
+    "lodash-es": "^4.17.21"
   }
 }
