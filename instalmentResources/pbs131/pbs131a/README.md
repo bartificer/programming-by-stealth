@@ -1,6 +1,6 @@
 # A Virtual Replicator
 
-A JavaScript class representing a Star-Trek-like replicator bundled as an ES6 module.
+A JavaScript class representing a Star Trek-like replicator bundled as an ES6 module.
 
 The class is easy to use:
 
