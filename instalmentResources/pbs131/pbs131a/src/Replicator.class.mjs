@@ -48,7 +48,7 @@ function assertCharge(val){
 }
 
 /**
- * A virtual Star-Trek-style replicator.
+ * A virtual Star Trek-style replicator.
  * 
  * Replicators have a charge that gets exhausted by replicating food.
  * Replicators can be recharged.
