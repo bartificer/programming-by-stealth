@@ -148,6 +148,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 128 — JavaScript Module Basics](./pbs128)
 * [PBS 129 — ESLint (by Helma van der Linden)](./pbs129)
 * [PBS 130 — Good Technical Documentation](./pbs130)
+* [PBS 131 — Introducing JSDoc](./pbs131)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 

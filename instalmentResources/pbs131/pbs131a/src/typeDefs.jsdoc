@@ -1,0 +1,12 @@
+/**
+ * A valid amount of Replicator charge, specifically, a whole number greater than zero.
+ * @typedef {number} ChargeAmount
+ */
+
+/**
+ * A replicator menu item.
+ * @typedef {object} MenuItem
+ * @property {ChargeAmount} energyCost - The amount of replicator charge it
+ * costs to replicate one of the item.
+ * @property {string} icon - An icon to represent the item, ideally an emoji.
+ */
