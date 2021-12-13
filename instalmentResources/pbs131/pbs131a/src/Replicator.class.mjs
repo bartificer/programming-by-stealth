@@ -40,7 +40,7 @@ function isCharge(val){
  * @param {*} val - The value to assert.
  * @returns {number} Returns the test value forced to be a number.
  * @throws {TypeError} Throws a Type Error if the asserted value is not valid.
- * @see Data vaidated by the {@link module:PBSReplicator~isCharge isCharge()} function.
+ * @see Data validated by the {@link module:PBSReplicator~isCharge isCharge()} function.
  */
 function assertCharge(val){
     if(!isCharge(val)) throw new TypeError('invalid charge, must be an integer greater than 0');
@@ -55,9 +55,6 @@ function assertCharge(val){
  * 
  * All replicators share a single menu which is accessible and updatable via
  * static functions.
- * 
- * @requires is_js
- * @see {@link https://is.js.org}
  */
 class Replicator{
     /**
