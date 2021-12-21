@@ -1,7 +1,8 @@
 {
     "opts": {
         "encoding": "utf8",
-        "readme": "./README.md"
+        "readme": "./README.md",
+        "tutorials": "./pages/"
     },
     "source": {
         "include": ["./src/"],
