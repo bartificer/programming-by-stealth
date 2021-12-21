@@ -7,8 +7,9 @@
     "docs": "docDir='./docs'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\"",
     "docs-dev": "docDir='./docs-dev'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private",
     "docs-dev-minami": "docDir='./docs-dev-minami'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private --template node_modules/minami",
-    "docs-dev-docdash": "docDir='./docs-dev-docdash'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private --template node_modules/docdash",
     "docs-dev-clean": "docDir='./docs-dev-clean'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private --template node_modules/clean-jsdoc-theme",
+    "docs-dev-docdash": "docDir='./docs-dev-docdash'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private --template node_modules/docdash",
+    "docs-dev-docdash-tweaked": "docDir='./docs-dev-docdash-tweaked'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.docdash.conf.json --destination \"$docDir/\" --private --template node_modules/docdash",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bart Busschots",
