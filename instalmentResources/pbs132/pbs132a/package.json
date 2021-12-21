@@ -6,6 +6,9 @@
   "scripts": {
     "docs": "docDir='./docs'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\"",
     "docs-dev": "docDir='./docs-dev'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private",
+    "docs-dev-minami": "docDir='./docs-dev-minami'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private --template node_modules/minami",
+    "docs-dev-docdash": "docDir='./docs-dev-docdash'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private --template node_modules/docdash",
+    "docs-dev-clean": "docDir='./docs-dev-clean'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --private --template node_modules/clean-jsdoc-theme",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bart Busschots",
@@ -15,6 +18,9 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "jsdoc": "^3.6.7"
+    "clean-jsdoc-theme": "^3.3.1",
+    "docdash": "^1.2.0",
+    "jsdoc": "^3.6.7",
+    "minami": "^1.2.3"
   }
 }
