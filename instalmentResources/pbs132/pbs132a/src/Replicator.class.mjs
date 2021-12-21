@@ -12,6 +12,7 @@ import {cloneDeep} from 'lodash-es';
 /**
  * The menu of foods supported by all replicators indexed by name.
  * @type {Object.<string, MenuItem>}
+ * @private
  */
 const menu = {
     pancakes: {
@@ -29,6 +30,7 @@ const menu = {
  * @param {*} val - The value to test.
  * @returns {boolean}
  * @see The {@link ChargeAmount} type definition.
+ * @private
  */
 function isCharge(val){
     return String(val).match(/^\d+$/) ? true : false;
@@ -41,6 +43,7 @@ function isCharge(val){
  * @returns {number} Returns the test value forced to be a number.
  * @throws {TypeError} Throws a Type Error if the asserted value is not valid.
  * @see Data validated by the {@link module:PBSReplicator~isCharge isCharge()} function.
+ * @private
  */
 function assertCharge(val){
     if(!isCharge(val)) throw new TypeError('invalid charge, must be an integer greater than 0');
