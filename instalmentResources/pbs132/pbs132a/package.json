@@ -10,7 +10,10 @@
   },
   "author": "Bart Busschots",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "is_js": "^0.9.0",
+    "lodash-es": "^4.17.21"
+  },
   "devDependencies": {
     "jsdoc": "^3.6.7"
   }

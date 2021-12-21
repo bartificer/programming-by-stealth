@@ -1,5 +1,8 @@
 /**
  * Why cook when you can use a replicator! Sadly this module can't provide a real replicator, but it can at least give you a simulated digital one 🙂
+ * 
+ * This module serves as an example in the {@tutorial pbs} series.
+ * 
  * @module PBSReplicator
  * @requires is_js
  * @see {@link https://is.js.org}
@@ -58,6 +61,8 @@ function assertCharge(val){
  * 
  * All replicators share a single menu which is accessible and updatable via
  * static functions.
+ * 
+ * @tutorial startrek
  */
 class Replicator{
     /**
