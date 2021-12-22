@@ -149,6 +149,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 129 — ESLint (by Helma van der Linden)](./pbs129)
 * [PBS 130 — Good Technical Documentation](./pbs130)
 * [PBS 131 — Introducing JSDoc](./pbs131)
+* [PBS 133 — Managing JSDoc](./pbs132)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
