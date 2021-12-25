@@ -1,6 +1,7 @@
 {
     "opts": {
         "encoding": "utf8",
+        "pedantic": true,
         "readme": "./README.md",
         "tutorials": "./pages/"
     },
