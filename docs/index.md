@@ -150,6 +150,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 130 — Good Technical Documentation](./pbs130)
 * [PBS 131 — Introducing JSDoc](./pbs131)
 * [PBS 132 — Managing JSDoc](./pbs132)
+* [PBS 133 — Firming up our Foundations (1 of 2)](./pbs133)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
