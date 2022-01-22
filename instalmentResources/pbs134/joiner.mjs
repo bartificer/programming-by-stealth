@@ -1,23 +1,21 @@
 /**
  * A class for joining arrays of strings like a human would.
- * 
- * @example
- * const j = new Joiner();
- * const arr = ['waffles', 'pancakes', 'popcorn'];
- * const humanString = j.join(); // waffles, pancakes & popcorn
  */
 class Joiner{
     /**
      * @param {string} [conjunction='&'] - the conjunction to use between the last two elements in the array 
-     * @param {string} [quoteWith=''] - the character to quote each element in the array with. 
+     * @param {string} [quoteWith=''] - the character to quote each element in the array with.
+     * @param {boolean} [doSort=false] — whether or not to sort the list before joining.
      */
-    constructor(conjunction='&', quoteWith=''){
-        // force all arguments to strings
-        if(typeof conjunction !== 'string') conjunction = '&';
-        if(typeof quoteWith !== 'string') quoteWith = '';
+    constructor(conjunction='&', quoteWith='', doSort=false){
+        // force all arguments to their appropriate type
+        if (typeof conjunction !== 'string') conjunction = '&';
+        if (typeof quoteWith !== 'string') quoteWith = '';
+        doSort = doSort ? true : false; 
 
         this._conjunction = conjunction;
         this._quoteWith = quoteWith;
+        this._doSort = doSort;
     }
 
     //
@@ -46,6 +44,15 @@ class Joiner{
         }
     }
 
+    /**
+     * Whether or not to sort the list before joining.
+     * @type {boolean}
+     */
+    get doSort() { return this._doSort; }
+    set doSort(s){
+        this._doSort = s ? true : false; // force to boolean
+    }
+
     //
     // the actual joiner function
     //
@@ -65,13 +72,17 @@ class Joiner{
         // short-curcuit an empty array
         if(arr.length === 0) return '';
 
+        // sort the array if needed
+        let list = [...arr]; //shallow-clone the array before possibly sorting it
+        if(this.doSort) list.sort(); // opperates in-place
+
         // assemble the joined string
         const q = this.quoteWith; // cache the quote character
-        let ans = q + String(arr[0]) + q; // start with the first element
-        for(let i = 1; i < arr.length; i++){
+        let ans = q + String(list[0]) + q; // start with the first element
+        for(let i = 1; i < list.length; i++){
             // figure out the separator
-            const sep = i === arr.length - 1 ? ' ' + this.conjunction + ' ' : ', ';
-            ans += sep + q + arr[i] + q;
+            const sep = i === list.length - 1 ? ' ' + this.conjunction + ' ' : ', ';
+            ans += sep + q + list[i] + q;
         }
         
         // return the joined string
@@ -79,11 +90,11 @@ class Joiner{
     }
 
     //
-    // The mutating getters
+    // The disgusied pass-through functions
     //
 
     /**
-     * A mutating getter that sets the conjuction to 'and' and returns a reference to self.
+     * A disguised pass-through function that sets the conjuction to 'and'.
      * @type {Joiner}
      */
     get and(){
@@ -92,7 +103,7 @@ class Joiner{
     }
 
     /**
-     * A mutating getter that sets the conjuction to '&' and returns a reference to self.
+     * A disguised pass-through function that sets the conjuction to '&'.
      * @type {Joiner}
      */
     get ampersand(){
@@ -101,7 +112,7 @@ class Joiner{
     }
 
     /**
-     * A mutating getter that sets the conjuction to 'or' and returns a reference to self.
+     * A disguised pass-through function that sets the conjuction to 'or'.
      * @type {Joiner}
      */
     get or(){
@@ -110,7 +121,7 @@ class Joiner{
     }
 
     /**
-     * A mutating getter that enables quoting with single quotes and returns a reference to self.
+     * A disguised pass-through function that enables quoting with a single quote.
      * @type {Joiner}
      */
     get quote(){
@@ -119,11 +130,20 @@ class Joiner{
     }
 
     /**
-     * A mutating getter that enables quoting with double quotes and returns a reference to self.
+     * A disguised pass-through function that enables quoting with a double quote.
      * @type {Joiner}
      */
     get doubleQuote(){
         this.quoteWith = '"';
+        return this;
+    }
+
+    /**
+     * A disguised pass-through function that enables sorting.
+     * @type {Joiner}
+     */
+     get sort(){
+        this.doSort = true;
         return this;
     }
 }
@@ -141,4 +161,4 @@ export default function joiner(){
     const ans = new Joiner(...arguments);
     console.log(ans);
     return ans;
-};
+}
