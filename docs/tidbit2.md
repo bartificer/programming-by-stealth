@@ -42,9 +42,57 @@ I'm rubbish at chess, I don't enjoy it, but I had so much fun exploring ways of 
 
 Bottom line, **I wasn't cheating at the 8 Queens problem, I was playing a different game!**
 
-## Wordle on Terminal (*Terminurdle*?)
+## Wordle on Terminal (*Turdle*? ... err no ... *Terminurdle*?)
 
-TO DO
+So enter Wordle!
+
+In case you're not familiar with the game — each day there's a 5-letter word to try find in six guesses. To guess you type a 5-letter word into a grid, and when you submit it, your 5 letters change colour — if any letter goes grey then it's not in the word anywhere, if any letter goes yellow then it is in the word somewhere, but not at that position, and if it goes green it's in the word at that position.
+
+In her terminal experimentations Allison used the dictionary file present in POSIX operating systems like the Mac and Linux, but I went a different route, I knew Wordle was a JavaScript game, so I used my brower's developer tools to search the code for the word list and found it as an array. (For a fantastic description of how Wordle works, check out this great blog post TO DO).
+
+Armed with my word list saved as a TXT file I set about automating my guesses with terminal commands.
+
+The first hurdle was picking a random word — I didn't want to guess the same word every time, so set about finding a way to randomly pick a single word from my list. The solution I settled on combined two commands `sort --random-sort` to jumble up my list, and `head -1` to extract just the fist line:
+
+```sh
+cat wordleWords.txt | sort --random-sort | head -1
+```
+
+On February 6 2022 that gave me a first guess of `thyme` which sadly gave me all grey squares 🙁
+
+Oh well, we can use regular expressions to exclude all words that contain any of those letters by combining character classes in regular expressions with the `-v` for *in__v__ert* flag.
+
+In PCRE regular expressions, a list of characters in square brackets is referred to as a *character class* means *'any one of these'*. Both `grep` and `egrep` allow you to flip the logic of their search with the `-v` flag, so inserting `egrep '[thyme]'` into our chain of commands will filter out words file down to only the lines that don't contain any of the characters in `thyme`. By adding that into my chain I used the following to choose my second guess:
+
+```sh
+cat wordleWords.txt | egrep -v '[thyme]' | sort --random-sort | head -1
+```
+
+That gave me `ovoid`.
+
+That got me four more greys, `ovo` & `d`, and one yellow, `i` at position 4. Adding the grey letters to the existing character class is easy: `egrep '[thymeovd]'`, but what about the yellow? This provides an opportunity to use *inverted character classes*. By starting a character class with the hat symbol, the meaning flips, and the class becomes *'any character except these'*. In PCRE the symbol `.` means *'any single character'*, so by including `egrep '...[^i].'` we've captured the fact that the `i` can't be at position 4. What we haven't captured yet is that there must be an `i`, we can do this with a very simply `grep`: `grep 'i'`. Adding these two commands into my chain game me the following command for generating my third guess:
+
+```sh
+cat wordleWords.txt | egrep -v '[thymeovd]' | grep 'i' | egrep '...[^i].' | sort --random-sort | head -1
+```
+
+That game me `incur`.
+
+The result — the `i` turned yellow again, so not only is it not in the 4th position, it's also not in the first. All the other letters turned grey, so the word doesn't contain any of `ncur` either. Updating our command chain to include this new information I got the following to generate my fourth guess:
+
+```sh
+cat wordleWords.txt | egrep -v '[thymeovdncur]' | grep 'i' | egrep '[^i]..[^i].' | sort --random-sort | head -1
+```
+
+That gave me `skiff`, which proved a very fruitful guess, the first three letters went green, and the two `f`s grey. We now know the first three letters, so we can update our pattern to incorporate that: `egrep 'ski[^i].'`. We also know the final word doesn't contain an `f`, so we can update our exclude list to `egrep -v '[thymeovdncurf]'`. This gives the following command to generate my fifth guess:
+
+```sh
+cat wordleWords.txt | egrep -v '[thymeovdncurf]' | grep 'i' | egrep 'ski[^i].' | sort --random-sort | head -1
+```
+
+This gives `skill`, which is the correct answer 🎉 😀
+
+TO DO — how to take things further
 
 ## Final Thoughts
 
