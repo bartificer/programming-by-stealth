@@ -52,7 +52,7 @@ So enter [Wordle](https://www.powerlanguage.co.uk/wordle/)!
 
 In case you're not familiar with the game — each day there's a 5-letter word to try find in six guesses. To guess you type a 5-letter word into a grid, and when you submit it, your 5 letters change colour — if any letter goes grey then it's not in the word anywhere, if any letter goes yellow then it is in the word somewhere, but not at that position, and if it goes green it's in the word at that position.
 
-In her terminal experimentations Allison used the dictionary file present in POSIX operating systems like the Mac and Linux, but I went a different route, I knew Wordle was a JavaScript game, so I used my brower's developer tools to search the code for the word list and found it as an array. (For a fantastic description of how Wordle works, check out [this great blog post](https://reichel.dev/blog/reverse-engineering-wordle.html#looking-for-network-requests)).
+In her terminal experimentations Allison used the dictionary file present in POSIX operating systems like the Mac and Linux, but I went a different route, I knew Wordle was a JavaScript game, so I used my browser's developer tools to search the code for the word list and found it as an array. (For a fantastic description of how Wordle works, check out [this great blog post](https://reichel.dev/blog/reverse-engineering-wordle.html#looking-for-network-requests)).
 
 I used the array from the JavaScript code to create a text file named `wordleWords.txt` that lists the words one-per-line. This means all the terminal commands designed to operate on lines of text can now be used to operator on single words. I've added the file to this instalment's ZIP file. 
 
@@ -85,7 +85,7 @@ That got me four more greys, `ovo` & `d`, and one yellow, `i` at position 4. Add
 The yellow `i` at position 4 gives us two new pieces of information:
 
 1. There is an `i`  somewhere in the word.
-2. What ever is at position 4, it't not an `i`!
+2. What ever is at position 4, it's not an `i`!
 
 Dealing with the first piece of new information is easy — as well as a list of letters to omit, we need to start a new list of letters to include. As long as there's just one letter we don't even need the extra power of PCRE, so we can literally just `grep 'i'`, but if we get another yellow character in a later guess, our command would be easier to update if we used a character class, so `egrep '[i]'` probably makes more sense.
 
@@ -125,7 +125,7 @@ Why not start experimenting with the size, and see how far you get before the wa
 
 When it comes to Wordle, the most obvious short-coming of my naive terminal-only approach is the choice of initial words. For the first few picks every word with multiple occurrences of the same letter is wasteful, but near the end all words are possible answers, so for at least the first guess you should exclude all words with doubles, and then at some point later you need to let them into the mix. When? Also, there are a lot of words without duplicated letters, which ones are most likely to give you some yellows or greens in your first guess? To figure that you you'd need to do some letter frequency analysis on the word list and then rank the words by how common their letters are. You should then pick your first word from the top handful on that ranked list.
 
-If you re-created the game and fully automated it, you could design different algorythm and race them against each other, fine-tuning to get the perfect Wordle player!
+If you re-created the game and fully automated it, you could design different algorithm and race them against each other, fine-tuning to get the perfect Wordle player!
 
 The scope for nerdy fun is endless!
 
