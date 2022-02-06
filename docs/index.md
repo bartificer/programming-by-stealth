@@ -157,5 +157,6 @@ You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://ba
 
 # Related Contents
 
-- Bart occasionally makes blog posts related to the series, but not strictly a part of it. You'll find those on [bartb.ie](https://www.bartb.ie) under the [programming-by-stealth-tidbit tag](https://www.bartbusschots.ie/s/tag/programming-by-stealth-tidbit/).
-- A blog post by Allison Sheridan explaining how she added support for currencies with different numbers of decimal places to her sample solution to PBS 88: [When Currency Rate Decimals Go Wrong — www.podfeet.com/…](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/)
+* Bart occasionally makes posts related to the series, but not strictly a part of it:
+	* [PBS Tidbits 1 of Y — Display Values are not Data!](./tidbits1)
+* A blog post by Allison Sheridan explaining how she added support for currencies with different numbers of decimal places to her sample solution to PBS 88: [When Currency Rate Decimals Go Wrong — www.podfeet.com/…](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/)
