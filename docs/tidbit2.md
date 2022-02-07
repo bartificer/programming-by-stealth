@@ -10,7 +10,11 @@ The point of this tidbit is to argue that it's not just OK, but it's great to pl
 
 ## Matching Podcast Episode
 
-*Coming Soon!*
+Listen along to this instalment on [episode 714 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2022/02/ccatp-714/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2022_02_06.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2022_02_06.mp3" >Download the MP3</a>
 
 ## Instalment Resources
 
