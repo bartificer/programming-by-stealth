@@ -1,0 +1,23 @@
+{
+  "name": "pbs135a-joiner",
+  "version": "1.0.0",
+  "description": "An ES6 module for joining arrays in a human-friendly way for use as a worked example Programming by Stealth instalment 135",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JavaScript",
+    "Jest",
+    "Programming",
+    "by",
+    "Stealth",
+    "Example"
+  ],
+  "author": "Bart Busschots",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
