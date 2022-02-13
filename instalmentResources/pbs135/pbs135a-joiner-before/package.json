@@ -2,8 +2,8 @@
   "name": "pbs135a-joiner",
   "version": "1.0.0",
   "description": "An ES6 module for joining arrays in a human-friendly way for use as a worked example Programming by Stealth instalment 135",
-  "main": "index.js",
   "scripts": {
+    "docs": "docDir='./docs'; [[ -e \"$docDir\" ]] && rm -rf \"$docDir/\"*; npx jsdoc -c ./jsdoc.conf.json --destination \"$docDir/\" --template node_modules/docdash",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -17,7 +17,9 @@
   "author": "Bart Busschots",
   "license": "ISC",
   "devDependencies": {
+    "docdash": "^1.2.0",
     "eslint": "^8.9.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "jsdoc": "^3.6.10"
   }
 }

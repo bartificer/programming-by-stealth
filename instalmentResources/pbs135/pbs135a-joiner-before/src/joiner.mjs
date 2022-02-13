@@ -1,4 +1,14 @@
 /**
+ * A module for joining lists of strings like a human would.
+ * 
+ * This module serves as an example in the {@tutorial pbs} series.
+ * 
+ * @module PBSJoiner
+ * @example
+ * joiner().and.join(['pancakes', 'waffles', 'popcorn']) // returns 'pancakes, wafles, and popcorn'
+ */
+
+/**
  * A class for joining arrays of strings like a human would.
  */
 class Joiner {
