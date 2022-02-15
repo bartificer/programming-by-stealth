@@ -580,3 +580,7 @@ $OUT_TEXT.empty().append(imaginaryDollar.as(Math.PI));
 ```
 
 We need to make our data attributes as robust as our constructor, and the key to doing this efficiently are so-called *getters and setters*. Those will be the focus of the next instalment.
+
+ - [← PBS 93 — Encapsulation with JavaScript Objects](pbs93)
+ - [Index](index)
+ - [PBS 95 — Better JavaScript Class Attributes →](pbs95)

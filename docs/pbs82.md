@@ -525,3 +525,7 @@ Using either your solution to the previous challenge or mine, update the code so
 This instalment wraps up our exploration of the concept of promises. We are now armed with the skills to write human-friendly asynchronous code in JavaScript, and that’s extremely important in modern JavaScript. With my work hat on, I write server-side JavaScript code and JavaScrip command line apps, and in both cases it’s all about promises!
 
 In the next instalment we’ll loop back to Bootstrap to wrap up a few loose ends, but we’re almost finished our exploration of that topic too. After that we’ll take an instalment or two to catch up with some new features recently added to JavaScript, focusing on classes in particular.
+
+ - [← PBS 81 — The JavaScript Promise Utilities](pbs81)
+ - [Index](index)
+ - [PBS 83 — Bootstrap Cards →](pbs83)

@@ -302,3 +302,7 @@ Update your recipe so its markup is in a semantically sensible order, and so its
 ## Final Thoughts
 
 I intentionally skipped over all mentions of breakpoints when we took our first look at the Bootstrap utilities and the Bootstrap _content_ classes. Now that we’ve learned about breakpoints, it’s time to circle back around at that previously ignored functionality.
+
+ - [← PBS 57 — The Bootstrap Grid](pbs57)
+ - [Index](index)
+ - [PBS 59 — More Bootstrap Breakpoints →](pbs59)

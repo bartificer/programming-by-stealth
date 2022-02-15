@@ -772,3 +772,7 @@ Hopefully, when you complete the assignment, you’ll have reached an important 
 In the next instalment we’ll tackle another real world problem. We’ll create an embeddable clock that shows the time in a given timezone. This is something Allison needs for her website. She records her podcast live on Sundays at 5pm her time. To avoid timezone confusions, she would like visitors to her site to see a live clock showing the current time in her timezone.
 
 We already know all the pieces we need to create the clock. The new skill we’ll be learning is how to package our code so as to make it easy to embed into an existing site, and hence, easily reusable by others. In other words, we’ll be making our own library with its own API for others to reuse on their own pages.
+
+ - [← PBS 22 — jQuery Events](pbs22)
+ - [Index](index)
+ - [PBS 24 — Creating a JavaScript API →](pbs24)

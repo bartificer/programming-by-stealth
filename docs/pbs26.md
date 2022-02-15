@@ -1019,3 +1019,7 @@ Feel free to use your own namespace for your version of the library. If you choo
 At this stage we’ve learned how to define the structure of web pages with HTML, to style them with CSS, and alter the structure of web pages with JavaScript. We’ve learned to use APIs written by others, and to write our own APIs, either for private code reuse or for sharing with the world.
 
 So far, we’ve omitted an entire facet of the web – user input. Web forms allow users to enter information and to trigger events. We need to learn the HTML markup to define them, the CSS to style them, and the JavaScript to bring them to life – that’s where this series is heading next.
+
+ - [← PBS 25 — A Case Study (bartificer.linkToolkit.js)](pbs25)
+ - [Index](index)
+ - [PBS 27 — JS Prototype Revision \| HTML Forms →](pbs27)

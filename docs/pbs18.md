@@ -685,3 +685,7 @@ Finally, test your prototypes by creating a subnet from playground inputs 1 and 
 ## Conclusions
 
 We’ve now built up a very robust understanding of the core JavaScript language. That knowledge is not application-specific, but can be used in any of the many contexts JavaScript is used in today. In this series, we’re going to use this knowledge to learn how to do client-side scripting on web pages. In other words, we’ll be using JavaScript to bring web pages to life.
+
+ - [← PBS 17 — JS Objects](pbs17)
+ - [Index](index)
+ - [PBS 19 — Some JavaScript Challenges →](pbs19)

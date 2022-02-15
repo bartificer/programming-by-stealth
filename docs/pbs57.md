@@ -334,3 +334,7 @@ Using the recipe you’ve been developing over the past few challenges as a star
 ## Final Thoughts
 
 Now that we’ve learned how to lay out section of a page on large screens, we’re ready to dive into responsive design next time.
+
+ - [← PBS 56 — More Bootstrap Content](pbs56)
+ - [Index](index)
+ - [PBS 58 — Bootstrap Breakpoints →](pbs58)

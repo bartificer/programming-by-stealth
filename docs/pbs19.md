@@ -1307,3 +1307,7 @@ ComplexNumber.prototype.conjugateOf = function(){
 </div>
 
 <!-- vale Vale.Spelling = YES -->
+
+ - [← PBS 18 — JS Miscellany](pbs18)
+ - [Index](index)
+ - [PBS 20 — JS in the Browser →](pbs20)

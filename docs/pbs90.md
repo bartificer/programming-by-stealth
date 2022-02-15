@@ -235,3 +235,7 @@ const words = 'some words in a sentence'.split(' ');
 ## Final Thoughts
 
 We've now covered the majority of hats JavaScript objects wear. There are just two left to cover, regular expressions and classes/prototypes.
+
+ - [← PBS 89 — Currency Converter Challenge](pbs89)
+ - [Index](index)
+ - [PBS 91 — JavaScript RE Objects →](pbs91)

@@ -371,3 +371,7 @@ Again, I’ll leave it to you to decide on your UI (User Interface) and UX (User
 I hope you found Bootstrap Popovers and perhaps Bootstrap Tooltips useful. They’re not critical components, but they can be a nice addition to your web apps. Similarly, I hope you find is.js as useful and delightful as I do. It doesn’t do anything you couldn’t do yourself from first principles, but it saves you a lot of time writing repetitive code, and it makes your code much easier to read and maintain.
 
 After having made you wait for an extra two weeks, we’ll finally get to see how Javascript Promises give us a route out of _callback hell_ in the next instalment!
+
+ - [← PBS 77 — More Callbacks & More AJAX](pbs77)
+ - [Index](index)
+ - [PBS 79 — Introducing Javascript Promises →](pbs79)

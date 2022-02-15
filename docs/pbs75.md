@@ -313,3 +313,7 @@ Finally, we see the actual data returned by the server, in this case, the plain-
 ## Final Thoughts
 
 Now that we’ve seen the HTTP protocol in action, we’re ready to learn how to make HTTP requests from Javascript using AJAX. Or, to be more specific, how to use jQuery’s `$.ajax()` function to make HTTP requests. That’s where we’ll start the next instalment.
+
+ - [← PBS 74 — More Mustaches](pbs74)
+ - [Index](index)
+ - [PBS 76 — AJAX with jQuery →](pbs76)

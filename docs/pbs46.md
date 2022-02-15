@@ -597,3 +597,7 @@ When it comes to converting functions to arrow functions, how many you convert i
 We’ve now covered the majority of the major changes brought to JavaScript by ES6. Most significantly we have new variable scopes, better argument handling, a whole new type of function, new types of loops, a replacement for tedious string concatenations, and an entirely new mechanism for defining prototypes. That really is quite the overhaul! Some time within the next year we’ll make the move into ES7, but don’t expect the changes to be anything even nearly as dramatic as this.
 
 JavaScript has always had the ability to support _polymorphism_, a concept at the very heart of object oriented programming, but the syntax was so counterintuitive before ES6 that I’ve simply avoided the whole topic for fear it would alienate every reader/listener we have! The `class` keyword in combination with the `extends` keyword we’ll meet in the next instalment changes all that. We’re now finally ready to explore proper object orientation, and that’s exactly what we’ll be doing next time.
+
+ - [← PBS 45 — ES6 Arrays & Strings](pbs45)
+ - [Index](index)
+ - [PBS 47 — ES6 Polymorphism →](pbs47)

@@ -604,3 +604,7 @@ Finally, I want to draw your attention to a few features in the third table. It 
 ## Conclusions
 
 We have now finished our introduction to HTML and CSS, and are ready to move onto our first real programming language – JavaScript. To keep the chunks bite-sized, we’re going to first learn some JavaScript basics in the abstract, removed from the web context, before moving on to learn how to integrate JavaScript into web pages.
+
+ - [← PBS 10 — Yet More CSS](pbs10)
+ - [Index](index)
+ - [PBS 12 — Introducing JavaScript →](pbs12)

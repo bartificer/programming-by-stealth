@@ -372,3 +372,7 @@ For bonus credit, pass the appropriate options when creating the toasts so they 
 ## Final Thoughts
 
 We’re nearing the end of our first run through Bootstrap’s components, but there are a few more I want to cover before we move on. In the next instalment I’ll focus on a few more useful Components for building web apps, specifically Spinners, Tooltips, and Popovers. Then, I want to cover one of the most generic components of all, the Card. This component is as useful as it is generic, and you’ll probably find yourself using them an awful lot, and in a myriad of different ways.
+
+ - [← PBS 69 — Bootstrap Navbars](pbs69)
+ - [Index](index)
+ - [PBS 71 — Bootstrap Spinners →](pbs71)

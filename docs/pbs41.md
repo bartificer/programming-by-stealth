@@ -424,3 +424,7 @@ Update the web form you created in the previous challenge in the following ways:
 ## Final Thoughts
 
 We now have a good grounding in HTML forms. We’re finally ready to return to our cellular automata prototypes and bring them to life as a web app.
+
+ - [← PBS 40 — HTML5 Custom Validations with jQuery](pbs40)
+ - [Index](index)
+ - [PBS 42 — Playing the Game of Life →](pbs42)

@@ -363,3 +363,7 @@ Three hints to guide you:
 1. Query parameters can be used to embed data in URLs
 2. It is possible to use JavaScript to ask the browser for the current URL
 3. There exist APIs for parsing URLs to extract their various components, including query strings. One I like is [URI.js](https://medialize.github.io/URI.js/).
+
+ - [← PBS 95 — Better JavaScript Class Attributes](pbs95)
+ - [Index](index)
+ - [PBS 97 — Class Data Attributes & Functions →](pbs97)

@@ -165,3 +165,7 @@ Apply what we’ve learned in this instalment to the recipe you’ve been workin
 ## Final Thoughts
 
 We’ve now looked at the most important functionality in three out of Bootstrap’s four aspects — we’ve looked at the utility classes, the so-called _content_ classes (for styling built-in HTML elements), and we’ve looked at layout with the grid and breakpoints. Up to this point Bootstrap has been purely CSS. We’ve included it into our files by simply importing one stylesheet from a CDN. Next time we’ll discover that Bootstrap also has an optional JavaScript component. It’s vital for getting the most out of Bootstrap’s final aspect — the Bootstrap components. Bootstrap components are highly reusable pieces of functionality that are commonly needed by developers. Things like carousels, modal dialogues, dismissible alerts, and so on.
+
+ - [← PBS 58 — Bootstrap Breakpoints](pbs58)
+ - [Index](index)
+ - [PBS 60 — Bootstrap & jQuery →](pbs60)
