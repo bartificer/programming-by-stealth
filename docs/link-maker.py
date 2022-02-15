@@ -33,7 +33,7 @@ for episode in episode_list:
 
 edited_files = 0
 not_found_files = 0
-index = " - [Index](\)"
+index = " - [Index](index)"
 
 # Deal with edge cases. First has no previous, last has no next.
 try:
