@@ -21,9 +21,16 @@ describe('test default join (no modifiers)', ()=>{
       expect(joiner().join(input)).toBe(result);
     });
   });
-  
-  test('with invalid data', ()=>{
-    expect(()=>{joiner().join('pancakes')}).toThrow(TypeError);
+  describe.each([
+    ['string',         'pancakes'],
+    ['number',         42],
+    ['boolean',        true],
+    ['plain object',   {a: 'b'}],
+    ['class instance', new Date()]
+  ])('with invalid data', (desc, val)=>{
+    test(`with a ${desc}`, ()=>{
+      expect(()=>{joiner().join(val)}).toThrow(TypeError);
+    });
   });
 });
 
@@ -32,22 +39,27 @@ describe('test default join (no modifiers)', ()=>{
 //
 
 describe('test modifiers', ()=>{
+  let testArray;
+  beforeAll(()=>{
+    testArray = ['waffles', 'pancakes', 'popcorn'];
+  });
+
   test('ampersand modifier', ()=>{
-    expect(joiner().ampersand.join(['a', 'b', 'c'])).toBe('a, b & c');
+    expect(joiner().ampersand.join(testArray)).toBe('waffles, pancakes & popcorn');
   });
   test('and modifier', ()=>{
-    expect(joiner().and.join(['a', 'b', 'c'])).toBe('a, b and c');
+    expect(joiner().and.join(testArray)).toBe('waffles, pancakes and popcorn');
   });
   test('or modifier', ()=>{
-    expect(joiner().or.join(['a', 'b', 'c'])).toBe('a, b or c');
+    expect(joiner().or.join(testArray)).toBe('waffles, pancakes or popcorn');
   });
   test('single quote modifier', ()=>{
-    expect(joiner().quote.join(['a', 'b', 'c'])).toBe("'a', 'b' & 'c'");
+    expect(joiner().quote.join(testArray)).toBe("'waffles', 'pancakes' & 'popcorn'");
   });
   test('double quote modifier', ()=>{
-    expect(joiner().doubleQuote.join(['a', 'b', 'c'])).toBe('"a", "b" & "c"');
+    expect(joiner().doubleQuote.join(testArray)).toBe('"waffles", "pancakes" & "popcorn"');
   });
   test('sort modifier', ()=>{
-    expect(joiner().sort.join(['a', 'c', 'b'])).toBe('a, b & c');
+    expect(joiner().sort.join(testArray)).toBe('pancakes, popcorn & waffles');
   });
 });
