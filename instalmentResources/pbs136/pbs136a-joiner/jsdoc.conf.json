@@ -1,0 +1,25 @@
+{
+    "docdash": {
+        "collapse": true,
+        "search": true,
+        "sectionOrder": ["Modules", "Classes"],
+        "static": true,
+        "typedefs": true
+    },
+    "opts": {
+        "encoding": "utf8",
+        "pedantic": true,
+        "readme": "./README.md"
+    },
+    "source": {
+        "include": ["./src/"],
+        "includePattern": ".+\\.(mjs|jsdoc)$"
+    }, 
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "tags": {
+        "allowUnknownTags": false,
+        "dictionaries": ["jsdoc","closure"]
+    }
+}
