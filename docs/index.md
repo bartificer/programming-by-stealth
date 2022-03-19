@@ -162,4 +162,5 @@ You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://ba
 * Bart occasionally makes posts related to the series, but not strictly a part of it:
 	* [PBS Tidbit 1 of Y — Display Values are not Data!](./tidbit1)
 	* [PBS Tidbit 2 of Y — It's OK to Play a Different Game!](./tidbit2)
+	* [PBS Tidbit 3 of Y — Managing the NPM (or Packagist) Trade-off](./tidbit3)
 * A blog post by Allison Sheridan explaining how she added support for currencies with different numbers of decimal places to her sample solution to PBS 88: [When Currency Rate Decimals Go Wrong — www.podfeet.com/…](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/)
