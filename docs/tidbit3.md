@@ -16,11 +16,11 @@ TO DO
 
 If using other people's code is risky, why do it at all?
 
-The most obvious answer is to save resources. If you're in a cynical mood you can call it laziness, and if you're in a more thoughtful mood, efficiency. But I would argue it's even more than that. It makes it possible to solve real-world problems. If you never use anyone else's code you could only ever solve trivial problems with your code.
+The most obvious answer is to save resources. If you're in a cynical mood you can call it laziness, and if you're in a more thoughtful mood, efficiency. But I would argue it's even more than that. It makes it possible to solve real-world problems. If you never use anyone else's code you could only ever solve trivial problems. You'd just spend your life re-inventing wheels, trapped in the easy stuff with no time to get to the powerful stuff.
 
-But there is an even better reason to use other people's code. You can't be an expert at everything, so if you always roll your own, you will make naive and catastrophic mistakes. Probably the single best way to ensure your code is a security nightmare is to write your own crypto code!
+But it's worse than that — it's not just about not getting things done, it's that if you always roll your own, you'll make naive and catastrophic mistakes. Probably the single best way to ensure your code is a security nightmare is to write your own crypto code!
 
-By choosing to always write your own code you're making you code inevitably insecure, so in an attempt to improve your security by removing an obvious source of risk, you're adding a much more dangerous new source of risk — your own inability to know what it is you don't know!
+By choosing to always write your own code, you're making you code inevitably insecure. So, in an attempt to improve your security by removing an obvious source of risk, you're actually adding a much more dangerous new source of risk — your own inability to know what it is you don't know!
 
 It's probably obvious that writing your own encryption or hashing code is a terrible idea, but the problem is actually much bigger than that. There are lots of risky things your code inevitably has to do. Just off the top of my head, I can think of four big ones straight away: sanitise user input, interact with the file system, interact with other processes, and communicate across a network.
 
@@ -104,7 +104,7 @@ Finally, before we move from the abstract into the more concrete, I want to shar
 
 There are two very different ways of using other people's code. You can copy and paste it into your project, (by taking one or more files and copying them into your source folder, or, even just copying-and-pasting some classes or functions), or you can use a package manager of some kind.
 
-Whenever possible, use a package manager, because that way your dependencies are explicitly included in your project's metadata. That's why we are using NPM — our dependencies will be listed in `package.json` in a computer-readable format.
+Whenever possible, use a package manager, because that way your dependencies are explicitly included in your project's metadata. That's why I chose to introduce NPM in the programming by stealth series — our dependencies will be listed in `package.json` in a computer-readable format.
 
 The reason to do this is to make it possible for computers to help you audit your dependencies, which brings me to my second tip:
 
@@ -148,7 +148,7 @@ GitHub will offer to enable dependabot in all kinds of situations, but you can c
 
 ## Final Thoughts
 
-The buzz word I've been avoiding throughout this entire tidbit is *supply chain security* — that's the fancy-pants term that covers dependency management. Every library you depend on is a part of your supply chain, and you need to think about its security.
+Every library you depend on is a part of your supply chain, and you need to think about its security.
 
 What I hope you take away from this is that there are no easy answers, you simply have to think about this stuff carefully. Not reusing code is dangerous, and reusing the wrong code is also dangerous. You need to explicitly decide what to outsource and what to write yourself, and you need to choose the dependencies you do use with care. You can't be perfectly sure, because humans are involved at every stage of the process, and you will make mistakes. That's OK, just remember to learn from them!
 
