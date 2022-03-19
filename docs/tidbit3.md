@@ -72,19 +72,84 @@ So, summing up, the main reason not use use other people's code are:
 
 ## Damned if you Do, Damned if you Don't‽
 
-LEFT OFF HERE!!!
+So, neither extreme is viable — if you never use anyone else's code you'll get very little done, and what little you do get done will be an insecure buggy mess, but if you just blindly use every library out there you'll end up with deceptively powerful code that's a buggy insecure mess 🙁
 
-### Strategies
+The only solution to situations like this is human skill and judgement. You need to pro-actively make well reasoned decisions on when to use other people's code, and which code to use.
 
-- reputation
--  community
-- flexibility
-- tools!
+I can't give you an equation that spits out an answer, but I can offer some guidance on how to think about the problem.
 
-## Getting Practical — Managing NPM Dependencies on JavaScript Code
+I see there being two distinct questions:
 
-TO DO
+1. Do I use a library for this, or do I write my own code?
+2. If I do use a library, how can I evaluate my choices?
+
+### Question 1 — Roll My Own or Use a Library?
+
+* How well do I know the topic?
+* How big of a task would it be to write my own?
+* How bad would it be if I made a mistake?
+
+### Question 2 — How do I Feel About This Library?
+
+* Does the documentation show expertise in the area?
+* Does the project have a good reputation (does it get recommended a lot on stack overflow, blogs, tutorials, etc.)
+* Is the code being actively maintained?
+* Does the project have a strong community?
+
+## Some General Advice
+
+Finally, before we move from the abstract into the more concrete, I want to share two other pieces of advice:
+
+### Tip 1 — Make Your Dependencies Explicit
+
+There are two very different ways of using other people's code. You can copy-and-paste it into your project, (by taking one or more files and copying them into your source folder, or, even just copying-and-pasting some classes or functions), or you can use a package manager of some kind.
+
+When ever possible, use a package manager, because that way your dependencies are explicitly included in your project's metadata. That's why we are using NPM — our dependencies will be listed in `package.json` in a computer-readable format.
+
+The reason to do this is to make it possible for computers to help you audit your dependencies, which brings me to my second tip:
+
+### Tip 2 — Make Use of Auditing Tools
+
+There are lots of tools out there that can scan a project's metadata to build a dependency graph, and then compare that graph to known security vulnerabilities. Obviously, this is only possible if you explicitly specify your dependencies. If you just copy some files these kinds of tools won't be able to help you.
+
+## So What Happened Recently?
+
+OK, so this tidbit was triggered by a question from Allison about a recent news story, what happened? You can [read the details in this Bleeping Computer article](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/), but the gist is that the developer of two very popular open-source JavaScript libraries published via NPM got fed up with big companies using his code entirely legally but not paying him, so he sabotaged his packages and wrong a ranty blog post.
+
+He could have been truly malicious and silently injected malware, but instead he just added some infinite loops and printed gibberish to the console.
+
+After a few hours of confusion GitHub suspended the developer's account, NPM rolled back the updates, and the community forked the projects, allowing the un-sabotaged versions to live on. 
+
+In short, it was a storm in a tea-cup. But it does beg the questions, how much worse could it have been? and can I do anything to protect myself?
+
+The answer to the second question is easy — yes! We'll end this tidbit with that answer, but the first question bears thinking about first.
+
+I'd argue that open source is a self-correcting system. The most people use a given library, the more potential damage could be done, but, the quicker it will get noticed and fixed. The more obscure a library, the longer malicious shenanigans can last, but, by definition, the fewer people will be affected. So, if you attack a big project you'll be stopped quickly, and if you attack an obscure one your attack will be impotent, so on the whole, the actual damage that's likely to be done is small either way.
+
+There were a lot of breathless headlines, but this was not any kind of catastrophe. It was nothing more or less than a good reminder that **we should use other people's code intelligently. We should use as much as we need, but no more, and we should choose the code we use carefully**.
+
+## Getting Practical — Managing NPM Dependencies in Our JavaScript Code
+
+OK, so we're currently programming in JavaScript in the Programming by Stealth series, and we're using NPM to manage our dependencies, and GitHub to manage our code. Are there any tools we should be using?
+
+Yes, and we don't even have to try hard to do it!
+
+NPM has an audit feature, it can scan your `package.json` for known vulnerabilities and help you deal with them. To get started simply run:
+
+`npm audit`
+
+Then follow the advice/instructions it gives. You'll find [the full documentation for the audit feature on the NPM website](https://docs.npmjs.com/cli/v8/commands/npm-audit).
+
+When you run NPM commands to install or upgrade packages it will pro-actively run an audit for you, but if your code isn't changing that won't happen, so you'd need to remember to audit your dependencies from time to time.
+
+But, if you choose to version your Node/NPM-based projects on GitHub, you don't even have to remember to do that, GitHub provide a free bot that can periodically audit your dependencies for you!
+
+GitHub will offer to enable dependabot in all kinds of situations, but you can configure it in any repository's settings area via the *Code security an analysis* settings pane under the *Security* category. You can [learn more about dependabot in GitHub's documentation](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates).
 
 ## Final Thoughts
 
-TO DO
+The buzz-word I've been avoiding throughout this entire tidbit is *supply chain security* — that's the fancy-pants term that covers dependency management. Every library you depend on is a part of your supply chain, and you need to think about its security.
+
+What I hope you take away from this is that there are no easy answers, you simply have to think about this stuff carefully. Not re-using code is dangerous, and re-using the wrong code is also dangerous. You need to explicitly decide what to outsource and what to write yourself, and you need to choose the dependencies you do use with care. You can't be perfectly sure, because humans are involved at every stage of the process, and you will make mistakes. That's OK, just remember to learn from them!
+
+Most of my advice and suggestions were entirely generic, so when we move on to PHP we'll be using the same mind-set when installing open source libraries from [Packagist](https://packagist.org) instead of NPM. The tool will change, but the core concepts won't.
