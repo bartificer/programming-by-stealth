@@ -44,7 +44,7 @@ Imagine we have a superpower: the ability to make **correct** snap judgements on
 
 Firstly, even great developers are still human, they still make mistakes! So, all code has bugs, hence, every library you import has bugs.
 
-And, secondly, the world is not a static place. Even if you could have perfect code that worked exactly as designed today, it could well become catastrophically insecure in a year. Protocols get updated, computers develop new capabilities, and the bad guys invent new attacks. Code, like a garden, needs to be tended. So, you don't just need the libraries you import to be correct today, you need them to be actively maintained so they stay that way!
+And, secondly, the world is not a static place. Even if you could have perfect code that worked exactly as designed today, it could well become catastrophically insecure in a year. Protocols get updated, computers develop new capabilities, and the bad people invent new attacks. Code, like a garden, needs to be tended. So, you don't just need the libraries you import to be correct today, you need them to be actively maintained so they stay that way!
 
 Companies and people come and go, and priorities change. Code gets abandoned all the time. Code with one passionate maintainer is obviously the most vulnerable to this, but it can happen to any library. Sometimes it's temporary, and stale projects get revived, but sometimes they just fade away, and the code becomes ever more unsafe as time goes on.
 
@@ -54,7 +54,7 @@ There are people out there out to exploit others to make a buck. It sucks, but i
 
 A naive, malicious person could simply release malicious code directly — create a new project, give it a nice description, and hope victims stumble across it. Sure, this happens, but it's not particularly effective because code that's malicious from day one doesn't come with a reputation, and reputations really matter.
 
-If you search a package manager and you get back one result with 500K monthly downloads, a 10 year version history, and a hundred thousand pins/likes, and another result released last week with 50 downloads in total, and one contributor, which would you be most likely to hitch your proverbial wagon to?
+If you search a package manager and you get back one result with 500K monthly downloads, a 10 year version history, and 100K pins/likes, and another result released last week with 50 downloads in total, and one contributor, which would you be most likely to hitch your proverbial wagon to?
 
 To truly be effective, malicious people need to steal a good reputation. There are all sorts of techniques, but two are popular:
 
@@ -110,7 +110,7 @@ The reason to do this is to make it possible for computers to help you audit you
 
 ### Tip 2 — Make Use of Auditing Tools
 
-There are lots of tools out there that can scan a project's metadata to build a dependency graph, and then compare that graph to known security vulnerabilities. Obviously, this is only possible if you explicitly specify your dependencies. If you just copy some files these kinds of tools won't be able to help you. We'll talk about how to audit your code in a moment
+There are lots of tools out there that can scan a project's metadata to build a dependency graph, and then compare that graph to known security vulnerabilities. Obviously, this is only possible if you explicitly specify your dependencies. If you just copy some files these kinds of tools won't be able to help you. We'll talk about how to audit your code in a moment.
 
 ## So What Happened Recently?
 
