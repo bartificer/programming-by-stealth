@@ -50,9 +50,28 @@ In the corporate world the king of the databases is Oracle, and in the open sour
 
 ## The Old Way — A Single-Server LAMP Stack
 
+Allison's infrastructure leading into this big move was very much in keeping with the norms for a medium-sized website a decade or so ago. The entire site was delivered from one cloud-hosted virtual machine, it was a classic LAMP stack:
+
+1. CentOS <strong>L</strong>inux powering the VM
+2. The <strong>A</strong>pache web server serving all content
+3. A local installation of <strong>M</strong>ariaDB storing the data
+4. Apache executing the Wordpress <strong>P</strong>HP code using `mod_php`
+
+Linux, Apache, MySQL (MariaDB), and PHP — LAMP.
+
+With this setup there is a one-to-one mapping between the server powering the site, and the site itself.
+
+For small sites this architecture works very well, and it can work fine for smaller medium-sized sites, but as a site grows, this approach begins to fall apart. You can defer a major rearchitecting for a while by first fine-tuning the configurations, and then throwing more resources at the single virtual machine, but you soon run out of runway, and your site will start hitting tipping points where its performance simply collapses.
+
+### Problem 1 — You Can't Optimise One VM for Two Tasks!
+
 LEFT OFF HERE!!!
 
+### Problem 2 — Apache's Design has Bottlenecks
 
+TO DO
+
+### Problem, 3 — Efficiently Executing PHP Code is Hard
 
 ### Executing Code — LATER
 
