@@ -14,9 +14,9 @@ TO DO
 
 A web server is a piece of **software** that listens for in-coming HTTP requests from the network, and replies with HTTP responses.
 
-When a user visits `www.podfeet.com` their browser connects to a web server and asks it for Allison's web page. The server responds with some HTML (which embeds references to other content like images, style sheets, and JavaScripts that the browser has to fetch in turn). The same things happens when Alison visits her Wordpress admin area. When Allison uses MarsEdit something only slightly different happens — there is no browser in this case, but the app sends HTTPS requests to a special URL on Allison's site referred to as an API-end-point, and the server responds to the app appropriately. Another differene is that the app and the API exchange XML rather than HTML.
+When a user visits `www.podfeet.com` their browser connects to a web server and asks it for Allison's web page. The server responds with some HTML (which embeds references to other content like images, style sheets, and JavaScripts that the browser has to fetch in turn). The same things happens when Alison visits her Wordpress admin area. When Allison uses MarsEdit something only slightly different happens — there is no browser in this case, but the app sends HTTPS requests to a special URL on Allison's site referred to as an API-end-point, and the server responds to the app appropriately. Another difference is that the app and the API exchange XML rather than HTML.
 
-Regardless of whether its a browser or an app asking for information, the web server is receiving requests, and responding with some data, usually some HTML, CSS, JavaScript, XML, or an image. The big question for us today is how those responses get generated.
+Regardless of whether it's a browser or an app asking for information, the web server is receiving requests, and responding with some data, usually some HTML, CSS, JavaScript, XML, or an image. The big question for us today is how those responses get generated.
 
 ### Static -v- Dynamic Content
 
@@ -63,21 +63,54 @@ With this setup there is a one-to-one mapping between the server powering the si
 
 For small sites this architecture works very well, and it can work fine for smaller medium-sized sites, but as a site grows, this approach begins to fall apart. You can defer a major rearchitecting for a while by first fine-tuning the configurations, and then throwing more resources at the single virtual machine, but you soon run out of runway, and your site will start hitting tipping points where its performance simply collapses.
 
-### Problem 1 — You Can't Optimise One VM for Two Tasks!
+While a VM has plenty more resources than the website it hosts holds, you don't have to worry about optimising your configurations. It'll be grand!
 
-LEFT OFF HERE!!!
+But, if you're lucky enough that your site grows, you'll soon start to bump your proverbial head off the ceiling from time-to-time. Website traffic is bursty, not constant, so at first you'll just get the occasional glitch that will probably go un-noticed. But the glitches will start happening more and more, and soon you'll need to start to tweaking your configs so you use the resources you have efficiently.
 
-### Problem 2 — Apache's Design has Bottlenecks
+> MAYBE — funnel analogy about why sites collapse exponentially
+{: .aside}
 
-TO DO
+As you start to optimise, you'll soon start to encounter pain-points.
 
-### Problem, 3 — Efficiently Executing PHP Code is Hard
+### Pain-Point 1 — Being a DB is HARD!
 
-### Executing Code — LATER
+Getting MySQL/MariaDB installed and working is easy, getting an installation to remain performant under load is the inverse of that. It's not for nothing that DBA (DataBase Administrator) is a career, and a really well paid for one at that!
 
-You can probably imagine how a cache works, and how a web server could simply return the contents of a file, but how a web server executes code needs a closer look.
+You can use automated tools like the open source [MySQLTuner Perl script](https://github.com/major/MySQLTuner-perl) to get you to a decent configuration, but unless you're actually a DBA, you're not going to get beyond *acceptable*.
 
-In the early days of web servers the approach was very simple — some file extensions got mapped to being executable files, and the web server would read the so-called *shebang line* at the top of the file and run it through the appropriate interpreter. If the shebang line said it was Perl, run it through Perl, if it was shell script, run it through Bash, etc..
+### Pain-Point 2 — Optimising Apache is not Much Easier!
+
+Apache is the *grand old dame* of the web server world, and while that means it's very robust and reliable, it also means it's carrying around a lot of technical debt. IMO, the most expensive piece of that technical debt is Apache's multi-tasking model. Each HTTP request is processed by a different worker process, so Apache has to manage an army of child processes, each of which has to be allocated some RAM to work. If you have too many workers your machine runs out of RAM and things grind to a halt, if you have too few, clients are left waiting for ages, and your site grinds to a halt. Apache's algorithm for managing it's workers is parameterised, and it's your job to tweak all those parameters if you want Apache to run smoothly. Not to put too fine a point on it — it's a dark art and a frustrating time-sink!
+
+### Pain-Point 3 — Efficiently Executing PHP Code is not so Simple
+
+One of the things web servers do to respond to HTTP requests is execute code. In the case of Wordpress, that means executing PHP code.
+
+Getting Apache to execute PHP code is easy, getting it to so efficiently, not so much!
+
+Apache is designed to be modular, so it uses *modules*, or *mods* to execute code. The simplest way to get Apache to execute any code in any language is with `mod_cgi`. This simple little module reads the shebang line at the top of the script to determine which interpreter to use, and then invokes that interpreter on the file in an entirely new process. This works, but it's spectacularly in efficient!
+
+Instead of having the Apache worker start a new process each time, what you really want is a module specifically for your language, that way the worker processes can execute the code themselves, avoiding a lot of overhead. That's how `mod_php` works, and that's Allison's old server was using.
+
+But, while `mod_php` is a lot more efficient than `mod_cgi`, and while it was the recommended option for many years, it's been well and truly superseded now.
+
+### Pain-Point 4 — You Can't Serve Two Masters
+
+While it takes work, an amateur sysadmin can probably get MySQL/MariaDB running reasonably efficiently, and the same is true of Apache. Where things will inevitably go wrong is when the load starts to build, and both start to compete for the same ever shrinking pool of available resources. Both will be trying to maximise their use of what little RAM is available, and there are dependencies between the two, so a very destructive negative feedback loop will soon set in, and delays will grow exponentially as each gets ever crankier waiting on the other!
+
+
+
+
+
+
+
+
+
+
+Fundamentally, the only way to stop your web server and database server apps competing for resources is to split them.
+
+
+
 
 
 
