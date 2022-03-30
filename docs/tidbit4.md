@@ -127,6 +127,9 @@ This is why corporations need IT departments 🙂
 
 Thankfully for Allison's brain and wallet, we didn't need to do any of that to get her website working reliably again, we went down a much more pleasant path!
 
+### You Don't Need to be a DBA!
+
+TO DO — DB as a service
 
 ### It's Web Servers all the Way Down!
 
