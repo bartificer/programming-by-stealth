@@ -129,17 +129,43 @@ Thankfully for Allison's brain and wallet, we didn't need to do any of that to g
 
 ### You Don't Need to be a DBA!
 
-TO DO — DB as a service
+Since properly administering a database is so bloody hard, the lowest hanging fruit when it comes to *cloudifying* a site is to move the database off the virtual machine you run yourself, and off into the cloud on someone else's infrastructure. All the major cloud platforms will sell you *hosted databases* or *database as a service*. These are so-called *Platform-as-a-Service*, or PaaS offerings. You pay a monthly fee, and managing your DB becomes someone else's problem, someone else with all the right skills to make it run smoothly and efficiently!
+
+I made this move for my own Wordpress installs some years ago, and this is the first big change we made to Allison's stack. It helped, but it wasn't enough.
 
 ### It's Web Servers all the Way Down!
 
-Before we go any further, I need to draw your attention to something — when I listed the four things a web server can do, one of them was reverse-proxy the request to another server. This has a very important implication — **a single web request can be processed by many web servers, each adding some needed functionality**.
+Before we go any further, I need to draw your attention to something — when I listed the four things a web server can do, one of them was reverse-proxy a request to another server. This has a very important implication — **a single web request can be processed by many web servers, each adding some needed functionality**.
 
 Apache is a very impressive piece of software, it really can do anything you could think of asking a web server to do, but that kind of generalism comes at a price — Apache is good at many things, but IMO, not great at anything. The modern approach is not to have a single web server that can everything, but to break the task into pieces, and to use software that's great at specific things to do those specific things.
 
-### NGINX — The Conductor of our Orchestra
+### NGINX — The Switch-board Operator of Webservers!
 
-LEFT OFF HERE!!!
+Apache started as a simple web server for hosting files on the internet, and from there it grew to include the ability to execute code, and later, to act as a reverse proxy. It can be configured as a proxy server, but that's not its primary function.
+
+NGINX is a like a faded mirror image of Apache — it was built to be a fantastic caching reverse proxy, but can serve files too. Unlike Apache, NGINX doesn't need to be tuned to work efficiently. It doesn't spawn hundreds of worker processes that need to be managed, it uses a single process per-CPU, and each process handles multiple requests in apparent parallel. That's a big deal to me!
+
+Another big difference is the configuration syntax — Apache uses something that sorta-kinda looks like XML, but it uses C-style comments, and it's very verbose. NGINX uses a very concise syntax that uses curly braches to nest groups of statements, making it feel more like a programming language than a traditional config file. I can write more powerful configs more concisely and more clearly for NGINX than I can for Apache, so I find it infinitely easier to administer.
+
+NGINX is great at doing things like returning redirects, serving data from its caches, serving static files, not to mention reverse-proxying requests to other web servers. The one thing NGINX can't do is execute code. NGINX cannot run your PHP code for you. And yet, we switched Allison's site from Apache to NGINX, how is that possible‽
+
+### FastCGI to the Rescue
+
+LEFT OFF HERE
+
+### ADCs & WAFs
+
+TO DO
+
+## Possible Future Enhancements
+
+TO DO
+
+CDN for media
+
+cloud storage for files
+
+multiple web servers
 
 ## Final Thoughts
 
