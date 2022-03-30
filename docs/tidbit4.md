@@ -98,28 +98,45 @@ But, while `mod_php` is a lot more efficient than `mod_cgi`, and while it was th
 
 While it takes work, an amateur sysadmin can probably get MySQL/MariaDB running reasonably efficiently, and the same is true of Apache. Where things will inevitably go wrong is when the load starts to build, and both start to compete for the same ever shrinking pool of available resources. Both will be trying to maximise their use of what little RAM is available, and there are dependencies between the two, so a very destructive negative feedback loop will soon set in, and delays will grow exponentially as each gets ever crankier waiting on the other!
 
+## The Old Solution
 
+Before our modern cloudy world, the road the pain-points above funnelled you down was paved with additional servers you had to manage yourself.
 
+The first step was to split the DB and web server roles across two VMs, one for each role. You now have two Ones to manage, but at least you can optimise your configuration of each piece without them fighting with each other. This will buy you a little more headroom.
 
+The next step would be to replace the single DB VM with a cluster. This gives you more performance, and the possibility to do some smart optimisations — you might have a read-only member of the cluster on which you do all your reporting & backups for example.
 
+Again, this would buy you some more headroom, but now you're managing at least three VMs so three OSes to keep maintained!
 
+At this stage your DB would be very robust, but that's likely to have turned the web server into a bottleneck, so how do you improve that? More VMs! You move the authoritative copy of your site's files off the web server VM and onto either a shared network drive, or, into version control with scripts to deploy it each time a change is pushed. Then, you duplicate the web servers, each with access to the same DB cluster and the same code, but now you have to have many servers be one website, how do you do that?
 
+You could use a multi-valued DNS entry, listing multiple IPs for the same domain name, but that's actually a very poor solution. It means changes to the cluster take hours to propagate, and you have no control over which client goes where, each visitor's computer will randomly pick one of the IPs. Worse still, each user will randomly jump around from server to server, so if the site requires a login the sessions are likely to get all messed up.
 
+What you need now is **another** VM, or ideally another cluster of VMs to run a load-balancing reverse proxy for you, like the free and open source HAProxy.
 
+So, taking stock, with the old way, when a site out-grew a single VM you were on a road to needing at least some, if not all of:
 
-Fundamentally, the only way to stop your web server and database server apps competing for resources is to split them.
+1. A cluster of DB servers, each of which you have to manage
+2. A cluster of web servers, each of which you have to manage
+3. Some mechanism for sharing the website code between the web servers, which you also have to manage
+4. One or more VMs to sit in front of it all as a load balancer, each of which you have to manage
 
+This is why corporations need IT departments 🙂
 
+## A Brighter Future in the Cloud
 
-
-
-
-
+Thankfully for Allison's brain and wallet, we didn't need to do any of that to get her website working reliably again, we went down a much more pleasant path!
 
 
 ### It's Web Servers all the Way Down!
 
-Here's where things get interesting — **a single web request can be processed by many web servers, each adding some needed functionality**.
+Before we go any further, I need to draw your attention to something — when I listed the four things a web server can do, one of them was reverse-proxy the request to another server. This has a very important implication — **a single web request can be processed by many web servers, each adding some needed functionality**.
+
+Apache is a very impressive piece of software, it really can do anything you could think of asking a web server to do, but that kind of generalism comes at a price — Apache is good at many things, but IMO, not great at anything. The modern approach is not to have a single web server that can everything, but to break the task into pieces, and to use software that's great at specific things to do those specific things.
+
+### NGINX — The Conductor of our Orchestra
+
+LEFT OFF HERE!!!
 
 ## Final Thoughts
 
