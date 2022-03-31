@@ -4,7 +4,7 @@ In the main PBS series we're hovering on the edge of moving from purely client-s
 
 I've been thinking about this a lot because William Reveal and I have just finished helping Allison migrate her website from the old-world single-server model, to a modern cloud architecture, and boosting her site's performance by a few hundred percent in the process (no exaggeration).
 
-From the point of view of a visitor, www.podfeet.com is a website, and while Allison understands the structure of how its built, she interacts with Podfeet as a web app. To be more specific, the website is generated an instance of the popular open source content management system (CMS) [Wordpress](https://wordpress.org/). Allison doesn't edit a folder full of HTML files, she uses a web interface and a third-party client called MarsEdit to manage the site and its contents. 
+From the point of view of a visitor, www.podfeet.com is a website, but under the hood, podfeet.com is a full-featured web app. To be more specific, the website is an instance of the popular open source content management system (CMS) [Wordpress](https://wordpress.org/). Allison doesn't edit a folder full of HTML files, she uses a web interface and a third-party client called MarsEdit to manage the site and its contents. 
 
 ## Matching Podcast Episode
 
