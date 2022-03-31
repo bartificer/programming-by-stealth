@@ -4,7 +4,7 @@ In the main PBS series we're hovering on the edge of moving from purely client-s
 
 I've been thinking about this a lot because William Reveal and I have just finished helping Allison migrate her website from the old-world single-server model, to a modern cloud architecture, and boosting her site's performance by a few hundred percent in the process (no exaggeration).
 
-From the point of view of a visitor, www.podfeet.com is a website, but under the hood, podfeet.com is a full-featured web app. To be more specific, the website is an instance of the popular open source content management system (CMS) [Wordpress](https://wordpress.org/). Allison doesn't edit a folder full of HTML files, she uses a web interface and a third-party client called MarsEdit to manage the site and its contents. 
+From the point of view of a visitor, `www.podfeet.com` is a website, but under the hood, podfeet.com is a full-featured web app. To be more specific, the website is an instance of the popular open source content management system (CMS) [Wordpress](https://wordpress.org/). Allison doesn't edit a folder full of HTML files, she uses a web interface and a third-party client called MarsEdit to manage the site and its contents. 
 
 ## Matching Podcast Episode
 
@@ -54,14 +54,14 @@ Allison's infrastructure leading into this big move was very much in keeping wit
 
 1. CentOS <strong>L</strong>inux powering the virtual machine
 2. The <strong>A</strong>pache web server serving all content
-3. A local installation of <strong>M</strong>ySQL/MariaDB storing the data
+3. A local installation of <strong>M</strong>ySQL/<strong>M</strong>ariaDB storing the data
 4. Apache executing the Wordpress <strong>P</strong>HP code using `mod_php`
 
 Linux, Apache, MySQL (MariaDB), and PHP – LAMP.
 
 With this setup there is a one-to-one mapping between the server powering the site, and the site itself.
 
-For small sites this architecture works very well, and it can work fine for smaller medium-sized sites, but as a site grows, this approach begins to fall apart. You can defer a major rearchitecting for a while by first finetuning the configurations, and then throwing more resources at the single virtual machine, but you soon run out of runway, and your site will start hitting tipping points where its performance simply collapses.
+For small sites this architecture works very well, and it can work fine for smaller medium-sized sites, but as a site grows, this approach begins to fall apart. You can defer a major rearchitecting for a while by first fine-tuning the configurations, and then throwing more resources at the single virtual machine, but you soon run out of runway, and your site will start hitting tipping points where its performance simply collapses.
 
 While a VM has plenty more resources than the website it hosts holds, you don't have to worry about optimising your configurations. It'll be grand!
 
