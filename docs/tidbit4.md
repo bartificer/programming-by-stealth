@@ -4,7 +4,7 @@ In the main PBS series we're hovering on the edge of moving from purely client-s
 
 I've been thinking about this a lot because I've just finished helping Allison migrate her website from the old-world single-server model, to a modern cloud architecture, and boosting her site's performance by a few hundred percent in the processes (no exaggeration ).
 
-From the point of view of a visitor www.podfeet.com is a website, but from Allison's point of view it's a web app. To be more sepecific, it's an instance of the popular open source content management system (CMS) [Wordpress](https://wordpress.org/). Allison doesn't edit a folder full of HTML files, she uses a web interface and a third-party client to manage the site and its contents.
+From the point of view of a visitor www.podfeet.com is a website, but from Allison's point of view it's a web app. To be more specific, it's an instance of the popular open source content management system (CMS) [Wordpress](https://wordpress.org/). Allison doesn't edit a folder full of HTML files, she uses a web interface and a third-party client to manage the site and its contents.
 
 ## Matching Podcast Episode
 
@@ -147,26 +147,61 @@ NGINX is a like a faded mirror image of Apache — it was built to be a fantasti
 
 Another big difference is the configuration syntax — Apache uses something that sorta-kinda looks like XML, but it uses C-style comments, and it's very verbose. NGINX uses a very concise syntax that uses curly braches to nest groups of statements, making it feel more like a programming language than a traditional config file. I can write more powerful configs more concisely and more clearly for NGINX than I can for Apache, so I find it infinitely easier to administer.
 
-NGINX is great at doing things like returning redirects, serving data from its caches, serving static files, not to mention reverse-proxying requests to other web servers. The one thing NGINX can't do is execute code. NGINX cannot run your PHP code for you. And yet, we switched Allison's site from Apache to NGINX, how is that possible‽
+NGINX is great at doing things like returning redirects, serving data from its caches, serving static files, not to mention reverse-proxying requests to other web servers. The one thing NGINX can't do is execute code. NGINX cannot run your PHP code for you. And yet, we switched Allison's PHP-powered Wordpress site from Apache to NGINX, how is that possible‽
 
-### FastCGI to the Rescue
+### FastCGI to the Rescue!
 
-LEFT OFF HERE
+The open source community have put a lot of time and effort into developing more efficient ways of executing code on web servers, and one of the things they've come up with is a very efficient protocol for sending an execution request from one web server to another — FastCGI.
+
+So, when you use NGINX as your web server you use FastCGI to send any PHP code that needs executing to an execution server. An execution server is simply a piece of software that listens for network connections and accepts and processes FastCGI requests. For PHP, the most commonly used execution server is [PHP-FPM](https://www.php.net/manual/en/install.fpm.php), which stands for *PHP FastCGI Process Manager*.
+
+# From LAMP to LEMP
+
+A quick recap — Allison is now running a single VM that stores the static files & website code, and serves the them to the world with NGINX+PHP-FPM. The PHP code stores its data in a cloud-hosted (PaaS) MySQL database. Her server VM is still Linux, so the VM itself still has the same `L` as the original LAMP stack, but the `A` (Apache) has been replaced with NGINX. Now, no one could pronounce LXMP as a stack, so the community have gotten into the habit of spelling NGINX phonetically (*engine-X*) when developing acronyms, so the `A` becomes an `E`. The site is still powered by PHP (though it's now being executed more efficiently thanks to PHP-FPM), so the `P` at the end remains un-changed too. So, the VM itself gives us LEP, but it doesn't provide MySQL anymore. But remember, it's the *website* that's powered by the stack, so the `M` has not vanished, it's simply moved off the VM and into the cloud.
+
+So, with all that, the podfeet.com website has moved from LAMP to LEMP, and gotten a heck of a lot faster in the process!
+
+For completeness I should also mention that Allison is using Let's Encrypt's CertBot to automatically maintain an HTTPS cert on the VM.
 
 ### ADCs & WAFs
 
-TO DO
+But wait, there's more!
+
+Wordpress does some caching internally, but there's no dedicated caching layer on the VM. There's also no security layer scanning the in-coming HTTP requests looking for malicious activity.
+
+Two very related acronyms are relevant here, *Application Delivery Controller* (ADC), and *web application firewall* (WAF).
+
+WAFs came first, and they generally took the form of a specialised reverse proxy sitting in front of the web server(s). A WAF is a very special-purpose web server that listens for HTTP requests, scans them for security issues, and either returns an error or reverse-proxies the requests to the web server that's serving the site. WAFs can scan for all sorts of things, including:
+
+* Connections from known malicious IPs
+* Attempts to exploit known vulnerabilities
+* Attempts to exploit known common bugs, .e.g. attempted SQL injection
+* Brute-force attempts against login forms
+* Denial of Service (DOS or DDOS) attacks
+
+All by itself this would be extremely useful, but once you have something sitting in front of your website, why not leverage it to do more? To distinguish WAFS with extra features from those without, they became known as ADCs. ADC is a very broad and wooly term, it's the name put on anything that adds any value by being placed in front of your web servers. Some things ADCs can do:
+
+* Implement caching
+* Implement some kind of Quality of Service (QoS) rules to prioritise important URLs
+* Provide SSL-off-loading, i.e. let the ADC be where HTTPS stops, then pass the query back over HTTP — this is only safe if the network behind the ADC is private.
+* Control load-balancing across multiple web servers
+* Provide a CDN for more efficient delivery of media files
+* Provide DNS proxying for additional robustness
+
+So, podfeet.com is now sitting behind CloudFlare's free cloud-based WAF/ADC offering. This is providing caching, malware/DDOS protection, and DNS proxying for the site.
 
 ## Possible Future Enhancements
 
-TO DO
+At the moment Allison's site is running great on this new architecture, but there's a lot more runway for expanding the site's capacity in future. The change from the old single-server architecture to the new cloud architecture means the site has gone from the very end of the runway in terms of capacity increases to the very start of a new and much longer runway. From here, small changes can be added to keep boosting the site's capacity for a long time to come.
 
-CDN for media
+There's no need to do any of this now, but here are some of the options open to Allison in the future:
 
-cloud storage for files
+1. Move the podcast feed XML files to a CDN (should be possible to do without changing the URLs)
+2. Move the site's files and code to cloud storage, then add more web server VMs (this would probably require upgrading from the free CloudFlare package to one that supports load balancing).
+3. Upgrade the existing DB service to a higher capacity offering
 
-multiple web servers
+To some extent, the sky really is the limit now!
 
 ## Final Thoughts
 
-TO DO
+If you're a long-time fan of Allison's shows you've probably enjoyed hearing some of the nerdy detail of her recent website upgrade — you got to listen along to the pain and then the bumpy upgrade process as we went, but if even if you're not, and you just follow along with Programming by Stealth, I'm hoping it was valuable to get an idea of how modern websites are delivered. I think it's good to understand all the moving parts, and at the very least, I hope you have a few more acronyms under your belt now 🙂
