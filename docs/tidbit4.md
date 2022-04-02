@@ -71,7 +71,7 @@ While a VM has plenty more resources than the website it hosts holds, you don't 
 
 But, if you're lucky enough that your site grows, you'll soon start to bump your proverbial head off the ceiling from time to time. Website traffic is bursty, not constant, so at first, you'll just get the occasional glitch that will probably go unnoticed. But the glitches will start happening more and more, and soon you'll need to start tweaking your configs so you use the resources you have efficiently.
 
-> MAYBE — funnel analogy about why sites collapse exponentially
+> **Aside: A Funnel Analogy** — a good analogy for why websites tend to slow down gradually at first, and then very dramatically collapse, is water randomly being splashed into a funnel. Water is being poured unevenly into a funnel, as the rate rises and falls, the funnel absorbs the differences, and no water splashes out. In this analogy, the fuller the funnel is, the slower the site, and water spilling is connections being dropped. As the average rate increases there's more water in the funnel more often, but all the water is still getting in. As the average rate gets closer to the maximum that fits through the bottom of the funnel, the more often a little will slosh over the top, or, the more often you get short outages. And once your average crosses over the max, your site will be unusable over half the time — while the instantaneous rate is over the average lots of water will slosh out, but even when the instantaneous rate is below, the funnel will never get to fully empty, so your site will simply always be slow.
 {: .aside}
 
 As you start to optimise, you'll soon start to encounter pain points.
