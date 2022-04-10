@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "An ES6 module for joining arrays in a human-friendly way for use as a worked example Programming by Stealth instalment 137",
   "type": "module",
+  "module": "src/joiner.js",
   "jest": {
     "testEnvironment": "jest-environment-node",
     "transform": {}

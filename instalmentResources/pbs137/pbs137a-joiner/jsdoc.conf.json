@@ -13,7 +13,7 @@
     },
     "source": {
         "include": ["./src/"],
-        "includePattern": ".+\\.(mjs|jsdoc)$"
+        "includePattern": ".+\\.js(doc)?$"
     }, 
     "plugins": [
         "plugins/markdown"

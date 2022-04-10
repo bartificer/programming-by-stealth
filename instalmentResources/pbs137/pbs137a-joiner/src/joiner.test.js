@@ -1,4 +1,4 @@
-import joiner from "./joiner.mjs";
+import joiner from "./joiner.js";
 
 //
 // === Module-level tests ===
