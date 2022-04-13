@@ -46,8 +46,35 @@
         <h1>List Joiner</h1>
         <p>Enter the list of items to join in the text area below, one item per line, then click teh button to see the result</p>
         <div class="form-floating mb-3">
-          <textarea class="form-control" placeholder="one item per line" id="list_ta"></textarea>
+<textarea class="form-control" placeholder="one item per line" id="list_ta" style="height: 200px;">
+Pancakes
+Waffles
+Popcorn</textarea>
           <label for="list_ta">List Items</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="conjunction_sel" aria-label="Floating label select example">
+            <option value="&" selected>Ampersand (&)</option>
+            <option value="and">and</option>
+            <option value="or">or</option>
+          </select>
+          <label for="conjunction_sel">Final Conjuction</label>
+        </div>
+        <div class="mb-3">
+          <div class="btn-group w-100" role="group" aria-label="Chose item quoting option">
+            <input type="radio" class="btn-check" name="quote_rad" value="" id="quote_rad_none" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="quote_rad_none">No Item Quoting</label>
+          
+            <input type="radio" class="btn-check" name="quote_rad" value="'" id="quote_rad_single" autocomplete="off">
+            <label class="btn btn-outline-primary" for="quote_rad_single">Single Quotes</label>
+          
+            <input type="radio" class="btn-check" name="quote_rad" value="&quot;" id="quote_rad_double" autocomplete="off">
+            <label class="btn btn-outline-primary" for="quote_rad_double">Double Quotes</label>
+          </div>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" value="" id="sort_cb">
+          <label class="form-check-label" for="sort_cb">Sort items</label>
         </div>
         <button type="submit" id="join_btn" class="form-control btn btn-success mb-3">Join List</button>
       </form>
@@ -70,18 +97,38 @@
     $(()=>{
       // get references to the various document elements
       const $listTA = $('#list_ta');
+      const $conjunctionSel = $('#conjunction_sel');
+      const $quoteRadSet = $('input[name="quote_rad"]');
+      const $sortCB = $('#sort_cb');
       const $outputDiv = $('#output_div');
 
       // add a submit handler to the form
       $('#joiner_fm').on('submit', ()=>{
-        // turn the text into an array
-        const list = $listTA.val().split('\n');
+        // get the raw list text and clean it up
+        let rawList = $listTA.val();
+        rawList = rawList.replace(/\r/g, ''); // remove windows-style carriage returns
+        rawList = rawList.replace(/\n+/g, '\n'); // collapse empty lines
+        rawList = rawList.trim(); // remove leading and trailing white space
 
+        // turn the text into an array and cleam each element
+        const list = [];
+        for(let item of rawList.split('\n')){
+          item = item.trim(); // remove leading and trailing spaces
+          list.push(item);
+        }
+
+        // build a joiner with the appropriate settings
+        const myJoiner = joiner(
+          $conjunctionSel.val(),
+          $quoteRadSet.filter(':checked').val(),
+          $sortCB.prop('checked')
+        );
+        
         // convert the list to a human-friendly string
-        const joinedList = joiner().join(list);
+        const joinedList = myJoiner.join(list);
 
         // output the string as preformatted text
-        $outputDiv.empty().append( $('<pre>').text(joinedList));
+        $outputDiv.empty().append( $('<pre>').addClass('bg-light border rounded p-3').text(joinedList));
       });
     });
   </script>
