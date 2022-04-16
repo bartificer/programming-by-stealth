@@ -14,9 +14,9 @@ export default [
             path: path.resolve(__dirname, 'dist'),
             filename: 'joiner-universal.js',
             library: {
-                name: 'joiner',
                 type: 'umd',
                 export: 'default',
+                name: 'joiner',
             },
         },
     },
