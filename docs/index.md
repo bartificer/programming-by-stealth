@@ -154,6 +154,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 134 — Firming up our Foundations (2 of 2)](./pbs134)
 * [PBS 135 — Introducing Jest (and re-Introducing Test Driven Development & Unit Testing)](./pbs135)
 * [PBS 136 — More Jesting](./pbs136)
+* [PBS 137 — Bundling a Library with Webpack](./pbs137)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
