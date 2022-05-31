@@ -195,7 +195,7 @@ Start by adding a folder called `pbs3` to the document root of your web server. 
   <p>- W. B. Yeats</p>
 </blockquote>
 
-<p>(notice the use of explicit line-breaks within a paragrpah)</p>
+<p>(notice the use of explicit line-breaks within a paragraph)</p>
 </body>
 </html>
 ```
