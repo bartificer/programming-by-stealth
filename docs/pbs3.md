@@ -77,7 +77,7 @@ The entire list should be contained within `<dl>` tags. Terms should be containe
 
 If multiple terms have the same definition, you can have a number of consecutive `<dt>` tags followed by a single `<dd>` tag.
 
-`<dl>` tags should only contain `<dt>` and `<dd>` tags, `<dt>` tags should only contain inline tags, and `<ds>` tags can contain any other tags, including block-level tags.
+`<dl>` tags should only contain `<dt>` and `<dd>` tags, `<dt>` tags should only contain inline tags, and `<dd>` tags can contain any other tags, including block-level tags.
 
 ```html
 <dl>
