@@ -274,11 +274,11 @@ window/tab.</p>
 
 <p>Relative Links comes in many different forms.</p>
 
-<p>Relative links can be relative to the host, for example, assuming you didn't
+<p>Relative links can be relative to the host. For example, assuming you didn't
 delete the files, I should be able to link relatively to the example from the
-first installment - <a href="/pbs1/">PBS1 Exmaple</a>.</p>
+first installment - <a href="/pbs1/">PBS1 Example</a>.</p>
 
-<p>Relative links can also be relative to the path, for example,
+<p>Relative links can also be relative to the path. For example,
 <a href="anotherFile.html">this link</a>
 goes to another file in the same folder.</p>
 
@@ -292,7 +292,7 @@ section on Anchors/Fragments</a>.</p>
 
 <p>Imagine this is a big report about something. It will be broken into
 sections, and users would probably like an index at the start of the document,
-and the would like to be abel to click on the names of the sections to jump to
+and the would like to be able to click on the names of the sections to jump to
 them. This can be done with named fragments/anchors.</p>
 
 <h3>Index</h3>
