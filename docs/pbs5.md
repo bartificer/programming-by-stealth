@@ -160,7 +160,7 @@ Using CSS, it is possible to make images behave in different ways. So we’ll re
 <dd>Alternative text describing this image. This is the text that will replace the image in text-only browsers and screen readers for the visually impaired. The attribute is not technically required, but leaving it out is exceptionally bad form; so consider it required. Also, be sure to always use useful alt text – <em>‘logo’</em> is useless alt text. <em>‘Podfeet Logo’</em> is useful alt text.</dd>
 
 <dt><code>title</code></dt>
-<dd>This optional attribute can be used to specify text that should be displayed as a tooltip when the user hovers their mouse over the image. This is not the same thing as alt text. It exists to allow extra info for users be specified, not to tell screen readers what the image is. All images should have alt text, but only images need titles.</dd>
+<dd>This optional attribute can be used to specify text that should be displayed as a tooltip when the user hovers their mouse over the image. This is not the same thing as alt text. It exists to allow extra info for users be specified, not to tell screen readers what the image is. All images should have alt text, but only some images need titles.</dd>
 </dl>
 
 
@@ -274,11 +274,11 @@ window/tab.</p>
 
 <p>Relative Links comes in many different forms.</p>
 
-<p>Relative links can be relative to the host, for example, assuming you didn't
+<p>Relative links can be relative to the host. For example, assuming you didn't
 delete the files, I should be able to link relatively to the example from the
-first installment - <a href="/pbs1/">PBS1 Exmaple</a>.</p>
+first installment - <a href="/pbs1/">PBS1 Example</a>.</p>
 
-<p>Relative links can also be relative to the path, for example,
+<p>Relative links can also be relative to the path. For example,
 <a href="anotherFile.html">this link</a>
 goes to another file in the same folder.</p>
 
@@ -292,7 +292,7 @@ section on Anchors/Fragments</a>.</p>
 
 <p>Imagine this is a big report about something. It will be broken into
 sections, and users would probably like an index at the start of the document,
-and the would like to be abel to click on the names of the sections to jump to
+and the would like to be able to click on the names of the sections to jump to
 them. This can be done with named fragments/anchors.</p>
 
 <h3>Index</h3>
