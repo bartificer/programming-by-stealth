@@ -310,7 +310,7 @@ print $q->redirect(
 
 ```css
 /*
-Styles for PBS7 Demo
+Styles for PBS8 Demo
 */
 
 /* Set the default text style for the whole page */
