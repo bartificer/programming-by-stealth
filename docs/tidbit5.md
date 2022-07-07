@@ -36,9 +36,19 @@ If you need any other tools to write, test, or run your code, test those too.
 
 One reason your tool chain and/or tests might fail is that you're making use of CDN-hosted dependencies. These can obviously only be accessed while you have internet access, so you may want to permanently or temporarily replace them with local copies.
 
-#### The Quick & Dirty Way
+#### The Quick & Dirty Way — Download & Update Links
 
-#### Doing it Right
+If you have an HTML file that's loading something from a URL, say a script, a stylesheet, or an image, the simplest things to do is to pop that URL into your browser, download what ever it is, add it to your project (by tradition in a folder named `contrib`), and update the URL to the appropriate relative URL to your downloaded file. This works great for files that don't reference other files, but it breaks down if you download a stylesheet that references a whole bunch of images, or, if you just have a lot of remote resources in your file.
+
+If you make this change, it should be on a temporary basis, because this approach is not practical in the long term for at least three reasons:
+
+1. You've just taken responsibility for keeping your copy of these resources up to date from a security POV
+2. If you publish your code in this form, you may be breaching the third party's license agreement
+3. You've just made your project a lot bigger
+
+#### Doing it Right — NPM + Bundler
+
+The right way to localise your dependencies is to add them to your project with a package manager like NPM, and then to bundle them into your HTML file using a bundler like Webpack. Note that we have not yet covered this use of Webpack in thw PBS series, but [this tutorial shows how it's done](https://www.sitepoint.com/bundle-static-site-webpack/).
 
 ### Off-line Docs
 
