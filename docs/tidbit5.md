@@ -116,19 +116,33 @@ If not having any backups makes you uncomfortably nervous, consider adding an ad
 
 Remember that a *remote* is any other Git repo, even another one sharing your file system. The URL to a local remote is simply the path to the folder containing it. The simplest thing to do is to create your temporary remote by cloning the repo you're actually doing your work in, then adding the new clone to your primary repo as a sensibly named with a sensible named  remote (maybe `temp_backup` or something similar), and then pushing to that new remote periodically.
 
+(You might find [PBS 113](./pbs113) particularly relevant.)
+
 ### Avoid Merge Conflicts — Use a Dedicated Branch
 
-If you share a repo with other people, you run the risk of merge conflicts delaying your pushes and pulls when you sporadically get online. You could probably do without the stress of resolving merge conflicts when your internet connection is a scarce resource, so my advice is to avoid the problem by working on a branch that's just for you. I would suggest giving it a name that clearly marks it as yours, and letting your co-contributors know what the branch is, why you created it, and to please leave it well enough alone!
+If you share a repo with other people, you run the risk of merge conflicts. You could probably do without that hassle while connectivity is a scarce resource, so my advice is to avoid the problem by working on a branch that's just for you. I would suggest giving it a name that clearly marks it as yours, and letting your co-contributors know what the branch is, why you created it, and to please not push to it! Note that others can pull the branch to merge your changes into their on-going work without risking merge conflicts on your end — the important thing is that **you should be the only one pushing to your vacation branch**.
 
 ## When You Get Back
 
-### Undo any Quick & Dirty Workarounds
+### Undo any Quick & Dirty Workarounds You Made
 
-If you used workarounds to localise your dependencies as opposed to using NPM and a bundler, un-do those changes and commit to the branch you've been working on before you merge your changes into the appropriate permanent branch. You don't want to confuse things with workarounds on a `main` or feature branch that's around for the long-haul!
+If you used workarounds to localise your dependencies as opposed to using a package manager and a bundler, un-do those changes and commit to your vacation branch before you merge it into the appropriate destination branch. You don't want any commits on `main` (or a release or feature branch) that contain your workarounds.
 
-### Merge, and Expect Conflicts to Resolve
+You're now ready to merge, but don't rush into it, you'll need to take your time for this merge.
 
-Assuming you were working on a repo with multiple collaborators, you'll need to merge all your changes, and if you've been away for a while, and the others have been busy too, there's a good chance of a merge conflict. Assume there will be, clear some space in your schedule, make a big mug or glass of your beverage of choice, and just work through them slowly and carefully. Usually, there are much fewer conflicts than you feared, so you end up with some quiet time in your schedule, and a nice drink 🙂
+### Merge Diligently (be Verbose and Expect Some Conflicts)
+
+If you're the only person contributing to the repo you can be sure you won't have any merge conflicts, but if you're collaborating with others you can't. The more changes the be merged, the greater the chance of a conflict, so the odds are against you here 🙂
+
+If you're expecting conflicts, you should avoid stress by setting your expectations appropriately, and clearing some space in your scheduled. I also like to prepare by brewing a big mug of extra nice coffee 🙂
+
+Regardless of whether or not you're expecting conflicts, you still need to set aside some time for this merge, because you need to do it carefully, and you need to write a detailed description.
+
+If you were the only person working on the code, you'll be able do a fast forward instead of a merge commit — don't do that! Why? Because if you do, all those commits that contain your workaround will end up on your `main` branch after all!
+
+To keep your workaround off your `main` branch **merge your changes with  full merge commit**. You should take the time to get this commit right. Give it a good title, and describe all your changes in the description.
+
+(For a refresher on fast-forwarding -v- full merges, see [PBS 107](./pbs107).)
 
 ### Clean Up!
 
@@ -136,6 +150,6 @@ Once you've safely merged your changes, remember to clean up any temporary branc
 
 ## Final Thoughts
 
-There's nothing more frustrating that finally having the time to get stuck into that code that's been burning a hole in your brain for months than finding you're missing the tools you need to get the job done. Conversely, there's nothing more satisfying that getting all those ideas out of your head and into working code. The difference between the two is simply preparation. Take the time to prepare, and you'll be rewarded with that wonderful feeling of satisfaction we all get from creating great software!
+There's nothing more frustrating that finally having the time to get stuck into that code that's been burning a hole in your brain for months than finding you're missing the tools you need to get the job done. Conversely, there's nothing more satisfying that getting all those ideas out of your head and into working code. The difference between those two realities is simply preparation. Take the time to prepare, and you'll be rewarded with that wonderful feeling of satisfaction we all get from creating great software!
 
 Enjoy your vacation 🙂
