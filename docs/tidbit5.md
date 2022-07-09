@@ -59,7 +59,7 @@ If you have an HTML file that's loading something from a URL, say a script, a st
 
 When you copy the script tag to make it local, remove the `integrity` attribute if there is one.
 
-***wget in Taming the Terminal about downloading from the command line***
+_**Bonus Tip:** you can use the `wget` or `curl` terminal commands to do the downloads, see [Taming the Terminal instalment 35 for details](https://ttt.bartificer.net/book.html#ttt35)._
 
 If you go this route, **it should be a temporary change**! My advice would be to comment out the existing references, replace them with the local ones, and reverse the process when you get home. Why? Because this approach just isn't practical in the long term for at least three reasons:
 
