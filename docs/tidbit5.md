@@ -57,6 +57,8 @@ One reason your off-line testing might fail is your code relies on CDN-hosted re
 
 If you have an HTML file that's loading something from a URL, say a script, a stylesheet, or an image, the simplest thing to do is to pop that URL into your browser, download whatever it is, add it to your project (by tradition in a folder named `contrib`), and update the URL to the appropriate relative URL to your downloaded file. This works great for entirely self-contained dependencies (files that don't reference other URLs), but it's not practical for nested dependencies. In those cases, you'll need to go to the project's website and download their full distribution and install the lot into your `contrib` folder.
 
+When you copy the script tag to make it local, remove the `integrity` attribute if there is one.
+
 If you go this route, **it should be a temporary change**! My advice would be to comment out the existing references, replace them with the local ones, and reverse the process when you get home. Why? Because this approach just isn't practical in the long term for at least three reasons:
 
 1. You've just taken responsibility for keeping your copy of these resources up to date from a security point of view
