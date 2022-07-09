@@ -59,6 +59,8 @@ If you have an HTML file that's loading something from a URL, say a script, a st
 
 When you copy the script tag to make it local, remove the `integrity` attribute if there is one.
 
+***wget in Taming the Terminal about downloading from the command line***
+
 If you go this route, **it should be a temporary change**! My advice would be to comment out the existing references, replace them with the local ones, and reverse the process when you get home. Why? Because this approach just isn't practical in the long term for at least three reasons:
 
 1. You've just taken responsibility for keeping your copy of these resources up to date from a security point of view
@@ -71,7 +73,7 @@ The right way to localise your dependencies is to add them to your project with 
 
 ### Off-line Docs
 
-Believe it or not, there was a time when you bought dead-tree books to get the documentation you needed for your programming languages of choice. By far the leading publisher was O'Reilly press, and their so-called *animal series* was legendary (I even wrote a chapter for the one on the [Tomcat web server](https://tomcat.apache.org) many moons ago). Of course, they all became out of date almost instantly, and they were **heavy** (The cheap kinds of bookcases students can afford are no match for them!) I was once so proud of my massive shelf of O'Reilly books, but when I moved house I threw all but those with sentimental value out (the Tomcat one with my chapter in it and the famous *Camel Book* on Perl are the only two I kept).
+Believe it or not, there was a time when you bought dead-tree books to get the documentation you needed for your programming languages of choice. By far the leading publisher was O'Reilly press, and their so-called *animal series* was legendary (I even wrote a chapter for the one on the [Tomcat web server](https://tomcat.apache.org) many moons ago). Of course, they all became out of date almost instantly, and they were **heavy** the cheap kinds of book cases students can afford are no match for them! I was once so proud of my massive shelf of O'Reilly books, but when I moved house I threw all but those with sentimental value out (the Tomcat one with my chapter in it and the famous *Camel Book* on Perl are the only two I kept).
 
 Now, we just read docs online! Every project website has a documentation section, and we all just use that.
 
@@ -118,7 +120,7 @@ Code is just text, and Git is efficient, so pushing your code should use very li
 
 #### Consider Creating a Temporary Local 'Remote'
 
-If not having any backups makes you uncomfortably nervous, consider adding an additional *remote* on a thumb-drive or external hard drive. You can keep it disconnected most of the time, plug it in, push, and then disconnect it again.
+If not having any backups makes you uncomfortably nervous, consider adding an additional *remote* on a thumb drive or external hard drive. You can keep it disconnected most of the time, plug it in, push, and then disconnect it again.
 
 Remember that a *remote* is any other Git repo, even another one sharing your file system. The URL to a local remote is simply the path to the folder containing it. The simplest thing to do is to create your temporary remote by cloning the repo you're actually doing your work in, then adding the new clone to your primary repo as a sensibly-named remote (maybe `temp_backup` or something similar), and then pushing to that new remote periodically.
 
