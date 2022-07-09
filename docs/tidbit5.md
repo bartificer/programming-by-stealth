@@ -69,7 +69,7 @@ The right way to localise your dependencies is to add them to your project with 
 
 ### Off-line Docs
 
-Believe it or not, there was a time when you bought dead-tree books to get the documentation you needed for your programming languages of choice. By far the leading publisher was O'Reilly press, and their so-called *animal series* was legendary (I even wrote a chapter for the one on the [Tomcat web server](https://tomcat.apache.org) many moons ago). Of course, they all became out of date almost instantly, and they were **heavy** the cheap kinds of book cases students can afford are no match for them! I was once so proud of my massive shelf of O'Reilly books, but when I moved house I threw all but those with sentimental value out (the Tomcat one with my chapter in it and the famous *Camel Book* on Perl are the only two I kept).
+Believe it or not, there was a time when you bought dead-tree books to get the documentation you needed for your programming languages of choice. By far the leading publisher was O'Reilly press, and their so-called *animal series* was legendary (I even wrote a chapter for the one on the [Tomcat web server](https://tomcat.apache.org) many moons ago). Of course, they all became out of date almost instantly, and they were **heavy** (The cheap kinds of bookcases students can afford are no match for them!) I was once so proud of my massive shelf of O'Reilly books, but when I moved house I threw all but those with sentimental value out (the Tomcat one with my chapter in it and the famous *Camel Book* on Perl are the only two I kept).
 
 Now, we just read docs online! Every project website has a documentation section, and we all just use that.
 
