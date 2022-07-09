@@ -144,6 +144,8 @@ To keep your workaround off your `main` branch **merge your changes with  full m
 
 (For a refresher on fast-forwarding -v- full merges, see [PBS 107](./pbs107).)
 
+_**P.S.** You might consider using a more advanced technique that we're not covered in the PBS series, a [Squash Commit](https://www.git-tower.com/learn/git/faq/git-squash), rather than a traditional merge commit._
+
 ### Clean Up!
 
 Once you've safely merged your changes, remember to clean up any temporary branches or remotes you created.
