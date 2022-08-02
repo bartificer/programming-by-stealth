@@ -18,5 +18,5 @@ $(()=>{
     // build and add an alert with the loaded time
     const $alert = $('<p>').addClass('alert alert-info alert-dismissible');
     $alert.text(`Page loaded at ${DateTime.now().toLocaleString()}`);
-    $('.container').append($alert);
+    $('.container').prepend($alert);
 });
