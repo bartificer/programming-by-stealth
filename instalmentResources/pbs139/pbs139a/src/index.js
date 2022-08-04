@@ -8,7 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 
 // import Luxon
-import { DateTime } from 'luxon'
+import { DateTime } from 'luxon';
+
+// import Mustache library & template
+import Mustache from 'mustache';
+import alertTpl from './templates/alert.html.mustache';
 
 // a jQuery document ready handler
 $(()=>{
@@ -16,7 +20,11 @@ $(()=>{
     $('#world-modifier').text('jQuery');
 
     // build and add an alert with the loaded time
-    const $alert = $('<p>').addClass('alert alert-info alert-dismissible');
-    $alert.text(`Page loaded at ${DateTime.now().toLocaleString()}`);
-    $('.container').prepend($alert);
+    const now = DateTime.now();
+    const alertView = {
+        localTime: now.toLocaleString(DateTime.TIME_SIMPLE),
+        localDate: now.toLocaleString(DateTime.DATE_FULL)
+    };
+    const alertHTML = Mustache.render(alertTpl, alertView);
+    $('.container').prepend(alertHTML);
 });

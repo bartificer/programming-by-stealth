@@ -24,6 +24,10 @@ export default {
                     'style-loader',
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.mustache$/,
+                type: 'asset/source'
             }
         ]
     },
