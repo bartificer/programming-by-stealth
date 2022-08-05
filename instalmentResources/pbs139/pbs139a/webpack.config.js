@@ -18,6 +18,7 @@ export default {
     },
     module: {
         rules: [
+            // configure importing of CSS files
             {
                 test: /\.css$/,
                 use: [
@@ -25,9 +26,15 @@ export default {
                     'css-loader'
                 ]
             },
+            // configure importing of Mustache templates
             {
                 test: /\.mustache$/,
                 type: 'asset/source'
+            },
+            // configure importing of Web Fonts, including icon fonts
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/inline'
             }
         ]
     },

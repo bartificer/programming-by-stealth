@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1",
     "jquery": "^3.6.0",
     "luxon": "^3.0.1",
     "mustache": "^4.2.0"
