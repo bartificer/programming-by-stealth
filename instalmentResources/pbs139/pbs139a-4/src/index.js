@@ -18,9 +18,6 @@ import { DateTime } from 'luxon';
 import Mustache from 'mustache';
 import alertTpl from './templates/alert.html.mustache';
 
-// import a nice handwriting web font
-import "@fontsource/architects-daughter"
-
 // a jQuery document ready handler
 $(()=>{
     // update the greeting to show jQuery ran
