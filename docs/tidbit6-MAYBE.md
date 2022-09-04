@@ -46,7 +46,7 @@ npm install --save moment-timezone
 Other libs were fine at full current version:
 
 ```sh
-npm install --save jquery bootstrap-4-autocomplete moment-timezone tempusdominus-bootstrap-4 urijs mustache is_js @bartificer/human-join
+npm install --save jquery popper.js bootstrap-4-autocomplete moment-timezone tempusdominus-bootstrap-4 urijs mustache is_js @bartificer/human-join
 
 ### Install Web pack
 
