@@ -18,7 +18,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "@fontsource/architects-daughter": "^4.5.7",
+    "@fontsource/architects-daughter": "^4.5.8",
     "bootstrap": "^5.2.0",
     "bootstrap-icons": "^1.9.1",
     "jquery": "^3.6.0",

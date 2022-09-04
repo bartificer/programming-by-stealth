@@ -34,7 +34,7 @@ $(()=>{
     };
     const alertHTML = Mustache.render(alertTpl, alertView); // generate the alert HTML
     const $alert = $(alertHTML); // build a JQuery object from the HTML string
-    const alertDOM = $[0]; // extract the underlying native DOM object from the jQuery object
+    const alertDOM = $alert[0]; // extract the underlying native DOM object from the jQuery object
     new Alert(alertDOM); // Apply the Bootstrap 5 Alert functionality to the DOM object
     $('.container').prepend($alert); // inject the alert into the top of the container
 });
