@@ -156,6 +156,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 136 — More Jesting](./pbs136)
 * [PBS 137 — Bundling a Library with Webpack](./pbs137)
 * [PBS 138 — Bundling a Web App/Site with Webpack (Part 1)](./pbs138)
+* [PBS 139 — Bundling a Web App/Site with Webpack (Part 2)](./pbs139)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
