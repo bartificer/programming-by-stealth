@@ -1,6 +1,6 @@
-# PBS Tibit 6 of Y — Lessons Learned from Porting This-Ti.me to Webpack
+# PBS Tibit 6 of Y — A Real-World Webpack Case Study
 
-TO DO
+In the main series we recently dedicated two instalments (TO DO - LINKS) to using Webpack to bundle as website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. With that in mind I fully expected to have to learn at least some new Webpack skills to get the site working well, and that's exactly what happened. In this tidbit I'll share my journey, and what I learned along the way.
 
 ## Matching Podcast Episode
 
@@ -141,7 +141,10 @@ export default {
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
-                type: 'asset/inline'
+                type: 'asset/inline',
+                generator: {
+					filename: 'webfonts/[hash][ext][query]'
+				}
             }
         ]
     },
@@ -160,10 +163,41 @@ export default {
 };
 ```
 
-## TO DO
+## Refactor Mustache templates to source assets
 
-Switch Bootstrap templates to assets
-Migrate to new is-js replacement
-Migrate to Bootstrap 5
-Migrate to Luxon — MAYBE
+DONE
 
+## Replace `is_js` with `is-it-check`
+
+```sh
+npm remove is_js
+npm install --save is-it-check
+```
+
+```js
+import is from 'is-it-check';
+```
+
+## clean the output folder
+
+```js
+clean: true
+```
+
+## Refactor bundle to shrink it
+
+DONE
+
+## Update Dependencies
+
+```sh
+npm outdated
+```
+
+```sh
+npm update jquery bootstrap
+```
+
+Minor + patch only!
+
+Updating Bootstrap to the latest bootstrap 4 added a funny bug where the tabs became disconnected — fix was to remove the bottom margin with mb-0 on each tab.
