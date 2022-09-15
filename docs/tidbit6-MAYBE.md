@@ -1,14 +1,37 @@
 # PBS Tibit 6 of Y — A Real-World Webpack Case Study
 
-In the main series we recently dedicated two instalments (TO DO - LINKS) to using Webpack to bundle as website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. With that in mind I fully expected to have to learn at least some new Webpack skills to get the site working well, and that's exactly what happened. In this tidbit I'll share my journey, and what I learned along the way.
+In the main series we recently dedicated two instalments (TO DO - LINKS) to using [Webpack](https://webpack.js.org/) to bundle a website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. With that in mind I fully expected to have to learn at least some new Webpack skills to get the site working well, and that's exactly what happened. In this tidbit I'll share my journey, and what I learned along the way.
 
 ## Matching Podcast Episode
 
 TO DO
 
-## Preparation — re-factor all-in-one HTML File to 3 Files
+## The Original Code
 
-index.html → src/index.html + src/index.js + src/index.css
+The code before I started the migration was pretty much un-changed since it was developed as my sample solution to the challenge set at the end of instalment TO DO, and described in instalment TO DO.
+
+The entire codebase was self-contained within a single `index.html` file. All custom CSS and JavaScript was embedded in `<style>` and `<script>` tags, all the [Mustache templates](https://github.com/janl/mustache.js) embedded in `<script type="html">` tags, and all 3rd-party CSS, JavaScript, and web fonts loaded from CDNs.
+
+Before starting the code was already managed in Git, with the entire repo contents published as a website using GitHub pages.
+
+## Preparation — Re-Factor to Separate Files
+
+To ensure I could always roll back my changes, the very first thing I did was switch to a new branch named `chore-migrateToWebpack`.
+
+To use Webpack I needed to switch the repo from publishing the entire thing as a website to publishing just a single folder, docs, so the first step was to move `index.html` to `src/index.html`.
+
+For Webpack to be able to bundle the code the CSS and the JavaScript needed to come out of the HTML file. To that end I made the following changes:
+
+1. I moved all the custom CSS from `src/index.html` to `src/index.css` and replaced the `<style>` tag with a `<link rel="stylesheet">` tag.
+2. I moved all my own JavaScript from `src/index.html` to `src/index.js` and updated the `<script>`  tag to use an `src` attribute to load the code from the newly created file.
+
+So, the starting point for the migration to Webpack was as follows:
+
+1. `src/index.html` containing the HTML markup, the Mustache templates, and importing my own code from `src/index.css` & `src/index.js`, and all third-party CSS, JavaScript and web fonts from various CDNs.
+2. `src/index.css` containing my CSS code
+3. `src/index.js` containing my JavaScript code
+
+LEFT OFF HERE!!!
 
 ## Phase 1 — Straight Migration to Webpack
 
