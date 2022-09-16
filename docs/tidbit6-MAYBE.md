@@ -31,45 +31,60 @@ So, the starting point for the migration to Webpack was as follows:
 2. `src/index.css` containing my CSS code
 3. `src/index.js` containing my JavaScript code
 
-LEFT OFF HERE!!!
+## Initialise NPM & Webpack
 
-## Phase 1 — Straight Migration to Webpack
+To get either Webpack itself, or any of the dependencies currently loaded from CDNs, the first step is to turn the repo into a NodeJS package:
 
-### Init NPM
 ```sh
 npm init
 ```
 
-### Install all dependencies from NPM
-
-Need to fall back to Bootstrap 4.2.1 (latest 4.* caused odd bugs!)
+Next, install Webpack itself:
 
 ```sh
+npm install --save-dev  webpack webpack-cli copy-webpack-plugin css-loader style-loader
+```
+
+## Find & Install Each Dependency
+
+Before I committed myself too much, I made sure each and every dependency I was including via a CDN was available from NPM, thankfully, they all were 😅
+
+### Installing Specific Version of Dependencies
+
+So far, we've always used NPM at the point in time when we first need a module, so we've always been happy with NPM's default behaviour of installing the latest versions of modules.
+
+We know that NPM uses SemVer to ensure you don't automatically update between major versions and risk breaking changes, but the initial install is always the latest released version, and it's that major version that gets locked in as the project ages.
+
+I wrote this site with Bootstrap 4, and re-implementing it in Bootstrap 5 is too big of a task to simply mix in with the migration to Webpack. By default, NPM would give me Bootstrap 5, so how do I tell it Bootstrap 4? Simple, post-fix the package name with an `@` symbol and as much of the version number as you want to specify. I started with simply:
+
+```sh
+npm install --save bootstrap@4
+```
+
+I needed to do something similar for Font Awesome and JS cookie:
+
+```sh
+npm install --save @fortawesome/fontawesome-free@5  js-cookie@2
+```
+
+By putting only one number after the `@` I'm in effect saying *'give me the most recent minor and patch version under this major version'*. You can of course be more specific, and specify a major an minor version, or even a major, minor, and patch version. I ended up re-installing Bootstrap to a very specific version because I ran into an odd bug when I let it go to the latest Bootstrap 4:
+
+```sh
+npm remove bootstrap
 npm install --save bootstrap@4.2.1
 ```
 
-Need to fall back to Font Awesome 5
+The reason for the weirdness became clear later — I was moving each dependency one-by-one and re-building and testing in between, and at one point I had the Bootstrap CSS from NPM, and the Bootstrap JS from the CDN, and they were at different versions. As soon as I forced NPM to use the identical version to the one I was getting from the CDN sanity returned!
 
-```sh
-npm install --save @fortawesome/fontawesome-free@5
-```
-
-Need to fall back to JSCookie 2
-
-```sh
-npm install --save js-cookie@2
-```
-
-Need the version of Moment.js with timezone support built in
+One last little gotcha in the dependencies is that when using a CDN you use a pair of `<script>` tags to get MomentJS with timezone support, with NPM you get both together in one package:
 
 ```sh
 npm install --save moment-timezone
 ```
 
-Other libs were fine at full current version:
+LEFT OFF HERE!!!
 
-```sh
-npm install --save jquery popper.js bootstrap-4-autocomplete moment-timezone tempusdominus-bootstrap-4 urijs mustache is_js @bartificer/human-join
+NEXT STEP — go back and insert the webpack config!
 
 ### Install Web pack
 
