@@ -196,42 +196,103 @@ One last little gotcha in the dependencies is that when using a CDN you use a pa
 npm install --save moment-timezone
 ```
 
-LEFT OFF HERE!!!
-
 ### Globally Loaded Modules (to Handle Peer Dependencies)
 
-TO DO
+Some third party code is not intended to be used alone, but to augment another piece of code. For example, I used two Bootstrap plugins on this site, TO DO to provide the date & time pickers, and TO DO to provide the auto-complete functionality on the timezone text box.
 
-## Refactor Mustache templates to source assets
+When using CDNs you simply add the tag to import the plugin after the tag(s) to import the code its extending. When using pure NodeJS code the plugin will list the thing it extends as a *peer dependency*, meaning it expects you to install the extended code into your package as a dependency. This is a simple and painless process, but things get a little messier when you try to bundle code with peer dependencies!
 
-DONE
+As soon as I tried to port the first of my plugins from CDN to Webpack I started getting errors in the console about jQuery and MomentJS being missing but required. These modules were installed, so they were available to pure NodeJS code, but there were scoping issues inside the bundled code.
 
-## Replace `is_js` with `is-it-check`
+I didn't panic, because I knew this was a common thing to need to do, so off I went to the Googles. Sure enough, this is such a commonly needed feature that Webpack includes the built-in [Provide](https://webpack.js.org/plugins/provide-plugin/) plugin for solving this issue. You use the plugin to map NodeJS packages to specific global variable names that will be available to all code in your bundles. This is the relevant snippet from `webpack.config.js`:
+
+```js
+export default {
+    // …
+    plugins: [
+        // …
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            moment: 'moment'
+        })
+    ]
+};
+```
+
+## Some Simple Refactorings
+
+At this stage the code was working again, but since I had it open and had my head in that space I figured I should make a few additional tweaks to put it on a more stable footing going forward.
+
+The first thing I did was re-factor my Mustache templates from `<script type="text/html">` tags to Webpack resources (like we did in [PBS 139](./pbs139)).
+
+Next, I replaced the abandoned `is.js` type checking library with its actively maintained port `is-it-check`. First, I replaced the NPM packages:
 
 ```sh
 npm remove is_js
 npm install --save is-it-check
 ```
 
+Then I updated the `import` statement in `src/index-body.js` from:
+
+```js
+import is from 'is_js';
+```
+
+To:
+
 ```js
 import is from 'is-it-check';
 ```
 
-
-## Refactor bundle to shrink it
-
-DONE
-
-## Update Dependencies
+At this stage I'd figured out why I was getting odd behaviour when I first tried to use the latest Bootstrap 4 release, so I used `npm upgrade` to roll all packages forward to the latest release for their major version:
 
 ```sh
 npm outdated
-```
-
-```sh
 npm update jquery bootstrap
 ```
 
-Minor + patch only!
+The Bootstrap update did introduce a very minor visual glitch under the tabs, probably because I shouldn't be using `h4` inside a tag, but it was easily fixed by explicitly setting the bottom margin to zero by adding the `mb-0` Bootstrap class.
 
-Updating Bootstrap to the latest bootstrap 4 added a funny bug where the tabs became disconnected — fix was to remove the bottom margin with mb-0 on each tab.
+## Refactor to Shrink the Bundles
+
+When you're using Webpack to distribute a re-usable library (as described in PBS TO DO) getting all your code into a single bundle file is literally the whole point of the exercise! That's not true when you're bundling a web page or app, the point is to produce code that's easy for you to manage, and that doesn't depend on other people's servers to run. Bundling all code into monolithic bundles can be wasteful — if you only use 5 icons from your icon set, having them all stuffed into one massive `.js` file by marking them as inline assets will really slow you page/app down over slow network connections. In this case it would be better to allow Webpack bundle the resources as separate files that will only be fetch if and when they're needed.
+
+When it comes to breaking up your bundles, there is no definable best practice, it's one of those dark arts where each case it different and over time you get a feel for what works well and what doesn't in very specific scenarios. Webpack's documentation dedicates [a page to the various options for splitting bundles](https://webpack.js.org/guides/code-splitting/).
+
+By having multiple entry points I'd already shrunk my bundles a bit, but `bundle-head.js` was still over 4mb, which struck me as very large. I was pretty sure it was the inlined web fonts and glyphicons that were the cause, so I changed them from [inline assets](https://webpack.js.org/guides/asset-modules/#inlining-assets) to [resource assets](https://webpack.js.org/guides/asset-modules/#resource-assets) and specified they should be bundled into a folder named `webfonts`.
+
+To do this I simply needed to update the relevant rule in `webpack.config.js` from:
+
+```js
+{
+  test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
+  type: 'asset/inline',
+}
+
+```
+
+To:
+
+```js
+{
+  test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
+  type: 'asset/resource',
+  generator: {
+    filename: 'webfonts/[hash][ext][query]'
+  }
+}
+```
+
+If I'd been OK with the generated files appearing in the root of the output folder named for their hashes I could have omitted the `generator` dictionary, but I'm a stickler for keeping things tidy, so I added the `generator` attribute so I could specify a filename template for the matching file types.
+
+## Final Thoughts
+
+I certainly learned a lot migrating this existing app to Webpack. I learned a few important lessons in the process:
+
+1. It's easier to use Webpack from the start than to retro-fit it later, so I'll be doing that in future.
+2. The Webpack docs are very good!
+3. Webpack is popular enough and has a big enough community that you'll find lots of helpful [Stack Overflow answers](https://stackoverflow.com/questions/tagged/webpack) and blog posts to help you address your problems.
+4. Webpack 5 is new enough that you need to check all the answers/posts to be sure they're not for Webpack 4!
+
+I hope that by sharing this real-world experience I'll help to push you over the edge into pulling the trigger and migrating your existing web apps and sites to Webpack 🙂
