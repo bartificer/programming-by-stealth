@@ -1,6 +1,6 @@
-# PBS Tibit 6 of Y — A Real-World Webpack Case Study
+# PBS Tidbit 6 of Y — A Real-World Webpack Case Study
 
-In the main series we recently dedicated two instalments (TO DO - LINKS) to using [Webpack](https://webpack.js.org/) to bundle a website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. With that in mind I fully expected to have to learn at least some new Webpack skills to get the site working well, and that's exactly what happened. In this tidbit I'll share my journey, and what I learned along the way.
+In the main series we recently dedicated two instalments ([PBS 138](./pbs138) & [PBS 139](./pbs139)) to using [Webpack](https://webpack.js.org/) to bundle a website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. With that in mind I fully expected to have to learn at least some new Webpack skills to get the site working well, and that's exactly what happened. In this tidbit I'll share my journey, and what I learned along the way.
 
 ## Matching Podcast Episode
 
@@ -8,7 +8,7 @@ TO DO
 
 ## The Original Code
 
-The code before I started the migration was pretty much un-changed since it was developed as my sample solution to the challenge set at the end of instalment TO DO, and described in instalment TO DO.
+The code before I started the migration was pretty much un-changed since it was developed as my sample solution to the challenge set at the end of [instalment 96](./pbs96), and described in [instalment 100](./pbs100). The code and its entire history is [published on GitHub](https://github.com/bartificer/this-ti.me).
 
 The entire codebase was self-contained within a single `index.html` file. All custom CSS and JavaScript was embedded in `<style>` and `<script>` tags, all the [Mustache templates](https://github.com/janl/mustache.js) embedded in `<script type="html">` tags, and all 3rd-party CSS, JavaScript, and web fonts loaded from CDNs.
 
@@ -198,7 +198,7 @@ npm install --save moment-timezone
 
 ### Globally Loaded Modules (to Handle Peer Dependencies)
 
-Some third party code is not intended to be used alone, but to augment another piece of code. For example, I used two Bootstrap plugins on this site, TO DO to provide the date & time pickers, and TO DO to provide the auto-complete functionality on the timezone text box.
+Some third party code is not intended to be used alone, but to augment another piece of code. For example, I used two Bootstrap plugins on this site, [Tempus Dominus](https://getdatepicker.com/5-4/) to provide the date & time pickers, and [Bootstrap 4 Autocomplete](bootstrap-4-autocomplete) to provide the auto-complete functionality on the timezone text box.
 
 When using CDNs you simply add the tag to import the plugin after the tag(s) to import the code its extending. When using pure NodeJS code the plugin will list the thing it extends as a *peer dependency*, meaning it expects you to install the extended code into your package as a dependency. This is a simple and painless process, but things get a little messier when you try to bundle code with peer dependencies!
 
@@ -256,7 +256,7 @@ The Bootstrap update did introduce a very minor visual glitch under the tabs, pr
 
 ## Refactor to Shrink the Bundles
 
-When you're using Webpack to distribute a re-usable library (as described in PBS TO DO) getting all your code into a single bundle file is literally the whole point of the exercise! That's not true when you're bundling a web page or app, the point is to produce code that's easy for you to manage, and that doesn't depend on other people's servers to run. Bundling all code into monolithic bundles can be wasteful — if you only use 5 icons from your icon set, having them all stuffed into one massive `.js` file by marking them as inline assets will really slow you page/app down over slow network connections. In this case it would be better to allow Webpack bundle the resources as separate files that will only be fetch if and when they're needed.
+When you're using Webpack to distribute a re-usable library (as described in [instalment 137](./pbs137)) getting all your code into a single bundle file is literally the whole point of the exercise! That's not true when you're bundling a web page or app, the point is to produce code that's easy for you to manage, and that doesn't depend on other people's servers to run. Bundling all code into monolithic bundles can be wasteful — if you only use 5 icons from your icon set, having them all stuffed into one massive `.js` file by marking them as inline assets will really slow you page/app down over slow network connections. In this case it would be better to allow Webpack bundle the resources as separate files that will only be fetch if and when they're needed.
 
 When it comes to breaking up your bundles, there is no definable best practice, it's one of those dark arts where each case it different and over time you get a feel for what works well and what doesn't in very specific scenarios. Webpack's documentation dedicates [a page to the various options for splitting bundles](https://webpack.js.org/guides/code-splitting/).
 
