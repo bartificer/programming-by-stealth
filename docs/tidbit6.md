@@ -1,14 +1,22 @@
 # PBS Tidbit 6 of Y — A Real-World Webpack Case Study
 
-In the main series we recently dedicated two instalments ([PBS 138](./pbs138) & [PBS 139](./pbs139)) to using [Webpack](https://webpack.js.org/) to bundle a website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. With that in mind I fully expected to have to learn at least some new Webpack skills to get the site working well, and that's exactly what happened. In this tidbit I'll share my journey, and what I learned along the way.
+In the main series we recently dedicated two instalments ([PBS 138](./pbs138) & [PBS 139](./pbs139)) to using [Webpack](https://webpack.js.org/) to bundle a website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. 
+
+I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. 
+
+With that in mind I fully expected to have to learn at least some new Webpack skills to get the site working well, and that's exactly what happened. In this tidbit I'll share my journey, and what I learned along the way.
 
 ## Matching Podcast Episode
 
-TO DO
+Listen along to this instalment on [episode 743 of the Chit Chat Across the Pond Podcast](https://www.podfeet.com/blog/2022/09/ccatp-743/).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2022_09_17.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2022_09_17.mp3" >Download the MP3</a>
 
 ## The Original Code
 
-The code before I started the migration was pretty much un-changed since it was developed as my sample solution to the challenge set at the end of [instalment 96](./pbs96), and described in [instalment 100](./pbs100). The code and its entire history is [published on GitHub](https://github.com/bartificer/this-ti.me).
+The code before I started the migration was pretty much unchanged since it was developed as my sample solution to the challenge set at the end of [instalment 96](./pbs96), and described in [instalment 100](./pbs100). The code and its entire history is [published on GitHub](https://github.com/bartificer/this-ti.me).
 
 The entire codebase was self-contained within a single `index.html` file. All custom CSS and JavaScript was embedded in `<style>` and `<script>` tags, all the [Mustache templates](https://github.com/janl/mustache.js) embedded in `<script type="html">` tags, and all 3rd-party CSS, JavaScript, and web fonts loaded from CDNs.
 
