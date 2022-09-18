@@ -168,4 +168,5 @@ You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://ba
 	* [PBS Tidbit 3 of Y — Managing the NPM (or Packagist) Trade-off](./tidbit3)
 	* [PBS Tidbit 4 of Y — Rethinking a Web App – from Web Server to Cloud Stack](./tidbit4)
 	* [PBS Tidbit 5 of Y — Tips for the Vacationing Programmer](./tidbit5)
+	* [PBS Tidbit 6 of Y — A Real-World Webpack Case Study](./tidbit6)
 * A blog post by Allison Sheridan explaining how she added support for currencies with different numbers of decimal places to her sample solution to PBS 88: [When Currency Rate Decimals Go Wrong — www.podfeet.com/…](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/)
