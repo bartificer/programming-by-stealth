@@ -165,7 +165,7 @@ Since I named my entry points `head` & `body`, this template will produce bundle
  
  ### Automatically Clean the Output Dir
  
- This is a good opportunity to draw your attention to a very useful output option `clean: true` — this tell Webpack to remove everything from the output dir that's not part of the most recent build. This prevents leftovers from past experiments getting accidentally left behind.
+ This is a good opportunity to draw your attention to a very useful output option `clean: true` — this tells Webpack to remove everything from the output dir that's not part of the most recent build. This prevents leftovers from past experiments getting accidentally left behind.
 
 ## Find & Install Each Dependency
 
