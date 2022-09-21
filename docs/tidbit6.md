@@ -122,7 +122,7 @@ For the most part this config does things much like we did in PBS 139, with four
 
 ### Separate Head & Body Bundles
 
-In all our PBS examples up to an including PBS 139 we've used Webpack to bundle all our JavaScript, CSS, and dependencies into a single bundle — one file which we then included in our HTML with a `<script src=''>` tag. This config doesn't do that, it creates **two** bundles, one intended to be imported in the `<head>`, and one to be imported at the bottom of the `<body>`.
+In all our PBS examples up to and including PBS 139 we've used Webpack to bundle all our JavaScript, CSS, and dependencies into a single bundle — one file which we then included in our HTML with a `<script src=''>` tag. This config doesn't do that, it creates **two** bundles, one intended to be imported in the `<head>`, and one to be imported at the bottom of the `<body>`.
 
 Why would I want to do that? If you cast your mind right back to when we stated to use CDNs, you may vaguely recall that we included the CSS from the CDNs in the `<head>`, and the JavaScript at the bottom of the `<body>`. We had a good reason to do that, and it was to give users the best experience on slow network connections.
 
