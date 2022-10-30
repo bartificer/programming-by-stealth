@@ -126,7 +126,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 106 — Time Travel with Git](./pbs106)
 * [PBS 107 — Branching Basics](./pbs107)
 * [PBS 108 — Merging & Tagging](./pbs108)
-* [PBS 109 — SemVar & Structured Commits](./pbs109)
+* [PBS 109 — SemVer & Structured Commits](./pbs109)
 * [PBS 110 — Merge Conflicts](./pbs110)
 * [PBS 111 — Stashing Changes](./pbs111)
 * [PBS 112 — Introducing Git Remotes](./pbs112)
