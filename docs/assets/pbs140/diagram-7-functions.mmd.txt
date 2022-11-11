@@ -1,0 +1,7 @@
+classDiagram-v2
+    class MyClass {
+        -string aPrivateStaticString$
+        +number aPublicStaticNumber$
+        -boolean aPrivateInstanceBool
+        +Date aPublicInstanceDate
+    }
