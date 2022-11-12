@@ -2,7 +2,7 @@ classDiagram-v2
     class Vehicle {
         <<abstract>>
     }
-    Vehicle <-- Car
-    Vehicle <-- Truck
+    Vehicle <|-- Car
+    Vehicle <|-- Truck
     Car <|-- Crossover
     Car <|-- Sedan
