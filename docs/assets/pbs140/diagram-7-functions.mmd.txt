@@ -4,4 +4,11 @@ classDiagram-v2
         +number aPublicStaticNumber$
         -boolean aPrivateInstanceBool
         +Date aPublicInstanceDate
+        -aPrivateStaticFunction()$ void
+        +aPublicStaticFunction()$ string
+        -aPrivateFunction() number
+        +aPublicFunction() boolean
+        +aFunctionWithAnArg(number arg1) string
+        +aFunctionWith2Args(number arg1, string arg2) string
+        +anAbstractFunction()* void
     }
