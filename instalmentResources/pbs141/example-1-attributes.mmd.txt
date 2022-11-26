@@ -1,0 +1,7 @@
+classDiagram-v2
+    class MyClass {
+	    aMostBasicAttribute
+	    +aBasicPublicAttribute
+	    -string aPrivarteStringAttribute
+	    +Date aPublicStaticDateAttribute$
+    }

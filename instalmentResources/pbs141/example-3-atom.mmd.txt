@@ -1,0 +1,9 @@
+classDiagram-v2
+	class Nucleon {
+		<<abstract>>
+	}
+	Atom "0..1" o-- "1..*" Nucleon
+	Atom "*" o-- "*" Electron
+	Nucleon <-- Proton
+	Nucleon <-- Neutron
+	Nucleon "1" *-- "3" Quark

@@ -1,0 +1,11 @@
+classDiagram-v2
+    class MyClass {
+	    -aPrivateStaticFunction()$ void
+	    +aPublicStaticFunction()$ string
+	    -aPrivateFunction() number
+	    +aPublicFunction() boolean
+	    +aFunctionWithAnUntypedArg(arg1) string
+	    +aFunctionWithAnArg(number arg1) string
+	    +aFunctionWith2Args(number arg1, string arg2) string
+	    +anAbstractFunction()* void
+    }

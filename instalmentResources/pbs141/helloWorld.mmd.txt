@@ -1,0 +1,5 @@
+classDiagram-v2
+    class Pancake {
+    }
+    class Waffle {
+    }
