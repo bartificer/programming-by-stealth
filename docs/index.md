@@ -159,6 +159,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 139 — Bundling a Web App/Site with Webpack (Part 2)](./pbs139)
 * [PBS 140 — UML Class Diagrams](./pbs140)
 * [PBS 141 — Generating UML Class Diagrams with Mermaid](./pbs141)
+* [PBS 142 — The XKPasswdJS Project Kickoff](./pbs142)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
