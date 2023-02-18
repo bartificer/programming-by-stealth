@@ -2,6 +2,8 @@
 
 # get the day of the week as a 3-letter abbreviation with the `date` command
 dow=$(date '+%a')
+
+# print the appropriate etymology
 if [[ $dow = 'Mon' ]]
 then
     echo 'Monday is named for the Moon'
@@ -22,7 +24,7 @@ then
     echo 'Saturday is named for Saturn'
 elif [[ $dow = 'Sun' ]]
 then
-    echo 'Saturday is named for the Sun'
+    echo 'Sunday is named for the Sun'
 else
     echo 'What calendar are you on???'
 fi
