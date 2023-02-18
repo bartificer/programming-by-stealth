@@ -18,7 +18,7 @@ then
     echo 'Thursday is named for the Norse god Thor'
 elif [[ $dow = 'Fri' ]]
 then
-    echo 'Saturday is named for the Norse goddess Freya'
+    echo 'Friday is named for the Norse goddess Freya'
 elif [[ $dow = 'Sat' ]]
 then
     echo 'Saturday is named for Saturn'

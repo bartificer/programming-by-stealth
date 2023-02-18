@@ -18,7 +18,7 @@ case $dow in
         echo 'Thursday is named for the Norse god Thor'
         ;;
     Fri )
-        echo 'Saturday is named for the Norse goddess Freya'
+        echo 'Friday is named for the Norse goddess Freya'
         ;;
     Sat )
         echo 'Saturday is named for Saturn'

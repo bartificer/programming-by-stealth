@@ -6,7 +6,7 @@ name=$1
 # test if we got a name, and if not, ask for one
 if [[ -z $name ]]
 then
-    read -p "What's your name? "
+    read -p "What's your name? " name
 fi
 
 # greet the user
