@@ -162,6 +162,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 142 — The XKPasswdJS Project Kickoff](./pbs142)
 * [PBS 143 — Shell Script Basics](./pbs143)
 * [PBS 144 — Basic Shell Script IO](./pbs144)
+* [PBS 145 — Shell Conditionals](./pbs145)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
