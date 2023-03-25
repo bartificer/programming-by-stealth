@@ -4,7 +4,7 @@ waffles
 
 # healthy stuff
 porridge
-muesly
+muesli
 
 # fried
 sausages

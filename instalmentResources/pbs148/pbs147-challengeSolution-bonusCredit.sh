@@ -2,8 +2,11 @@
 
 # read the menu
 declare -a menu
-cat $(dirname "$BASH_SOURCE")/menu.txt | while read -r menuLine
+while read -r menuLine
 do
+    # skip invalid selections ($item is empty)
+    [[ -z $item ]] && continue
+    
     # skip comment lines
     echo "$menuLine" | egrep -q '^[ ]*#' && continue
 
@@ -12,7 +15,7 @@ do
 
     # store the menu item
     menu+=("$menuLine")
-done
+done <<< "$(cat $(dirname "$BASH_SOURCE")/menu.txt)"
 
 # create an empty array to hold the order
 declare -a order

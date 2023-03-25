@@ -10,6 +10,9 @@ declare -a order
 echo 'Choose your breakfast'
 select item in done "${menu[@]}"
 do
+    # skip invalid selections ($item is empty)
+    [[ -z $item ]] && continue
+
     # exit if done
     [[ $item == done ]] && break
 
