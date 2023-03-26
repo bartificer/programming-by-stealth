@@ -165,6 +165,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 145 — Shell Conditionals](./pbs145)
 * [PBS 146 – Shell Loops](./pbs146)
 * [PBS 147 – Bash Arrays](./pbs147)
+* [PBS 148 – A Bash Potpourri (Subshells, Relative Paths & More)](./pbs148)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
