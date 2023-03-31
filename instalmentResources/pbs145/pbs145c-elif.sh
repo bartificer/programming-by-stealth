@@ -13,7 +13,7 @@ then
 elif [[ $dow = 'Wed' ]]
 then
     echo 'Wednesday is named for the Norse god Odin'
-elif [[ $dow = 'Thur' ]]
+elif [[ $dow = 'Thu' ]]
 then
     echo 'Thursday is named for the Norse god Thor'
 elif [[ $dow = 'Fri' ]]
