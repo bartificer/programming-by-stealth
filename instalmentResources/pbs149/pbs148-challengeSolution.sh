@@ -22,7 +22,6 @@ then
     if echo "$1" | egrep '^[1-9][0-9]*$'
     then
         limit=$1
-        echo "will limit to $limit"
     else
         echo "invalid argument '$1' - must be a whole number greater than 0"
         exit 2 # custom exit code for bad arg
@@ -33,7 +32,12 @@ fi
 declare -a order
 
 # present the menu, with a done option
-echo 'Choose your breakfast'
+if [[ $limit -eq -1 ]]
+then
+    echo 'Choose your breakfast (as many items as you like)'
+else
+    echo "Choose up to $limit breakfast items"
+fi
 select item in done "${menu[@]}"
 do
     # skip invalid selections ($item is empty)
@@ -46,8 +50,11 @@ do
     order+=("$item")
     echo "Added $item to your order"
 
-    # if we're limiting, check the limit and decrement or finish
-    # TO DO — LEFT OFF HERE!!!
+    # if we're limiting, check the limit
+    if [[ $limit -ne -1 ]]
+    then
+        [[ ${#order[@]} -ge $limit ]] && break
+    fi
 done
 
 # print the order
