@@ -15,8 +15,8 @@ do
 done <<<"$(cat $(dirname "$BASH_SOURCE")/menu.txt)"
 
 # default to unlimited items, then check if there is a first argument
-limit=-1
-if [[ "${#1}" -gt 0 ]]
+limit=''
+if [[ -n $1 ]]
 then
     # validate the argument
     if echo "$1" | egrep '^[1-9][0-9]*$'
@@ -32,7 +32,7 @@ fi
 declare -a order
 
 # present the menu, with a done option
-if [[ $limit -eq -1 ]]
+if [[ -z $limit ]]
 then
     echo 'Choose your breakfast (as many items as you like)'
 else
@@ -51,7 +51,7 @@ do
     echo "Added $item to your order"
 
     # if we're limiting, check the limit
-    if [[ $limit -ne -1 ]]
+    if [[ -n $limit ]]
     then
         [[ ${#order[@]} -ge $limit ]] && break
     fi
