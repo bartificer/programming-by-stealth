@@ -6,7 +6,7 @@ adjective='brilliant' # default adjective for the person
 # store the usage string
 usage="Usage: $(basename $0) [-s] [-a ADJECTIVE] NAME"
 
-# accpet a flag named s to request snark, and an optional
+# accept a flag named s to request snark, and an optional
 # adjective a to describe the user
 # save the name of the matched option in $opt (our choice of name)
 while getopts ':sa:' opt

@@ -3,7 +3,7 @@
 beSnarky='' # assume -s is not passed
 worldAdjective='wonderful' # default adjective for the world
 
-# accpet a flag named s to request snark, and an optional
+# accept a flag named s to request snark, and an optional
 # adjective w to describe the world
 # save the name of the matched option in $opt (our choice of name)
 while getopts ':sw:' opt
