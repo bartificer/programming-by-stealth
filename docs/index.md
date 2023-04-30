@@ -167,7 +167,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 147 – Bash Arrays](./pbs147)
 * [PBS 148 – A Bash Potpourri (Subshells, Relative Paths & More)](./pbs148)
 * [PBS 149 – Better Arguments with POSIX Special Variables and Options](./pbs149)
-* [PBS 150 of X — Bash Script Plumbing](./pbs150)
+* [PBS 150 — Bash Script Plumbing](./pbs150)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
