@@ -160,14 +160,14 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 140 — UML Class Diagrams](./pbs140)
 * [PBS 141 — Generating UML Class Diagrams with Mermaid](./pbs141)
 * [PBS 142 — The XKPasswdJS Project Kickoff](./pbs142)
-* [PBS 143 — Shell Script Basics](./pbs143)
-* [PBS 144 — Basic Shell Script IO](./pbs144)
-* [PBS 145 — Shell Conditionals](./pbs145)
-* [PBS 146 – Shell Loops](./pbs146)
-* [PBS 147 – Bash Arrays](./pbs147)
-* [PBS 148 – A Bash Potpourri (Subshells, Relative Paths & More)](./pbs148)
-* [PBS 149 – Better Arguments with POSIX Special Variables and Options](./pbs149)
-* [PBS 150 — Bash Script Plumbing](./pbs150)
+* [PBS 143 — Bash: Shell Script Basics](./pbs143)
+* [PBS 144 — Bash: Basic Shell Script IO](./pbs144)
+* [PBS 145 — Bash: Shell Conditionals](./pbs145)
+* [PBS 146 – Bash: Shell Loops](./pbs146)
+* [PBS 147 – Bash: Arrays](./pbs147)
+* [PBS 148 – Bash: Potpourri (Subshells, Relative Paths & More)](./pbs148)
+* [PBS 149 – Bash: Better Arguments with POSIX Special Variables and Options](./pbs149)
+* [PBS 150 — Bas:h Script Plumbing](./pbs150)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
