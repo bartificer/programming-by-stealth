@@ -1,5 +1,7 @@
 classDiagram-v2
-    class Pancake {
+  class Pancake {
+    withSyrup
     }
-    class Waffle {
-    }
+  class Waffle {
+    withoutSyrup
+  }
