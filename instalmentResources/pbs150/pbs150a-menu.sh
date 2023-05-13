@@ -28,7 +28,7 @@ do
             then
                 limit=$OPTARG
             else
-                echo "invalid limit - must be an integer greater than zero"  1>&2
+                echo "invalid limit - must be an integer greater than zero"  >&2
                 exit 2;
             fi
             ;;
@@ -36,7 +36,7 @@ do
             snark=1
             ;;
         ?)
-            echo "Usage: $(basename $0) [-s] [-l LIMIT]"  1>&2
+            echo "Usage: $(basename $0) [-s] [-l LIMIT]"  >&2
             exit 2
     esac
 done
@@ -49,16 +49,16 @@ if [[ -z $limit ]]
 then
     if [[ -n $snark ]]
     then
-        echo "Wha' d' ya want (greed is grand)?" 1>&2
+        echo "Wha' d' ya want (greed is grand)?" >&2
     else
-        echo 'Choose your breakfast (as many items as you like)' 1>&2
+        echo 'Choose your breakfast (as many items as you like)' >&2
     fi
 else
     if [[ -n $snark ]]
     then
-        echo "Pick no more than $limit things, and make it snappy!"  1>&2
+        echo "Pick no more than $limit things, and make it snappy!"  >&2
     else
-        echo "Choose up to $limit breakfast items"  1>&2
+        echo "Choose up to $limit breakfast items"  >&2
     fi
 fi
 select item in done "${menu[@]}"
@@ -73,9 +73,9 @@ do
     order+=("$item")
     if [[ -n $snark ]]
     then
-        echo "Fine, you can have $item"
+        echo "Fine, you can have $item"  >&2
     else
-        echo "Added $item to your order"
+        echo "Added $item to your order"  >&2
     fi
 
     # if we're limiting, check the limit
