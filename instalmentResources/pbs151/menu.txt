@@ -1,0 +1,18 @@
+# sweet stuff
+pancakes
+waffles
+
+# healthy stuff
+porridge
+muesli
+
+# fried
+sausages
+bacon
+eggs
+spam
+
+# drinks
+tea
+coffee
+orange juice
