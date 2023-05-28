@@ -168,6 +168,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 148 — Bash: Potpourri (Subshells, Relative Paths & More)](./pbs148)
 * [PBS 149 — Bash: Better Arguments with POSIX Special Variables and Options](./pbs149)
 * [PBS 150 — Bash: Script Plumbing](./pbs150)
+* [PBS 151 — Bash: Printf and More](./pbs151)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
