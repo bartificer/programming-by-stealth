@@ -114,8 +114,12 @@ capMid=''; for c in $(seq 1 $capLen); do capMid+='━'; done
 # === print the table ===
 #
 
-# print the top cap row
-printf '┏%s┓\n' $capMid
+# the variable to build the table into
+table=''
+
+# render the top cap row
+printf -v row '┏%s┓\n' $capMid
+table+=$row
 
 # print the table body
 for m in $(seq $start $end)
@@ -123,9 +127,19 @@ do
     # calcuate the product
     p=$(echo "$n*$m" | bc)
 
-    # print the table row
-    printf "$fString" $n $m $p
+    # render the table row
+    printf -v row "$fString" $n $m $p
+    table+=$row
 done
 
-# print the bottom cap row
-printf '┗%s┛\n' $capMid 
+# render the bottom cap row
+printf -v row '┗%s┛\n' $capMid
+table+=$row
+
+# print the table
+if [[ -t 1 ]]
+then
+    echo "$table" | less --no-init --quit-if-one-screen
+else
+    echo "$table"
+fi
