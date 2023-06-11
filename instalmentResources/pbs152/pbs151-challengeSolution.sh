@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Exit codes:
+# 1: missing required args or unsupported flags or optional args
+# 2: invalid value for supported arg
+
 #
 # === set defaults ===
 #
@@ -12,7 +16,7 @@ doDebug='' # default to not debugging
 #
 
 # utility variables
-usage="Usage: $(basename $0) [-s START] [-e END] N"
+usage="Usage: $(basename $0) [-s START] [-e END] [-d] N"
 intRE='^-?[0-9]+$'
 
 # process optional args & flags
