@@ -79,7 +79,7 @@ fi
 # === Build row format string ===
 #
 
-# calculate maximum lengths for each column when nicely fomatted
+# calculate maximum lengths for each column when nicely formatted
 nLen=$(printf "%'d" $n | wc -c | xargs) # character length of the number when formatted
 maxMLen=1 # maximum character length of any formatted multiplier
 maxPLen=1 # maximum character length of any formatted product
@@ -94,7 +94,7 @@ do
     [[ $pLen -gt $maxPLen ]] && maxPLen=$pLen
 done
 
-# calculate the lenght of the middle piece of the table caps
+# calculate the length of the middle piece of the table caps
 capLen=$(echo "8+$nLen+$maxMLen+$maxPLen" | bc)
 
 # if debugging, print the calculated numbers
@@ -128,7 +128,7 @@ table+=$row
 # print the table body
 for m in $(seq $start $end)
 do
-    # calcuate the product
+    # calculate the product
     p=$(echo "$n*$m" | bc)
 
     # render the table row
