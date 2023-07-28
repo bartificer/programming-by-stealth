@@ -169,11 +169,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 149 — Bash: Better Arguments with POSIX Special Variables and Options](./pbs149)
 * [PBS 150 — Bash: Script Plumbing](./pbs150)
 * [PBS 151 — Bash: Printf and More](./pbs151)
-<<<<<<< HEAD
-* [PBS 152 - Bash: xargs & Easier Arithmetic](./pbs152)
-=======
 * [PBS 152 — Bash: xargs & Easier Arithmetic](./pbs152)
->>>>>>> master
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
