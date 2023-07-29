@@ -15,7 +15,7 @@ pal () {
     echo "$str" | rev
 }
 
-# call the palindrome function in a piple line
+# call the palindrome function in a pipeline
 echo 'Your palindromic username: '$(echo "$USER" | pal)
 
 # write a palindrome of the hostname in all upper case to a variable

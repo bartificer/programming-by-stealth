@@ -4,7 +4,7 @@
 fnCounter=1
 echo "$1" | egrep '^\d+$' -q && fnCounter=$1
 
-# define a POSIX Hello World fuction
+# define a POSIX Hello World function
 # Arguments: NONE
 hellow () {
     echo 'Hello World!'

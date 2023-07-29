@@ -2,7 +2,7 @@
 
 # define a POSIX function to test if all passed values are integers
 # Arguments   : 1...n, the values to test
-# STDIN       : value to test (only read of no args passed)
+# STDIN       : value to test (only read ff no args passed)
 # STDOUT      : NOTHING
 # Return Codes:
 #   0 - the value is an integer
