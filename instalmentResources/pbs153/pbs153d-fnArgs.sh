@@ -1,67 +1,72 @@
 #!/usr/bin/env bash
 
-# define a POSIX Hello World fuction
-# Arguments: NONE
-hellow () {
-    echo 'Hello World!'
-    echo '(from inside a POSIX function)'
-}
+# define a POSIX function to test if all passed values are integers
+# Arguments   : 1...n, the values to test
+# STDIN       : value to test (only read of no args passed)
+# STDOUT      : NOTHING
+# Return Codes:
+#   0 - the value is an integer
+#   1 - the value is not an integer
+is_int () {
+    # save the RE used to recognise integers
+    intRE='^[-]?\d+$'
 
-# call simple greeting function
-hellow
-
-# define a function to greet a user
-# Arguments:
-# 1. the user's name, default to the $USER environment var
-hellou () {
-    # save the name from first arg, use $USER if no arg passed
-    name="$1"; [[ -n $name ]] || name="$USER"
-
-    # Print the greeting
-    echo "Hello $name"'!'
-}
-
-# call the greeting function without and then with a names
-hellou
-hellou Bob
-
-# define a function that uses getopts to optionally greet a user with a desert
-# Arguments:
-# 1. the user's name, default to the $USER environment var
-# Optional Args:
-# d - a desert the user likes
-hellod () {
-    # process the optional arguments
-    while getopts ':d:' opt
-    do
-        case $opt in
-            d)
-                # save the desert
-                desert="$OPTARG"
-                ;;
-            ?)
-                # render a sane error, then exit
-                echo 'Function Usage: hellod [-d DESERT]'
-                exit 1
-                ;;
-        esac
-    done
-
-    # save the name from first positional arg, use $USER if no arg passed
-    shift $(( OPTIND - 1 ))
-    name="$1"; [[ -n $name ]] || name="$USER"
-
-    # Print the greeting
-    echo "Hello $name"'!'
-
-    # if passed, print the desert
-    if [[ -n $desert ]]
+    # check for args and process them or STDIN as appropriate
+    if [[ $# -gt 0 ]]
     then
-        echo "I hear you like $desert, I agree 🙂"
+        # loop over args
+        for val in "$@"
+        do
+            # return an error if not a match
+            echo "$val" | egrep -q "$intRE" || return 1
+        done
+
+        # if we got here, all were matches, so return success
+        return 0
+    else
+        # process STDIN
+        cat | egrep -q "$intRE" && return 0
+        return 1
     fi
 }
 
-# call the desert greeting with various combinations of arg and opt args
-hellod
-hellod Bob
-hellod -d waffles Bob
+# check values via STDIN
+testVals=(42 4.5 -1 waffles)
+for val in "${testVals[@]}"
+do
+    echo -n "Testing '$val' via STDIN: "
+    if echo "$val" | is_int
+    then
+        echo 'YES'
+    else
+        echo 'NO'
+    fi
+done
+
+# check single values via args
+for val in "${testVals[@]}"
+do
+    echo -n "Testing '$val' via Single Arg: "
+    if is_int "$val"
+    then
+        echo 'YES'
+    else
+        echo 'NO'
+    fi
+done
+
+# many values via args
+echo -n "Testing '42' & '-1' via Args: "
+if is_int 42 -1
+then
+    echo 'ALL integers'
+else
+    echo 'NOT all integers'
+fi
+echo -n "Testing '11' & 'waffles' via Args: "
+if is_int 11 waffles
+then
+    echo 'ALL integers'
+else
+    echo 'NOT all integers'
+fi
