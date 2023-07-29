@@ -19,7 +19,7 @@ is_int () {
 
     # process the optional arguments
     anyOK=''
-    while getopts ':a:' opt
+    while getopts ':a' opt
     do
         case $opt in
             a)
@@ -64,7 +64,7 @@ is_int () {
 }
 
 # print test array
-testVals=(42 4.5 -1 waffles)
+testVals=(42 -1 4.5 waffles)
 echo "Test Values:"
 for val in "${testVals[@]}"
 do
