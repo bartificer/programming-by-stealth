@@ -171,6 +171,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 151 — Bash: Printf and More](./pbs151)
 * [PBS 152 — Bash: xargs & Easier Arithmetic](./pbs152)
 * [PBS 153 — Bash: Functions & Scope](./pbs153)
+* [PBS 153 — Bash: Expansions & Brackets Redux](./pbs154)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
