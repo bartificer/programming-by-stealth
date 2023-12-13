@@ -1,9 +1,12 @@
+(?i)pbs
+[Ll]ookups
 accessor
 accessors
 ajax
 Allman
 api
 architected
+arg[s]?
 arial
 async
 automata
@@ -104,7 +107,6 @@ Knuts
 Komodo
 Latinum
 Lodash
-[Ll]ookups
 Luxon
 Maynooth
 medialize
@@ -142,7 +144,6 @@ objecty
 octothorp
 parallelisation
 passthrough
-(?i)pbs
 pbsdemos
 pbsindex
 pipelining
