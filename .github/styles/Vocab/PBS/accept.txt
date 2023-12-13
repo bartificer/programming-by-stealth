@@ -104,7 +104,7 @@ Knuts
 Komodo
 Latinum
 Lodash
-Lookups
+[Ll]ookups
 Luxon
 Maynooth
 medialize
@@ -142,7 +142,7 @@ objecty
 octothorp
 parallelisation
 passthrough
-pbs
+(?i)pbs
 pbsdemos
 pbsindex
 pipelining
@@ -258,6 +258,7 @@ wikipedia
 Wizarding
 wordpress
 www
+XKPasswd
 xs
 Yannic
 Zsh
