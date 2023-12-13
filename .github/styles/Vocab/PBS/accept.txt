@@ -66,6 +66,7 @@ globals
 glyphicon
 glyphicons
 granularities
+GUIs
 hacky
 Hamano
 Hanselman
@@ -92,6 +93,7 @@ iterable
 iterables
 Jasmin
 javascript
+jq
 jquery
 js
 jsdoc
