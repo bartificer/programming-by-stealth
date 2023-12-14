@@ -31,7 +31,6 @@ A so-called _absolute URL_ is a complete URL, and it specifies a number of parts
 
 All these parts are composed into a URL as follows – the underlined sections are placeholders, and the bold sections are required for valid absolute URLs:
 
-<code>
 <ul style='list-style-type: none'>
     <strong>
       <u>scheme</u>
@@ -47,7 +46,6 @@ All these parts are composed into a URL as follows – the underlined sections a
     #
     <u>fragment</u>
 </ul>
-</code>
 
 In code as:
 ```
