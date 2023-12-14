@@ -42,6 +42,7 @@ dependabot
 destructured
 destructuring
 dev
+distro[s]?
 divs
 doctype
 duplicative
@@ -64,6 +65,7 @@ gameplay
 geolocate
 geolocated
 getters
+Git's
 gitconfig
 Gleick
 globals
