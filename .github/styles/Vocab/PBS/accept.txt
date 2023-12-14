@@ -24,7 +24,9 @@ bundler
 bundlers
 Busschots
 callouts
+cardinalities
 cdnjs
+CDNs
 celsius
 Chezmoi
 chooseable
@@ -33,8 +35,10 @@ cmd
 config
 configs
 const
+crypto
 css
 customisable
+dependabot
 destructured
 destructuring
 dev
@@ -110,6 +114,7 @@ Komodo
 Latinum
 Lodash
 Luxon
+matchers
 Maynooth
 medialize
 menubar
@@ -142,12 +147,15 @@ nonnumeric
 noopener
 nosillacast
 npm
+O'Reilly
 objecty
 octothorp
+Packagist
 parallelisation
 passthrough
 pbsdemos
 pbsindex
+PHPdoc
 pipelining
 plusses
 podcasters
@@ -157,8 +165,10 @@ preloaded
 prepended
 prepends
 prewritten
+printf
 proverbials
 Quatloo
+QUnit
 raison
 rawcdn
 realtime
@@ -201,6 +211,7 @@ submatch
 submatches
 subnet
 subnets
+subshell
 substring
 syntaxes
 tabindex
@@ -209,6 +220,7 @@ thenables
 tock
 todo
 toggler
+toolchain[s]?
 tooltip
 tooltips
 transparentness
@@ -253,12 +265,14 @@ viewport
 viewports
 vip
 Vlaams
+VSCode
 Waldrop
 webmail
 Webpack
 whoopsies
 wikipedia
 Wizarding
+Wordle
 wordpress
 www
 XKPasswd
