@@ -165,13 +165,16 @@ parallelisation
 passthrough
 pbsdemos
 pbsindex
+performant
 PHPdoc
 physicses
 pipelining
 plusses
+PNG[s]?
 podcasters
 Podfeet
 poofed
+Posix
 preloaded
 prepended
 prepends

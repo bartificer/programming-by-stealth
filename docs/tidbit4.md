@@ -56,10 +56,12 @@ In the corporate world, the king of the databases is Oracle, and in the open sou
 
 Allison's infrastructure leading into this big move was very much in keeping with the norms for a medium-sized website a decade or so ago. The entire site was delivered from one cloud-hosted virtual machine, it was a classic LAMP stack:
 
+<!-- vale Vale.Spelling = NO -->
 1. CentOS <strong>L</strong>inux powering the virtual machine
 2. The <strong>A</strong>pache web server serving all content
 3. A local installation of <strong>M</strong>ySQL/<strong>M</strong>ariaDB storing the data
 4. Apache executing the WordPress <strong>P</strong>HP code using `mod_php`
+<!-- vale Vale.Spelling = YES -->
 
 Linux, Apache, MySQL (MariaDB), and PHP – LAMP.
 
