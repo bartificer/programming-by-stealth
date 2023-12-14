@@ -624,7 +624,7 @@ $('#respawn_btn').click(function(){
 
 The final version of this code with all the changes mentioned is [published on GitHub as a tagged release](https://github.com/bbusschots/bartificer_ca_js/tree/PBS42-Challenge-Solution).
 
-## Introducing JavaScript ES6 (EMAScript Version 6)
+## Introducing JavaScript ES6 (ECMAScript Version 6)
 
 When we started our exploration of JavaScript back in [instalment 12](https://pbs.bartificer.net/pbs12), I had to make a decision — what version of JavaScript should we use? ES6 was out, but browser support was patchy at best, so I chose to stick with the previous version — ECMAScript 5. So, all the JavaScript you’ve seen in this series to date has been ES5.
 

@@ -25,6 +25,7 @@ bundlers
 Busschots
 callouts
 cardinalities
+CAs
 cdnjs
 CDNs
 celsius
@@ -32,6 +33,7 @@ Chezmoi
 chooseable
 cli
 cmd
+commit's
 config
 configs
 const
@@ -44,12 +46,16 @@ destructuring
 dev
 distro[s]?
 divs
+DocDash
 doctype
 duplicative
 easter
+eBook[s]?
+else's
 embeddable
 eslint
 eslintrc
+ethernet
 falsy
 Ferengi
 fibonacci
@@ -69,6 +75,7 @@ Git's
 gitconfig
 Gleick
 globals
+globbing
 glyphicon
 glyphicons
 granularities
@@ -99,6 +106,7 @@ iterable
 iterables
 Jasmin
 javascript
+JDoc
 jq
 jquery
 js
@@ -158,6 +166,7 @@ passthrough
 pbsdemos
 pbsindex
 PHPdoc
+physicses
 pipelining
 plusses
 podcasters
@@ -193,6 +202,7 @@ sandboxing
 sanitisation
 screenreader
 screenreaders
+scripter[s]?
 scrollable
 Scrollbars
 scroller
@@ -223,11 +233,13 @@ tock
 todo
 toggler
 toolchain[s]?
+toolsets
 tooltip
 tooltips
 transparentness
 truthy
 ttt
+UIs
 unapplied
 unary
 uncheck
@@ -267,6 +279,7 @@ viewport
 viewports
 vip
 Vlaams
+VMs
 VSCode
 Waldrop
 webmail
