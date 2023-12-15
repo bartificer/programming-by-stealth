@@ -1,4 +1,4 @@
-# PBS Tibit 3 of Y — Managing the NPM (or Packagist) Trade-off
+# PBS Tidbit 3 of Y — Managing the NPM (or Packagist) Trade-off
 
 This tidbit was inspired by a relatively recent news story about two very popular NPM packages, but it serves as an illustration of a much bigger point — you need to proactively manage your code's dependencies.  It's pretty obvious that each time you include someone else's code in your project you're taking on some risk, but what's less obvious is that you often also take on risk by choosing **not** to use other people's code!
 
@@ -67,7 +67,7 @@ To truly be effective, malicious people need to steal a good reputation. There a
 3. **Buy-out** — sometimes developers get worn down, and bad people simply offer them some money to take over their project. They have now purchased a reputation which they can exploit to deliver their malware.
 4. **Sabotage** — sometimes legitimate projects go bad because some or all of the people involved decide they've simply had enough and just blow it up to cause as much misery as they can on the way out the proverbial door!
 
-So, summing up, the main reason not use use other people's code are:
+So, summing up, the main reasons not to use other people's code are:
 
 * **Inevitable Mistakes** — all developers are human, all humans make mistakes, so all code has bugs!
 * **Over-confidence** — some developers simply don't realise how little they actually know!
