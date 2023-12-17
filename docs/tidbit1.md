@@ -1,4 +1,4 @@
-# PBS Tibit 1 of Y — Display Values are not Data!
+# PBS Tidbit 1 of Y — Display Values are not Data!
 
 Listener [@lbutlr](https://twitter.com/lbutlr/) pointed out [on Twitter](https://twitter.com/lbutlr/status/1221867924589121536) that the sample solution to the challenge set in [PBS 88](./pbs88) Icon as I originally posted it in [PBS 89](./pbs89) had a bug — it sometimes got its maths spectacularly wrong!
 

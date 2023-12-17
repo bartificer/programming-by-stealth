@@ -1,4 +1,4 @@
-# PBS Tibit 5 of Y — Tips for the Vacationing Programmer
+# PBS Tidbit 5 of Y — Tips for the Vacationing Programmer
 
 If bashing away on some code on a beach-side Mediterranean terrace with a pitcher of sangria in a warm August evening breeze sounds like your idea of heaven, this special instalment is for you 🙂 Those of us who really love programming love to get deep into some purely personal coding projects while we're on our summer vacation, but if often fails to go to plan because of a lack of planning. If you want your vacation coding projects to be stress-free and fun, you absolutely need to do some prep work before you board that plane or start up that camper van!
 
@@ -16,7 +16,11 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Before Departure
 
+<!-- vale Vale.Repetition = NO -->
+
 ### Patchy Patchy Patch Patch 😉
+
+<!-- vale Vale.Repetition = YES -->
 
 If you know internet connectivity is going to be a problem, you definitely need to apply all software and OS updates before you leave. But I advise doing that anyway, regardless of your connectivity expectations for two reasons — firstly, your expectations might not pan out, and secondly, do you want to waste vacation time looking at progress bars?
 
