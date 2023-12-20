@@ -1,0 +1,5 @@
+{
+  "breakfast": ["bacon", "eggs", "toast", "waffles", "pancakes"],
+  "lunch": ["sandwitches", "rolls", "baps", "wraps"],
+  "dinner": ["pizza", "pasta", "burgers"]
+}
