@@ -481,3 +481,7 @@ The page should look something like:
 ## Conclusions
 
 Now that we have learned about positioning, we have covered most of the CSS fundamentals – we’re not quite done with CSS though – there are still a few loose ends to tie up, which we’ll do in the next instalment.
+
+ - [← PBS 7 — More CSS](pbs7)
+ - [Index](index)
+ - [PBS 9 — More CSS Positioning →](pbs9)

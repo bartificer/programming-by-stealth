@@ -664,3 +664,7 @@ The challenge now is to make a start on a web app for showing the current time i
 Rather than implementing your own timezone conversion, please use either JavaScript's built-in date functions, or, better yet, an open source library dedicated to making date and time operations easy. I'd recommend using [moment.js](https://momentjs.com) with its [optional timezone extension](https://momentjs.com/timezone/).
 
 Instalment 95 will be dedicated to a sample solution to this challenge.
+
+ - [← PBS 91 — JavaScript RE Objects](pbs91)
+ - [Index](index)
+ - [PBS 93 — Encapsulation with JavaScript Objects →](pbs93)

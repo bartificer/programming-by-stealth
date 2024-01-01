@@ -430,3 +430,7 @@ Using my solution from the previous instalment as your starting point, update th
 ## Final Thoughts
 
 Having learned about `let` and `const`, default argument values, variadic arguments, and `for ... in` loops, we’re not even half way through all the cool feature ES6 added to JavaScript. We’ll continue our exploration of ES6 next week with a look at how arrays and strings have been improved.
+
+ - [← PBS 43 — Introducing JavaScript ES6](pbs43)
+ - [Index](index)
+ - [PBS 45 — ES6 Arrays & Strings →](pbs45)

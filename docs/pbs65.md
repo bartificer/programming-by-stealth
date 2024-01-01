@@ -334,3 +334,7 @@ Using your own solution to the previous challenge, or mine, improve both forms o
 ## Final Thoughts
 
 We’re now almost done with our introduction to forms in Bootstrap. We can take input from users in all sorts of very powerful and pretty ways, and we can lay out our forms in many and varied ways. What we haven’t learned how to do in a Bootstrap-way is validate our forms. So that’s what we’ll be looking at next time.
+
+ - [← PBS 64 — Bootstrap Form Layouts](pbs64)
+ - [Index](index)
+ - [PBS 66 — Bootstrap Form Validation →](pbs66)

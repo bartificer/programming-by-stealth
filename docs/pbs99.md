@@ -605,3 +605,7 @@ In fact, the next instalment will be entirely dedicated to JavaScript because it
 Instalment 101 will see us take a break from programming itself so we can focus on some of the tools developers have at their disposal for managing coding projects. We'll be paying particular attention to the distributed version control system [Git](https://en.wikipedia.org/wiki/Git), and the free Git service offered by Microsoft at [GitHub.com](https://github.com).
 
 Once we've learned the basics of Git and GitHub we'll shift our focus from the web browser to the web server, and we'll use that as an opportunity to meet a new language — [PHP](https://en.wikipedia.org/wiki/PHP).
+
+ - [← PBS 98 — Building with Classes Part 1: *Has-A*](pbs98)
+ - [Index](index)
+ - [PBS 100 — Time Sharing Challenge Solution →](pbs100)

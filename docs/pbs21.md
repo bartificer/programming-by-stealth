@@ -342,3 +342,7 @@ Write a JQuery command to set the `target` of all links in the `main` content re
 ## Conclusions
 
 At this stage we’re starting to get a good taste of what jQuery can do – we can select elements, query and manipulate their style, and query and manipulate their attributes. We’re now ready to move out of the web console, and start incorporating our Javascript code directly into our web pages. To do that we’ll also need to learn about browser events, and how jQuery can interact with them.
+
+ - [← PBS 20 — JS in the Browser](pbs20)
+ - [Index](index)
+ - [PBS 22 — jQuery Events →](pbs22)

@@ -157,3 +157,7 @@ Every library you depend on is a part of your supply chain, and you need to thin
 What I hope you take away from this is that there are no easy answers, you simply have to think about this stuff carefully. Not reusing code is dangerous, and reusing the wrong code is also dangerous. You need to explicitly decide what to outsource and what to write yourself, and you need to choose the dependencies you do use with care. You can't be perfectly sure, because humans are involved at every stage of the process, and you will make mistakes. That's OK, just remember to learn from them!
 
 Most of my advice and suggestions were entirely generic, so when we move on to PHP we'll be using the same mindset when installing open source libraries from [Packagist](https://packagist.org) instead of NPM. The tool will change, but the core concepts won't.
+
+ - [← Tidbit 2 — It's OK to Play a Different Game!](tidbit2)
+ - [Index](index)
+ - [Tidbit 4 — Rethinking a Web App – from Web Server to Cloud Stack →](tidbit4)

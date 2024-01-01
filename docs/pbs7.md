@@ -412,3 +412,7 @@ This will add a new interface to the bottom of the browser window with two panes
 ![FireFox Web Inspector](../assets/pbs7/Screen-Shot-2016-01-19-at-17.11.42-e1453223585271.png)
 
 This interface makes it much easier to debug your CSS, and will become even more valuable in the next instalment when we look at using CSS to position elements within a page.
+
+ - [← PBS 6 — Introducing CSS](pbs6)
+ - [Index](index)
+ - [PBS 8 — CSS Positioning →](pbs8)

@@ -445,3 +445,7 @@ So far in this series we've looked at HTML, CSS, and JavaScript. Together these 
 It will take us some months to get comfortable on the server side, and with PHP, but when we do the next big area we'll be venturing into is data storage. Probably the single most important role server-side code plays is that of a data broker — server side web code spends the vast majority of its time reading data from a database of some kind, or writing data to a database of some kind. Databases come in all shapes and sizes, so that leaves a lot of room for future exploration!
 
 But, before all that, our challenges are now getting big enough that you'd get real genuine value from source control. So, I'm going to insert a short diversion between JavaScript and PHP, and spend a few instalments explaining the most popular open-source source control system in use today, GIT.
+
+ - [← PBS 94 — Basic JavaScript OO with Class](pbs94)
+ - [Index](index)
+ - [PBS 96 — World Clock Challenge Solution →](pbs96)
