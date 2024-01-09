@@ -361,3 +361,7 @@ the real example file</a>.</p>
 We have now covered the basics of HTML. We can create documents with properly marked up content, correctly marking sections of text as headings, paragraphs, lists, etc.. We are now ready learn about using CSS to style our documents.
 
 Once we’ve learned the basics of CSS, we’ll be revisiting HTML to learn about some more tags we’ve ignored for now. The reason we’ve ignored these tags on our first pass through HTML is that their usefulness is not obvious until you know about CSS.
+
+ - [← PBS 4 — HTML In-line Elements](pbs4)
+ - [Index](index)
+ - [PBS 6 — Introducing CSS →](pbs6)

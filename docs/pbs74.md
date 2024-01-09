@@ -320,3 +320,7 @@ I do also want to remind you that flexboxes can be arranged both horizontally an
 One of the reasons I love Mustache is that it’s nice and simple — it does what it does well, but doesn’t have too many features. We have now covered almost every feature the library supports!
 
 In the next instalment we’ll learn how to use a very powerful JavaScript technique known as AJAX to fetch both Mustache template strings and JSON strings from URLs.
+
+ - [← PBS 73 — Mustache Templates](pbs73)
+ - [Index](index)
+ - [PBS 75 — AJAX Intro →](pbs75)

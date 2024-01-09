@@ -279,3 +279,7 @@ Build a Navbar for use on your personal web page.
 ## Final Thoughts
 
 We’ve looked at all the Bootstrap components I want to cover except for one, the modal dialogue. So that’s what we’ll cover in the next instalment. At that stage we’ll be one step closer to finishing our first pass through the highlights of Bootstrap 4. We’ll then go on to look at a few of the JavaScript plugins included with Bootstrap. We’ve seen some of these in action within components like Alerts, Drop-downs, and Navbars, but they are worth looking at in a little more detail. That will then set things up for one final big Bootstrap adventure — creating our own customised version of Bootstrap itself, allowing us to define our own colours etc.
+
+ - [← PBS 68 — Bootstrap Navs](pbs68)
+ - [Index](index)
+ - [PBS 70 — Bootstrap Modals & Toasts →](pbs70)

@@ -520,3 +520,7 @@ Note that I’ve marked all but the first test as `todo`, so you’ll need to ch
 In this instalment we’ve learned how to use QUnit’s `todo` feature to effectively disable tests until we’re ready for them to be run, we’ve learned how to do basic text input on the web, and we’ve made a start on what I hope will be a fun new JavaScript project.
 
 In the next instalment we’ll learn about more specific kinds of text input on the web, and we’ll continue work on our new JavaScript project.
+
+ - [← PBS 34 — More JS Testing with QUnit](pbs34)
+ - [Index](index)
+ - [PBS 36 — More HTML Text Input \| More Cellular Automata →](pbs36)

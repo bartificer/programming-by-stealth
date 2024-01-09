@@ -411,3 +411,7 @@ You should use a Mustache template to build your cards. That template, as well a
 We’ve now finished our exploration of Bootstrap 4. We’ve not covered even nearly everything, but we have looked at a broad range of the highlights. We’ve learned that Bootstrap can be conceptually divided into four aspects — layout, styling of existing HTML elements, custom components, and utilities. We’ve explored a representative sample of each of these aspects. We have hopefully imparted enough knowledge to empower you to research the rest independently as and when needed.
 
 The next thing we need to do is circle back to some recent enhancements to the core JavaScript language. That will end our first pass at JavaScript, leaving us ready to embark on an entire new chapter within this ever-expanding series.
+
+ - [← PBS 82 — Async & Await](pbs82)
+ - [Index](index)
+ - [PBS 84 — Objects as Dictionaries in JavaScript (Redux & Update) →](pbs84)

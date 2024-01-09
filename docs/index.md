@@ -175,6 +175,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 155 — jq: Introducing JSON Processing from the Shell with `jq`](./pbs155)
 * [PBS 156 — jq: Extracting Data with `jq`](./pbs156)
 * [PBS 157 — jq: Querying JSON with `jq`](./pbs157)
+* [PBS 158 — jq: More Queries](./pbs158)
 
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).

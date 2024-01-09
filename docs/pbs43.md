@@ -826,3 +826,7 @@ It’s very easy to accidentally break code while refactoring. That’s where th
 ## Final Thoughts
 
 While the change from `var` to `let` and `const` is significant, it’s just the beginning of our journey into the joys of ES6. In the next instalment we’ll learn about new types of loops, and about default values for function arguments.
+
+ - [← PBS 42 — Playing the Game of Life](pbs42)
+ - [Index](index)
+ - [PBS 44 — ES6 Arguments & Objects →](pbs44)

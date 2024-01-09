@@ -857,3 +857,7 @@ You don’t need to understand the historical or scientific context for Conway�
 2.  [_Complexity: The Emerging Science at the Edge of Order and Chaos_ by M. Mitchell Waldrop](https://smile.amazon.com/COMPLEXITY-EMERGING-SCIENCE-ORDER-CHAOS/dp/0671872346?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0&deviceType=desktop&ie=UTF8&pldnNewCustomer=1&ref_=smi_ge_s_cnf_smi_T2)
 
 These two books are by different authors, but they compliment each other perfectly. Both have a similar narrative style where you learn about the science by following the researchers on their journeys of discovery – you get to see real people go from _huh – that’s odd’_ to _I wonder what would happen if …_ through to _aha!_. _Complexity_ picks up the story at pretty much the exact point in the story where _Chaos_ finishes.
+
+ - [← PBS 33 — JS Testing with QUnit](pbs33)
+ - [Index](index)
+ - [PBS 35 — HTML Text Input \| Introducing ‘Life’ →](pbs35)

@@ -335,3 +335,7 @@ $('a').empty().text('boo!');
 We’ve now had a small taste of what JavaScript can do in the browser and seen just a hint of what jQuery can do for us. In the next instalment we’ll do a much more detailed introduction to jQuery, starting with how jQuery allows you to pinpoint exactly the elements of a page you want to address, before moving on to look at how jQuery can interact with the CSS properties of HTML elements, and with the attributes of HTML elements.
 
 Playing around in the console is a nice way to experiment with JavaScript in the browser, but of course you can embed JavaScript code directly into web pages. We need to learn a little more about jQuery before we’re ready to take that next important step though.
+
+ - [← PBS 19 — Some JavaScript Challenges](pbs19)
+ - [Index](index)
+ - [PBS 21 — jQuery Basics →](pbs21)

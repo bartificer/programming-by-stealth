@@ -330,3 +330,7 @@ We’ve seen how Bootstrap Navs can be used to make basic navigation menus, as w
 Bootstrap has one more nav-related trick up its sleeve though — what it refers to as the _Navbar_ component. This component is designed to be used as the navigation bar at the top of web pages or web apps. It supports simple links and Drop-downs just like a regular Nav, but it also supports the addition of small inline forms for things like login or site search functionality, non-link text, or a site logo. It even has built-in support for smaller devices through the now ubiquitous so-called _hamburger button_.
 
 Because the Navbar is so powerful, we’ll be dedicating the entire next instalment to it.
+
+ - [← PBS 67 — Introducing Bootstrap Dropdowns](pbs67)
+ - [Index](index)
+ - [PBS 69 — Bootstrap Navbars →](pbs69)

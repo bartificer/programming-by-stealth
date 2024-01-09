@@ -206,3 +206,7 @@ The file `pbs61b.html` in the ZIP file contains a sampling of some different bad
 ## Final Thoughts
 
 In this instalment we took a little breather from JavaScript/jQuery, but next time we’ll be back to using all three of the stands that make up the internet’s backbone (HTML, CSS, & JavaScript) when we look at some more commonly used Bootstrap components.
+
+ - [← PBS 60 — Bootstrap & jQuery](pbs60)
+ - [Index](index)
+ - [PBS 62 — A Basic Bootstrap Form →](pbs62)

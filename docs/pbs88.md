@@ -400,3 +400,7 @@ Using your own solution to the previous challenge or my sample solution as your 
 ## Final Thoughts
 
 We’ve now covered the majority of the proverbial hats objects have to wear in JavaScript. In the next instalment we’ll look at two relatively simple hats: strings and regular expressions. That will then set us up for the final, but biggest, hat of all — prototypes/classes and instance objects.
+
+ - [← PBS 87 — JavaScript Iterators Objects & Generator Functions](pbs87)
+ - [Index](index)
+ - [PBS 89 — Currency Converter Challenge →](pbs89)

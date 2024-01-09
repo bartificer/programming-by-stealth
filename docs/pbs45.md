@@ -322,3 +322,7 @@ To avoid introducing bugs into the code, my advice is to update one file, make s
 ## Final Thoughts
 
 We’ve now learned about how ES6 has improved variable scoping with lexical scopes, function argument handling with default values and variadic arguments, arrays, and strings. Next time we’ll discover a whole new type of function and how it can save us from the need for declaring variables named `self` to preserve access to the containing function’s `this` within callbacks. Also we’ll make a start on our exploration of _classes_, which provide a more human-friendly mechanism for defining our own prototypes.
+
+ - [← PBS 44 — ES6 Arguments & Objects](pbs44)
+ - [Index](index)
+ - [PBS 46 — ES6 Spread Operator, Arrow Functions & Classes →](pbs46)

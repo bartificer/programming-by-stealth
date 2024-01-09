@@ -1110,3 +1110,7 @@ Given that we’ve just wrapped up one chapter, and will be starting something c
 At this stage we’ve come a very long way indeed. We’ve learned how to define the structure of a web page with HTML, how to alter the presentation of a page with CSS, and how to bring that page to life with JavaScript. We’ve learned how to use jQuery to interact with the DOM and how to create our own classes. We’ve now put all that together to create an API for building Cellular Automata. We’ve not just created a web app; we’ve created an API that enables others to create web apps of their own which can display any 2D cellular automaton they care to dream up!
 
 When we return we’ll switch our focus away from JavaScript and back onto HTML and CSS with an introduction to the popular and powerful open source CSS library [Bootstrap 4](https://getbootstrap.com).
+
+ - [← PBS 50 — A Worked Example (Object Explorer)](pbs50)
+ - [Index](index)
+ - [PBS 52 — Introducing Bootstrap 4 →](pbs52)

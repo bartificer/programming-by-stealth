@@ -363,3 +363,7 @@ console.log(`bob evaluates to: ${bob}`);
 ## Conclusions
 
 Having now reminded ourselves of how JavaScript objects can be used as dictionaries, and seen how recent versions of the language have added some nice new features, we’re ready to look at another very common use of objects in JavaScript — arrays.
+
+ - [← PBS 83 — Bootstrap Cards](pbs83)
+ - [Index](index)
+ - [PBS 85 — Objects as Arrays in JavaScript (Redux & Update) →](pbs85)

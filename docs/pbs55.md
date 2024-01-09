@@ -307,3 +307,7 @@ Make the following changes to the recipe you’ve been building up over the past
 ## Final Thoughts
 
 We’re now well into the second of Bootstrap’s four aspects. We made a first pass through the first aspect, the _utility classes_, in the previous two instalments. We’ve now made a good start on the second, Bootstrap’s so-called _content classes_. And we’ll probably finish that out in the next instalment with a look at tables, images, and figures. When that’s done we’ll move on to the most significant aspect of all — the _layout_ classes. Finally, quite a few instalments from now, we’ll have a look at some of the custom _components_ Bootstrap provides (things like modal dialogues, collapsible sections, etc.).
+
+ - [← PBS 54 — More Bootstrap Utilities](pbs54)
+ - [Index](index)
+ - [PBS 56 — More Bootstrap Content →](pbs56)

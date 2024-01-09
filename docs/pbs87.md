@@ -650,3 +650,7 @@ Firstly, the `$()` function is passed a CSS selector that looks for any tag with
 The unneeded classes are then removed using jQuery’s `.removeClass()` function, and the needed additional class added with jQuery’s `.addClass()` function.
 
 That leaves just the unwanted wrapping of the value in the span with the class `h4`. I wasn’t sure how best to do this so I googled for “unwrap tag with jQuery”, and was immediately led to [the documentation for jQuery’s `.unwrap()` function](https://api.jquery.com/unwrap/). This function does exactly what’s needed. It was literally as simple as adding `.unwrap()` into the function chain.
+
+ - [← PBS 86 — JavaScript Function Objects (Redux & Update)](pbs86)
+ - [Index](index)
+ - [PBS 88 — DOM & jQuery Objects Redux →](pbs88)

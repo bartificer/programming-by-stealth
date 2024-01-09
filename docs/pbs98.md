@@ -381,3 +381,7 @@ Hopefully this worked example has illustrated the power of *has-a* relationships
 We're now ready to learn about inheritance, and the power of *is-a* relationships in the next instalment.
 
 Note that with the addition of this un-planned instalment, you all have an extra two weeks to work on your solutions to the challenge set at the end of [instalment 96](https://bartificer.net/pbs96) 🙂
+
+ - [← PBS 97 — Class Data Attributes & Functions](pbs97)
+ - [Index](index)
+ - [PBS 99 — Building with Classes Part 2: *Is-A* →](pbs99)
