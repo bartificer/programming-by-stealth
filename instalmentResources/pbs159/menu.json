@@ -1,0 +1,17 @@
+[
+	{
+		"name": "hotdogs",
+		"price": 5.99,
+		"stock": 143
+	},
+	{
+		"name": "pancakes",
+		"price": 3.10,
+		"stock": 43
+	},
+	{
+		"name": "waffles",
+		"price": 7.50,
+		"stock": 14
+	}
+]
