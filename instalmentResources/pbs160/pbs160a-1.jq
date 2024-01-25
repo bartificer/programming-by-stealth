@@ -1,0 +1,1 @@
+[.prizes[] | select((.laureates | type) == "array") | {year: (.year | tonumber), prize: .category, numWinners: (.laureates | length), winners: [.laureates[] | [.firstname, .surname//empty] | join(" ")]}] | @json
