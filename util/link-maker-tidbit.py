@@ -103,8 +103,8 @@ for episode in episode_list:
     nbr, name = pattern.search(episode).groups()
     titles[int(nbr)] = name
 
-print (episode_list)
-print (titles)
+# print (episode_list)
+# print (titles)
 
 # Write Markdown links to the files
 # NB: Logic problem:
