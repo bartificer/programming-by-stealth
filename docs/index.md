@@ -177,6 +177,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 157 — jq: Querying JSON with `jq`](./pbs157)
 * [PBS 158 — jq: More Queries](./pbs158)
 * [PBS 159 — jq: Building Data Structures](./pbs159)
+* [PBS 160 — jq as a Programming Language](./pbs160)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
