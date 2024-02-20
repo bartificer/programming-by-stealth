@@ -2,7 +2,7 @@
 # Input:    NONE
 # Output:   A dictionary with keys a & b
 
-# start with a dictrionary with one key, a, that is an array
+# start with a dictionary with one key, a, that is an array
 {
     a: [1, 2, 3]
 }
