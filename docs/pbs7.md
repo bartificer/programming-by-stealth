@@ -133,7 +133,7 @@ The specificity for a given style definition consists of four numbers, and is wr
 
 To compare two specificities, start with the `s`. If they are different, the one with the highest `s` wins. Otherwise, move on to `i`. Again, if they are different, the one with the highest `i` wins, otherwise move on to `c`, and so on.
 
-If we add in what we learned about specificity last time, we can now say that the specificity of style definitions that are inherited from the portent, or specified with the \* selector is `0,0,0,0`.
+If we add in what we learned about specificity last time, we can now say that the specificity of style definitions that are inherited from the parent, or specified with the \* selector is `0,0,0,0`.
 
 Finally – if the four-component specificity for two competing definitions is exactly the same, the rule defined the furthest down the document wins.
 
