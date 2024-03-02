@@ -2,7 +2,7 @@ name: Add Links
 # Runs on pushes targeting the default branch
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 jobs:
   addLinks:
