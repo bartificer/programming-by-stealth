@@ -14,9 +14,9 @@
     # ensure all prizes have a laureates array
     | .laureates //= []
 
-    # descend into the laureats arrays
+    # descend into the laureates arrays
     | .laureates |= [
-        # explode the laureats
+        # explode the laureates
         .[]
 
         # add an organisation key
