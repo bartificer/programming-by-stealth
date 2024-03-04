@@ -148,7 +148,7 @@ rgba(RED_VALUE, GREEN_VALUE, BLUE_VALUE, ALPHA_VALUE)
 
 <p>For example, semitransparent pure red would be <code>rgba(255, 0, 0, 0.5)</code>.</p>
 
-<dt>HSL (Hue Saturation & Lightness)</dt>
+<dt>HSL (Hue, Saturation & Lightness)</dt>
 
 <dd>Modern browsers also support the HSL colour representation – like RGB this involves three parameters, but in this case the first parameter is the hue, given as a value between 0 and 360, representing the position of the colour on the colour wheel in degrees. The second parameter is the saturation, given as a percentage, and the third is a lightness, also given as a percentage. The format for specifying an HSL colour is as follows:</dd>
 
