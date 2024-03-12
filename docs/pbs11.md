@@ -71,7 +71,7 @@ table footer, and a table body.</p>
   </thead>
   <tfoot>
     <tr>
-      <th colspan="4">All data in this table is ficticuius.</th>
+      <th colspan="4">All data in this table is fictitious.</th>
     </tr>
   </tfoot>
   <tbody>
@@ -306,7 +306,7 @@ You can download a zip file with the code [here](https://www.bartbusschots.ie/s/
     </thead>
     <tfoot>
       <tr>
-        <th colspan="4">All data in this table is ficticuius.</th>
+        <th colspan="4">All data in this table is fictitious.</th>
       </tr>
     </tfoot>
     <tbody>
@@ -360,7 +360,7 @@ You can download a zip file with the code [here](https://www.bartbusschots.ie/s/
     </thead>
     <tfoot>
       <tr>
-        <th colspan="4">All data in this table is ficticuius.</th>
+        <th colspan="4">All data in this table is fictitious.</th>
       </tr>
     </tfoot>
     <tbody>
