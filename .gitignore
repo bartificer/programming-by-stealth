@@ -33,3 +33,7 @@ instalmentResources/pbs154/log.txt
 instalmentResources/pbs160/citation.txt
 
 instalmentResources/pbs162/techStock-*.json
+
+instalmentResources/pbs163/menu-byName.json
+
+instalmentResources/pbs163/menu-priceByName.json
