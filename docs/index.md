@@ -180,6 +180,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 160 — jq as a Programming Language](./pbs160)
 * [PBS 161 — jq: Maths, Assignment & String Manipulation](./pbs161)
 * [PBS 162 — jq: Altering Arrays & Dictionaries](./pbs162)
+* [PBS 163 — jq: Lookups & Records](./pbs163)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
