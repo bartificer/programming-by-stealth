@@ -1,4 +1,4 @@
-# Build a lookup of Nobel Prizes by year
+# Build a lookup table of Nobel Prizes indexed by year
 # Input:    JSON as published by the Nobel Committee
 # Output:   a lookup-style dictionary of record-style dictionaries
 #           describing Nobel Prizes indexed by years as strings
@@ -22,5 +22,5 @@
     }
 ]
 
-# build the lookup
+# build the lookup table
 | from_entries
