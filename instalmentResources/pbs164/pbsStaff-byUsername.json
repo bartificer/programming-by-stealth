@@ -1,0 +1,19 @@
+{
+    "allisons": {
+        "Name": "Allison Sheridan",
+        "Username": "allisons",
+        "Email": "allison@pbs.demo",
+        "Website": "https://www.podfeet.com/"
+    },
+    "bartb": {
+        "Name": "Bart Busschots",
+        "Username": "bartb",
+        "Email": "bart@pbs.demo",
+        "Website": "https://www.bartb.ie/"
+    },
+    "helmavdl": {
+        "Name": "Helma van der Linden",
+        "Username": "helmavdl",
+        "Email": "helma@pbs.demo"
+    }
+}
