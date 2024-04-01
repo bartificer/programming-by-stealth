@@ -277,8 +277,8 @@ To show the animations in all their glory, let’s hide, then show, and finally 
 var aniTime = 1000;
 var $serverSec = $('section#sec_server');
 $serverSec.hide(aniTime);
-$serverSec.show(anyTime);
-$serverSec.toggle(anyTime);
+$serverSec.show(aniTime);
+$serverSec.toggle(aniTime);
 ```
 
 Finally, I want to mention a very useful function for checking if a given HTML element matches any arbitrary CSS selector. The function is simply called `.is()`, accepts a CSS selector string as an argument, and returns `true` if the element it is called on matches by that selector, and `false` otherwise.

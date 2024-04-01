@@ -37,3 +37,7 @@ instalmentResources/pbs162/techStock-*.json
 instalmentResources/pbs163/menu-byName.json
 
 instalmentResources/pbs163/menu-priceByName.json
+
+instalmentResources/pbs164/hibp-pbs.demo-records.json
+
+instalmentResources/pbs164/hibp-mailmerge.csv
