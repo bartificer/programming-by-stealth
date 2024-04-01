@@ -274,9 +274,9 @@ We know that we can hide an HTML element on a page by setting its CSS `display` 
 To show the animations in all their glory, let’s hide, then show, and finally toggle the Server Side section with a One second animation:
 
 ```javascript
-var anyTime = 1000;
+var aniTime = 1000;
 var $serverSec = $('section#sec_server');
-$serverSec.hide(anyTime);
+$serverSec.hide(aniTime);
 $serverSec.show(anyTime);
 $serverSec.toggle(anyTime);
 ```
