@@ -26,7 +26,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 // init name space
 var pbs = pbs ? pbs : {};
 
-// define all prototypes within an anonymous self executing fuction
+// define all prototypes within an anonymous self executing function
 (function(pbs, undefined){
 	//
 	// ==== Define Needed Helper Functions ===

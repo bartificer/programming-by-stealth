@@ -55,7 +55,7 @@ Below is my solution to the challenge from [the previous instalment](https://pbs
 // init name space - commented out in playground
 var pbs = pbs ? pbs : {};
 
-// define all prototypes within an anonymous self executing fuction
+// define all prototypes within an anonymous self executing function
 (function(pbs, undefined){
   //
   // ==== Define Needed Helper Functions ===
