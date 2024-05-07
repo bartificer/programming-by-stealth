@@ -33,4 +33,4 @@
 ]
 
 # build the final lookup
-#| from_entries
+| from_entries
