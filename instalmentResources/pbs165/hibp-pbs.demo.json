@@ -1,0 +1,25 @@
+{
+    "Breaches": {
+      "josullivan": [
+        "OnlinerSpambot"
+      ],
+      "egreen": [
+        "Dropbox"
+      ],
+      "mwkelly": [
+        "Dropbox",
+        "KayoMoe",
+        "LinkedIn",
+        "LinkedInScrape",
+        "PDL"
+      ],
+      "ahawkins": [
+        "iMesh",
+        "OnlinerSpambot"
+      ],
+      "ptraynor": [
+        "Collection1"
+      ]
+    },
+    "Pastes": {}
+  }  
