@@ -26,7 +26,7 @@
 	# save the current account name to a variable
 	| .key as $accountName
 
-	# explode the breache names for the current entry
+	# explode the breach names for the current entry
 	| .value[]
 
 	# keep only the names for breaches that meet the search criteria
