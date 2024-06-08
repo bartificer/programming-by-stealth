@@ -184,6 +184,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 164 — jq: Working with Lookup Tables](./pbs164)
 * [PBS 165 — jq: Variables](./pbs165)
 * [PBS 166 — jq: Processing Arrays & Dictionaries sans Explosions](./pbs166)
+* [PBS 167 — jq: Recursion, Syntactic Sugar, Some old Friends and a Few Honourable Mentions](./pbs167)
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
