@@ -1,4 +1,7 @@
-# PBS 1 of X – Introduction
+---
+title: PBS 1 of X – Introduction
+---
+# Installment 1 of X – Introduction
 
 Computer programming is a very powerful skill – it literally lets you tell computers
  exactly what to do.
