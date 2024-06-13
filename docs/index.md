@@ -1,3 +1,6 @@
+---
+title: Programming by Stealth
+---
 # About
 
 Programming by Stealth is an on-going collaborative project between [Bart Busschots](https://bartb.ie/) of [Bartificer Creations](https://bartificer.net/) and Allison Sheridan of the [NosillaCast Podcast](https://podfeet.com). The idea is to sneak up on real programming in small easy steps, using the allure of the web as the carrot to entice people forward.
