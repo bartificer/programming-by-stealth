@@ -1,5 +1,7 @@
 #theme: jekyll-theme-cayman
 remote_theme: bartificer/bartificer-jekyll-theme
+plugins:
+  - jekyll-remote-theme
 title: Programming by Stealth
 email: podcasting@bartificer.net
 description: >- # this means to ignore newlines until "baseurl:"
