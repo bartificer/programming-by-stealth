@@ -17,7 +17,8 @@ accent:
   color_light: "#e6f1ff"
   font_family: '"Ubuntu Mono", mono'
 nav_brand:
-  url: "{{site.github.baseurl}}/assets/brand.png"
+  url: "{{site.github.baseurl}}/about_hosts"
+  src: "{{site.github.baseurl}}/assets/brand.png"
   alt: Bartificer & Podfeet Logos
   title: A Bartificer & Podfeet Co-creation
 nav_items:
