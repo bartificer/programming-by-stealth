@@ -16,13 +16,18 @@ accent:
   # color_light: "#fbecd6"
   color_light: "#e6f1ff"
   font_family: '"Ubuntu Mono", mono'
+nav_brand:
+  url: "https://pbs.bartificer.net/about" # an absolte URL
+  src: /assets/brand.png # relative to site base URL
+  alt: Bartificer & Podfeet Logos
+  text: A Bartificer & Podfeet Co-creation
 nav_items:
   - url: https://bartb.ie/pbsindex
     icon: "fas fa-search"
     text: "PBS Index"
-  - url: https://www.podfeet.com/blog/category/programming-by-stealth/
-    icon: "fas fa-podcast"
-    text: "Podcast Episodes"
+  #- url: https://www.podfeet.com/blog/category/programming-by-stealth/
+  #  icon: "fas fa-podcast"
+  #  text: "Podcast Episodes"
 community:
   url: https://podfeet.com/slack
   description: Find us in the PBS channel on the Podfeet Slack.
