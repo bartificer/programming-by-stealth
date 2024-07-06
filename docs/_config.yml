@@ -17,10 +17,10 @@ accent:
   color_light: "#e6f1ff"
   font_family: '"Ubuntu Mono", mono'
 nav_brand:
-  url: "{{site.github.baseurl}}/about"
-  src: "{{site.github.baseurl}}/assets/brand.png"
+  url: "https://pbs.bartificer.net/about" # an absolte URL
+  src: /assets/brand.png # relative to site base URL
   alt: Bartificer & Podfeet Logos
-  title: A Bartificer & Podfeet Co-creation
+  text: A Bartificer & Podfeet Co-creation
 nav_items:
   - url: https://bartb.ie/pbsindex
     icon: "fas fa-search"
