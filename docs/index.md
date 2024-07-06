@@ -5,7 +5,7 @@ title: Programming by Stealth
 
 Programming by Stealth is an ongoing collaborative project between [Bart Busschots](https://bartb.ie/) of [Bartificer Creations](https://bartificer.net/) and Allison Sheridan of the [NosillaCast Apple Podcast](https://podfeet.com). The idea is to sneak up on real programming in small easy steps, using the allure of the web as the carrot to entice people forward.
 
-Each instalment consists of an article written by Bart, and an accompanying episode of our [Programming By Stealth podcast](https://podfeet.com/ccatp/pbs-rss.xml) where Bart and Allison cover the same material in a conversational form. Allison's role is to play the proverbial _everyperson_ and pepper Bart with questions to help clarify the material (and to produce the podcast.)
+Each instalment consists of an article written by Bart and an accompanying episode of our Programming By Stealth Podcast where Bart and Allison cover the same material in a conversational form. Allison's role is to play the proverbial _everyperson_ and pepper Bart with questions to help clarify the material (and to produce the podcast.) You can subscribe to the [Programming By Stealth podcast](https://podfeet.com/ccatp/pbs-rss.xml) directly in your podcatcher of choice, or listen from the embedded player in each instalment.
 
 The series is intended to be evergreen, but if you play along in real-time you can join the community in the [Podfeet Slack](https://podfeet.com/slack). The challenges set in the series are definitely more fun in real time.
 
