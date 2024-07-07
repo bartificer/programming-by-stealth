@@ -1,10 +1,9 @@
-#theme: jekyll-theme-cayman
 remote_theme: bartificer/bartificer-jekyll-theme
 plugins:
   - jekyll-remote-theme
 title: Programming by Stealth
 email: podcasting@bartificer.net
-description: >- # this means to ignore newlines until "baseurl:"
+description: >- # fold new lines and chomp
   A blog and podcast series by Bart Busschots & Allison Sheridan.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
@@ -12,25 +11,30 @@ github_username:  bartificer
 
 # theme-specific options
 accent:
-  color: "#00408d"
-  # color_light: "#fbecd6"
-  color_light: "#e6f1ff"
+  color: '#00408d'
+  color_light: '#e6f1ff'
   font_family: '"Ubuntu Mono", mono'
 nav_brand:
-  url: "https://pbs.bartificer.net/about" # an absolte URL
+  url: 'https://pbs.bartificer.net/about' # an absolte URL
   src: /assets/brand.png # relative to site base URL
   alt: Bartificer & Podfeet Logos
   text: A Bartificer & Podfeet Co-creation
 nav_items:
   - url: https://bartb.ie/pbsindex
-    icon: "fas fa-search"
-    text: "PBS Index"
+    icon: fas fa-search
+    text: PBS Index
   #- url: https://www.podfeet.com/blog/category/programming-by-stealth/
   #  icon: "fas fa-podcast"
   #  text: "Podcast Episodes"
 community:
   url: https://podfeet.com/slack
   description: Find us in the PBS channel on the Podfeet Slack.
-  icon: "fab fa-slack"
+  icon: fab fa-slack
   labels:
-    button: "Podfeet Slack"
+    button: Podfeet Slack
+opengraph:
+  locale: en_IE
+  default:
+    type: article
+    title: A PBS Installment
+    image: /assets/featureImage-default.png # relative to site base URL
