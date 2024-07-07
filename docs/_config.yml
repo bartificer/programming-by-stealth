@@ -34,7 +34,6 @@ community:
     button: Podfeet Slack
 opengraph:
   locale: en_IE
-  default:
-    type: article
-    title: A PBS Installment
-    image: /assets/featureImage-default.png # relative to site base URL
+  type: article # can be overriden on the page
+  title: A PBS Installment # can be overridden on the page
+  image: /assets/openGraph-image.jpg # relative to site base URL, can be overriden on the page
