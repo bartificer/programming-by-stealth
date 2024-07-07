@@ -36,4 +36,4 @@ opengraph:
   locale: en_IE
   type: article # can be overriden on the page
   title: A PBS Installment # can be overridden on the page
-  image: /assets/openGraph-image.jpg # relative to site base URL, can be overriden on the page
+  image: https://pbs.bartificer.net/assets/openGraph-image.jpg # can be overriden on the page
