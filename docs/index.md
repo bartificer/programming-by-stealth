@@ -1,5 +1,9 @@
 ---
 title: Programming by Stealth
+opengraph:
+  title: About Programming by Stealth
+  description: The Programming by Stealth blog and podcast series
+  url: https://pbs.bartificer.net/
 ---
 # About
 
