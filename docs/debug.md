@@ -1,5 +1,6 @@
 ---
 layout: debug
 title: Liquid Variable Debugging
+highlight: json
 ---
-{{ site.collections | jsonify }}
+{{ site.collections | inspect }}
