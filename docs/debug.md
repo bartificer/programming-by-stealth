@@ -2,4 +2,4 @@
 layout: debug
 title: Liquid Variable Debugging
 ---
-{{ site.collections | inspect }}
+{{ site.config | inspect }}
