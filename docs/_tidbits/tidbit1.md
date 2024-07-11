@@ -93,6 +93,6 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 
 <pre>
 page.collection={{ page.collection | inspect }}
-site.collections:
-{{ site.collections | inspect | strip_html | strip }}
+Collection Details:
+{{ site.collections | where: "label", page.collection | inspect | strip_html | strip }}
 </pre>
