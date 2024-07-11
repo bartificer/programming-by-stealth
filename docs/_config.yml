@@ -1,3 +1,4 @@
+# Main site config
 remote_theme: bartificer/bartificer-jekyll-theme
 plugins:
   - jekyll-remote-theme
@@ -37,3 +38,10 @@ opengraph:
   type: article # can be overriden on the page
   title: A PBS Installment # can be overridden on the page
   image: https://pbs.bartificer.net/assets/openGraph-image.jpg # can be overriden on the page
+
+# content structure
+# default sort order is by filename, so no need to change
+collections:
+  tidbits:
+    output: true
+    permalink: /:name

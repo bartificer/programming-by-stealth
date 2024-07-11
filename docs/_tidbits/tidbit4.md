@@ -1,3 +1,6 @@
+---
+title: Rethinking a Web App – from Web Server to Cloud Stack
+---
 # PBS Tidbit 4 of Y — Rethinking a Web App – from Web Server to Cloud Stack
 
 In the main PBS series, we're hovering on the edge of moving from purely client-side JavaScript apps to full web apps with a client and *'server'* side, but as we approach that edge, the word *server* is becoming ever more abstract. At this stage, it really does just mean *"something on the other side of an HTTPS connection"*. The days of web servers just being remote computers are well and truly over.

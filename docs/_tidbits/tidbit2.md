@@ -1,3 +1,6 @@
+---
+title: It's OK to Play a Different Game!
+---
 # PBS Tidbit 2 of Y — It's OK to Play a Different Game!
 
 Some recent activity in the PBS community inspired some terminal hackery, and triggered an important old memory. I want to share the memory, share some terminal hackery, and hopefully inspire you to do a little programming for pure fun too.
