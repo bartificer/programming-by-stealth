@@ -91,5 +91,6 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 * [The episode of Chit Chat Across the Pond Podcast for the 8th of February 2020](https://www.podfeet.com/blog/2020/02/pbs-tb-1/) which is based in this post.
 * [A blog post from Allison Sheridan](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/) explaining how she enhanced her sample solution to the same challenge to deal with currencies with different numbers of decimal places.
 
- - [Index](index)
- - [Tidbit 2 — It's OK to Play a Different Game! →](tidbit2)
+<pre>
+{{ collection | inspect | strip_html | strip }}
+</pre>
