@@ -93,6 +93,10 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 
 <pre>
 page.collection={{ page.collection | inspect }}
+page.id={{ page.id }}
+page.url={{ page.url }}
+page.next:
+{{ page.next | inspect | strip_html | strip }}
 Collection First Doc Details:
 {% assign my_collection = site.collections | where: "label", page.collection | first %}
 {{ my_collection.docs | first | inspect | strip_html | strip }}
