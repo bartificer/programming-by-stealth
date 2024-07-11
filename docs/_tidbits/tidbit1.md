@@ -94,15 +94,15 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 ## Series Navigation
 {% assign my_collection = site.collections | where: "label", page.collection | first %}
 
-{% if page.previous %}
+{% if page.previous -%}
 * [{{ page.previous.title }}]({{ page.previous.url }})
-{% endif %}
+{% endif -%}
 * [{{ my_collection.label }}](/)
-{% if page.next %}
+{% if page.next -%}
 * [{{ page.next.title }}]({{ page.next.url }})
-{% endif %}
+{% endif -%}
 
-<!--
+{% comment %}
 page.collection={{ page.collection | inspect }}
 page.id={{ page.id }}
 page.url={{ page.url }}
@@ -111,4 +111,4 @@ page.next:
 Collection First Doc Details:
 {% assign my_collection = site.collections | where: "label", page.collection | first %}
 {{ my_collection.docs | first | inspect | strip_html | strip }}
---!>
+{% endcomment %}
