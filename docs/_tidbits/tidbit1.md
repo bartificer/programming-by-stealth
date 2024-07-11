@@ -92,5 +92,7 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 * [A blog post from Allison Sheridan](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/) explaining how she enhanced her sample solution to the same challenge to deal with currencies with different numbers of decimal places.
 
 <pre>
-{{ site.collections[page.collection] | inspect | strip_html | strip }}
+page.collection={{ page.collection | inspect }}
+site.collections:
+{{ site.collections | inspect | strip_html | strip }}
 </pre>
