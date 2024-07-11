@@ -96,11 +96,11 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 
 {% if page.previous %}
 * [{{ page.previous.title }}]({{ page.previous.url }})
-{* endif *}
+{% endif %}
 * [{{ my_collection.label }}](/)
 {% if page.next %}
 * [{{ page.next.title }}]({{ page.next.url }})
-{* endif *}
+{% endif %}
 
 <!--
 page.collection={{ page.collection | inspect }}
