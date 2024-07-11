@@ -45,3 +45,13 @@ collections:
   tidbits:
     output: true
     permalink: /:name
+
+# front matter defaults
+defaults:
+  # defaults for tidbits
+  - scope:
+      path: ""
+      type: tidbits
+    values:
+      layout: default
+    
