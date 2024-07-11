@@ -10,4 +10,5 @@ ROOT_DIR="$( dirname "$ME_DIR" )"
 
 cd ${ROOT_DIR}/docs
 ${ROOT_DIR}/util/link-maker-pbs.py
-${ROOT_DIR}/util/link-maker-tidbit.py
+# commented out by BB 11 July 2024 — testing Collecitons
+# ${ROOT_DIR}/util/link-maker-tidbit.py
