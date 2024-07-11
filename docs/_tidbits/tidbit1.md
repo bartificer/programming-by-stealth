@@ -95,5 +95,5 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 page.collection={{ page.collection | inspect }}
 Collection First Doc Details:
 {% assign my_collection = site.collections | where: "label", page.collection | first %}
-{{ mycollection.docs | first | inspect | strip_html | strip }}
+{{ my_collection.docs | first | inspect | strip_html | strip }}
 </pre>
