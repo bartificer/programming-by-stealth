@@ -1,5 +1,6 @@
 ---
 title: It's OK to Play a Different Game!
+instalment: 2
 ---
 # PBS Tidbit 2 of Y — It's OK to Play a Different Game!
 

@@ -1,5 +1,6 @@
 ---
 title: A Real-World Webpack Case Study
+instalment: 6
 ---
 # PBS Tidbit 6 of Y — A Real-World Webpack Case Study
 

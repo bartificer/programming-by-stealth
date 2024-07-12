@@ -1,5 +1,6 @@
 ---
 title: Managing the NPM (or Packagist) Trade-off
+instalment: 3
 ---
 # PBS Tidbit 3 of Y — Managing the NPM (or Packagist) Trade-off
 

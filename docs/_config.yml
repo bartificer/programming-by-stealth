@@ -46,6 +46,8 @@ collections:
     output: true
     permalink: /:name
     title: PBS Tidbits
+    prefix: PBS Tidbit
+    total: 'Y'
 
 # front matter defaults
 defaults:

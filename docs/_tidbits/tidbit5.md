@@ -1,5 +1,6 @@
 ---
 title: Tips for the Vacationing Programmer
+instalment: 5
 ---
 # PBS Tidbit 5 of Y — Tips for the Vacationing Programmer
 
