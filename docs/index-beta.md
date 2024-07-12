@@ -201,7 +201,6 @@ You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://ba
 
 * Bart occasionally makes posts related to the series, but not strictly a part of it:
   {% assign tidbits_collection = site.collections | where: "label", "tidbits" | first %}
-  <pre>{{ tidbits_collection | inspect | strip_html | strip }}</pre>
 
   ===
   {% include instalmentList.html my_collection=tidbits_collection %}
