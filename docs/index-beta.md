@@ -201,9 +201,5 @@ You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://ba
 
 * Bart occasionally makes posts related to the series, but not strictly a part of it:
   {% assign tidbits_collection = site.collections | where: "label", "tidbits" | first %}
-
-  ===
   {% include instalmentList.html my_collection=tidbits_collection %}
-  ===
-
 * A blog post by Allison Sheridan explaining how she added support for currencies with different numbers of decimal places to her sample solution to PBS 88: [When Currency Rate Decimals Go Wrong — www.podfeet.com/…](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/)
