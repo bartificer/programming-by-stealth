@@ -170,7 +170,3 @@ Once you've safely merged your changes, remember to clean up any temporary branc
 There's nothing more frustrating than finally having the time to get stuck into that code that's been burning a hole in your brain for months than finding you're missing the tools you need to get the job done. Conversely, there's nothing more satisfying than getting all those ideas out of your head and into working code. The difference between those two realities is simply preparation. Take the time to prepare, and you'll be rewarded with that wonderful feeling of satisfaction we all get from creating great software!
 
 Enjoy your vacation 🙂
-
- - [← Tidbit 4 — Rethinking a Web App – from Web Server to Cloud Stack](tidbit4)
- - [Index](index)
- - [Tidbit 6 — A Real-World Webpack Case Study →](tidbit6)

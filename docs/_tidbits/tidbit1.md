@@ -90,25 +90,3 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 
 * [The episode of Chit Chat Across the Pond Podcast for the 8th of February 2020](https://www.podfeet.com/blog/2020/02/pbs-tb-1/) which is based in this post.
 * [A blog post from Allison Sheridan](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/) explaining how she enhanced her sample solution to the same challenge to deal with currencies with different numbers of decimal places.
-
-## Series Navigation
-{% assign my_collection = site.collections | where: "label", page.collection | first %}
-
-{% if page.previous -%}
-* [{{ page.previous.title }}]({{ page.previous.url }})
-{% endif -%}
-* [{{ my_collection.label }}](/)
-{% if page.next -%}
-* [{{ page.next.title }}]({{ page.next.url }})
-{% endif -%}
-
-{% comment %}
-page.collection={{ page.collection | inspect }}
-page.id={{ page.id }}
-page.url={{ page.url }}
-page.next:
-{{ page.next | inspect | strip_html | strip }}
-Collection First Doc Details:
-{% assign my_collection = site.collections | where: "label", page.collection | first %}
-{{ my_collection.docs | first | inspect | strip_html | strip }}
-{% endcomment %}

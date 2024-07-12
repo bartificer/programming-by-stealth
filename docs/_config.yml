@@ -45,6 +45,7 @@ collections:
   tidbits:
     output: true
     permalink: /:name
+    title: PBS Tidbits
 
 # front matter defaults
 defaults:

@@ -307,6 +307,3 @@ I certainly learned a lot migrating this existing app to Webpack. I learned a fe
 4. Webpack 5 is new enough that you need to check all the answers/posts to be sure they're not for Webpack 4!
 
 I hope that by sharing this real-world experience I'll help to push you over the edge into pulling the trigger and migrating your existing web apps and sites to Webpack 🙂
-
- - [← Tidbit 5 — Tips for the Vacationing Programmer](tidbit5)
- - [Index](index)

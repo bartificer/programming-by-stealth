@@ -197,7 +197,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 
 You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
 
-# Related Contents
+# <a name="tidbits"></a>Related Contents
 
 * Bart occasionally makes posts related to the series, but not strictly a part of it:
 	* [PBS Tidbit 1 of Y — Display Values are not Data!](./tidbit1)

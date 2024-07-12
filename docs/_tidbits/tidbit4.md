@@ -214,7 +214,3 @@ To some extent, the sky really is the limit now!
 ## Final Thoughts
 
 If you're a long-time fan of Allison's shows you've probably enjoyed hearing some of the nerdy detail of her recent website upgrade — you got to listen along to the pain and then the bumpy upgrade process as we went, but even if you're not, and you just follow along with Programming by Stealth, I'm hoping it was valuable to get an idea of how modern websites are delivered. I think it's good to understand all the moving parts, and at the very least, I hope you have a few more acronyms under your belt now 🙂
-
- - [← Tidbit 3 — Managing the NPM (or Packagist) Trade-off](tidbit3)
- - [Index](index)
- - [Tidbit 5 — Tips for the Vacationing Programmer →](tidbit5)
