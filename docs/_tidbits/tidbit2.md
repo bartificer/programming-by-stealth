@@ -2,8 +2,6 @@
 title: It's OK to Play a Different Game!
 instalment: 2
 ---
-# PBS Tidbit 2 of Y — It's OK to Play a Different Game!
-
 Some recent activity in the PBS community inspired some terminal hackery, and triggered an important old memory. I want to share the memory, share some terminal hackery, and hopefully inspire you to do a little programming for pure fun too.
 
 Allison recently recorded [a segment on using the `egrep` command to play the hip word-game *du-jour*, Wordle](https://www.podfeet.com/blog/2022/01/wordle-ttt-17/). Great minds clearly think alike, because the first thing I thought of when someone described the game to me was regular expressions and searching with `grep` and `egrep`! Allison's post sparked some fun activity in the NosillaCast Slack as others got their nerd on too to expand on Allison's technique. That was fun and cool, but what triggered this tidbit is a less positive word that kept intruding into the conversation — *cheat*. People seemed to feel the need to be defensive, to apologise for their nerd fun, and that made me a little sad.

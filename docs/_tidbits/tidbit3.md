@@ -2,8 +2,6 @@
 title: Managing the NPM (or Packagist) Trade-off
 instalment: 3
 ---
-# PBS Tidbit 3 of Y — Managing the NPM (or Packagist) Trade-off
-
 This tidbit was inspired by a relatively recent news story about two very popular NPM packages, but it serves as an illustration of a much bigger point — you need to proactively manage your code's dependencies.  It's pretty obvious that each time you include someone else's code in your project you're taking on some risk, but what's less obvious is that you often also take on risk by choosing **not** to use other people's code!
 
 Like so much in software development, there is no simple set of rules to follow to stay safe.  You simply must take the time to make considered judgement calls, and accept that you'll get it wrong from time to time. The worst thing you can do is ignore the problem, and the good news is that experience helps, so you can learn from your mistakes.
