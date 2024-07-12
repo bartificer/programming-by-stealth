@@ -53,5 +53,5 @@ defaults:
       path: ""
       type: tidbits
     values:
-      layout: default
+      layout: instalment
     
