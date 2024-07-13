@@ -195,15 +195,9 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 * [PBS 168 — YAML: Introduction](./pbs168)
 * [PBS 169 — YAML: Advanced Topics](./pbs169)
 
-You'll find the original HTML versions of the notes at [bartb.ie/pbs](https://bartb.ie/pbs).
-
 # <a name="tidbits"></a>Related Contents
 
 * Bart occasionally makes posts related to the series, but not strictly a part of it:
-	* [PBS Tidbit 1 of Y — Display Values are not Data!](./tidbit1)
-	* [PBS Tidbit 2 of Y — It's OK to Play a Different Game!](./tidbit2)
-	* [PBS Tidbit 3 of Y — Managing the NPM (or Packagist) Trade-off](./tidbit3)
-	* [PBS Tidbit 4 of Y — Rethinking a Web App – from Web Server to Cloud Stack](./tidbit4)
-	* [PBS Tidbit 5 of Y — Tips for the Vacationing Programmer](./tidbit5)
-	* [PBS Tidbit 6 of Y — A Real-World Webpack Case Study](./tidbit6)
+  {% assign tidbits_collection = site.collections | where: "label", "tidbits" | first -%}
+  {% include instalmentList.html my_collection=tidbits_collection %}
 * A blog post by Allison Sheridan explaining how she added support for currencies with different numbers of decimal places to her sample solution to PBS 88: [When Currency Rate Decimals Go Wrong — www.podfeet.com/…](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/)
