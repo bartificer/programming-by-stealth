@@ -56,7 +56,23 @@ for(const instalementFile of instalmentFiles){
     console.log(`Read ${instalmentLines.length} line(s)`);
 
     // find and extract the title details
-    // TO DO
+    let titleLine = 0;
+    let title = '';
+    if(instalmentLines[0].match(/^---/)){
+        titleLine++;
+        while(!instalmentLines[titleLine].match(/^---/)){
+            titleLine++;
+        }
+        titleLine++;
+    }
+    // the title should now be the current line
+    let titleMatch = instalmentLines[titleLine].match(/^#[ ](?:PBS|Instalment)[ ]\d+[ ]of[ ]X[ ][–—][ ](.+)$/);
+    if(titleMatch){
+        title = titleMatch[1];
+        console.debug(`Found title '${title}' in ${instalementFile}`);
+    }else{
+        console.warn(`Failed to match title in ${instalementFile}`);
+    }
 
     // find the next/prev link line numbers
     // TO DO
