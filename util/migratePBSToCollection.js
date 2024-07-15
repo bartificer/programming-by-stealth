@@ -55,9 +55,10 @@ for(const instalementFile of instalmentFiles){
     const instalmentLines = fs.readFileSync(path.join(docsDir, instalementFile), 'utf8').toString().split('\n');
     console.log(`Read ${instalmentLines.length} line(s)`);
 
-    // find and extract the title details
+    // find and extract the title & instalment number
     let titleLine = 0;
     let title = '';
+    let instalmentNumber = 0;
     if(instalmentLines[0].match(/^---/)){
         titleLine++;
         while(!instalmentLines[titleLine].match(/^---/)){
@@ -66,20 +67,43 @@ for(const instalementFile of instalmentFiles){
         titleLine++;
     }
     // the title should now be the current line
-    let titleMatch = instalmentLines[titleLine].match(/^#[ ](?:PBS|Instalment)[ ]\d+[ ]of[ ]X[ ][–—][ ](.+)$/);
+    let titleMatch = instalmentLines[titleLine].match(/^#[ ](?:PBS|Instalment)[ ](\d+)[ ]of[ ]X[ ][–—][ ](.+)$/);
     if(titleMatch){
-        title = titleMatch[1];
-        console.debug(`Found title '${title}' in ${instalementFile}`);
+        title = titleMatch[2];
+        instalmentNumber = titleMatch[2];
+        console.debug(`Found title '${title}' & instalement number '${instalmentNumber}' in ${instalementFile}`);
     }else{
         console.warn(`Failed to match title in ${instalementFile}`);
     }
 
     // find the next/prev link line numbers
-    // TO DO
+    let lastContentLine = instalmentLines.length - 2; // there is a blank line on the end!
+    while(instalmentLines[lastContentLine.match(/^-[ ]/)]) lastContentLine--;
 
     // build the output path
-    // TO DO
+    const outputFile = path.join(outputDir, instalmentFile);
 
+    //
     // build the output contents
-    // TO DO
+    //
+    let outputLines = [];
+
+    // build the front matter
+    outputLines.push('---');
+    outputLines.push(`title: ${title}`);
+    outputLines.push(`instalment: ${instalmentNumber}`);
+    outputLines.push('---');
+
+    // copy the contents lines
+    let currentLine = titleLine + 1;
+    while(currentLine <= lastContentLine){
+        outputLines.push(instalmentLines[currentLine]);
+        currentLine++;
+    }
+
+    //
+    // Write the output file
+    //
+
+    // TO DO — LEFT OFF HERE!!!
 }
