@@ -39,9 +39,14 @@ opengraph:
   title: A PBS Installment # can be overridden on the page
   image: https://pbs.bartificer.net/assets/openGraph-image.jpg # can be overriden on the page
 
-# content structure
-# default sort order is by filename, so no need to change
+
 collections:
+  # creator details
+  creators:
+    output: false
+
+  # content structure
+  # default sort order is by filename, so no need to change
   tidbits:
     output: true
     permalink: /:name
