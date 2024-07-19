@@ -538,10 +538,9 @@ As promised, this section will contain the full script and the commands you need
 
 ```jq
 # File to parse the result of an export of the system profiler applications
-# system_profiler SPApplicationsDataType -json 
-# > ~/Desktop/applications.json
+# system_profiler SPApplicationsDataType -json > ~/Desktop/applications.json
 #
-# use as jq -r -f ~/scripts/parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applications.csv
+# use as jq -r -f parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applications.csv
 
 def yn:
 	if . == true or . == "true" then "yes"
