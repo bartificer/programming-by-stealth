@@ -18,13 +18,13 @@ Sure, Migration Assistant helps a lot, but going from Intel to Apple Silicon I r
 
 Before we go much further, it's important to note that Apple used to call this app System Profiler. They changed the name but they didn't change it everywhere, so we'll actually need to reference it as System Profiler from the command line.
 
-If any of your applications are listed in System Information/Profiler as Intel, you need a different version. If they are listed as Universal, you could transfer the application and it will probably keep on working. However, Migration Assistant doesn't allow you to pick and choose; it's an all-or-nothing selection.
+If any of your applications are listed in System Information (Profiler) as Intel, you need a different version. If they are listed as Universal, you could transfer the application and it will probably keep on working. However, Migration Assistant doesn't allow you to pick and choose; it's an all-or-nothing selection.
 
 I wanted a list of applications I could filter by some criteria, sort, mark off as complete, and maybe do even more with it. This tidbit will show you how to do just that.
 
 ## Getting the information
 
-The first step is to get information similar to what System Information shows in a format that can be used. System Information has a command line interface (CLI) but it's called System Profiler. Open your Terminal and type:
+The first step is to get information similar to what System Information shows in a format that can be used. System Information has a command line interface (CLI) but it still uses the old System Profiler name. Open your Terminal and type:
 
 ```bash
 system_profiler
@@ -54,7 +54,7 @@ Apple Pay:
 .......
 ```
 
-You will see all the content you could lookup in the GUI app scroll by in your Terminal. If you scroll up you will see the information of the applications installed. That's the only thing we are interested in so can we reduce the output. Let's check the available properties.
+You will see all the content you could look up in the System Information app scroll by in your Terminal. If you scroll up you will see the information about the applications installed. That's the only thing we are interested in so can we reduce the output. Let's check the available properties.
 
 ```bash
 system_profiler --help
@@ -160,7 +160,7 @@ With a list of applications in a JSON file, we can use `jq` to process the infor
 
 Because the final statement will be long, we immediately convert it into a file called `parse-applications.jq`.
 
-We can call this file as
+We will be able to call this file with the following command:
 
 ```bash
 jq -r -f ./parse-applications.jq ~/Desktop/applications.json
@@ -168,7 +168,7 @@ jq -r -f ./parse-applications.jq ~/Desktop/applications.json
 
 Content of `parse-applications.jq`:
 
-First add some comment to explain what this file does. Your future self will be glad you did. We only want the array of `SPApplicationsDataType`.
+First, add some comment to explain what this file does. Your future self will be glad you did. We only want the array of `SPApplicationsDataType`.
 
 ```jq
 # File to parse the result of an export of the system profiler applications
@@ -215,7 +215,8 @@ The output would be something like this:
 ```
 
 From now on only the relevant lines are shown, not the entire content of the file. 
-Note that the final `]` is added so at any time you can copy the code and replace the final line with the new code to test and play along.
+
+Note that the final `]` is added so that at any time you can copy the code and replace the final line with the new code to test and play along.
 
 Filter out default Apple applications and any helper applications hiding in the Library directories, because they will be installed with the application anyway. We do this by testing for a part of the path and then negating the selection.
 
@@ -356,8 +357,9 @@ And the output becomes
 .....  
 ```
 
-It's nice to know if the application is downloaded from the MacAppStore, from Setapp or somewhere else. So let's add a field for the MacAppStore (MAS) and one for Setapp.
-If the application is downloaded from MAS, the `.obtained_from` field contains 'mac_app_store'. When the application is downloaded from Setapp, it will be in a folder '/Applications/Setapp', so we can check the `.path` field.
+It's nice to know if the application is downloaded from the Mac App Store, from Setapp or somewhere else. So let's add a field for the Mac App Store (MAS) and one for Setapp.
+
+If the application is downloaded from the Mac App Store, the `.obtained_from` field contains 'mac_app_store'. When the application is downloaded from Setapp, it will be in a folder '/Applications/Setapp', so we can check the `.path` field.
 
 ```jq
 	| {
@@ -400,7 +402,7 @@ Output:
 .....
 ```
 
-These fields wil have a 'true' or 'false' value. Nice, but maybe we can do better. Because we intend to import the final result in a spreadsheet app, where you can filter based on columns, it's easier to use blanks for the 'false' value. So, let's convert these boolean values in 'yes' and '' respectively. 
+These fields will have a 'true' or 'false' value. Nice, but maybe we can do better. Because we intend to import the final result into a spreadsheet app where you can filter based on columns, it's easier to use blanks for the 'false' value. So, let's convert these boolean values into "yes" and blank respectively. 
 
 We can do this with a function. Add the function directly before or after the 'archType' function in the code.
 
@@ -445,8 +447,9 @@ Output now becomes
 .....
 ```
 
-Are we done? Not yet. It's nice to sort the applications from old to new. Old applications might be lingering around but you never use them any more, so having them together makes it easier to spot them.
+Are we done? Not yet. It's nice to sort the applications from old to new. Old applications might be lingering around but you never use them anymore, so having them together makes it easier to spot them.
 More or less the same argument goes for the most recent apps. They might be a test install you forgot to uninstall but you don't want to reinstall.
+
 So let's sort on `.lastModified`
 
 ```jq
@@ -455,6 +458,7 @@ So let's sort on `.lastModified`
 ```
 
 By now we have an array of objects, but we want to convert to a table with the field names as column headers and convert to CSV.
+
 First, find the column names. We need to map the keys, add the individual arrays together and deduplicate the results. Add this to a `$cols` variable.
 
 ```jq
@@ -477,7 +481,7 @@ Output:
 
 Note that the `unique` filter also sorts the keys.
 
-Now we have to do the same for the rows. Map the current row, use the $cols as keys and wrap the row values in an array.
+Now we have to do the same for the rows. Map the current row, use the $cols as keys, and wrap the row values in an array.
 
 ```jq
    map(. as $row | $cols | map($row[.]))
@@ -519,7 +523,6 @@ As promised, this section will contain the full script and other commands.
 # system_profiler SPApplicationsDataType -json -detailLevel full > ~/Desktop/applications.json
 #
 # use as jq -r -f parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applications.csv
-
 
 def yn:
 	if . == true or . == "true" then "yes"
