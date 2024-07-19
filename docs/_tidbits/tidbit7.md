@@ -1,5 +1,5 @@
 ---
-title: A Real-world jq Example — Installed App Listing n a Mac
+title: A Real-world jq Example — Installed App Listing On a Mac
 instalment: 7
 creators: [allison, helma]
 date: 2024-07-20
@@ -260,7 +260,7 @@ If we look at the output now, the apps listed before are gone.
   },
   .....
 ```
-  
+
 Then,  rename the field names to something easier to use.
 
 ```jq
@@ -563,5 +563,4 @@ jq -r -f parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applicati
 ```
 
 You now have a file `applications.csv` on your Desktop for import in Excel or Numbers.
-
 
