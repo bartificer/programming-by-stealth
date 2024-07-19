@@ -8,19 +8,23 @@ This article assumes you have followed along with Bart Busschots' [PBS course](h
 
 ## Problem to be solved
 
-When you want to transfer your Mac setup to a new machine or if you want to do a nuke and pave, you always need a list of the applications installed on your machine. This is especially true when you move from an Intel laptop to one with Apple Silicon.
+When you want to transfer your Mac setup to a new machine or if you want to do a nuke and pave, you always need a list of the applications installed on your machine. This is especially true when you move from an Intel machine to one with Apple Silicon.
 
-Of course when you are as meticulous as Allison Sheridan, you have an extensive list of all your applications and their configurations which is always up to date and right at your fingertips on one of your other Apple devices.
+Of course, when you are as meticulous as Allison Sheridan, you have an extensive mind map of all your applications and their configurations which is always up to date and right at your fingertips on one of your other Apple devices.
 
-Alas, I am not so meticulous so I usually start with the most important applications, aka the ones on top of mind and then the ones I need but haven't still installed yet. I always keep my old laptop around to check every once in a while for the things I might have missed.
+Alas, I am not so meticulous so I usually start with the most important applications, i.e. the ones on top of mind and then the ones I need but haven't installed yet. I always keep my old laptop around to check every once in a while for the things I might have missed.
 
-Sure, Migration Assistant helps a lot, but going from Intel to Apple Silicon I read the advice to NOT migrate applications, because they might not work. The advice was to check System Profiler for the architecture of the installed applications. If they are listed as Intel, you need a different version, if they are listed as Universal, you could transfer the application and it probably keeps on working. However, Migration Assistant doesn't allow you to pick and choose, it's an all or nothing selection.
+Sure, Migration Assistant helps a lot, but going from Intel to Apple Silicon I read the advice to NOT migrate applications because they might not work. The advice was to check System Information for the architecture of the installed applications. To access System Information, hold down the Option key, click on the Apple logo in the menu bar, and select System Information.  You can also open System Information from `/System/Applications/Utilities/System Information.app`.
 
-So how do I get a list of applications that I can go through, filter, mark off or whatever I want to do with it?
+Before we go much further, it's important to note that Apple used to call this app System Profiler. They changed the name but they didn't change it everywhere, so we'll actually need to reference it as System Profiler from the command line.
+
+If any of your applications are listed in System Information/Profiler as Intel, you need a different version. If they are listed as Universal, you could transfer the application and it will probably keep on working. However, Migration Assistant doesn't allow you to pick and choose; it's an all-or-nothing selection.
+
+I wanted a list of applications I could filter by some criteria, sort, mark off as complete, and maybe do even more with it. This tidbit will show you how to do just that.
 
 ## Getting the information
 
-The first step is to get information similar to what System Profiler shows in a format that can be used. It turns out System Profiler has a CLI version installed. Open your Terminal and type
+The first step is to get information similar to what System Information shows in a format that can be used. System Information has a command line interface (CLI) but it's called System Profiler. Open your Terminal and type:
 
 ```bash
 system_profiler
