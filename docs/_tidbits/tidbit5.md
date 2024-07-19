@@ -1,6 +1,8 @@
 ---
 title: Tips for the Vacationing Programmer
 instalment: 5
+creators: [bart, allison]
+date: 2022-07-10
 ---
 If bashing away on some code on a beach-side Mediterranean terrace with a pitcher of sangria in a warm August evening breeze sounds like your idea of heaven, this special instalment is for you 🙂 Those of us who really love programming love to get deep into some purely personal coding projects while we're on our summer vacation, but if often fails to go to plan because of a lack of planning. If you want your vacation coding projects to be stress-free and fun, you absolutely need to do some prep work before you board that plane or start up that camper van!
 
