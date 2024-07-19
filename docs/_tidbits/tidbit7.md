@@ -18,7 +18,7 @@ Sure, Migration Assistant helps a lot, but going from Intel to Apple Silicon I r
 
 Before we go much further, it's important to note that Apple used to call this app System Profiler. They changed the name but they didn't change it everywhere, so we'll actually need to reference it as System Profiler from the command line.
 
-If any of your applications are listed in System Information (Profiler) as Intel, you need a different version. If they are listed as Universal, you could transfer the application and it will probably keep on working. However, Migration Assistant doesn't allow you to pick and choose; it's an all-or-nothing selection.
+If any of your applications are listed in System Information (Profiler) as Intel, you need a different version on a Mac with Apple Silicon. If they are listed as Universal, you could transfer the application and it will probably keep on working. However, Migration Assistant doesn't allow you to pick and choose; it's an all-or-nothing selection.
 
 I wanted a list of applications I could filter by some criteria, sort, mark off as complete, and maybe do even more with it. This tidbit will show you how to do just that.
 
@@ -172,14 +172,15 @@ First, add some comment to explain what this file does. Your future self will be
 
 ```jq
 # File to parse the result of an export of the system profiler applications
-# system_profiler SPApplicationsDataType -json -detailLevel full 
+# system_profiler SPApplicationsDataType -json  
 # > ~/Desktop/applications.json
 #
 # use as jq -r -f parse-applications.jq ~/Desktop/applications.json 
 # > ~/Desktop/applications.csv
 # in the directory where the `parse-applications.jq` file is stored
  
-[."SPApplicationsDataType"[]]
+[."SPApplicationsDataType"[]
+]
 ```
 
 The output would be something like this:
@@ -214,20 +215,20 @@ The output would be something like this:
   ......
 ```
 
-From now on only the relevant lines are shown, not the entire content of the file. 
-
-Note that the final `]` is added so that at any time you can copy the code and replace the final line with the new code to test and play along.
+From now on only the relevant lines are shown, not the entire content of the file. More to the point: the comments and the `[."SPApplicationsDataType"[]` line will be skipped. 
+If you want to test and play along, you can replace the final line with just the `]` with the code in the code block.
 
 Filter out default Apple applications and any helper applications hiding in the Library directories, because they will be installed with the application anyway. We do this by testing for a part of the path and then negating the selection.
+In case you're wondering about the last line in this list of filters. It filters out any helper apps that are part of an app. You don't need information about the helper apps, because they will be installed again once you install the main app.
 
 ```jq
-[."SPApplicationsDataType"[] 
-	| select(.path | contains("/System/Library") | not)
-	| select(.path | contains("/System/Applications") | not)
-	| select(.path | contains("/usr/local/Cellar") | not)
-	| select(.path | contains("/opt/homebrew") | not)
-	| select(.path | contains("/Library/Application Support") | not)
-	| select(.path | contains("/Library/Containers") | not)
+  | select(.path | contains("/System/Library") | not)
+  | select(.path | contains("/System/Applications") | not)
+  | select(.path | contains("/usr/local/Cellar") | not)
+  | select(.path | contains("/opt/homebrew") | not)
+  | select(.path | contains("/Library/Application Support") | not)
+  | select(.path | contains("/Library/Containers") | not)
+  | select(.path | contains(".app/Contents/") | not)
 ]
 ```
 
@@ -309,7 +310,7 @@ The `.arch_kind` field contains information about the architecture, but it's not
 
 At the top, below the comments and before the first line of filters, we add the function.
 
-This function replaces the content of `.arch_kind` with 'Universal', 'Intel' or 'iOS'. If the content is none of those, it is added without any change. You might wonder why 'iOS', but actually that's what Apple calls it in the System Profiler, but it's probably better called 'Apple Silicon'.
+This function replaces the content of `.arch_kind` with 'Universal', 'Intel' or 'iOS'. If the content is none of those, it is added without any change. You might wonder why 'iOS', but actually that's what Apple calls it in the System Information app, but it's probably better called 'Apple Silicon'.
 
 ```jq
 def archType:
@@ -355,6 +356,20 @@ And the output becomes
     "version": "8.10.34"
   },
 .....  
+```
+
+In hindsight, there are more arch types that can also be converted. So we can extend the function to
+
+```jq
+def archType:
+	if . == "arch_arm_i64" then "Universal"
+	elif . == "arch_i64" then "Intel"
+	elif . == "arch_ios" then "iOS"
+	elif . == "arch_arm" then "Apple Silicon"
+	elif . == "arch_web" then "Web app"
+	elif . == "arch_other" then "Other"
+	else .
+	end;
 ```
 
 It's nice to know if the application is downloaded from the Mac App Store, from Setapp or somewhere else. So let's add a field for the Mac App Store (MAS) and one for Setapp.
@@ -459,6 +474,8 @@ So let's sort on `.lastModified`
 
 By now we have an array of objects, but we want to convert to a table with the field names as column headers and convert to CSV.
 
+Credit where credit is due. I found the solution in [a Stackoverflow answer](https://stackoverflow.com/questions/32960857/how-to-convert-arbitrary-simple-json-to-csv-using-jq).
+
 First, find the column names. We need to map the keys, add the individual arrays together and deduplicate the results. Add this to a `$cols` variable.
 
 ```jq
@@ -487,13 +504,14 @@ Now we have to do the same for the rows. Map the current row, use the $cols as k
    map(. as $row | $cols | map($row[.]))
 ```
 
-If this is combined, you can explode the array and parse it through the `@csv` filter.
+If this is combined, we get an array of arrays. The first array contains the column names and the other arrays contain the values of the objects.
+Now you can expand the array and parse it through the `@csv` filter to get a CSV file.
 
 ```jq
 ] 
 | sort_by(.lastModified)
 | (
-	map(keys) | add | unique) as $cols | $cols, 
+    map(keys) | add | unique) as $cols | $cols, 
    	map(. as $row | $cols | map($row[.])
   )[]
 | @csv
@@ -514,15 +532,16 @@ If you go through this list, you might find more applications to filter out, but
 
 ## Full script
 
-As promised, this section will contain the full script and other commands.
+As promised, this section will contain the full script and the commands you need to get the applications in a CSV file.
 
 `parse-applications.jq`:
 
 ```jq
 # File to parse the result of an export of the system profiler applications
-# system_profiler SPApplicationsDataType -json -detailLevel full > ~/Desktop/applications.json
+# system_profiler SPApplicationsDataType -json 
+# > ~/Desktop/applications.json
 #
-# use as jq -r -f parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applications.csv
+# use as jq -r -f ~/scripts/parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applications.csv
 
 def yn:
 	if . == true or . == "true" then "yes"
@@ -533,8 +552,12 @@ def archType:
 	if . == "arch_arm_i64" then "Universal"
 	elif . == "arch_i64" then "Intel"
 	elif . == "arch_ios" then "iOS"
+	elif . == "arch_arm" then "Apple Silicon"
+	elif . == "arch_web" then "Web app"
+	elif . == "arch_other" then "Other"
 	else .
 	end;
+
 
 [."SPApplicationsDataType"[] 
 	| select(.path | contains("/System/Library") | not)
@@ -543,6 +566,8 @@ def archType:
 	| select(.path | contains("/opt/homebrew") | not)
 	| select(.path | contains("/Library/Application Support") | not)
 	| select(.path | contains("/Library/Containers") | not)
+	| select(.path | contains(".app/Contents/") | not)
+	| select(.path | contains(".app/Contents/") | not)
 	| {
 		name: ._name, 
  		arch: (.arch_kind | archType), 
@@ -552,7 +577,7 @@ def archType:
 		version: .version,
 		MAS: (.obtained_from | contains("mac_app_store") | yn),
 		Setapp: (.path | contains("/Setapp/") | yn)
-	  } 
+	} 
 ] 
 | sort_by(.lastModified)
 | (
@@ -562,12 +587,12 @@ def archType:
 | @csv
 ```
 
-All the commands together:
+All the commands together to export the application information and subsequently parse the JSON file.
 
 ```bash
-system_profiler SPApplicationsDataType -json -detailLevel full > ~/Desktop/applications.json
+system_profiler SPApplicationsDataType -json > ~/Desktop/applications.json
+
 jq -r -f parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applications.csv
 ```
 
-You now have a file `applications.csv` on your Desktop for import in Excel or Numbers.
-
+You now have a file `applications.csv` on your Desktop for import in a spreadsheet app like Excel or Numbers.
