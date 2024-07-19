@@ -1,9 +1,13 @@
 ---
 title: A Real-world jq Example — Installed App Listing On a Mac
 instalment: 7
-creators: [allison, helma]
+creators: [helma, allison]
 date: 2024-07-20
 ---
+This Tidbit episode of Programming By Stealth is brought to you by Helma van der Linden and is written in the first person.
+
+---
+
 This article assumes you have followed along with Bart Busschots' [PBS course](https://pbs.bartificer.net) so some concepts will be used without explanation. However, if you are merely interested in the result file and don't care for the details, you might want to skip to the end and help yourself to the script.
 
 ## Problem to be solved
