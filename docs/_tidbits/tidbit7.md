@@ -1,5 +1,9 @@
-# 2024-07-14 Creating a list of installed software on your Mac
-
+---
+title: A Real-world jq Example — Installed App Listing n a Mac
+instalment: 7
+creators: [allison, helma]
+date: 2024-07-20
+---
 This article assumes you have followed along with Bart Busschots' [PBS course](https://pbs.bartificer.net) so some concepts will be used without explanation. However, if you are merely interested in the result file and don't care for the details, you might want to skip to the end and help yourself to the script.
 
 ## Problem to be solved
