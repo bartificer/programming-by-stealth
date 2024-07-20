@@ -4,6 +4,8 @@ instalment: 7
 creators: [helma, allison]
 date: 2024-07-20
 ---
+# Tidbit 7 – Helma van der Linden on jq to Analyze macOS Installed Apps
+
 This Tidbit episode of Programming By Stealth is brought to you by Helma van der Linden and is written in the first person.
 
 ## Matching Podcast Episode
