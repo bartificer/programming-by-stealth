@@ -176,8 +176,7 @@ First, add some comment to explain what this file does. Your future self will be
 
 ```jq
 # File to parse the result of an export of the system profiler applications
-# system_profiler SPApplicationsDataType -json  
-# > ~/Desktop/applications.json
+# system_profiler SPApplicationsDataType -json > ~/Desktop/applications.json
 #
 # use as jq -r -f parse-applications.jq ~/Desktop/applications.json 
 # > ~/Desktop/applications.csv
@@ -514,14 +513,14 @@ Now you can expand the array and parse it through the `@csv` filter to get a CSV
 ```jq
 ] 
 | sort_by(.lastModified)
-| (
-    map(keys) | add | unique) as $cols | $cols, 
-   	map(. as $row | $cols | map($row[.])
-  )[]
+|
+    (map(keys) | add | unique) as $cols | $cols, 
+   	map(. as $row | $cols | map($row[.]))
+  []
 | @csv
 ```
 
-Then the output becomes something like
+Then the output becomes something like:
 
 ```csv
 "MAS","Setapp","arch","lastModified","name","path","src","version"
@@ -583,10 +582,10 @@ def archType:
 	} 
 ] 
 | sort_by(.lastModified)
-| (
-	map(keys) | add | unique) as $cols | $cols, 
-   	map(. as $row | $cols | map($row[.])
-  )[]
+| 
+	(map(keys) | add | unique) as $cols | $cols, 
+   	map(. as $row | $cols | map($row[.]))
+  []
 | @csv
 ```
 
