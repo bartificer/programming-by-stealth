@@ -2,6 +2,7 @@
 title: Managing the NPM (or Packagist) Trade-off
 instalment: 3
 creators: [bart, allison]
+tags: [advice, programming]
 date: 2022-03-19
 ---
 This tidbit was inspired by a relatively recent news story about two very popular NPM packages, but it serves as an illustration of a much bigger point — you need to proactively manage your code's dependencies.  It's pretty obvious that each time you include someone else's code in your project you're taking on some risk, but what's less obvious is that you often also take on risk by choosing **not** to use other people's code!
