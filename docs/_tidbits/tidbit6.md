@@ -1,5 +1,9 @@
-# PBS Tidbit 6 of Y — A Real-World Webpack Case Study
-
+---
+title: A Real-World Webpack Case Study
+instalment: 6
+creators: [bart, allison]
+date: 2022-09-17
+---
 In the main series we recently dedicated two instalments ([PBS 138](./pbs138) & [PBS 139](./pbs139)) to using [Webpack](https://webpack.js.org/) to bundle a website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. 
 
 I want to make some improvements to [this-ti.me](https://this-ti.me) in the coming months, and I don't want to put any time into a non-webpacked project anymore, so I decided to port this existing app to Webpack as a real-world case study. In the main series we never aim to cover any of our topics exhaustively, instead, we cover the basics in the expectation that that will arm you all with enough knowledge to learn the specific advanced features you need from the documentation and other online resources. 
@@ -304,6 +308,3 @@ I certainly learned a lot migrating this existing app to Webpack. I learned a fe
 4. Webpack 5 is new enough that you need to check all the answers/posts to be sure they're not for Webpack 4!
 
 I hope that by sharing this real-world experience I'll help to push you over the edge into pulling the trigger and migrating your existing web apps and sites to Webpack 🙂
-
- - [← Tidbit 5 — Tips for the Vacationing Programmer](tidbit5)
- - [Index](index)

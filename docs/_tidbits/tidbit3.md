@@ -1,5 +1,10 @@
-# PBS Tidbit 3 of Y — Managing the NPM (or Packagist) Trade-off
-
+---
+title: Managing the NPM (or Packagist) Trade-off
+instalment: 3
+creators: [bart, allison]
+tags: [advice, programming]
+date: 2022-03-19
+---
 This tidbit was inspired by a relatively recent news story about two very popular NPM packages, but it serves as an illustration of a much bigger point — you need to proactively manage your code's dependencies.  It's pretty obvious that each time you include someone else's code in your project you're taking on some risk, but what's less obvious is that you often also take on risk by choosing **not** to use other people's code!
 
 Like so much in software development, there is no simple set of rules to follow to stay safe.  You simply must take the time to make considered judgement calls, and accept that you'll get it wrong from time to time. The worst thing you can do is ignore the problem, and the good news is that experience helps, so you can learn from your mistakes.
@@ -157,7 +162,3 @@ Every library you depend on is a part of your supply chain, and you need to thin
 What I hope you take away from this is that there are no easy answers, you simply have to think about this stuff carefully. Not reusing code is dangerous, and reusing the wrong code is also dangerous. You need to explicitly decide what to outsource and what to write yourself, and you need to choose the dependencies you do use with care. You can't be perfectly sure, because humans are involved at every stage of the process, and you will make mistakes. That's OK, just remember to learn from them!
 
 Most of my advice and suggestions were entirely generic, so when we move on to PHP we'll be using the same mindset when installing open source libraries from [Packagist](https://packagist.org) instead of NPM. The tool will change, but the core concepts won't.
-
- - [← Tidbit 2 — It's OK to Play a Different Game!](tidbit2)
- - [Index](index)
- - [Tidbit 4 — Rethinking a Web App – from Web Server to Cloud Stack →](tidbit4)
