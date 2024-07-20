@@ -1,5 +1,10 @@
-# PBS Tidbit 5 of Y — Tips for the Vacationing Programmer
-
+---
+title: Tips for the Vacationing Programmer
+instalment: 5
+creators: [bart, allison]
+tags: [advice]
+date: 2022-07-10
+---
 If bashing away on some code on a beach-side Mediterranean terrace with a pitcher of sangria in a warm August evening breeze sounds like your idea of heaven, this special instalment is for you 🙂 Those of us who really love programming love to get deep into some purely personal coding projects while we're on our summer vacation, but if often fails to go to plan because of a lack of planning. If you want your vacation coding projects to be stress-free and fun, you absolutely need to do some prep work before you board that plane or start up that camper van!
 
 Every situation will be different, but you'll fall somewhere on each of two spectra — from the same hardware you normally use to totally different hardware, and from the same level of connectivity you normally have to none at all. 
@@ -167,7 +172,3 @@ Once you've safely merged your changes, remember to clean up any temporary branc
 There's nothing more frustrating than finally having the time to get stuck into that code that's been burning a hole in your brain for months than finding you're missing the tools you need to get the job done. Conversely, there's nothing more satisfying than getting all those ideas out of your head and into working code. The difference between those two realities is simply preparation. Take the time to prepare, and you'll be rewarded with that wonderful feeling of satisfaction we all get from creating great software!
 
 Enjoy your vacation 🙂
-
- - [← Tidbit 4 — Rethinking a Web App – from Web Server to Cloud Stack](tidbit4)
- - [Index](index)
- - [Tidbit 6 — A Real-World Webpack Case Study →](tidbit6)
