@@ -6,6 +6,14 @@ date: 2024-07-20
 ---
 This Tidbit episode of Programming By Stealth is brought to you by Helma van der Linden and is written in the first person.
 
+## Matching Podcast Episode
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_07_20.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_07_20.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2024_07_20.html">PBS_2024_07_20</a>
+
 ---
 
 This article assumes you have followed along with Bart Busschots' [PBS course](https://pbs.bartificer.net) so some concepts will be used without explanation. However, if you are merely interested in the result file and don't care for the details, you might want to skip to the end and help yourself to the script.
