@@ -1,11 +1,9 @@
 ---
-title: A Real-world jq Example — Installed App Listing On a Mac
+title: jq to Analyze macOS Installed Apps with Helma van der Linden
 instalment: 7
 creators: [helma, allison]
 date: 2024-07-20
 ---
-# PBS Tidbit7 – jq to Analyze macOS Installed Apps with Helma van der Linden on
-
 This Tidbit episode of Programming By Stealth is brought to you by Helma van der Linden and is written in the first person.
 
 ## Matching Podcast Episode
