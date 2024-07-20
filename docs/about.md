@@ -9,7 +9,7 @@ opengraph:
 This series is co-created by Bart Busschots & Allison Sheridan. In addition to co-creation of the Programming By Stealth Podcast, Bart and Allison co-created the [Taming the Terminal](https://ttt.bartificer.net/book.html) podcast and book (thanks to Helma Van der Linden).
 
 {% assign creators_collection = site.collections | where: "label", "creators" | first -%}
-{% assign creators = creators_collection | docs | where: "guest", false -%}
+{% assign creators = creators_collection.docs | where: "guest", false -%}
 {% for creator in creators -%}
 ## <a name="{{ creator.slug }}"></a>{{ creator.short_name }}
 {{ creator.output }}
