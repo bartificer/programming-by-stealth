@@ -1,6 +1,9 @@
 ---
 title: It's OK to Play a Different Game!
 instalment: 2
+creators: [bart, allison]
+tags: [programming, fun]
+date: 2022-02-07
 ---
 Some recent activity in the PBS community inspired some terminal hackery, and triggered an important old memory. I want to share the memory, share some terminal hackery, and hopefully inspire you to do a little programming for pure fun too.
 
