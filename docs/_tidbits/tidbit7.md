@@ -598,3 +598,41 @@ jq -r -f parse-applications.jq ~/Desktop/applications.json > ~/Desktop/applicati
 ```
 
 You now have a file `applications.csv` on your Desktop for import in a spreadsheet app like Excel or Numbers.
+
+## Analyze with a Pivot Table
+
+Allison here now. The CSV file is easy enough to open with any spreadsheet application, but you still might be overwhelmed with data. Creating a pivot table from a set of data is a great way to turn that data into information. I'll use Excel as the spreadsheet but the concept is identical in Google Sheets or Apple Numbers.
+
+First, simply open the CSV file in Excel, and save it as a native Excel file. Our dataset will behave properly but if you're trying this with any other data set, ensure that every single column has a row title. If one is missing, no data from that column and after will be included in the pivot table. 
+
+Select any cell in the worksheet.  From the menus, choose Data → Summarize with Pivot Table.  You'll be asked to choose the dataset range (which should be all of your data) and where to put the pivot table. Keep the default of new workshet.
+
+![Create pivot table popup window](../assets/tidbits7/choose-data-analyze.png)
+
+This will create a new sheet in your workbook with an empty pivot table and the pivot table fields on the right.
+
+![empty pivot table and fields on the right](../assets/tidbits7/empty-pivot-table.png)
+
+For this example, let's say we want to know how many apps are each type of architecture. In the Field Name section, click the box next to the field name "arch", and it will immediately jump down into the Rows box below.
+
+![pivot-table-with-architectures](../assets/tidbits7/pivot-table-with-architectures.png)
+
+The pivot table now shows a list of all of the architectures it found, but we need to know how _many_ of each it found. Now drag (don't click) the "arch" down into the box labeled Sum (∑) Values. Now you'll see "Count of arch" at the top of a new column and the number of of apps for  each architecture found.
+
+![count-of-arch](../assets/tidbits7/count-of-arch.png)
+
+While this is a good overview of what you have on your system, a pivot table's job is to help you understand and get answers to the questions it raises. For example, looking at the data we see in the screenshot, one might ask what those 4 web apps are.  We don't have to go back to the main table and filter on the architecture column for web apps. Simply double click on the number for the row you're curious about, such as the 4 next to Web apps.  This will create a new sheet in your spreadsheet with all of the data for just those four web apps.
+
+![web-apps-expanded-sheet](../assets/tidbits7/web-apps-expanded-sheet.png)
+
+
+
+I recommend starting to name your sheets at this point because your curiosity will get ahead of you before long because it's so easy to ask for more information in this way.
+
+### Caveats
+
+The sheet we just created is a standalone, editable sheet of data. If you change anything here, nothing will change in the original sheet. Likewise if you change any data in the original sheet, this will not be updated.
+
+The other thing to know is that pivot tables do not automatically update when their source sheet is updated. If you make changes on the source sheet, you must manually refresh the pivot table. In Excel, select any cell in the pivot table and in the menus go to Data → Refresh.
+
+This certainly isn't an exhaustive explanation of how to create pivot tables but hopefully you'll have a little taste of what they can do and begin to experiment by adding more columns to your pivot table to learn more about your data. If you make a mess, simply delete the sheet for the pivot table and start again.
