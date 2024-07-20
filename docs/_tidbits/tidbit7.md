@@ -325,7 +325,7 @@ def archType:
 	end;
 ```
 
-With this function we can change the line in the object definition to
+With this function we can change the line in the dictionary definition to
 
 ```jq
 	arch: (.arch_kind | archType), 
@@ -476,7 +476,7 @@ So let's sort on `.lastModified`
 | sort_by(.lastModified)
 ```
 
-By now we have an array of objects, but we want to convert to a table with the field names as column headers and convert to CSV.
+By now we have an array of dictionaries, but we want to convert to a table with the field names as column headers and convert to CSV.
 
 Credit where credit is due. I found the solution in [a Stackoverflow answer](https://stackoverflow.com/questions/32960857/how-to-convert-arbitrary-simple-json-to-csv-using-jq).
 
@@ -508,7 +508,7 @@ Now we have to do the same for the rows. Map the current row, use the $cols as k
    map(. as $row | $cols | map($row[.]))
 ```
 
-If this is combined, we get an array of arrays. The first array contains the column names and the other arrays contain the values of the objects.
+If this is combined, we get an array of arrays. The first array contains the column names and the other arrays contain the values of the dictionaries.
 Now you can expand the array and parse it through the `@csv` filter to get a CSV file.
 
 ```jq
