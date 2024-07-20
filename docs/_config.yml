@@ -1,3 +1,4 @@
+# Main site config
 remote_theme: bartificer/bartificer-jekyll-theme
 plugins:
   - jekyll-remote-theme
@@ -15,7 +16,7 @@ accent:
   color_light: '#e6f1ff'
   font_family: '"Ubuntu Mono", mono'
 nav_brand:
-  url: 'https://pbs.bartificer.net/about' # an absolte URL
+  page: about.md
   src: /assets/brand.png # relative to site base URL
   alt: Bartificer & Podfeet Logos
   text: A Bartificer & Podfeet Co-creation
@@ -37,3 +38,29 @@ opengraph:
   type: article # can be overriden on the page
   title: A PBS Installment # can be overridden on the page
   image: https://pbs.bartificer.net/assets/openGraph-image.jpg # can be overriden on the page
+
+
+collections:
+  # creator details
+  creators:
+    output: false
+    creators_page: about.md
+
+  # content structure
+  # default sort order is by filename, so no need to change
+  tidbits:
+    output: true
+    permalink: /:name
+    title: PBS Tidbits
+    prefix: PBS Tidbit
+    total: 'Y'
+
+# front matter defaults
+defaults:
+  # defaults for tidbits
+  - scope:
+      path: ""
+      type: tidbits
+    values:
+      layout: instalment
+    

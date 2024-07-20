@@ -1,5 +1,10 @@
-# PBS Tidbit 1 of Y — Display Values are not Data!
-
+---
+title: Display Values are not Data!
+instalment: 1
+creators: [bart, allison]
+tags: [advice, programming]
+date: 2020-02-08
+---
 Listener [@lbutlr](https://twitter.com/lbutlr/) pointed out [on Twitter](https://twitter.com/lbutlr/status/1221867924589121536) that the sample solution to the challenge set in [PBS 88](./pbs88) Icon as I originally posted it in [PBS 89](./pbs89) had a bug — it sometimes got its maths spectacularly wrong!
 
 ![A screenshot showing the bug showing 10k Won being zero Euro, Dollars, etc.](assets/tidbits1/screenshot-1-broken.jpg)
@@ -87,6 +92,3 @@ You’ll find [the full code for the challenge solution on GitHub](https://githu
 
 * [The episode of Chit Chat Across the Pond Podcast for the 8th of February 2020](https://www.podfeet.com/blog/2020/02/pbs-tb-1/) which is based in this post.
 * [A blog post from Allison Sheridan](https://www.podfeet.com/blog/2020/02/when-currency-rate-decimals-go-wrong/) explaining how she enhanced her sample solution to the same challenge to deal with currencies with different numbers of decimal places.
-
- - [Index](index)
- - [Tidbit 2 — It's OK to Play a Different Game! →](tidbit2)

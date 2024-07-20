@@ -1,5 +1,10 @@
-# PBS Tidbit 2 of Y — It's OK to Play a Different Game!
-
+---
+title: It's OK to Play a Different Game!
+instalment: 2
+creators: [bart, allison]
+tags: [programming, fun]
+date: 2022-02-07
+---
 Some recent activity in the PBS community inspired some terminal hackery, and triggered an important old memory. I want to share the memory, share some terminal hackery, and hopefully inspire you to do a little programming for pure fun too.
 
 Allison recently recorded [a segment on using the `egrep` command to play the hip word-game *du-jour*, Wordle](https://www.podfeet.com/blog/2022/01/wordle-ttt-17/). Great minds clearly think alike, because the first thing I thought of when someone described the game to me was regular expressions and searching with `grep` and `egrep`! Allison's post sparked some fun activity in the NosillaCast Slack as others got their nerd on too to expand on Allison's technique. That was fun and cool, but what triggered this tidbit is a less positive word that kept intruding into the conversation — *cheat*. People seemed to feel the need to be defensive, to apologise for their nerd fun, and that made me a little sad.
@@ -138,7 +143,3 @@ The scope for nerdy fun is endless!
 I really hope I've convinced you that not only is it OK to use your nerd skills to play games, it's actually great fun, and you'll learn something too.
 
 Remember, **as long as you're being honest about what you're doing, you're not cheating, you're just playing a different game!**
-
- - [← Tidbit 1 — Display Values are not Data!](tidbit1)
- - [Index](index)
- - [Tidbit 3 — Managing the NPM (or Packagist) Trade-off →](tidbit3)
