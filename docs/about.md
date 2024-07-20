@@ -21,5 +21,5 @@ From time to time, Bart & Allison invite guests to write instalmetns and/or appe
 
 {% assign guests = creators_collection.docs | where: "guest", true -%}
 {% for guest in guests -%}
-* [{{ guest.display_name }}]({{ guest.external_url }})</a>
+* [{{ guest.display_name }}]({{ guest.external_url }})
 {% endfor %}
