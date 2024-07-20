@@ -16,7 +16,8 @@ accent:
   color_light: '#e6f1ff'
   font_family: '"Ubuntu Mono", mono'
 nav_brand:
-  url: 'https://pbs.bartificer.net/about' # an absolte URL
+  # url: 'https://pbs.bartificer.net/about' # an absolte URL
+  page: about.md
   src: /assets/brand.png # relative to site base URL
   alt: Bartificer & Podfeet Logos
   text: A Bartificer & Podfeet Co-creation
