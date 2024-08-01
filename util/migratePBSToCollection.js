@@ -41,7 +41,7 @@ console.debug(`Found ${instalmentFiles.length} instalment files`);
 
 // Loop over each intalment up to the limit
 let numProcessed = 0;
-for(const instalementFile of instalmentFiles){
+for(const instalmentFile of instalmentFiles){
     // handle the processing limit
     numProcessed++;
     if(limit && numProcessed > limit){
@@ -49,11 +49,15 @@ for(const instalementFile of instalmentFiles){
         break;
     }
 
-    console.debug(`Processing '${instalementFile}'`);
+    console.debug(`Processing '${instalmentFile}'`);
 
     // slurp the file
-    const instalmentLines = fs.readFileSync(path.join(docsDir, instalementFile), 'utf8').toString().split('\n');
+    const instalmentLines = fs.readFileSync(path.join(docsDir, instalmentFile), 'utf8').toString().split('\n');
     console.log(`Read ${instalmentLines.length} line(s)`);
+
+    //
+    // extract the relevant info from the file
+    //
 
     // find and extract the title & instalment number
     let titleLine = 0;
@@ -67,21 +71,29 @@ for(const instalementFile of instalmentFiles){
         titleLine++;
     }
     // the title should now be the current line
-    let titleMatch = instalmentLines[titleLine].match(/^#[ ](?:PBS|Instalment)[ ](\d+)[ ]of[ ]X[ ][–—][ ](.+)$/);
+    let titleMatch = instalmentLines[titleLine].match(/^#[ ](?:PBS|Instalment)[ ](\d+)(?:[ ]of[ ]X)?[ ][–—][ ](.+)$/);
     if(titleMatch){
         title = titleMatch[2];
-        instalmentNumber = titleMatch[2];
-        console.debug(`Found title '${title}' & instalement number '${instalmentNumber}' in ${instalementFile}`);
+        instalmentNumber = titleMatch[1];
+        console.debug(`Found title '${title}' & instalment number '${instalmentNumber}' in ${instalmentFile}`);
     }else{
-        console.warn(`Failed to match title in ${instalementFile}`);
+        console.warn(`Failed to match title in ${instalmentFile}`);
     }
 
     // find the next/prev link line numbers
     let lastContentLine = instalmentLines.length - 2; // there is a blank line on the end!
-    while(instalmentLines[lastContentLine.match(/^-[ ]/)]) lastContentLine--;
+    while(instalmentLines[lastContentLine].match(/^-[ ]/)) lastContentLine--;
 
-    // build the output path
-    const outputFile = path.join(outputDir, instalmentFile);
+    // try find an approximate publishing date from the filename of the first instalment MP3 file name
+    let iso8601Date = false;
+    for(const line of instalmentLines){
+        let dateMatch;
+        if(dateMatch = line.match(/CCATP_([0-9]{4})_([0-9]{2})_([0-9]{2}).mp3/)){
+            iso8601Date = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
+            console.debug(`Found post date ${iso8601Date} in filename ${dateMatch[0]}`);
+            break; // exit the loop
+        }
+    }
 
     //
     // build the output contents
@@ -92,6 +104,10 @@ for(const instalementFile of instalmentFiles){
     outputLines.push('---');
     outputLines.push(`title: ${title}`);
     outputLines.push(`instalment: ${instalmentNumber}`);
+    outputLines.push('creators: [bart, allison]');
+    if(iso8601Date){
+        outputLines.push(`date: ${iso8601Date}`);
+    }
     outputLines.push('---');
 
     // copy the contents lines
@@ -105,5 +121,14 @@ for(const instalementFile of instalmentFiles){
     // Write the output file
     //
 
-    // TO DO — LEFT OFF HERE!!!
+    // build the output path
+    const outputFile = path.join(outputDir, instalmentFile);
+
+    // write the contents to the file
+    try{
+        fs.writeFileSync(outputFile, outputLines.join("\n"));
+        console.log(`Successfully migrated '${instalmentFile}' to '${outputFile}'`);
+    }catch(err){
+        console.error(`Failed to write output to '${outputFile}' with error: ${err}`);
+    }
 }
