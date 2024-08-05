@@ -1,4 +1,4 @@
-# PBS 25 of x – A Case Study (bartificer.linkToolkit.js)
+# PBS 25 of X – A Case Study (bartificer.linkToolkit.js)
 
 This instalment is a little unusual – rather than learning new topics, and then demonstrating them with a few simple examples, we’re going to look at a real world JavaScript API, see how it works, and in so doing, reinforce what we’ve already learned and expand our knowledge a little.
 

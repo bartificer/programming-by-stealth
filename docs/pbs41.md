@@ -1,4 +1,4 @@
-# PBS 41 of x – Form Events
+# PBS 41 of X – Form Events
 
 In this instalment we’ll tie up the last few loose ends related to web forms. With web forms under our belts, we’ll then be ready to pick up where we left off with our cellular automata JavaScript prototypes and combine our HTML, JavaScript, and CSS skills together to make our first web app – an implementation of [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 

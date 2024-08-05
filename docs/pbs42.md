@@ -1,4 +1,4 @@
-# PBS 42 of x – Playing the Game of Life
+# PBS 42 of X – Playing the Game of Life
 
 In this instalment it’s finally time to bring our Cellular Automaton prototypes to life by implementing Conway’s Game of Life. By the end of this instalment we’ll have reached a real milestone — our first web app! Granted, it won’t be a very feature-rich web app, but you have to start somewhere!
 

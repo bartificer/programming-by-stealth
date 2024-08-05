@@ -1,4 +1,4 @@
-# PBS 48 of x – A Closer Look at ‘this’ and ‘static’
+# PBS 48 of X – A Closer Look at ‘this’ and ‘static’
 
 I had initially planned to return to our Cellular Automata classes and Conway’s Game of Life for this instalment. However, based on some listener feedback, I’ve decided to delay that by at least one instalment and dedicate this entire instalment to a closer look at just two JavaScript keywords – `this` and `static` instead. The two are more closely related that you might think.
 

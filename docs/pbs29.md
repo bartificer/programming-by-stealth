@@ -1,4 +1,4 @@
-# PBS 29 of x – JS Prototype Revision | Glyph Icons
+# PBS 29 of X – JS Prototype Revision | Glyph Icons
 
 In this instalment we’ll continue with our twin track approach of revising JavaScript prototypes and learning about HTML forms.
 

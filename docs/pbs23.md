@@ -1,4 +1,4 @@
-# PBS 23 of x – Creating Elements with jQuery
+# PBS 23 of X – Creating Elements with jQuery
 
 So far in this series we have been using jQuery to alter existing HTML elements by changing their attributes or style. In this instalment we take things to the next level, and learn how to use jQuery to create entirely new HTML elements and inject them into the DOM, and hence, into the web page.
 

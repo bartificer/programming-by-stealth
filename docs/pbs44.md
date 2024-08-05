@@ -1,4 +1,4 @@
-# PBS 44 of x – ES6 Arguments & Objects
+# PBS 44 of X – ES6 Arguments & Objects
 
 In [the previous instalment](https://pbs.bartificer.net/pbs43) we started our exploration of the new features ES6 brought to JavaScript with a look at block-scoped variables. We learned that `var` will continue to work as it always has, defining function-scoped variables, but that we can now use `let` and `const` to define block-scoped variables and constants.
 

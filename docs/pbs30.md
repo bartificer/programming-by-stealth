@@ -1,4 +1,4 @@
-# PBS 30 of x – Comparing JS Objects | Introducing WAI-ARIA
+# PBS 30 of X – Comparing JS Objects | Introducing WAI-ARIA
 
 In this instalment we’re going to continue with our dual-track approach, first looking at some more JavaScript prototypes, then switching tack to HTML forms again.
 

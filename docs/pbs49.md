@@ -1,4 +1,4 @@
-# PBS 49 of x — Improving Our Cellular Automata
+# PBS 49 of X — Improving Our Cellular Automata
 
 In this instalment we’re going to continue to consolidate our understanding of JavaScript classes by improving the Cellular Automaton classes we built together in previous instalments. This time we’ll make a start on improving how the classes represent and deal with cell states. The challenge will be to finish the task.
 

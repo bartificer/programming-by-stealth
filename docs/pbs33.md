@@ -1,4 +1,4 @@
-# PBS 33 of x – JS Testing with QUnit
+# PBS 33 of X – JS Testing with QUnit
 
 I had intended to continue running parallel JavaScript and HTML streams for this instalment, but when preparing the notes for the JavaScript stream, it became obvious I’d need to dedicate the entire instalment to JavaScript.
 

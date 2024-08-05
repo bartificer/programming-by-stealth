@@ -1,4 +1,4 @@
-# PBS 34 of x – More JS Testing with QUnit
+# PBS 34 of X – More JS Testing with QUnit
 
 In [the previous instalment](https://pbs.bartificer.net/pbs33) we had our first look at [QUnit](http://qunitjs.com/), an open source unit testing framework for JavaScript by the jQuery project. In this instalment we’ll finish our exploration of QUnit with a look at a few more advanced QUnit features. We’ll be making regular use of QUnit in future JavaScript challenges.
 

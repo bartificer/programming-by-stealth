@@ -1,4 +1,4 @@
-# PBS 31 of x – JS Static Functions | Checkboxes & Radio Buttons
+# PBS 31 of X – JS Static Functions | Checkboxes & Radio Buttons
 
 We’re going to continue our twin-track approach in this instalment – first some JavaScript, then some HTML Forms. We’ll start with my sample solution to the challenge set in [the previous instalment](https://pbs.bartificer.net/pbs30). Then we’ll look at one final new concept related to JavaScript prototypes – static functions. We’ll wrap up our revision and deeper dive into JavaScript prototypes with a final, finished
  version of our algorithm for generating prototypes.

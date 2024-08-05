@@ -1,4 +1,4 @@
-# PBS 46 of x – ES6 Spread Operator, Arrow Functions & Classes
+# PBS 46 of X – ES6 Spread Operator, Arrow Functions & Classes
 
 We’ll start this instalment by having a look at my sample solutions to the previous two instalments. Then we’ll move on to looking at three ES6 features, two of which are extremely significant. We’ll start by addressing an accidental oversight from the previous instalment when we looked at arrays. I had intended to cover the so-called _spread operator_ together with `Array.from()` and the `for...of` loop, but it slipped my mind. Once we’ve dealt with my little oversight, we’ll introduce an entirely new type of function that removes the need for the `const self = this` kludge for callbacks. So-called _arrow functions_ greatly simplify the use of the callback in JavaScript, and in modern JavaScript, callbacks are everywhere!
 

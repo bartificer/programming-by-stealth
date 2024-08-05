@@ -1,4 +1,4 @@
-# PBS 26 of x – HTML Data Attributes with jQuery
+# PBS 26 of X – HTML Data Attributes with jQuery
 
 After our brief division in the previous instalment, it’s time to get back to learning new things. We’ll learn about data attributes – a mechanism for embedding data into HTML elements.
 

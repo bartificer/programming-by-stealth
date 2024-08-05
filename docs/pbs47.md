@@ -1,4 +1,4 @@
-# PBS 47 of x – ES6 Polymorphism
+# PBS 47 of X – ES6 Polymorphism
 
 In this instalment we’ll wrap up our look at new features added to JavaScript with the release of ES6. We haven’t come even close to looking at all the new features brought by ES6. Instead, we’ve just looked at a curated selection of some of the most useful new features.
 

@@ -1,4 +1,4 @@
-# PBS 36 of x – More HTML Text Input | More Cellular Automata
+# PBS 36 of X – More HTML Text Input | More Cellular Automata
 
 In [the previous instalment](https://pbs.bartificer.net/pbs35) we took a first look at text input in HTML, and we made a start on a new project – building a set of JavaScript prototypes for creating [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton) so we can implement [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). In this instalment we’ll continue down both of those paths. Later in the project the two paths will finally merge when we use web forms to build a UI around our game of life.
 

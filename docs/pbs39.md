@@ -1,4 +1,4 @@
-# PBS 39 of x – HTML5 Form Validation
+# PBS 39 of X – HTML5 Form Validation
 
 In this instalment we’ll be taking a break from our parallel approach and focusing almost exclusively on HTML5 form validation. We’ll dedicate the entirety of the next instalment to getting our cellular automaton prototypes up and running, so we can actually ‘play’ the game of life.
 

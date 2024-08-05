@@ -1,4 +1,4 @@
-# PBS 40 of x – HTML5 Custom Validations with jQuery
+# PBS 40 of X – HTML5 Custom Validations with jQuery
 
 At the end of the previous instalment I promised we were done with HTML form validation, and insisted we were ready to move on to finishing our Cellular Automata, but it turns out that was a little premature. While working on my sample solution for the [previous instalment](https://pbs.bartificer.net/pbs39)‘s challenge, I realised I’d forgotten to cover something very important – the fact that you can use jQuery to deal with situations where the HTML5 form validation attributes are not powerful enough for your needs. So – we need to rectify that oversight, and that’s going to take this entire instalment to do.
 

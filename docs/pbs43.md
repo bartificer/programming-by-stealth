@@ -1,4 +1,4 @@
-# PBS 43 of x – Introducing JavaScript ES6
+# PBS 43 of X – Introducing JavaScript ES6
 
 Because it's been a while since we focused on JavaScript, the bulk of this instalment will focus on solving the challenge set at the end of the previous instalment. We’ll work through the solution in detail, step-by-step.
 

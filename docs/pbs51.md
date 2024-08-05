@@ -1,4 +1,4 @@
-# PBS 51 of x — Cellular Automata Wrap-up
+# PBS 51 of X — Cellular Automata Wrap-up
 
 This instalment will be the last before we go on hiatus for a few weeks while Allison goes off exploring Europe. When Allison comes back, we’ll be changing gears and switching from focusing on JavaScript to focusing on HTML and CSS. We’ll learn about the free and open source Bootstrap 4 CSS library. This library provides many useful features, but we’ll start simple. Firstly, the library provides modern and elegant default styles for all the HTML elements we already know and love. It also provides a handful of simple CSS classes for defining page layouts (columns, rows, that kind of thing), and thirdly, it provides simple CSS classes for creating so-called _responsive_ web pages, i.e. pages whose layout changes automatically depending on screen size.
 

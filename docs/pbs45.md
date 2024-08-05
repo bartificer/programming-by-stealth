@@ -1,4 +1,4 @@
-# PBS 45 of x – ES6 Arrays & Strings
+# PBS 45 of X – ES6 Arrays & Strings
 
 We’ll start this instalment be revisiting the question of when to use `let` and when to use `const` for variable declarations. My initial advice was to default to using `let`, but based on some great feedback from the community, I’ve changed my mind, and will be defaulting to `const` going forward. I’ll explain why I changed my mind.
 

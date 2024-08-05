@@ -1,4 +1,4 @@
-# PBS 32 of x – JS Error Handling Revision | HTML Selects
+# PBS 32 of X – JS Error Handling Revision | HTML Selects
 
 In this instalment we’ll continue our twin-track approach of mixing a little JavaScript revision with learning some new HTML. In this case, we’ll revise JavaScript’s error handling mechanism (`throw`, `try` & `catch`), and learn how to use the HTML `<select>` tag to create drop-down menus and multiple-selection lists.
 

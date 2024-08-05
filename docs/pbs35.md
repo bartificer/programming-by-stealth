@@ -1,4 +1,4 @@
-# PBS 35 of x – HTML Text Input | Introducing ‘Life’
+# PBS 35 of X – HTML Text Input | Introducing ‘Life’
 
 We’ll start this instalment by rounding out our look at QUnit – first, by taking a quick look at my sample solution to the challenge from the previous instalment, and then by introducing a simple little feature that will make this instalment’s challenge more manageable.
 

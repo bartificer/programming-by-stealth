@@ -1,4 +1,4 @@
-# PBS 24 of x – Creating a JavaScript API
+# PBS 24 of X – Creating a JavaScript API
 
 In this instalment we’ll take our JavaScript skill up a level, learning how to write code that is designed to be reused by ourselves or by others. When you solve a problem that you know you’ll need to solve again, it’s worth putting in a little extra effort to make your code as easy to reuse as possible. You may decide to share that code with others, or you may not, but either way, it’s in your interest to write it using some simple best practices.
 

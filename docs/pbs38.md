@@ -1,4 +1,4 @@
-# PBS 38 of x – Taking Stock
+# PBS 38 of X – Taking Stock
 
 Since this is the first instalment back after our summer hiatus, it seems like a good time to pause and take stock. I want to look back to revise what we’ve learned to far, and to look forward to where I want to take this series next.
 

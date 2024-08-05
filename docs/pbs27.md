@@ -1,4 +1,4 @@
-# PBS 27 of x – JS Prototype Revision | HTML Forms
+# PBS 27 of X – JS Prototype Revision | HTML Forms
 
 In this instalment we’ll make a start on a large topic which we have intentionally ignored until now – taking user input on the web. The way this is done is through HTML forms. It will take us a few instalments to learn all about them. So we’ll start with the basics in this instalment.
 

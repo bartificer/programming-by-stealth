@@ -1,4 +1,4 @@
-# PBS 28 of x – JS Prototype Revision | CSS Attribute Selectors & Buttons
+# PBS 28 of X – JS Prototype Revision | CSS Attribute Selectors & Buttons
 
 In this instalment we’ll continue our parallel streams of JavaScript prototype revision and web forms.
 

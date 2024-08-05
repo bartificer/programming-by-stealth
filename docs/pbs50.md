@@ -1,4 +1,4 @@
-# PBS 50 of x — A Worked Example (Object Explorer)
+# PBS 50 of X — A Worked Example (Object Explorer)
 
 In this very special 50th instalment I share my screen with Allison and we build up a simple web app together. We start with the scariest thing of all, a blank screen, and take it from there.
 

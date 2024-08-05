@@ -1,4 +1,4 @@
-# PBS 37 of x – JSDoc Demo
+# PBS 37 of X – JSDoc Demo
 
 In this instalment we take a break from what we’ve been doing to take an in-depth look at code documentation. I’ve regularly included documentation generated with JSDoc as one of the inputs to the challenges; and I’ve done so with the implicit assumption that those docs would be intuitively meaningful to you all. Talking with Allison, two things became clear to me – firstly, that I had made this implicit assumption, and secondly, that it was completely wrong! Code documentation is a lot like `man` pages on the terminal – the structure of how the words are presented often carry as much meaning as the words themselves. With decades of experience this is obvious, but it’s not intuitively obvious to novices.
 
