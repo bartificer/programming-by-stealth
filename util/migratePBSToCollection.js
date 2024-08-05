@@ -41,6 +41,9 @@ console.debug(`Found ${instalmentFiles.length} instalment files`);
 
 // Loop over each intalment up to the limit
 let numProcessed = 0;
+const failureMessages = []; // an array of strings
+const warningMessages = []; // an array of strings
+let numCompleted = 0;
 for(const instalmentFile of instalmentFiles){
     // handle the processing limit
     numProcessed++;
@@ -77,7 +80,10 @@ for(const instalmentFile of instalmentFiles){
         instalmentNumber = titleMatch[1];
         console.debug(`Found title '${title}' & instalment number '${instalmentNumber}' in ${instalmentFile}`);
     }else{
-        console.warn(`Failed to match title in ${instalmentFile}`);
+        const msg = `Failed to match title in '${instalmentFile}'`;
+        console.error(msg);
+        failureMessages.push(msg);
+        continue; // skip on to the next file
     }
 
     // find the next/prev link line numbers
@@ -94,6 +100,14 @@ for(const instalmentFile of instalmentFiles){
             break; // exit the loop
         }
     }
+    if(!iso8601Date){
+        const msg = `Failed to find a date in '${instalmentFile}'`;
+        console.warn(msg);
+        warningMessages.push(msg);
+    }
+
+    // check for a mini-series
+    // TO DO
 
     //
     // build the output contents
@@ -128,7 +142,36 @@ for(const instalmentFile of instalmentFiles){
     try{
         fs.writeFileSync(outputFile, outputLines.join("\n"));
         console.log(`Successfully migrated '${instalmentFile}' to '${outputFile}'`);
+        numCompleted++;
     }catch(err){
-        console.error(`Failed to write output to '${outputFile}' with error: ${err}`);
+        const msg = `Failed to write output to '${outputFile}' with error: ${err}`;
+        console.error(msg);
+        failureMessages.push(msg);
+    }
+}
+
+// report on outputs
+if(numCompleted){
+    console.log('');
+    console.log(`=== NOTE: Successfully Migrated ${numCompleted} instalment(s) ===`);
+}
+
+const numWarnings = warningMessages.length;
+if(numWarnings){
+    console.log('');
+    console.log(`--- WARNING: Not all Files were Perfectly Processed ---`);
+    console.log('');
+    for(const msg of warningMessages){
+        console.log(`- ${msg}`);
+    }
+}
+
+const numFailedFiles = failureMessages.length;
+if(numFailedFiles){
+    console.log('');
+    console.log(`*** ERROR — FAILED TO PROCESS ${numFailedFiles} FILE(S)***`);
+    console.log('');
+    for(const msg of failureMessages){
+        console.log(`- ${msg}`);
     }
 }
