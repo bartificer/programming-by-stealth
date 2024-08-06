@@ -8,7 +8,11 @@ This tidbit is a little unusual — it's an interview with one of the maintainer
 
 ## Matching Podcast Episode
 
-TO DO
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_08_06.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_08_06.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2024_08_06.html">PBS_2024_08_06</a>
 
 ## Links
 
