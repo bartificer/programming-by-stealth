@@ -94,7 +94,7 @@ for(const instalmentFile of instalmentFiles){
     let iso8601Date = false;
     for(const line of instalmentLines){
         let dateMatch;
-        if(dateMatch = line.match(/CCATP_([0-9]{4})_([0-9]{2})_([0-9]{2}).mp3/)){
+        if(dateMatch = line.match(/(?:CCATP|PBS)_([0-9]{4})_([0-9]{2})_([0-9]{2})[-_0-9a-zA-Z]*[.]mp3/)){
             iso8601Date = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
             console.debug(`Found post date ${iso8601Date} in filename ${dateMatch[0]}`);
             break; // exit the loop
