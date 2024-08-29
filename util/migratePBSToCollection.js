@@ -107,7 +107,12 @@ for(const instalmentFile of instalmentFiles){
     }
 
     // check for a mini-series
-    // TO DO
+    let miniSeries = '';
+    const miniSeriesMatch = title.match(/^(\w+):[ ]+(.+$)/);
+    if(miniSeriesMatch){
+        miniSeries = miniSeriesMatch[1];
+        title = miniSeriesMatch[2];
+    }
 
     //
     // build the output contents
@@ -118,6 +123,9 @@ for(const instalmentFile of instalmentFiles){
     outputLines.push('---');
     outputLines.push(`title: ${title}`);
     outputLines.push(`instalment: ${instalmentNumber}`);
+    if(miniSeries){
+        outputLines.push(`miniseries: ${miniSeries}`);
+    }
     outputLines.push('creators: [bart, allison]');
     if(iso8601Date){
         outputLines.push(`date: ${iso8601Date}`);
