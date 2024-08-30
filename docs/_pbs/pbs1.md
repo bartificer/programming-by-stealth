@@ -123,6 +123,3 @@ Note that if you’ve not configured your web server to use port 80, you’ll ne
 We’ve now laid the ground work to start on our journey towards programming.
 In the next instalment we’ll start learning about the Hyper Text Markup Language, or HTML, which instructs a web browser on how to present information to users.
 This is not a programming language as such, but a markup language. HTML will serve as a gentle introduction to the idea of using formally defined rules of grammar to tell a computer what we mean.
-
- - [Index](index)
- - [PBS 2 — Introducing HTML →](pbs2)

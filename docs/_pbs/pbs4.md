@@ -67,7 +67,3 @@ Create a folder called `pbs4` in the document root of your web server, and save 
 Once the file is saved, and your web server started, you should be able to browse to the page at `http://localhost/pbs4/`, and it should look something like:
 
 ![PBS 4 - Example](../assets/pbs4/Screen-Shot-2015-11-20-at-2.06.20-p.m.-e1448028433115.png)
-
- - [← PBS 3 — HTML Block Elements](pbs3)
- - [Index](index)
- - [PBS 5 — Images & Links →](pbs5)

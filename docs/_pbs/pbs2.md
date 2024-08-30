@@ -146,7 +146,3 @@ separated from the first by a horizontal rule.</p>
 Once this file is saved, and assuming your web server is running, you should be able to view your newly created page at the URL `http://localhost/pbs2/`.
 
 ![PBS2 Example](../assets/pbs2/Screen-Shot-2015-10-22-at-2.32.47-p.m.-e1445520810976.png)
-
- - [← PBS 1 — Introduction](pbs1)
- - [Index](index)
- - [PBS 3 — HTML Block Elements →](pbs3)

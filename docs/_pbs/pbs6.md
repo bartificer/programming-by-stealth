@@ -373,7 +373,3 @@ Once both files are saved in the appropriate folder, and your local web server i
 ## Conclusion
 
 This instalment is just a very basic introduction to CSS. We still have a lot more to learn! In the next instalments we’ll learn about the CSS box model, more advanced selectors, more CSS properties, and even some new HTML tags designed to facilitate easy styling. We’ll start with the box model though, because a good understanding of the box model is critical to effective styling.
-
- - [← PBS 5 — Images & Links](pbs5)
- - [Index](index)
- - [PBS 7 — More CSS →](pbs7)

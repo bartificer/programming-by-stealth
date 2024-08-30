@@ -423,7 +423,3 @@ The demo also contains an example of `display: inline-block` in the form of the 
 We’ve now touched on the three CSS properties that together allow us to control the layout of an HTML document – `float`, `position`, and `display`. Think of these three properties as the atoms from which all modern web layouts are built. On the bad old days before CSS, layouts were done using HTML tables – I can’t stress how important it is not to build pages in that way. It should also be noted that another new CSS feature is currently under development that will make layouts even easier in future – CSS Grids, but that feature is a few years away from main stream use yet. At the moment only one browser has proper support for the feature – Microsoft’s new Edge browser.
 
 In the next instalment or two we’ll learn how to style lists with CSS. We’ll also discover some more CSS selectors. After that, we’ll backtrack a little and learn some more HTML tags – ones that I’ve intentionally skipped until after we learned about CSS. Then, we’ll be ready for the next big leap – an introduction to our first real programming language of the series – JavaScript.
-
- - [← PBS 8 — CSS Positioning](pbs8)
- - [Index](index)
- - [PBS 10 — Yet More CSS →](pbs10)
