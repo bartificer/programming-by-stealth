@@ -17,7 +17,7 @@ The series is intended to be evergreen, but if you play along in real-time you c
 
 Looking for something in an instalment of Programming By Stealth? Check out the PBS Index, created by listener Dorothy. You can find the PBS Index at [bartb.ie/pbsindex](https://bartb.ie/pbsindex).
 
-# Instalments
+#  <a name="pbs"></a>Instalments
 
 > # Note
 > Most of the instalments linked below were automatically converted from HTML to Markdown in April 2020. The conversion may not always be perfect, but all mistakes are slowly being fixed as they're noticed. Feel free to submit pull requests on GitHub if you find and fix any problems 🙂
