@@ -605,7 +605,3 @@ Using the files in the folder `pbs48ChallengeStartingPoint` in this instalment�
 Hopefully this instalment has helped you get a better grip on the role `this` plays in JavaScript, and on just what it means for a function to be declared as `static`. If not, please leave some constructive feedback to that effect below.
 
 I haven’t fully decided on what we’ll do in the next instalment, but it will definitely be focused on knowledge consolidation rather than learning new concepts.
-
- - [← PBS 47 — ES6 Polymorphism](pbs47)
- - [Index](index)
- - [PBS 49 — Improving Our Cellular Automata →](pbs49)

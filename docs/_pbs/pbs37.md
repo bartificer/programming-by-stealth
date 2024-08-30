@@ -35,7 +35,3 @@ alt="Screencast Link Here" width="480" height="350" /></a>
 *   JSDoc – [usejsdoc.org](http://usejsdoc.org/) (free)
 *   NodeJS – [nodejs.org](https://nodejs.org/) (free)
 *   The Minami JSDoc Theme – [github.com/…](https://github.com/Nijikokun/minami) (free)
-
- - [← PBS 36 — More HTML Text Input \| More Cellular Automata](pbs36)
- - [Index](index)
- - [PBS 38 — Taking Stock →](pbs38)

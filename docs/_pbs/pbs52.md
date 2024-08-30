@@ -176,7 +176,3 @@ Now include Bootstrap 4 into the page by adding the needed `<link>` and `<meta>`
 ## Final Thoughts
 
 All we’ve done today is set the scene. Bootstrap is a very big API, so it’s going to take us quite some time to explore. Next time we’ll start out exploration with a look at some of the utility classes Bootstrap offers.
-
- - [← PBS 51 — Cellular Automata Wrap-up](pbs51)
- - [Index](index)
- - [PBS 53 — Bootstrap Utilities →](pbs53)

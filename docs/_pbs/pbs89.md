@@ -285,7 +285,3 @@ You may use any UI you like, but I suggest looking at [Bootstrap Nav Tabs](https
 If, like in my sample solution, you are loading each currency with a separate AJAX request you'll need to re-factor your code to load the rates for a single currency and then use some simple maths to derive the rates between the various currencies. I would suggest building a lookup table to map the rates from every currency to every other currency.
 
 Because this is a very substantial challenge, there will be two regular instalments between this instalment and the solution instalment for this challenge. I.e. you have about six weeks 🙂
-
- - [← PBS 88 — DOM & jQuery Objects Redux](pbs88)
- - [Index](index)
- - [PBS 90 — JavaScript Wrapper Objects →](pbs90)

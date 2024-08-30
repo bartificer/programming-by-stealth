@@ -381,7 +381,3 @@ We’ve now been introduced to all the basic HTML form elements – checkboxes, 
 Our Cellular Automaton prototypes are also progressing nicely, we’ve gotten to the stage where we can actually make an automaton appear on a web page. Our next task is to make our automata run, to have them move forward step-by-step and recalculate and rerender the state of each cell as they do. That’s what we’ll be doing in the next instalment.
 
 Adding a UI around our cellular automata will allow us to unite our two concurrent tracks – web forms and JavaScript APIs. We’ll finally bring the three client-side web technologies – HTML, CSS & JavaScript together into a single web app.
-
- - [← PBS 35 — HTML Text Input \| Introducing ‘Life’](pbs35)
- - [Index](index)
- - [PBS 37 — JSDoc Demo →](pbs37)

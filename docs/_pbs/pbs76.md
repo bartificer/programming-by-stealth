@@ -704,7 +704,3 @@ For bonus credit, can you do something similar with the `<script>` tag containin
 ## Final Thoughts
 
 We’ll start the next instalment by looking at the complexities of juggling multiple AJAX calls that are interdependent on each other. What we’ll soon discover is that using callbacks for AJAX is hellish! At that stage we’ll be ready to learn about JavaScript promises, a very cool new feature added to the language with the release of ES7.
-
- - [← PBS 75 — AJAX Intro](pbs75)
- - [Index](index)
- - [PBS 77 — More Callbacks & More AJAX →](pbs77)

@@ -208,7 +208,3 @@ When you’re finished, your entire recipe page, including these two new forms, 
 We’re nearing the end of our first look at forms in Bootstrap 4. This is by no means a comprehensive guide to every single form-related feature in Bootstrap, far from it, but we will have a nice overview by the time we’re done.
 
 To date we’ve learned how to take input from users, lay out our forms, and work with buttons. In the next instalment we’ll learn how to create richer inputs using Bootstrap’s _Input Group_ component, and in the instalment after that, we’ll round things out with an introduction to Bootstrap’s form validation features.
-
- - [← PBS 63 — Bootstrap Buttons](pbs63)
- - [Index](index)
- - [PBS 65 — Bootstrap Input Groups →](pbs65)

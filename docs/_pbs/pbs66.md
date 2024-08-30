@@ -378,7 +378,3 @@ For bonus credit, find the documentation for Bootstrap form validation tooltips 
 ## Final Thoughts
 
 We’ve now completed our first look at Bootstrap’s form-related features. We’re now ready to move on to a related but subtly different set of Bootstrap features — web app UI elements.
-
- - [← PBS 65 — Bootstrap Input Groups](pbs65)
- - [Index](index)
- - [PBS 67 — Introducing Bootstrap Dropdowns →](pbs67)

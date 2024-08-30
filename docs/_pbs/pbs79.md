@@ -391,7 +391,3 @@ $.ajax({
 We’ve now had our first glimpse of Promises. We know how to use `.then()` to respond to the resolution of a Promise, and to deal with its rejection. Up to this point there’s not much of an obvious advantage over basic callbacks. Sure, we’ve seen that a Promise lives indefinitely, and that you can use `.then()` to access the value it resolved to as often as you like. That’s not much different than storing the value in a variable and then accessing that variable later. What we’ve not seen so far is any mechanism for creating relationships between asynchronous actions.
 
 The key to creating relationships between Promises is the value returned by `.then()` (and `.catch()`). Just as we were ignoring the value returned by `$.ajax()` before this instalment, we’re now ignoring the value returned by `.then()`. That return value is the key to unlocking the power of Promises. That’s where we’ll pick up our journey next time.
-
- - [← PBS 78 — is.js & Bootstrap Popovers](pbs78)
- - [Index](index)
- - [PBS 80 — JavaScript Promise Chains →](pbs80)

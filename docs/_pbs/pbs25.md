@@ -125,7 +125,3 @@ A new folder will now be created named `docs-dev`. In this folder you will find 
 Hopefully you found this break from the norm helpful.
 
 In the next instalment we’ll be returning to business as usual, starting with a solution to the challenge set at the end of [instalment 24](https://pbs.bartificer.net/pbs24).
-
- - [← PBS 24 — Creating a JavaScript API](pbs24)
- - [Index](index)
- - [PBS 26 — HTML Data Attributes with jQuery →](pbs26)
