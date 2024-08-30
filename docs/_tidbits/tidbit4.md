@@ -4,6 +4,8 @@ instalment: 4
 creators: [bart, allison]
 tags: [advice, hosting, servers, cloud]
 date: 2022-03-31
+opengraph:
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2022_03_31.mp3
 ---
 In the main PBS series, we're hovering on the edge of moving from purely client-side JavaScript apps to full web apps with a client and *'server'* side, but as we approach that edge, the word *server* is becoming ever more abstract. At this stage, it really does just mean *"something on the other side of an HTTPS connection"*. The days of web servers just being remote computers are well and truly over.
 
