@@ -1,10 +1,10 @@
 ---
-title: Building with Classes Part 2: *Is-A*
+title: 'Building with Classes Part 2: Is-A'
 instalment: 99
 creators: [bart, allison]
 date: 2020-06-28
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_28.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_06_28.mp3
 ---
 
 In this instalment we're wrapping up our third look at Object Oriented (OO) programming in JavaScript. In the previous instalment we introduced the idea that defining relationships between classes allows for the construction of object oriented code for representing complex concepts and things in our code. If a class represents a concept or thing, then a collection of related classes can represent a collection of related concepts and things. As mentioned in the previous instalments, there are two ways in which classes can be related to each other. The simplest by far is the so-called *has-a* relationship. This is simply the situation where instances of one class have instances of another as data attributes. This instalment is dedicated to the second type of relationship, the so-called *is-a* relationship, the mechanism for which is the OO concept of *class inheritance*. Using inheritance we can build hierarchies of classes, and in so doing, remove a lot of duplication, and make our code easier to write and maintain, and easier to build on. Inheritance really is at the very heart of good object oriented design.
@@ -612,7 +612,3 @@ In fact, the next instalment will be entirely dedicated to JavaScript because it
 Instalment 101 will see us take a break from programming itself so we can focus on some of the tools developers have at their disposal for managing coding projects. We'll be paying particular attention to the distributed version control system [Git](https://en.wikipedia.org/wiki/Git), and the free Git service offered by Microsoft at [GitHub.com](https://github.com).
 
 Once we've learned the basics of Git and GitHub we'll shift our focus from the web browser to the web server, and we'll use that as an opportunity to meet a new language — [PHP](https://en.wikipedia.org/wiki/PHP).
-
- - [← PBS 98 — Building with Classes Part 1: *Has-A*](pbs98)
- - [Index](index)
- - [PBS 100 — Time Sharing Challenge Solution →](pbs100)
