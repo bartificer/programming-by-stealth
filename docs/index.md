@@ -26,7 +26,7 @@ Looking for something in an instalment of Programming By Stealth? Check out the 
 {: .aside}
 
 {% assign pbs_collection = site.collections | where: "label", "pbs" | first -%}
-{% include instalmentList.html my_collection=tidbits_collection %}
+{% include instalmentList.html my_collection=pbs_collection %}
 
 # <a name="tidbits"></a>Related Contents
 
