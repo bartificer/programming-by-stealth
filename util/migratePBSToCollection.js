@@ -91,12 +91,15 @@ for(const instalmentFile of instalmentFiles){
     while(instalmentLines[lastContentLine].match(/^-[ ]/)) lastContentLine--;
 
     // try find an approximate publishing date from the filename of the first instalment MP3 file name
+    // also capture the audio URL
     let iso8601Date = false;
+    let audioURL = '';
     for(const line of instalmentLines){
         let dateMatch;
         if(dateMatch = line.match(/(?:CCATP|PBS)_([0-9]{4})_([0-9]{2})_([0-9]{2})[-_0-9a-zA-Z]*[.]mp3/)){
+            audioURL = dateMatch[0];
             iso8601Date = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
-            console.debug(`Found post date ${iso8601Date} in filename ${dateMatch[0]}`);
+            console.debug(`Found post date ${iso8601Date} in audio file ${dateMatch[0]}`);
             break; // exit the loop
         }
     }
@@ -129,6 +132,10 @@ for(const instalmentFile of instalmentFiles){
     outputLines.push('creators: [bart, allison]');
     if(iso8601Date){
         outputLines.push(`date: ${iso8601Date}`);
+    }
+    if(audioURL){
+        outputLines.push('opengraph:');
+        outputLines.push(`  audio: ${audioURL}`);
     }
     outputLines.push('---');
 
