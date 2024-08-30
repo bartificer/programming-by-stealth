@@ -48,6 +48,12 @@ collections:
 
   # content structure
   # default sort order is by filename, so no need to change
+  pbs:
+    output: true
+    permalink: /:name
+    title: Programming by Stealth
+    prefix: PBS
+    total: 'X'
   tidbits:
     output: true
     permalink: /:name
@@ -57,6 +63,12 @@ collections:
 
 # front matter defaults
 defaults:
+  # defaults for main series
+  - scope:
+      path: ""
+      type: pbs
+    values:
+      layout: instalment
   # defaults for tidbits
   - scope:
       path: ""
