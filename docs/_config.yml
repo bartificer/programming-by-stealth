@@ -47,16 +47,29 @@ collections:
     creators_page: about.md
 
   # content structure
-  # default sort order is by filename, so no need to change
+  pbs:
+    output: true
+    permalink: /:name
+    title: Programming by Stealth
+    prefix: PBS
+    total: 'X'
+    sort_by: date
   tidbits:
     output: true
     permalink: /:name
     title: PBS Tidbits
     prefix: PBS Tidbit
     total: 'Y'
+    # default sort order is by filename, so no need to change
 
 # front matter defaults
 defaults:
+  # defaults for main series
+  - scope:
+      path: ""
+      type: pbs
+    values:
+      layout: instalment
   # defaults for tidbits
   - scope:
       path: ""
