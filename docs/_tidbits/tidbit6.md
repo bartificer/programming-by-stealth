@@ -3,6 +3,8 @@ title: A Real-World Webpack Case Study
 instalment: 6
 creators: [bart, allison]
 date: 2022-09-17
+opengraph:
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2022_09_17.mp3
 ---
 In the main series we recently dedicated two instalments ([PBS 138](./pbs138) & [PBS 139](./pbs139)) to using [Webpack](https://webpack.js.org/) to bundle a website or web app. In the instalments we used a very simplistic example to help keep things clear. The example worked, but it left me wondering what it would be like to migrate an existing real-world web app to Webpack. 
 
