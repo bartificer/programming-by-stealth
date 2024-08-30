@@ -3,6 +3,8 @@ title: Interview with jq Maintainer Mattias Wadman
 instalment: 8
 creators: [bart]
 date: 2024-08-06
+opengraph:
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_08_06.mp3
 ---
 This tidbit is a little unusual — it's an interview with one of the maintainers of the jq project, Mattias Wadman.
 
