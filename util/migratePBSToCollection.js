@@ -95,16 +95,30 @@ for(const instalmentFile of instalmentFiles){
     let iso8601Date = false;
     let audioURL = '';
     for(const line of instalmentLines){
-        let dateMatch;
-        if(dateMatch = line.match(/(?:CCATP|PBS)_([0-9]{4})_([0-9]{2})_([0-9]{2})[-_0-9a-zA-Z]*[.]mp3/)){
-            audioURL = dateMatch[0];
-            iso8601Date = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
-            console.debug(`Found post date ${iso8601Date} in audio file ${dateMatch[0]}`);
-            break; // exit the loop
+        // start by finding the Audio element for the podcast episode and extracting the URL
+        const audioURLMatch = line.match(/<audio[ ]controls[ ]src="(.+)">/);
+        if(audioURLMatch){
+            audioURL = audioURLMatch[1];
+            console.debug(`Found audio URL ${audioURL}`);
+
+            // now try get the data from the filename in the URL
+            const dateMatch = audioURL.match(/(?:CCATP|PBS)_([0-9]{4})_([0-9]{2})_([0-9]{2})[-_0-9a-zA-Z]*[.]mp3/);
+            if(dateMatch){
+                iso8601Date = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
+                console.debug(`Found post date ${iso8601Date} in MP3 file ${dateMatch[0]}`);
+            }
+
+            // exit the loop
+            break;
         }
     }
+    if(!audioURL){
+        const msg = `Failed to find audio URL '${instalmentFile}'`;
+        console.warn(msg);
+        warningMessages.push(msg);
+    }
     if(!iso8601Date){
-        const msg = `Failed to find a date in '${instalmentFile}'`;
+        const msg = `Failed to find date in '${instalmentFile}'`;
         console.warn(msg);
         warningMessages.push(msg);
     }
