@@ -9,6 +9,7 @@ ME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="$( dirname "$ME_DIR" )"
 
 cd ${ROOT_DIR}/docs
-${ROOT_DIR}/util/link-maker-pbs.py
-# commented out by BB 11 July 2024 — testing Collecitons
+# commented out by BB 30 August 2024 — migrating main series to a Jekyll Colleciton
+# ${ROOT_DIR}/util/link-maker-pbs.py
+# commented out by BB 11 July 2024 — migrating tidbits to a Jekyll Colleciton
 # ${ROOT_DIR}/util/link-maker-tidbit.py
