@@ -3,6 +3,8 @@ title: jq to Analyze macOS Installed Apps with Helma van der Linden
 instalment: 7
 creators: [helma, allison]
 date: 2024-07-20
+opengraph:
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_07_20.mp3
 ---
 This Tidbit episode of Programming By Stealth is brought to you by Helma van der Linden and is written in the first person.
 
