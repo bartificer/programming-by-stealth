@@ -3,6 +3,8 @@ title: More JS Testing with QUnit
 instalment: 34
 creators: [bart, allison]
 date: 2017-04-30
+tags:
+  - testing
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_04_30.mp3
 ---
