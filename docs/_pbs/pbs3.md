@@ -91,7 +91,7 @@ If multiple terms have the same definition, you can have a number of consecutive
   <dt>HTML</dt>
   <dd>The Hyper Text Markup Language is a computer language for defining the content of a web page.</dd>
   <dt>CSS</dt>
-  <dd>Cascading Style Sheets are used to define how a HTML web page looks.</dd>
+  <dd>Cascading Style Sheets are used to define how an HTML web page looks.</dd>
 </dl>
 ```
 
@@ -209,4 +209,4 @@ Start by adding a folder called `pbs3` to the document root of your web server. 
 
 Make sure your web server is started, and then visit `http://localhost/pbs3/` in your favourite browser to see what this page looks like. It should look something like:
 
-![PB3 Final Example](../assets/pbs3/Screen-Shot-2015-11-07-at-13.51.34-e1446904337845.png)
+![PBS3 Final Example](../assets/pbs3/Screen-Shot-2015-11-07-at-13.51.34-e1446904337845.png)

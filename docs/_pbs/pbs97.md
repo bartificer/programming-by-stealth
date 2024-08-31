@@ -661,7 +661,3 @@ In the real world, concepts tend to be hierarchical. The abstract concept of a m
 Surely there must be a better way? Of course there is! If the real world can gave concept hierarchies, surely our classes should be able to have matching hierarchies? Well, they can, through the mechanism of inheritance (often referred to by the highfalutin term *polymorphism*).
 
 This simple but powerful concept will be the focus of the next instalment.
-
- - [← PBS 96 — World Clock Challenge Solution](pbs96)
- - [Index](index)
- - [PBS 98 — Building with Classes Part 1: *Has-A* →](pbs98)

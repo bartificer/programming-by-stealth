@@ -1024,7 +1024,3 @@ If you’ve like a challenge, and it really is a challenge, write a test suite a
 ## Final Thoughts
 
 We now have an introduction to some testing concepts, and some experience with the QUnit testing framework. So far, we’ve only used QUnit to test JavaScript code that does not interact with the DOM, and does not use the fixture or any hooks. In the next instalment we’ll take our testing up a notch by looking at how you can use QUnit to test code that interacts with the DOM using things like jQuery, and how you can save yourself a lot of code repetition within your test suite by using event handlers and hooks.
-
- - [← PBS 32 — JS Error Handling Revision \| HTML Selects](pbs32)
- - [Index](index)
- - [PBS 34 — More JS Testing with QUnit →](pbs34)

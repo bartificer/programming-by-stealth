@@ -666,7 +666,3 @@ On our JavaScript track we have now built a collection of pretty full-featured p
 We will soon be staring on a whole new suite of JavaScript prototypes, but before we do, we’ll learn our first formal piece of software engineering – Test Driven Development (TDD). All software written by humans will inevitably contain bugs, but that’s no reason not to use sound methodologies in an attempt to systematically reduce the number of mistakes we make. That’s where TDD comes in. With TDD you start by defining the tests that your finished functions must pass before you even write a single character of code for the function itself. Then, when the function is written, you can check whether or not it does what you intended it to do by running your predefined tests against it.
 
 As well as learning about TDD, we’ll also continue to explore HTML forms in the next instalment. In particular, we’ll be focusing on basic text input with text boxes and text areas. As similar as they sound, those two are actually very different beasts in HTML!
-
- - [← PBS 31 — JS Static Functions \| Checkboxes & Radio Buttons](pbs31)
- - [Index](index)
- - [PBS 33 — JS Testing with QUnit →](pbs33)

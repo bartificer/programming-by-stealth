@@ -858,7 +858,3 @@ Secondly, the next state needs to be checked against the list of allowed states 
 ## Final Thoughts
 
 This time we made a start on improving how our Cellular Automaton classes represent cell states, and you’ll be finishing off those improvements as your _‘homework’_. Next time we’ll tackle the rendering of states so as to be sure that our prototypes enforce accessibility.
-
- - [← PBS 48 — A Closer Look at ‘this’ and ‘static’](pbs48)
- - [Index](index)
- - [PBS 50 — A Worked Example (Object Explorer) →](pbs50)

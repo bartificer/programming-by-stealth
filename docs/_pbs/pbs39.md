@@ -260,7 +260,3 @@ We have now covered the vast bulk of the HTML and CSS we will be learning in thi
 When it comes to the web technologies, our focus will now shift to third-party libraries that build on the basic technologies we know to make the building of beautiful and feature-rich web apps easier. The first of these will be Bootstrap 4, but we may well visit others as the series progresses.
 
 In terms of our exploration of JavaScript, we first need to finish our Cellular Automata prototypes before we are ready to move on and learn some new things. The first thing we’ll focus on once we’ve finished our CAs is a selection of new features added to the core language as part of version 6 of the official JavaScript specification.
-
- - [← PBS 38 — Taking Stock](pbs38)
- - [Index](index)
- - [PBS 40 — HTML5 Custom Validations with jQuery →](pbs40)

@@ -932,7 +932,3 @@ You can view your local copy of this file in your browser, or view a version on 
 We’ll start the next instalment with more JavaScript prototype revision. First, we'll take a look at my sample solution to the challenge set in this instalment. Then we’ll move on to add another important additional feature to all three of our prototypes – the ability to do comparisons.
 
 We’ll then move on to learn about a W3C standard that is very important for HTML forms, especially forms that make use of glyph icons – ARIA (Accessible Rich Internet Applications).
-
- - [← PBS 28 — JS Prototype Revision \| CSS Attribute Selectors & Buttons](pbs28)
- - [Index](index)
- - [PBS 30 — Comparing JS Objects \| Introducing WAI-ARIA →](pbs30)

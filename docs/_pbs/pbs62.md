@@ -287,7 +287,3 @@ Using your alert generator or mine (i.e. a solution to the second part of the pr
 ## Final Thoughts
 
 In this instalment we’ve really just dipped our toes into the ocean of form-related features Bootstrap has to offer us. In upcoming instalments we’ll learn how to do much more complex form layouts, how to do cool things with buttons, how to combine multiple basic HTML form inputs into single powerful UI elements, and so much more.
-
- - [← PBS 61 — Bootstrap Jumbotrons & Badges](pbs61)
- - [Index](index)
- - [PBS 63 — Bootstrap Buttons →](pbs63)

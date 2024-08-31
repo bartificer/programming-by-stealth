@@ -494,7 +494,3 @@ Using either your own solution to the previous challenge, or the sample solution
 ## Final Thoughts
 
 This has been our first introduction to templating, and already we have a powerful mechanism for creating dynamic content without having to build it up piece-by-piece with jQuery. In the next instalment we’ll take things to the next level with an introduction to the third-party templating library [Mustache](http://mustache.github.io).
-
- - [← PBS 71 — Bootstrap Spinners](pbs71)
- - [Index](index)
- - [PBS 73 — Mustache Templates →](pbs73)

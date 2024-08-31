@@ -239,7 +239,3 @@ Finally — make any other improvements you think make sense.
 ## Final Thoughts
 
 In this gentle introduction to Bootstrap, we’ve learned about some of the utility CSS classes the library provides. In the coming instalments we’ll learn about a few more utilities before moving on to look at how Bootstrap can be used to improve the rendering of standard HTML content like titles, paragraphs, lists, tables, quotations, figures, and more.
-
- - [← PBS 52 — Introducing Bootstrap 4](pbs52)
- - [Index](index)
- - [PBS 54 — More Bootstrap Utilities →](pbs54)

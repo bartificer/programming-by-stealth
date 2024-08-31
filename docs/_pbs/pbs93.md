@@ -334,7 +334,3 @@ What we need to avoid the problems with our Hoonyaker and Squid implementations 
 This instalment ends on a cliff hanger! We've seen the value encapsulation brings, but we need to take things a step further by looking at how classes build on the concept of encapsulation to provide a mechanism for building encapsulated objects on demand.
 
 You write classes to represent abstract concepts, and you then use those classes to quickly and easily construct encapsulated objects without any need for code duplication or tedious copying-and-pasting. And what's more, classes allow you to do it all in an easily re-usable and sharable way!
-
- - [← PBS 92 — Currency Grid Challenge](pbs92)
- - [Index](index)
- - [PBS 94 — Basic JavaScript OO with Class →](pbs94)

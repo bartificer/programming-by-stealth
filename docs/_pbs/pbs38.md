@@ -373,7 +373,3 @@ Learning server-side development with Node is likely to take many many months. M
 <!-- vale Vale.Repetition = YES -->
 
 We’ve learned a lot together over the last 37 instalments, but there is so much more for us to explore, so have no fear, this series is nowhere near winding down yet!
-
- - [← PBS 37 — JSDoc Demo](pbs37)
- - [Index](index)
- - [PBS 39 — HTML5 Form Validation →](pbs39)
