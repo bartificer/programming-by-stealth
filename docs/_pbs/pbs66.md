@@ -3,6 +3,8 @@ title: Bootstrap Form Validation
 instalment: 66
 creators: [bart, allison]
 date: 2018-11-03
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_11_03.mp3
 ---

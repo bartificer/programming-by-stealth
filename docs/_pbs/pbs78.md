@@ -3,6 +3,8 @@ title: is.js & Bootstrap Popovers
 instalment: 78
 creators: [bart, allison]
 date: 2019-05-17
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2019_05_17.mp3
 ---

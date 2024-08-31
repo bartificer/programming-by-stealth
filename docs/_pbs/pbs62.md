@@ -3,6 +3,8 @@ title: A Basic Bootstrap Form
 instalment: 62
 creators: [bart, allison]
 date: 2018-09-15
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_09_15.mp3
 ---

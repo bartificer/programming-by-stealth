@@ -3,6 +3,8 @@ title: Bootstrap Modals & Toasts
 instalment: 70
 creators: [bart, allison]
 date: 2019-01-28
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2019_01_28.mp3
 ---

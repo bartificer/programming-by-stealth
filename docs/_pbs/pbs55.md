@@ -3,6 +3,8 @@ title: Bootstrap Content
 instalment: 55
 creators: [bart, allison]
 date: 2018-06-02
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_06_02.mp3
 ---

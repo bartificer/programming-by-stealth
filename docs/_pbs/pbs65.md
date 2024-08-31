@@ -3,6 +3,8 @@ title: Bootstrap Input Groups
 instalment: 65
 creators: [bart, allison]
 date: 2018-10-20
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_10_20.mp3
 ---

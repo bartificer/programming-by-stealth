@@ -3,6 +3,8 @@ title: Bootstrap Breakpoints
 instalment: 58
 creators: [bart, allison]
 date: 2018-07-14
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_07_14.mp3
 ---

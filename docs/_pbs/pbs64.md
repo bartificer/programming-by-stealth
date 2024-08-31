@@ -3,6 +3,8 @@ title: Bootstrap Form Layouts
 instalment: 64
 creators: [bart, allison]
 date: 2018-10-04
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_10_04.mp3
 ---

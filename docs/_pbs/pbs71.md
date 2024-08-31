@@ -3,6 +3,8 @@ title: Bootstrap Spinners
 instalment: 71
 creators: [bart, allison]
 date: 2019-02-09
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2019_02_09.mp3
 ---

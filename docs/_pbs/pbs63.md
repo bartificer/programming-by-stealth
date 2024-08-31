@@ -3,6 +3,8 @@ title: Bootstrap Buttons
 instalment: 63
 creators: [bart, allison]
 date: 2018-09-23
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_09_23.mp3
 ---

@@ -3,6 +3,8 @@ title: Bootstrap Navs
 instalment: 68
 creators: [bart, allison]
 date: 2018-12-15
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_12_15.mp3
 ---

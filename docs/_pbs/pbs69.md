@@ -3,6 +3,8 @@ title: Bootstrap Navbars
 instalment: 69
 creators: [bart, allison]
 date: 2019-01-13
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2019_01_13.mp3
 ---

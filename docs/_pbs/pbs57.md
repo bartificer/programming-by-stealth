@@ -3,6 +3,8 @@ title: The Bootstrap Grid
 instalment: 57
 creators: [bart, allison]
 date: 2018-06-30
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_06_30.mp3
 ---

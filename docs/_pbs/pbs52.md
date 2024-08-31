@@ -3,6 +3,8 @@ title: Introducing Bootstrap 4
 instalment: 52
 creators: [bart, allison]
 date: 2018-03-31
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_03_31.mp3
 ---

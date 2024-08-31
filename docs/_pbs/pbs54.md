@@ -3,6 +3,8 @@ title: More Bootstrap Utilities
 instalment: 54
 creators: [bart, allison]
 date: 2018-05-19
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_05_19.mp3
 ---

@@ -3,6 +3,8 @@ title: Bootstrap & jQuery
 instalment: 60
 creators: [bart, allison]
 date: 2018-08-12
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_08_12.mp3
 ---
