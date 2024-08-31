@@ -140,8 +140,8 @@ Imagine the following pseudo-code:
 
 ```
 const rate = fetchExchangeRate('EUR', 'USD');
-loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/usd.png');
-loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/eur.png');
+loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/eur.png');
+loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/usd.png');
 $('#rate_placeholder').text(rate);
 
 ```
@@ -164,9 +164,8 @@ To make our pseudo-code example work in an asynchronous world, we would need to 
 
 ```
 const rate = fetchExchangeRate('EUR', 'USD', function(rate){ $('#rate_placeholder').text(rate); });
-loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/usd.png');
-loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/eur.png');
-
+loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/eur.png');
+loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/usd.png');
 ```
 
 Voila! Thanks to callbacks, we now have a more efficient world in which the icons can load while the exchange rate is fetched, and the rate will be written into the page the moment it becomes available.
