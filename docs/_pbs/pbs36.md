@@ -2,6 +2,7 @@
 title: More HTML Text Input | More Cellular Automata
 instalment: 36
 creators: [bart, allison]
+tags: [documentation]
 date: 2017-06-25
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_06_25.mp3
