@@ -2,6 +2,7 @@
 title: JSDoc Demo
 instalment: 37
 creators: [bart, allison]
+tags: [documentation]
 date: 2017-07-07
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2017_07_07.mp3
