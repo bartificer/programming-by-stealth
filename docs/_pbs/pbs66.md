@@ -3,6 +3,8 @@ title: Bootstrap Form Validation
 instalment: 66
 creators: [bart, allison]
 date: 2018-11-03
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_11_03.mp3
 ---
@@ -378,7 +380,3 @@ For bonus credit, find the documentation for Bootstrap form validation tooltips 
 ## Final Thoughts
 
 We’ve now completed our first look at Bootstrap’s form-related features. We’re now ready to move on to a related but subtly different set of Bootstrap features — web app UI elements.
-
- - [← PBS 65 — Bootstrap Input Groups](pbs65)
- - [Index](index)
- - [PBS 67 — Introducing Bootstrap Dropdowns →](pbs67)

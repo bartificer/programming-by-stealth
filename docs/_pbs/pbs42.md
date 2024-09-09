@@ -857,7 +857,3 @@ It’s great to finally get to the point in the series where our three threads �
 From a CSS & HTML point of view, the next step in the series will be to learn about responsive web design. We’ll do that using the free and open source Bootstrap 4 library. From a JavaScript point of view the next step will be to upgrade ourselves from JavaScript ES5 to ES6. When we started our explorations of JavaScript, ES 6 existed, but there just wasn’t enough browser support to consider using it. Thankfully that has now changed. It’s time we started to benefit from the improvements ES6 has to offer us.
 
 I was in two minds which to do first, Bootstrap or ES6, but working on this instalment made that decision very easy — we’ll be looking at ES6 in the next instalment. Why? For purely selfish reasons — I’ve been using ES7 in work for the past few months, so being forced to write ES5 code now is just painful! I wish browser support was good enough to go all the way to ES7 in this series, but it’s not, so I’ll have to settle for ES6 for now 🙂
-
- - [← PBS 41 — Form Events](pbs41)
- - [Index](index)
- - [PBS 43 — Introducing JavaScript ES6 →](pbs43)

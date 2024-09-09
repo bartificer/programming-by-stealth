@@ -3,6 +3,8 @@ title: Bootstrap & jQuery
 instalment: 60
 creators: [bart, allison]
 date: 2018-08-12
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_08_12.mp3
 ---
@@ -320,7 +322,3 @@ The most important thing to take out of this instalment is not the details of ho
 Bootstrap minimises the amount of JavaScript code you need to write through the clever use of HTML data attributes, but for those who want to use JavaScript, Bootstrap exposes its functionality through a suite of jQuery plugins.
 
 I suggest reading [the Bootstrap documentation for the alert component](http://getbootstrap.com/docs/4.1/components/alerts/). Hopefully you can now see how the descriptions on that page map to the reality in the browser, and to the code in the worked example.
-
- - [← PBS 59 — More Bootstrap Breakpoints](pbs59)
- - [Index](index)
- - [PBS 61 — Bootstrap Jumbotrons & Badges →](pbs61)

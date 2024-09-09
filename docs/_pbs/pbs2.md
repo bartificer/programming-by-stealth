@@ -46,9 +46,9 @@ However, the following is invalid:
 <hr></hr>
 ```
 
-I prefer to use <hr /> rather than <hr>, because it makes it obvious that the tag is void. I will be using that syntax throughout this series.
+I prefer to use `<hr />` rather than `<hr>`, because it makes it obvious that the tag is void. I will be using that syntax throughout this series.
 
-Also note that the trailing `/` is illegal on non-void tags. Hence, you should never write something like <p />, because the `p` tag is not void.
+Also note that the trailing `/` is illegal on non-void tags. Hence, you should never write something like `<p />`, because the `p` tag is not void.
 
 Be careful to always close regular tags. Never close void tags, because, if you make mistakes in your HTML markup, it will force browsers into so-called _quirks mode_. When that happens, all bets are off – the results will be unpredictable and inconsistent, causing you nothing but headaches. Aim never to write quirky code!
 

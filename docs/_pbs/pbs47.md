@@ -681,7 +681,3 @@ In the last few instalments we’ve focused heavily on learning new things:
 *   How to implement inheritance and polymorphism with the `extends` and `super` keywords
 
 Next time we’ll pause for a little knowledge consolidation, and move back to finishing off our game of life by giving it a nicer and more capable UI.
-
- - [← PBS 46 — ES6 Spread Operator, Arrow Functions & Classes](pbs46)
- - [Index](index)
- - [PBS 48 — A Closer Look at ‘this’ and ‘static’ →](pbs48)

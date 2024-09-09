@@ -324,7 +324,3 @@ if(isNaN(inputNum)){
 ## Conclusions
 
 We have now learned about three core concepts all programming languages share – variables, operators, and branching. In the next instalment we’ll learn about two more core concepts – arrays and loops. This will give us the ability to store lists of values and to process them.
-
- - [← PBS 12 — Introducing JavaScript](pbs12)
- - [Index](index)
- - [PBS 14 — JS Loops & Arrays →](pbs14)
