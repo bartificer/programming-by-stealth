@@ -17,7 +17,7 @@ This series is co-created by Bart Busschots & Allison Sheridan. In addition to c
 
 ## Guests
 
-From time to time, Bart & Allison invite guests to write instalmetns and/or appear on the acompanying podcast episodes.
+From time to time, Bart & Allison invite guests to write instalments and/or appear on the accompanying podcast episodes.
 
 {% assign guests = creators_collection.docs | where: "guest", true -%}
 {% for guest in guests -%}

@@ -3,6 +3,8 @@ title: More Bootstrap Content
 instalment: 56
 creators: [bart, allison]
 date: 2018-06-16
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_06_16.mp3
 ---
@@ -291,7 +293,3 @@ For this challenge we’ll continue to improve the recipe we’ve been building 
 ## Final Thoughts
 
 We’ve now covered two of Bootstrap’s four aspects — the utility classes and the content classes. Next we’ll move on to the layout classes. Bootstrap’s layout engine is very powerful, and it has a lot of features. So unsurprisingly, it will take us a few instalments to make our way through it. When we’re done we’ll be able to lay out our pages just the way we want, and in such a way that they’ll look great on any screen. Bootstrap doesn’t just do layouts, it does responsive layouts!
-
- - [← PBS 55 — Bootstrap Content](pbs55)
- - [Index](index)
- - [PBS 57 — The Bootstrap Grid →](pbs57)

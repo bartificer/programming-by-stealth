@@ -824,7 +824,3 @@ In [this instalment’s ZIP file](https://www.bartbusschots.ie/s/wp-content/uplo
 We have still only touched the tip of the web form iceberg. We’ll start the next instalment by showing some drawbacks to using image files for icons within buttons and other form elements. There is a better way to include useful pictograms, and we’ll learn all about it. We’ll also learn how to tell a screen reader that a piece of a web page is just decoration, and that it should be hidden from screen readers so as to give visually impaired users a better experience.
 
 We’ll also continue on our revision of JavaScrip prototypes in parallel with all that.
-
- - [← PBS 27 — JS Prototype Revision \| HTML Forms](pbs27)
- - [Index](index)
- - [PBS 29 — JS Prototype Revision \| Glyph Icons →](pbs29)

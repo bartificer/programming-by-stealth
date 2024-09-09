@@ -732,7 +732,3 @@ $('input[type="radio"][name="nerd"]:checked').val()
 Now that we’ve learned about static functions, and updated our algorithm for creating prototypes to the final nine-step version, we are finished with our second look at JavaScript prototypes. Before we are ready to look at test-driven-development (TDD), we need to revisit JavaScript’s exception handling features – specifically the `throw`, `try`, and `catch` keywords. This is what we’ll do in the JavaScript portion of the next instalment.
 
 On the HTML side we have now learned a little more about forms in general, and how to add checkboxes and radio button groups into our forms. In the next instalment we’ll look at adding drop-down menus to our forms, and perhaps some of the many text-based inputs supported by HTML 5.
-
- - [← PBS 30 — Comparing JS Objects \| Introducing WAI-ARIA](pbs30)
- - [Index](index)
- - [PBS 32 — JS Error Handling Revision \| HTML Selects →](pbs32)

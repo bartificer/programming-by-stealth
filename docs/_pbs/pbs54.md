@@ -3,6 +3,8 @@ title: More Bootstrap Utilities
 instalment: 54
 creators: [bart, allison]
 date: 2018-05-19
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_05_19.mp3
 ---
@@ -402,7 +404,3 @@ Using what we learned today, make the following changes to your recipe:
 ## Final Thoughts
 
 We’re done with Bootstrap utility CSS classes for now, though we will be revisiting some of them later when we learn more about Bootstrap page layouts. That means we’re ready to move on to the second of the four major aspects of Bootstrap — content. In other words, using Bootstrap CSS classes to better render standard HTML elements like lists, tables, forms, etc. When we’re done with the content aspect, we’ll move on to Bootstrap’s page layout aspect before finishing our tour of Bootstrap with a look at some custom components Bootstrap provides (modal dialogues, dismissible alerts, and much more).
-
- - [← PBS 53 — Bootstrap Utilities](pbs53)
- - [Index](index)
- - [PBS 55 — Bootstrap Content →](pbs55)

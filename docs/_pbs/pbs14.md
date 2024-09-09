@@ -333,7 +333,3 @@ if(isNaN(n) || n < 1){
 ## Conclusions
 
 We’re now well on the way to learning about the most important building blocks that are common to all languages. We’ve learned about variables, operators, branching, arrays, and looping. Next on the agenda is functions – named chunks of reusable code.
-
- - [← PBS 13 — JS Conditionals](pbs13)
- - [Index](index)
- - [PBS 15 — JS Functions →](pbs15)

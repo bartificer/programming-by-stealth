@@ -340,7 +340,3 @@ pbs.say(a);
 So far we’ve learned how to store values in variables, and, how to manipulate values with string and arithmetic operators. Variables and operators are core concepts in all programming languages. The exact syntax will vary from language to language, but the concept is universal.
 
 Another one of these universal concepts is decision making or branching, and that’s what we’ll be looking at in the next instalment. We’ll be learning about comparison operators, boolean operators, and finally, `if` statements.
-
- - [← PBS 11 — Tables](pbs11)
- - [Index](index)
- - [PBS 13 — JS Conditionals →](pbs13)

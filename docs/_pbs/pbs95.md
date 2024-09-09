@@ -4,7 +4,7 @@ instalment: 95
 creators: [bart, allison]
 date: 2020-05-02
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_02.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_02.mp3
 ---
 
 This is the third instalment of our step-by-step introduction to Object Oriented (OO) programming, and OO in JavaScript in particular. We started by looking at the foundation upon which OO is built — encapsulation. Encapsulation allows us to combine all the data and functions related to a concept or thing into a single object.  In the previous instalment we looked at how we can use classes to construct arbitrarily many similar objects. In effect, a class represents a concept or thing in the abstract, and each object constructed by that class is a concrete example of the concept or thing. To illustrate this point we created a class to represent imaginary currencies, and then used it to built objects representing the Ferengi Bar of Gold-pressed Latinum the Quatloo, both from the Star Trek universe.
@@ -452,7 +452,3 @@ So far in this series we've looked at HTML, CSS, and JavaScript. Together these 
 It will take us some months to get comfortable on the server side, and with PHP, but when we do the next big area we'll be venturing into is data storage. Probably the single most important role server-side code plays is that of a data broker — server side web code spends the vast majority of its time reading data from a database of some kind, or writing data to a database of some kind. Databases come in all shapes and sizes, so that leaves a lot of room for future exploration!
 
 But, before all that, our challenges are now getting big enough that you'd get real genuine value from source control. So, I'm going to insert a short diversion between JavaScript and PHP, and spend a few instalments explaining the most popular open-source source control system in use today, GIT.
-
- - [← PBS 94 — Basic JavaScript OO with Class](pbs94)
- - [Index](index)
- - [PBS 96 — World Clock Challenge Solution →](pbs96)

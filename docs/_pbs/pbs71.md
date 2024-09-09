@@ -3,6 +3,8 @@ title: Bootstrap Spinners
 instalment: 71
 creators: [bart, allison]
 date: 2019-02-09
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2019_02_09.mp3
 ---
@@ -499,7 +501,3 @@ The documentation shows that you can use the Bootstrap dismiss plugin with Toast
 ## Final Thoughts
 
 We’ve now covered almost all I want to cover in our first pass through Bootstrap. Before we make a final push, I want to divert us from that course for a one-instalment detour into template strings. Bootstrap Toasts are a great example of where template text can really make your web apps easier to develop and maintain. This seems like the perfect time for this little detour. There are many templating libraries out there, but the one I enjoy using the most is [Mustache](https://mustache.github.io). That’s what we’ll be learning about next time.
-
- - [← PBS 70 — Bootstrap Modals & Toasts](pbs70)
- - [Index](index)
- - [PBS 72 — HTML5 Templates →](pbs72)

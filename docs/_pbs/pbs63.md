@@ -3,6 +3,8 @@ title: Bootstrap Buttons
 instalment: 63
 creators: [bart, allison]
 date: 2018-09-23
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_09_23.mp3
 ---
@@ -439,7 +441,3 @@ As a contrived example, here’s the code for a simple text-formatting button to
 ## Final Thoughts
 
 We’ve now covered the basics of Bootstrap forms — we can collect textual data from users with text boxes and text areas, we can collect selections from users with drop-downs, checkboxes, and radio buttons, and we can trigger actions with buttons. When it comes to laying out our forms, we’ve just scratched the surface though — having only seen Bootstrap’s default simplistic stacked layout. That will change next time when we explore some of the other form layout options Bootstrap provides.
-
- - [← PBS 62 — A Basic Bootstrap Form](pbs62)
- - [Index](index)
- - [PBS 64 — Bootstrap Form Layouts →](pbs64)

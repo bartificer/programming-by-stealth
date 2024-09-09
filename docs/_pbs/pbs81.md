@@ -353,7 +353,3 @@ At this stage in our exploration of Promises, we’ve learned how to uses promis
 With JavaScript’s original 2015 implementation of promises, you always had to use `.then()` to make use of promises. The introduction of `async` and `await` changed all that. These two keywords provide a whole new syntax for dealing with promises. I find that the new `async`/`await` syntax often results in much more readable code, making it easier to write and easier to maintain. You can of course continue to use `.then()` when it suits, but you don’t have to if you don’t want to.
 
 So, in the next instalment, we’ll meet two new friends — `async` and `await`.
-
- - [← PBS 80 — JavaScript Promise Chains](pbs80)
- - [Index](index)
- - [PBS 82 — Async & Await →](pbs82)

@@ -363,7 +363,3 @@ Finally, you can get the code for any user-created (not built-in) JavaScript fun
 ## Final Thoughts
 
 Most of what we covered in this instalment was simply a redux of topics spread throughout previous instalments. ES6 introduced a whole new type of function to JavaScript, so-called _generator functions_. We’ll introduce those for the first time in the next instalment. In order to understand generator functions, we need to first understand another new ES6 feature — iterators. So, the next instalment will start by introducing iterators, and then move on to introduce generator functions.
-
- - [← PBS 85 — Objects as Arrays in JavaScript (Redux & Update)](pbs85)
- - [Index](index)
- - [PBS 87 — JavaScript Iterators Objects & Generator Functions →](pbs87)

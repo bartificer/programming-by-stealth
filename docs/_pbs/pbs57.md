@@ -3,6 +3,8 @@ title: The Bootstrap Grid
 instalment: 57
 creators: [bart, allison]
 date: 2018-06-30
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_06_30.mp3
 ---
@@ -341,7 +343,3 @@ Using the recipe you’ve been developing over the past few challenges as a star
 ## Final Thoughts
 
 Now that we’ve learned how to lay out section of a page on large screens, we’re ready to dive into responsive design next time.
-
- - [← PBS 56 — More Bootstrap Content](pbs56)
- - [Index](index)
- - [PBS 58 — Bootstrap Breakpoints →](pbs58)

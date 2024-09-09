@@ -361,7 +361,3 @@ Using either your solution to the previous challenge or mine, update it to use M
 Believe it or not, we’ve now learned almost everything there is to know about Mustache templates. They do support a few more advanced features, but not many. We’ll look at two of them next time, sub-templates/includes and section functions.
 
 While it’s often convenient to embed template strings directly into your HTML document, there are times when it would be much more convenient to store the templates externally, perhaps in a database, or perhaps in a separate file. Either way, to do this you need the ability to ask the browser to fetch some additional data for you after the page has loaded. This is very powerful and very heavily used technique known as AJAX. Mustache templates give us the perfect excuse to learn about them. So that’s where we’ll be going after we learn about sub-templates and section functions.
-
- - [← PBS 72 — HTML5 Templates](pbs72)
- - [Index](index)
- - [PBS 74 — More Mustaches →](pbs74)

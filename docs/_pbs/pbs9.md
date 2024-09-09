@@ -3,6 +3,8 @@ title: More CSS Positioning
 instalment: 9
 creators: [bart, allison]
 date: 2016-02-19
+tags:
+  - css
 opengraph:
   audio: http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_02_19.mp3
 ---
