@@ -4,7 +4,7 @@ instalment: 97
 creators: [bart, allison]
 date: 2020-05-31
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_31.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_31.mp3
 ---
 
 We'll start this instalment by introducing the penultimate concept for this series-within-a-series on Object Oriented programming in JavaScript — class data attributes and class functions.

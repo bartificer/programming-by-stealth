@@ -4,7 +4,7 @@ instalment: 92
 creators: [bart, allison]
 date: 2020-03-14
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_03_14.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_03_14.mp3
 ---
 
 In this instalment we'll be describing my sample solution to the challenge set at the end of [PBS 89](https://bartificer.net/pbs89).

@@ -4,7 +4,7 @@ instalment: 93
 creators: [bart, allison]
 date: 2020-04-04
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_04.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_04.mp3
 ---
 
 Since [instalment 84](https://bartificer.net/pbs84) we've been slowly making our way through all the different proverbial _hats_ JavaScript objects wear. We started by reminding ourselves how JavaScript uses [objects as hashtables/dictionaries](https://bartificer.net/pbs84), then we looked at how [JavaScript uses objects to implement arrays](https://bartificer.net/pbs85). In [instalment 86](https://bartificer.net/pbs86) we looked at how [JavaScript functions are actually objects](https://bartificer.net/pbs86), and in [instalment 87](https://bartificer.net/pbs87) we learned about Iterators, a new type of object added to JavaScript in ES6, and Generators, a related new type of function. In [Instalment 88](https://bartificer.net/pbs88) we reminded ourselves of how our browsers use objects to represent the structure of web pages using the DOM, and how jQuery objects give us a more developer-friendly way of interacting with the DOM. Next we learned about how [JavaScript provides wrapper-objects for the native types](https://bartificer.net/pbs90) (Boolean, String & Number), and finally, we learned about how [JavaScript uses objects to implement Regular Expressions](https://bartificer.net/pbs91).

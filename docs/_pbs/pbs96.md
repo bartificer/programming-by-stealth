@@ -4,7 +4,7 @@ instalment: 96
 creators: [bart, allison]
 date: 2020-05-16
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_16.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_16.mp3
 ---
 
 In this instalment we're taking a break from learning new things to look at two sample solutions to the world clock challenge set at the end of PBS 92. I'll start by handing over to Allison to describe her sample solution, and then I'll take over again to share mine.

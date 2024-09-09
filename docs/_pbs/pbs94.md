@@ -4,7 +4,7 @@ instalment: 94
 creators: [bart, allison]
 date: 2020-04-18
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_18.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_04_18.mp3
 ---
 
 This instalment bring us close to the end of a long series of instalments focusing on the many proverbial *hats* JavaScript makes objects wear. In JavaScript, just about everything is an object, including [dictionaries](https://bartificer.net/pbs84), [arrays](https://bartificer.net/pbs85), [functions](https://bartificer.net/pbs86) of [all kinds](https://bartificer.net/pbs87), and [regular expressions](https://bartificer.net/pbs91). In the browser the entire structure of web pages is also represented as a massive collection of objects — the so-called [DOM](https://bartificer.net/pbs88). Really, in JavaScript, if it's not a boolean, number, or string, it's an object. In fact, objects are so import in JavaScript that the language even provides [wrapper objects](https://bartificer.net/pbs90) for booleans, numbers, and strings so they can be interacted within object-like ways.

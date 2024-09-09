@@ -4,7 +4,7 @@ instalment: 91
 creators: [bart, allison]
 date: 2020-02-22
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_02_22.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_02_22.mp3
 ---
 
 Over the past few instalments we've been looking at many of the different *hats* objects wear in JavaScript. We've seen how JavaScript uses objects to implement dictionaries/hash tables, arrays, strings, functions of various kinds, and to wrap primitive values when they need object-like behaviour. In this instalment we'll be looking at our penultimate *hat* — regular expressions.
