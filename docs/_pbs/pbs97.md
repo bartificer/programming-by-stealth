@@ -4,7 +4,7 @@ instalment: 97
 creators: [bart, allison]
 date: 2020-05-31
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_31.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_05_31.mp3
 ---
 
 We'll start this instalment by introducing the penultimate concept for this series-within-a-series on Object Oriented programming in JavaScript — class data attributes and class functions.
@@ -661,7 +661,3 @@ In the real world, concepts tend to be hierarchical. The abstract concept of a m
 Surely there must be a better way? Of course there is! If the real world can gave concept hierarchies, surely our classes should be able to have matching hierarchies? Well, they can, through the mechanism of inheritance (often referred to by the highfalutin term *polymorphism*).
 
 This simple but powerful concept will be the focus of the next instalment.
-
- - [← PBS 96 — World Clock Challenge Solution](pbs96)
- - [Index](index)
- - [PBS 98 — Building with Classes Part 1: *Has-A* →](pbs98)

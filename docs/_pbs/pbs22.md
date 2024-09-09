@@ -532,7 +532,3 @@ We’re now well on the way to being front-end web programmers. We know how to d
 While we have learned a lot, we still have a lot to learn. There are many more kinds of events we can attach our code to. We have not learned anything about HTML form tags yet – buttons, text fields, drop-downs, etc. We’ve only scratched the surface of what jQuery can do. So far we’ve been using jQuery to alter existing HTML elements. We can also use it to build new elements from scratch and inject them into the DOM, and remove existing elements from the DOM.
 
 In other words, we still have a lot to look forward to!
-
- - [← PBS 21 — jQuery Basics](pbs21)
- - [Index](index)
- - [PBS 23 — Creating Elements with jQuery →](pbs23)

@@ -737,7 +737,3 @@ Visually, buttons of this form work fine, but for assistive technologies, they c
 At this stage we’ve nearly finished our second look at JavaScript prototypes. There is just one more object-related concept we need to look at next time – _static_ functions. This is a technical term you may have encountered in the documentation for the various JavaScript APIs we have used, but it’s one we’ve neither defined nor explained in this series to date. It’s about time we rectified that oversight.
 
 Now that we’ve been introduced to WAI-ARIA, we’re ready to start learning about more types of form elements. In the next instalment we’ll look at two new types – checkboxes and radio buttons. We’ll learn how to use them so they are compatible with accessibility tools like screen readers.
-
- - [← PBS 29 — JS Prototype Revision \| Glyph Icons](pbs29)
- - [Index](index)
- - [PBS 31 — JS Static Functions \| Checkboxes & Radio Buttons →](pbs31)

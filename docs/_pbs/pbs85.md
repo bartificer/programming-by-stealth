@@ -377,7 +377,3 @@ Using your own solution to the challenge set in [PBS 83](https://pbs.bartificer.
 ## Final Thoughts
 
 We’ve now looked at the two most obvious hats JavaScript objects wear, but there are plenty of hats left on the proverbial Javascript object hat stand! JavaScript functions are also objects, as are JavaScript regular expressions. In some situations, so are Javascript strings. We’ll examine all these hats in upcoming instalments in the lead-up to revisiting the biggest hat of all — prototyped objects, or instances of prototypes/classes.
-
- - [← PBS 84 — Objects as Dictionaries in JavaScript (Redux & Update)](pbs84)
- - [Index](index)
- - [PBS 86 — JavaScript Function Objects (Redux & Update) →](pbs86)

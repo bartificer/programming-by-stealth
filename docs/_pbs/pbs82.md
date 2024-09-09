@@ -140,8 +140,8 @@ Imagine the following pseudo-code:
 
 ```
 const rate = fetchExchangeRate('EUR', 'USD');
-loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/usd.png');
-loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/eur.png');
+loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/eur.png');
+loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/usd.png');
 $('#rate_placeholder').text(rate);
 
 ```
@@ -164,9 +164,8 @@ To make our pseudo-code example work in an asynchronous world, we would need to 
 
 ```
 const rate = fetchExchangeRate('EUR', 'USD', function(rate){ $('#rate_placeholder').text(rate); });
-loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/usd.png');
-loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/eur.png');
-
+loadIcon('#euro_placeholder', 'https://some.domain.tld/icons/eur.png');
+loadIcon('#dollar_placeholder', 'https://some.domain.tld/icons/usd.png');
 ```
 
 Voila! Thanks to callbacks, we now have a more efficient world in which the icons can load while the exchange rate is fetched, and the rate will be written into the page the moment it becomes available.
@@ -183,7 +182,7 @@ Enter ES 2017 (the update to the JavaScript language published in 2017)! This ve
 
 Some built-in functions provided by Javascript have always worked in an asynchronous way using callbacks. Until ES2017 we’ve not had the ability to create our own truly asynchronous functions. Well, now we can, but the functions we can create will behave differently to the original built-in functions which continue to exist.
 
-There’s an obvious danger for confusion here between the built-in functions and the ones we’ll be writing. To try minimise confusion, I’ll refer to the asynchronous functions we’ll be creating with the `async` keyword as _async functions_.
+There’s an obvious danger for confusion here between the built-in functions and the ones we’ll be writing. To try to minimise confusion, I’ll refer to the asynchronous functions we’ll be creating with the `async` keyword as _async functions_.
 
 _**Note:** the example code snippets throughout the remainder of this section are intended to be executed in the JavaScript console on `pbs82a.html` from this instalment’s ZIP file. For the examples in this section the file can be opened directly, but for the worked example in the next section the file will need to be loaded via a local web server (e.g. [MAMP](https://www.mamp.info/))._
 
@@ -347,7 +346,7 @@ Note that these AJAX requests are all running in parallel at this point.
 We now need to wait for them all to finish before returning all the numbers in a single array:
 
 ```javascript
-// wait for all the promoises to resolve
+// wait for all the promises to resolve
 // (promises all running in parallel)
 const randNums = await Promise.all(randNumPromises);
 
@@ -383,7 +382,7 @@ async function randomNumOfRandomNums(){
     randNumPromises.push($.ajax(ajaxConf));
   }
 
-  // wait for all the promoises to resolve
+  // wait for all the promises to resolve
   // (promises all running in parallel)
   const randNums = await Promise.all(randNumPromises);
 
@@ -532,7 +531,3 @@ Using either your solution to the previous challenge or mine, update the code so
 This instalment wraps up our exploration of the concept of promises. We are now armed with the skills to write human-friendly asynchronous code in JavaScript, and that’s extremely important in modern JavaScript. With my work hat on, I write server-side JavaScript code and JavaScrip command line apps, and in both cases it’s all about promises!
 
 In the next instalment we’ll loop back to Bootstrap to wrap up a few loose ends, but we’re almost finished our exploration of that topic too. After that we’ll take an instalment or two to catch up with some new features recently added to JavaScript, focusing on classes in particular.
-
- - [← PBS 81 — The JavaScript Promise Utilities](pbs81)
- - [Index](index)
- - [PBS 83 — Bootstrap Cards →](pbs83)

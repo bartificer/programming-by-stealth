@@ -4,7 +4,7 @@ instalment: 91
 creators: [bart, allison]
 date: 2020-02-22
 opengraph:
-  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_02_22.mp3?autoplay=0&loop=0&controls=1
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2020_02_22.mp3
 ---
 
 Over the past few instalments we've been looking at many of the different *hats* objects wear in JavaScript. We've seen how JavaScript uses objects to implement dictionaries/hash tables, arrays, strings, functions of various kinds, and to wrap primitive values when they need object-like behaviour. In this instalment we'll be looking at our penultimate *hat* — regular expressions.
@@ -326,7 +326,3 @@ Notice that this RE split on a comma with one space, no spaces, and two spaces, 
 We've now revisited all the *hats* objects wear in JavaScript that I think are worth focusing on but one. I've left what is arguably the most powerful and important hat of all until the very end of this little series within a series. JavaScript uses objects to represent classes. JavaScript's implementation of object orientation is extremely unusual, and before ES6 there was no way of writing your own classes without coming face-to-face with the intricate details of this unusual approach. This make writing classes in JavaScript extremely confusing. We initially learned to do it the hard way all the way back in instalments [17](https://pbs.bartificer.net/pbs17), [27](https://pbs.bartificer.net/pbs27), [28](https://pbs.bartificer.net/pbs28) & [29](https://pbs.bartificer.net/pbs2), and it didn't go well. It simply didn't click into place for Allison and many others. We tried again using the modern ES6 syntax in instalments [46](https://pbs.bartificer.net/pbs46), [47](https://pbs.bartificer.net/pbs47) & [48](https://pbs.bartificer.net/pbs48), but again, it didn't click. I'm hoping the third time is a charm! I'm hoping the third time will be a charm! My plan is to avoid any mention of the pre-ES6 way of doing things, to keep things simple, and to spread the topic over two instalments.
 
 Before we dive into our third attempt at understanding JavaScript classes we'll dedicate the next instalment to the solution to the challenge set in [instalment 89](https://pbs.bartificer.net/pbs89).
-
- - [← PBS 90 — JavaScript Wrapper Objects](pbs90)
- - [Index](index)
- - [PBS 92 — Currency Grid Challenge →](pbs92)

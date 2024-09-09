@@ -35,9 +35,9 @@ community:
     button: Podfeet Slack
 opengraph:
   locale: en_IE
-  type: article # can be overriden on the page
+  type: article # can be overridden on the page
   title: A PBS Installment # can be overridden on the page
-  image: https://pbs.bartificer.net/assets/openGraph-image.jpg # can be overriden on the page
+  image: https://pbs.bartificer.net/assets/openGraph-image.jpg # can be overridden on the page
 
 
 collections:

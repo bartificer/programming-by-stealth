@@ -3,6 +3,8 @@ title: Introducing Bootstrap Drop-downs
 instalment: 67
 creators: [bart, allison]
 date: 2018-12-01
+tags:
+  - bootstrap
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2018_12_01.mp3
 ---
@@ -352,7 +354,3 @@ Continuing on with our recipe, update the login form so it uses a split button t
 We’ve now seen how we can add drop-down menus to our web app UIs. We’ve not actually covered everything you use a Bootstrap Drop-down menu for in this context — you can actually add form elements inside drop-downs, but I’ll leave that advanced topic as some optional additional reading for those interested. You’ll find [the relevant documentation here](http://getbootstrap.com/docs/4.1/components/dropdowns/#forms).
 
 In the next instalment we’ll look at navigation menus in Bootstrap in general, and then at adding drop-downs into navigation menus.
-
- - [← PBS 66 — Bootstrap Form Validation](pbs66)
- - [Index](index)
- - [PBS 68 — Bootstrap Navs →](pbs68)

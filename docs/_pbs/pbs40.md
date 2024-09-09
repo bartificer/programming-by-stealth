@@ -680,7 +680,3 @@ Using your own solution to the previous challenge, add some JavaScript-based cus
 ## Final Thoughts
 
 We now have the ability to add arbitrarily complex client-side validation to our forms. In the next instalment we’ll look at making sure our forms work well for keyboard users, and then, in the instalment after that we’ll bring it all together and bring our cellular automata to life.
-
- - [← PBS 39 — HTML5 Form Validation](pbs39)
- - [Index](index)
- - [PBS 41 — Form Events →](pbs41)

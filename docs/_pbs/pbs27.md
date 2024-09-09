@@ -555,7 +555,3 @@ pbs.say('Gonna prank Bart good on ' + gonnaPrankBart.european24Hour() + ' his ti
 ## Conclusions
 
 In this instalment we made a start on the basics of using web forms with JavaScript. We learned that inputs go inside `form` tags, and that inputs should be labeled with `label` tags. We’ve also seen how to create basic text boxes and buttons, and how to interact with them in basic ways using jQuery. This is just the beginning – we need to learn a lot more about buttons and text boxes. Then we need to learn about other inputs like checkboxes, radio buttons, drop-downs, date pickers, etc. And we need to learn a lot more about how jQuery can interact with forms. That’s what we’ll be spending the next few instalments on.
-
- - [← PBS 26 — HTML Data Attributes with jQuery](pbs26)
- - [Index](index)
- - [PBS 28 — JS Prototype Revision \| CSS Attribute Selectors & Buttons →](pbs28)

@@ -719,7 +719,3 @@ How you make the function do its thing is entirely up to you, but I suggest the 
 ## Conclusions
 
 We’ve learned how to use the magic of closures to package our code into reusable libraries, and we’ve learned how to use JSDoc to generate documentation for our library’s APIs. So far our APIs have been very simplistic – so simplistic some people might even argue that they don’t deserve to be called APIs at all! That will change in the next instalment, when we’ll create a powerful API for adding arbitrarily many clocks, each in any timezone, to a page in a configurable way. To do that we’ll need to learn another new concept – data attributes – a way of embedding data into an HTML element.
-
- - [← PBS 23 — Creating Elements with jQuery](pbs23)
- - [Index](index)
- - [PBS 25 — A Case Study (bartificer.linkToolkit.js) →](pbs25)

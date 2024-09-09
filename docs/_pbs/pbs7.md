@@ -3,6 +3,8 @@ title: More CSS
 instalment: 7
 creators: [bart, allison]
 date: 2016-01-22
+tags:
+  - css
 opengraph:
   audio: http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_22.mp3
 ---

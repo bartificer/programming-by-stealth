@@ -3,6 +3,8 @@ title: Introducing CSS
 instalment: 6
 creators: [bart, allison]
 date: 2016-01-09
+tags:
+  - css
 opengraph:
   audio: http://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/CCATP_2016_01_09.mp3
 ---

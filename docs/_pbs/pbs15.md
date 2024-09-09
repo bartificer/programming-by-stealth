@@ -236,7 +236,3 @@ In case you’re a little rusty, just a reminder that you calculate the average 
 ## Conclusions
 
 This introduction to functions has given us a basic understanding of how they work. However, we still have more to learn about them. Firstly, we can be a lot cleverer about how we deal with arguments – we can make our functions do different things depending on how many arguments were passed. We can even make our functions accept an arbitrary number of arguments. Secondly, we’ll discover that, like arrays in JavaScript, functions are objects too. This simple fact has some very significant implications – including the related concepts of anonymous functions and callbacks. The latter two are central to JavaScript’s integration into the browser.
-
- - [← PBS 14 — JS Loops & Arrays](pbs14)
- - [Index](index)
- - [PBS 16 — JS Callbacks →](pbs16)
