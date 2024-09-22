@@ -5,7 +5,7 @@ opengraph:
   description: The Programming by Stealth blog and podcast series
   url: https://pbs.bartificer.net/
 ---
-# About 
+# About
 
 Programming by Stealth is an ongoing collaborative project between [Bart Busschots](https://bartb.ie/) of [Bartificer Creations](https://bartificer.net/) and Allison Sheridan of the [NosillaCast Apple Podcast](https://podfeet.com). The idea is to sneak up on real programming in small easy steps, using the allure of the web as the carrot to entice people forward.
 
