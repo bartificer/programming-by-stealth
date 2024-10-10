@@ -6,7 +6,7 @@ date: 2024-10-10
 opengraph:
   audio: TO DO
 ---
-For a long time I assumed iOS could not give a good Git experience, because each app lives in its own little play-pen, so the best I could hope for was an all-in-one app that was both a Git client and a good editor for every file type I need to work with. I didn't expect to find such a unicorn app! It turns out that on modern versions of iOS, that's just not true anymore, and actually, it hasn't been true for many years now. The key is the ever improving built-in Files app which gives users the ability to create and manage local files and folders on iPhones and iPads, and apps the APIs they need to ask users to connect them to local folders and files.
+For a long time I assumed iOS could not give a good Git experience, because each app lives in its own little playpen, so the best I could hope for was an all-in-one app that was both a Git client and a good editor for every file type I need to work with. I didn't expect to find such a unicorn app! It turns out that on modern versions of iOS, that's just not true anymore, and actually, it hasn't been true for many years now. The key is the ever improving built-in Files app which gives users the ability to create and manage local files and folders on iPhones and iPads, and apps the APIs they need to ask users to connect them to local folders and files.
 
 Note that this change has not weakened the security of iOS apps, without a user explicitly connecting an app to a folder, no app can reach outside its sandbox, so this new functionality didn't require sacrificing iOS's very string security architecture.
 
