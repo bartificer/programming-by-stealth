@@ -24,7 +24,7 @@ TO DO
 
 # Prerequisites
 
-- A copy of [WorkingCopy](https://workingcopy.app) installed on your iOS device, and successfully connected to a Git server. I’ll be using [GitHub](https://github.com) over SSH. **WorkingCopy requires the $14.99 Pro version to link to external repositories.**
+- A copy of [WorkingCopy](https://workingcopy.app) installed on your iOS device, and successfully connected to a Git server. I’ll be using [GitHub](https://github.com) over SSH. Note that WorkingCopy requires the $14.99 Pro version to link to external repositories.
 - One or more text editors with the ability to open folders from the Files app. For example, I like to use [Textastic](https://www.textasticapp.com) to edit Markdown files.
 
 # Initial Setup of a Repo
@@ -39,7 +39,7 @@ Click the three dots icon and then *‘new folder’.*
 
 ## Step 2 — Configure the Folder as a Git Repo
 
-Open WorkingCopy, and at the top level page that lists all your repos, use the plus on top of a fingerprint button **you called it a plus button and it is in your screenshot but the latest version has it as a fingerprint with a plus on it**, select *‘Link external directory’*  and then *'Directory'* from the dropdown to connect to the folder you just created in Files. **another change in the latest version**
+Open WorkingCopy, and at the top level page that lists all your repos, click the button that looks like a plus symbol on top of a fingerprint, select *‘Link external directory’*  and then *'Directory'* from the dropdown to connect to the folder you just created in the Files app.
 
 ![Link an external directory in WorkingCopy](assets/tidbits9/iOSGitExteralEditor-Screenshot2.png)
 
@@ -57,7 +57,7 @@ On the repository setting page, click the *‘Configuration’* button:
 
 ![Open the Configuration interface in the WorkingCopy repository](assets/tidbits9/iOSGitExteralEditor-Screenshot4.png)
 
-You’ll see one or more identities in a list that doesn’t look like a list at the top of the page — select the identity you set up in WorkingCopy that’s connected to your server. For me that’s my GitHub account. When you have an identity ticked, back out to the repository settings page again.  **(wow, that was NOT obvious!!! how did you figure that out???)**
+You’ll see one or more identities in a list that doesn’t look like a list at the top of the page — select the identity you set up in WorkingCopy that’s connected to your server. For me that’s my GitHub account. When you have an identity ticked, back out to the repository settings page again. 
 
 Now that WorkingCopy knows which authentication details to use, you’re ready to link your local repo to the appropriate repo on your server.
 
@@ -65,19 +65,15 @@ Click the button to add a remote and paste in the URL you fetched earlier.
 
 ![Add the URL to your remote repo in Working Copy](assets/tidbits9/iOSGitExteralEditor-Screenshot5.png)
 
-Back on the repository setting page, click the three dots and choose *‘fetch’*, that should pull in the list of remote branches: **curious they use "fetch" instead of "pull"**
+Back on the repository setting page, click the three dots and choose *‘fetch’*, that should retrieve the list of remote branches:
 
 ![Fetch the remote branches in WorkingCopy](assets/tidbits9/iOSGitExteralEditor-Screenshot6.png)
 
-**what do we do after Fetch? I'm still on the same screen that shows the Fetch and push buttons. I tried to back out and I get a red banner saying "you need to save or discard changes to remote". So I saved, and now I see current at the top, and configuration like before but the red banner is still there and I don't know how to check out "any remote branch". Ah, tapping the red banner makes it go away More details on this part please?**
+Note that you can't yet pull because the branch you have checked out is your local `main` branch which has no commits yet so it is *unborn*. Pushing and pulling is only possible when you have local branches linked to remote branches. So, that's what we need to arrange next.
 
-**I'm using PBS as the git repo. I did find Branch but it takes me to only one called "main unborn HEAD"! and then says 'cannot locate remote-tracking branch 'main'.**
+Note that what the interface now shows you is all the branches that exist both locally and remotely, with the local branches on top (there will be just `main`), and the remote branches below.
 
-**Ohhhh! you have to hit the back chevron in the upper left (on iPadOS) to see the list of Repos again. this didn't happen on iOS.**
-
-You can now check out any remote branch you wish to work on by selecting Branch under Configuration. When you find the branch you want, select Checkout.
-
-**At this point I became hopelessly lost. While I can see PBS in WorkingCopy and I've checked out this very tidbits9 branch, I can't find it in my Files app. The Git folder I created locally on the iPad is empty and there is no PBS folder. I'm baffled how it's working in WC but not visible in Files! Same thing on iOS. I assume I missed a step (twice)?**
+To start using files from the remote repository you need to check out a remote branch. It doesn't matter which one you check out, but you need to check at least one out (no reason you can't check out more later). Once you check out a remote branch you will see a copy of it above the divider as a local branch, and it will be linked to the remote branch you checked. Now that you have a local branch connected to a remote branch you can push and pull changes to and from the remote repository.
 
 # Day-to-Day Use
 
