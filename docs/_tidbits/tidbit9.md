@@ -6,15 +6,19 @@ date: 2024-10-10
 opengraph:
   audio: TO DO
 ---
+<<<<<<<
 For a long time I assumed iOS couldn't provide a good Git experience because of its security-first design. In iOS, your data is protected from unauthorised access because each app lives in its own little playpen (or sandbox to use the correct jargon). That appears to rule out the traditional approach I use on my Macs where I have a Git client for interacting with my repositories, and I made my edits in which ever one of my many editing apps I find most appropriate to the type of file I need to edit. 
+=======
+For a long time, I assumed iOS couldn't provide a good Git experience because of its security-first design. In iOS, your data is protected from unauthorised access because each app lives in its own little playpen (or sandbox to use the correct jargon). That appears to rule out the traditional approach I use on my Macs where I have a Git client for interacting with my repositories, and I make my edits in whichever one of my many editing apps I find most appropriate to the type of file I need to edit. 
+>>>>>>>
 
-As I understood it, the only hope for Git on iOS would be to find a single app that was both a Git client and a really good editor for every single type of file I wanted to edit. This hypothetical all-in-one app would have no problem with iOS's sandboxing because everything would live within that one app's play-pen. But what are the chances of finding such a unicorn app‽
+As I understood it, the only hope for Git on iOS would be to find a single app that was both a Git client and a really good editor for every single type of file I wanted to edit. This hypothetical all-in-one app would have no problem with iOS's sandboxing because everything would live within that one app's playpen. But what are the chances of finding such a unicorn app‽
 
 In the early days of iOS what I described above was true, but iOS has moved on, and while Apple still make it possible to treat iOS as if it has no file system at all, Apple do now let you create and manage files and folder in your local device through the built-in Files app.
 
-But, Apple didn't just make it possible for you to manage files, they also provided APIs for developers to give their apps the power to reach outside of their sandboxes, but only in a very controlled way. The only way any app gets out of its sandbox is by you, the user, explicitly opening the file or folder on behalf of the app, without your interaction, the app is trapped. This lets iOS retain it's strong security posture while also letting multiple apps access the same files and folders.
+But, Apple didn't just make it possible for you to manage files, they also provided APIs for developers to give their apps the power to reach outside of their sandboxes, but only in a very controlled way. The only way any app gets out of its sandbox is by you, the user, explicitly opening the file or folder on behalf of the app, without your interaction, the app is trapped. This lets iOS retain its strong security posture while also letting multiple apps access the same files and folders.
 
-This is where Nosillacastaway Jill of Kent comes into the picture, while we were publishing our long series within a series on Git, Jill shared some feedback that she was playing along on her iPad, and that literally blew my mind! Based on Jill's recommendation I installed the same iOS Git client she was using, and I've been happily Gitting on my iPhone and iPad ever since!
+This is where NosillaCastaway Jill of Kent comes into the picture, while we were publishing our long series within a series on Git, Jill shared some feedback that she was playing along on her iPad, and that literally blew my mind! Based on Jill's recommendation I installed the same iOS Git client she was using, and I've been happily Gitting on my iPhone and iPad ever since!
 
 ## Matching Podcast Episode
 
@@ -57,7 +61,7 @@ You now have an empty local Git repo with no commits. To use your Git server, yo
 
 Before you go any further, you’ll need to fetch the URL for your desired repo on your Git server. For fellow GitHub users, note that you’ll need to use the web interface, because I have not found a way of getting the GitHub iOS app to show the SSH URL for a repo!
 
-In WorkingCopy, enter the new linked shared folder and click the *‘Repository’* button:
+In WorkingCopy, go into the new linked shared folder and click the word *‘Repository’* (not the icon to the right):
 
 ![Open the Repository settings in WorkingCopy](assets/tidbits9/iOSGitExteralEditor-Screenshot3.png)
 
@@ -65,7 +69,7 @@ On the repository setting page, click the *‘Configuration’* button:
 
 ![Open the Configuration interface in the WorkingCopy repository](assets/tidbits9/iOSGitExteralEditor-Screenshot4.png)
 
-You’ll see one or more identities in a list that doesn’t look like a list at the top of the page — select the identity you set up in WorkingCopy that’s connected to your server. For me that’s my GitHub account. When you have an identity ticked, back out to the repository settings page again. 
+You’ll see one or more Git identities in a list that doesn’t look like a list at the top of the page — select the identity you set up in WorkingCopy that’s connected to your server. For me that’s my GitHub account. When you have an identity ticked, back out to the repository settings page again. 
 
 Now that WorkingCopy knows which authentication details to use, you’re ready to link your local repo to the appropriate repo on your server.
 
