@@ -59,13 +59,12 @@ Click the three dots icon and then *‘new folder’.*
 
 Open Working Copy, and at the top level page that lists all your repos, click the button that looks like a plus symbol on top of a fingerprint, select *‘Link external directory’*  and then *'Directory'* from the dropdown to connect to the folder you just created in the Files app.
 
-![Select fingerprint plus button](assets/tidbits9/5.jpeg)
-
-![Open Link external repository, then select directory](assets/tidbits9/6.jpeg)
-
-![Select the folder on your device that you created earlier](assets/tidbits9/7.jpeg)
-
-![Select Open and note folder is currently empty](assets/tidbits9/8.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-between flex-wrap">
+	<figure class="px-1"><img src="assets/tidbits9/5.jpeg" alt="Select fingerprint plus button" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/6.jpeg" alt="Open Link external repository, then select directory" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/7.jpeg" alt="Select the folder on your device that you created earlier" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/8.jpeg" alt="Select Open and note folder is currently empty" style="zoom:50%;"></figure>
+</div>
 
 You now have an empty local Git repo with no commits. To use your Git server, you need to add a remote to this local repo. 
 
