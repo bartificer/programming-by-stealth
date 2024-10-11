@@ -61,7 +61,7 @@ Open Working Copy, and at the top level page that lists all your repos, click th
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
 	<figure class="px-1"><img src="assets/tidbits9/5.jpeg" alt="Select fingerprint plus button" style="zoom:50%;"> <figcaption style="text-align:center">In Working Copy Select Fingerprint + Button</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/6.jpeg" alt="Open Link external repository, then select directory" style="zoom:50%;"> <figcaption style="text-align:center">Tap Link External Repo & Select Directory Do NOT Select Clone Repo</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/6.jpeg" alt="Open Link external repository, then select directory" style="zoom:50%;"> <figcaption style="text-align:center">Tap Link External Repo<br>Select Directory<br>Do NOT Select Clone Repo</figcaption></figure>
 	<figure class="px-1"><img src="assets/tidbits9/7.jpeg" alt="Select the folder on your device that you created earlier" style="zoom:50%;"> <figcaption style="text-align:center">Select Folder You Created in Files</figcaption></figure>
 	<figure class="px-1"><img src="assets/tidbits9/8.jpeg" alt="Select Open and note folder is currently empty" style="zoom:50%;"> <figcaption style="text-align:center">In Emtpy Folder Select Open</figcaption></figure>
 </div>
@@ -79,7 +79,7 @@ Before you go any further, you’ll need to fetch the URL for your desired repo 
 In Working Copy, go into the new linked shared folder and click the word *‘Repository’* (not the icon to the right):
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-<figure class="px-1"><img src="assets/tidbits9/9.jpeg" alt="Select Repository NOT the branch link or chevron on the right" style="zoom:50%;"> <figcaption style="text-align:center">Back In Working Copy Tap on Repository NOT Icons on Right </figcaption></figure>
+<figure class="px-1"><img src="assets/tidbits9/9.jpeg" alt="Select Repository NOT the branch link or chevron on the right" style="zoom:50%;"> <figcaption style="text-align:center">Back In Working Copy Tap on Repository<br>NOT Icons on Right </figcaption></figure>
 </div>
 
 On the repository setting page, click the *‘Configuration’* button:
@@ -92,7 +92,7 @@ You’ll see one or more Git identities in a list that doesn’t look like a lis
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
 	<figure class="px-1"><img src="assets/tidbits9/11.jpeg" alt="Tap on the identity name, NOT Edit" style="zoom:50%;"> <figcaption style="text-align:center">Tap on the Identity You Want to Use</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/12.jpeg" alt="If you have done it right you will see a checkmark next to the identity. Hit the back chevron" style="zoom:50%;"> <figcaption style="text-align:center">If You Did it Right You Should See a Checkmark Tap Back Chevron</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/12.jpeg" alt="If you have done it right you will see a checkmark next to the identity. Hit the back chevron" style="zoom:50%;"> <figcaption style="text-align:center">If You Did it Right<br>You Should See a Checkmark<br>Tap Back Chevron</figcaption></figure>
 </div>
 
 Now that Working Copy knows which authentication details to use, you’re ready to link your local repo to the appropriate repo on your server.
@@ -117,7 +117,7 @@ Note that what the interface now shows you is all the branches that exist both l
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
 	<figure class="px-1"><img src="assets/tidbits9/19.jpeg" alt="Green success of fetching data and select branch" style="zoom:50%;"> <figcaption style="text-align:center">Select Branch</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/20.jpeg" alt="Selecting a remote branch" style="zoom:50%;"> <figcaption style="text-align:center">Choose Your Desired Branch</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/20.jpeg" alt="Selecting a remote branch" style="zoom:47%;"> <figcaption style="text-align:center">Choose Your Desired Branch</figcaption></figure>
 	<figure class="px-1"><img src="assets/tidbits9/21.jpeg" alt="Select Checkout on that remote branch" style="zoom:50%;"> <figcaption style="text-align:center">Select Checkout</figcaption></figure>
 </div>
 
@@ -125,8 +125,8 @@ To start using files from the remote repository you need to check out a remote b
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
 	<figure class="px-1"><img src="assets/tidbits9/23.jpeg" alt="Branch checked out showing files pulled" style="zoom:50%;"> <figcaption style="text-align:center">Ready to Get to Work</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/24.jpeg" alt="Check the folder in files on my iPhone" style="zoom:50%;">Verify in Files the Repo is there by Opening the Folder</figure>
-	<figure class="px-1"><img src="assets/tidbits9/25.jpeg" alt="Opened folder shows the files from the cloned repo - no longer empty" style="zoom:50%;">Files Happily On iPhone</figure>
+	<figure class="px-1"><img src="assets/tidbits9/24.jpeg" alt="Check the folder in files on my iPhone" style="zoom:50%;"><figcaption style="text-align:center">In Files Verify the Repo is there<br>by Opening the Folder</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/25.jpeg" alt="Opened folder shows the files from the cloned repo - no longer empty" style="zoom:50%;"><figcaption style="text-align:center">Files Happily On iPhone</figcaption></figure>
 </div>
 
 #### Step 4 —Textastic
@@ -135,8 +135,8 @@ Open Textastic and choose Add External Folder... Then navigate through the Files
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
 	<figure class="px-1"><img src="assets/tidbits9/26.jpeg" alt="Textastic highlighting Add External Folder" style="zoom:50%;"> <figcaption style="text-align:center">In Textastic Add External Folder</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/27.jpeg" alt="Navigate to Files and on my iPhone and select the repo folder" style="zoom:50%;"> <figcaption style="text-align:center">Navigate to On My iPhone in Files & Select Repo Folder</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/28.jpeg" alt="Textastic shown editing one of the Markdown files in the repo" style="zoom:50%;"> <figcaption style="text-align:center">Open Text File and Go to Town in Textastic</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/27.jpeg" alt="Navigate to Files and on my iPhone and select the repo folder" style="zoom:50%;"> <figcaption style="text-align:center">Navigate to On My iPhone in Files<br>& Select Repo Folder</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/28.jpeg" alt="Textastic shown editing one of the Markdown files in the repo" style="zoom:50%;"> <figcaption style="text-align:center">Open Text File<br>and Go to Town in Textastic</figcaption></figure>
 </div>
 
 ### Day-to-Day Use
