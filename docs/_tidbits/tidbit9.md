@@ -6,11 +6,8 @@ date: 2024-10-10
 opengraph:
   audio: TO DO
 ---
-<<<<<<<
-For a long time I assumed iOS couldn't provide a good Git experience because of its security-first design. In iOS, your data is protected from unauthorised access because each app lives in its own little playpen (or sandbox to use the correct jargon). That appears to rule out the traditional approach I use on my Macs where I have a Git client for interacting with my repositories, and I made my edits in which ever one of my many editing apps I find most appropriate to the type of file I need to edit. 
-=======
+
 For a long time, I assumed iOS couldn't provide a good Git experience because of its security-first design. In iOS, your data is protected from unauthorised access because each app lives in its own little playpen (or sandbox to use the correct jargon). That appears to rule out the traditional approach I use on my Macs where I have a Git client for interacting with my repositories, and I make my edits in whichever one of my many editing apps I find most appropriate to the type of file I need to edit. 
->>>>>>>
 
 As I understood it, the only hope for Git on iOS would be to find a single app that was both a Git client and a really good editor for every single type of file I wanted to edit. This hypothetical all-in-one app would have no problem with iOS's sandboxing because everything would live within that one app's playpen. But what are the chances of finding such a unicorn app‽
 
