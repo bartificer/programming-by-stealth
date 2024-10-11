@@ -1,10 +1,11 @@
 ---
 title: Using Git on iOS
 instalment: 9
+miniseries: Git
 creators: [bart, allison]
 date: 2024-10-10
 opengraph:
-  audio: TO DO
+  audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_10_10.mp3
 ---
 
 For a long time, I assumed iOS couldn't provide a good Git experience because of its security-first design. In iOS, your data is protected from unauthorised access because each app lives in its own little playpen (or sandbox to use the correct jargon). That appears to rule out the traditional approach I use on my Macs where I have a Git client for interacting with my repositories, and I make my edits in whichever one of my many editing apps I find most appropriate to the type of file I need to edit. 
