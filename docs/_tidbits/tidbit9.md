@@ -47,13 +47,11 @@ Regardless of which iOS Git app and which iOS editors you choose to use, concept
 Open the Files app, and navigate to the *'on my iPhone/iPad'* top-level section.
 
 Click the three dots icon and then *‘new folder’.*
-![Open iOS Files app and select on my iPhone iPad](assets/tidbits9/1.jpeg)
 
-![Select 3-dot icon in the upper right](assets/tidbits9/2.jpeg)
+<figure style=" float:left; margin: 10px"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;" /></figure><figure style=" float:left; margin: 10px"><img src="assets/tidbits9/2.jpeg" alt="Select 3-dot icon in the upper right" style="zoom:50%;" /></figure>
 
-![Create a new folder in the iOS Files app](assets/tidbits9/3.jpeg)
-
-![New folder visible in Files App](assets/tidbits9/4.jpeg)
+<figure style=" float:left; margin: 10px"><img src="assets/tidbits9/3.jpeg" alt="Create a new folder in the iOS Files app" style="zoom:50%;" /></figure>
+<figure style=" float:left; margin: 10px"><img src="assets/tidbits9/4.jpeg" alt="New folder visible in Files App" style="zoom:50%;" /></figure>
 
 #### Step 2 — Configure the Folder as a Git Repo
 
