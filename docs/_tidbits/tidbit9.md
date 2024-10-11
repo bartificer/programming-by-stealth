@@ -59,13 +59,12 @@ Click the three dots icon and then *‘new folder’.*
 
 Open Working Copy, and at the top level page that lists all your repos, click the button that looks like a plus symbol on top of a fingerprint, select *‘Link external directory’*  and then *'Directory'* from the dropdown to connect to the folder you just created in the Files app.
 
-![Select fingerprint plus button](assets/tidbits9/5.jpeg)
-
-![Open Link external repository, then select directory](assets/tidbits9/6.jpeg)
-
-![Select the folder on your device that you created earlier](assets/tidbits9/7.jpeg)
-
-![Select Open and note folder is currently empty](assets/tidbits9/8.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-between flex-wrap">
+	<figure class="px-1"><img src="assets/tidbits9/5.jpeg" alt="Select fingerprint plus button" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/6.jpeg" alt="Open Link external repository, then select directory" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/7.jpeg" alt="Select the folder on your device that you created earlier" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/8.jpeg" alt="Select Open and note folder is currently empty" style="zoom:50%;"></figure>
+</div>
 
 You now have an empty local Git repo with no commits. To use your Git server, you need to add a remote to this local repo. 
 
@@ -93,43 +92,45 @@ Now that Working Copy knows which authentication details to use, you’re ready 
 
 Click the button to add a remote and paste in the URL you fetched earlier.
 
-![Click the Add Remote button](assets/tidbits9/13.jpeg)
-
-![Many things to touch ignore all but URL field and paste SSH URL from GitHub](assets/tidbits9/16.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-between flex-wrap">
+	<figure class="px-1"><img src="assets/tidbits9/13.jpeg" alt="Click the Add Remote button" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/16.jpeg" alt="Many things to touch ignore all but URL field and paste SSH URL from GitHub" style="zoom:50%;"></figure>
+</div>
 
 Back on the repository setting page, click the three dots and choose *‘fetch’*, which should retrieve the list of remote branches:
 
-![Select 3-dot menu](assets/tidbits9/17.jpeg)
-
-![Choose Fetch to see the remote branches in Working Copy and then select Branch](assets/tidbits9/18.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-between flex-wrap">
+	<figure class="px-1"><img src="assets/tidbits9/17.jpeg" alt="Select 3-dot menu" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/18.jpeg" alt="Choose Fetch to see the remote branches in Working Copy and then select Branch" style="zoom:50%;"></figure>
+</div>
 
 Note that you can't yet pull because the branch you have checked out is your local `main` branch which has no commits yet so it is *unborn*. Pushing and pulling is only possible when you have local branches linked to remote branches. So, that's what we need to arrange next.
 
 Note that what the interface now shows you is all the branches that exist both locally and remotely, with the local branches on top (there will be just `main`), and the remote branches below.
 
-![Green success of fetching data and select branch](assets/tidbits9/19.jpeg)
-
-![Selecting a remote branch](assets/tidbits9/20.jpeg)
-
-![Select Checkout on that remote branch](assets/tidbits9/21.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-between flex-wrap">
+	<figure class="px-1"><img src="assets/tidbits9/19.jpeg" alt="Green success of fetching data and select branch" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/20.jpeg" alt="Selecting a remote branch" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/21.jpeg" alt="Select Checkout on that remote branch" style="zoom:50%;"></figure>
+</div>
 
 To start using files from the remote repository you need to check out a remote branch. It doesn't matter which one you check out, but you need to check at least one out (no reason you can't check out more later). Once you check out a remote branch you will see a copy of it above the divider as a local branch, and it will be linked to the remote branch you checked. Now that you have a local branch connected to a remote branch you can push and pull changes to and from the remote repository.
 
-![Branch checked out showing files pulled](assets/tidbits9/23.jpeg)
-
-![Check the folder in files on my iPhone](assets/tidbits9/24.jpeg)
-
-![Opened folder shows the files from the cloned repo - no longer empty](assets/tidbits9/25.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-between flex-wrap">
+	<figure class="px-1"><img src="assets/tidbits9/23.jpeg" alt="Branch checked out showing files pulled" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/24.jpeg" alt="Check the folder in files on my iPhone" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/25.jpeg" alt="Opened folder shows the files from the cloned repo - no longer empty" style="zoom:50%;"></figure>
+</div>
 
 #### Step 4 —Textastic
 
 Open Textastic and choose Add External Folder... Then navigate through the Files app to On My iPhone and select the repo folder.
 
-![Textastic highlighting Add External Folder](assets/tidbits9/26.jpeg)
-
-![Navigate to Files and on my iPhone and select the repo folder](assets/tidbits9/27.jpeg)
-
-![Textastic shown editing one of the Markdown files in the repo](assets/tidbits9/28.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-between flex-wrap">
+	<figure class="px-1"><img src="assets/tidbits9/26.jpeg" alt="Textastic highlighting Add External Folder" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/27.jpeg" alt="Navigate to Files and on my iPhone and select the repo folder" style="zoom:50%;"></figure>
+	<figure class="px-1"><img src="assets/tidbits9/28.jpeg" alt="Textastic shown editing one of the Markdown files in the repo" style="zoom:50%;"></figure>
+</div>
 
 ### Day-to-Day Use
 
