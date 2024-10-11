@@ -1,6 +1,7 @@
 ---
-title: Bootstrap & jQuery
+title: & jQuery
 instalment: 60
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-08-12
 tags:

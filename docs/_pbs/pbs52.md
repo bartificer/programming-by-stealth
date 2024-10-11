@@ -1,6 +1,7 @@
 ---
 title: Introducing Bootstrap 4
 instalment: 52
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-03-31
 tags:

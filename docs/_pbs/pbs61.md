@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Jumbotrons & Badges
+title: Jumbotrons & Badges
 instalment: 61
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-08-30
 tags:

@@ -1,6 +1,7 @@
 ---
-title: Introducing Bootstrap Drop-downs
+title: Introducing Drop-downs
 instalment: 67
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-12-01
 tags:

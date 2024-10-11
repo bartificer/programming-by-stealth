@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Buttons
+title: Buttons
 instalment: 63
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-09-23
 tags:
