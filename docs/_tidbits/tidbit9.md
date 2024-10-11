@@ -48,10 +48,10 @@ Open the Files app, and navigate to the *'on my iPhone/iPad'* top-level section.
 
 Click the three dots icon and then *‘new folder’.*
 
-<group display="flow-root">
+<div style=“display: flow-root;”>
 <figure style=" float:left; margin: 10px"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;" /></figure><figure style=" float:left; margin: 10px"><img src="assets/tidbits9/2.jpeg" alt="Select 3-dot icon in the upper right" style="zoom:50%;" /></figure>
 </group>
-<group display="flow-root">
+<div style=“display: flow-root;”>
 <figure style=" float:left; margin: 10px"><img src="assets/tidbits9/3.jpeg" alt="Create a new folder in the iOS Files app" style="zoom:50%;" /></figure>
 <figure style=" float:left; margin: 10px"><img src="assets/tidbits9/4.jpeg" alt="New folder visible in Files App" style="zoom:50%;" /></figure>
 </group>
