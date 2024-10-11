@@ -49,7 +49,7 @@ Open the Files app, and navigate to the *'on my iPhone/iPad'* top-level section.
 Click the three dots icon and then *‘new folder’.*
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-  <figure class="px-1"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;"> <figcaption style="text-align:center">Open Files App to Browse & Choose On my iPhone (or iPad)</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;"> <figcaption style="text-align:center">Open Files App to Browse<br>& Choose On my iPhone (or iPad)</figcaption></figure>
   <figure class="px-1"><img src="assets/tidbits9/2.jpeg" alt="Select 3-dot icon in the upper right" style="zoom:50%;"> <figcaption style="text-align:center">Select 3-Dot Menu</figcaption></figure>
   <figure class="px-1"><img src="assets/tidbits9/3.jpeg" alt="Create a new folder in the iOS Files app" style="zoom:50%;"> <figcaption style="text-align:center">Select New Folder</figcaption></figure>
   <figure class="px-1"><img src="assets/tidbits9/4.jpeg" alt="New folder visible in Files App" style="zoom:50%;"> <figcaption style="text-align:center">Your Shiny New Folder Showing 0 Items</figcaption></figure>
