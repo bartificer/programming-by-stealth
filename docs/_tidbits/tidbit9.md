@@ -49,10 +49,10 @@ Open the Files app, and navigate to the *'on my iPhone/iPad'* top-level section.
 Click the three dots icon and then *‘new folder’.*
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-  <figure class="px-1"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;"><figcaption style="center">Open Files App to Browse & Choose On my iPhone (or iPad)</figcaption></figure>
-  <figure class="px-1"><img src="assets/tidbits9/2.jpeg" alt="Select 3-dot icon in the upper right" style="zoom:50%;"><figcaption style="center">Select 3-Dot Menu</figcaption></figure>
-  <figure class="px-1"><img src="assets/tidbits9/3.jpeg" alt="Create a new folder in the iOS Files app" style="zoom:50%;"><figcaption style="center">Select New Folder</figcaption></figure>
-  <figure class="px-1"><img src="assets/tidbits9/4.jpeg" alt="New folder visible in Files App" style="zoom:50%;"><figcaption style="center">Your Shiny New Folder Showing 0 Items</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;"> <figcaption style="text-align:center">Open Files App to Browse & Choose On my iPhone (or iPad)</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/2.jpeg" alt="Select 3-dot icon in the upper right" style="zoom:50%;"> <figcaption style="text-align:center">Select 3-Dot Menu</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/3.jpeg" alt="Create a new folder in the iOS Files app" style="zoom:50%;"> <figcaption style="text-align:center">Select New Folder</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/4.jpeg" alt="New folder visible in Files App" style="zoom:50%;"> <figcaption style="text-align:center">Your Shiny New Folder Showing 0 Items</figcaption></figure>
 </div>
 
 #### Step 2 — Configure the Folder as a Git Repo
@@ -60,10 +60,10 @@ Click the three dots icon and then *‘new folder’.*
 Open Working Copy, and at the top level page that lists all your repos, click the button that looks like a plus symbol on top of a fingerprint, select *‘Link external directory’*  and then *'Directory'* from the dropdown to connect to the folder you just created in the Files app.
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-	<figure class="px-1"><img src="assets/tidbits9/5.jpeg" alt="Select fingerprint plus button" style="zoom:50%;"><figcaption style="center">In Working Copy Select Fingerprint + Button</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/6.jpeg" alt="Open Link external repository, then select directory" style="zoom:50%;"><figcaption style="center">Tap Link External Repo & Select Directory Do NOT Select Clone Repo</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/7.jpeg" alt="Select the folder on your device that you created earlier" style="zoom:50%;"><figcaption style="center">Select Folder You Created in Files</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/8.jpeg" alt="Select Open and note folder is currently empty" style="zoom:50%;"><figcaption style="center">In Emtpy Folder Select Open</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/5.jpeg" alt="Select fingerprint plus button" style="zoom:50%;"> <figcaption style="text-align:center">In Working Copy Select Fingerprint + Button</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/6.jpeg" alt="Open Link external repository, then select directory" style="zoom:50%;"> <figcaption style="text-align:center">Tap Link External Repo & Select Directory Do NOT Select Clone Repo</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/7.jpeg" alt="Select the folder on your device that you created earlier" style="zoom:50%;"> <figcaption style="text-align:center">Select Folder You Created in Files</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/8.jpeg" alt="Select Open and note folder is currently empty" style="zoom:50%;"> <figcaption style="text-align:center">In Emtpy Folder Select Open</figcaption></figure>
 </div>
 
 You now have an empty local Git repo with no commits. To use your Git server, you need to add a remote to this local repo. 
@@ -73,26 +73,26 @@ You now have an empty local Git repo with no commits. To use your Git server, yo
 Before you go any further, you’ll need to fetch the URL for your desired repo on your Git server. For fellow GitHub users, note that you’ll need to use the web interface, because I have not found a way of getting the GitHub iOS app to show the SSH URL for a repo!
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-<figure class="px-1"><img src="assets/tidbits9/15.jpeg" alt="Open GitHub repo select Code and then copy SSH URL" style="zoom:50%;"><figcaption style="center">In GitHub Copy the SSH Url for the Code</figcaption></figure>
+<figure class="px-1"><img src="assets/tidbits9/15.jpeg" alt="Open GitHub repo select Code and then copy SSH URL" style="zoom:50%;"> <figcaption style="text-align:center">In GitHub Copy the SSH Url for the Code</figcaption></figure>
 </div>
 
 In Working Copy, go into the new linked shared folder and click the word *‘Repository’* (not the icon to the right):
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-<figure class="px-1"><img src="assets/tidbits9/9.jpeg" alt="Select Repository NOT the branch link or chevron on the right" style="zoom:50%;"><figcaption style="center">Back In Working Copy Tap on Repository NOT Icons on Right </figcaption></figure>
+<figure class="px-1"><img src="assets/tidbits9/9.jpeg" alt="Select Repository NOT the branch link or chevron on the right" style="zoom:50%;"> <figcaption style="text-align:center">Back In Working Copy Tap on Repository NOT Icons on Right </figcaption></figure>
 </div>
 
 On the repository setting page, click the *‘Configuration’* button:
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-<figure class="px-1"><img src="assets/tidbits9/10.jpeg" alt="Open the Configuration interface in the Working Copy repository" style="zoom:50%;"><figcaption style="center">Select Configuration</figcaption></figure>
+<figure class="px-1"><img src="assets/tidbits9/10.jpeg" alt="Open the Configuration interface in the Working Copy repository" style="zoom:50%;"> <figcaption style="text-align:center">Select Configuration</figcaption></figure>
 </div>
 
 You’ll see one or more Git identities in a list that doesn’t look like a list at the top of the page — select the identity you set up in Working Copy that’s connected to your server. For me, that’s my GitHub account. When you have an identity ticked, back out to the repository settings page again. 
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-	<figure class="px-1"><img src="assets/tidbits9/11.jpeg" alt="Tap on the identity name, NOT Edit" style="zoom:50%;"><figcaption style="center">Tap on the Identity You Want to Use</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/12.jpeg" alt="If you have done it right you will see a checkmark next to the identity. Hit the back chevron" style="zoom:50%;"><figcaption style="center">If You Did it Right You Should See a Checkmark Tap Back Chevron</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/11.jpeg" alt="Tap on the identity name, NOT Edit" style="zoom:50%;"> <figcaption style="text-align:center">Tap on the Identity You Want to Use</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/12.jpeg" alt="If you have done it right you will see a checkmark next to the identity. Hit the back chevron" style="zoom:50%;"> <figcaption style="text-align:center">If You Did it Right You Should See a Checkmark Tap Back Chevron</figcaption></figure>
 </div>
 
 Now that Working Copy knows which authentication details to use, you’re ready to link your local repo to the appropriate repo on your server.
@@ -100,15 +100,15 @@ Now that Working Copy knows which authentication details to use, you’re ready 
 Click the button to add a remote and paste in the URL you fetched earlier.
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-	<figure class="px-1"><img src="assets/tidbits9/13.jpeg" alt="Click the Add Remote button" style="zoom:50%;"><figcaption style="center">Tap Add Remote</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/16.jpeg" alt="Many things to touch ignore all but URL field and paste SSH URL from GitHub" style="zoom:50%;"><figcaption style="center">Paste the SSH URL from GitHub Tap Save</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/13.jpeg" alt="Click the Add Remote button" style="zoom:50%;"> <figcaption style="text-align:center">Tap Add Remote</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/16.jpeg" alt="Many things to touch ignore all but URL field and paste SSH URL from GitHub" style="zoom:50%;"> <figcaption style="text-align:center">Paste the SSH URL from GitHub Tap Save</figcaption></figure>
 </div>
 
 Back on the repository setting page, click the three dots and choose *‘fetch’*, which should retrieve the list of remote branches:
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-	<figure class="px-1"><img src="assets/tidbits9/17.jpeg" alt="Select 3-dot menu" style="zoom:50%;"><figcaption style="center">Tap 3-dot Menu</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/18.jpeg" alt="Choose Fetch to see the remote branches in Working Copy and then select Branch" style="zoom:50%;"><figcaption style="center">Select Fetch</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/17.jpeg" alt="Select 3-dot menu" style="zoom:50%;"> <figcaption style="text-align:center">Tap 3-dot Menu</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/18.jpeg" alt="Choose Fetch to see the remote branches in Working Copy and then select Branch" style="zoom:50%;"> <figcaption style="text-align:center">Select Fetch</figcaption></figure>
 </div>
 
 Note that you can't yet pull because the branch you have checked out is your local `main` branch which has no commits yet so it is *unborn*. Pushing and pulling is only possible when you have local branches linked to remote branches. So, that's what we need to arrange next.
@@ -116,15 +116,15 @@ Note that you can't yet pull because the branch you have checked out is your loc
 Note that what the interface now shows you is all the branches that exist both locally and remotely, with the local branches on top (there will be just `main`), and the remote branches below.
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-	<figure class="px-1"><img src="assets/tidbits9/19.jpeg" alt="Green success of fetching data and select branch" style="zoom:50%;"><figcaption style="center">Select Branch</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/20.jpeg" alt="Selecting a remote branch" style="zoom:50%;"><figcaption style="center">Choose Your Desired Branch</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/21.jpeg" alt="Select Checkout on that remote branch" style="zoom:50%;"><figcaption style="center">Select Checkout</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/19.jpeg" alt="Green success of fetching data and select branch" style="zoom:50%;"> <figcaption style="text-align:center">Select Branch</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/20.jpeg" alt="Selecting a remote branch" style="zoom:50%;"> <figcaption style="text-align:center">Choose Your Desired Branch</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/21.jpeg" alt="Select Checkout on that remote branch" style="zoom:50%;"> <figcaption style="text-align:center">Select Checkout</figcaption></figure>
 </div>
 
 To start using files from the remote repository you need to check out a remote branch. It doesn't matter which one you check out, but you need to check at least one out (no reason you can't check out more later). Once you check out a remote branch you will see a copy of it above the divider as a local branch, and it will be linked to the remote branch you checked. Now that you have a local branch connected to a remote branch you can push and pull changes to and from the remote repository.
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-	<figure class="px-1"><img src="assets/tidbits9/23.jpeg" alt="Branch checked out showing files pulled" style="zoom:50%;"><figcaption style="center">Ready to Get to Work</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/23.jpeg" alt="Branch checked out showing files pulled" style="zoom:50%;"> <figcaption style="text-align:center">Ready to Get to Work</figcaption></figure>
 	<figure class="px-1"><img src="assets/tidbits9/24.jpeg" alt="Check the folder in files on my iPhone" style="zoom:50%;">Verify in Files the Repo is there by Opening the Folder</figure>
 	<figure class="px-1"><img src="assets/tidbits9/25.jpeg" alt="Opened folder shows the files from the cloned repo - no longer empty" style="zoom:50%;">Files Happily On iPhone</figure>
 </div>
@@ -134,9 +134,9 @@ To start using files from the remote repository you need to check out a remote b
 Open Textastic and choose Add External Folder... Then navigate through the Files app to On My iPhone and select the repo folder.
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-	<figure class="px-1"><img src="assets/tidbits9/26.jpeg" alt="Textastic highlighting Add External Folder" style="zoom:50%;"><figcaption style="center">In Textastic Add External Folder</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/27.jpeg" alt="Navigate to Files and on my iPhone and select the repo folder" style="zoom:50%;"><figcaption style="center">Navigate to On My iPhone in Files & Select Repo Folder</figcaption></figure>
-	<figure class="px-1"><img src="assets/tidbits9/28.jpeg" alt="Textastic shown editing one of the Markdown files in the repo" style="zoom:50%;"><figcaption style="center">Open Text File and Go to Town in Textastic</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/26.jpeg" alt="Textastic highlighting Add External Folder" style="zoom:50%;"> <figcaption style="text-align:center">In Textastic Add External Folder</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/27.jpeg" alt="Navigate to Files and on my iPhone and select the repo folder" style="zoom:50%;"> <figcaption style="text-align:center">Navigate to On My iPhone in Files & Select Repo Folder</figcaption></figure>
+	<figure class="px-1"><img src="assets/tidbits9/28.jpeg" alt="Textastic shown editing one of the Markdown files in the repo" style="zoom:50%;"> <figcaption style="text-align:center">Open Text File and Go to Town in Textastic</figcaption></figure>
 </div>
 
 ### Day-to-Day Use
