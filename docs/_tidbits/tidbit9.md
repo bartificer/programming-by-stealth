@@ -72,15 +72,21 @@ You now have an empty local Git repo with no commits. To use your Git server, yo
 
 Before you go any further, you’ll need to fetch the URL for your desired repo on your Git server. For fellow GitHub users, note that you’ll need to use the web interface, because I have not found a way of getting the GitHub iOS app to show the SSH URL for a repo!
 
-![Open GitHub repo select Code and then copy SSH URL](assets/tidbits9/15.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
+<figure class="px-1"><img src="assets/tidbits9/15.jpeg" alt="Open GitHub repo select Code and then copy SSH URL" style="zoom:50%;"></figure>
+</div
 
 In Working Copy, go into the new linked shared folder and click the word *‘Repository’* (not the icon to the right):
 
-![Select Repository NOT the branch link or chevron on the right](assets/tidbits9/9.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
+<figure class="px-1"><img src="assets/tidbits9/9.jpeg" alt="Select Repository NOT the branch link or chevron on the right" style="zoom:50%;"></figure>
+</div>
 
 On the repository setting page, click the *‘Configuration’* button:
 
-![Open the Configuration interface in the Working Copy repository](assets/tidbits9/10.jpeg)
+<div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
+<figure class="px-1"><img src="assets/tidbits9/10.jpeg" alt="Open the Configuration interface in the Working Copy repository" style="zoom:50%;"></figure>
+</div>
 
 You’ll see one or more Git identities in a list that doesn’t look like a list at the top of the page — select the identity you set up in Working Copy that’s connected to your server. For me, that’s my GitHub account. When you have an identity ticked, back out to the repository settings page again. 
 
