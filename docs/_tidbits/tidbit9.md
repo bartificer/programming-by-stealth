@@ -49,10 +49,10 @@ Open the Files app, and navigate to the *'on my iPhone/iPad'* top-level section.
 Click the three dots icon and then *‘new folder’.*
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
-  <figure class="px-1"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;"></figure>
-  <figure class="px-1"><img src="assets/tidbits9/2.jpeg" alt="Select 3-dot icon in the upper right" style="zoom:50%;"></figure>
-  <figure class="px-1"><img src="assets/tidbits9/3.jpeg" alt="Create a new folder in the iOS Files app" style="zoom:50%;"></figure>
-  <figure class="px-1"><img src="assets/tidbits9/4.jpeg" alt="New folder visible in Files App" style="zoom:50%;"></figure>
+  <figure class="px-1"><img src="assets/tidbits9/1.jpeg" alt="Open iOS Files app and select on my iPhone iPad" style="zoom:50%;"><figcaption>Open Files App to Browse </br>Choose On my iPhone (or iPad)</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/2.jpeg" alt="Select 3-dot icon in the upper right" style="zoom:50%;"><figcaption>Select 3-Dot Menu</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/3.jpeg" alt="Create a new folder in the iOS Files app" style="zoom:50%;"><figcaption>Select New Folder</figcaption></figure>
+  <figure class="px-1"><img src="assets/tidbits9/4.jpeg" alt="New folder visible in Files App" style="zoom:50%;"><figcaption>Your Shiny New Folder Showing 0 Items</figcaption></figure>
 </div>
 
 #### Step 2 — Configure the Folder as a Git Repo
@@ -74,7 +74,7 @@ Before you go any further, you’ll need to fetch the URL for your desired repo 
 
 <div class="d-flex flex-column flex-md-row justify-content-around flex-wrap">
 <figure class="px-1"><img src="assets/tidbits9/15.jpeg" alt="Open GitHub repo select Code and then copy SSH URL" style="zoom:50%;"></figure>
-</div
+</div>
 
 In Working Copy, go into the new linked shared folder and click the word *‘Repository’* (not the icon to the right):
 
