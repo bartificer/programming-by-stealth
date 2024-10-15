@@ -1,5 +1,5 @@
 ---
-title: & jQuery
+title: "& jQuery"
 instalment: 60
 miniseries: Bootstrap
 creators: [bart, allison]
