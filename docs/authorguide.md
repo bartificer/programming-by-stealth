@@ -5,17 +5,17 @@ This site is creative commons, [hosted on GitHub](https://github.com/bartificer/
 
 The content is written in [Markdown](https://www.markdownguide.org/cheat-sheet/) with [YAML](https://en.wikipedia.org/wiki/YAML) front matter for metadata.
 
-When ever possible, all content should be coded in pure Markdown, but very ocassionally it may be nececary to add additional markup. When that is the case, HTML can be included in the Markdown files, but avoid using hard-coded styling, instead use appropriate HTML 5 markup with [Bootstrap 4](https://getbootstrap.com/docs/4.6/getting-started/introduction/) CSS classes.
+When ever possible, all content should be coded in pure Markdown, but very ocassionally it may be necessary to add additional markup. When that is the case, HTML can be included in the Markdown files, but avoid using hard-coded styling, instead use appropriate HTML 5 markup with [Bootstrap 4](https://getbootstrap.com/docs/4.6/getting-started/introduction/) CSS classes.
 
 Note that this document is a work in progress.
 
 ## File Locations
 
-Instalments for the primary series are stored as markdown files in the folder `docs/_pbs`, while PBS Tidbits are stord in `docs/_tidbits`.
+Instalments for the primary series are stored as markdown files in the folder `docs/_pbs`, while PBS Tidbits are stored in `docs/_tidbits`.
 
 Images and other static files that need to be linked to from within instalments are stored in appropriately named sub-folders of `docs/assets/`, e.g. `docs/assets/pbs1/Screen-Shot-2015-10-07-at-22.41.46-e1444254317754.png`.
 
-The original files that will be included in an instalment's resources ZIP file are stored in appropraitely named sub-folders of the `instalmentResources` folder, e.g. `instalmentResources/pbs85`. The published instalment resource zip files are stored in the `instalmenmtZips` folder with appropriate filenames, e.g. `instalmentZips/pbs85.zip`.
+The original files that will be included in an instalment's resources ZIP file are stored in appropriately named sub-folders of the `instalmentResources` folder, e.g. `instalmentResources/pbs85`. The published instalment resource zip files are stored in the `instalmenmtZips` folder with appropriate filenames, e.g. `instalmentZips/pbs85.zip`.
 
 ## Overall Document Structure
 
@@ -65,7 +65,7 @@ Single figures with captions can be added with markup of the form:
 </figure>
 ```
 
-Groups of figures that stack nicely at all screensizes canbe added with markup of the form:
+Groups of figures that stack nicely at all screensizes can be added with markup of the form:
 
 ```html
 <div class="fig-group">
