@@ -1,7 +1,7 @@
 ---
 title: Interview with jq Maintainer Mattias Wadman
 instalment: 8
-miniseries: jq
+tags: [jq, interview]
 creators: [bart]
 date: 2024-08-06
 opengraph:
