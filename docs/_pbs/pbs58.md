@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Breakpoints
+title: Breakpoints
 instalment: 58
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-07-14
 tags:

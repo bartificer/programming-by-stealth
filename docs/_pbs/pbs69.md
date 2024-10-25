@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Navbars
+title: Navbars
 instalment: 69
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2019-01-13
 tags:

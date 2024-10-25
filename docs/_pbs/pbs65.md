@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Input Groups
+title: Input Groups
 instalment: 65
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-10-20
 tags:

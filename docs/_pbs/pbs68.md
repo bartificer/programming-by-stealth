@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Navs
+title: Navs
 instalment: 68
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-12-15
 tags:

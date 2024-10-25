@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Form Validation
+title: Form Validation
 instalment: 66
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-11-03
 tags:

@@ -1,6 +1,7 @@
 ---
-title: More Bootstrap Content
+title: More Content
 instalment: 56
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-06-16
 tags:

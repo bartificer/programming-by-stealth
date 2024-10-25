@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Spinners
+title: Spinners
 instalment: 71
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2019-02-09
 tags:

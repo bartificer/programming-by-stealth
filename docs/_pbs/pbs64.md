@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Form Layouts
+title: Form Layouts
 instalment: 64
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-10-04
 tags:

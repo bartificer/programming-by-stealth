@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Utilities
+title: Utilities
 instalment: 53
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-05-05
 tags:

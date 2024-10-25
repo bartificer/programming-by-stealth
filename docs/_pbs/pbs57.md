@@ -1,6 +1,7 @@
 ---
-title: The Bootstrap Grid
+title: The Grid
 instalment: 57
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-06-30
 tags:

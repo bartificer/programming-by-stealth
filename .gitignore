@@ -49,3 +49,7 @@ instalmentResources/pbs167/package.json
 docs/_site/
 
 docs/Gemfile.lock
+
+docs/_tidbits/assets
+
+docs/_pbs/assets

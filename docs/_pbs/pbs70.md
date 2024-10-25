@@ -1,6 +1,7 @@
 ---
-title: Bootstrap Modals & Toasts
+title: Modals & Toasts
 instalment: 70
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2019-01-28
 tags:

@@ -1,6 +1,7 @@
 ---
-title: A Basic Bootstrap Form
+title: A Basic Form
 instalment: 62
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-09-15
 tags:

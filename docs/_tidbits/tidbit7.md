@@ -1,6 +1,7 @@
 ---
 title: jq to Analyze macOS Installed Apps with Helma van der Linden
 instalment: 7
+miniseries: jq
 creators: [helma, allison]
 date: 2024-07-20
 opengraph:

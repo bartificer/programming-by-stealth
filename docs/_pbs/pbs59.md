@@ -1,6 +1,7 @@
 ---
-title: More Bootstrap Breakpoints
+title: More Breakpoints
 instalment: 59
+miniseries: Bootstrap
 creators: [bart, allison]
 date: 2018-07-28
 tags:
