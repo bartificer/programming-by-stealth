@@ -1,8 +1,8 @@
 ---
 title: Using Git on iOS
 instalment: 9
-miniseries: Git
 creators: [bart, allison]
+tags: [Git, iOS, iPadOS]
 date: 2024-10-10
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_10_10.mp3
