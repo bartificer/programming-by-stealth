@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 # conditionally create the repos folder
 [[ -e repos ]] || mkdir repos
