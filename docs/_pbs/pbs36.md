@@ -346,7 +346,7 @@ Putting it all together, and adding some comments, we get the following HTML pag
                 true // set the initial state of all cells to true
             );
 
-            // log the geneated automaton object so we can have a look inside
+            // log the generated automaton object so we can have a look inside
             // it look at it with the JavaScript console if we want
             console.log(sampleCA);
         });
