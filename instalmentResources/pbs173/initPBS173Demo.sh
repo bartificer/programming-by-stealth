@@ -9,12 +9,14 @@ do
 done
 
 # remove any old copies of the 'remote' repos
-rm -rf ./remote-repos/pbscorp-brand
-rm -rf ./remote-repos/pbscorp-app1
+for repo in pbscorp-brand pbscorp-app1 pbscorp-app2
+do
+    rm -rf "./remote-repos/$repo"
+done
 
 # clone the bundles into the 'remote' repos folder
-git clone ./pbscorp-brand.bundle ./remote-repos/pbscorp-brand
-git clone ./pbscorp-app1.bundle ./remote-repos/pbscorp-app1
+git clone --bare ./pbscorp-brand.bundle ./remote-repos/pbscorp-brand.git
+git clone --bare ./pbscorp-app1.bundle ./remote-repos/pbscorp-app1.git
 
-# update the submodule in app 1
-(cd ./remote-repos/pbscorp-app1 && git submodule init && git -c protocol.file.allow=always submodule update)
+# create an empty 'remote' for app 2
+(cd ./remote-repos/ && git init --bare pbscorp-app2.git)
