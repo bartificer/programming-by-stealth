@@ -20,3 +20,6 @@ git clone --bare ./pbscorp-app1.bundle ./remote-repos/pbscorp-app1.git
 
 # create an empty 'remote' for app 2
 (cd ./remote-repos/ && git init --bare pbscorp-app2.git)
+
+# clone the brand repo into the brand designer's 'PC'
+(cd ./pc-brandDesigner && git clone ../remote-repos/pbscorp-brand.git)

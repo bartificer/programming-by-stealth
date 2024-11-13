@@ -1,0 +1,23 @@
+/* Import all custom fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Comfortaa:wght@300..700&display=swap');
+
+/* Set the default font */
+body{
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* customise headings */
+h1, h2, h3, h4, h5, h6{
+    font-family: "Chewy", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+h1, h3, h5{
+    color: #000099;
+}
+h2, h4, h6{
+    color: #009900;
+}
