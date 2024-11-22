@@ -8,12 +8,6 @@ do
     rm -rf $folder/*
 done
 
-# remove any old copies of the 'remote' repos
-for repo in pbscorp-brand pbscorp-app1 pbscorp-app2
-do
-    rm -rf "./remote-repos/$repo"
-done
-
 # clone the bundles into the 'remote' repos folder
 for repo in pbscorp-brand pbscorp-app1 pbscorp-app2
 do
@@ -26,8 +20,8 @@ for app in app1 app2
 do
     ( \
         cd "./pc-${app}Dev" && \
-        git "clone ../remote-repos/pbscorp-$app.git" && \
-        git submodule init \
-        git git -c protocol.file.allow=always submodule update
+        git clone "../remote-repos/pbscorp-$app.git" && \
+        git submodule init && \
+        git -c protocol.file.allow=always submodule update
     )
 done
