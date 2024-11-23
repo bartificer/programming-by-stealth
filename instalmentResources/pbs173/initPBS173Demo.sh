@@ -8,12 +8,6 @@ do
     rm -rf $folder/*
 done
 
-# remove any old copies of the 'remote' repos
-for repo in pbscorp-brand pbscorp-app1 pbscorp-app2
-do
-    rm -rf "./remote-repos/$repo"
-done
-
 # clone the bundles into the 'remote' repos folder
 git clone --bare ./pbscorp-brand.bundle ./remote-repos/pbscorp-brand.git
 git clone --bare ./pbscorp-app1.bundle ./remote-repos/pbscorp-app1.git

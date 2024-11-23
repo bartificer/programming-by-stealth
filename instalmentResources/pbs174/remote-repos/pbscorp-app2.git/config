@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = /Users/bart/Documents/Temp/From GitHub/programming-by-stealth/instalmentResources/pbs174/./pbscorp-app2.bundle
