@@ -21,6 +21,7 @@ do
     ( \
         cd "./pc-${app}Dev" && \
         git clone "../remote-repos/pbscorp-$app.git" && \
+        cd "pbscorp-$app" && \
         git submodule init && \
         git -c protocol.file.allow=always submodule update
     )
