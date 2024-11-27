@@ -2,7 +2,7 @@
 set -x
 
 # conditionally create the folders representing the pretend computers, and empty them
-for folder in remote-repos pc-app1Dev pc-app2Dev pc-brandDesigner
+for folder in remote-repos pc-app1Dev pc-app2Dev pc-brandDesigner pc-sysadmin
 do
     [[ -e $folder ]] || mkdir $folder
     rm -rf $folder/*
@@ -14,7 +14,7 @@ do
     git clone --bare "./$repo.bundle" "./remote-repos/$repo.git"
 done
 
-# clone the repos into each work's 'PC'
+# clone the repos into each worker's 'PC'
 (cd ./pc-brandDesigner && git clone ../remote-repos/pbscorp-brand.git)
 for app in app1 app2
 do
