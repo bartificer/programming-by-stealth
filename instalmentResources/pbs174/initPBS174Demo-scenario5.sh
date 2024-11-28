@@ -19,11 +19,19 @@ done
 
 # create the new branches on the brand repo
 ( \
-    cd ./pc-sysadmin/brand && \
+    cd ./pc-sysadmin/pbscorp-brand && \
     git branch stable-v1 && \
     git push --set-upstream origin stable-v1 && \
     git branch stable-v2 && \
     git push --set-upstream origin stable-v2
 )
 
-# LEFT OFF HERE!!!
+# create the new branches on the app repos
+for app in app1 app2
+do
+    ( \
+        cd ./pc-sysadmin/pbscorp-$app && \
+        git branch staging && \
+        git push --set-upstream origin staging
+    )
+done
