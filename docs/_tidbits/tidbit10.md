@@ -1,6 +1,6 @@
 ---
 title: Run LLMs Locally with Ollama
-instalment: 171
+instalment: 10
 creators: [allison]
 date: 2024-12-04
 opengraph:
