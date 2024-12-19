@@ -2,7 +2,7 @@
 title: Run LLMs Locally with Ollama
 instalment: 10
 creators: [allison]
-date: 2024-12-04
+date: 2024-12-21
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_12_21.mp3
 ---
