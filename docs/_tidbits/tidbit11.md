@@ -62,3 +62,17 @@ The output intended for humans is still strings of course, but it too has been m
 2. **Informational** output, i.e. normal output when nothing goes wrong. In your own scripts you write this kind of output with `Write-Host`.
 3. **Warnings**, something's gone wrong, but was at least partially recoverable. You can output your own with `Write-Warning`. 
 4. **Errors**, something's failed. You can output your own errors with `Write-Error`.
+
+In a traditional shell stream redirection (`>`, `>>`, etc.)  is used for two distinct purposes:
+
+1. To send data to files
+2. To send outputs to logs
+
+Again, PowerShell separates these tasks, providing dedicated tools for each:
+
+1. Data gets written with an appropriate output command, e.g. `Out-File`, `Export-Csv`, etc..
+2. A dedicated logging feature — [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4)
+
+### Built-in Baseline Standards for All Commands
+
+LEFT OFF HERE !!!
