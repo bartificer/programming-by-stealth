@@ -73,6 +73,20 @@ Again, PowerShell separates these tasks, providing dedicated tools for each:
 1. Data gets written with an appropriate output command, e.g. `Out-File`, `Export-Csv`, etc..
 2. A dedicated logging feature — [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4)
 
-### Built-in Baseline Standards for All Commands
+### Common Parameters for All Commands
 
-LEFT OFF HERE !!!
+There are lot of pseudo-standards on the Unix/Linux command line that have organically evolved over the decades, but they're more like common practices than actual standards. PowerShell is different, all the built-in commands provide the same standard optional arguments, or to use the PowerShell jargon, Standard Parameters. Some of them exist for every command, some don't, only existing for commands where they make sense. Some of my favourite standard parameters:
+
+* `-Verbose` to enable verbose output
+* `-WhatIf` to enable dry-run mode, only available on commands that perform changes or ddstructive actions.
+* `-ErrorAction` to specify how the command should handle an error. I generally use this to force a critically important command to succeed or kill the entire script with `-ErrorAction Stop`.
+
+What's even better is that these common parameters actually exist below the command level, they actually exist at the function level, and commands are just functions with superpowers! Because they exist at the function level you can enable them on **your code** with just a single line (TO DO), so any functions you write can fit right in with the standard stuff! In fact, scripts are also just functions with superpowers, so your scrips can easily support the same standard parameters too!
+
+### Built-in Mechanism for Defining Parameters
+
+### A Built-in Comment-based Documentation System
+
+### Rigorous Naming Conventions
+
+
