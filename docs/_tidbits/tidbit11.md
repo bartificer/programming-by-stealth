@@ -146,3 +146,20 @@ function Get-RepeatedMessage {
 
 ### Rigorous Naming Conventions
 
+Naming conventions genereally emerge as suggestions by language maintaineres, or they evolve naturally within the community. In theory the naming conventions in PowerShell are just suggestions, but I've never seen such clear recommendations so strongly suggested or zealously followed as those in PowerShell. By default, when a module is loaded each imported function or variable that does not follow the naming conventions triggers as warning! So, if someone shares code on GitHub that breaks the rules, every users who tries to use that code will be warned about the impropper names. That sets up a pretty good incentive for developers to follow the rules!
+
+The fundamental rule is simple and powerful — in PowerShell, **commands and functions are strickly named using the `Verb-Noun` pattern**. Basically, what action the command takes on what thing.
+
+There are no enforced rules for the nouns, just a strong recommendation to be clear and consisten, but there is literally [a list of approved verbs](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.4)! The list is more than just a list, it also contains descriptions of how specific verbs should be interpreted, and there are disambigucations for verbs that could be easily confised.
+
+Because these rules are so strongly enforced, you can usually guess what the right command might be, e.g. you convert data to CSV format with `ConvertTo-Csv`, to XML with `ConvertTo-Xml`, and to JSON with `ConvertTo-Json`.
+
+I very strongly reocmmend you get into the habit right from the start of naming all your scripts and functions using the `Verb-Noun` convention.
+
+## A VERY Basic Syntax Primer
+
+TO DO
+
+## Final Thoughts
+
+TO DO
