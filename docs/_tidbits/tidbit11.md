@@ -1,6 +1,6 @@
 ---
 title: A PowerShell Teaser
-instalment: 10
+instalment: 11
 creators: [bart, allison]
 ---
 
@@ -20,19 +20,19 @@ like with most things Microsoft, my first indroduction to PowerShell was involun
 
 ## Version & Tooling
 
-Like Apple's young language Swift, PowerShell has evolved a lot from its initial release to the current product release. Fot a good experience, be sure you're using the latest Long Term Support (LTS) version (as of January 2025 that's `7.4.*`). 
+Like Apple's young language Swift, PowerShell has evolved a lot from its initial release to the current product release. For a good experience, be sure you're using the latest version, or at least the most recent Long Term Support (LTS) version. As of Jaunary 2025 that's version `7.4.*` or `7.2.*`.
 
 There's a [section in the docs describing all the different ways to install PowerShell on all the different platforms](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4), but on the Mac by far the simplest method is HomeBrew:
 
 ```
-brew install powershell/tap/powershell-lts
+brew install powershell/tap/powershell
 ```
 
 Once you have PowerShell installed you can start a shell with the command `pwsh`. 
 
-If you're going to use the Terminal app for running PowerShell commands you can create a new profile for quick access, these are the settings I use:
+If you're going to use the Terminal app for running PowerShell commands you can create a new profile for quick access. The improtant settings are under the *Shell* tab in the profile settings, specifically, the *Run command* needs to be set to the full path to `pwsh` (which you can get by running `which pwsh`) and to un-tick the *Run inside shell* checkbox. On windows PowerShell terminals were blue for many years to distinguish them from command prompts, so I like to create my Mac PowerShell Terminal profile by cloning the built-in *Ocean* profile and then edting the two settings on the *Shell* tab of my clone. These are the settings I use:
 
-TO DO — screenshot
+![A Screenshot showing Bart's PowerShell Terminal settings as described above](./assets/tidbits11/BartPowerShellTerminalSettings.png)
 
 On Windows I'd recommend installing Microsoft's modern [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-us&gl=US) app for a nicer CLI than the default one that ships with the Windows version of PowerShell 7.
 
@@ -81,12 +81,68 @@ There are lot of pseudo-standards on the Unix/Linux command line that have organ
 * `-WhatIf` to enable dry-run mode, only available on commands that perform changes or ddstructive actions.
 * `-ErrorAction` to specify how the command should handle an error. I generally use this to force a critically important command to succeed or kill the entire script with `-ErrorAction Stop`.
 
-What's even better is that these common parameters actually exist below the command level, they actually exist at the function level, and commands are just functions with superpowers! Because they exist at the function level you can enable them on **your code** with just a single line (TO DO), so any functions you write can fit right in with the standard stuff! In fact, scripts are also just functions with superpowers, so your scrips can easily support the same standard parameters too!
+What's even better is that these common parameters actually exist below the command level, they actually exist at the function level, and commands are just functions with superpowers! Because they exist at the function level you can enable them on **your code** with just a single line (`[CmdletBinding()]`), so any functions you write can fit right in with the standard stuff! In fact, scripts are also just functions with superpowers, so your scrips can easily support the same standard parameters too!
 
 ### Built-in Mechanism for Defining Parameters
 
+Speaking of parameters, on the Unix/Linux shell there is no way for a command to programatically publish the rules for the arguments they support. The best we can hope for is that the author chose to provide a `man` page for humans to read. This is also no single mechanism for adding support for options and flags, there are just some commonly used tools like `getops` that many commands happen to support.
+
+Again, PowerShell does things differently. The language has a built-in mechanism for functions, and hence commands and scripts, to precicely define the arguments thet expect to receive. All the standard commands make use of this language feature, and it's very easy to use the mechanism yourself when writing your own scripts and functions.
+
+Having a standard mechanism for defining parameters has two very powerful advantages:
+
+1. Automatic interactive prompts when required parameters are missing (e.g. running `Write-Error` with no arguments results in a prompt for a message).
+2. IDEs can provide powerful tooks to help delveopers.
+3. The standard `Get-Command` command can be used to see the parameters any command supports (e.g. `Get-Command Get-Command -ShowCommandInfo` show the parameters the `Get-Command` command supports!)
+
 ### A Built-in Comment-based Documentation System
 
-### Rigorous Naming Conventions
+Speaking of IDEs, PowerShell also provides a standard mechanism for using speically formatted comments to document your code. Basically, an official equivalent to the 3rd-party ESDoc module we use to document our JavaScript code in the main PBS series. Because of the built-in parameter definitions, none of that information needs to be captured in the documentation comments, so the syntax can be much simpler than that used by ESDoc, e.g.
 
+
+
+```pwsh
+<#
+.SYNOPSIS
+    Repeat a message.
+
+.DESCRIPTION
+    Repeat a message a given number of times, defaulting to three.
+
+.PARAMETER Message
+    The message to repeat.
+	
+.PARAMETER Num
+    The number of times to repeat the message.
+	
+.INPUTS
+    None. 
+	
+.OUTPUTS
+    None.
+	
+.EXAMPLE
+    $Nag = Get-RepeatedMessage -Message 'Hello World!' -Num 5
+#>
+function Get-RepeatedMessage {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$Message,
+        [ValidateRange("Positive")]
+        [int]$Num = 3
+    )
+    $Answer = ''
+    $Repeated = 0
+    while ($Repeated -lt $Num) {
+        $Answer += $Message
+        $Repeated++
+    }
+    return $Answer
+}
+```
+
+
+
+### Rigorous Naming Conventions
 
