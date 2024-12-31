@@ -81,13 +81,14 @@ Write-HelloWorld
 We can now convert our function to a script we can run any time by moving just the function's contents into a file with a `.ps1` ending, so let's created `Write-HelloWorld.ps1` and give it just the following contents:
 
 ```pwsh
+#Requires 7.4
 Write-Host 'Hello World!'
 ```
 
 We can now run our script using PowerShell's version of the Bash *dot command* which is `&` followed by a file path:
 
 ```pwsh
-& Write-HelloWorld.ps1
+& ./Write-HelloWorld.ps1
 ```
 
 ### Re-invented 'Plumbing' — Data and Messages are Separated
@@ -246,9 +247,9 @@ So far we've only focused on one kind of 'plumbing' in Unix/Linux, piping, but w
 Again, PowerShell separates these tasks, providing separate dedicated tools for each purpose:
 
 1. Data gets written to files with an appropriate output command, e.g. `Out-File`.
-2. PowerShell provides a dedicated logging feature — [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4)
+2. PowerShell provides a dedicated logging feature called [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4), and errors and warnings can be captured on variables.
 
-### Putting Order on Arguments with Defined Parameters
+### Argument Sanity with Parameter Definitions
 
 Before we go any further we need other pause for a note on jargon — for all intents and purposes *arguments* and *parameters* are synonyms. So far in this series we've chosen to use *argument* because that's the jargon used in both the JavaScript and Bash communities and documentation. However, PowerShell's authors made the other choice, so in syntax, documentation, and the broader community, the word you'll see is *parameter*. For your own sanity, and for ease of searching online, I strongly recommend that when you think about PowerShell, you think about parameters rather than arguments.
 
@@ -260,93 +261,440 @@ We've already seen hints of this in our little example functions. The `param()` 
 
 Having these kinds of rigorous parameter definitions has some powerful advantages:
 
-1. Automatic interactive prompts when required parameters are missing (e.g. running `Write-Error` with no arguments results in a prompt for a message).
-2. IDEs can provide powerful tooks to help delveopers.
-3. The standard `Get-Command` command can be used to see the parameters any command supports (e.g. `Get-Command Write-Error -ShowCommandInfo` shows the parameters the `Write-Error` command supports)
+1. PowerShell's shell can offer help by:
+   1. Automatically prompting for missing required parameters — e.g. running `Write-Error` with no arguments results in a prompt for a message.
+   2. Providing tab-complete for parameters — e.g. typing `Write-Error -M` and hitting `tab` will expand the parameter to `-Messages`. This also works for any functions/scripts you write, try typing `Get-DoubleValue -N` and hitting `tab`!
+2. IDEs can provide more informative tool tips and auto-completes for developers.
+3. The built-in help system can show the parameters **any** function/command/script can accept — e.g. `Get-Help Get-DoubleValue` shows that the function we defined accepts one parameter named `Number`.
 
-### Common Parameters
+### Some Refreshing Consistency with Common Parameters
 
-PowerShell's next superpower is a set of standard parameters that all the standard commands support!
+Another Unix/Linux niggle PowerShell addresses is a lack of consistency in how different commands provide standard functionality like enabling debugging mode.
 
-There are lots of conventions on the Unix/Linux command line, but remember, it's the Wild West, so there are no rules! For example, a lot of Unix/Linux commands use `-v` to enable verbose mode, but many others use it to output their version number!
+Remember, in Unix/Linux anything goes, so while. Some conventions have emerged, you just can't make any assumptions. Even the simplest things are not really standardised — sure, many Unix/Linux commands use  `-v` to enable verbose mode, but many others use that same flag to output their version number!
 
-You get none of that chaos with PowerShell, instead, there is a documented list of standard parameters for all commands — they're [described in detail in the documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.4). 
+PowerShell provides some sanctuary from this chaos through a [documented list of standard parameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.4) for all built-in commands. These standard parameters aren't all mandatory, so some are only available on some commands, but when they're available, they'll always do the same thing!
 
-Note that not all of the standard parameters are mandatory, some only make sense for certain types of command.
+While the core language religiously implements these common parameters on all commands, that's not where the sanity ends! Since a command is just a fancy function, the feature is actually available in every function, and since scripts are just functions in a file by themselves, all scripts too!  To add support for these refreshing standards to your own code you simply need to pre-fix your parameter definitions with the a line of the form `[CmdletBinding()]` , and you're done!
 
-Some of my favourite standard parameters:
-
-* `-Verbose` to enable verbose output
-* `-WhatIf` to enable dry-run mode, only available on commands that perform changes or ddstructive actions.
-* `-ErrorAction` to specify how the command should handle an error. I generally use this to force a critically important command to succeed or kill the entire script with `-ErrorAction Stop`.
-
-What's even better is that you can add support for common parameters to your own functions with just a single line of code! And function your write that should support `-Verbose` and friends simply needs to include the line `[CmdletBinding()]` at the very top of the function/script!
-
-### A Built-in Comment-based Documentation System
-
-Speaking of IDEs, PowerShell also provides a standard mechanism for using speically formatted comments to document your code. Basically, an official equivalent to the 3rd-party ESDoc module we use to document our JavaScript code in the main PBS series. Because of the built-in parameter definitions, none of that information needs to be captured in the documentation comments, so the syntax can be much simpler than that used by ESDoc, e.g.
-
-
+To see how simple this is, let's update our doubling function so it supports debugging with `-Verbose`:
 
 ```pwsh
-<#
-.SYNOPSIS
-    Repeat a message.
-
-.DESCRIPTION
-    Repeat a message a given number of times, defaulting to three.
-
-.PARAMETER Message
-    The message to repeat.
-	
-.PARAMETER Num
-    The number of times to repeat the message.
-	
-.INPUTS
-    None. 
-	
-.OUTPUTS
-    None.
-	
-.EXAMPLE
-    $Nag = Get-RepeatedMessage -Message 'Hello World!' -Num 5
-#>
-function Get-RepeatedMessage {
+function Get-DoubleValue {
     [CmdletBinding()]
-    param (
-        [Parameter(Mandatory=$true)]
-        [string]$Message,
-        [ValidateRange("Positive")]
-        [int]$Num = 3
+    param(
+        [Parameter(ValueFromPipeline=$true)]
+        [double]$Number
     )
-    $Answer = ''
-    $Repeated = 0
-    while ($Repeated -lt $Num) {
-        $Answer += $Message
-        $Repeated++
+    process {
+        $Answer = $Number * 2
+        Write-Verbose "$Number doubled is $Answer"
+        Write-Output $Answer
     }
-    return $Answer
 }
 ```
 
+We've just made two changes:
 
+1. Added the binding for the standard parameters as the first line of the function
+2. Replaced our call to `Write-Host` for writting regular messages to `Write-Verbose` for writing debug messages.
 
-### Rigorous Naming Conventions
+If we call our function normally we now just see the answers again:
 
-Naming conventions genereally emerge as suggestions by language maintaineres, or they evolve naturally within the community. In theory the naming conventions in PowerShell are just suggestions, but I've never seen such clear recommendations so strongly suggested or zealously followed as those in PowerShell. By default, when a module is loaded each imported function or variable that does not follow the naming conventions triggers as warning! So, if someone shares code on GitHub that breaks the rules, every users who tries to use that code will be warned about the impropper names. That sets up a pretty good incentive for developers to follow the rules!
+```pwsh
+1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue
+```
 
-The fundamental rule is simple and powerful — in PowerShell, **commands and functions are strickly named using the `Verb-Noun` pattern**. Basically, what action the command takes on what thing.
+Given how simple this function is that seems much better default behaviour than writing a message each time as well as outputting the doubled value. But we haven't removed our messaging lines, we've just changed the stream they write to, so how can we see them again? Simple, by adding the standard `-Verbose` parameter:
 
-There are no enforced rules for the nouns, just a strong recommendation to be clear and consisten, but there is literally [a list of approved verbs](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.4)! The list is more than just a list, it also contains descriptions of how specific verbs should be interpreted, and there are disambigucations for verbs that could be easily confised.
+```pwsh
+1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue -Verbose
+```
 
-Because these rules are so strongly enforced, you can usually guess what the right command might be, e.g. you convert data to CSV format with `ConvertTo-Csv`, to XML with `ConvertTo-Xml`, and to JSON with `ConvertTo-Json`.
+Now we don't just get out messages back, but they're explicitly rendered as debug information!
 
-I strongly reocmmend you get into the habit, right from the start, of naming all your scripts and functions using the `Verb-Noun` convention.
+The aforementioned documentation describes the full set of common parameters, but here are the ones I use most often:
+
+* `-Verbose` to enable verbose output
+* `-WhatIf` to enable dry-run mode, only available on commands that perform changes or destructive actions.
+* `-ErrorAction` to specify how the command should handle an error. I generally use this to force a critically important command to succeed or kill the entire script with `-ErrorAction Stop`.
+
+### Better `man` Pages with a Built-in Comment-based Help System
+
+We've already seen a little of what PowerShell's help system can do when we were discussing parameter definitions, but that's just the tip of the iceberg!
+
+In the Unix/Linux world we know that developers can choose to add documentation for their commands to a system's manual, and those pages can be accessed from the command line via the `man` command. When a developer writes no documentation, there is no `man` page at all. Because of PowerShell's parameter definitions, every command, function, and script gets at least a skeleton help entry, and as we've seen, we can view those with the `Get-Help` command.
+
+For now, our doubling function does nothing to provide any exploit documentation, and yet, it already has a basic help page which we can view with the command `Get-Help Get-DoubleValue`:
+
+```pwsh
+NAME
+    Get-DoubleValue
+    
+SYNTAX
+    Get-DoubleValue [[-Number] <double>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+```
+
+It's not much, but it's better than nothing! We can immediately see that the command defined one parameter,`-Number`, that it's of type `double` (a decimal number), and that the command supports common parameters.
+
+For comparison, let's see what the help system has for a standard command like `Write-Error` by running:
+
+```pwsh
+Get-Help Write-Error
+```
+
+You definitely see more, but if this is the first time you've used the help system, you may be seeing a lot less than you could. If you are using only the basic documentation library your output will end with a remark telling you that you can download more help by running the command `Update-Help`, so let's do that and re-run the help command for `Write-Error`.
+
+You now  get a **lot** of information! But again, notice at the bottom there is a remark telling you there's even more information there if you'd like to dig deeper. To see even more add the `-Detailed` flag, and to see even more still, add the `-Full` flag. That's almost certainly more than you really want, but it's good to know that level of information is at your fingertips!
+
+Most of the time the thing you need most often is just an example, so you can also filter the output down to just that section with `-Examples`:
+
+```pwsh
+Get-Help Write-Error -Examples
+```
+
+That's already pretty powerful. But its there a way we can enrich the help pages for our own functions/scripts? Of course there is 🙂
+
+Again, PowerShell is building on what has come before, and provides a comment-based syntax similar to the third-party ESDoc tool we used for documenting our JavaScript code previously. PowerShell's syntax is actually simpler because the formalised parameter definitions take care of a much of the work, all you need to do is add some text to augment the automatically derived information.
+
+When you take the time to add documentation comments to your own code your IDE can leverage that to give more informative tool tips etc., and, with just one caveat, you can read your own documentation using the `Get-Help` command.
+
+The one caveat is that `Get-Help` can only read documentation comments from files, so when you just copy-and-paste functions into the terminal it won't see your additional information. To be able to see the documentation for your own code with `Get-Help` you need to do one of two things:
+
+1. Convert your functions to scripts
+2. Define your functions in modules
+
+Out side of contrived examples you're always going to be doing one of these things anyway, so this caveat is not really an issue.
+
+As a simple example, let's add some documentation to our doubling function by converting it to a script.
+
+Save the following to a file named `Get-DoubleValue.ps1`:
+
+```pwsh
+#Requires 7.4
+<#
+.SYNOPSIS
+    Double numbers.
+
+.DESCRIPTION
+    Double a given number by multiplying it by two.
+	
+.PARAMETER Number
+    The number to be doubled.
+	
+.INPUTS
+    System.Double. Values for the Number parameter.
+	
+.OUTPUTS
+    System.Double. The doubled number.
+	
+.EXAMPLE
+    PS> & ./Get-DoubleValue.ps1 -Number 5
+    10
+    
+.EXAMPLE
+    PS> 5,10,20 | & ./Get-DoubleValue.ps1
+    10
+    20
+    40
+#>
+[CmdletBinding()]
+param(
+    [Parameter(ValueFromPipeline=$true)]
+    [double]$Number
+)
+process {
+    $Answer = $Number * 2
+    Write-Verbose "$Number doubled is $Answer"
+    Write-Output $Answer
+}
+```
+
+We can now run our script using the `&` operator, e.g.:
+
+```pwsh
+& ./Get-DoubleValue.ps1 -Number 5
+```
+
+And:
+
+```pwsh
+1,2,3,4,5 | & ./Get-DoubleValue.ps1
+```
+
+But what's more, we can now see the documentation we added in the speically formatted comments with the `Get-Help` command `Get-Help ./Get-DoubleValue.ps1`:
+
+```
+NAME
+    /Users/bart/Documents/Temp/Get-DoubleValue.ps1
+    
+SYNOPSIS
+    Double numbers.
+    
+    
+SYNTAX
+    /Users/bart/Documents/Temp/Get-DoubleValue.ps1 [[-Number] <Double>] 
+    [<CommonParameters>]
+    
+    
+DESCRIPTION
+    Double a given number by multiplying it by two.
+    
+
+RELATED LINKS
+
+REMARKS
+    To see the examples, type: "Get-Help 
+    /Users/bart/Documents/Temp/Get-DoubleValue.ps1 -Examples"
+    For more information, type: "Get-Help 
+    /Users/bart/Documents/Temp/Get-DoubleValue.ps1 -Detailed"
+    For technical information, type: "Get-Help 
+    /Users/bart/Documents/Temp/Get-DoubleValue.ps1 -Full"
+```
+
+And we can see our examples with the command `Get-Help ./Get-DoubleValue.ps1 -Examples`:
+
+```
+NAME
+    /Users/bart/Documents/Temp/Get-DoubleValue.ps1
+    
+SYNOPSIS
+    Double numbers.
+    
+    
+    -------------------------- EXAMPLE 1 --------------------------
+    
+    PS>Get-DoubleValue -Number 5
+    10
+    
+    
+    
+    
+    
+    
+    -------------------------- EXAMPLE 2 --------------------------
+    
+    PS>5,10,20 | Get-DoubleValue
+    10
+    20
+    40
+    
+    
+    
+```
+
+### Evangelical Naming Conventions
+
+In most languages, naming conventions emerge from a mix of suggestions from the language maintainers and natural evolution in the community. Or maybe from a particularly note-worthy book like *The C Programming Language* by Kernighan & Ritchie.
+
+Technically speaking PowerShell is no different, you **can** name functions/scripts anything you like, but you'll be constantly harangued if you do! I've never come across a language that is so adamant about naming conventions, and **I love it**!
+
+Before you come to naming anything of your own, notice that each and every standard command rigidly obeys a simple naming convention —  **commands and functions are named using the `Verb-Noun` pattern**.
+
+For those of you not up on your grammar terms, that means an action followed by a thing to be acted on. Or, putting it another way, command and function names tell you what they do to what!
+
+There are no even vaguely enforced rules for the nouns (the *whats*), just a strong recommendation to be clear and consistent, but there is literally [a list of approved verbs](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.4) (the actions)!
+
+The list of approved verbs is more than just a list, it also contains descriptions of how specific verbs should be interpreted, and there are disambiguations for verbs that could be easily confused. Until you get into the swing of things the subtle difference between similar verbs like `Get` and `Read` may not be obvious, but even if you never read any of the definitions or any of the helpful disambiguations, the rigorous consistent will seep in by osmosis anyway.
+
+The end result of all this is that you can usually guess what the right command might be, or at least be close enough to search the documentation or the Internet to get you everything you need. For example, if you know you data to CSV format with `ConvertTo-Csv` command, you'd probably guess that you can convert to XML with `ConvertTo-Xml`, and to JSON with `ConvertTo-Json`.
+
+While you're just writing little scripts PowerShell will leave you alone and not start critiquing your names, but the moment you start grouping functions into modules PowerShell will start warning you each time you get it wrong! You can of course ignore and/or suppress the warnings, but if you do, don't share you code with others, because that'll hate you for your obstinance 🙂
+
+My advice is very simple — get into the habit of always following the Verb-Noun pattern, and checking the docs each time to be sure you pick the right word until they become second nature to you.
+
+### A Robust Module Ecosystem
+
+One final core feature in PowerShell is the notion of grouping related functions and variables into *Modules*. You can create your own modules easily by simply saving your variables and functions in files with `.psm1` extensions, and once you do, you can import those variables and functions into your scripts with the `Import-Module` command or the more modern `using ` statement.
+
+For small scripts I don't bother, but as soon as I start to build up a codebase with multiple scripts I start moving everything re-usable into a module file.
+
+While writing your own modules is useful, the real power of the module system is in easily re-used other people's code! Like NodeJS has NPM, PowerShell has the [PowerShell Gallery](https://www.powershellgallery.com).
+
+Installing 3rd-party modules is trivially easy. For example out of the box PowerShell can read CSVs, JSON and XML with the `Import-Csv`, `Import-Json` & `Import-Xml` commands, but not Excel files. The community has of course provided a solution, so you can add support for Excel imports (and exports) with the simple command:
+
+```pwsh
+Install-Module -Name ImportExcel
+```
+
+Like with all similar repositories in all programming languages, **always check the correct names of the modules you are trying to install from the project's home page** because **attackers abuse obvious name guesses and typos to spread malware**!
+
+Because of Excel's rigorous naming convention, you don't even need to use the help system to figure out the command for importing from Excel once you have the module installed, it's `Import-Excel` 🙂
 
 ## A VERY Basic Syntax Primer
 
-TO DO
+PowerShell uses unix-style in-line comments, so anything following a `#` on a line is a comment. PowerShell also support multi-line comments by wrapping them between `<#` on a line by itself and `#>` on a line by itself.
+
+```pwsh
+# This entire line is a comment
+
+Write-Host 'Hello World!' # just this end part of the line is a comment
+
+<#
+This is a 
+multi-line
+comment
+#>
+```
+
+Statements are separated by newline characters. If you absolutely need to put two commands on one line you can separate them with a `;`, but this is strongly frowned upon, and all style guides agree that you should not end single-line commands with semicolons (just like in Bash!).
+
+Variables have names pre-fixed with `$`, and they are created by assigning them a value.
+
+Variables are collected in nested scopes, with each script/function getting its own scope.
+
+```pwsh
+# Define variables
+$MyString = 'This is a string'
+$MyInterpolatedString = "Double-quotes for interpolation: $MyString"
+$MyEscapedString = "Escape caracter is `` (not \), this is a new line -> `nOn next line!"
+$MyInt = 42
+$MyDouble = 3.1415
+$MyBoolean = $true
+
+```
+
+By default, variables have dynamic types, so they an hold a string one minute and number the next, but you can constrain them by pre-fixing them with a type, and when you do PowerShell will try to do automatic conversions as needed, but if it can't, you'll get an error :
+
+```pwsh
+[int]$MyNumber = 4
+$MyNumber = 5.6
+Write-Host $MyNumber # outputs 6!
+$MyNumber = 'Hello World!' # throws an error
+```
+
+PowerShell supports arrays with pretty intuitive syntax:
+
+```pwsh
+# creating arrays
+$MyArray1 = @() # an empty array
+$MyArray2 = @(42, 'Hello World!', $false) # an array with three items
+
+# getting their length
+Write-Host $MyArray1.Count # outputs 0
+Write-Host $MyArray2.Count # outputs 3
+
+# access elements
+Write-Host $MyArray2[0] # outputs first element, i.e. 42
+Write-Host $MyArray2[1] # outputs second element, i.e. Hello World!
+Write-Host $MyArray2[-1] # outputs last element, i.e. False
+
+# update elements
+$MyArray2[2] = $true
+
+# add elements
+$MyArray2 += 'a fourth element'
+
+# looping over elements
+foreach ($Item in $MyArray2) {
+    Write-Host $Item
+}
+```
+
+PowerShell also supports what we call dictionaries, i.e. name-value pairs, but it calls them *hashtables*:
+
+```pwsh
+# creating hashtables
+$MyDictionary1 = @{} # an empty hashtable
+$MyDictionary2 = @{
+    MyFirstKey = 42
+    MySecondKey = 'Hello World!'
+    MyThirdKey = $false
+}
+
+# getting the number of key-value pairs
+Write-Host $MyDictionary1.Count # outputs 0
+Write-Host $MyDictionary2.Count # outputs 3
+
+# accessing values
+Write-Host $MyDictionary2.MyFirstKey
+Write-Host $MyDictionary2['MySecondKey']
+
+# accessing keys
+$MyDictionary2Keys = $MyDictionary2.Keys
+
+# updating keys
+$MyDictionary2.MySecondKey = 'Hello again World!'
+$MyDictionary2['MyThirdKey'] = $true
+
+# Looping over hashtables
+foreach ($Key in $MyDictionary2.Keys) {
+    Write-Host "$Key = $($MyDictionary2[$Key])"
+}
+```
+
+PowerShell also provides conditionals using standard `if`/`else` syntax. The thing to be aware of is that all the comparison operators are Bash-like `-blah` operators, not the symbolic operators like `<`, `==` etc. JavaScript uses.
+
+The most important comparisons are:
+
+| Operator | Comparison                                          |
+| -------- | --------------------------------------------------- |
+| `-eq`    | Default equality, which is case-insensitive         |
+| `-ieq`   | Explicitly case-insensitive equity                  |
+| `-ceq`   | Case-sensitive equality                             |
+| `-like`  | CLI-style wild-cards like `'*.csv'`                 |
+| `-match` | PCRE-style regular expression matching like `'\d+'` |
+| `-lt`    | Less than                                           |
+| `-gt`    | Greater than                                        |
+| `-le`    | Less than or equal to                               |
+| `-ge`    | Greater than or equal to                            |
+
+Putting it all together:
+
+```
+$TestString = 'Hello World!'
+$TestNumber = 42
+
+# default string equality (case insensitive!)
+if ($TestString -eq 'hello world!') {
+    Write-Host 'Yes!'
+} else {
+    Write-Host 'no'
+}
+# ouptuts Yes!
+
+# CLI-style like
+if ($TestString -like '*world*') {
+    Write-Host 'Yes!'
+} else {
+    Write-Host 'no'
+}
+# ouptuts Yes!
+
+# default numeric equality
+if ($TestNumber -eq 42) {
+    Write-Host 'Yes!'
+} else {
+    Write-Host 'no'
+}
+# ouptuts Yes!
+```
+
+## Next Steps
+
+If I've successfully whet your appetite, the next step would be spend a little time with the documentation. One of the best things about PowerShell is how well documented it is, and one of the worst things about PowerShell is how well documented it is 🙂 What I mean by that is that you actually need to take a little time to learn your way around the documentation.
+
+First and foremost, bookmark the landing page: [learn.microsoft.com/…](https://learn.microsoft.com/en-us/powershell/scripting/how-to-use-docs?view=powershell-7.4)
+
+Once you're there, notice the side bar has a drop-down where you can specific the version of PowerShell you're using. It will default to the current release, as will Home Brew, so that **should** be right, but if you're getting information that doesn't make sense, check!
+
+Secondly, notice the search box, this is very much your friend. Just start typing and the matching articles will appear underneath.
+
+Finally, I want to draw your attention to two important sections:
+
+1. The to-level *Learning PowerShell* section is very much a beginner's friend. If you're very new to the whole idea, the *PowerShell 101* sub-section is probably the place to start, but if you're more of a power user in general who wants to dive straight in, the *Deep Dives* subsection is great for actually understanding how PowerShell implements core concepts like arrays etc..
+2. The *Reference* section is where you'll find the traditional API-style docs you'll probably want most. By far the most important sub-section in there is *Microsoft.PowerShell.Core*. I want to specifically all out the articles in the *About* sub-sub section in the *Microsoft.PowerShell.Core* sub-section. The most important sub-section after *Microsoft.PowerShell.Core* is *Microsoft.PowerShell.Utility*
+
+As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's no so urgent you'll be under pressure.
 
 ## Final Thoughts
 
-TO DO
+This TidBit is intended to stand alone, but it's also very much a trial balloon. If you would like us to take on PowerShell properly like we did Bash, please let us know! The best way to get it touch is via the [Podfeet Slack](https://podfeet.com/slack).
