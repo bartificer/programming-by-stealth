@@ -56,6 +56,12 @@ Write-Host 'Hello World!'
 
 With that done I now beg your forbearance while we spend some time exploring how PowerShell's philosophy before we end with a very quick syntax overview.
 
+### The Structure of Commands
+
+This is an area where PowerShell has the same view of things as Bash and DOS etc.. Commands are lines of text with the 'parts' being delimited by spaces. The first 'part' has to be a command of some kind or an operator. If the first part is an operator things can get a little more complicated, just like in Bash, but most of the time the first part is a command of some kind, and all the other parts become the arguments.
+
+This is the perfect opportunity to flag an important point of jargon. For all intents and purposes *argument* and *parameter* are synonyms. So far in this series we've chosen to use *argument* because that's the jargon used in both the JavaScript and Bash communities and documentation. However, PowerShell's authors made the other choice, so in syntax, documentation, and the broader community, the word you'll see is *parameter*. For your own sanity, and for ease of searching online, I strongly recommend that when you think about PowerShell, you think about parameters rather than arguments.
+
 ### It's Functions all the Way Down
 
 When reading the docs I was initially very frustrated that I could find good docs on how the standard built-in commands work, and good docs on writing my own functions, but there didn't seem to be any docs on writing scripts, and I wanted to write scripts!
@@ -251,13 +257,17 @@ Again, PowerShell separates these tasks, providing separate dedicated tools for 
 
 ### Argument Sanity with Parameter Definitions
 
-Before we go any further we need other pause for a note on jargon — for all intents and purposes *arguments* and *parameters* are synonyms. So far in this series we've chosen to use *argument* because that's the jargon used in both the JavaScript and Bash communities and documentation. However, PowerShell's authors made the other choice, so in syntax, documentation, and the broader community, the word you'll see is *parameter*. For your own sanity, and for ease of searching online, I strongly recommend that when you think about PowerShell, you think about parameters rather than arguments.
+Again, to understand what PowerShell does differently, let's remind ourselves of how arguments work in Bash — basically, it's the Wild West! The arguments just arrive as strings in a pseudo array, and it's up to the programmer to group them into some kind of logical structure. In theory, anything goes, but thankfully some conventions have emerged thanks to popular tools like  `getops`. But the bottom line remains, the best we can hope for as users is that the developers of the command we're thinking of using chose to be consistent, follow some kind of convention, and provided a good `man` page!
 
-Again, to understand what PowerShell does differently, let's remind ourselves of how arguments work in Bash — basically, it's the Wild West! The arguments just arrive as strings in a pseudo array, and it's up to the programmer to group them into some kind of logical structure. In theory, anything goes, but thankfully some conventions have emerged thanks to popular tools like  `getops`. But the bottom line remains, the best we can hope for as users is that the developers of the command we're thinking of using chose to be consistent, follow some kind of convention, and provided a good  `man` page!
+PowerShell could not be more different — if you want your functions, and hence your scripts or commands, to support parameters, you need to define them explicitly! We've already seen hints of this in our little example functions. The `param()` function is used to define parameters. 
 
-PowerShell could not be more different — if you want your functions, and hence your scripts or commands, to support parameters, you need to define them explicitly!
+In PowerShell parameters come in two flavours — positional, and named. 
 
-We've already seen hints of this in our little example functions. The `param()` function is used to define parameters. At the very very least all parameters need to be given a variable name, but they should also be given a type so PowerShell can give you basic data validation automatically, and you can then start adding more validations and options as you desire. One of those options is to tag a parameter as being connected to the input pipeline.
+When presented with the raw list of command line parts PowerShell starts by looking for named parameters, and removing them from the list. What ever's left after that are the positional parameters.
+
+Named parameters are those that start with a single `-`, and what comes after is their name, so what is `-SomeName` on the CLI becomes `$SomeName` in the code. Named parameters come in two flavours too 'switches' which are like getopt flags in bash have no value, and regular named parameters get their value from the next raw command line part. So a named switch `-MySwich` becomes `$MySwith` with a value of true, and a regular named parameter `-SomeNumber 42` becomes `$SomeNumber` with the value `42`.
+
+This all means that at the very very least all parameters need to be given a variable name. But, but they should also be given a type so PowerShell can give you basic data validation automatically, and you can then start adding more validations and options as you desire. As we've seen in some of our earlier examples, one of those options is to tag a parameter as being connected to the input pipeline. While all parameters get mapped to names when they arrive inside the function, you can choose to hide that fact from users by mapping specific positional parameters to specific variables. You can even map all the otherwise unmapped positional parameters to an array variable.
 
 Having these kinds of rigorous parameter definitions has some powerful advantages:
 
