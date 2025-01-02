@@ -266,7 +266,7 @@ So far we've only focused on one kind of 'plumbing' in Unix/Linux, piping, but w
 Again, PowerShell separates these tasks, providing separate dedicated tools for each purpose:
 
 1. Data gets written to files with an appropriate output command, e.g. `Out-File`.
-2. PowerShell provides a dedicated logging feature called [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4), and errors and warnings can be captured on variables. **BART: "where" instead of "and"? or did you mean something else?**
+2. PowerShell provides a dedicated logging feature called [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4), and errors & warnings can be captured in variables.
 
 ### Argument Sanity with Parameter Definitions
 
