@@ -4,9 +4,9 @@ instalment: 11
 creators: [bart, allison]
 ---
 
-Somewhat ironically, since finishing the long series on Bash scripting I've been almost exclusively writing scripts in a completely different language, PowerShell! Being a Microft language you'd be forgiven for assuming that means that I've moved to Windows and started trying to automate things there, but you'd be mistaken, I'm still very much a Mac user! So what gives? Despite what it's origins may suggest, the core PowerShell environment is both open source and cross platform, running just fine on the Mac and Linux as well as Windows. You can follow the project on [GitHub](https://github.com/PowerShell/PowerShell)!
+Somewhat ironically, since finishing our [long series on Bash scripting](./pbs143) I've been almost exclusively writing scripts in a completely different language, [PowerShell](https://en.wikipedia.org/wiki/PowerShell)! Being a Microft language you'd be forgiven for assuming that means I've moved to Windows and started trying to automate things there, but you'd be mistaken, I'm still very much a Mac user! So what gives? Despite what it's origins may suggest, the core PowerShell environment is both [open source](https://github.com/PowerShell/PowerShell) and cross-platform, running just fine on the Mac and Linux as well as Windows.
 
-Think of this TidBit as being like a movie trailer — it's intended to pique your interest, and to give you a broad sense of why you might want to spend some time making friends with PowerShell, but it's by no means a detailed tutorial. As well as being a teaser trailer this instalment is also intended as a kind of community survey, if there's sufficient community interest, we could spend the second part of 2025 learning PowerShell like we learned Bash. I don't only want to hear from people who would like us to do that, I'd also like to hear from those in the community who think it would be a waste of time and effort — have your say on the PBS channel in [the Podfeet Slack](https://podfeet.com/slack).
+Think of this TidBit as being like a movie trailer — it's intended to pique your interest, and to give you a broad sense of why you might want to spend some time making friends with PowerShell, but it's by no means a detailed tutorial. This instalment is also intended as a kind of community survey — if there's sufficient community interest, we could spend the second part of 2025 learning PowerShell like we learned Bash. I don't only want to hear from people who would like us to do that though, I'd also like to hear from those in the community who think it'd be a waste of time and effort — have your say on the PBS channel in [the Podfeet Slack](https://podfeet.com/slack)!
 
 ## Matching Podcast Episode
 
@@ -14,23 +14,23 @@ TO DO
 
 ## What Drew me to PowerShell?
 
-like with most things Microsoft, my first indroduction to PowerShell was involuntary, and I dipped my toe in reluctantly. But within just a few hours I started to get the sense that there was a lot of "there" there. This wasn't some kind of half-baked slap-dash replacement for DOS batch files, but a full-featured and very modern re-imagining of what a shell could be. Microsoft started with a completely blank slate, took everything we all learned from the decades of advances in programming languages and concepts since C and the original Unix shell were created in the 70s, and built a thoroughly modern object-first cross platform open source command line and scripting environment.
+like with most things Microsoft, my first indroduction to PowerShell was involuntary, and I dipped my toe in reluctantly! But within just a few hours I started to get the sense that there was a lot of "there" there. This wasn't some kind of half-baked slap-dash replacement for DOS batch files, but a full-featured and very modern re-imagining of what a shell could be. Microsoft started with a completely blank slate, took everything we all learned from the decades of advances in programming languages and concepts since C and the original Unix shell were created in the 70s, and built a thoroughly modern cross platform open source command line and scripting environment.
 
-"Imagine what the Unix guys would have done if they knew then what we know now" really is good way to describe PowerShell IMO. PowerShell takes the fundamental sh/Bash/zag idea of creating lots of simple single-purpose commands and chaining them together to do powerful things, and combines it with a Java-like cross-platform runtime environment and some c/java/php syntax conventions.
+The way I see it, *"Imagine what the Unix guys would have done if they knew then what we know now"* really is good way to describe PowerShell. PowerShell takes the sh/Bash/zsh idea of creating lots of simple single-purpose commands and chaining them together to do powerful things, and combines it with a Java-like cross-platform runtime environment. Deep under the hood it's actually the new(ish) open source [.NET Core](https://en.wikipedia.org/wiki/.NET#.NET_Core) runtime environment (the replacement of the old proprietary [.NET Framework](https://en.wikipedia.org/wiki/.NET_Framework)), but that's only important when you want to leverage that power that brings in your scripts, the rest of the time .NET generally stays out of sight and out of mind!
 
-## Version & Tooling
+## PowerShell Versions & Tooling
 
-Like Apple's young language Swift, PowerShell has evolved a lot from its initial release to the current product release. For a good experience, be sure you're using the latest version, or at least the most recent Long Term Support (LTS) version. As of Jaunary 2025 that's version `7.4.*` or `7.2.*`.
+Like Apple's young language Swift, PowerShell has evolved a lot from its initial release to the current production release. For a good experience, be sure you're using the latest version, or at least the most recent Long Term Support (LTS) version. As of Jaunary 2025 that's version `7.4.*` or `7.2.*`.
 
-There's a [section in the docs describing all the different ways to install PowerShell on all the different platforms](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4), but on the Mac by far the simplest method is HomeBrew:
+There's a [section in the docs describing all the different ways to install PowerShell on all the different platforms](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4), but on the Mac by far the simplest method is to use [HomeBrew](https://brew.sh):
 
-```
+```bash
 brew install powershell/tap/powershell
 ```
 
 Once you have PowerShell installed you can start a shell with the command `pwsh`. 
 
-If you're going to use the Terminal app for running PowerShell commands you can create a new profile for quick access. The improtant settings are under the *Shell* tab in the profile settings, specifically, the *Run command* needs to be set to the full path to `pwsh` (which you can get by running `which pwsh`) and to un-tick the *Run inside shell* checkbox. On windows PowerShell terminals were blue for many years to distinguish them from command prompts, so I like to create my Mac PowerShell Terminal profile by cloning the built-in *Ocean* profile and then edting the two settings on the *Shell* tab of my clone. These are the settings I use:
+If you're going to use the Terminal app for running PowerShell commands you can create a new profile for quick access. The important settings are under the *Shell* tab in the profile settings, specifically, the *Run command* needs to be set to the full path to `pwsh` (which you can get by running `which pwsh`) and to un-tick the *Run inside shell* checkbox. On windows, PowerShell terminals were blue for many years to distinguish them from command prompts, so I like to create my Mac PowerShell Terminal profile by cloning the built-in *Ocean* profile and then editing the two settings mentioned above on the *Shell* tab of my clone. These are the settings I use:
 
 ![A Screenshot showing Bart's PowerShell Terminal settings as described above](./assets/tidbits11/BartPowerShellTerminalSettings.png)
 
@@ -38,7 +38,7 @@ On Windows I'd recommend installing Microsoft's modern [Windows Terminal](https:
 
 But rather than using any Terminal, I'd recommend using a good IDE. In fact, I recommend using a specific IDE — [VS Code](https://code.visualstudio.com/) with [Microsoft's official PowerShell plugin](https://github.com/PowerShell/vscode-powershell).
 
-To help your IDE, and perhaps your AI helper, I suggest adding a `Requires` comment to the very top of your scripts, so in January 2025 I am adding:
+To help your IDE, and perhaps your AI helper, I suggest adding a `Requires` comment to the very top of all your scripts to explicitly mark the version of PowerShell your scripts assume. In January 2025 I am adding the following as the very first line in all my scripts:
 
 ```
 #Requires 7.4
@@ -46,15 +46,24 @@ To help your IDE, and perhaps your AI helper, I suggest adding a `Requires` comm
 
 ## The Big-Picture — PowerShell's Philosophy
 
-PowerShell's philosophy is different to that of both Bash and JavaScript, and the route to a positive experience is to lean into that fact. To have a good JavaScript experience you need to think about the world in a JavaScripty way, to have a good experience in Bash you need to think about the world in a Bashy way, and to have a good experience you need to think about the work in a PowerShelly way.
+**PowerShell's philosophy is different** to that of both Bash and JavaScript, and the route to a positive experience is to **lean into that fact**. To have a good JavaScript experience you need to think about the world in a *JavaScripty* way, to have a good experience in Bash you need to think about the world in a *Bashy* way, and to have a good PowerShell experience you need to think about the work in a *PowerShelly* way.
 
-As I type these notes I can already hear Allison getting impatient and wanting to see some commands, so to get that out of the way, let's do the traditional Hello-World in PowerShell:
+As I type these notes I can already hear Allison getting impatient and wanting to see some commands, so to get that out of the way, let's do the traditional Hello-World in PowerShell
+
+Open a PowerShell prompt by either:
+
+1. Opening a regular terminal and entering the command `pwsh`
+2. Using a custom Terminal profile that always runs the PowerShell shell
+3. Using the PowerShell terminal provided by your IDE
+4. Or, if you're on Windows, the dedicated PowerShell 7 app of a PowerShell tab in the Windows Terminal app
+
+On your PowerShell prompt, enter the following command:
 
 ```pwsh
 Write-Host 'Hello World!'
 ```
 
-With that done I now beg your forbearance while we spend some time exploring how PowerShell's philosophy before we end with a very quick syntax overview.
+With that done I now beg your forbearance while we spend some time exploring PowerShell's philosophy before we end with a very quick syntax overview 🙂
 
 ### The Structure of Commands
 
