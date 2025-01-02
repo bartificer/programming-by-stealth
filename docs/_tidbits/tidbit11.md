@@ -554,7 +554,7 @@ Like with all similar repositories in all programming languages, **always check 
 
 Because of Excel's rigorous naming convention, you don't even need to use the help system to figure out the command for importing from Excel once you have the module installed, it's `Import-Excel` 🙂
 
-## A VERY Basic Syntax Primer
+## A Very Basic Syntax Primer
 
 PowerShell uses unix-style in-line comments, so anything following a `#` on a line is a comment. PowerShell also support multi-line comments by wrapping them between `<#` on a line by itself and `#>` on a line by itself.
 
