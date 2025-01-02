@@ -171,8 +171,6 @@ We can completely ignore the function's new super-power and continue to use it a
 Get-DoubleValue -Number 5
 ```
 
-**BART: you just finished telling us to run functions we must use `& ./` but now you don't use that syntax. Why?**
-
 But we can now pipe numbers to the command:
 
 ```pwsh
@@ -183,21 +181,6 @@ In fact, we can pipe as many numbers as we'd like!
 
 ```pwsh
 1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue
-```
-
-**BART: This command only returns 0. (I copied and pasted the script and the command)**:
-
-```
-PS /Users/allison/Desktop/titbit11> function Get-DoubleValue {             
->>     param(
->>         [double]$Number
->>     )
->>     return $Number * 2
->> }
-PS /Users/allison/Desktop/titbit11> Get-DoubleValue -Number 5
-10
-PS /Users/allison/Desktop/titbit11> 1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue
-0
 ```
 
 You can see that what PowerShell does is repeat the `process {}` block once for each input in the pipeline, so pipeline functions are actually loops with some superpowers!
