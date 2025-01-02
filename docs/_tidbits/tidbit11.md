@@ -122,9 +122,7 @@ But this is where the similarities end. In Bash, the output that would normally 
 
 Because the pipeline is purely for data, it's not limited to streams of characters, **the data can be of any type**, so deep down it is in fact all objects. Not only can the data be of any type, it can be chunked into separate pieces, so it's not one flow other than characters, but a sequence of individual items which each get processed one-by-one. While the Unix pipeline carries a constant flow of characters, making it very river-like, the PowerShell pipeline is much more **like a conveyor belt with individual pieces of data**.
 
-**BART: missing word in this sentence but I don't know what it is. "add" maybe?**
-
-**If a command supports the pipeline, then you can arbitrarily many pieces of data to it!** 
+If a command supports the pipeline, then you can send arbitrarily many pieces of data to it!
 
 To use the pipeline in your own functions you need to do the following:
 
