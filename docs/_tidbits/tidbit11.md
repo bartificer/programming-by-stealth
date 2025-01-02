@@ -41,7 +41,7 @@ When you're ready to start writing PowerShell scripts, I'd strongly recommend sw
 Speaking of IDEs, I strongly suggest recommend adding a `Requires` comment to the very top of all your scripts to explicitly mark the version of PowerShell you used to develop and test the script. That will help both PowerShell itself and your IDE and/or AI helper handle things properly in future as PowerShell continues to evolve over time. As of January 2025 I'm adding the following as the very first line in all my scripts:
 
 ```
-#Requires 7.4
+#Requires -Version 7.4
 ```
 
 ## The Big-Picture — PowerShell's Philosophy
@@ -87,7 +87,9 @@ function Write-HelloWorld {
 }
 ```
 
-If you paste this into a PowerShell Terminal you can then use your function exactly like it was any other PowerShell command:
+_**Note:** when pasting multi-line PowerShell snippets like function declarations, paste them in all at once as once paste!_
+
+If you paste this into a PowerShell terminal you can then use your function exactly like it was any other PowerShell command:
 
 ```pwsh
 Write-HelloWorld
@@ -96,31 +98,16 @@ Write-HelloWorld
 We can now convert our function to a script we can run any time by moving just the function's contents into a file with a `.ps1` ending, so let's created `Write-HelloWorld.ps1` and give it just the following contents:
 
 ```pwsh
-#Requires 7.4
+#Requires -Version 7.4
 Write-Host 'Hello World!'
 ```
+
+_**Note:** it is possible to configure PowerShell to search for scripts in various special locations, but that's outside the scope of this teaser, so any example files you choose to create when following along will only be executable if the file and your PowerShell terminal are in the same folder!_
 
 We can now run our script using PowerShell's version of the Bash *dot command* which is `&` followed by a file path:
 
 ```pwsh
 & ./Write-HelloWorld.ps1
-```
-
-**BART: Error thrown about the Requires statement**
-
-```
-PS /Users/allison/Desktop/titbit11> & ./hello.ps1      
-ParserError: /Users/allison/Desktop/titbit11/hello.ps1:1
-Line |
-   1 |  #Requires 7.4
-     |            ~~~
-     | Cannot process the #requires statement because it is not in the correct
-     | format. The #requires statement must be in one of the following formats:
-     | "#requires -shellid <shellID>"  "#requires -version <major.minor>" 
-     | "#requires -psedition <edition>"  "#requires -pssnapin <psSnapInName>
-     | [-version <major.minor>]"  "#requires -modules <ModuleSpecification>" 
-     | "#requires -runasadministrator"
-
 ```
 
 ### Re-invented 'Plumbing' — Data and Messages are Separated
