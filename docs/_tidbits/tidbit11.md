@@ -4,9 +4,9 @@ instalment: 11
 creators: [bart, allison]
 ---
 
-Somewhat ironically, since finishing our [long series on Bash scripting](./pbs143) I've been almost exclusively writing scripts in a completely different language, [PowerShell](https://en.wikipedia.org/wiki/PowerShell)! Being a Microft language you'd be forgiven for assuming that means I've moved to Windows and started trying to automate things there, but you'd be mistaken, I'm still very much a Mac user! So what gives? Despite what it's origins may suggest, the core PowerShell environment is both [open source](https://github.com/PowerShell/PowerShell) and cross-platform, running just fine on the Mac and Linux as well as Windows.
+Somewhat ironically, since finishing our [long series on Bash scripting](./pbs143) I've been almost exclusively writing scripts in a completely different language, [PowerShell](https://en.wikipedia.org/wiki/PowerShell)! Being a Microsoft language you'd be forgiven for assuming that means I've moved to Windows and started trying to automate things there, but you'd be mistaken, I'm still very much a Mac user! So what gives? Despite what its origins may suggest, the core PowerShell environment is both [open source](https://github.com/PowerShell/PowerShell) and cross-platform, running just fine on the Mac and Linux as well as Windows.
 
-Think of this TidBit as being like a movie trailer — it's intended to pique your interest, and to give you a broad sense of why you might want to spend some time making friends with PowerShell, but it's by no means a detailed tutorial. This instalment is also intended as a kind of community survey — if there's sufficient community interest, we could spend the second part of 2025 learning PowerShell like we learned Bash. I don't only want to hear from people who would like us to do that though, I'd also like to hear from those in the community who think it'd be a waste of time and effort — have your say on the PBS channel in [the Podfeet Slack](https://podfeet.com/slack)!
+Think of this TidBit as being like a movie trailer — it's intended to pique your interest, and to give you a broad sense of why you might want to spend some time making friends with PowerShell, but it's by no means a detailed tutorial. This instalment is also intended as a kind of community survey. If there's sufficient community interest, we could spend the second part of 2025 learning PowerShell like we learned Bash. I don't only want to hear from people who would like us to do that, though; I'd also like to hear from those in the community who think it'd be a waste of time and effort. Have your say on the PBS channel in [the Podfeet Slack](https://podfeet.com/slack)!
 
 ## Matching Podcast Episode
 
@@ -14,9 +14,9 @@ TO DO
 
 ## What Drew me to PowerShell?
 
-like with most things Microsoft, my first indroduction to PowerShell was involuntary, and I dipped my toe in reluctantly! But within just a few hours I started to get the sense that there was a lot of "there" there. This wasn't some kind of half-baked slap-dash replacement for DOS batch files, but a full-featured and very modern re-imagining of what a shell could be. Microsoft started with a completely blank slate, took everything we all learned from the decades of advances in programming languages and concepts since C and the original Unix shell were created in the 70s, and built a thoroughly modern cross platform open source command line and scripting environment.
+Like with most things Microsoft, my first introduction to PowerShell was involuntary, and I dipped my toe in reluctantly! But within just a few hours I started to get the sense that there was a lot of "there" there. This wasn't some kind of half-baked slap-dash replacement for DOS batch files but a full-featured and very modern re-imagining of what a shell could be. Microsoft started with a completely blank slate. They took everything we all learned from the decades of advances in programming languages and concepts since C and the original Unix shell were created in the 70s and built a thoroughly modern cross platform, open source command line, and scripting environment.
 
-The way I see it, *"Imagine what the Unix guys would have done if they knew then what we know now"* really is good way to describe PowerShell. PowerShell takes the sh/Bash/zsh idea of creating lots of simple single-purpose commands and chaining them together to do powerful things, and combines it with a Java-like cross-platform runtime environment. Deep under the hood it's actually the new(ish) open source [.NET Core](https://en.wikipedia.org/wiki/.NET#.NET_Core) runtime environment (the replacement of the old proprietary [.NET Framework](https://en.wikipedia.org/wiki/.NET_Framework)), but that's only important when you want to leverage that power that brings in your scripts, the rest of the time .NET generally stays out of sight and out of mind!
+The way I see it, *"Imagine what the Unix guys would have done if they knew then what we know now"* really is good way to describe PowerShell. PowerShell takes the sh/Bash/zsh idea of creating lots of simple single-purpose commands and chaining them together to do powerful things, and combines it with a Java-like cross-platform runtime environment. Deep under the hood it's actually the new(ish) open source [.NET Core](https://en.wikipedia.org/wiki/.NET#.NET_Core) runtime environment (the replacement of the old proprietary [.NET Framework](https://en.wikipedia.org/wiki/.NET_Framework)), but that's only important when you want to leverage that power that brings in your scripts. The rest of the time .NET generally stays out of sight and out of mind!
 
 ## PowerShell Versions & Tooling
 
@@ -38,6 +38,8 @@ On Windows I'd recommend installing Microsoft's modern [Windows Terminal](https:
 
 But rather than using any Terminal, I'd recommend using a good IDE. In fact, I recommend using a specific IDE — [VS Code](https://code.visualstudio.com/) with [Microsoft's official PowerShell plugin](https://github.com/PowerShell/vscode-powershell).
 
+**BART: explain why (after following the install instructions for pwsh) VSC will fail to find PowerShell and claim it's not installed.**
+
 To help your IDE, and perhaps your AI helper, I suggest adding a `Requires` comment to the very top of all your scripts to explicitly mark the version of PowerShell your scripts assume. In January 2025 I am adding the following as the very first line in all my scripts:
 
 ```
@@ -55,7 +57,7 @@ Open a PowerShell prompt by either:
 1. Opening a regular terminal and entering the command `pwsh`
 2. Using a custom Terminal profile that always runs the PowerShell shell
 3. Using the PowerShell terminal provided by your IDE
-4. Or, if you're on Windows, the dedicated PowerShell 7 app of a PowerShell tab in the Windows Terminal app
+4. Or, if you're on Windows, using the dedicated PowerShell 7 app of a PowerShell tab in the Windows Terminal app
 
 On your PowerShell prompt, enter the following command:
 
@@ -67,13 +69,13 @@ With that done I now beg your forbearance while we spend some time exploring Pow
 
 ### The Structure of Commands
 
-This is an area where PowerShell has the same view of things as Bash and DOS etc.. Commands are lines of text with the 'parts' being delimited by spaces. The first 'part' has to be a command of some kind or an operator. If the first part is an operator things can get a little more complicated, just like in Bash, but most of the time the first part is a command of some kind, and all the other parts become the arguments.
+This is an area where PowerShell has the same view of things as Bash, DOS, etc. Commands are lines of text with the 'parts' being delimited by spaces. The first 'part' has to be a command of some kind or an operator. If the first part is an operator things can get a little more complicated, just like in Bash, but most of the time the first part is a command of some kind, and all the other parts become the arguments.
 
 This is the perfect opportunity to flag an important point of jargon. For all intents and purposes *argument* and *parameter* are synonyms. So far in this series we've chosen to use *argument* because that's the jargon used in both the JavaScript and Bash communities and documentation. However, PowerShell's authors made the other choice, so in syntax, documentation, and the broader community, the word you'll see is *parameter*. For your own sanity, and for ease of searching online, I strongly recommend that when you think about PowerShell, you think about parameters rather than arguments.
 
 ### It's Functions all the Way Down
 
-When reading the docs I was initially very frustrated that I could find good docs on how the standard built-in commands work, and good docs on writing my own functions, but there didn't seem to be any docs on writing scripts, and I wanted to write scripts!
+When reading the docs I was initially very frustrated that I could find good docs on how the standard built-in commands work, and good docs on writing my own functions, but there didn't seem to be any docs on writing *scripts*, and I wanted to write scripts!
 
 The reason for my confusion is that I'd skipped over the start of the documentation where the hand-wavy stuff lives and missed a fundamental concept — in PowerShell **scripts are just functions in their own file**!
 
@@ -106,11 +108,28 @@ We can now run our script using PowerShell's version of the Bash *dot command* w
 & ./Write-HelloWorld.ps1
 ```
 
+**BART: Error thrown about the Requires statement**
+
+```
+PS /Users/allison/Desktop/titbit11> & ./hello.ps1      
+ParserError: /Users/allison/Desktop/titbit11/hello.ps1:1
+Line |
+   1 |  #Requires 7.4
+     |            ~~~
+     | Cannot process the #requires statement because it is not in the correct
+     | format. The #requires statement must be in one of the following formats:
+     | "#requires -shellid <shellID>"  "#requires -version <major.minor>" 
+     | "#requires -psedition <edition>"  "#requires -pssnapin <psSnapInName>
+     | [-version <major.minor>]"  "#requires -modules <ModuleSpecification>" 
+     | "#requires -runasadministrator"
+
+```
+
 ### Re-invented 'Plumbing' — Data and Messages are Separated
 
 PowerShell shares the Unix philosophy of building complex solutions by chaining together simple commands. It even shares the same operator for connecting the output from one command to the input of another — the perfectly named *pipe* (`|`)!
 
-But this is where the similarities end. In Bash, the output that would normally go to the human is the output the pipe diverts to become the input to the next command, so there is no difference between messages to the user, and output data — it all goes into the same stream, so when you redirect that one stream, you redirect both. This means Unix/Linux terminal commands designed to output data only output data, they don't give the user any messages, because if they did, it would mess up the next command in the pipeline. PowerShell separates these two roles, dedicating the pipeline to just data, and providing four separate message output streams.
+But this is where the similarities end. In Bash, the output that would normally go to the human is the output the pipe diverts to become the input to the next command, so there is no difference between messages to the user and output data — it all goes into the same stream. As a result, when you redirect that one stream, you redirect both. This means Unix/Linux terminal commands designed to output data only output data. They don't give the user any messages, because if they did, it would mess up the next command in the pipeline. PowerShell separates these two roles, dedicating the pipeline to just data and providing four separate message output streams.
 
 #### A Data-Only Pipeline
 
@@ -118,12 +137,14 @@ But this is where the similarities end. In Bash, the output that would normally 
 
 Because the pipeline is purely for data, it's not limited to streams of characters, **the data can be of any type**, so deep down it is in fact all objects. Not only can the data be of any type, it can be chunked into separate pieces, so it's not one flow other than characters, but a sequence of individual items which each get processed one-by-one. While the Unix pipeline carries a constant flow of characters, making it very river-like, the PowerShell pipeline is much more **like a conveyor belt with individual pieces of data**.
 
-**If a command supports the pipeline, then you can arbitrarily many pieces of data to it!**
+**BART: missing word in this sentence but I don't know what it is. "add" maybe?**
+
+**If a command supports the pipeline, then you can arbitrarily many pieces of data to it!** 
 
 To use the pipeline in your own functions you need to do the following:
 
 1. If you want to accept data from the pipeline you need to define a named parameter for receiving the pieces of data
-2. To processed data from the pipeline you need to use the optional `begin`, `process`, and `end` syntax for your function definition
+2. To process data from the pipeline, you need to use the optional `begin`, `process`, and `end` syntax for your function definition
 3. You need to use the `Write-Output` command to send data to the pipeline.
 
 As an illustration, let's define a function that doubles a number, first as a regular function, and then as a function that accepts numbers from the pipeline.
@@ -167,6 +188,8 @@ We can completely ignore the function's new super-power and continue to use it a
 Get-DoubleValue -Number 5
 ```
 
+**BART: you just finished telling us to run functions we must use `& ./` but now you don't use that syntax. Why?**
+
 But we can now pipe numbers to the command:
 
 ```pwsh
@@ -179,9 +202,24 @@ In fact, we can pipe as many numbers as we'd like!
 1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue
 ```
 
+**BART: This command only returns 0. (I copied and pasted the script and the command)**:
+
+```
+PS /Users/allison/Desktop/titbit11> function Get-DoubleValue {             
+>>     param(
+>>         [double]$Number
+>>     )
+>>     return $Number * 2
+>> }
+PS /Users/allison/Desktop/titbit11> Get-DoubleValue -Number 5
+10
+PS /Users/allison/Desktop/titbit11> 1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue
+0
+```
+
 You can see that what PowerShell does is repeat the `process {}` block once for each input in the pipeline, so pipeline functions are actually loops with some superpowers!
 
-Speaking of those superpowers, while many functions that support the pipeline will act symmetrically, producing one output for each input, that's not a requirement, as well as a `process {}` block you can also use `begin {}` and `end {}` blocks to do  more powerful things. As their names imply the `begin {}` block will get executed once before the first pipeline input is processed, and the `end {}` block once after the last input is processed. This allows pipeline function to generate additional outputs, or collapse inputs to a single output.
+Speaking of those superpowers, while many functions that support the pipeline will act symmetrically, producing one output for each input, that's not a requirement. As well as a `process {}` block, you can also use `begin {}` and `end {}` blocks to do more powerful things. As their names imply the `begin {}` block will get executed once before the first pipeline input is processed, and the `end {}` block once after the last input is processed. This allows pipeline functions to generate additional outputs, or collapse inputs to a single output.
 
 As an example, let's make a function that sums numbers:
 
@@ -215,11 +253,36 @@ But, we can double and then sum by pipelining our two functions:
 1,2,3 | Get-DoubleValue | Get-Sum
 ```
 
+**BART: again this gives me 0, not 12. **
+
+```
+PS /Users/allison/Desktop/titbit11> function Get-Sum {                     
+>>     param(
+>>         [Parameter(ValueFromPipeline=$true)]
+>>         [double]$Number
+>>     )
+>>     begin {
+>>         $Total = 0
+>>     }
+>>     process {
+>>         $Total += $Number
+>>     }
+>>     end {
+>>         Write-Output $Total
+>>     }
+>> }
+PS /Users/allison/Desktop/titbit11> 
+PS /Users/allison/Desktop/titbit11> 5,7 | Get-Sum
+12
+PS /Users/allison/Desktop/titbit11> 1,2,3 | Get-DoubleValue | Get-Sum     
+0
+```
+
 This gives 12, which is the right answer, but it's not showing us any more information that a typical Unix command would, so let's look at how PowerShell does message output.
 
 #### Four Message Streams
 
-In Bash we know that while the pipe only connects the standard output to the next command's input, there is actually one more standard stream, the standard error stream.
+In Bash, we know that while the pipe only connects the standard output to the next command's input, there is actually one more standard stream: the standard error stream.
 
 PowerShell expands on this idea by adding four distinct streams for outputting messages to the user, each for a different severity level:
 
@@ -228,7 +291,7 @@ PowerShell expands on this idea by adding four distinct streams for outputting m
 3. **Warnings** — something's gone wrong, but was at least partially recoverable. You can output your own warnings with `Write-Warning`. 
 4. **Errors** — something's failed! You can output your own errors with `Write-Error`.
 
-To see why have data and message separate is powerful, let's add some message output to our doubling function:
+To see why having data and message separate is powerful, let's add some message output to our doubling function:
 
 ```pwsh
 function Get-DoubleValue {
@@ -250,11 +313,13 @@ Now, let's re-run our pipeline to double and then sum:
 1,2,3 | Get-DoubleValue | Get-Sum
 ```
 
+**BART: this version DOES give me 12**
+
 Notice that we see the messages telling us what one, two, and three doubled are, but adding those messages did not mess up the summing function's inputs, it still only saw 2, 4, & 6 as its inputs, so it still calculated 12!
 
 #### What About Redirecting to Files?
 
-So far we've only focused on one kind of 'plumbing' in Unix/Linux, piping, but what about stream redirection, i.e. the Bash redirection operators like `>` & `>>`, etc.? If you think about it, these operators are also double-jobbing, they are used for two distinct purposes:
+So far we've only focused on one kind of 'plumbing' in Unix/Linux, piping, but what about stream redirection, i.e. the Bash redirection operators like `>` & `>>`, etc.? If you think about it, these operators are also double-jobbing. They are used for two distinct purposes:
 
 1. To send data to files
 2. To send outputs to logs
@@ -262,7 +327,7 @@ So far we've only focused on one kind of 'plumbing' in Unix/Linux, piping, but w
 Again, PowerShell separates these tasks, providing separate dedicated tools for each purpose:
 
 1. Data gets written to files with an appropriate output command, e.g. `Out-File`.
-2. PowerShell provides a dedicated logging feature called [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4), and errors and warnings can be captured on variables.
+2. PowerShell provides a dedicated logging feature called [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4), and errors and warnings can be captured on variables. **BART: "where" instead of "and"? or did you mean something else?**
 
 ### Argument Sanity with Parameter Definitions
 
