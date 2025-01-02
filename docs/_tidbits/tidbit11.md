@@ -298,7 +298,7 @@ Remember, in Unix/Linux anything goes, so while some conventions have emerged, y
 
 PowerShell provides some sanctuary from this chaos through a [documented list of standard parameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.4) for all built-in commands. These standard parameters aren't all mandatory, so some are only available on some commands, but when they're available, they'll always do the same thing!
 
-While the core language religiously implements these common parameters on all commands, that's not where the sanity ends! Since a command is just a fancy function, the feature is actually available in every function, and since scripts are just functions in a file by themselves**, all scripts too! ← BART???**  To add support for these refreshing standards to your own code you simply need to prefix your parameter definitions with a line of the form `[CmdletBinding()]`, and you're done!
+While the core language religiously implements these common parameters on all commands, that's not where the sanity ends! Since a command is just a fancy function, and since scripts are just functions in a file by themselves, the feature is actually available in commands, scripts, and functions, so everywhere you use parameters. To add support for these refreshing standards to your own code you simply need to prefix your parameter definitions with a line of the form `[CmdletBinding()]`, and you're done!
 
 To see how simple this is, let's update our doubling function so it supports debugging with `-Verbose`:
 
@@ -346,7 +346,7 @@ The aforementioned documentation describes the full set of common parameters, bu
 
 We've already seen a little of what PowerShell's help system can do when we were discussing parameter definitions, but that's just the tip of the iceberg!
 
-In the Unix/Linux world, we know that developers can choose to add documentation for their commands to a system's manual, and those pages can be accessed from the command line via the `man` command. When a developer writes no documentation, there is no `man` page at all. Because of PowerShell's parameter definitions, every command, function, and script gets at least a skeleton help entry, and as we've seen, we can view those with the `Get-Help` command.**BART -- I don't think we saw this before**
+In the Unix/Linux world, we know that developers can choose to add documentation for their commands to a system's manual, and those pages can be accessed from the command line via the `man` command. When a developer writes no documentation, there is no `man` page at all. Because of PowerShell's parameter definitions, every command, function, and script gets at least a skeleton help entry. We can view those with the `Get-Help` command.
 
 For now, our doubling function does nothing to provide any exploit documentation, and yet, it already has a basic help page which we can view with the command `Get-Help Get-DoubleValue`:
 
