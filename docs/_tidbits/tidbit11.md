@@ -276,25 +276,25 @@ PowerShell could not be more different — if you want your functions, and hence
 
 In PowerShell parameters come in two flavours — positional, and named. 
 
-When presented with the raw list of command line parts PowerShell starts by looking for named parameters, and removing them from the list. What ever's left after that are the positional parameters.
+When presented with the raw list of command line parts PowerShell starts by looking for named parameters, and removing them from the list. Whatever's left after that are the positional parameters.
 
-Named parameters are those that start with a single `-`, and what comes after is their name, so what is `-SomeName` on the CLI becomes `$SomeName` in the code. Named parameters come in two flavours too 'switches' which are like getopt flags in bash have no value, and regular named parameters get their value from the next raw command line part. So a named switch `-MySwich` becomes `$MySwith` with a value of true, and a regular named parameter `-SomeNumber 42` becomes `$SomeNumber` with the value `42`.
+Named parameters are those that start with a single `-`, and what comes after is their name, so what is `-SomeName` on the CLI becomes `$SomeName` in the code. Named parameters come in two flavours: 'switches' which, like getopt flags in bash, have no value and regular named parameters which get their value from the next raw command line part. So a named switch `-MySwitch` becomes `$MySwitch` with a value of true, and a regular named parameter `-SomeNumber 42` becomes `$SomeNumber` with the value `42`.
 
-This all means that at the very very least all parameters need to be given a variable name. But, but they should also be given a type so PowerShell can give you basic data validation automatically, and you can then start adding more validations and options as you desire. As we've seen in some of our earlier examples, one of those options is to tag a parameter as being connected to the input pipeline. While all parameters get mapped to names when they arrive inside the function, you can choose to hide that fact from users by mapping specific positional parameters to specific variables. You can even map all the otherwise unmapped positional parameters to an array variable.
+This all means that at the very least, all parameters need to be given a variable name. But, they should also be given a type so PowerShell can give you basic data validation automatically. You can then start adding more validations and options as you desire. As we've seen in some of our earlier examples, one of those options is to tag a parameter as being connected to the input pipeline. While all parameters get mapped to names when they arrive inside the function, you can choose to hide that fact from users by mapping specific positional parameters to specific variables. You can even map all the otherwise unmapped positional parameters to an array variable.
 
 Having these kinds of rigorous parameter definitions has some powerful advantages:
 
 1. PowerShell's shell can offer help by:
    1. Automatically prompting for missing required parameters — e.g. running `Write-Error` with no arguments results in a prompt for a message.
    2. Providing tab-complete for parameters — e.g. typing `Write-Error -M` and hitting `tab` will expand the parameter to `-Messages`. This also works for any functions/scripts you write, try typing `Get-DoubleValue -N` and hitting `tab`!
-2. IDEs can provide more informative tool tips and auto-completes for developers.
+2. IDEs can provide more informative tooltips and autocompletes for developers.
 3. The built-in help system can show the parameters **any** function/command/script can accept — e.g. `Get-Help Get-DoubleValue` shows that the function we defined accepts one parameter named `Number`.
 
 ### Some Refreshing Consistency with Common Parameters
 
 Another Unix/Linux niggle PowerShell addresses is a lack of consistency in how different commands provide standard functionality like enabling debugging mode.
 
-Remember, in Unix/Linux anything goes, so while. Some conventions have emerged, you just can't make any assumptions. Even the simplest things are not really standardised — sure, many Unix/Linux commands use  `-v` to enable verbose mode, but many others use that same flag to output their version number!
+Remember, in Unix/Linux anything goes, so while some conventions have emerged, you just can't make any assumptions. Even the simplest things are not really standardised. Sure, many Unix/Linux commands use  `-v` to enable verbose mode, but many others use that same flag to output their version number!
 
 PowerShell provides some sanctuary from this chaos through a [documented list of standard parameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.4) for all built-in commands. These standard parameters aren't all mandatory, so some are only available on some commands, but when they're available, they'll always do the same thing!
 
