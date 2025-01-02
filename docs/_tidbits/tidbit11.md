@@ -36,11 +36,9 @@ If you're going to use the Terminal app for running PowerShell commands you can 
 
 On Windows I'd recommend installing Microsoft's modern [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-us&gl=US) app for a nicer CLI than the default one that ships with the Windows version of PowerShell 7.
 
-But rather than using any Terminal, I'd recommend using a good IDE. In fact, I recommend using a specific IDE — [VS Code](https://code.visualstudio.com/) with [Microsoft's official PowerShell plugin](https://github.com/PowerShell/vscode-powershell).
+When you're ready to start writing PowerShell scripts, I'd strongly recommend switching from a Terminal to an IDE. Specifically, I recommend using the open source cross platform [VS Code](https://code.visualstudio.com/) with [Microsoft's official PowerShell plugin](https://github.com/PowerShell/vscode-powershell). This plugin kicks into gear when you open a PowerShell script file (a `.ps1` file), at which point it will open a Terminal within VS Code which you can use to test your script in the same UI you're using to write it. The plugin will also give you useful tool-tips and completion suggestions. It's possible you'll need to re-start VS Code for the plugin to be fully set up and working (Allison ran into some issues I don't remember having).
 
-**BART: explain why (after following the install instructions for pwsh) VSC will fail to find PowerShell and claim it's not installed.**
-
-To help your IDE, and perhaps your AI helper, I suggest adding a `Requires` comment to the very top of all your scripts to explicitly mark the version of PowerShell your scripts assume. In January 2025 I am adding the following as the very first line in all my scripts:
+Speaking of IDEs, I strongly suggest recommend adding a `Requires` comment to the very top of all your scripts to explicitly mark the version of PowerShell you used to develop and test the script. That will help both PowerShell itself and your IDE and/or AI helper handle things properly in future as PowerShell continues to evolve over time. As of January 2025 I'm adding the following as the very first line in all my scripts:
 
 ```
 #Requires 7.4
