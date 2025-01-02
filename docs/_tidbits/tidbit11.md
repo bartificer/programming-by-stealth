@@ -219,31 +219,6 @@ But, we can double and then sum by pipelining our two functions:
 1,2,3 | Get-DoubleValue | Get-Sum
 ```
 
-**BART: again this gives me 0, not 12. **
-
-```
-PS /Users/allison/Desktop/titbit11> function Get-Sum {                     
->>     param(
->>         [Parameter(ValueFromPipeline=$true)]
->>         [double]$Number
->>     )
->>     begin {
->>         $Total = 0
->>     }
->>     process {
->>         $Total += $Number
->>     }
->>     end {
->>         Write-Output $Total
->>     }
->> }
-PS /Users/allison/Desktop/titbit11> 
-PS /Users/allison/Desktop/titbit11> 5,7 | Get-Sum
-12
-PS /Users/allison/Desktop/titbit11> 1,2,3 | Get-DoubleValue | Get-Sum     
-0
-```
-
 This gives 12, which is the right answer, but it's not showing us any more information that a typical Unix command would, so let's look at how PowerShell does message output.
 
 #### Four Message Streams
@@ -278,8 +253,6 @@ Now, let's re-run our pipeline to double and then sum:
 ```pwsh
 1,2,3 | Get-DoubleValue | Get-Sum
 ```
-
-**BART: this version DOES give me 12**
 
 Notice that we see the messages telling us what one, two, and three doubled are, but adding those messages did not mess up the summing function's inputs, it still only saw 2, 4, & 6 as its inputs, so it still calculated 12!
 
