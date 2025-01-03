@@ -25,7 +25,7 @@ Read an unedited, auto-generated transcript with chapter marks:  <a href="https:
 
 Like with most things Microsoft, my first introduction to PowerShell was involuntary, and I dipped my toe in reluctantly! But within just a few hours I started to get the sense that there was a lot of "there" there. This wasn't some kind of half-baked slap-dash replacement for DOS batch files but a full-featured and very modern re-imagining of what a shell could be. Microsoft started with a completely blank slate. They took everything we all learned from the decades of advances in programming languages and concepts since C and the original Unix shell were created in the 70s and built a thoroughly modern cross platform, open source command line, and scripting environment.
 
-The way I see it, *"Imagine what the Unix guys would have done if they knew then what we know now"* really is good way to describe PowerShell. PowerShell takes the sh/Bash/zsh idea of creating lots of simple single-purpose commands and chaining them together to do powerful things, and combines it with a Java-like cross-platform runtime environment. Deep under the hood it's actually the new(ish) open source [.NET Core](https://en.wikipedia.org/wiki/.NET#.NET_Core) runtime environment (the replacement of the old proprietary [.NET Framework](https://en.wikipedia.org/wiki/.NET_Framework)), but that's only important when you want to leverage that power that brings in your scripts. The rest of the time .NET generally stays out of sight and out of mind!
+The way I see it, *"Imagine what the Unix guys would have done if they knew then what we know now"* really is good way to describe PowerShell. PowerShell takes the sh/Bash/zsh idea of creating lots of simple single-purpose commands and chaining them together to do powerful things, and combines it with a Java-like cross-platform runtime environment. Deep under the hood it's actually the new(ish) open source [.NET Core](https://en.wikipedia.org/wiki/.NET#.NET_Core) runtime environment (the replacement of the old proprietary [.NET Framework](https://en.wikipedia.org/wiki/.NET_Framework)), but that's only important when you want to leverage the power that brings in your scripts. The rest of the time .NET generally stays out of sight and out of mind!
 
 ## PowerShell Versions & Tooling
 
@@ -55,7 +55,7 @@ Speaking of IDEs, I strongly suggest recommend adding a `Requires` comment to th
 
 ## The Big-Picture — PowerShell's Philosophy
 
-**PowerShell's philosophy is different** to that of both Bash and JavaScript, and the route to a positive experience is to **lean into that fact**. To have a good JavaScript experience you need to think about the world in a *JavaScripty* way, to have a good experience in Bash you need to think about the world in a *Bashy* way, and to have a good PowerShell experience you need to think about the work in a *PowerShelly* way.
+**PowerShell's philosophy is different** to that of both Bash and JavaScript, and the route to a positive experience is to **lean into that fact**. To have a good JavaScript experience you need to think about the world in a *JavaScripty* way, to have a good experience in Bash you need to think about the world in a *Bashy* way, and to have a good PowerShell experience you need to think about the world in a *PowerShelly* way.
 
 As I type these notes I can already hear Allison getting impatient and wanting to see some commands, so to get that out of the way, let's do the traditional Hello-World in PowerShell
 
@@ -104,7 +104,7 @@ If you paste this into a PowerShell terminal you can then use your function exac
 Write-HelloWorld
 ```
 
-We can now convert our function to a script we can run at any time by moving just the function's contents into a file with a `.ps1` ending, so let's create `Write-HelloWorld.ps1` and give it just the following contents:
+We can now convert our function to a script we can run at any time by moving just the function's contents into a file with a `.ps1` extension. Let's create `Write-HelloWorld.ps1` and give it just the following contents:
 
 ```pwsh
 #Requires -Version 7.4
@@ -129,7 +129,7 @@ But this is where the similarities end. In Bash, the output that would normally 
 
 **Any PowerShell function can optionally accept data inputs from the pipeline**, hence any script can optionally accept data inputs from the pipeline, and so can any command (since it's functions all the way down).
 
-Because the pipeline is purely for data, it's not limited to streams of characters, **the data can be of any type**, so deep down it is in fact all objects. Not only can the data be of any type, it can be chunked into separate pieces, so it's not one flow other than characters, but a sequence of individual items which each get processed one-by-one. While the Unix pipeline carries a constant flow of characters, making it very river-like, the PowerShell pipeline is much more **like a conveyor belt with individual pieces of data**.
+Because the pipeline is purely for data, it's not limited to streams of characters, **the data can be of any type**, so deep down it is in fact all objects. Not only can the data be of any type, it can be chunked into separate pieces, so it's not one flow of characters, but a sequence of individual items which each get processed one-by-one. While the Unix pipeline carries a constant flow of characters, making it very river-like, the PowerShell pipeline is much more **like a conveyor belt with individual pieces of data**.
 
 If a command supports the pipeline, then you can send arbitrarily many pieces of data to it!
 
