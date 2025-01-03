@@ -2,15 +2,24 @@
 title: A PowerShell Teaser
 instalment: 11
 creators: [bart, allison]
+date: 2025-01-02
 ---
 
 Somewhat ironically, since finishing our [long series on Bash scripting](./pbs143) I've been almost exclusively writing scripts in a completely different language, [PowerShell](https://en.wikipedia.org/wiki/PowerShell)! Being a Microsoft language you'd be forgiven for assuming that means I've moved to Windows and started trying to automate things there, but you'd be mistaken, I'm still very much a Mac user! So what gives? Despite what its origins may suggest, the core PowerShell environment is both [open source](https://github.com/PowerShell/PowerShell) and cross-platform, running just fine on the Mac and Linux as well as Windows.
 
-Think of this TidBit as being like a movie trailer — it's intended to pique your interest, and to give you a broad sense of why you might want to spend some time making friends with PowerShell, but it's by no means a detailed tutorial. This instalment is also intended as a kind of community survey. If there's sufficient community interest, we could spend the second part of 2025 learning PowerShell like we learned Bash. I don't only want to hear from people who would like us to do that, though; I'd also like to hear from those in the community who think it'd be a waste of time and effort. Have your say on the PBS channel in [the Podfeet Slack](https://podfeet.com/slack)!
+Think of this Tidbit as being like a movie trailer — it's intended to pique your interest, and to give you a broad sense of why you might want to spend some time making friends with PowerShell, but it's by no means a detailed tutorial. This instalment is also intended as a kind of community survey. If there's sufficient community interest, we could spend the second part of 2025 learning PowerShell like we learned Bash. I don't only want to hear from people who would like us to do that, though; I'd also like to hear from those in the community who think it'd be a waste of time and effort. Have your say on the PBS channel in [the Podfeet Slack](https://podfeet.com/slack)!
 
-## Matching Podcast Episode
+## Matching Podcast Episodes
 
-TO DO
+### PBS Tidbit 11A dated 2025-01-02:
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_01_02.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_01_02.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2025_01_02.html">PBS_2025_01_02</a>
+
+### PBS Tidbit 11B Coming Soon!
 
 ## What Drew me to PowerShell?
 
@@ -95,7 +104,7 @@ If you paste this into a PowerShell terminal you can then use your function exac
 Write-HelloWorld
 ```
 
-We can now convert our function to a script we can run any time by moving just the function's contents into a file with a `.ps1` ending, so let's created `Write-HelloWorld.ps1` and give it just the following contents:
+We can now convert our function to a script we can run at any time by moving just the function's contents into a file with a `.ps1` ending, so let's create `Write-HelloWorld.ps1` and give it just the following contents:
 
 ```pwsh
 #Requires -Version 7.4
@@ -110,7 +119,7 @@ We can now run our script using PowerShell's version of the Bash *dot command* w
 & ./Write-HelloWorld.ps1
 ```
 
-### Re-invented 'Plumbing' — Data and Messages are Separated
+### Reinvented 'Plumbing' — Data and Messages are Separated
 
 PowerShell shares the Unix philosophy of building complex solutions by chaining together simple commands. It even shares the same operator for connecting the output from one command to the input of another — the perfectly named *pipe* (`|`)!
 
@@ -232,7 +241,7 @@ PowerShell expands on this idea by adding four distinct streams for outputting m
 3. **Warnings** — something's gone wrong, but was at least partially recoverable. You can output your own warnings with `Write-Warning`. 
 4. **Errors** — something's failed! You can output your own errors with `Write-Error`.
 
-To see why having data and message separate is powerful, let's add some message output to our doubling function:
+To see why having data and messages separate is powerful, let's add some message output to our doubling function:
 
 ```pwsh
 function Get-DoubleValue {
@@ -267,6 +276,10 @@ Again, PowerShell separates these tasks, providing separate dedicated tools for 
 
 1. Data gets written to files with an appropriate output command, e.g. `Out-File`.
 2. PowerShell provides a dedicated logging feature called [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4), and errors & warnings can be captured in variables.
+
+> The first recording for Tidbit 11 Ends here
+>
+> {: .notice}
 
 ### Argument Sanity with Parameter Definitions
 
