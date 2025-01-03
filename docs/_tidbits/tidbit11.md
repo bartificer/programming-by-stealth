@@ -359,7 +359,7 @@ We can now double a number without needing to explicitly name the parameter:
 Get-DoubleValue 5
 ```
 
-### Why Defining Parameters Matters
+#### Why Defining Parameters Matters
 
 This all means that at the very least, all parameters need to be given a variable name. But, they should also be given a type so PowerShell can give you basic data validation automatically. You can then start adding more validations and options as you desire. As we've seen in some of our earlier examples, one of those options is to tag a parameter as being connected to the input pipeline. While all parameters get mapped to names when they arrive inside the function, you can choose to hide that fact from users by mapping specific positional parameters to specific variables. You can even map all the otherwise unmapped positional parameters to an array variable.
 
@@ -512,7 +512,7 @@ Save the following to a file named `Get-DoubleValue.ps1`:
 #>
 [CmdletBinding()]
 param(
-    [Parameter(ValueFromPipeline=$true)]
+    [Parameter(ValueFromPipeline=$true, Position=0)]
     [double]$Number
 )
 process {
