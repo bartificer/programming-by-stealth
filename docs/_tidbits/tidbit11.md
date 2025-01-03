@@ -281,17 +281,85 @@ Again, PowerShell separates these tasks, providing separate dedicated tools for 
 >
 > {: .notice}
 
+_**Note:** this is the break point between podcast episode PBS Tidbit 11A & PBS Tidbit 11B._
+
 ### Argument Sanity with Parameter Definitions
 
 Again, to understand what PowerShell does differently, let's remind ourselves of how arguments work in Bash — basically, it's the Wild West! The arguments just arrive as strings in a pseudo array, and it's up to the programmer to group them into some kind of logical structure. In theory, anything goes, but thankfully some conventions have emerged thanks to popular tools like  `getops`. But the bottom line remains, the best we can hope for as users is that the developers of the command we're thinking of using chose to be consistent, follow some kind of convention, and provided a good `man` page!
 
-PowerShell could not be more different — if you want your functions, and hence your scripts or commands, to support parameters, you need to define them explicitly! We've already seen hints of this in our little example functions. The `param()` function is used to define parameters. 
+PowerShell could not be more different — if you want your functions, and hence your scripts or commands, to support parameters, you need to define them explicitly! We've already seen hints of this in our little example functions which define their parameter with the `param ()` function. 
 
-In PowerShell parameters come in two flavours — positional, and named. 
+In PowerShell parameters come in two flavours — **positional**, and **named**. 
 
 When presented with the raw list of command line parts PowerShell starts by looking for named parameters, and removing them from the list. Whatever's left after that are the positional parameters.
 
-Named parameters are those that start with a single `-`, and what comes after is their name, so what is `-SomeName` on the CLI becomes `$SomeName` in the code. Named parameters come in two flavours: 'switches' which, like getopt flags in bash, have no value and regular named parameters which get their value from the next raw command line part. So a named switch `-MySwitch` becomes `$MySwitch` with a value of true, and a regular named parameter `-SomeNumber 42` becomes `$SomeNumber` with the value `42`.
+Named parameters are those that start with a single `-`, and what comes after is their name. In other words `-SomeName` on the CLI becomes `$SomeName` in the code.
+
+Named parameters come in two flavours; **switches** which, like getopt flags in bash, have no value, and regular named parameters which get their value from the next raw command line part. So a named switch `-MySwitch` becomes `$MySwitch` with a value of `True`, and a regular named parameter `-SomeNumber 42` becomes `$SomeNumber` with the value `42`.
+
+This begs the question, what happens to the positional parameters? To support positional parameters you need to map them to named variables. In other words, you programatically say that the first positional parameter will be interpreted as this named parameter, the second as this one, and so on. You can also map all remaining positional parameters to a named array parameter, which could become an array of any size, including an empty array.
+
+### Defining Parameters with `param ()`
+
+All of a function's parameter definitions need to go into a single call to `param ()` at the top of the function/script before the first line of regular code.
+
+Each individual parameter definition can span multiple lines, but the last line of the definition needs to be the one that gives that parameter its name, and a `,` is used to separate the definitions. This means that the simplest parameter definition is simply:
+
+```pwsh
+param (
+    $ParameterName
+)
+```
+
+However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define three parameters with the most common types, you would use code of the form:
+
+```pwsh
+param (
+    [string]$MyStringParameter,
+    [int]$MyIntegerParameter,
+    [double]$MyDecimalNumberParameter
+)
+```
+
+Notice the commas at the end of the first two parameter definitions to separate them from the following one.
+
+As well as defining the parameter names and types, we can add parameter options to each parameter using the `[Parameter()]` syntax, and we can add additional data validations beyond just the base type using other syntaxes.
+
+The `Parameter()` function can be used to enable many powerful behaviours, but I want to draw your attention to just two, one which we've already seen explicitly, and one who's effects we've seen implicitly:
+
+1. The `ValueFromPipeline` parameter option is use to map data arriving via the pipeline to a specific named parameter. We've seen this syntax in our example functions in the previous section, e.g.:
+   ```pwsh
+   param(
+       [Parameter(ValueFromPipeline=$true)]
+       [double]$Number
+   )
+   ```
+
+2. The `Position=` parameter option is used to map a specific positional parameter to a named parameter. The value for this option should be an integer, and the first positional parameter is numbered `0`. We have seen this kind of positional parameter in use in our calls to `Write-Host`, where we passed our string to print without naming it. Under the hood `Write-Host` maps the first un-named parameter to the named parameter `-Message`, so `Write-Host 'Hello World!'` is equivalent to `Write-Host -Message 'Hello World!'`.
+
+Let's cement all this by updating our `Get-DoubleValue` function yet again to map the first positional parameter to the named parameter `$Number`:
+
+```pwsh
+function Get-DoubleValue {
+    param(
+        [Parameter(ValueFromPipeline=$true, Position=0)]
+        [double]$Number
+    )
+    process {
+        $Answer = $Number * 2
+        Write-Host "$Number doubled is $Answer"
+        Write-Output $Answer
+    }
+}
+```
+
+We can now double a number without needing to explicitly name the parameter:
+
+```pwsh
+Get-DoubleValue 5
+```
+
+### Why Defining Parameters Matters
 
 This all means that at the very least, all parameters need to be given a variable name. But, they should also be given a type so PowerShell can give you basic data validation automatically. You can then start adding more validations and options as you desire. As we've seen in some of our earlier examples, one of those options is to tag a parameter as being connected to the input pipeline. While all parameters get mapped to names when they arrive inside the function, you can choose to hide that fact from users by mapping specific positional parameters to specific variables. You can even map all the otherwise unmapped positional parameters to an array variable.
 
