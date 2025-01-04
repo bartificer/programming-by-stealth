@@ -277,11 +277,8 @@ Again, PowerShell separates these tasks, providing separate dedicated tools for 
 1. Data gets written to files with an appropriate output command, e.g. `Out-File`.
 2. PowerShell provides a dedicated logging feature called [Transcripts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.host/start-transcript?view=powershell-7.4), and errors & warnings can be captured in variables.
 
-> The first recording for Tidbit 11 Ends here
->
+> This is the break point between podcast episode PBS Tidbit 11A & PBS Tidbit 11B.
 > {: .notice}
-
-_**Note:** this is the break point between podcast episode PBS Tidbit 11A & PBS Tidbit 11B._
 
 ### Argument Sanity with Parameter Definitions
 
@@ -311,21 +308,64 @@ param (
 )
 ```
 
+#### Adding Types
+
 However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define three parameters with the most common types, you would use code of the form:
 
 ```pwsh
 param (
     [string]$MyStringParameter,
     [int]$MyIntegerParameter,
-    [double]$MyDecimalNumberParameter
+    [double]$MyDecimalNumberParameter,
+    [switch]$MySwitchParameter
 )
 ```
 
-Notice the commas at the end of the first two parameter definitions to separate them from the following one.
+Notice the commas at the end of the first three parameter definitions to separate them from the following ones. Also notice the lack of a comma on the last one, PowerShell does not tolerate trailing commas, they are considered syntax errors.
+
+#### Why Add Types?
+
+Firstly, adding the type takes very little effort, so the cost of following the developer guidelines is low. But don't worry, there are rewards beyond just feeling like you're doing it right 🙂
+
+When you add a type you get two very useful PowerShell behaviours:
+
+1. **Automatic type coercion** — if possible, PowerShell will auto-convert the input received to the type specified. For example, if a function defines a parameter as being of type integer, and a decimal number gets passed instead, PowerShell will automatically round the number to the nearest integer.
+2. **Automatic type validation** — when coercion is not possible, PowerShell will throw an error before even wasting resources calling the function.
+
+#### Adding Default Values
+
+By default, the default value of every parameter is `Null`, so if a parameter is defined in the function but not passed when calling the function it will be null. We don't have to have that default, we can assign any default value we like right within the parameter definition using the standard assignment operator, `=`.
+
+As an example, let's create a new function similar to our `Write-HelloWorld` function that defaults to saying hello to the world, but can say hello to anything:
+
+```pswh
+function Write-Hello {
+    param (
+        [string]$Target = 'World'
+    )
+    Write-Host "Hello $Target!"
+}
+```
+
+If we call this function with no arguments we'll see that `$Target` defaults to `'World'`:
+
+```pwsh
+Write-Hellow
+# prints: Hello World!
+```
+
+But now we can also say hello to some waffles:
+
+```pwsh
+Write-Hello -Target 'Waffles'
+# Prints: Hello Waffles!
+```
+
+#### Adding Parameter Options
 
 As well as defining the parameter names and types, we can add parameter options to each parameter using the `[Parameter()]` syntax, and we can add additional data validations beyond just the base type using other syntaxes.
 
-The `Parameter()` function can be used to enable many powerful behaviours, but I want to draw your attention to just two, one which we've already seen explicitly, and one who's effects we've seen implicitly:
+The `Parameter()` function can be used to enable many powerful behaviours, but I want to draw your attention to just three, one which we've already seen explicitly, one who's effects we've seen implicitly, and an entirely new one:
 
 1. The `ValueFromPipeline` parameter option is use to map data arriving via the pipeline to a specific named parameter. We've seen this syntax in our example functions in the previous section, e.g.:
    ```pwsh
@@ -337,12 +377,14 @@ The `Parameter()` function can be used to enable many powerful behaviours, but I
 
 2. The `Position=` parameter option is used to map a specific positional parameter to a named parameter. The value for this option should be an integer, and the first positional parameter is numbered `0`. We have seen this kind of positional parameter in use in our calls to `Write-Host`, where we passed our string to print without naming it. Under the hood `Write-Host` maps the first un-named parameter to the named parameter `-Message`, so `Write-Host 'Hello World!'` is equivalent to `Write-Host -Message 'Hello World!'`.
 
-Let's cement all this by updating our `Get-DoubleValue` function yet again to map the first positional parameter to the named parameter `$Number`:
+3. The `Mandatory=$true` parameter option tells PowerShell that the function can't execute without a value for this parameter.
+
+Let's cement all this by updating our `Get-DoubleValue` function yet again to map the first positional parameter to the named parameter `$Number`, and to make that parameter mandatory:
 
 ```pwsh
 function Get-DoubleValue {
     param(
-        [Parameter(ValueFromPipeline=$true, Position=0)]
+        [Parameter(ValueFromPipeline=$true, Position=0, Mandatory=$true)]
         [double]$Number
     )
     process {
@@ -361,13 +403,11 @@ Get-DoubleValue 5
 
 #### Why Defining Parameters Matters
 
-This all means that at the very least, all parameters need to be given a variable name. But, they should also be given a type so PowerShell can give you basic data validation automatically. You can then start adding more validations and options as you desire. As we've seen in some of our earlier examples, one of those options is to tag a parameter as being connected to the input pipeline. While all parameters get mapped to names when they arrive inside the function, you can choose to hide that fact from users by mapping specific positional parameters to specific variables. You can even map all the otherwise unmapped positional parameters to an array variable.
-
 Having these kinds of rigorous parameter definitions has some powerful advantages:
 
 1. PowerShell's shell can offer help by:
-   1. Automatically prompting for missing required parameters — e.g. running `Write-Error` with no arguments results in a prompt for a message.
-   2. Providing tab-complete for parameters — e.g. typing `Write-Error -M` and hitting `tab` will expand the parameter to `-Messages`. This also works for any functions/scripts you write, try typing `Get-DoubleValue -N` and hitting `tab`!
+   1. Automatically prompting for missing mandatory parameters — e.g. running our most recent  `Get-DoubleValue` function with no arguments results in a prompt for a number.
+   1. Providing tab-completion for parameters — e.g. typing `Write-Error -M` and hitting `tab` will expand the parameter to `-Messages`. This also works for any functions/scripts you write — try typing `Get-DoubleValue -N` and hitting `tab`!
 2. IDEs can provide more informative tooltips and autocompletes for developers.
 3. The built-in help system can show the parameters **any** function/command/script can accept — e.g. `Get-Help Get-DoubleValue` shows that the function we defined accepts one parameter named `Number`.
 
@@ -377,9 +417,9 @@ Another Unix/Linux niggle PowerShell addresses is a lack of consistency in how d
 
 Remember, in Unix/Linux anything goes, so while some conventions have emerged, you just can't make any assumptions. Even the simplest things are not really standardised. Sure, many Unix/Linux commands use  `-v` to enable verbose mode, but many others use that same flag to output their version number!
 
-PowerShell provides some sanctuary from this chaos through a [documented list of standard parameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.4) for all built-in commands. These standard parameters aren't all mandatory, so some are only available on some commands, but when they're available, they'll always do the same thing!
+PowerShell provides some sanctuary from this chaos through a [documented list of standard parameters](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.4) for all built-in commands. These standard parameters aren't all mandatory, so some are only available on some commands, but when they're available, they'll always do the same thing.
 
-While the core language religiously implements these common parameters on all commands, that's not where the sanity ends! Since a command is just a fancy function, and since scripts are just functions in a file by themselves, the feature is actually available in commands, scripts, and functions, so everywhere you use parameters. To add support for these refreshing standards to your own code you simply need to prefix your parameter definitions with a line of the form `[CmdletBinding()]`, and you're done!
+While the core language religiously implements these common parameters on all commands, that's not where the sanity ends! Since a command is just a fancy function, and since scripts are just functions in a file by themselves, the feature is actually available in commands, scripts, and functions, i.e. everywhere you use parameters. To add support for these refreshing standards to your own code you simply need to prefix your parameter definitions with a line of the form `[CmdletBinding()]`, and you're done!
 
 To see how simple this is, let's update our doubling function so it supports debugging with `-Verbose`:
 
@@ -387,7 +427,7 @@ To see how simple this is, let's update our doubling function so it supports deb
 function Get-DoubleValue {
     [CmdletBinding()]
     param(
-        [Parameter(ValueFromPipeline=$true)]
+        [Parameter(ValueFromPipeline=$true, Position=0, Mandatory=$true)]
         [double]$Number
     )
     process {
@@ -409,7 +449,7 @@ If we call our function normally we now just see the answers again:
 1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue
 ```
 
-Given how simple this function is that seems much better default behaviour than writing a message each time as well as outputting the doubled value. But we haven't removed our messaging lines, we've just changed the stream they write to, so how can we see them again? Simple, by adding the standard `-Verbose` parameter:
+Given how simple this function is that seems much better default behaviour than writing a message each time as well as outputting the doubled value. But we haven't removed our messaging lines, we've just changed the stream they write to, so how can we see them again? Simple, by adding the standard `-Verbose` switch parameter:
 
 ```pwsh
 1,2,3,4,5,6,7,8,9,10 | Get-DoubleValue -Verbose
@@ -455,9 +495,9 @@ For comparison, let's see what the help system has for a standard command like `
 Get-Help Write-Error
 ```
 
-You definitely see more, but if this is the first time you've used the help system, you may be seeing a lot less than you could. If you are using only the basic documentation library your output will end with a remark telling you that you can download more help by running the command `Update-Help`, so let's do that and re-run the help command for `Write-Error`.
+You definitely see more, but if this is the first time you've used the help system, you may be seeing a lot less than you could. If you're using only the basic documentation library your output will end with a remark telling you that you can download more help by running the command `Update-Help`, so let's do that and then re-run the help command for `Write-Error`.
 
-You now  get a **lot** of information! But again, notice at the bottom there is a remark telling you there's even more information there if you'd like to dig deeper. To see even more add the `-Detailed` flag, and to see even more still, add the `-Full` flag. That's almost certainly more than you really want, but it's good to know that level of information is at your fingertips!
+You now  get a **lot** of information! But again, notice at the bottom there's a remark telling you there's even more information available if you'd like to dig deeper. To see more information add the `-Detailed` flag, and to see even more still, add the `-Full` flag. That's almost certainly more than you really want, but it's good to know that that level of information is at your fingertips!
 
 Most of the time the thing you need most often is just an example, so you can also filter the output down to just that section with `-Examples`:
 
@@ -465,13 +505,13 @@ Most of the time the thing you need most often is just an example, so you can al
 Get-Help Write-Error -Examples
 ```
 
-That's already pretty powerful. But its there a way we can enrich the help pages for our own functions/scripts? Of course there is 🙂
+That's already pretty powerful. But is there a way we can enrich the help pages for our own functions/scripts? Of course there is 🙂
 
-Again, PowerShell is building on what has come before, and provides a comment-based syntax similar to the third-party ESDoc tool we used for documenting our JavaScript code previously. PowerShell's syntax is actually simpler because the formalised parameter definitions take care of a much of the work, all you need to do is add some text to augment the automatically derived information.
+Again, PowerShell is building on what has come before, and it provides a comment-based syntax similar to the third-party ESDoc tool we used for documenting our JavaScript code previously. PowerShell's syntax is actually simpler because the formalised parameter definitions take care of a much of the work we needed to do on our ESDoc comments. For the most part, all you need to do in PowerShell is add some text and examples to augment the automatically derived information.
 
 When you take the time to add documentation comments to your own code your IDE can leverage that to give more informative tool tips etc., and, with just one caveat, you can read your own documentation using the `Get-Help` command.
 
-The one caveat is that `Get-Help` can only read documentation comments from files, so when you just copy-and-paste functions into the terminal it won't see your additional information. To be able to see the documentation for your own code with `Get-Help` you need to do one of two things:
+The one caveat is that `Get-Help` can only read documentation comments from files, so when you just copy-and-paste functions into the terminal `Get-Help`  won't see your additional information. To be able to see the documentation for your own code with `Get-Help` you need to do one of two things:
 
 1. Convert your functions to scripts
 2. Define your functions in modules
@@ -512,7 +552,7 @@ Save the following to a file named `Get-DoubleValue.ps1`:
 #>
 [CmdletBinding()]
 param(
-    [Parameter(ValueFromPipeline=$true, Position=0)]
+    [Parameter(ValueFromPipeline=$true, Position=0, Mandatory=$true)]
     [double]$Number
 )
 process {
@@ -525,7 +565,7 @@ process {
 We can now run our script using the `&` operator, e.g.:
 
 ```pwsh
-& ./Get-DoubleValue.ps1 -Number 5
+& ./Get-DoubleValue.ps1 5
 ```
 
 And:
@@ -534,7 +574,13 @@ And:
 1,2,3,4,5 | & ./Get-DoubleValue.ps1
 ```
 
-But what's more, we can now see the documentation we added in the speically formatted comments with the `Get-Help` command `Get-Help ./Get-DoubleValue.ps1`:
+But what's more, we can now see the documentation we added in the speically formatted comments with the `Get-Help` command:
+
+```pwsh
+Get-Help ./Get-DoubleValue.ps1
+```
+
+This produces the following output:
 
 ```
 NAME
