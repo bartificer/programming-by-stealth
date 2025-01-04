@@ -350,7 +350,7 @@ function Write-Hello {
 If we call this function with no arguments we'll see that `$Target` defaults to `'World'`:
 
 ```pwsh
-Write-Hellow
+Write-Hello
 # prints: Hello World!
 ```
 
