@@ -13,9 +13,19 @@ Note that this document is a work in progress.
 
 Instalments for the primary series are stored as markdown files in the folder `docs/_pbs`, while PBS Tidbits are stored in `docs/_tidbits`.
 
+**BART** why are they in separate folders? what's the implication of putting a tidbit file in the _pbs_ directory?
+
 Images and other static files that need to be linked to from within instalments are stored in appropriately named sub-folders of `docs/assets/`, e.g. `docs/assets/pbs1/Screen-Shot-2015-10-07-at-22.41.46-e1444254317754.png`.
 
+**BART** why are the assets in a different (and HIGHER) directory? why wouldn't the assets for pbs be in the `_pbs` folder? Hunting up and down the directory structure to find the files is tedious. I would picture logically, if we have to have a dir called `_pbs` then why not have the pbs folders inside it with the .md files and the assets (not in another subfolder called assets)?
+
 The original files that will be included in an instalment's resources ZIP file are stored in appropriately named sub-folders of the `instalmentResources` folder, e.g. `instalmentResources/pbs85`. The published instalment resource zip files are stored in the `instalmenmtZips` folder with appropriate filenames, e.g. `instalmentZips/pbs85.zip`.
+
+**BART** again why? why make upper-level structures? why not keep all of this in the `__pbs`folder for the instalment? what is the value of this structure and what would go wrong if I put assets or instalment resources inside the `_pbs`folder? there is a *meaning* to it, yes?
+
+**commentary**  Here's why I harp on this. It means if I'm editing pbs35, I go to `programming-by-stealth/docs/_pbs/pbs35.md` to get to the Markdown file. But to get to the instalment resources, I have to go up out of `_pbs`, up out of docs, down into instalment resources and into pbs35.  I suspect this is some organizational model you adopted ages ago and it's the way you think to organize things but it's antithetical to how I organize things. i would have one folder for pbs35 and it would have the .md, the zip and maybe a folder for the installment resources within it, and if there were a LOT of images I might have an assets folder in there too but probably not. It may not be fair for me to twist your brain to the way I organize things but I am twisted up in a knot every time I have to find something with this structure. Maybe on our next project we could decide on the organization before you get your heart set on it?   
+
+**Mermaid diagram of all this** - https://www.mermaidchart.com/app/projects/47ab2aec-0ec6-41c1-81ea-379b040e478f/diagrams/2b116a0a-cd95-4227-8f21-9c21e4f5ddfb/version/v0.1/edit
 
 ## Overall Document Structure
 
