@@ -36,6 +36,20 @@ Section headings within the instalment content are coded as second-level heading
 
 Code snippets should facilitate syntax highlighting by adding the language name after the opening three back-ticks as described in the Syntax Highlighting sub-section of the [Extended Syntax section of the Markdown docs](https://www.markdownguide.org/extended-syntax/).
 
+## YAML Front Matter
+
+The table below describes the supported fields in the YAML front matter:
+
+| Field        | Type                 | Required              | Description                                                  |
+| :----------- | :------------------- | --------------------- | :----------------------------------------------------------- |
+| `title`      | String               | Always                | The base title for the episode, the series details will be added around this base title by the theme. This base title is used to build the title at the top of the page, the page's title in browser tabs/windows, and if the page is an instalment, the instalment's link text in the relevant listing on the home page. |
+| `instalment` | Integer              | Instalments & Tidbits | The instalment's number within the relevant series, i.e. PBS `n` or PBS Tidbit `n`. |
+| `creators`   | Array of Strings     | Instalments & Tidbits | The slugs for the instalment's creators, usually `[bart, allison]`, but any base filename from the `docs/_creators` folder is a valid slug. |
+| `date`       | ISO 8601 date string | Instalments & Tidbits | The publish date for the instalment as an ISO 8601 formatted date, i.e. `YYYY-MM-DD`, so Christmas 2025 would be `2025-12-25`. _**Warnings** — instalment listings and navigation links are sorted on this field, so omitting it has unpredictable side-effects. Also, instalments with dates in the future are not published to the live website!_ |
+| `opengraph`  | Dictionary           | Optional              | An optional link to the MP3 file associated with a page or instalment. In theory OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality this part of the spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing, all other authors are free to ignore it completely!_ |
+
+_**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
+
 ## Adding Notes
 
 Notes of two kinds can be added using style annotations in conjunction with the Markdown syntax for block quotes.
