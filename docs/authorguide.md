@@ -42,6 +42,10 @@ opengraph:
 ---
 ```
 
+**BART** - it would be helpful if all of the possible fields for the YAML front matter were in there. Series isn't represented here or in the table below. Series is especially tricky for me to get my head around so make sure implications are documented as you do with the others. With Series missing, it makes me wonder what else isn't here. The table is really good by the way! Does the _order_ matter? Do I have to know that instalment goes before creators for example? if I swap them does all heck break loose? 
+
+**BART** - the title "YAML Front Matter" should be right before the text "instalments should start with", and the table should immediately follow the example. Only then should the heading and code snippet part be added and those bits need headings.
+
 Section headings within the instalment content are coded as second-level headings, i.e. `## Some Heading`.
 
 Code snippets should facilitate syntax highlighting by adding the language name after the opening three back-ticks as described in the Syntax Highlighting sub-section of the [Extended Syntax section of the Markdown docs](https://www.markdownguide.org/extended-syntax/).
@@ -56,7 +60,7 @@ The table below describes the supported fields in the YAML front matter:
 | `instalment` | Integer              | Instalments & Tidbits | The instalment's number within the relevant series, i.e. PBS `n` or PBS Tidbit `n`. |
 | `creators`   | Array of Strings     | Instalments & Tidbits | The slugs for the instalment's creators, usually `[bart, allison]`, but any base filename from the `docs/_creators` folder is a valid slug. |
 | `date`       | ISO 8601 date string | Instalments & Tidbits | The publish date for the instalment as an ISO 8601 formatted date, i.e. `YYYY-MM-DD`, so Christmas 2025 would be `2025-12-25`. _**Warnings** — instalment listings and navigation links are sorted on this field, so omitting it has unpredictable side-effects. Also, instalments with dates in the future are not published to the live website!_ |
-| `opengraph`  | Dictionary           | Optional              | An optional link to the MP3 file associated with a page or instalment. In theory OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality this part of the spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing, all other authors are free to ignore it completely!_ |
+| `opengraph`  | Dictionary           | Optional              | An optional link to the MP3 file associated with a page or instalment. In theory, OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality, this part of the spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing, all other authors are free to ignore it completely!_ |
 
 _**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
 
@@ -74,7 +78,7 @@ You can important sections users need to notice with markup of the form:
 And you can add the opposite, an aside, with markup of the form:
 
 ```markdown
-> Some interesting tidbit related to the content, but not part of it.
+> Some interesting comment related to the content, but not part of it.
 {: .aside}
 ```
 
