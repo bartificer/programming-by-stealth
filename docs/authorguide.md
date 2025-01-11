@@ -11,25 +11,49 @@ Note that this document is a work in progress.
 
 ## File Locations
 
-Instalments for the primary series are stored as markdown files in the folder `docs/_pbs`, while PBS Tidbits are stored in `docs/_tidbits`.
+All files that will form part of the website are in the `docs/` folder. This folder is converted to the published website by the GitHub Pages content management system. This means this folder has a common structure with other GitHub Pages sites:
 
-**BART** why are they in separate folders? what's the implication of putting a tidbit file in the _pbs_ directory?
+1.  Series of posts are stored in folders  named for their slug pre-fixed by an underscore. PBS has two series:
+   1. The  main PBS series is stored in `docs/_pbs`
+   2. The PBS Tidbits are stored in `docs/_tidbits`
+2. Static assets (mostly screenshots on this site), that is to say, files that are not transformed by GitHub Pages are stored in the `docs/assests` folder. To help keep things organised in that folder, sub-folders should be made f or the appropriate instalments, e.g. `docs/assets/pbs1/*` for static assists
 
-Images and other static files that need to be linked to from within instalments are stored in appropriately named sub-folders of `docs/assets/`, e.g. `docs/assets/pbs1/Screen-Shot-2015-10-07-at-22.41.46-e1444254317754.png`.
+Because the original files that will get bundled into the instalment ZIP files are effectively source code. For the asset that will be published, i.e. the ZIP file, these files are stored in appropriately named sub-folders in the `instalmentResources` folder.
 
-**BART** why are the assets in a different (and HIGHER) directory? why wouldn't the assets for pbs be in the `_pbs` folder? Hunting up and down the directory structure to find the files is tedious. I would picture logically, if we have to have a dir called `_pbs` then why not have the pbs folders inside it with the .md files and the assets (not in another subfolder called assets)?
+**ALLISON** — how is the compromise below? Over time we can pay down the technological debt and start moving all the old ZIPs, but for now, let's move on better at least.
 
-The original files that will be included in an instalment's resources ZIP file are stored in appropriately named sub-folders of the `instalmentResources` folder, e.g. `instalmentResources/pbs85`. The published instalment resource zip files are stored in the `instalmenmtZips` folder with appropriate filenames, e.g. `instalmentZips/pbs85.zip`.
+Before January 2025, instalment ZIP files were stored outside the website folder (`docs`) despite being static assets. This was a mistake made by Bart back in 2019 before he fully understood GitHub Pages.
 
-**BART** again why? why make upper-level structures? why not keep all of this in the `__pbs`folder for the instalment? what is the value of this structure and what would go wrong if I put assets or instalment resources inside the `_pbs`folder? there is a *meaning* to it, yes?
-
-**commentary**  Here's why I harp on this. It means if I'm editing pbs35, I go to `programming-by-stealth/docs/_pbs/pbs35.md` to get to the Markdown file. But to get to the instalment resources, I have to go up out of `_pbs`, up out of docs, down into instalment resources and into pbs35.  I suspect this is some organizational model you adopted ages ago and it's the way you think to organize things but it's antithetical to how I organize things. i would have one folder for pbs35 and it would have the .md, the zip and maybe a folder for the installment resources within it, and if there were a LOT of images I might have an assets folder in there too but probably not. It may not be fair for me to twist your brain to the way I organize things but I am twisted up in a knot every time I have to find something with this structure. Maybe on our next project we could decide on the organization before you get your heart set on it?   
+Starting in January 2025, **Instalment ZIPs should be stored directly in the the static assets folder** as `docs/assets/pbsN.zip` with `N` replaced with the appropriate instalment number. 
 
 **Mermaid diagram of all this** - https://www.mermaidchart.com/app/projects/47ab2aec-0ec6-41c1-81ea-379b040e478f/diagrams/2b116a0a-cd95-4227-8f21-9c21e4f5ddfb/version/v0.1/edit
 
-## Overall Document Structure
+## Document Structure
 
-Instalments should start with YAML front matter of the following form:
+Each Markdown file must have the following big-picture structure:
+
+```
+---
+YAML FONT MATTER HERE
+---
+## First Heading
+
+Some content
+
+## Second Heading
+
+Some More Content
+
+etc.
+```
+
+Note that top-level headings within the document are level-two headings (`##`, this is because at a HTML level, the instalment title will be rendered with a top-level heading tag).
+
+### Document Metadata (YAML Front Matter)
+
+The YAML front matter is the document's metadata. Between the opening and closing three-dash lines the front matter consists of YAML code representing a dictionary of key-value pairs. The order of the pairs is irrelevant, what matters is that the needed keys are present, that they have valid values. Within arrays, the order is also un-important.
+
+An example of complete and correct YAML metadata for an instalment is shown below:
 
 ```yaml
 ---
@@ -42,17 +66,7 @@ opengraph:
 ---
 ```
 
-**BART** - it would be helpful if all of the possible fields for the YAML front matter were in there. Series isn't represented here or in the table below. Series is especially tricky for me to get my head around so make sure implications are documented as you do with the others. With Series missing, it makes me wonder what else isn't here. The table is really good by the way! Does the _order_ matter? Do I have to know that instalment goes before creators for example? if I swap them does all heck break loose? 
-
-**BART** - the title "YAML Front Matter" should be right before the text "instalments should start with", and the table should immediately follow the example. Only then should the heading and code snippet part be added and those bits need headings.
-
-Section headings within the instalment content are coded as second-level headings, i.e. `## Some Heading`.
-
-Code snippets should facilitate syntax highlighting by adding the language name after the opening three back-ticks as described in the Syntax Highlighting sub-section of the [Extended Syntax section of the Markdown docs](https://www.markdownguide.org/extended-syntax/).
-
-## YAML Front Matter
-
-The table below describes the supported fields in the YAML front matter:
+The table below describes the supported fields in detail:
 
 | Field        | Type                 | Required              | Description                                                  |
 | :----------- | :------------------- | --------------------- | :----------------------------------------------------------- |
@@ -64,7 +78,11 @@ The table below describes the supported fields in the YAML front matter:
 
 _**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
 
-## Adding Notes
+### Adding Code Snippets
+
+Code snippets should facilitate syntax highlighting by adding the language name after the opening three back-ticks as described in the Syntax Highlighting sub-section of the [Extended Syntax section of the Markdown docs](https://www.markdownguide.org/extended-syntax/).
+
+### Adding Notes
 
 Notes of two kinds can be added using style annotations in conjunction with the Markdown syntax for block quotes.
 
@@ -82,7 +100,7 @@ And you can add the opposite, an aside, with markup of the form:
 {: .aside}
 ```
 
-## Adding Figures
+### Adding Figures
 
 Single figures with captions can be added with markup of the form:
 
