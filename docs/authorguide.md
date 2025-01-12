@@ -9,51 +9,49 @@ When ever possible, all content should be coded in pure Markdown, but very ocass
 
 Note that this document is a work in progress.
 
+# Taxonomy (Content Organisation)
+
+All content on this site falls into one of the following four categories:
+
+1. **Stand-alone Pages** — these are permanent pages that do not belong to any on-going series. They include the home page, the about page, and this author guide. These pages have no taxonomical metadata associated with them.
+2. **PBS Instalments** — a sequence of tutorial-style posts collected together in a GitHub Pages/Jekyll [Collection](https://jekyllrb.com/docs/collections/) with the slug `pbs`. Each instalment defines the following additional taxonomical information:
+   1. A sequence number within the series
+   2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags) — note that as of January 2025, support for this feature within the theme is limited.
+   3. Optionally, a mini-series name. This deeper level of organisation is not directly provided by GitHub Pages/Jekyll, but a custom additon provided by the Bartificer theme.
+3. **PBS Tidbits** — a collection with the slug `tidbits` containing stand-alone special posts that are is in some way related to the main PBS series, but not part of it. Each tidbit defines the following additional taxonomical information:
+   1. A sequence number
+   2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags) — note that as of January 2025, support for this feature within the theme is limited.
+4. **Creator Details** — a hidden GitHub Pages/Jekyll collection with the slug `creators` continaing content snippets describing the people who have co-created PBS instalment and/or tidbits. The details captured in this connection are injected into the [About the Authors](/about) page. Creators are divided into two categories:
+   1. Regular Hosts — as of January 2025, just Bart & Allison.
+   2. Guests — contributors who have joined for a few instalments (a work-in-progress as of January 2025)
+
 ## File Locations
 
-All files that will form part of the website are in the `docs/` folder. This folder is converted to the published website by the GitHub Pages content management system. This means this folder has a common structure with other GitHub Pages sites:
+All source files for the generated website are contained within the `docs` folder. The file structure within this folder is mostly determined by the minutiae of how GitHub Pages/Jekyll works.
 
-1.  Series of posts are stored in folders  named for their slug pre-fixed by an underscore. PBS has two series:
-   1. The  main PBS series is stored in `docs/_pbs`
-   2. The PBS Tidbits are stored in `docs/_tidbits`
-2. Static assets (mostly screenshots on this site), that is to say, files that are not transformed by GitHub Pages are stored in the `docs/assests` folder. To help keep things organised in that folder, sub-folders should be made f or the appropriate instalments, e.g. `docs/assets/pbs1/*` for static assists
+The Markdown files defining the content and metadata for the four content types described above are located in the folders listed below. Note that these locations are entirely determined by how GitHub Pages/Jekyll works, and the commonality is that collections are stored in folders with names consisting of their slug pre-fixed with an underscore (`_`).
 
-Because the original files that will get bundled into the instalment ZIP files are effectively source code. For the asset that will be published, i.e. the ZIP file, these files are stored in appropriately named sub-folders in the `instalmentResources` folder.
+1. **Stand-alone Pages** are stored in the root of the `docs` folder.
+2. **PBS Instalments** are stored in the `docs/_pbs` folder.
+3. **PBS Tidbits** are stored in the `docs/_tidbits` folder.
+4. **Creator Details** are stored in the `docs/_creators` folder.
 
-**ALLISON** — how is the compromise below? Over time we can pay down the technological debt and start moving all the old ZIPs, but for now, let's move on better at least.
+GitHubs Pages/Jekyll coverts all Markdown files to HTML files when generating the published website, and it does so by applying the following naming rules:
 
-Before January 2025, instalment ZIP files were stored outside the website folder (`docs`) despite being static assets. This was a mistake made by Bart back in 2019 before he fully understood GitHub Pages.
+1. **Stand-alone Pages** get published as their original file name without the `.md` extension, e.g. `docs/about.md` becomes `https://pbs.bartificer.net/about`.
+2. **PBS Instalments** also get published as their original file names without the `.md` extension, e.g. `docs/_pbs/pbs42.md` becomes `https://pbs.bartificer.net/pbs142`. _**Note** that this is an unusual configuration, and a result of Bart's inexperience with GitHub Pages at the outset of the project. Changing this configuration now would break too many links, so it has become technical debt that can\'t be easily paid down 🙁_
+3. **PBS Tidbits** also get published as their original file names without the `.md` extension, e.g. `docs/_tidbits/tidbit3.md` becomes `https://pbs.bartificer.net/tidbit3`. _(The same note as above applies here.)_
+4. **Creator Details** are not mapped to any URL as they are content snippets rather than full pages.
 
-Starting in January 2025, **Instalment ZIPs should be stored directly in the the static assets folder** as `docs/assets/pbsN.zip` with `N` replaced with the appropriate instalment number. 
+TO DO — update wording on static assets.
 
-**Mermaid diagram of all this** - https://www.mermaidchart.com/app/projects/47ab2aec-0ec6-41c1-81ea-379b040e478f/diagrams/2b116a0a-cd95-4227-8f21-9c21e4f5ddfb/version/v0.1/edit
+Images and other static files that need to be linked to from within instalments are stored in appropriately named sub-folders of `docs/assets/`, e.g. `docs/assets/pbs1/Screen-Shot-2015-10-07-at-22.41.46-e1444254317754.png`.
 
-## Document Structure
+The original files that will be included in an instalment's resources ZIP file are stored in appropriately named sub-folders of the `instalmentResources` folder, e.g. `instalmentResources/pbs85`. The published instalment resource zip files are stored in the `instalmenmtZips` folder with appropriate filenames, e.g. `instalmentZips/pbs85.zip`.
 
-Each Markdown file must have the following big-picture structure:
+## Overall Document Structure
 
-```
----
-YAML FONT MATTER HERE
----
-## First Heading
-
-Some content
-
-## Second Heading
-
-Some More Content
-
-etc.
-```
-
-Note that top-level headings within the document are level-two headings (`##`, this is because at a HTML level, the instalment title will be rendered with a top-level heading tag).
-
-### Document Metadata (YAML Front Matter)
-
-The YAML front matter is the document's metadata. Between the opening and closing three-dash lines the front matter consists of YAML code representing a dictionary of key-value pairs. The order of the pairs is irrelevant, what matters is that the needed keys are present, that they have valid values. Within arrays, the order is also un-important.
-
-An example of complete and correct YAML metadata for an instalment is shown below:
+Instalments should start with YAML front matter of the following form:
 
 ```yaml
 ---
@@ -66,23 +64,11 @@ opengraph:
 ---
 ```
 
-The table below describes the supported fields in detail:
-
-| Field        | Type                 | Required              | Description                                                  |
-| :----------- | :------------------- | --------------------- | :----------------------------------------------------------- |
-| `title`      | String               | Always                | The base title for the episode, the series details will be added around this base title by the theme. This base title is used to build the title at the top of the page, the page's title in browser tabs/windows, and if the page is an instalment, the instalment's link text in the relevant listing on the home page. |
-| `instalment` | Integer              | Instalments & Tidbits | The instalment's number within the relevant series, i.e. PBS `n` or PBS Tidbit `n`. |
-| `creators`   | Array of Strings     | Instalments & Tidbits | The slugs for the instalment's creators, usually `[bart, allison]`, but any base filename from the `docs/_creators` folder is a valid slug. |
-| `date`       | ISO 8601 date string | Instalments & Tidbits | The publish date for the instalment as an ISO 8601 formatted date, i.e. `YYYY-MM-DD`, so Christmas 2025 would be `2025-12-25`. _**Warnings** — instalment listings and navigation links are sorted on this field, so omitting it has unpredictable side-effects. Also, instalments with dates in the future are not published to the live website!_ |
-| `opengraph`  | Dictionary           | Optional              | An optional link to the MP3 file associated with a page or instalment. In theory, OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality, this part of the spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing, all other authors are free to ignore it completely!_ |
-
-_**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
-
-### Adding Code Snippets
+Section headings within the instalment content are coded as second-level headings, i.e. `## Some Heading`.
 
 Code snippets should facilitate syntax highlighting by adding the language name after the opening three back-ticks as described in the Syntax Highlighting sub-section of the [Extended Syntax section of the Markdown docs](https://www.markdownguide.org/extended-syntax/).
 
-### Adding Notes
+## Adding Notes
 
 Notes of two kinds can be added using style annotations in conjunction with the Markdown syntax for block quotes.
 
@@ -96,11 +82,11 @@ You can important sections users need to notice with markup of the form:
 And you can add the opposite, an aside, with markup of the form:
 
 ```markdown
-> Some interesting comment related to the content, but not part of it.
+> Some interesting tidbit related to the content, but not part of it.
 {: .aside}
 ```
 
-### Adding Figures
+## Adding Figures
 
 Single figures with captions can be added with markup of the form:
 
