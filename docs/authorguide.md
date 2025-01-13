@@ -1,43 +1,49 @@
 ---
 title: Author's Guide
 ---
-This site is creative commons, [hosted on GitHub](https://github.com/bartificer/programming-by-stealth), and published on [GitHub Pages](https://pages.github.com) using the [Bartificer Jekyll Theme](https://github.com/bartificer/bartificer-jekyll-theme). Contributions in the form of corrections are welcome via [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+# Programming by Stealth Author's Guide
 
-The content is written in [Markdown](https://www.markdownguide.org/cheat-sheet/) with [YAML](https://en.wikipedia.org/wiki/YAML) front matter for metadata.
+This site is licensed creative commons, [hosted on GitHub](https://github.com/bartificer/programming-by-stealth), and published using [GitHub Pages](https://pages.github.com) with the [Bartificer Jekyll Theme](https://github.com/bartificer/bartificer-jekyll-theme). Contributions in the form of corrections are welcome via [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
-When ever possible, all content should be coded in pure Markdown, but very ocassionally it may be necessary to add additional markup. When that is the case, HTML can be included in the Markdown files, but avoid using hard-coded styling, instead use appropriate HTML 5 markup with [Bootstrap 4](https://getbootstrap.com/docs/4.6/getting-started/introduction/) CSS classes.
+All content is authored in [Markdown](https://www.markdownguide.org/cheat-sheet/), and [YAML](https://en.wikipedia.org/wiki/YAML) front matter is used to encode the metadata.
 
-Note that this document is a work in progress.
+GitHub Pages is a [static site generator](https://en.wikipedia.org/wiki/Static_site_generator) built on version 3 of the open source [Jekyll](https://jekyllrb.com) static site generator. The contents of the `docs` folder gets transformed into the published website using GitHub actions. The site is re-built each time a new commit is pushed to the `master` branch.
+
+For the site to build correctly all content must be authored using valid Markdown syntax, and the necessary metadata must be present in correctly formatted YAML front matter.
+
+This document describe's the sit'e taxonomy and how both content and metadata should be authored in order to produce the desired outcomes.
 
 # Taxonomy (Content Organisation)
 
 All content on this site falls into one of the following four categories:
 
-1. **Stand-alone Pages** — these are permanent pages that do not belong to any on-going series. They include the home page, the about page, and this author guide. These pages have no taxonomical metadata associated with them.
+1. **Stand-alone Pages** — these are permanent pages that do not belong to any on-going series. They include the home page (`docs/index.md`), the *About the Authors* page (`docs/about.md`), and this authors guide (`docs/authorguide.md`). These pages have no taxonomical metadata associated with them.
 2. **PBS Instalments** — a sequence of tutorial-style posts collected together in a GitHub Pages/Jekyll [Collection](https://jekyllrb.com/docs/collections/) with the slug `pbs`. Each instalment defines the following additional taxonomical information:
-   1. A sequence number within the series
-   2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags) — note that as of January 2025, support for this feature within the theme is limited.
+   1. A sequence number within the collection
+   2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags) — _**note** that as of January 2025, support for this feature within the theme is limited_.
    3. Optionally, a mini-series name. This deeper level of organisation is not directly provided by GitHub Pages/Jekyll, but a custom additon provided by the Bartificer theme.
 3. **PBS Tidbits** — a collection with the slug `tidbits` containing stand-alone special posts that are is in some way related to the main PBS series, but not part of it. Each tidbit defines the following additional taxonomical information:
-   1. A sequence number
-   2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags) — note that as of January 2025, support for this feature within the theme is limited.
-4. **Creator Details** — a hidden GitHub Pages/Jekyll collection with the slug `creators` continaing content snippets describing the people who have co-created PBS instalment and/or tidbits. The details captured in this connection are injected into the [About the Authors](/about) page. Creators are divided into two categories:
-   1. Regular Hosts — as of January 2025, just Bart & Allison.
-   2. Guests — contributors who have joined for a few instalments (a work-in-progress as of January 2025)
+   1. A sequence number within the collection
+   2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags)
+4. **Creator Details** — a hidden GitHub Pages/Jekyll collection with the slug `creators` continaing content snippets describing the people who have co-created PBS instalments and/or tidbits. The details captured in this collection are injected into the [About the Authors](/about) page. Creators are divided into two types:
+   1. **Regular Hosts** — as of January 2025, just Bart & Allison.
+   2. **Guests** — contributors who have joined for a few instalments (a work-in-progress as of January 2025)
 
-This taxonomy facilitates the following theme features:
+This taxonomy enables the following theme features:
 
 1. The instalment lists on the front page
 2. The fine-tuning of instalment titles for optimal display in four distinct contexts:
    1. Instament Page Title
    2. Browser Window/Tab Title
    3. Instalment Name in listings
-   4. The Next & Previous links at the bottom of each instalment
-3. The Next & Previous links at the bottom of each instalment
-4. The clear labelling of mini-series and the Next & Previous links within each mini-series. Note that the Next & Previous mini-series links work when a mini-series is spread out over non-contiguous instalments.
-5. Creator credits at the top of each instalment linking to the appropriate section of the *About the Authors* page.
-6. Tag displays on the instalments lists and at the top of each instalment.
-   1. **WIP:** a tags page allowing quick access to specific instalments by tag.
+   4. The Next & Previous links at the bottom of each instalment and tidbit
+3. The Next & Previous links at the bottom of each instalment and tidbit
+4. The clear labelling of mini-series and the Next & Previous links within each mini-series instalment. Note that the Next & Previous mini-series links work even when a mini-series is spread over non-contiguous instalments (e.g. the Git mini-series which includes instalments 101 to 120, and 172 to 174).
+5. Creator credits at the top of each instalment and titbit linking to the appropriate section of the *About the Authors* page.
+6. Tag lists:
+   1. At the top of each instalment and tidbit
+   2. In the instalment and tidbit listings on the front page.
+   3. **FUTURE:** the tags page which allows quick access to specific instalments by tag.
 
 ## File Locations
 
@@ -76,13 +82,13 @@ As of January 2025 the storage location for the instalment ZIP files is in flux:
 
 ## Authoring Content
 
-The vast majority of content on this site is in PBS Instalments, followed in a distant second by PBS Tidbits. For completeness this section describes each of the four content types, but most authors can ignore all but the first sub-section.
+The vast majority of content on this site is in PBS Instalments, followed in a distant second by PBS Tidbits. For completeness this section describes each of the four content types, but most authors can ignore all but the first sub-section which describes authoring instalments & tidbits.
 
 The Markdown files for each content type consist of metadata in the form of YAML front matter followed by content. The front matter is wrapped with lines containing just three dashes, and consists of the YAML representation of a single dictionary of key-value pairs. Because this is metadata, the order of the pairs is irrelevant, what matters is that the needed keys are present, that they have valid values. For keys with arrays as values, the order of items within the arrays is also irrelevant.
 
 _**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
 
-### Authoring Instalment & Tidbits
+### Authoring Instalments & Tidbits
 
 **Reminder:** PBS instalments are in `docs/_pbs/pbsN.md` where `N` is the instalment's number, and Tidbits are in `docs/_tidbits/tidbitN.md` where `N` is the tidbit's number.
 
@@ -152,7 +158,7 @@ Some Content.
 Maybe some more content.
 ```
 
-As an example, the About the Authors page starts as follows:
+As an example, the *About the Authors* page starts as follows:
 
 ```yaml
 ---
@@ -166,6 +172,8 @@ opengraph:
 This series is co-created by Bart Busschots & Allison Sheridan …
 ```
 
+Notice that this page makes use of the ability to specify different titles for the page itself and the tab/window header shown in the browser. In this case the tab will be titled *"Bart & Allison"*, while the page's content is headed with *"About the Authors"*
+
 The following table describes the supported front matter fields in detail:
 
 | Field                  | Type       | Required    | Description                                                  |
@@ -175,11 +183,92 @@ The following table describes the supported front matter fields in detail:
 | `opengraph.title`      | String     | Recommended | The title for use in link previews,                          |
 | `opengraph.desription` | String     | Recommended | A one-line summary of the page for use in link previews.     |
 
-### Creating/Updating Author Details
+### Creating/Updating Creator Details
 
-TO DO
+**Reminder:** creator details are in `docs/_creators/SLUG.md` where `SLUG` is the creator's slug, e.g. Bart's slug is `bart` so his details are in `docs/_creators/bart.md`.
+
+The creators collection is different to the collections for PBS and the tidbits because it is *hidden*. This means that the markdown files in `docs/_creators` do not have a URL in the generated site. Instead, creators are injected into the *About the Authors* (`docs/about.md`) page using  [Liquid template tags](https://jekyllrb.com/docs/liquid/) (the templating language used by GitHub Pages/Jekyll). **It's not necessary to understand Liquid templates to update the details for an existing creator or add a new creator**.
+
+The site supports two kinds of creators:
+
+1. Regular Hosts
+2. Guests
+
+The regular hosts get an entire section each on the [About the Authors](/about) page, while guests simply get a one-line entry with a link in the guest list.
+
+#### Updating the Details for a Regular Host
+
+The Markdown files for the regular hosts have the following overall structure:
+
+```
+---
+YAML FRONT MATTER GOES HERE
+---
+The host's bio in Markdown.
+```
+
+As an example, Allison's Markdown file (`docs/_creators/allison.md`) starts:
+
+```
+---
+display_name: Allison Sheridan
+short_name: Allison
+guest: false
+---
+Allison hosts the NosillaCast Apple Podcast, produced weekly since May 2005 …
+```
+
+The following table describes the supported front matter fields in detail:
+
+| Field          | Type    | Required | Description                                                  |
+| :------------- | :------ | -------- | :----------------------------------------------------------- |
+| `display_name` | String  | Yes      | The creator's full name.                                     |
+| `short_name`   | String  | Yes      | The creator's first name or the nickname they prefer in contexts where space is constrained. |
+| `guest`        | Boolean | Yes      | Must be `false` for primary creators.                        |
+
+#### Updating the details for an Existing Guest or Adding a New Guest
+
+The details for existing guests are updated by editing their file in the `docs/_creators` folder.
+
+Adding a new guest requires creating a new markdown file in `docs/_creators`. The file's base name must be the guest's slug. For consistency, please use [camelCase](https://en.wikipedia.org/wiki/Camel_case). For community members like Helma, just the first name is sufficient as the slug, but for guests from outside the community, please use `firstnameSurname`. 
+
+Guests are associated with instalments or tidbits by including their slug in the `creators` array in the appropriate instalment or tidbit's front matter.
+
+The Markdown files for the guests have the following overall structure:
+
+```
+---
+YAML FRONT MATTER GOES HERE
+---
+```
+
+In other words, **a Markdown file that contains only YAML front matter**.
+
+As an example, this is Helma's complete Markdown file (`docs/_craetors/helma.md`):
+
+```yaml
+---
+display_name: Helma van der Linden
+short_name: Helma
+guest: true
+external_url: https://github.com/hepabolu
+---
+```
+
+The following table describes the supported front matter fields in detail:
+
+| Field          | Type    | Required | Description                                                  |
+| :------------- | :------ | -------- | :----------------------------------------------------------- |
+| `display_name` | String  | Yes      | The creator's full name.                                     |
+| `short_name`   | String  | Yes      | The creator's first name or the nickname they prefer in contexts where space is constrained. |
+| `guest`        | Boolean | Yes      | Must be `true` for guest creators.                           |
+| `external_url` | String  | Yes      | A valid URL to link to.                                      |
 
 ### Advanced Markup (in Markdown Files)
+
+Whenever possible, all content should be coded in pure Markdown, but very occasionally it may be necessary to add additional markup. When that is the case, HTML can be included in the Markdown files, but avoid using hard-coded styling, instead use appropriate HTML 5 markup with [Bootstrap 4](https://getbootstrap.com/docs/4.6/getting-started/introduction/) CSS classes.
+
+The theme provides support for a number of non-standard or advanced Markdown features as described below.
 
 #### Adding Code Snippets
 
