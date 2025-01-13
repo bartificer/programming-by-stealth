@@ -101,7 +101,17 @@ Note that top-level headings within the document are level-two headings (`##`, t
 
 The YAML front matter is the document's metadata. Between the opening and closing three-dash lines the front matter consists of YAML code representing a dictionary of key-value pairs. The order of the pairs is irrelevant, what matters is that the needed keys are present, that they have valid values. For keys with arrays as values, the order of items within the arrays is also irrelevant.
 
-An example of complete and correct YAML metadata for an instalment is shown below:
+_**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
+
+The need front matter varies depending on the content type.
+
+#### Front Matter for PBS Instalments & Tidbits
+
+The majority of content on this site consists of PBS instalments, followed in a distant second by PBS Tidbits.
+
+The YAML metadata needed for both of these content types is almost identical, the one difference is that `miniseries` are only valid in PBS Instalments.
+
+An example of complete and correct YAML metadata for a  instalment is shown below:
 
 ```yaml
 ---
@@ -127,7 +137,34 @@ The table below describes the supported fields in detail:
 | `date`       | ISO 8601 date string | Instalments & Tidbits   | The publish date for the instalment as an ISO 8601 formatted date, i.e. `YYYY-MM-DD`, so Christmas 2025 would be `2025-12-25`. _**Warnings** — instalment listings and navigation links are sorted on this field, so omitting it has unpredictable side-effects. Also, instalments with dates in the future are not published to the live website!_ |
 | `opengraph`  | Dictionary           | Optional                | An optional link to the MP3 file associated with a page or instalment. In theory, OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality, this part of the spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing, all other authors are free to ignore it completely!_ |
 
-_**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
+#### Front Matter for Stand-alone Pages
+
+Only one metadata field is required on stand-alone pages, `title`, but additional OpenGraph details are recommended to control how social media apps generate their link previews.  The following is a complete example:
+
+```yaml
+---
+title: Bart & Allison
+opengraph:
+  title: About the PBS Creators
+  description: Find Bart & Allison online.
+---
+# Top Level Page Heading
+```
+
+_**Note:** because the theme does not auto-generate top-level headings for stand-alone pages, a top-level heading should be added immediately after the front matter._
+
+The following table describes the supported fields in detail:
+
+| Field                  | Type       | Required    | Description                                                  |
+| :--------------------- | :--------- | ----------- | :----------------------------------------------------------- |
+| `title`                | String     | Always      | The page's title as it will appear in browser tabs/window labels. |
+| `opengraph`            | Dictionary | Recommended | A dictionary complying with the OpenGraph standard, the fields below are recommended. |
+| `opengraph.title`      | String     | Recommended | The title for use in link previews,                          |
+| `opengraph.desription` | String     | Recommended | A one-line summary of the page for use in link previews.     |
+
+#### Front Matter for Author Details
+
+TO DO
 
 ### Adding Code Snippets
 
