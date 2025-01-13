@@ -74,9 +74,17 @@ As of January 2025 the storage location for the instalment ZIP files is in flux:
 
 **WIP Mermaid diagram of all this** - https://www.mermaidchart.com/app/projects/47ab2aec-0ec6-41c1-81ea-379b040e478f/diagrams/2b116a0a-cd95-4227-8f21-9c21e4f5ddfb/version/v0.1/edit
 
------
+## Authoring Content
 
-## Document Structure
+The vast majority of content on this site is in PBS Instalments, followed in a distant second by PBS Tidbits. For completeness this section describes each of the four content types, but most authors can ignore all but the first sub-section.
+
+The Markdown files for each content type consist of metadata in the form of YAML front matter followed by content. The front matter is wrapped with lines containing just three dashes, and consists of the YAML representation of a single dictionary of key-value pairs. Because this is metadata, the order of the pairs is irrelevant, what matters is that the needed keys are present, that they have valid values. For keys with arrays as values, the order of items within the arrays is also irrelevant.
+
+_**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
+
+### Authoring Instalment & Tidbits
+
+**Reminder:** PBS instalments are in `docs/_pbs/pbsN.md` where `N` is the instalment's number, and Tidbits are in `docs/_tidbits/tidbitN.md` where `N` is the tidbit's number.
 
 Each Markdown file must have the following big-picture structure:
 
@@ -97,21 +105,9 @@ etc.
 
 Note that top-level headings within the document are level-two headings (`##`, this is because at a HTML level, the instalment title will be rendered with a top-level heading tag).
 
-### Document Metadata (YAML Front Matter)
+I terms of the YAML front matter, there is just one different between instalments and tidbits, the key `miniseries` is only valid in PBS Instalments.
 
-The YAML front matter is the document's metadata. Between the opening and closing three-dash lines the front matter consists of YAML code representing a dictionary of key-value pairs. The order of the pairs is irrelevant, what matters is that the needed keys are present, that they have valid values. For keys with arrays as values, the order of items within the arrays is also irrelevant.
-
-_**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
-
-The need front matter varies depending on the content type.
-
-#### Front Matter for PBS Instalments & Tidbits
-
-The majority of content on this site consists of PBS instalments, followed in a distant second by PBS Tidbits.
-
-The YAML metadata needed for both of these content types is almost identical, the one difference is that `miniseries` are only valid in PBS Instalments.
-
-An example of complete and correct YAML metadata for a  instalment is shown below:
+Below is the complete and correct YAML metadata for instalment 171 which is part of the MVC mini-series:
 
 ```yaml
 ---
@@ -137,9 +133,26 @@ The table below describes the supported fields in detail:
 | `date`       | ISO 8601 date string | Instalments & Tidbits   | The publish date for the instalment as an ISO 8601 formatted date, i.e. `YYYY-MM-DD`, so Christmas 2025 would be `2025-12-25`. _**Warnings** — instalment listings and navigation links are sorted on this field, so omitting it has unpredictable side-effects. Also, instalments with dates in the future are not published to the live website!_ |
 | `opengraph`  | Dictionary           | Optional                | An optional link to the MP3 file associated with a page or instalment. In theory, OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality, this part of the spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing, all other authors are free to ignore it completely!_ |
 
-#### Front Matter for Stand-alone Pages
+### Authoring Stand-alone Pages
 
-Only one metadata field is required on stand-alone pages, `title`, but additional OpenGraph details are recommended to control how social media apps generate their link previews.  The following is a complete example:
+Stand alone pages use a simpler template than instalments, so require much less metadata. However, unlike instalments and tidbits, the simpler theme requires the page author to add the page's top-level heading as the first line of the page's markdown content. To allow the page to have a shorter and pithier title in browser tab/window labels, pages also have a `title` key in the front matter.
+
+The basic structure is as follows:
+
+```
+---
+YAML FRONT MATTER HERE
+---
+# Page Heading
+
+Some Content.
+
+## Optional Sub-heading
+
+Maybe some more content.
+```
+
+As an example, the About the Authors page starts as follows:
 
 ```yaml
 ---
@@ -148,12 +161,12 @@ opengraph:
   title: About the PBS Creators
   description: Find Bart & Allison online.
 ---
-# Top Level Page Heading
+# About the Authors
+
+This series is co-created by Bart Busschots & Allison Sheridan …
 ```
 
-_**Note:** because the theme does not auto-generate top-level headings for stand-alone pages, a top-level heading should be added immediately after the front matter._
-
-The following table describes the supported fields in detail:
+The following table describes the supported front matter fields in detail:
 
 | Field                  | Type       | Required    | Description                                                  |
 | :--------------------- | :--------- | ----------- | :----------------------------------------------------------- |
@@ -162,17 +175,19 @@ The following table describes the supported fields in detail:
 | `opengraph.title`      | String     | Recommended | The title for use in link previews,                          |
 | `opengraph.desription` | String     | Recommended | A one-line summary of the page for use in link previews.     |
 
-#### Front Matter for Author Details
+### Creating/Updating Author Details
 
 TO DO
 
-### Adding Code Snippets
+### Advanced Markup (in Markdown Files)
+
+#### Adding Code Snippets
 
 All code snippets should be marked up using the appropriate Markdown syntax.
 
 Multi-line code snippets should facilitate syntax highlighting by adding the language name after the opening three back-ticks as described in the Syntax Highlighting sub-section of the [Extended Syntax section of the Markdown docs](https://www.markdownguide.org/extended-syntax/).
 
-### Adding Notes
+#### Adding Notes
 
 Notes of two kinds can be added using style annotations in conjunction with the Markdown syntax for block quotes.
 
@@ -190,7 +205,7 @@ And you can add the opposite, an aside, with markup of the form:
 {: .aside}
 ```
 
-### Adding Figures
+#### Adding Figures
 
 Single figures with captions can be added with markup of the form:
 
