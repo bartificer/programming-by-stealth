@@ -310,7 +310,7 @@ param (
 
 #### Adding Types
 
-However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define three parameters with the most common types, you would use code of the form:
+However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define four parameters with the most common types, you would use code of the form:
 
 ```pwsh
 param (
@@ -845,7 +845,7 @@ Finally, I want to draw your attention to two important sections:
 1. The to-level *Learning PowerShell* section is very much a beginner's friend. If you're very new to the whole idea, the *PowerShell 101* sub-section is probably the place to start, but if you're more of a power user in general who wants to dive straight in, the *Deep Dives* subsection is great for actually understanding how PowerShell implements core concepts like arrays etc..
 2. The *Reference* section is where you'll find the traditional API-style docs you'll probably want most. By far the most important sub-section in there is *Microsoft.PowerShell.Core*. I want to specifically all out the articles in the *About* sub-sub section in the *Microsoft.PowerShell.Core* sub-section. The most important sub-section after *Microsoft.PowerShell.Core* is *Microsoft.PowerShell.Utility*
 
-As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's no so urgent you'll be under pressure.
+As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's not so urgent you'll be under pressure.
 
 ## Final Thoughts
 
