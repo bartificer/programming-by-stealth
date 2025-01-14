@@ -2,7 +2,7 @@
 title: Interview with jq Maintainer Mattias Wadman
 instalment: 8
 tags: [jq, interview]
-creators: [Bart, mattiasWadman]
+creators: [bart, mattiasWadman]
 date: 2024-08-06
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_08_06.mp3
