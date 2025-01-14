@@ -46,8 +46,6 @@ Note that Continue can be used JetBrains in addition to VSCode, and with non-loc
   * Integrate LLMs into VSCode (or Jetbrains)
   * Amplified developers, AI-enhanced development · The leading open-source AI code assistant. You can connect any models and any context to build custom autocomplete and chat experiences inside the IDE
 
-* Python Crash Course: https://nostarch.com/python-crash-course-3rd-edition
-
 * Visual Studio Code: [https://code.visualstudio.com](https://code.visualstudio.com/)
   * Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications. Visual Studio Code is free and available on your favorite platform - Linux, macOS, and Windows.
 
