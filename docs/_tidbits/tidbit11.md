@@ -661,7 +661,7 @@ While you're just writing little scripts PowerShell will leave you alone and not
 
 My advice is very simple — get into the habit of always following the Verb-Noun pattern, and checking the docs each time to be sure you pick the right word until they become second nature to you.
 
-Another way in which PowerShell is opinionated is in the casing of all names. While not enforced, PowerShell officially strongly recommends so-called PascalCase, that is to say the first letter of each word is capitalised, including the very first letter, and words are not separated by any symbols. All bult-in variables and functions, as well as all those in the many officially supprted modules religiously use PascalCase. If ypu want to write PowerShell code that other PowerShell users will not find weird and unintuitive, you should adopt PascalCase in your code too!
+Another way in which PowerShell is opinionated is in the casing of all names. While not enforced, PowerShell officially strongly recommends so-called PascalCase, that is to say the first letter of each word is capitalised, including the very first letter, and words are not separated by any symbols. All bult-in variables and functions, as well as all those in the many officially supported modules religiously use PascalCase. If you want to write PowerShell code that other PowerShell users will not find weird and unintuitive, you should adopt PascalCase in your code too!
 
 ### A Robust Module Ecosystem
 
