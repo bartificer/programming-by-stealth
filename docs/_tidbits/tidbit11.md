@@ -310,7 +310,7 @@ param (
 
 #### Adding Types
 
-However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define three parameters with the most common types, you would use code of the form:
+However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define four parameters with the most common types, you would use code of the form:
 
 ```pwsh
 param (
@@ -661,7 +661,7 @@ While you're just writing little scripts PowerShell will leave you alone and not
 
 My advice is very simple — get into the habit of always following the Verb-Noun pattern, and checking the docs each time to be sure you pick the right word until they become second nature to you.
 
-Another way in which PowerShell is opinionated is in the casing of all names. While not enforced, PowerShell officially strongly recommends so-called PascalCase, that is to say the first letter of each word is capitalised, including the very first letter, and words are not separated by any sumbols. All bult-in variables and functions, as well as all those in the many officially supprted modules religiously use PascalCase. If ypu want to write PowerShell code that other PowerShell users will not find weird and unintuitive, you should adopt PascalCase in your code too!
+Another way in which PowerShell is opinionated is in the casing of all names. While not enforced, PowerShell officially strongly recommends so-called PascalCase, that is to say the first letter of each word is capitalised, including the very first letter, and words are not separated by any symbols. All bult-in variables and functions, as well as all those in the many officially supported modules religiously use PascalCase. If you want to write PowerShell code that other PowerShell users will not find weird and unintuitive, you should adopt PascalCase in your code too!
 
 ### A Robust Module Ecosystem
 
@@ -845,7 +845,7 @@ Finally, I want to draw your attention to two important sections:
 1. The to-level *Learning PowerShell* section is very much a beginner's friend. If you're very new to the whole idea, the *PowerShell 101* sub-section is probably the place to start, but if you're more of a power user in general who wants to dive straight in, the *Deep Dives* subsection is great for actually understanding how PowerShell implements core concepts like arrays etc..
 2. The *Reference* section is where you'll find the traditional API-style docs you'll probably want most. By far the most important sub-section in there is *Microsoft.PowerShell.Core*. I want to specifically all out the articles in the *About* sub-sub section in the *Microsoft.PowerShell.Core* sub-section. The most important sub-section after *Microsoft.PowerShell.Core* is *Microsoft.PowerShell.Utility*
 
-As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's no so urgent you'll be under pressure.
+As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's not so urgent you'll be under pressure.
 
 ## Final Thoughts
 
