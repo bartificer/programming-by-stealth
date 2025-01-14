@@ -2,6 +2,7 @@
 title: Run LLMs Locally with Ollama
 instalment: 10
 creators: [allison, steveMattan]
+tags: [interview, LLM, AI]
 date: 2024-12-19
 opengraph:
   audio: https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2024_12_21.mp3
