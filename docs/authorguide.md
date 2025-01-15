@@ -13,11 +13,11 @@ For the site to build correctly all content must be authored using valid Markdow
 
 This document describe's the sit'e taxonomy and how both content and metadata should be authored in order to produce the desired outcomes.
 
-# Taxonomy (Content Organisation)
+## Taxonomy (Content Organisation)
 
 All content on this site falls into one of the following four categories:
 
-1. **Stand-alone Pages** — these are permanent pages that do not belong to any on-going series. They include the home page (`docs/index.md`), the *About the Authors* page (`docs/about.md`), and this authors guide (`docs/authorguide.md`). These pages have no taxonomical metadata associated with them.
+1. **Stand-alone Pages** — these are permanent pages that do not belong to any on-going series. They include the front page (`docs/index.md`), the *About the Authors* page (`docs/about.md`), and this authors guide (`docs/authorguide.md`). These pages have no taxonomical metadata associated with them.
 2. **PBS Instalments** — a sequence of tutorial-style posts collected together in a GitHub Pages/Jekyll [Collection](https://jekyllrb.com/docs/collections/) with the slug `pbs`. Each instalment defines the following additional taxonomical information:
    1. A sequence number within the collection
    2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags) — _**note** that as of January 2025, support for this feature within the theme is limited_.
@@ -29,7 +29,9 @@ All content on this site falls into one of the following four categories:
    1. **Regular Hosts** — as of January 2025, just Bart & Allison.
    2. **Guests** — contributors who have joined for a few instalments (a work-in-progress as of January 2025)
 
-This taxonomy enables the following theme features:
+### Taxonomy-Powered Site Features
+
+This taxonomy enables the theme to provide the following features in the generated website:
 
 1. Automatic creation of the instalment indexes on the front page
 2. The fine-tuning of instalment titles for optimal display in four distinct contexts:
@@ -42,9 +44,10 @@ This taxonomy enables the following theme features:
 5. Automatic generation of OpenGraph metadata on all Instalments & Tidbits
 6. Creator credits at the top of each instalment and Titbit linking to the appropriate section of the *About the Authors* page.
 7. Tag lists:
-   1. At the top of each instalment and tidbit
-   2. In the instalment and Tidbit listings on the front page.
-   3. **FUTURE:** the tags page which allows quick access to specific instalments by tag.
+   1. At the top of each tagged Instalment and Tidbit
+   2. **DEPRECATED:** In the Instalment and Tidbit indexes on the front page — this feature will be replaced with a tag cloud in the future
+   3. **FUTURE:** In a tag cloud on the front page
+   4. **FUTURE:** On a dedicated *Tags* page showing all tags with links to each tagged Instalment & Tidbit for each.
 
 ## File Locations
 
@@ -135,7 +138,7 @@ The table below describes the supported fields in detail:
 
 | Field        | Type                 | Required                | Description                                                  |
 | :----------- | :------------------- | ----------------------- | :----------------------------------------------------------- |
-| `title`      | String               | Always                  | The base title for the episode, the series details will be added around this base title by the theme. This base title is used to build the title at the top of the page, the page's title in browser tabs/windows, and if the page is an instalment, the instalment's link text in the relevant index on the home page. |
+| `title`      | String               | Always                  | The base title for the episode, the series details will be added around this base title by the theme. This base title is used to build the title at the top of the page, the page's title in browser tabs/windows, and if the page is an instalment, the instalment's link text in the relevant index on the front page. |
 | `instalment` | Integer              | Instalments & Tidbits   | The instalment's number within the relevant series, i.e. PBS `n` or PBS Tidbit `n`. |
 | `miniseries` | String               | Optional in Instalments | The name of the mini-series exactly how it will appear on the website. e.g. `Git` |
 | `creators`   | Array of Strings     | Instalments & Tidbits   | The slugs for the instalment's creators, usually `[bart, allison]`, but any base filename from the `docs/_creators` folder is a valid slug. |
