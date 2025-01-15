@@ -18,31 +18,31 @@ This document describe's the sit'e taxonomy and how both content and metadata sh
 All content on this site falls into one of the following four categories:
 
 1. **Stand-alone Pages** — these are permanent pages that do not belong to any on-going series. They include the front page (`docs/index.md`), the *About the Authors* page (`docs/about.md`), and this authors guide (`docs/authorguide.md`). These pages have no taxonomical metadata associated with them.
-2. **PBS Instalments** — a sequence of tutorial-style posts collected together in a GitHub Pages/Jekyll [Collection](https://jekyllrb.com/docs/collections/) with the slug `pbs`. Each instalment defines the following additional taxonomical information:
+2. **PBS Instalments** — a sequence of tutorial-style posts collected together in a GitHub Pages/Jekyll [Collection](https://jekyllrb.com/docs/collections/) with the slug `pbs`. Each Instalment defines the following additional taxonomical information:
    1. A sequence number within the collection
    2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags) — _**note** that as of January 2025, support for this feature within the theme is limited_.
    3. Optionally, a mini-series name. This deeper level of organisation is not directly provided by GitHub Pages/Jekyll, but a custom addition provided by the Bartificer theme.
 3. **PBS Tidbits** — a collection with the slug `tidbits` containing stand-alone special posts that are in some way related to the main PBS series, but not part of it. Each tidbit defines the following additional taxonomical information:
    1. A sequence number within the collection
    2. Optionally, GitHub Pages/Jekyll [Tags](https://jekyllrb.com/docs/posts/#tags)
-4. **Creator Details** — a hidden GitHub Pages/Jekyll collection with the slug `creators` containing content snippets describing the people who have co-created PBS instalments and/or Tidbits. The details captured in this collection are injected into the [About the Authors](/about) page. Creators are divided into two types:
+4. **Creator Details** — a hidden GitHub Pages/Jekyll collection with the slug `creators` containing content snippets describing the people who have co-created PBS Instalments and/or Tidbits. The details captured in this collection are injected into the [About the Authors](/about) page. Creators are divided into two types:
    1. **Regular Hosts** — as of January 2025, just Bart & Allison.
-   2. **Guests** — contributors who have joined for a few instalments (a work-in-progress as of January 2025)
+   2. **Guests** — contributors who have joined for a few Instalments (a work-in-progress as of January 2025)
 
 ### Taxonomy-Powered Site Features
 
 This taxonomy enables the theme to provide the following features in the generated website:
 
-1. Automatic creation of the instalment indexes on the front page
-2. The fine-tuning of instalment titles for optimal display in four distinct contexts:
-   1. Instalment Page Title
+1. Automatic creation of the Instalment and Tidbit indexes on the front page
+2. The fine-tuning of Instalment and Tidbit titles for optimal display in four distinct contexts:
+   1. The Instalment/Tidbit Page Title
    2. Browser Window/Tab Title
-   3. Instalment Name in indexes
-   4. The Next & Previous links at the bottom of each instalment and Tidbit
-3. The Next & Previous links at the bottom of each instalment and Tidbit
-4. The clear labeling of each mini-series and the Next & Previous links within each mini-series instalment. Note that the Next & Previous mini-series links work even when a mini-series is spread over non-contiguous Instalments (e.g. the Git mini-series which includes Instalments 101 to 120, and 172 to 174).
-5. Automatic generation of OpenGraph metadata on all Instalments & Tidbits
-6. Creator credits at the top of each instalment and Titbit linking to the appropriate section of the *About the Authors* page.
+   3. The Instalment/Tidbit names in the front page indexes
+   4. The Next & Previous links at the bottom of each Instalment and Tidbit
+3. The Next & Previous links at the bottom of each Instalment and Tidbit
+4. The clear labeling of each mini-series and the Next & Previous links within each mini-series Instalment. Note that the Next & Previous mini-series links work even when a mini-series is spread over non-contiguous Instalments (e.g. the Git mini-series which includes Instalments 101 to 120, and 172 to 174).
+5. Automatic generation of OpenGraph metadata for all Instalments & Tidbits, enabling nice link previews in social Media apps.
+6. Creator credits at the top of each Instalment and Titbit linking to the appropriate section of the *About the Authors* page.
 7. Tag lists:
    1. At the top of each tagged Instalment and Tidbit
    2. **DEPRECATED:** In the Instalment and Tidbit indexes on the front page — this feature will be replaced with a tag cloud in the future
@@ -71,32 +71,32 @@ GitHub Pages/Jekyll converts all Markdown files to HTML files when generating th
 
 ### Static Assets (Mostly Images)
 
-GitHub Pages/Jekyll refers to files that do not get translated during site generation as *static assets*. The standard location for static assets is `docs/assets`. To avoid clutter, sub-folders are added for assets associated with each instalment, e.g. `docs/assets/pbs1/*`. If an instalment only has a small number of static assets, it is OK to store the assets directly within `docs/assets` provided the file name is prefixed with the appropriate series prefix, instalment number, and a dash, e.g. `docs/assets/pbs1-SomeScreenshot.png`.
+GitHub Pages/Jekyll refers to files that do not get translated during site generation as *static assets*. The standard location for static assets is `docs/assets`. To avoid clutter, sub-folders are added for assets associated with each Instalment and Tidbit, e.g. `docs/assets/pbs1/*`. If an Instalment or Tidbit only has a small number of static assets, it is OK to store the assets directly within `docs/assets` provided the file name is prefixed with the appropriate slug (`pbs` or `tidbit`), sequence number, and a dash, e.g. `docs/assets/pbs1-SomeScreenshot.png`.
 
 ### Instalment Zips
 
-Some instalments have associated files as examples and those same files are provided by the readers in ZIP format. 
+Some Instalments and Tidbits have associated files as examples and those same files are provided to the readers in a single ZIP formatted archive for easy downloading. 
 
-The original files that will be included in an instalment's ZIP file are stored in an appropriately named subfolder of the `instalmentResources` folder, e.g. `instalmentResources/pbs85`.
+The original files that will be included in an Instalment or Tidbit's ZIP file are stored in an appropriately named subfolder of the `instalmentResources` folder, e.g. `instalmentResources/pbs85`.
 
-As of January 2025 the storage location for the instalment ZIP files is in flux:
+As of January 2025 the storage location for the Instalment & Tidbit ZIP files is in flux:
 
-* The ZIP files for older instalments that have not yet been moved are stored in `instalmentZips` folder with appropriate filenames, e.g. `instalmentZips/pbs85.zip`.
-* The ZIP files for new instalments are stored in the `docs/assets`  folder with appropriate file names, e.g. `docs/assets/pbs175.zip`.
+* The ZIP files for older Instalments and Tidbits that have not yet been moved are stored in `instalmentZips` folder with appropriate filenames, e.g. `instalmentZips/pbs85.zip`.
+* The ZIP files for new Instalments and Tidbits are stored in the `docs/assets`  folder with appropriate file names, e.g. `docs/assets/pbs175.zip`.
 
 **WIP Mermaid diagram of all this** - https://www.mermaidchart.com/app/projects/47ab2aec-0ec6-41c1-81ea-379b040e478f/diagrams/2b116a0a-cd95-4227-8f21-9c21e4f5ddfb/version/v0.1/edit
 
 ## Authoring Content
 
-The vast majority of content on this site is in PBS Instalments, followed in a distant second by PBS Tidbits. For completeness this section describes each of the four content types, but most authors can ignore all but the first subsection which describes authoring instalments & Tidbits.
+The vast majority of content on this site is in PBS Instalments, followed in a distant second by PBS Tidbits. For completeness this section describes each of the four content types, but most authors can ignore all but the first subsection which describes authoring Instalments & Tidbits.
 
 The Markdown files for each content type consist of metadata in the form of YAML front matter followed by content. The front matter is wrapped with lines containing just three dashes, and consists of the YAML representation of a single dictionary of key-value pairs. Because this is metadata, the order of the pairs is irrelevant. What matters is that the needed keys are present, that they have valid values. For keys with arrays as values, the order of items within the arrays is also irrelevant.
 
-_**Note:** for a refresher on YAML syntax, see PBS instalments [168](./pbs168) & [169](./pbs169)._
+_**Note:** for a refresher on YAML syntax, see PBS Instalments [168](./pbs168) & [169](./pbs169)._
 
 ### Authoring Instalments & Tidbits
 
-**Reminder:** PBS instalments are in `docs/_pbs/pbsN.md` where `N` is the instalment's number, and Tidbits are in `docs/_tidbits/tidbitN.md` where `N` is the Tidbit's number.
+**Reminder:** PBS Instalments are in `docs/_pbs/pbsN.md` where `N` is the Instalment's number, and Tidbits are in `docs/_tidbits/tidbitN.md` where `N` is the Tidbit's number.
 
 Each Markdown file must have the following big-picture structure:
 
@@ -115,11 +115,11 @@ Some More Content
 etc.
 ```
 
-Note that top-level headings within the document are level-two headings (`##`, this is because at a HTML level, the instalment title will be rendered with a top-level heading tag).
+Note that top-level headings within the document are level-two headings (`##`, this is because at a HTML level, the Instalment title will be rendered with a top-level heading tag).
 
-In terms of the YAML front matter, there is just one difference between instalments and Tidbits. The key `miniseries` is only valid in PBS Instalments.
+In terms of the YAML front matter, there is just one difference between Instalments and Tidbits. The key `miniseries` is only valid in PBS Instalments.
 
-Below is the complete and correct YAML metadata for instalment 171 which is part of the MVC mini-series:
+Below is the complete and correct YAML metadata for Instalment 171 which is part of the MVC mini-series:
 
 ```yaml
 ---
@@ -138,16 +138,16 @@ The table below describes the supported fields in detail:
 
 | Field        | Type                 | Required                | Description                                                  |
 | :----------- | :------------------- | ----------------------- | :----------------------------------------------------------- |
-| `title`      | String               | Always                  | The base title for the episode, the series details will be added around this base title by the theme. This base title is used to build the title at the top of the page, the page's title in browser tabs/windows, and if the page is an instalment, the instalment's link text in the relevant index on the front page. |
-| `instalment` | Integer              | Instalments & Tidbits   | The instalment's number within the relevant series, i.e. PBS `n` or PBS Tidbit `n`. |
-| `miniseries` | String               | Optional in Instalments | The name of the mini-series exactly how it will appear on the website. e.g. `Git` |
-| `creators`   | Array of Strings     | Instalments & Tidbits   | The slugs for the instalment's creators, usually `[bart, allison]`, but any base filename from the `docs/_creators` folder is a valid slug. |
-| `date`       | ISO 8601 date string | Instalments & Tidbits   | The publish date for the instalment as an ISO 8601 formatted date, i.e. `YYYY-MM-DD`, so Christmas 2025 would be `2025-12-25`. _**Warnings** — instalment listings and navigation links are sorted on this field, so omitting it has unpredictable side-effects. Also, instalments with dates in the future are not published to the live website!_ |
-| `opengraph`  | Dictionary           | Optional                | An optional link to the MP3 file associated with a page or instalment. In theory, OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality, this part of the spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing. All other authors are free to ignore it completely!_ |
+| `title`      | String               | Always                  | The base title for the Instalment or Tidbit, the series details will be added around this base title by the theme. This base title is used to build the title at the top of the page, the page's title in browser tabs/windows, and in the relevant index on the front page. |
+| `instalment` | Integer              | Instalments & Tidbits   | The Instalment or Tidbit's sequence number.                  |
+| `miniseries` | String               | Optional in Instalments | The name of the mini-series the Instalment belongs to exactly how it will appear on the website. e.g. `Git` |
+| `creators`   | Array of Strings     | Instalments & Tidbits   | The slugs for the Instalment/Tidbit's creators, usually `[bart, allison]`, but any base filename from the `docs/_creators` folder is a valid slug. |
+| `date`       | ISO 8601 date string | Instalments & Tidbits   | The publish date for the Instalment/Tidbit as an ISO 8601 formatted date, i.e. `YYYY-MM-DD`, so Christmas 2025 would be `2025-12-25`. _**Warnings** — front page indexes and navigation links are sorted on this field, so omitting it has unpredictable side-effects. Also, Instalments/Tidbits with dates in the future are not published to the live website!_ |
+| `opengraph`  | Dictionary           | Optional                | An optional link to the MP3 file associated with an Instalment or Tidbit. In theory, OpenGraph-aware clients like social media apps can use this field to add a play button to their link previews, but in reality, this part of the OpenGraph spec is rarely if ever implemented, so omitting this tag is not a big deal. _**Note:** Bart likes to maintain this field purely for future-proofing. All other authors are free to ignore it completely!_ |
 
 ### Authoring Standalone Pages
 
-Stand alone pages use a simpler template than instalments, so require much less metadata. However, unlike instalments and Tidbits, the simpler theme requires the page author to add the page's top-level heading as the first line of the page's markdown content. To allow the page to have a shorter and pithier title in browser tab/window labels, pages also have a `title` key in the front matter.
+Stand alone pages use a simpler template than one for Instalments and Tidbits, so require much less metadata. However, unlike Instalments and Tidbits, the simpler theme requires the page author to add the page's top-level heading as the first line of the page's markdown content. To allow the page to have a shorter and pithier title in browser tab/window labels, pages also have a `title` key in the front matter.
 
 The basic structure is as follows:
 
@@ -238,7 +238,7 @@ The details for existing guests are updated by editing their file in the `docs/_
 
 Adding a new guest requires creating a new markdown file in `docs/_creators`. The file's base name must be the guest's slug. For consistency, please use [camelCase](https://en.wikipedia.org/wiki/Camel_case). For community members like Helma, just the first name is sufficient as the slug, but for guests from outside the community, please use `firstnameSurname`. 
 
-Guests are associated with instalments or Tidbits by including their slug in the `creators` array in the appropriate instalment or Tidbit's front matter.
+Guests are associated with Instalments or Tidbits by including their slug in the `creators` array in the appropriate Instalment or Tidbit's front matter.
 
 The Markdown files for the guests have the following overall structure:
 
