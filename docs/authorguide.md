@@ -38,9 +38,10 @@ This taxonomy enables the following theme features:
    3. Instalment Name in indexes
    4. The Next & Previous links at the bottom of each instalment and Tidbit
 3. The Next & Previous links at the bottom of each instalment and Tidbit
-4. The clear labeling of each mini-series and the Next & Previous links within each mini-series instalment. Note that the Next & Previous mini-series links work even when a mini-series is spread over non-contiguous instalments (e.g. the Git mini-series which includes instalments 101 to 120, and 172 to 174).
-5. Creator credits at the top of each instalment and Titbit linking to the appropriate section of the *About the Authors* page.
-6. Tag lists:
+4. The clear labeling of each mini-series and the Next & Previous links within each mini-series instalment. Note that the Next & Previous mini-series links work even when a mini-series is spread over non-contiguous Instalments (e.g. the Git mini-series which includes Instalments 101 to 120, and 172 to 174).
+5. Automatic generation of OpenGraph metadata on all Instalments & Tidbits
+6. Creator credits at the top of each instalment and Titbit linking to the appropriate section of the *About the Authors* page.
+7. Tag lists:
    1. At the top of each instalment and tidbit
    2. In the instalment and Tidbit listings on the front page.
    3. **FUTURE:** the tags page which allows quick access to specific instalments by tag.
