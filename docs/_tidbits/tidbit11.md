@@ -847,6 +847,19 @@ Finally, I want to draw your attention to two important sections:
 
 As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's not so urgent you'll be under pressure.
 
-## Final Thoughts
+## Final Thoughts & 2025 Plans
 
-This TidBit is intended to stand alone, but it's also very much a trial balloon. If you would like us to take on PowerShell properly like we did Bash, please let us know! The best way to get it touch is via the [Podfeet Slack](https://podfeet.com/slack).
+This TidBit was intended to stand alone, but was also very much a trial balloon. At the end of the matching podcast episode for the first half of this Tidbit we asked the community to let us know if there would be interest in the main PBS series covering PowerShell in depth like we did Bash. The community spoke quickly and loudly with a resounding **YES!**.
+
+That nearly brings us to the question of what we'll be doing in the main PBS series this year. Our thinking is that 2025 will be a game of two halves — we'll start by exploring GitHub pages, then we'll do the requested deep dive on PowerShell.
+
+We'll have the usually introductory instalment to set the scene properly, but to whet your appetite a little, these are some of the reason you may want to join us for the GitHub Pages arc:
+
+1. Learn how to get some free and surprisingly powerful web hosting!
+2. Understand how this series gets transformed from a collection of Markdown files in a Git repo to a beautiful website entirely automatically each time a change is pushed.
+3. Learn how to deploy a full-feature content management system without needing database hosting or installing any server-side apps that need to be patched and secured.
+4. Learn how to customise Bootstrap in order to unlock it's full potential. Did you ever notice that both this site and Bootstrap's own website are built using Bootstrap, and yet, they look nothing like the web apps we've been building with Bootstrap in this series? That's because we've ignored about half of Bootrap's feature set — as it's name implies, it is designed to from the ground up to be customisable and extensible!
+5. In the process of learning how to customise Bootstrap in the way its developers intended we'll meet a whole new web technology — CSS pre-processors, specifically, the most popular one of them all, [Sass](https://sass-lang.com).
+
+While we're exploring GitHub pages I'll be mapping out the best way to tell the PowerShell story.
+
