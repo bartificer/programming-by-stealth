@@ -19,13 +19,13 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2025_01_02.html">PBS_2025_01_02</a>
 
-### Tidbit 11B dated 2025-01-18
+### PBS Tidbit 11B dated 2025-01-18
 
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_01_18.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_01_18.mp3" >Download the MP3</a>
 
-
-
-### PBS Tidbit 11B Coming Soon!
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2025_01_18.html">PBS_2025_01_18</a>
 
 ## What Drew me to PowerShell?
 
