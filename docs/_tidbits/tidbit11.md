@@ -844,13 +844,13 @@ If I've successfully whet your appetite, the next step would be spend a little t
 
 First and foremost, bookmark the landing page: [learn.microsoft.com/…](https://learn.microsoft.com/en-us/powershell/scripting/how-to-use-docs?view=powershell-7.4)
 
-Once you're there, notice the side bar has a drop-down where you can specific the version of PowerShell you're using. It will default to the current release, as will Home rew, so that **should** be right, but if you're getting information that doesn't make sense, check!
+Once you're there, notice the side bar has a drop-down where you can specific the version of PowerShell you're using. It will default to the current release, as will Home Brew, so that **should** be right, but if you're getting information that doesn't make sense, check!
 
 Secondly, notice the search box, this is very much your friend. Just start typing and the matching articles will appear underneath.
 
 Finally, I want to draw your attention to two important sections:
 
-1. The p *Learning PowerShell* section is very much a beginner's friend. If you're very new to the whole idea, the *PowerShell 101* sub-section is probably the place to start, but if you're more of a power user in general who wants to dive straight in, the *Deep Dives* subsection is great for actually understanding how PowerShell implements core concepts like arrays, etc.
+1. The *Learning PowerShell* section is very much a beginner's friend. If you're very new to the whole idea, the *PowerShell 101* sub-section is probably the place to start, but if you're more of a power user in general who wants to dive straight in, the *Deep Dives* subsection is great for actually understanding how PowerShell implements core concepts like arrays, etc.
 2. The *Reference* section is where you'll find the traditional API-style docs you'll probably want most. By far the most important sub-section in there is *Microsoft.PowerShell.Core*. I want to specifically all out the articles in the *About* sub-sub section in the *Microsoft.PowerShell.Core* sub-section. The most important sub-section after *Microsoft.PowerShell.Core* is *Microsoft.PowerShell.Utility*.
 
 As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's not so urgent you'll be under pressure.
