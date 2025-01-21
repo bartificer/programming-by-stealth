@@ -5,7 +5,7 @@ creators: [bart, allison]
 date: 2025-01-02
 ---
 
-Somewhat ironically, since finishing our [long series on Bash scripting](./pbs143) I've been almost exclusively writing scripts in a completely different language, [PowerShell](https://en.wikipedia.org/wiki/PowerShell)! Being a Microsoft language you'd be forgiven for assuming that means I've moved to Windows and started trying to automate things there, but you'd be mistaken, I'm still very much a Mac user! So what gives? Despite what its origins may suggest, the core PowerShell environment is both [open source](https://github.com/PowerShell/PowerShell) and cross-platform, running just fine on the Mac and Linux as well as Windows.
+Somewhat ironically, since finishing our [long series on Bash scripting](./pbs143) I've been almost exclusively writing scripts in a completely different language, [PowerShell](https://en.wikipedia.org/wiki/PowerShell)! Being a Microsoft language you'd be forgiven for assuming that means I've moved to Windows and started trying to automate things there, but you'd be mistaken, I'm still very much a Mac user! So what gives? Despite what its origins may suggest, the core PowerShell environment is both [open source](https://github.com/PowerShell/PowerShell) and cross-platform, running just fine on Mac and Linux as well as Windows.
 
 Think of this Tidbit as being like a movie trailer — it's intended to pique your interest, and to give you a broad sense of why you might want to spend some time making friends with PowerShell, but it's by no means a detailed tutorial. This instalment is also intended as a kind of community survey. If there's sufficient community interest, we could spend the second part of 2025 learning PowerShell like we learned Bash. I don't only want to hear from people who would like us to do that, though; I'd also like to hear from those in the community who think it'd be a waste of time and effort. Have your say on the PBS channel in [the Podfeet Slack](https://podfeet.com/slack)!
 
@@ -19,7 +19,13 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2025_01_02.html">PBS_2025_01_02</a>
 
-### PBS Tidbit 11B Coming Soon!
+### PBS Tidbit 11B dated 2025-01-18
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_01_18.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_01_18.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2025_01_18.html">PBS_2025_01_18</a>
 
 ## What Drew me to PowerShell?
 
@@ -282,7 +288,7 @@ Again, PowerShell separates these tasks, providing separate dedicated tools for 
 
 ### Argument Sanity with Parameter Definitions
 
-Again, to understand what PowerShell does differently, let's remind ourselves of how arguments work in Bash — basically, it's the Wild West! The arguments just arrive as strings in a pseudo array, and it's up to the programmer to group them into some kind of logical structure. In theory, anything goes, but thankfully some conventions have emerged thanks to popular tools like  `getops`. But the bottom line remains, the best we can hope for as users is that the developers of the command we're thinking of using chose to be consistent, follow some kind of convention, and provided a good `man` page!
+Again, to understand what PowerShell does differently, let's remind ourselves of how arguments work in Bash — basically, it's the Wild West! The arguments just arrive as strings in a pseudo array, and it's up to the programmer to group them into some kind of logical structure. In theory, anything goes, but thankfully some conventions have emerged thanks to popular tools like `getops`. But the bottom line remains, the best we can hope for as users is that the developers of the command we're thinking of using choose to be consistent, follow some kind of convention, and provided a good `man` page!
 
 PowerShell could not be more different — if you want your functions, and hence your scripts or commands, to support parameters, you need to define them explicitly! We've already seen hints of this in our little example functions which define their parameter with the `param ()` function. 
 
@@ -292,7 +298,7 @@ When presented with the raw list of command line parts PowerShell starts by look
 
 Named parameters are those that start with a single `-`, and what comes after is their name. In other words `-SomeName` on the CLI becomes `$SomeName` in the code.
 
-Named parameters come in two flavours; **switches** which, like getopt flags in bash, have no value, and regular named parameters which get their value from the next raw command line part. So a named switch `-MySwitch` becomes `$MySwitch` with a value of `True`, and a regular named parameter `-SomeNumber 42` becomes `$SomeNumber` with the value `42`.
+Named parameters come in two flavours; **switches** which, like `getopts` flags in bash, have no value, and regular named parameters which get their value from the next raw command line part. So a named switch `-MySwitch` becomes `$MySwitch` with a value of `True`, and a regular named parameter `-SomeNumber 42` becomes `$SomeNumber` with the value `42`.
 
 This begs the question, what happens to the positional parameters? To support positional parameters you need to map them to named variables. In other words, you programatically say that the first positional parameter will be interpreted as this named parameter, the second as this one, and so on. You can also map all remaining positional parameters to a named array parameter, which could become an array of any size, including an empty array.
 
@@ -310,7 +316,7 @@ param (
 
 #### Adding Types
 
-However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define three parameters with the most common types, you would use code of the form:
+However, it is very strongly encouraged to specify a type for each parameter, which you do by pre-fixing the parameter name with the type enclosed in square brackets. For example, to define four parameters with the most common types, you would use code of the form:
 
 ```pwsh
 param (
@@ -467,7 +473,9 @@ The aforementioned documentation describes the full set of common parameters, bu
 
 We've already seen a little of what PowerShell's help system can do when we were discussing parameter definitions, but that's just the tip of the iceberg!
 
-In the Unix/Linux world, we know that developers can choose to add documentation for their commands to a system's manual, and those pages can be accessed from the command line via the `man` command. When a developer writes no documentation, there is no `man` page at all. Because of PowerShell's parameter definitions, every command, function, and script gets at least a skeleton help entry. We can view those with the `Get-Help` command.
+In the Unix/Linux world, we know that developers can choose to add documentation for their commands to a system's manual, and those pages can be accessed from the command line via the `man` com
+
+mand. When a developer writes no documentation, there is no `man` page at all. Because of PowerShell's parameter definitions, every command, function, and script gets at least a skeleton help entry. We can view those with the `Get-Help` command.
 
 For now, our doubling function does nothing to provide any exploit documentation, and yet, it already has a basic help page which we can view with the command `Get-Help Get-DoubleValue`:
 
@@ -641,7 +649,7 @@ SYNOPSIS
     
 ```
 
-### Evangelical Naming Conventions
+### Opinionated Naming Conventions
 
 In most languages, naming conventions emerge from a mix of suggestions from the language maintainers and natural evolution in the community. Or maybe from a particularly note-worthy book like *The C Programming Language* by Kernighan & Ritchie.
 
@@ -653,7 +661,7 @@ For those of you not up on your grammar terms, that means an action followed by 
 
 There are no even vaguely enforced rules for the nouns (the *whats*), just a strong recommendation to be clear and consistent, but there is literally [a list of approved verbs](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.4) (the actions)!
 
-The list of approved verbs is more than just a list, it also contains descriptions of how specific verbs should be interpreted, and there are disambiguations for verbs that could be easily confused. Until you get into the swing of things the subtle difference between similar verbs like `Get` and `Read` may not be obvious, but even if you never read any of the definitions or any of the helpful disambiguations, the rigorous consistent will seep in by osmosis anyway.
+The list of approved verbs is more than just a list, it also contains descriptions of how specific verbs should be interpreted, and there are disambiguations for verbs that could be easily confused. Until you get into the swing of things the subtle difference between similar verbs like `Get` and `Read` may not be obvious, but even if you never read any of the definitions or any of the helpful disambiguations, the rigorous consistency will seep in by osmosis anyway.
 
 The end result of all this is that you can usually guess what the right command might be, or at least be close enough to search the documentation or the Internet to get you everything you need. For example, if you know you data to CSV format with `ConvertTo-Csv` command, you'd probably guess that you can convert to XML with `ConvertTo-Xml`, and to JSON with `ConvertTo-Json`.
 
@@ -661,7 +669,7 @@ While you're just writing little scripts PowerShell will leave you alone and not
 
 My advice is very simple — get into the habit of always following the Verb-Noun pattern, and checking the docs each time to be sure you pick the right word until they become second nature to you.
 
-Another way in which PowerShell is opinionated is in the casing of all names. While not enforced, PowerShell officially strongly recommends so-called PascalCase, that is to say the first letter of each word is capitalised, including the very first letter, and words are not separated by any sumbols. All bult-in variables and functions, as well as all those in the many officially supprted modules religiously use PascalCase. If ypu want to write PowerShell code that other PowerShell users will not find weird and unintuitive, you should adopt PascalCase in your code too!
+Another way in which PowerShell is opinionated is in the casing of all names. While not enforced, PowerShell officially strongly recommends so-called PascalCase, that is to say the first letter of each word is capitalised, including the very first letter, and words are not separated by any symbols. All bult-in variables and functions, as well as all those in the many officially supported modules religiously use PascalCase. If you want to write PowerShell code that other PowerShell users will not find weird and unintuitive, you should adopt PascalCase in your code too!
 
 ### A Robust Module Ecosystem
 
@@ -842,11 +850,24 @@ Secondly, notice the search box, this is very much your friend. Just start typin
 
 Finally, I want to draw your attention to two important sections:
 
-1. The to-level *Learning PowerShell* section is very much a beginner's friend. If you're very new to the whole idea, the *PowerShell 101* sub-section is probably the place to start, but if you're more of a power user in general who wants to dive straight in, the *Deep Dives* subsection is great for actually understanding how PowerShell implements core concepts like arrays etc..
-2. The *Reference* section is where you'll find the traditional API-style docs you'll probably want most. By far the most important sub-section in there is *Microsoft.PowerShell.Core*. I want to specifically all out the articles in the *About* sub-sub section in the *Microsoft.PowerShell.Core* sub-section. The most important sub-section after *Microsoft.PowerShell.Core* is *Microsoft.PowerShell.Utility*
+1. The *Learning PowerShell* section is very much a beginner's friend. If you're very new to the whole idea, the *PowerShell 101* sub-section is probably the place to start, but if you're more of a power user in general who wants to dive straight in, the *Deep Dives* subsection is great for actually understanding how PowerShell implements core concepts like arrays, etc.
+2. The *Reference* section is where you'll find the traditional API-style docs you'll probably want most. By far the most important sub-section in there is *Microsoft.PowerShell.Core*. I want to specifically all out the articles in the *About* sub-sub section in the *Microsoft.PowerShell.Core* sub-section. The most important sub-section after *Microsoft.PowerShell.Core* is *Microsoft.PowerShell.Utility*.
 
-As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's no so urgent you'll be under pressure.
+As with all coding adventures, it really helps to have a pet project, so some kind of *problem to be solved* that's not so urgent you'll be under pressure.
 
-## Final Thoughts
+## Final Thoughts & 2025 Plans
 
-This TidBit is intended to stand alone, but it's also very much a trial balloon. If you would like us to take on PowerShell properly like we did Bash, please let us know! The best way to get it touch is via the [Podfeet Slack](https://podfeet.com/slack).
+This TidBit was intended to stand alone, but was also very much a trial balloon. At the end of the matching podcast episode for the first half of this Tidbit we asked the community to let us know if there would be interest in the main PBS series covering PowerShell in depth like we did Bash. The community spoke quickly and loudly with a resounding **YES!**
+
+That nearly brings us to the question of what we'll be doing in the main PBS series this year. Our thinking is that 2025 will be a game of two halves — we'll start by exploring GitHub pages, then we'll do the requested deep dive on PowerShell.
+
+We'll have the usually introductory instalment to set the scene properly, but to whet your appetite a little, these are some of the reason you may want to join us for the GitHub Pages arc:
+
+1. Learn how to get some free and surprisingly powerful web hosting!
+2. Understand how this series gets transformed from a collection of Markdown files in a Git repo to a beautiful website entirely automatically each time a change is pushed.
+3. Learn how to deploy a full-feature content management system without needing database hosting or installing any server-side apps that need to be patched and secured.
+4. Learn how to customise Bootstrap in order to unlock it's full potential. Did you ever notice that both this site and Bootstrap's own website are built using Bootstrap, and yet, they look nothing like the web apps we've been building with Bootstrap in this series? That's because we've ignored about half of Bootrap's feature set — as it's name implies, it is designed to from the ground up to be customisable and extensible!
+5. In the process of learning how to customise Bootstrap in the way its developers intended we'll meet a whole new web technology — CSS pre-processors, specifically, the most popular one of them all, [Sass](https://sass-lang.com).
+
+While we're exploring GitHub pages I'll be mapping out the best way to tell the PowerShell story.
+
