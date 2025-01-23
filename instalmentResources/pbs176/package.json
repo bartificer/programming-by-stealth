@@ -1,0 +1,28 @@
+{
+  "name": "pbs176",
+  "version": "1.0.0",
+  "description": "An example web app deployed via Webpack for instalment 176 of the Programming by Stealth series.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "npx webpack --mode=production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bart Busschots",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^6.0.0"
+  },
+  "dependencies": {
+    "@fontsource/architects-daughter": "^5.1.1",
+    "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1",
+    "jquery": "^3.6.0",
+    "luxon": "^3.0.1",
+    "mustache": "^4.2.0"
+  }
+}
