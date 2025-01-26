@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+<main class="container pt-3">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        Click my close button to prove that Bootstrap JavaScript is working!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{ content }}
+</main>
+<script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+</body>
+</html>
