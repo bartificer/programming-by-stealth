@@ -1,7 +1,7 @@
 ---
 title: XKPasswd Rewrite Exits Beta
 instalment: 12
-creators: [bart, helma]
+creators: [bart]
 date: 2025-04-26
 ---
 
