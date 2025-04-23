@@ -1,8 +1,8 @@
 ---
 title: XKPasswd Rewrite Exits Beta
 instalment: 12
-creators: [bart]
-date: 2025-04-26
+creators: [bart, helma]
+date: 2025-04-23
 ---
 
 > Note that the introduction is written by Bart, but the remaining content is all written by Helma.
