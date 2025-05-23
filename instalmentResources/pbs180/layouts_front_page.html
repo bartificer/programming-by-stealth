@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<img src="{{ 'assets/siteIllustration.png' | relative_url }}" alt="An Illustration showing the PBS logo over the GitHub and Jekyll Logos with a plus between them" class="img-fluid">
+
+{{ content}}
+
+<h2>Site Map</h2>
+<ul>
+    {%- assign list_pages = site.html_pages | where_exp: "item", "item.title != 'Home'" %}
+    {%- for p in list_pages %}
+    <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+    {%- else %}
+    <li class="text-muted">No pages yet</li>
+    {%- endfor %}
+</ul>
