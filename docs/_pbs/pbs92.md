@@ -582,9 +582,9 @@ This is my entire template for the grid:
 
 Notice there are three loops:
 
-1. A loop to add all the column headings (`{{#currencies}} … {{/currencies}}`)
-2. A loop to add all the rows of rates ( also `{{#currencies}} … {{/currencies}}`)
-3. A loop within the row loop to add the cells (`{{#conversions}} … {{/conversions}}`)
+1. A loop to add all the column headings (`{% raw % }{{#currencies}} … {{/currencies}}{% endraw %}`)
+2. A loop to add all the rows of rates ( also `{% raw % }{{#currencies}} … {{/currencies}}{% endraw % }`)
+3. A loop within the row loop to add the cells (`{% raw % }{{#conversions}} … {{/conversions}}{% endraw % }`)
 
 #### Rows with Heading Cells
 
