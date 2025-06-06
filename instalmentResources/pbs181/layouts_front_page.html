@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  {%- comment %}Include the snippet with the standard content for the head tag{% endcomment %}
+  {%  include html_head_common.html %}
+
+  {%- comment %}Use the site title as the window title{% endcomment %}
+  <title>{{ site.title }}</title>
+</head>
+<body class="bg-light">
+  <div class="container">
+
+    {%- comment %}Start a card with a grid layout embeded within it{% endcomment %}
+    <div class="card m-5">
+      <div class="container-fluid">
+
+        {%- comment %}Add the site title as a full-width row{% endcomment %}
+        <header class="row">
+          <div class="col-12 card-body">
+            <h1 class="display-1 text-center">{{ site.title }}</h1>
+          </div>
+        </header>
+
+        {%- comment %}Add the illustration, content, and page buttons as a row with multiple cols{% endcomment %}
+        <main class="row">
+           <div class="col-12 col-xl-6">
+            <img src="{{ 'assets/siteIllustration.png' | relative_url }}" alt="An Illustration showing the PBS logo over the GitHub and Jekyll Logos with a plus between them" class="img-fluid">
+          </div>
+          <div class="col-12 col-xl-6 card-body">
+            <p class="lead card-text">{{ content }}</p>
+          </div>
+          <div class="col-12 card-body text-end">
+            {%- assign list_pages = site.html_pages | where_exp: "item", "item.title != 'Home'" %}
+            {%- for p in list_pages %}
+            <a href="{{ p.url | relative_url }}" class="btn btn-outline-primary mx-1">{{ p.title }}</a>
+            {%- endfor %}
+          </div>
+        </main>
+
+      </div>
+    </div>
+   
+  </div>
+
+  {%- comment %}Include the standard body-end snippet{% endcomment %}
+  {% include html_body_end.html %}
+</body>
+</html>

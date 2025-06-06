@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  {%- comment %}Include the snippet with the standard content for the head tag{% endcomment %}
+  {%  include html_head_common.html %}
+
+  {%- comment %}Default to a title consisting of the page title and site title{% endcomment %}
+  <title>{{ page.title }} | {{ site.title }}</title>
+</head>
+<body>
+  <div class="container">
+    {%- comment %}The page header region{% endcomment %}
+    <div class="row">
+      <header class="col-12 my-3">
+
+        {%- comment %}The navigation bar arcross the very top of the page{% endcomment %}
+        <nav class="navbar navbar-light bg-light navbar-expand-sm rounded-pill border border-1">
+          <div class="container-fluid">
+
+            {%- comment %}The site branding part of the nav bar{% endcomment %}
+            <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+
+            {%- comment %}The expand toggle that will appear on the right of the nav bar when the navigation below is collapsed{% endcomment %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            {%- comment %}The collapsing list of pages{% endcomment %}
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                {%- assign nav_pages = site.html_pages | where_exp: "item", "item.title != 'Home'" %}
+                {%- for p in nav_pages %}
+                <a class="nav-link {%- if p.url == page.url %} active{% endif %}" {%- if p.url == page.url %} aria-current="page"{% endif %} href="{{ p.url | relative_url }}">{{ p.title }}</a>
+                {%- endfor %}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+
+    {%- comment %}The main content region{% endcomment %}
+    <div class="row">
+      <main class="col-12">
+        {{ content }}
+      </main>
+    </div>
+  </div>
+
+  {%- comment %}Include the standard body-end snippet{% endcomment %}
+  {% include html_body_end.html %}
+</body>
+</html>
