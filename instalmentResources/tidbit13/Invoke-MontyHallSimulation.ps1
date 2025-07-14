@@ -14,7 +14,10 @@
     The number of times to run the simulation, defaults to 1000.
 
 .PARAMETER Quiet
-    If specified, suppresses output to the console except for errors and warnings.
+    If specified, suppresses output describing each game to the console. Ignored if -Verbose is specified, and has no effect if -Silent is specified.
+
+.PARAMETER Silent
+    If specified, suppresses all console output other than errors and warnings. Ignored if -Verbose is specified, and supercedes -Quiet.
 	
 .INPUTS
     System.Int32. The number of times to run the simulation.
@@ -29,22 +32,29 @@
         - SwitchWinPercentage: The percentage of wins using the switch strategy.
         - RandomWinPercentage: The percentage of wins using the random strategy.
 	
-.EXAMPLE
-    Invoke the simulation 5,000 times, write the human-friendly output to the console, and suppress the outputted datastructure:
-
-    PS> ./Invoke-MontyHallSimulation -Count 5000 | Out-Null
 
 .EXAMPLE
-    Invoke the simulation 5,000 times and suppress the human output and just output the datastructure:
+    Run a simulation with all the default parameters. This will play the game 1,0000 time, show each game happening on
+    the console, write a human-friendly summary to the console, and output the results as a custom object:
+
+    PS> & ./Invoke-MontyHallSimulation.ps1
+.EXAMPLE
+    Invoke the simulation 5,000 times and only show the human-friendly summary on the console:
+
+    PS> & ./Invoke-MontyHallSimulation.ps1 -Count 5000 -Quiet | Out-Null
+
+.EXAMPLE
+    Invoke the simulation 5,000 times, suppress all console output and convert the resuts data structure to JSON:
     
-    PS> ./Invoke-MontyHallSimulation -Count 5000 -Quiet
+    PS> & ./Invoke-MontyHallSimulation.ps1 -Count 5000 -Silent | ConvertTo-Json
 #>
 [CmdletBinding()]
 param(
     [Parameter(ValueFromPipeline=$true, Position=0)]
-    [ValidateRange(1, [int]::MaxValue)]
+    [ValidateRange(1, 5000)] # Allow up to half of Random.org's limit since we need twice that many random numbers of each type
     [int]$Count = 1000,
-    [switch]$Quiet = $false
+    [switch]$Quiet = $false,
+    [switch]$Silent = $false
 )
 begin {
     #region Global Variables
@@ -65,13 +75,13 @@ begin {
         Use the Radom.org API to retrieve a given number of random integers in a specified range.
 	
     .PARAMETER Count
-        The number of random numbers to retreive, must greater than or equal to 1 and defaults to 10.
+        The number of random numbers to retreive, must greater than or equal to 1.
     
     .PARAMETER Minimum
-        The minimum value of the random numbers, defaults to 1.
+        The minimum value of the random numbers.
 
     .PARAMETER Maximum
-        The maximum value of the random numbers, must be greater than the Minimum value and defaults to 10.
+        The maximum value of the random numbers.
 	
     .INPUTS
         None.
@@ -82,16 +92,18 @@ begin {
     function Get-RandomDotOrgIntegers {
         [CmdletBinding()]
         param (
-            [Parameter(Position=0)]
+            [Parameter(Mandatory=$true, Position=0)]
             [Alias('n')]
-            [ValidateRange(1, [int]::MaxValue)]
-            [int]$Count = 10,
+            [ValidateRange(1, 10000)] # maximum allowed by Random.org
+            [int]$Count,
 
+            [Parameter(Mandatory=$true, Position=1)]
             [Alias('min')]
-            [int]$Minimum = 1,
+            [int]$Minimum,
 
+            [Parameter(Mandatory=$true, Position=2)]
             [Alias('max')]
-            [int]$Maximum = 10
+            [int]$Maximum
         )
 
         # Validate the parameters
@@ -104,7 +116,12 @@ begin {
         Write-Verbose "Requesting $Count random numbers between $Minimum and $Maximum from random.org using the URI: $RandomDotOrgUri"
 
         # get the random numbers from random.org
-        $RandomNumbersRawString = Invoke-WebRequest -Uri $RandomDotOrgUri -Method Get -ErrorAction Stop | Select-Object -ExpandProperty Content
+        $RandomNumbersRawString = ''
+        try {
+            $RandomNumbersRawString = Invoke-WebRequest -Uri $RandomDotOrgUri -Method Get | Select-Object -ExpandProperty Content
+        } catch {
+            Write-Error "Failed to retrieve random numbers from Random.org with error: '$_'" -ErrorAction Stop
+        }
         $RandomNumbers = $RandomNumbersRawString.Trim() -split "`r?`n" # clean off any trailing newlines and split on newlines in a way that works cross-platform
         Write-Verbose "Got $($RandomNumbers.Count) random numbers between $Minimum and $Maximum from random.org"
 
@@ -114,19 +131,20 @@ begin {
 
     <#
     .SYNOPSIS
-        Initialize the random number cache that will be used to run the simulation.
+        Initialize the random number cache.
 
     .DESCRIPTION
         Use the Radom.org API to initialise a cache with the random random numbers needed to run the simulation.
         
-        What is needed is:
-        1. Twice as many random numbers between one and three (inclusive) as there are games to be played.
-        2. Twice as many random numbers between one and two (inclusive) as there are games to be played.
+        Because there are equal numbers of random numbers needed in the one-to-two and one-to-three ranges, only one count needs to be passed.
 
         The random numbers are stored in the script scope as enumerators which power the `Get-Random1to3`, `Get-Random1to2` and `Get-RandomBoolean` functions.
+    
+    .PARAMETER Count
+        The number of random numbers (in each range) to retrieve from Random.org, must be greater than or equal to 1.
 	
     .INPUTS
-        None.
+        System.Int32[]. The number of random numbers (in each range) to retrieve from Random.org, must be greater than or equal to 1.
 	
     .OUTPUTS
         None.
@@ -134,7 +152,7 @@ begin {
     function Initialize-RandomNumberCache {
         [CmdletBinding()]
         param (
-            [Parameter(Mandatory=$true)]
+            [Parameter(Mandatory=$true, Position=0)]
             [ValidateRange(1, [int]::MaxValue)]
             [int]$Count
         )
@@ -225,7 +243,29 @@ begin {
     #endregion
 }
 process {
-    # Get the needed random numbers and convert them to enumerators
+    #region Parameter Validation
+
+    # Figure out what console outputs to send
+    $DoShowResults = -not $Silent
+    $DoShowGameDetail = -not ($Quiet -or $Silent)
+    if ($VerbosePreference -ne 'SilentlyContinue') {
+        $DoShowResults = $true
+        $DoShowGameDetail = $true
+        Write-Verbose "Verbose mode is enabled, so forcing all console outputs."
+    } else {
+        
+    }
+
+    #endregion
+
+    #region Run the Simulation
+
+    # Initialise the random number cache with twice the number of games to be played
+    # Note: each run of the game needs up to two of each type of random number:
+    # 1. A number from 1 to 3 for the door to randomly hide the car behind
+    # 2. A number from 1 to 3 for the initial guess
+    # 3. If your initial guess is correct, a number from 1 to 2 for the door Monty opens
+    # 4. A number from 1 to 2 to randomly decide whether to switch or stick when using the random strategy
     $NumRandomNumbersNeeded = $Count * 2
     Initialize-RandomNumberCache -Count $NumRandomNumbersNeeded
 
@@ -237,59 +277,59 @@ process {
 
     # Play the game!
     foreach ($GameNumber in 1..$Count) {
-        if (-not $Quiet) { Write-Host "`nGame $($GameNumber.ToString('n0')) of $($Count.ToString('n0'))" -ForegroundColor DarkGreen }
+        if ($DoShowGameDetail) { Write-Host "`nGame $($GameNumber.ToString('n0')) of $($Count.ToString('n0')):" -ForegroundColor DarkMagenta }
 
         # Randomly choose a door to hide the car behind
         $CarDoor = Get-Random1to3
 
         # Make an initial guess
         $GuessDoor = Get-Random1to3
-        if (-not $Quiet) { Write-Host "You choose door $GuessDoor (🚗🚪$CarDoor)" -ForegroundColor DarkGray }
+        if ($DoShowGameDetail) { Write-Host "You choose door $GuessDoor (🚗🚪$CarDoor)" -ForegroundColor DarkGray }
 
         # Determine which door Monty will open (not the car door or the guessed door)
         $RemainingDoors = 1..3 | Where-Object { $_ -ne $CarDoor -and $_ -ne $GuessDoor }
         Write-Verbose "The remaing doors for Monty to open door are: $($RemainingDoors -join ', ')"
         $MontyDoor = if( $RemainingDoors.Count -eq 1 ) { $RemainingDoors[0] } else { $RemainingDoors[(Get-Random1to2) - 1] }
-        if (-not $Quiet) { Write-Host "Monty opens door $MontyDoor"  -ForegroundColor DarkGray }
+        if ($DoShowGameDetail) { Write-Host "Monty opens door $MontyDoor"  -ForegroundColor DarkGray }
 
-        if (-not $Quiet) { Write-Host "Results:" }
+        if ($DoShowGameDetail) { Write-Host "Results:" }
         $StickWon = $false
         $SwitchWon = $false
 
         # Strategty 1: Stick with the original guess
         if ($GuessDoor -eq $CarDoor) {
-            if (-not $Quiet) { Write-Host " - Stick Strategy: you won 🎉" -ForegroundColor Green }
+            if ($DoShowGameDetail) { Write-Host " - Stick Strategy: you won 🎉" -ForegroundColor Green }
             $StickWon = $true
             $StickWins++
         } else {
-            if (-not $Quiet) { Write-Host " - Stick Strategy you lost 😢" -ForegroundColor Red }
+            if ($DoShowGameDetail) { Write-Host " - Stick Strategy you lost 😢" -ForegroundColor Red }
         }
 
         # Stragety 2: Switch to the other door
         $SwitchDoor = (1..3 | Where-Object { $_ -ne $GuessDoor -and $_ -ne $MontyDoor })[0]
         if ($SwitchDoor -eq $CarDoor) {
-            if (-not $Quiet) { Write-Host " - Switch Strategy: you won 🎉 (🚪$SwitchDoor)" -ForegroundColor Green }
+            if ($DoShowGameDetail) { Write-Host " - Switch Strategy: you won 🎉 (🚪$SwitchDoor)" -ForegroundColor Green }
             $SwitchWon = $true
             $SwitchWins++
         } else {
-            if (-not $Quiet) { Write-Host " - Switch Strategy: you lost 😢" -ForegroundColor Red }
+            if ($DoShowGameDetail) { Write-Host " - Switch Strategy: you lost 😢" -ForegroundColor Red }
         }
 
         # Strategy 3: Randomly decide to switch or stick
         $RanomlySwitch = Get-RandomBoolean
         if ($RanomlySwitch) {
             if ($SwitchWon) {
-                if (-not $Quiet) { Write-Host " - Random Strategy: you won 🎉 (🚪$SwitchDoor)" -ForegroundColor Green }
+                if ($DoShowGameDetail) { Write-Host " - Random Strategy: you won 🎉 (🚪$SwitchDoor)" -ForegroundColor Green }
                 $RandomWins++
             } else {
-                if (-not $Quiet) { Write-Host " - Random Strategy: you lost 😢 (🚪$SwitchDoor)" -ForegroundColor Red }
+                if ($DoShowGameDetail) { Write-Host " - Random Strategy: you lost 😢 (🚪$SwitchDoor)" -ForegroundColor Red }
             }
         } else {
             if ($StickWon) {
-                if (-not $Quiet) { Write-Host " - Random Strategy: you won 🎉 (🚪$GuessDoor)" -ForegroundColor Green }
+                if ($DoShowGameDetail) { Write-Host " - Random Strategy: you won 🎉 (🚪$GuessDoor)" -ForegroundColor Green }
                 $RandomWins++
             } else {
-                if (-not $Quiet) { Write-Host " - Random Strategy: you lost 😢 (🚪$GuessDoor)" -ForegroundColor Red }
+                if ($DoShowGameDetail) { Write-Host " - Random Strategy: you lost 😢 (🚪$GuessDoor)" -ForegroundColor Red }
             }
         }
         
@@ -302,9 +342,13 @@ process {
     $SwitchWinPercentage = if ($GamesPlayed -gt 0) { [math]::Round(($SwitchWins / $GamesPlayed) * 100, 2) } else { 0 }
     $RandomWinPercentage = if ($GamesPlayed -gt 0) { [math]::Round(($RandomWins / $GamesPlayed) * 100, 2) } else { 0 }
 
+    #endregion
+
+    #region Output the Results
+
     # write the final results
-    if (-not $Quiet) {
-        Write-Host "`nFinal Results:" -ForegroundColor DarkGreen
+    if ($DoShowResults) {
+        Write-Host "`nFinal Results:" -ForegroundColor DarkMagenta
         Write-Host " - Games Played: $($GamesPlayed.ToString('n0'))"
         Write-Host " - Stick Strategy: $($StickWins.ToString('n0')) Wins ($StickWinPercentage%)"
         Write-Host " - Switch Strategy: $($SwitchWins.ToString('n0')) Wins ($SwitchWinPercentage%)"
@@ -322,4 +366,6 @@ process {
         RandomWinPercentage = $RandomWinPercentage
     }
     Write-Output $Results
+
+    #endregion
 }
