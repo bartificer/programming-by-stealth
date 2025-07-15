@@ -43,4 +43,55 @@ I had a quick and dirty result very quickly, but then it struck me that if I car
 
 ## PowerShell Meets Monty Hall
 
-LEFT OFF HERE!!!
+Before we look at the code, I want to stress that this final script is not a *quick-and-dirty* hack, it's a best-practices little script that shows how to write **good robust PowerShell** rather than short and quick PowerShell. Your PowerShell doesn't need to be this long to work once, but if you want something maintainable that will do it's job reliably, then this is how you want to use PowerShell.
+
+### Random Considerations
+
+Before I wrote one character of PowerShell I spent a little time thinking about getting some really high quality random numbers for this exercise — this is all about testing probabilities, so they last thing I wanted was now-quality random numbers invalidating my results!
+
+So, I actually started by checking on the current state of Random.Org's free web API by [reading their docs](https://www.random.org/clients/http/).
+
+Key points:
+
+1. There still is a free HTTP-based API that can generate random integers within a given range
+2. The free API is rate-limited in two ways:
+   1. You can get a maximum of 10,000 random integers per query
+   2. If your IP address makes *too many* queries you'll get block-listed, so play nice!
+
+OK, so that's what the API can provide, what do I actually need?
+
+Well, to run a single simulation I need to make four random choices:
+
+1. Monty chooses a door to hide the car behind (integer between 1 & 3 inclusive)
+2. Choose one of three doors as my initial guess (integer between 1 & 3 inclusive)
+3. Monty chooses a wrong door to open, might have zero choices, but might have to pick between two (integer between 1 & 2 inclusive)
+4. For the random strategy, need to make a boolean choice to stick or switch (integer between 1 & 2 inclusive)
+
+So, I need two random numbers between 1 and 3, and two between 1 and 2 for each simulation. I chose to make two calls to the API per run of the script:
+
+1. Ask for 10,000 random integers between 1 & 3 (`https://www.random.org/integers/?num=10000&min=1&max=3&col=1&base=10&format=plain&rnd=new`)
+2. Ask for 10,000 random integers between 1 and 2 (`https://www.random.org/integers/?num=10000&min=1&max=2&col=1&base=10&format=plain&rnd=new`)
+
+Breaking those URLs down, the parameters are:
+
+* `num` is the number of random integers being requested
+* `min` is the lowest allowed random value
+* `max` is the highest allowed random value
+* `col` is the number of columns to organise the output into (`1` means one number per line)
+* `base` is the numbering system to use (base 10 as opposed to binary or hexadecimal in this case)
+* `format` can be either `html` to see the results on a web page, or `plain` to get the random numbers as plain text.
+* `rnd=new` is what the docs say to use when you want truly random numbers (there are other options for the rare situations you want something more complex like a deterministic random sequence or intentionally pseudo-random numbers)
+
+All in all this gave me a nice balance between quality and quantity — the script can run up to 5,000 high quality simulations per execution.
+
+### Running the Script
+
+TO DO
+
+### Some Code Highlights
+
+TO DO
+
+## Final Thoughts
+
+TO DO
