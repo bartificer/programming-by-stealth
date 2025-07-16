@@ -118,9 +118,122 @@ All in all this gives us a nice balance between quality and quantity — the scr
 
 Before we look at the code, let's run it!
 
-You'll find the script in the instalment ZIP as `Invoke-MontyHallSimulation.ps1`. Notice it uses PowerShell's recommended verb-noun naming convention with the appropriate approved verb.
+You'll find the script in the instalment ZIP as `Invoke-MontyHallSimulation.ps1` (notice that it complies with PowerShell's recommended verb-noun naming convention).
 
-TO DO
+> Note that I didn't take the time to test this script on older versions of PowerShell, so to prevent issues I marked it as requiring the current stable release, PowerShell `7.5.*` with the following `requires` directive:
+>
+> ```powershell
+> #Requires -version 7.5
+> ```
+>
+> If you try to run the script on older versions of PowerShell it won't run, but assuming you installed PowerShell in the usual way (as described in TidBit 11), you should be able to upgrade with a simple `brew upgrade powershell/tap/powershell` on the Mac or `winget upgrade --id Microsoft.PowerShell` on Windows (Linux users will need to use the appropriate package manager for their distro).
+{: .warning}
+
+Open a PowerShell terminal and change into the folder where you saved the script.
+
+Because I took the time to implement expressive parameter definitions and to write documentation comments you can quickly see the script's required and supported parameters with the command:
+
+``` powershell
+Get-Help ./Invoke-MontyHallSimulation.ps1
+```
+
+This shows a lot of the documentation I added, but the important part is the last bit of the *SYNTAX* section which shows the following usage summary:
+
+```text
+Invoke-MontyHallSimulation.ps1 [[-Count] <int>] [-Quiet] [-Silent] [<CommonParameters>]
+```
+
+For now, simply notice that all parameters are in square braces, marking them all as optional. Since we don't need to provide any parameters, we can simply run the script in it's default mode with the command:
+
+```powershell
+& ./Invoke-MontyHallSimulation.ps1
+```
+
+This produces a **lot** of output because it ran the game a thousand times, printed the details of each game to the informational output put stream, then output a summary of the aggregated results to the informational output stream, and finally emitted a dictionary with the aggregate results to the data output stream.
+
+I chose to emit the information both to the human-facing informational output stream and to the data output stream so the script can be pipelined, for example, we can convert the dictionary written to the data stream to JSON and then save it to a file with the command:
+
+```powershell
+& ./Invoke-MontyHallSimulation.ps1 | ConvertTo-Json | Out-File -FilePath "results.json" -Encoding utf8
+```
+
+This still shows us the informational output, but the dictionary written to the data stream now goes to a file named `results.json` in JSON format:
+
+```json
+{
+  "RandomWins": 495,
+  "RandomWinPercentage": 49.5,
+  "SwitchWins": 646,
+  "GamesPlayed": 1000,
+  "StickWins": 354,
+  "SwitchWinPercentage": 64.6,
+  "StickWinPercentage": 35.4
+}
+```
+
+If we want to suppress the data stream to stop it cluttering our terminal we can simply tell PowerShell to discard it by piping it to `Out-Null`.
+
+Before we see that in action, let's take a moment to explore the optional parameters the script provides:
+
+```powershell
+Get-Help ./Invoke-MontyHallSimulation.ps1 -Parameter *
+```
+
+This shows all the details PowerShell knows about the parameters I defined, including both my human-friendly descriptions from the help comments and the metadata from the parameter definitions themselves:
+
+```text
+-Count <Int32>
+    The number of times to run the simulation, defaults to 1,000 and is limited to 5,000.
+    
+    Required?                    false
+    Position?                    1
+    Default value                1000
+    Accept pipeline input?       true (ByValue)
+    Aliases                      
+    Accept wildcard characters?  false
+    
+
+-Quiet [<SwitchParameter>]
+    If specified, suppresses output describing each game to the console. Ignored if -Verbose is specified, and has no effect if -Silent is specified.
+    
+    Required?                    false
+    Position?                    named
+    Default value                False
+    Accept pipeline input?       false
+    Aliases                      
+    Accept wildcard characters?  false
+    
+
+-Silent [<SwitchParameter>]
+    If specified, suppresses all console output other than errors and warnings. Ignored if -Verbose is specified, and supercedes -Quiet.
+    
+    Required?                    false
+    Position?                    named
+    Default value                False
+    Accept pipeline input?       false
+    Aliases                      
+    Accept wildcard characters?  false
+```
+
+For our final example, let's use the `-Quiet` option to suppress the output from each individual game, let's increase the number of games simulated to the maximum, and let's suppress the data stream:
+
+```powershell
+& ./Invoke-MontyHallSimulation.ps1 -Count 5000 -Quiet | Out-Null
+```
+
+Now we just see what really matters, the final results from simulating a lot of games:
+
+```text
+Final Results:
+ - Games Played: 5,000
+ - Stick Strategy: 1,674 Wins (33.48%)
+ - Switch Strategy: 3,326 Wins (66.52%)
+ - Random Strategy: 2,507 Wins (50.14%)
+```
+
+So, do my three assumptions hold up to testing?
+
+**Yes**, always sticking does indeed give you a one-in-three chance, randomly sticking or switching does indeed increase that to a one-in-two chance, and always switching does indeed give you a stunning two-in-three chance of a car!
 
 ### Some Code Highlights
 
