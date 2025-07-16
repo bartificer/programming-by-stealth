@@ -1,13 +1,17 @@
 ---
-title: PowerShell Meets Monty Hall
+title: PowerShell Tames Monty
 instalment: 13
 creators: [bart, Allison]
 date: 2025-06-19
 ---
 
-Way back in 2015 when myself and Allison started this series I made a point of evangelising the power of coding skills — when you can program, you can turn your ideas, big and small, into reality. Sometimes that results in substantial projects that take up years of your life, like XKPasswd, and sometimes that results in a simple little script written on a rainy morning on a whim for no reason other than that it sounded like fun. This little tidbit is mostly an example of that, but it's also a little reminder that PowerShell remains next on our agenda after we finish the Jekyll series, and as a second teaser for that trailer.
+Way back in 2015 when myself and Allison started this series I made a point of evangelising the power of coding skills — when you can program, you can turn your ideas, big and small, into reality. Sometimes that results in substantial projects that take up years of your life, like XKPasswd, and sometimes that results in a simple little script written on a rainy morning simply for the pleasure of finding things out (to borrow a phrase from the great Richard Feynman). 
 
-So what's with the odd title? It all has to do with a US TV game show I have literally never watched, and a math problem that breaks most people's intuition so thoroughly it's famous around the world — yes, I wanted to test my understanding of the [Monty Hall Problem](https://en.wikipedia.org/wiki/Monty_Hall_problem) 😀
+It's impossible to count the ways coding skills can empower, but one of them is the ability to quickly and easily experiment with things to help you really understand them. That's the root cause of this little tidbit — I was reminded of a problem I knew I only half understood just as I was starting some annual leave, so I decided to do something about it. That something was little PowerShell script simulate the problem.
+
+This tidbit serves three purposes really — it illustrates how the ability to program empowers, it demonstrates the value of experimenting, and it serves as a little reminder that PowerShell remains next on our agenda after we finish the Jekyll series.
+
+So what's with the odd title? And what does this little script actually do? Well, it all started with a passing comment on a discussion of the dangers of AI. As an example of how humans are easy to manipulate because we're predictably illogical, the guest threw out three little words that set me off, she cited the infamous [Monty Hall Problem](https://en.wikipedia.org/wiki/Monty_Hall_problem) 😀
 
 ## Matching Podcast Episodes
 
@@ -15,59 +19,85 @@ TO DO
 
 ## The Monty Hall Problem
 
-Back in the 1970s Monty Hall was the legendary host of a US TV game show named *[Let's Make a Deal](https://en.wikipedia.org/wiki/Let%27s_Make_a_Deal)*. The show involved audience members having to choose to trade something they could see for something they couldn't. I don't t think the infamous scenario named for the show's host ever actually appeared on the TV show itself, but in 1975 a reader sent a letter (yea, letters passed for social media back then 😉) to *The American Statistician* magazine with a challenge we now know as *the Monty Hall Problem*:
+Back in the 1970s Monty Hall was the legendary host of a US TV game show named *[Let's Make a Deal](https://en.wikipedia.org/wiki/Let%27s_Make_a_Deal)* (which I was surprised to discover is still on the air!). The show involves audience members having to choose to trade something they can see for something they can't. Some of the prizes are fantastic, and some are hilariously useless duds. As best as I can tell the exact scenario that now bears the former host's name never actually appeared on the show! It seems it was simply inspired by it.
+
+Anyway, in 1975 a reader sent a letter (closest the 70s got to social media 😉) to *The American Statistician* magazine with the challenge we now know as *the Monty Hall Problem*:
 
 > Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
 
-So, you have three doors, one with a new car, and two with dummy prizes, you pick a door, the host opens one of the wrong doors, and you get to choose to stick with your original choice, or to switch. Statistically, which choice gives you the best odds of winning the car?
+So, you have three doors, one with a shiny new car, and two with dummy prizes, you pick a door, the host opens one of the wrong doors, and you get to choose to stick with your original choice, or to switch to the other closed door. Statistically, which choice gives you the best odds of winning the car?
 
-Most people, me included, initially assume it's a toss-up, there was a one-in-three chance your first door was right, and a one-in-three chance the other door was right, so there's no difference — **WRONG!!!**
+Most people, me included, initially assume it's a toss-up — there's a one-in-three chance the car is behind each door, so there's no difference between them … right? … **WRONG!**
 
-Switching actually **doubles** your chance of winning to two-in-three — huh‽‽‽🤯
+Switching actually **doubles** your chance of winning to two-in-three — huh‽🤯
 
-The to understanding this is this little phrase in the original puzzle:  _"and the host, **who knows what's behind the doors**, opens another door"_. Your intuition that you had a 1-in-3 chance on your initial guess was perfectly correct, but unlike with two coin-flips that follow each other with are un-connected, the choice of the door to open is **not** un-connected, the host has added information into your understanding of the situation, which has changed the odds. The door that the host opens **never** contain the car, so the host did not have a 1-in-3 choice to make, in fact, if you guess right, the host has **zero** options, there is only one door you haven't already picked that has a goat behind it! Even if you initially picked wrong, there are only two doors you haven't picked, so the host is still not choosing from 1-in-3. That door you didn't pick the first time is now more likely to be the right answer than 1-in-3, so **you should switch**!
+Before I started my experiments I half-understood what was going on, but each time I'd try to explain it I'd be forced to revert to the kind of hand-waving that made it clear to both me and the person I was trying to explain it tot hat I didn't fully understand what was going on. I'd gotten as far as understanding one of two important insights, but only one, it was the act of writing the script that opened my eyes on the second insight.
+
+OK, so what did I understand before I started to code?
+
+I knew that when you have un-connected events like coin flips and dice rolls, the flips and rolls that come before have no effect on the probabilities of the next flip. Whether you rolled no sixes in your ten previous rolls or six sixes makes no difference, you still have a one-in-six chance of rolling a six next time!
+
+I also knew that the Monty Hall Problem is not like that because the events **are** connected. The key is this little phrase within the original puzzle:  _"and the host, **who knows what's behind the doors**, opens another door"_.
+
+So, the first door you guess absolutely has a one-in-three chance of being the correct one, but once Monty opens one of the two mystery doors he adds information to the system, so things have changed for your second decision. There are now two doors in play, not three, so if you make a new random choice you're odds just went to 50/50, you'll be right three out of six times rather than just two.
+
+That much I understood — if you randomly guess again you get a one-in-two chance of a car, great, but the guest said something different, they said that when you do the math, always switching doors gives you a two-in-three chance of winning a car. That was the bit that I still didn't get. Boosting my odds from one-in-three to one-in-two, great, but getting to better than that, how is that possible?
+
+## Code is More Expressive than English
+
+I've been noodling the Monty Hall Problem for years, but I've been doing it in my head, with my internal monologue, in English. Describing something algorithmic in English is not very efficient. Famously, asking kids to describe the steps to making a peanut butter sandwich and watching the results of following those instructions literally is hilarious, and very very messy 🙂
+
+I needed to express the game in code, so I had to be precise, and I had to think about **Monty's Options** at the second step. I had only ever thought about the game from **my point of view**, but to write the code I had to break out of that very human tunnel vision and look at the big picture, and then it became so obvious I simply couldn't understand how I'd never seen it before.
+
+My first choice is completely un-constrained, there are three doors, I can pick any one of them. But when Monty has to open a door his choices are actually surprisingly constrained — he can't open the door I've chosen, and he can't open the one with the car. So let's consider what that means for Monty when I guess right, and, when I guess wrong.
+
+When my first guess is correct Monty can open either of the two doors I haven't picked because both have goats. Regardless of which one he chooses to open, I'll always loose if I switch, and win if stick.
+
+But what happens when my first guess is wrong? Monty can't choose the door I guessed, which has a goat, and he can't choose the door with the car, so he has no choice at all, there's only one door he can open, so the one he leaves closed **must** have the car. So, **if my first guess is wrong, I'm guaranteed to win the car if I switch!**
+
+If the chance my first guess is right is one-in-three, then the chance my first guess is wrong is two-in-three, so **if I always choose to switch, I win two-thirds of the time!**
 
 ## Hmmm … I Guess … But Really?
 
-Having listened to yet another mathematician refer to the Monty Hall Problem and how it shows we humans are predictably illogical in very specific ways, this problem was whirling around in my brain at the start of some annual leave as the rain was bucketing down outside and I had a barrel of fresh-brewed coffee and my laptop in front of me — why not just test this so I know, for sure, that the world behaves like I think it does. Let's throw together a script to play the game a few thousand times and count the successes for the three most obvious strategies:
+OK, so before I even finished writing my script, let alone run it, I was already pretty sure I'd figured it out, but I still wanted to finish the script to be absolutely sure I really did actually understand it completely this time.
 
-1. Always stick to your original door
-2. Always switch (a theory tells us we should)
-3. Randomly stick or switch
+If I actually understood the solution then I should be able to prove three things:
 
-A decade ago when I wanted to throw together a quick script I'd reach for Perl, five years ago, Node JS CLI JavaScript, but today, PowerShell!
+1. The strategy of never switching should be the worst, giving a success rate of one-in-three
+2. The strategy of randomly choosing to stick or switch should be a little better, giving a success rate of one-in-two
+3. The strategy of always switching should give me the best result results, successfully winning the car two-in-three times
 
-So, with a little help from the GitHub and Office365 Copilot AI bots, I threw together a script before my coffee was empty — that's why coding is a superpower 🙂
-
-I had a quick and dirty result very quickly, but then it struck me that if I carried on a little bit and tidied it up, refactored it a little to bring it in line with best practices, then I'd have some fun content to talk to Allison about, hence, this TidBit!
+I actually had a quick and dirty result quite quickly, but I wasn't satisfied with that, I was really getting sucked into this problem now so I decided to keep going. I refactored and extended my crude initial script to bring it into line with best practices, that way I'd get to practice my PowerShell skills, and, I'd have some fun content to talk to Allison about!
 
 ## PowerShell Meets Monty Hall
 
-Before we look at the code, I want to stress that this final script is not a *quick-and-dirty* hack, it's a best-practices little script that shows how to write **good robust PowerShell** rather than short and quick PowerShell. Your PowerShell doesn't need to be this long to work once, but if you want something maintainable that will do it's job reliably, then this is how you want to use PowerShell.
+Before we look at the code, I want to stress again that this final script is not a *quick-and-dirty* hack, you don't need to do this much work to quickly test something in PowerShell! Your PowerShell absolutely doesn't need to be this intricate to work **once**, but if you want something maintainable that will do its job reliably for a long time, then this **is** a good example of you should use PowerShell.
 
 ### Random Considerations
 
-Before I wrote one character of PowerShell I spent a little time thinking about getting some really high quality random numbers for this exercise — this is all about testing probabilities, so they last thing I wanted was now-quality random numbers invalidating my results!
+Before I wrote one character of PowerShell I spent a little time thinking about getting some really high quality random numbers for this exercise — this entire exercise is about testing probabilities, so we really don't want low-quality random numbers invalidating our results!
 
-So, I actually started by checking on the current state of Random.Org's free web API by [reading their docs](https://www.random.org/clients/http/).
+So, I actually started by checking on the current state of [Random.Org's free web API](https://www.random.org/clients/http/).
 
-Key points:
+The TL;DR is:
 
-1. There still is a free HTTP-based API that can generate random integers within a given range
-2. The free API is rate-limited in two ways:
+1. They still offer a free HTTP-based API that can generate random integers within a specified range
+2. But that free API is rate-limited in two ways:
    1. You can get a maximum of 10,000 random integers per query
-   2. If your IP address makes *too many* queries you'll get block-listed, so play nice!
+   2. If your IP address makes *'too many'* queries you'll get block-listed, so play nice!
 
 OK, so that's what the API can provide, what do I actually need?
 
 Well, to run a single simulation I need to make four random choices:
 
 1. Monty chooses a door to hide the car behind (integer between 1 & 3 inclusive)
-2. Choose one of three doors as my initial guess (integer between 1 & 3 inclusive)
-3. Monty chooses a wrong door to open, might have zero choices, but might have to pick between two (integer between 1 & 2 inclusive)
-4. For the random strategy, need to make a boolean choice to stick or switch (integer between 1 & 2 inclusive)
+2. I choose one of three doors as my initial guess (integer between 1 & 3 inclusive)
+3. Monty chooses a wrong door to open, and he sometimes has to pick between two possible doors (integer between 1 & 2 inclusive)
+4. For the random strategy, I need to make a boolean choice to stick or switch (integer between 1 & 2 inclusive)
 
-So, I need two random numbers between 1 and 3, and two between 1 and 2 for each simulation. I chose to make two calls to the API per run of the script:
+So, I need two random numbers between 1 and 3, and two between 1 and 2 for each simulation.
+
+I chose to make two calls to the API per run of the script:
 
 1. Ask for 10,000 random integers between 1 & 3 (`https://www.random.org/integers/?num=10000&min=1&max=3&col=1&base=10&format=plain&rnd=new`)
 2. Ask for 10,000 random integers between 1 and 2 (`https://www.random.org/integers/?num=10000&min=1&max=2&col=1&base=10&format=plain&rnd=new`)
@@ -82,9 +112,13 @@ Breaking those URLs down, the parameters are:
 * `format` can be either `html` to see the results on a web page, or `plain` to get the random numbers as plain text.
 * `rnd=new` is what the docs say to use when you want truly random numbers (there are other options for the rare situations you want something more complex like a deterministic random sequence or intentionally pseudo-random numbers)
 
-All in all this gave me a nice balance between quality and quantity — the script can run up to 5,000 high quality simulations per execution.
+All in all this gives us a nice balance between quality and quantity — the script can run up to 5,000 high quality simulations per execution.
 
 ### Running the Script
+
+Before we look at the code, let's run it!
+
+You'll find the script in the instalment ZIP as `Invoke-MontyHallSimulation.ps1`. Notice it uses PowerShell's recommended verb-noun naming convention with the appropriate approved verb.
 
 TO DO
 
