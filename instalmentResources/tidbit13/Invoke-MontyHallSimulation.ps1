@@ -1,4 +1,3 @@
-#Requires -version 7.5
 <#
 .SYNOPSIS
     Run the Monty Hall Problem to compare the effect of different strategies.
@@ -11,7 +10,7 @@
     3. Randomly choose to switch or stick with the original guess.
 	
 .PARAMETER Count
-    The number of times to run the simulation, defaults to 1000.
+    The number of times to run the simulation, defaults to 1,000 and is limited to 5,000.
 
 .PARAMETER Quiet
     If specified, suppresses output describing each game to the console. Ignored if -Verbose is specified, and has no effect if -Silent is specified.
@@ -48,6 +47,9 @@
     
     PS> & ./Invoke-MontyHallSimulation.ps1 -Count 5000 -Silent | ConvertTo-Json
 #>
+
+#Requires -version 7.5
+
 [CmdletBinding()]
 param(
     [Parameter(ValueFromPipeline=$true, Position=0)]
@@ -60,8 +62,8 @@ begin {
     #region Global Variables
 
     # Define the variables for handling the random numbers
-    $Random1to2 # An enumerator for random numbers between 1 and 2
-    $Random1to3 # An enumerator for random numbers between 1 and 3
+    $Random1to2 = $null # An enumerator for random numbers between 1 and 2
+    $Random1to3 = $null # An enumerator for random numbers between 1 and 3
 
     #endregion
 
@@ -126,7 +128,7 @@ begin {
         Write-Verbose "Got $($RandomNumbers.Count) random numbers between $Minimum and $Maximum from random.org"
 
         # return the random numbers
-        Write-Output $RandomNumbers
+        return $RandomNumbers
     }
 
     <#
@@ -252,8 +254,6 @@ process {
         $DoShowResults = $true
         $DoShowGameDetail = $true
         Write-Verbose "Verbose mode is enabled, so forcing all console outputs."
-    } else {
-        
     }
 
     #endregion
@@ -356,7 +356,7 @@ process {
     }
 
     # Output the results as a custom object
-    $Results = [PSCustomObject]@{
+    $Results = @{
         GamesPlayed = $GamesPlayed
         StickWins = $StickWins
         SwitchWins = $SwitchWins
