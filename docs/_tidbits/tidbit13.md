@@ -131,27 +131,27 @@ You'll find the script in the instalment ZIP as `Invoke-MontyHallSimulation.ps1`
 
 Open a PowerShell terminal and change into the folder where you saved the script.
 
-Because I took the time to implement expressive parameter definitions and to write documentation comments you can quickly see the script's required and supported parameters with the command:
+Because I took the time to implement expressive parameter definitions and to write help comments (PowerShell's equivalent of [JSDoc](https://pbs.bartificer.net/pbs130)) you can quickly see the script's required and supported parameters with the command:
 
 ``` powershell
 Get-Help ./Invoke-MontyHallSimulation.ps1
 ```
 
-This shows a lot of the documentation I added, but the important part is the last bit of the *SYNTAX* section which shows the following usage summary:
+That shows a lot more than we need to get started with the script, so just focus on the last part of the *SYNTAX* section which shows the following usage summary:
 
 ```text
-Invoke-MontyHallSimulation.ps1 [[-Count] <int>] [-Quiet] [-Silent] [<CommonParameters>]
+…Invoke-MontyHallSimulation.ps1 [[-Count] <int>] [-Quiet] [-Silent] [<CommonParameters>]
 ```
 
-For now, simply notice that all parameters are in square braces, marking them all as optional. Since we don't need to provide any parameters, we can simply run the script in it's default mode with the command:
+For now, simply notice that all the parameters are in square braces, marking them all as **optional**. So, we can simply run our script in its default mode with the command:
 
 ```powershell
 & ./Invoke-MontyHallSimulation.ps1
 ```
 
-This produces a **lot** of output because it ran the game a thousand times, printed the details of each game to the informational output put stream, then output a summary of the aggregated results to the informational output stream, and finally emitted a dictionary with the aggregate results to the data output stream.
+This produces a **lot** of output because it runs the game a thousand times, printing the details of each game to the informational output put stream as it goes, and when all the simulations are run it prints out a summary of the aggregated results to the informational output stream too before finally outputting a dictionary with those same aggregate results to the data output stream.
 
-I chose to emit the information both to the human-facing informational output stream and to the data output stream so the script can be pipelined, for example, we can convert the dictionary written to the data stream to JSON and then save it to a file with the command:
+Note that I chose to emit the information both to the human-facing informational output stream and to the data output stream so the script can be pipelined. For example, we can convert the dictionary with the results to JSON and write that to a file with the command:
 
 ```powershell
 & ./Invoke-MontyHallSimulation.ps1 | ConvertTo-Json | Out-File -FilePath "results.json" -Encoding utf8
@@ -237,8 +237,56 @@ So, do my three assumptions hold up to testing?
 
 ### Some Code Highlights
 
-TO DO
+Including the detailed help comments has grown this little script to nearly about 375 lines, so I won't duplicate it here, simply open the script in your favourite text editor to have a look yourself.
+
+Looking at the script at the highest level I want to draw your attention to three things:
+
+1. I used a `begin` block for my setup, did my work in a `process` block, and since there was no cleanup necessary, I omitted the `end` block.
+2. I used `#region` directives to give related chunks of code meaningful names, these labels are used by PowerShell-aware IDEs like VSCode to help you navigate around the script (look for them in the collapsible *OUTLINE* section of the default left sidebar).
+3. I took the time to refactor duplicated chunks of code into functions, and I defined those functions within the `begin` block, and took the time to add help comments and expressive parameter definitions to each of those as well as to the overall script.
+
+I don't think there would be much value in going through each line of code in the script, but I do want to draw your attention to a few key features.
+
+#### PowerShell Makes it Easy to Call Web APIs
+
+The script fetches the random numbers it needs from Random.Org using their API, and this is the section of the code that handles that:
+
+```powershell
+try {
+	$RandomNumbersRawString = Invoke-WebRequest -Uri $RandomDotOrgUri -Method Get | Select-Object -ExpandProperty Content
+} catch {
+	Write-Error "Failed to retrieve random numbers from Random.org with error: '$_'" -ErrorAction Stop
+}
+```
+
+The commandlet that does the work is `Invoke-WebRequest`, and I just give it two parameters, the URL (`-Uri`), and the HTTP method (`-Method`). In most cases you can omit the `-Method` and let `Invoke-WebRequest` decide which to use based in your other parameters, but since the Random.Org docs were very explicit that the API **only** supports `get` I decided to be explicit.
+
+`Invoke-WebRequest` returns a dictionary with lots of potentially useful information about the HTTP request that was sent and the HTTP response that was received, but since I just wanted to get the returned numbers as a big long string I needed the value from just one specific key, `Content`. I could have saved the response to a variable and then access the content as `$variableName.Content`, but that's inefficient in terms of code readability and memory usage, so I filter the dictionary down to just the one key I want by piping it to `Select-Object`. If you're going to write good PowerShell you absolutely need to make friends with `Select-Object` and it's friend `Where-Object` (put a pin in that).
+
+Finally, notice the call to `Invoke-WebRequest` is in a `try` block, this is because the commandlet will throw an error if it gets an HTTP response code of 400 or higher, in other words, if the HTTP request goes wrong with either a client-side problem (Error codes `4**`) or on the server side (Error codes `5**`).
+
+#### PowerShell Encourages Filtering rather than Looping
+
+When it comes time to figure out which doors Monty could open, a JavaScript programmer might loop over all the doors and check if each one is the guessed door or the correct door and store the ones that are neither in a new array. PowerShell doesn't encourage that design pattern, instead, PowerShell encourages filtering when ever possible.
+
+This is the line of code that builds the array of door numbers Monty can choose from:
+
+```power
+$RemainingDoors = 1..3 | Where-Object { $_ -ne $CarDoor -and $_ -ne $GuessDoor }
+```
+
+That probably looks confusing, so let's break it down.
+
+We're building a list that will be saved to a variable named `$RemianingDoors`, so the line starts with that variable name followed by the assignment operator. So far, so utterly normal, but now let's look at how the list that will be saved gets created by moving our attention to the other side of the assignment operator. The fist thing that happens is that the range operator (`..`) is used to create a list of all the integers from `1` to `3` (inclusive), in other words, we start with a list of all possible doors. That list is then piped to the `Where-Object` commandlet. This commandlet filters lists. It takes a list as input, applies some kind of test to each item in that list, and it returns a new list containing only the items that pass the test. In this case we're using a code block as our test, and the special variable `$_` represents *the value being tested*. So in this case `$_` will have the value `1`, then `2`, and finally `3`, and only the values that are neither equal to the door we picked or the door that has the car will pass the test.
+
+If this approach is vaguely ringing some bells it's likely because the `jq` language works similarly.
+
+When you come to PowerShell after many years of programming in C-style languages like C, C++, Java, JavaScript, or PHP this takes some getting used to, but stick with it, once you get used to thinking in terms of filtering rather than looping you'll find it's extremely powerful and results in simpler and clearer code.
 
 ## Final Thoughts
 
-TO DO
+This little script is a perfect example of why I really value my coding skills. My current job doesn't require much traditional coding, so these kinds of little side projects more important than ever, but honestly, that's not why I chose to spent the first day of my hard-earned annual leave writing a script to simulate an imaginary TV gameshow — **I did it because it was fun 😀**.
+
+I knew I _nearly_ understood the Monty Hall problem, and I knew it would be fun to experiment with it. To code it up, set it off, and then watch it in action. I knew scripting it up would force me deepen my understanding of it, and I was fairly sure I'd finally figure it out for once and for all in the process. I was right, and so was Richard Feynman — there is real pleasure in finding things out!
+
+Finally, I hope this little tidbit helped to re-whet your appetite for out up-coming PowerShell series!
