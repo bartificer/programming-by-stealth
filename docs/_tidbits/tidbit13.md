@@ -49,21 +49,25 @@ That much I understood — if you randomly guess again, you get a one-in-two cha
 
 I've been noodling the Monty Hall Problem for years, but I've been doing it in my head, with my internal monologue, in English. Describing something algorithmic in English is not very efficient. Famously, [asking kids to describe the steps to making a peanut butter sandwich](https://www.today.com/parents/parents/teacher-pbj-sandwich-rcna203417) and watching the results of following those instructions literally is hilarious, and very very messy 🙂
 
-I wanted to express the game in code, so I had to be precise, and I had to think about **Monty's Options** at the second step. I had only ever thought about the game from **my point of view**, but to write the code, I had to break out of that very human tunnel vision and look at the big picture, and then it became so obvious I simply couldn't understand how I'd never seen it before.
+I wanted to express the game in code, so I had to be precise, and I had to think about **Monty's Options** at the second step. I had only ever thought about the game from **my point of view**, but to write the code, I needed to break out of that very human tunnel vision and look at the big picture, and when I did, it became so obvious I simply couldn't understand how I'd never seen it before!
 
-My first choice is completely unconstrained; there are three doors, and I can pick any one of them. But when Monty has to open a door, his choices are actually surprisingly constrained — he can't open the door I've chosen, and he can't open the one with the car. So let's consider what that means for Monty when I guess right, and when I guess wrong.
+Remember, the strategy thing that I could not wrap my head around was how on earth the *always switch* strategy could possibly get you to winning two-out-of-three times, so let's focus purely on that strategy and look at the game as a whole, both from mine and Monty's points of view.
 
-When my first guess is correct, Monty can open either of the two doors I haven't picked because both have goats. Regardless of which one he chooses to open, I'll always lose if I switch, and win if I stick.
+I go first, and my first choice is completely unconstrained; there are three doors, and I can pick any one of them. There is now a one-in-three chance I have the door with the car, and a two-in-three chance I have a door with a goat.
 
-But what happens when my first guess is wrong? Monty can't choose the door I guessed, which has a goat, and he can't choose the door with the car, so he has no choice at all. There's only one door he can open, so the one he leaves closed **must** have the car. So, **if my first guess is wrong, I'm guaranteed to win the car if I switch!**
+Now it's Monty's turn, and his choices are actually surprisingly constrained — he can't open the door I've chosen, and he can't open the one with the car. So let's consider what that means for Monty when I guess right, and then when I guess wrong.
 
-Since probabilities always add up to 1, if the chance my first guess is right is one in three (0.33), that means the chance my first guess is wrong is two in three (0.66 because 1-0.33 is 0.66), so **if I always choose to switch, I win two-thirds of the time!**
+When my first guess is correct, Monty can open either of the two doors I haven't picked because both have goats behind them. Regardless of which one Monty does choose to open, when I switch I'm always changing away from the correct door, so with the *always switch* strategy I **always lose if my first guess was correct**, i.e. I lose one-in-three-times.
+
+But what happens when my first guess is wrong? That's twice as likely after all! Now, Monty can't choose the door I guessed, which has a goat, and he can't choose the door with the car, so actually, **he has no choice at all**, there's literally only one door he can open! What's more, he's literally just given the game away, because the door he was forced to leave closed **must** have the car. So, with the *always switch* strategy, when **my first guess is wrong, I'm guaranteed to win the car if I switch!**
+
+Remember, I have a two-in-three chance of guessing wrong first time, so because this strategy guarantees the car every time my first guess is wrong, **the *always switch* strategy get me the car two-thirds of the time!**
 
 ## Hmmm … I Guess … But Really?
 
-OK, so before I even finished writing my script, let alone run it, I was already pretty sure I'd figured it out, but I still wanted to finish the script to be absolutely sure I really did actually understand it completely this time.
+OK, so before I even finished writing my script, let alone running it, I was already pretty sure I'd figured it out by simply writing the code, but I still wanted to finish the script to be absolutely sure I really did actually understand it completely this time 🙂
 
-If I actually understood the solution, then I should be able to prove three things:
+If I actually understand the problem, then the script should be able to prove three things:
 
 1. The strategy of never switching should be the worst, giving a success rate of one in three.
 2. The strategy of randomly choosing to stick or switch should be a little better, giving a success rate of one in two (as explained above)
@@ -74,6 +78,24 @@ I actually had a quick and dirty result quite quickly, but I wasn't satisfied wi
 ## PowerShell Meets Monty Hall
 
 Before we look at the code, I want to stress again that this final script is not a *quick-and-dirty* hack; you don't need to do this much work to quickly test something in PowerShell! Your PowerShell absolutely doesn't need to be this intricate to work **once**, but if you want something maintainable that will do its job reliably for a long time, then this **is** a good example of why you should use PowerShell.
+
+Secondly, remember that this is a second teaser, so you shouldn't expect to understand all the details.
+
+### A Bird's Eye View of the Code
+
+At the highest level, the code is organised into the following chunks:
+
+1. The help comments for the script as a whole
+2. The `begin{}` block which is intended for script initialisation
+   1. Define two global variables to store caches of random numbers (more on those shortly)
+   2. Define the helper functions for fetching and then using the caches of random numbers, each function has its own help comment directly above its definition.
+3. The `process{}` block where the script's main body goes
+   1. Validate the parameters
+   2. Run the simulation — first define some variables to count the outcomes, then loop over the code to play the game as often as needed:
+      1. Pick a random door
+      2. Let Monty open one
+      3. Apply each of the three strategies and record the outcomes for all three
+4. Output the accumulated results
 
 ### Random Considerations
 
@@ -118,9 +140,24 @@ All in all, this gives us a nice balance between quality and quantity. The scrip
 
 RANDOM.ORG offers *true* random numbers to anyone on the Internet. The randomness comes from atmospheric noise, which for many purposes is better than the pseudo-random number algorithms typically used in computer programs.
 
+### A Note on Output Streams
+
+One of the things I focused on for our initial PowerShell teaser was how PowerShell takes Bash's idea of separate output streams for default output and error output to the next level by offering difference streams for information intended for humans, and for information intended for the next command in a pipeline:
+
+1. Four streams for output intended for humans:
+   1. A debug stream enabled with the `-Verbose` switch parameter (flag) and written to with `Write-Verbose`
+   2. The stream for normal human output, or the informational stream, written to with `Write-Host`
+   3. The stream for non-fatal problems, or the warning stream, written to with `Write-Warning`
+   4. And the stream for reporting failures, or the error stream, written to with `Write-Error`
+2. The stream intended for the next command or script in the pipeline, or the data stream, written to with `Write-Output`
+
+I made a point of making use of as many of these streams as made sense, so you'll see a lot of informational output, a handful of error outputs, no warning outputs, and one data output.
+
+I chose to keep the data output simple and just send a flat dictionary with keys for the number of games played and the outcomes of each strategy as a number of games won, and a percentage of games won. I could of course have chosen to make the data structure as complex as I liked, but since the point of the data structure is to make the information available to other commands or scripts rather than humans I decided not to get carried away (this time). I didn't even go to the extra effort of making the dictionary an ordered dictionary, though PowerShell does support those for situations where the order of the keys on a dictionary is important to you.
+
 ### Running the Script
 
-Before we look at the code, let's run it!
+Before we look at a few of the details within the code, let's run it!
 
 You'll find the script in the instalment ZIP as `Invoke-MontyHallSimulation.ps1` (notice that it complies with PowerShell's recommended verb-noun naming convention).
 
@@ -153,17 +190,21 @@ For now, simply notice that all the parameters are in square braces, marking the
 & ./Invoke-MontyHallSimulation.ps1
 ```
 
-This produces a **lot** of output because it runs the game a thousand times, printing the details of each game to the informational output stream as it goes, and when all the simulations are run it prints out a summary of the aggregated results to the informational output stream too before finally outputting a dictionary with those same aggregate results to the data output stream.
+This produces a **lot** of output because it runs the game a thousand times, printing the details of each game to the informational output stream as it goes, and when all the simulations are run it prints out a summary of the aggregated results to the informational stream too before finally outputting a dictionary with those same aggregate results to the data output stream.
 
-**BART: above paragraph might need more explanation. You may have told us what an "informational output stream" vs. "data output stream" is, but if you did it was 7 months ago. Or maybe it's just too many words that sound the same to me?** 
+BTW, if, for some reason, you wanted to see even more output you could run the script in verbose mode with the command:
 
-Note that I chose to emit the information both to the human-facing informational output stream and to the data output stream so the script can be pipelined. For example, we can convert the dictionary with the results to JSON and write that to a file with the command:
+```powershell
+& ./Invoke-MontyHallSimulation.ps1 -Verbose
+```
+
+Because I chose to emit the information both the human and data streams, we can easily pipe the results to some kind of widely supported data file. For example, we can save the dictionary with the results to a JSON file with the command:
 
 ```powershell
 & ./Invoke-MontyHallSimulation.ps1 | ConvertTo-Json | Out-File -FilePath "results.json" -Encoding utf8
 ```
 
-This still shows us the informational output, but the dictionary written to the data stream now goes to a file named `results.json` in JSON format:
+This still shows us the human output, but the dictionary now went to a file named `results.json` rather than appearing on the terminal:
 
 ```json
 {
@@ -176,8 +217,6 @@ This still shows us the informational output, but the dictionary written to the 
   "StickWinPercentage": 35.4
 }
 ```
-
-(I chose to keep things simply and simply output the important data points as a flat dictionary, but you could make your data structure as complex as you like of course. Since the points of data outputs is to feed into other script not to be viewed by humans I didn't go to the extra effort of making it an ordered dictionary, but PowerShell does support those if you really want they keys to appear in a specific order.)
 
 If we want to suppress the data stream to stop it cluttering our terminal, we can simply tell PowerShell to discard it by piping it to `Out-Null`.
 
@@ -223,7 +262,7 @@ This shows all the details PowerShell knows about the parameters I defined, incl
     Accept wildcard characters?  false
 ```
 
-For our final example, let's use the `-Quiet` option to suppress the output from each individual game, let's increase the number of games simulated to the maximum, and let's suppress the data stream:
+For our final example, let's use the `-Quiet` switch to suppress the output from each individual game, let's also increase the number of games simulated to the maximum, and finally, let's suppress the data stream:
 
 ```powershell
 & ./Invoke-MontyHallSimulation.ps1 -Count 5000 -Quiet | Out-Null
@@ -245,15 +284,9 @@ So, do my three assumptions hold up to testing?
 
 ### Some Code Highlights
 
-Including the detailed help comments has grown this little script to nearly 375 lines, so I won't duplicate it here. Simply open the script in your favourite text editor to have a look yourself.
+Including the detailed help comments has grown this little script to nearly 375 lines, so I won't duplicate it here. Simply open the script in your favourite text editor to have a look yourself (I recommend Microsoft's free and open source [VSCode](https://code.visualstudio.com) for working with PowerShell).
 
-Looking at the script at the highest level, I want to draw your attention to three things:
-
-1. I used a `begin` block for my setup, did my work in a `process` block, and since there was no cleanup necessary, I omitted the `end` block.
-2. I used `#region` directives to give related chunks of code meaningful names. These labels are used by PowerShell-aware IDEs like VSCode to help you navigate around the script. (Look for them in the collapsible *OUTLINE* section of the default left sidebar.)
-3. I took the time to refactor duplicated chunks of code into functions, and I defined those functions within the `begin` block, and took the time to add help comments and expressive parameter definitions to each of those, as well as to the overall script.
-
-I don't think there would be much value in going through each line of code in the script, but I do want to draw your attention to a few key features.
+Again, since this is a teaser, I'm not going to go through the code line-by-line, but I do want to draw your attention to a few notable details.
 
 #### PowerShell Makes it Easy to Call Web APIs
 
