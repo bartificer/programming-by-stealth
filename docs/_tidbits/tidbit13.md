@@ -49,23 +49,23 @@ That much I understood — if you randomly guess again, you get a one-in-two cha
 
 I've been noodling the Monty Hall Problem for years, but I've been doing it in my head, with my internal monologue in English. Describing something algorithmic in English is not very efficient. Famously, [asking kids to describe the steps to making a peanut butter sandwich](https://www.today.com/parents/parents/teacher-pbj-sandwich-rcna203417) and watching the results of following those instructions literally is hilarious, and very very messy 🙂
 
-I wanted to express the game in code, so I had to be precise, and I had to think about **Monty's Options** at the second step. I had only ever thought about the game from **my point of view**. To write the code, I needed to break out of that very human tunnel vision and look at the big picture, and when I did, it became so obvious I simply couldn't understand how I'd never seen it before!
+I wanted to express the game in code, so I had to be precise, and I had to think about **Monty's Options** at the second step. I had only ever thought about the game from **my point of view**, but to write the code, I needed to break out of that very human tunnel vision and look at the big picture, and when I did, it became so obvious I simply couldn't understand how I'd never seen it before!
 
-Remember, the strategy thing that I could not wrap my head around was how on earth the *always switch* strategy could possibly get you to winning two-out-of-three times. Let's focus purely on that strategy and look at the game as a whole, both from my and Monty's points of view.
+Remember, the strategy thing that I could not wrap my head around was how on earth the *always switch* strategy could possibly get you to winning two-out-of-three times, so let's focus purely on that strategy and look at the game as a whole, both from mine and Monty's points of view.
 
 I go first, and my first choice is completely unconstrained; there are three doors, and I can pick any one of them. There is now a one-in-three chance I have the door with the car, and a two-in-three chance I have a door with a goat.
 
 Now it's Monty's turn, and his choices are actually surprisingly constrained — he can't open the door I've chosen, and he can't open the one with the car. So let's consider what that means for Monty when I guess right, and then when I guess wrong.
 
-When my first guess is correct, Monty can open either of the two doors I haven't picked because both have goats behind them. Regardless of which one Monty does choose to open, when I switch, I'm always changing away from the correct door, so with the *always switch* strategy, I **always lose if my first guess was correct**, i.e., I lose one-in-three times.
+When my first guess is correct, Monty can open either of the two doors I haven't picked because both have goats behind them. Regardless of which one Monty does choose to open, when I switch I'm always changing away from the correct door, so with the *always switch* strategy I **always lose if my first guess was correct**, i.e. I lose one-in-three-times.
 
 But what happens when my first guess is wrong? That's twice as likely after all! Now, Monty can't choose the door I guessed, which has a goat, and he can't choose the door with the car, so actually, **he has no choice at all**, there's literally only one door he can open! What's more, he's literally just given the game away, because the door he was forced to leave closed **must** have the car. So, with the *always switch* strategy, when **my first guess is wrong, I'm guaranteed to win the car if I switch!**
 
-Remember, I have a two-in-three chance of guessing wrong the first time, so because this strategy guarantees the car every time my first guess is wrong, **the *always switch* strategy gets me the car two-thirds of the time!**
+Remember, I have a two-in-three chance of guessing wrong first time, so because this strategy guarantees the car every time my first guess is wrong, **the *always switch* strategy get me the car two-thirds of the time!**
 
 ## Hmmm … I Guess … But Really?
 
-OK, so before I even finished writing my script, let alone running it, I was already pretty sure I'd figured it out by simply writing the code, but I still wanted to finish the script to be absolutely sure I fully understood it completely this time 🙂
+OK, so before I even finished writing my script, let alone running it, I was already pretty sure I'd figured it out by simply writing the code, but I still wanted to finish the script to be absolutely sure I really did actually understand it completely this time 🙂
 
 If I actually understand the problem, then the script should be able to prove three things:
 
@@ -86,10 +86,10 @@ Secondly, remember that this is a second teaser, so you shouldn't expect to unde
 At the highest level, the code is organised into the following chunks:
 
 1. The help comments for the script as a whole
-2. The `begin{}` block, which is intended for script initialisation
-   1. Defines two global variables to store caches of random numbers (more on those shortly)
-   2. Defines the helper functions for fetching and then using the caches of random numbers. Each function has its own help comment directly above its definition.
-3. The `process{}` block, where the script's main body goes
+2. The `begin{}` block which is intended for script initialisation
+   1. Define two global variables to store caches of random numbers (more on those shortly)
+   2. Define the helper functions for fetching and then using the caches of random numbers, each function has its own help comment directly above its definition.
+3. The `process{}` block where the script's main body goes
    1. Validate the parameters
    2. Run the simulation — first define some variables to count the outcomes, then loop over the code to play the game as often as needed:
       1. Pick a random door
@@ -142,7 +142,7 @@ RANDOM.ORG offers *true* random numbers to anyone on the Internet. The randomnes
 
 ### A Note on Output Streams
 
-One of the things I focused on for our initial PowerShell teaser was how PowerShell takes Bash's idea of separate output streams for default output and error output to the next level by offering different streams for information intended for humans, and for information intended for the next command in a pipeline:
+One of the things I focused on for our initial PowerShell teaser was how PowerShell takes Bash's idea of separate output streams for default output and error output to the next level by offering difference streams for information intended for humans, and for information intended for the next command in a pipeline:
 
 1. Four streams for output intended for humans:
    1. A debug stream enabled with the `-Verbose` switch parameter (flag) and written to with `Write-Verbose`
@@ -153,7 +153,7 @@ One of the things I focused on for our initial PowerShell teaser was how PowerSh
 
 I made a point of making use of as many of these streams as made sense, so you'll see a lot of informational output, a handful of error outputs, no warning outputs, and one data output.
 
-I chose to keep the data output simple and just send a flat dictionary with keys for the number of games played and the outcomes of each strategy as a number of games won, and a percentage of games won. I could of course have chosen to make the data structure as complex as I liked, but since the point of the data structure is to make the information available to other commands or scripts rather than humans, I decided not to get carried away (this time). I didn't even go to the extra effort of making the dictionary an ordered dictionary, though PowerShell does support those for situations where the order of the keys in a dictionary is important to you.
+I chose to keep the data output simple and just send a flat dictionary with keys for the number of games played and the outcomes of each strategy as a number of games won, and a percentage of games won. I could of course have chosen to make the data structure as complex as I liked, but since the point of the data structure is to make the information available to other commands or scripts rather than humans I decided not to get carried away (this time). I didn't even go to the extra effort of making the dictionary an ordered dictionary, though PowerShell does support those for situations where the order of the keys on a dictionary is important to you.
 
 ### Running the Script
 
