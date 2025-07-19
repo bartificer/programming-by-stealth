@@ -5,7 +5,7 @@ creators: [bart, Allison]
 date: 2025-06-19
 ---
 
-Way back in 2015 when myself and Allison started this series I made a point of evangelising the power of coding skills — when you can program, you can turn your ideas, big and small, into reality. Sometimes that results in substantial projects that take up years of your life, like XKPasswd, and sometimes that results in a simple little script written on a rainy morning simply for the pleasure of finding things out (to borrow a phrase from the great Richard Feynman). 
+Way back in 2015 when myself and Allison started this series, I made a point of evangelising the power of coding skills — when you can program, you can turn your ideas, big and small, into reality. Sometimes that results in substantial projects that take up years of your life, like XKPasswd, and sometimes that results in a simple little script written on a rainy morning simply for the pleasure of finding things out (to borrow a phrase from the great Richard Feynman). 
 
 It's impossible to count the ways coding skills can empower, but one of them is the ability to quickly and easily experiment with things to help you really understand them. That's the root cause of this little tidbit — I was reminded of a problem I knew I only half understood just as I was starting some annual leave, so I decided to do something about it. That something was a little PowerShell script to simulate the problem.
 
@@ -33,7 +33,7 @@ Most people, me included, initially assume it's a toss-up — there's a one-in-t
 
 Switching actually **doubles** your chance of winning to two-in-three — huh‽🤯
 
-Before I started my experiments, I half-understood what was going on, but each time I'd try to explain it, I'd be forced to revert to the kind of hand-waving that made it clear to both me and the person I was trying to explain it to that I didn't fully understand what was going on. I'd gotten as far as understanding one of two important insights, but only one, it was the act of writing the script that opened my eyes to the second insight.
+Before I started my experiments, I half understood what was going on, but each time I'd try to explain it, I'd be forced to revert to the kind of hand-waving that made it clear to both me and the person I was trying to explain it to that I didn't fully understand what was going on. I'd gotten as far as understanding one of two important insights, but only one, it was the act of writing the script that opened my eyes to the second insight.
 
 OK, so what did I understand before I started to code?
 
@@ -41,36 +41,36 @@ I knew that when you have unconnected events like coin flips and dice rolls, the
 
 I also knew that the Monty Hall Problem is not like that because the events **are** connected. The key is this little phrase within the original puzzle:  _"and the host, **who knows what's behind the doors**, opens another door"_.
 
-So, the first door you guess absolutely has a one-in-three chance of being the correct one, but once Monty opens one of the two mystery doors, he adds information to the system. This means things have changed for your second decision. There are now two doors in play, not three, so if you make a new random choice, your odds just went to 50/50. If you played 60 games you'd be right 30 times rather than just 20!
+So, the first door you guess absolutely has a one-in-three chance of being the correct one, but once Monty opens one of the two mystery doors, he adds information to the system. This means things have changed for your second decision. There are now two doors in play, not three, so if you make a new random choice, your odds just went to 50/50. If you played 60 games, you'd be right 30 times rather than just 20!
 
 That much I understood — if you randomly guess again, you get a one-in-two chance of a car. Great, but the expert on the podcast said something even more impressive. They said that when you do the math, always switching doors gives you a two-in-three chance of winning a car. That would mean that you'd win 40 out of 60 games. That's insane! That was the bit that I still didn't get. Boosting my odds from one-in-three to one-in-two, great, but getting to better than that, how is that even possible?
 
 ## Code is More Expressive than English
 
-I've been noodling the Monty Hall Problem for years, but I've been doing it in my head, with my internal monologue, in English. Describing something algorithmic in English is not very efficient. Famously, [asking kids to describe the steps to making a peanut butter sandwich](https://www.today.com/parents/parents/teacher-pbj-sandwich-rcna203417) and watching the results of following those instructions literally is hilarious, and very very messy 🙂
+I've been noodling the Monty Hall Problem for years, but I've been doing it in my head, with my internal monologue in English. Describing something algorithmic in English is not very efficient. Famously, [asking kids to describe the steps to making a peanut butter sandwich](https://www.today.com/parents/parents/teacher-pbj-sandwich-rcna203417) and watching the results of following those instructions literally is hilarious, and very very messy 🙂
 
-I wanted to express the game in code, so I had to be precise, and I had to think about **Monty's Options** at the second step. I had only ever thought about the game from **my point of view**, but to write the code, I needed to break out of that very human tunnel vision and look at the big picture, and when I did, it became so obvious I simply couldn't understand how I'd never seen it before!
+I wanted to express the game in code, so I had to be precise, and I had to think about **Monty's Options** at the second step. I had only ever thought about the game from **my point of view**. To write the code, I needed to break out of that very human tunnel vision and look at the big picture, and when I did, it became so obvious I simply couldn't understand how I'd never seen it before!
 
-Remember, the strategy thing that I could not wrap my head around was how on earth the *always switch* strategy could possibly get you to winning two-out-of-three times, so let's focus purely on that strategy and look at the game as a whole, both from mine and Monty's points of view.
+Remember, the strategy thing that I could not wrap my head around was how on earth the *always switch* strategy could possibly get you to winning two-out-of-three times. Let's focus purely on that strategy and look at the game as a whole, both from my and Monty's points of view.
 
 I go first, and my first choice is completely unconstrained; there are three doors, and I can pick any one of them. There is now a one-in-three chance I have the door with the car, and a two-in-three chance I have a door with a goat.
 
 Now it's Monty's turn, and his choices are actually surprisingly constrained — he can't open the door I've chosen, and he can't open the one with the car. So let's consider what that means for Monty when I guess right, and then when I guess wrong.
 
-When my first guess is correct, Monty can open either of the two doors I haven't picked because both have goats behind them. Regardless of which one Monty does choose to open, when I switch I'm always changing away from the correct door, so with the *always switch* strategy I **always lose if my first guess was correct**, i.e. I lose one-in-three-times.
+When my first guess is correct, Monty can open either of the two doors I haven't picked because both have goats behind them. Regardless of which one Monty does choose to open, when I switch, I'm always changing away from the correct door, so with the *always switch* strategy, I **always lose if my first guess was correct**, i.e., I lose one-in-three times.
 
 But what happens when my first guess is wrong? That's twice as likely after all! Now, Monty can't choose the door I guessed, which has a goat, and he can't choose the door with the car, so actually, **he has no choice at all**, there's literally only one door he can open! What's more, he's literally just given the game away, because the door he was forced to leave closed **must** have the car. So, with the *always switch* strategy, when **my first guess is wrong, I'm guaranteed to win the car if I switch!**
 
-Remember, I have a two-in-three chance of guessing wrong first time, so because this strategy guarantees the car every time my first guess is wrong, **the *always switch* strategy get me the car two-thirds of the time!**
+Remember, I have a two-in-three chance of guessing wrong the first time, so because this strategy guarantees the car every time my first guess is wrong, **the *always switch* strategy gets me the car two-thirds of the time!**
 
 ## Hmmm … I Guess … But Really?
 
-OK, so before I even finished writing my script, let alone running it, I was already pretty sure I'd figured it out by simply writing the code, but I still wanted to finish the script to be absolutely sure I really did actually understand it completely this time 🙂
+OK, so before I even finished writing my script, let alone running it, I was already pretty sure I'd figured it out by simply writing the code, but I still wanted to finish the script to be absolutely sure I fully understood it completely this time 🙂
 
 If I actually understand the problem, then the script should be able to prove three things:
 
 1. The strategy of never switching should be the worst, giving a success rate of one in three.
-2. The strategy of randomly choosing to stick or switch should be a little better, giving a success rate of one in two (as explained above)
+2. The strategy of randomly choosing to stick or switch should be a little better, giving a success rate of one in two (as explained above) **BART: randomly choosing to switch isn't explained above**
 3. The strategy of always switching should give me the best results, successfully winning the car two out of three times
 
 I actually had a quick and dirty result quite quickly, but I wasn't satisfied with that. I was really getting sucked into this problem now, so I decided to keep going. I refactored and extended my crude initial script to bring it into line with best practices. That way, I'd get to practice my PowerShell skills, and I'd have some fun content to talk to Allison about!
@@ -86,10 +86,10 @@ Secondly, remember that this is a second teaser, so you shouldn't expect to unde
 At the highest level, the code is organised into the following chunks:
 
 1. The help comments for the script as a whole
-2. The `begin{}` block which is intended for script initialisation
-   1. Define two global variables to store caches of random numbers (more on those shortly)
-   2. Define the helper functions for fetching and then using the caches of random numbers, each function has its own help comment directly above its definition.
-3. The `process{}` block where the script's main body goes
+2. The `begin{}` block, which is intended for script initialisation
+   1. Defines two global variables to store caches of random numbers (more on those shortly)
+   2. Defines the helper functions for fetching and then using the caches of random numbers. Each function has its own help comment directly above its definition.
+3. The `process{}` block, where the script's main body goes
    1. Validate the parameters
    2. Run the simulation — first define some variables to count the outcomes, then loop over the code to play the game as often as needed:
       1. Pick a random door
@@ -99,7 +99,7 @@ At the highest level, the code is organised into the following chunks:
 
 ### Random Considerations
 
-Before I wrote one character of PowerShell, I spent a little time thinking about getting some really high-quality random numbers for this exercise. Since this entire exercise is about testing probabilities, we really do need **actually random random numbers**, numbers that just look random but still have patterns in them would completely throw off our results!
+Before I wrote one character of PowerShell, I spent a little time thinking about getting some really high-quality random numbers for this exercise. Since this entire exercise is about testing probabilities, we really do need **actually random random numbers**. Numbers that just look random but still have patterns in them would completely throw off our results!
 
 I started by checking on the current state of [Random.Org's free web API](https://www.random.org/clients/http/).
 
@@ -138,11 +138,11 @@ Breaking the query strings in the URLs down, the parameters are:
 
 All in all, this gives us a nice balance between quality and quantity. The script can run up to 5,000 high-quality simulations per execution.
 
-RANDOM.ORG offers *true* random numbers to anyone on the Internet. The randomness comes from atmospheric noise, which for many purposes is better than the pseudo-random number algorithms typically used in computer programs.
+RANDOM.ORG offers *true* random numbers to anyone on the Internet. The randomness comes from atmospheric noise, which, for many purposes, is better than the pseudo-random number algorithms typically used in computer programs.
 
 ### A Note on Output Streams
 
-One of the things I focused on for our initial PowerShell teaser was how PowerShell takes Bash's idea of separate output streams for default output and error output to the next level by offering difference streams for information intended for humans, and for information intended for the next command in a pipeline:
+One of the things I focused on for our initial PowerShell teaser was how PowerShell takes Bash's idea of separate output streams for default output and error output to the next level by offering different streams for information intended for humans, and for information intended for the next command in a pipeline:
 
 1. Four streams for output intended for humans:
    1. A debug stream enabled with the `-Verbose` switch parameter (flag) and written to with `Write-Verbose`
@@ -153,7 +153,7 @@ One of the things I focused on for our initial PowerShell teaser was how PowerSh
 
 I made a point of making use of as many of these streams as made sense, so you'll see a lot of informational output, a handful of error outputs, no warning outputs, and one data output.
 
-I chose to keep the data output simple and just send a flat dictionary with keys for the number of games played and the outcomes of each strategy as a number of games won, and a percentage of games won. I could of course have chosen to make the data structure as complex as I liked, but since the point of the data structure is to make the information available to other commands or scripts rather than humans I decided not to get carried away (this time). I didn't even go to the extra effort of making the dictionary an ordered dictionary, though PowerShell does support those for situations where the order of the keys on a dictionary is important to you.
+I chose to keep the data output simple and just send a flat dictionary with keys for the number of games played and the outcomes of each strategy as a number of games won, and a percentage of games won. I could of course have chosen to make the data structure as complex as I liked, but since the point of the data structure is to make the information available to other commands or scripts rather than humans, I decided not to get carried away (this time). I didn't even go to the extra effort of making the dictionary an ordered dictionary, though PowerShell does support those for situations where the order of the keys in a dictionary is important to you.
 
 ### Running the Script
 
