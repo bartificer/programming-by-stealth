@@ -19,6 +19,10 @@ Well, it all started with a passing comment on a discussion I was listening to o
 
 TO DO
 
+## Instalment Resources
+
+- The instalment ZIP file — [tidbit13.zip](./assets/tidbit13.zip)
+
 ## The Monty Hall Problem
 
 Back in the 1970s, Monty Hall was the legendary host of a US TV game show named *[Let's Make a Deal](https://en.wikipedia.org/wiki/Let%27s_Make_a_Deal)* (which I was surprised to discover is still on the air!). The show involves audience members having to choose to trade something they can see for something they can't. Some of the prizes are fantastic, and some are hilariously useless duds. As best as I can tell, the exact scenario that now bears the former host's name never actually appeared on the show! It seems it was simply inspired by it.
