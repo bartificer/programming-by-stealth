@@ -57,9 +57,7 @@ When my first guess is correct, Monty can open either of the two doors I haven't
 
 But what happens when my first guess is wrong? Monty can't choose the door I guessed, which has a goat, and he can't choose the door with the car, so he has no choice at all. There's only one door he can open, so the one he leaves closed **must** have the car. So, **if my first guess is wrong, I'm guaranteed to win the car if I switch!**
 
-**BART: The next sentence doesn't make sense. How does your first guess being right one in three MAKE the first guess wrong two in three? I think you skipped something in between**
-
-If the chance my first guess is right is one in three, then the chance my first guess is wrong is two in three, so **if I always choose to switch, I win two-thirds of the time!**
+Since probabilities always add up to 1, if the chance my first guess is right is one in three (0.33), that means the chance my first guess is wrong is two in three (0.66 because 1-0.33 is 0.66), so **if I always choose to switch, I win two-thirds of the time!**
 
 ## Hmmm … I Guess … But Really?
 
@@ -68,7 +66,7 @@ OK, so before I even finished writing my script, let alone run it, I was already
 If I actually understood the solution, then I should be able to prove three things:
 
 1. The strategy of never switching should be the worst, giving a success rate of one in three.
-2. The strategy of randomly choosing to stick or switch should be a little better, giving a success rate of one in two **BART: why?**
+2. The strategy of randomly choosing to stick or switch should be a little better, giving a success rate of one in two (as explained above)
 3. The strategy of always switching should give me the best results, successfully winning the car two out of three times
 
 I actually had a quick and dirty result quite quickly, but I wasn't satisfied with that. I was really getting sucked into this problem now, so I decided to keep going. I refactored and extended my crude initial script to bring it into line with best practices. That way, I'd get to practice my PowerShell skills, and I'd have some fun content to talk to Allison about!
@@ -79,7 +77,7 @@ Before we look at the code, I want to stress again that this final script is not
 
 ### Random Considerations
 
-Before I wrote one character of PowerShell, I spent a little time thinking about getting some really high-quality random numbers for this exercise. Since this entire exercise is about testing probabilities, we really don't want low-quality random numbers invalidating our results! **BART: What does high or low quality random numbers mean? Do you mean more or less random?**
+Before I wrote one character of PowerShell, I spent a little time thinking about getting some really high-quality random numbers for this exercise. Since this entire exercise is about testing probabilities, we really do need **actually random random numbers**, numbers that just look random but still have patterns in them would completely throw off our results!
 
 I started by checking on the current state of [Random.Org's free web API](https://www.random.org/clients/http/).
 
@@ -117,8 +115,6 @@ Breaking the query strings in the URLs down, the parameters are:
 * `rnd=new` is what the docs say to use when you want truly random numbers (there are other options for the rare situations you want something more complex, like a deterministic random sequence or intentionally pseudo-random numbers)
 
 All in all, this gives us a nice balance between quality and quantity. The script can run up to 5,000 high-quality simulations per execution.
-
-**BART: not sure where you would put this (much earlier?) but I think it's VERY good info on what I think you mean quality of the random numbers:**
 
 RANDOM.ORG offers *true* random numbers to anyone on the Internet. The randomness comes from atmospheric noise, which for many purposes is better than the pseudo-random number algorithms typically used in computer programs.
 
@@ -181,7 +177,7 @@ This still shows us the informational output, but the dictionary written to the 
 }
 ```
 
-**BART: how hard would it be to make your script output the results in like sets instead of scrambled like above? e.g. StickWins s/b next StickWinPercentage, OR next to SwitchWins and RandomWins. It's hard to understand the results with them like it is. I looked at the code starting on line 359, and it IS in sets starting with games played, then the three wins, then the three win percentages. Not sure why the output isn't the same as the code...**
+(I chose to keep things simply and simply output the important data points as a flat dictionary, but you could make your data structure as complex as you like of course. Since the points of data outputs is to feed into other script not to be viewed by humans I didn't go to the extra effort of making it an ordered dictionary, but PowerShell does support those if you really want they keys to appear in a specific order.)
 
 If we want to suppress the data stream to stop it cluttering our terminal, we can simply tell PowerShell to discard it by piping it to `Out-Null`.
 
