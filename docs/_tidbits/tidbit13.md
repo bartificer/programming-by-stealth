@@ -11,7 +11,9 @@ It's impossible to count the ways coding skills can empower, but one of them is 
 
 This tidbit serves three purposes really: it illustrates how the ability to program empowers, it demonstrates the value of experimenting, and it serves as a little reminder that PowerShell remains next on our agenda after we finish the Jekyll series.
 
-So what's with the odd title? **BART: make sure you say the title before this** And what does this little script actually do? Well, it all started with a passing comment on a discussion **BART: discussion where?** of the dangers of AI. As an example of how humans are easy to manipulate because we're predictably illogical, the guest threw out three little words that set me off. She cited the infamous [Monty Hall Problem](https://en.wikipedia.org/wiki/Monty_Hall_problem) 😀
+You may have noticed I titled this tidbit *'PowerShell Tames Monty'*, so what's with that odd title? And what does this little script actually do?
+
+Well, it all started with a passing comment on a discussion I was listening to on some podcast (can't remember which and it's not important) on the dangers of AI. As an example of how humans are easy to manipulate because we're predictably illogical, the guest threw out three little words that set me off. She cited the infamous [Monty Hall Problem](https://en.wikipedia.org/wiki/Monty_Hall_problem) 😀
 
 ## Matching Podcast Episodes
 
@@ -39,9 +41,9 @@ I knew that when you have unconnected events like coin flips and dice rolls, the
 
 I also knew that the Monty Hall Problem is not like that because the events **are** connected. The key is this little phrase within the original puzzle:  _"and the host, **who knows what's behind the doors**, opens another door"_.
 
-So, the first door you guess absolutely has a one-in-three chance of being the correct one, but once Monty opens one of the two mystery doors, he adds information to the system. This means things have changed for your second decision. There are now two doors in play, not three, so if you make a new random choice, your odds just went to 50/50; you'll be right three out of six times rather than just two. **BART: where did six come from? left over from dice? Isn't it just 1 out of 2 instead of 1 out of 3?**
+So, the first door you guess absolutely has a one-in-three chance of being the correct one, but once Monty opens one of the two mystery doors, he adds information to the system. This means things have changed for your second decision. There are now two doors in play, not three, so if you make a new random choice, your odds just went to 50/50. If you played 60 games you'd be right 30 times rather than just 20!
 
-That much I understood — if you randomly guess again, you get a one-in-two chance of a car. Great, but the guest **BART: guest? are you referring back to the reader of the statistics magazine?** said something different. They said that when you do the math, always switching doors gives you a two-in-three chance of winning a car. That was the bit that I still didn't get. Boosting my odds from one-in-three to one-in-two, great, but getting to better than that, how is that possible?
+That much I understood — if you randomly guess again, you get a one-in-two chance of a car. Great, but the expert on the podcast said something even more impressive. They said that when you do the math, always switching doors gives you a two-in-three chance of winning a car. That would mean that you'd win 40 out of 60 games. That's insane! That was the bit that I still didn't get. Boosting my odds from one-in-three to one-in-two, great, but getting to better than that, how is that even possible?
 
 ## Code is More Expressive than English
 
