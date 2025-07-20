@@ -1,7 +1,7 @@
 ---
 title: PowerShell Tames Monty
 instalment: 13
-creators: [bart, Allison]
+creators: [bart, allison]
 date: 2025-07-19
 ---
 
