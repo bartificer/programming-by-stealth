@@ -17,7 +17,11 @@ Well, it all started with a passing comment on a discussion I was listening to o
 
 ## Matching Podcast Episodes
 
-TO DO
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_07_19.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_07_19.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2025_07_19.html">PBS_2025_07_19</a>
 
 ## Instalment Resources
 
