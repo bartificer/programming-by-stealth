@@ -2,7 +2,7 @@
 title: PowerShell Tames Monty
 instalment: 13
 creators: [bart, Allison]
-date: 2025-06-19
+date: 2025-07-19
 ---
 
 Way back in 2015 when myself and Allison started this series, I made a point of evangelising the power of coding skills — when you can program, you can turn your ideas, big and small, into reality. Sometimes that results in substantial projects that take up years of your life, like XKPasswd, and sometimes that results in a simple little script written on a rainy morning simply for the pleasure of finding things out (to borrow a phrase from the great Richard Feynman). 
