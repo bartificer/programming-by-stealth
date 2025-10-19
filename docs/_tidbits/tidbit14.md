@@ -39,9 +39,53 @@ Earlier in my career as a dogs-body sysadmin I generally got to immerse myself d
 
 I really like Microsoft's naming choice here, because there is simply no way these AIs are even close to replacing skilled humans working on real-world mission-critical code, but they are capable of providing valuable assistance to help those skilled humans be more effective. Think of them as force multiplies, not replacements.
 
-## Using the Right Tool for the Job
+## Big-Picture Advice
 
-LEFT OFF HERE
+Large Language Models, or LLMs, are very much their own unique and special indescribable thing. But, when coding, I suggest you keep two abstractions in mind — think of the them as averaging and word association machines.
+
+### LLMs are Averaging Machines
+
+Our various bots have been trained on millions of lines of other people's code, and will produce code that's about as good as the average line of code out there. Sometimes *average* is more than you need, but sometimes it really isn't! 
+
+When you're doing something quick and dirty it's probably just fine. If the code the bot spits out does the one thing you need to do in the moment, great! Job done,  move on with your day.
+
+But when you're working on a production code base that's going to be deployed to the real world dealing with real data for years to come, average is not nearly good enough! In that kind of situation, you need to treat everything the LLM produces as a starting point to build from. 
+
+You need to check the real meaning of every argument, parameter, flag, etc., to be sure it does what you think it does. You should also assume it's going to miss a bunch of edge cases, so you probably need to add some additional checks around the suggested code. And, you should assume it won't fail gracefully when it meets the real word, and add all missing error handling.
+
+### LLMS are Word Association Machines
+
+When you're working near the edges of your understanding, search engines can be infuriating to use because when you as value generic questions you get utterly useless results.
+
+LLMs on the other hand can leverage their abilities to associate those same vague generic works with at least some relevant information, allowing them to give you at least somewhat helpful responses.
+
+But, that does not mean that using the correct jargon is not important. On the contrary, the more accurately you use the appropriate jargon, the higher the quality of the information these robots will associate with it, and the more helpful and correct their replies will be.
+
+When you don't know the right words to use, take cues from the helpful parts of the early answers in the conversation, as for clarifications between similar-sounding words, and fine-tone your responses to adopt ever more of the correct jargon.
+
+### Conversations, not Questions
+
+Speaking of conversations, LLMs are not search engines, they're chat bots! Unlike 2025 Siri, they **do remember** what you just said! Yes, they're excellent alternatives for search engines when you're trying to get conceptual answers rather than find specific resources, but they're not drop-in replacements. Don't treat the chat box like a search box — treat to your initial question as a conversations starter, and don't host accent there first response as the real answer. Ask follow-up questions — if the response is clearly off base, reply explaining **why** this is not what you need. If you don't understand some or all of the answer, ask for clarifications. If you're not sure if some suggested code will handle some specific edge case, ask!
+
+Another useful thing to do is to ask for links to relevant parts of official documentation. If the conversation has led you to believe a specific library, or class, or function is the best fit, ask for a link to the docs so you can really understand what the library, class, or function actually does.
+
+### Favour Chatbots that Show Their Sources
+
+If you have the choice between two LLMs, one that doesn't show you links to the sources it used to construction it's reply, and ones that does, use the one that does! Firstly, the actual referenced website is a great initial indicator for the response's quality — if you're asking about PowerShell and the the sources are at `learn.microsoft.com`, there's a good chance they're accurate, but if they're simply based on `reddit.com` posts, increase your skepticism! But more than that, when the answer to your question is mission-critical, take the time to open the linked sources and verify the function calls, argument names, or what ever for yourself.
+
+### Context is King
+
+Now that you're thinking in terms of conversations and the tools having a memory, let's loop back to that first abstraction — the fact that LLMs act as averaging machines. The context you give the LLMs biases what it is they average against.
+
+In the context of a chat interface that means code snippets, technologies, libraries, classes, functions, and what not mentioned earlier will be weighted more highly in the averages that appear as later responses.
+
+But LLMs don't just chat, they can also offer short little code completions and even suggest entire sections of code as you type. These suggestions are also influenced by context, but that context is coming from the tool they're integrated into.
+
+When you use an AI-enabled development environment (IDE), the context if the code around the code your working on — your current file, all your open tabs, and in many tools, all the code in the currently open project. This means that if you have a consistent coding style, the suggestions will start to *sound* ever more like your own code. The biggest the project you're working on, the better the suggestions get! So, don't experiment with toy projects, experiment with those ancient codebases that go back decades that no one person full understands, that's where the tools can give the absolute most value!
+
+## My Real-World Experiences
+
+TO DO
 
 ## Final Thoughts
 
