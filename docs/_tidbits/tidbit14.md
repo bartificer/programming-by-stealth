@@ -77,11 +77,27 @@ If you have the choice between two LLMs, one that doesn't show you links to the 
 
 Now that you're thinking in terms of conversations and the tools having a memory, let's loop back to that first abstraction — the fact that LLMs act as averaging machines. The context you give the LLMs biases what it is they average against.
 
-In the context of a chat interface that means code snippets, technologies, libraries, classes, functions, and what not mentioned earlier will be weighted more highly in the averages that appear as later responses.
+In the context of a chat interface that means code snippets, technologies, libraries, classes, functions, and what not mentioned earlier will be weighted more highly in the averages that appear as responses.
 
 But LLMs don't just chat, they can also offer short little code completions and even suggest entire sections of code as you type. These suggestions are also influenced by context, but that context is coming from the tool they're integrated into.
 
-When you use an AI-enabled development environment (IDE), the context if the code around the code your working on — your current file, all your open tabs, and in many tools, all the code in the currently open project. This means that if you have a consistent coding style, the suggestions will start to *sound* ever more like your own code. The biggest the project you're working on, the better the suggestions get! So, don't experiment with toy projects, experiment with those ancient codebases that go back decades that no one person full understands, that's where the tools can give the absolute most value!
+When you use an AI-enabled development environment (IDE), the context of the code around the code your working on — your current file, all your open tabs, and in many tools, all the code in the currently open project. This means that if you have a consistent coding style, the suggestions will start to *sound* ever more like your own code. The bigger the project you're working on, the better the suggestions get! So, don't experiment with toy projects, experiment with those ancient codebases that go back decades that no one person full understands, that's where the tools can give the absolute most value!
+
+### The Advantages an IDE Integration Brings
+
+As I've just hinted, one of the biggest advantages integrations bring is automatic context — you don't have to tell the AI which tools you're using, because the AI sees your code already!
+
+Not only can you save yourself some prompting, you can also refer directly to specific parts of your code more easily. You could ask *'why does line 42 give a divide by zero error?'*, but you don't even have to be that explicit, you can simply select the line or lines your question relates to and refer to it as simply *'this'*!
+
+In terms of chatting then you get free context and quick and easy references to specific chunks of code, but what about the replies, can you do more with those too? Of course you can! When the bot returns suggested code you get buttons to copy the code, insert the code at your cursor, or, if the suggestion is a change, and option to automatically apply the change to your file or files! That last option sounds really scary, but VS Code's GitHub Copilot integration does it in a very explicit and safe way, it shows you what it will remove in red, what it will add in green, and gives you accept and reject buttons for each proposed change.
+
+But you get value from an AI-enabled IDE without even enabling a chat box thanks to dramatically more powerful code completions, rather than just offering completions for the word you\'re currently typing, the AI will offer entire sections of code, including comments! Even when the suggestions are not perfect, it's often much less work to tweak a few details than it is to have to type it all out from scratch!
+
+## An Important Warning — NEVER INCLUDE SECRETS IN YOUR CODE
+
+It\'s always been bad practice to embed secrets into code. That goes double for code committed to remote repositories, and triple for code shared with an AI as context. If you're going to use AI coding tools, n**ever ever ever include secrets of any kind** (passwords, private keys, API keys, authentication tokens, etc.) **in your code!**
+
+Different languages and environments have different best practices for secret management, so the real advice is to read the relevant documentation for the technologies you're using! But having said that, I will offer one piece of generic advice — most languages support environment variables, so they are often the right answer. In general, **I pass my secrets to my scripts and apps using environment variables**.
 
 ## My Real-World Experiences
 
