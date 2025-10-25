@@ -13,10 +13,6 @@ In a recent instalment of Allison's Chit Chat Across the Pond podcast, we discus
 
 TO DO
 
-## Instalment Resources
-
-- TO DO (or more likely, delete!
-
 ## Some Context
 
 My AI Journey began in work where I agreed with my manager that I would make time in 2025 to experiment with AI so I'd have the needed first-hand experience to have meaningful discussions around the topic in my role as a cybersecurity specialist. Because of this work setting, I couldn't just do whatever I wanted; I needed to comply with all our policies, most importantly, our data protection policies. With my programming hat on, that meant confining myself to the enterprise versions of Microsoft's Copilot suite, specifically the general-purpose Microsoft 365 chatbot in my Edge sidebar, and GitHub Copilot in VS Code.
@@ -65,9 +61,9 @@ When you don't know the right words to use, take cues from the helpful parts of 
 
 ### Conversations, not Questions
 
-Speaking of conversations, LLMs are not search engines; they're chatbots! Unlike 2025 Siri, they **do remember** what you just said! Yes, they're excellent alternatives for search engines when you're trying to get conceptual answers rather than find specific resources, but they're not drop-in replacements. **BART: did you mean something different than host accent?** Don't treat the chat box like a search box — treat your initial question as a conversation starter, and don't host accent there first response as the real answer. Ask follow-up questions — if the response is clearly off base, reply explaining **why** this is not what you need. If you don't understand some or all of the answer, ask for clarification. If you're not sure if some suggested code will handle some specific edge case, ask!
+Speaking of conversations, LLMs are not search engines; they're chatbots! Unlike 2025 Siri, they **do** remember what you just said! Yes, they're excellent alternatives for search engines when you're trying to get conceptual answers rather than find specific resources, but they're not drop-in replacements, you need to interact with them differently. Don't treat the chat box like a search box — treat your initial question as a conversation starter, and don't accept their first response as the real answer. Ask follow-up questions — if the response is clearly off base, reply explaining **why** this is not what you need. If you don't understand some or all of the answer, ask for clarifications. If you're not sure if some suggested code will handle some specific edge case, ask!
 
-Another useful thing to do is to ask for links to relevant parts of official documentation. If the conversation has led you to believe a specific library, class, or function is the best fit, ask for a link to the docs so you can really understand what the library, class, or function actually does. **BART: I added these two sentences** This is another way to ensure the library, class, or function actually exists and the chatbot hasn't hallucinated it into existence. (Yes, that happens.)
+Another useful thing to do is to ask for links to relevant parts of official documentation. If the conversation has led you to believe a specific library, class, or function is the best fit, ask for a link to the docs so you can really understand what the library, class, or function actually does. This is another way to ensure the library, class, or function actually exists and the chatbot hasn't hallucinated it into existence. (Yes, that happens, especially in languages and libraries with consistent naming schemes for things.)
 
 ### Favour Chatbots that Show Their Sources
 
@@ -109,21 +105,21 @@ As a first example, here's a recent positive experience I had using just the reg
 
 To set the scene — I had a CSV export from a reporting tool that listed a whole bunch of rows with macOS version numbers as major, minor, and patch numbers separated by dots, e.g., 15.6.1, and I needed to build some new columns to start aggregating the results into more useful buckets. First, I needed the major version as a column. I know Excel can split strings, but I couldn't remember the syntax, so I asked Copilot to help me with the formula. Since I was using a generic chatbot, I was careful to give all the needed context in my question — *"in excel, how do I get a new column with the major version extracted from a three-part version number column?"*:
 
-![A chat conversation showing my question and a detailed answer including a correct code-snippet and an explanation of how it works](../assets/tidbits14/Example1-CopilotChat-Screenshot1of4.png)
+![A conversation with Microsoft 365 Copilot showing my initial Excel question and a detailed answer including a correct formula and an explanation of how it works](../assets/tidbits14/Example1-CopilotChat-Screenshot1of4.png)
 
 My data was in a different row, so I needed to change the coordinates in the formula, but the suggested formula worked perfectly. I now had my new column with a major version number. That gave me a better feel for my data, but then I realised my real question was not what the major version number was, but whether the version in question was supported. At this stage, I've utterly lost touch with what versions Apple does or does not support, so I started a new chat and asked, *"what versions of macOS are still supported by Apple?"*:
 
-![A chat conversation showing my question and a detailed answer which makes it clear macOS 14 is the last supported major version](../assets/tidbits14/Example1-CopilotChat-Screenshot2of4.png)
+![A conversation with Microsoft 365 Copilot showing my initial question about supported versions of macOS and a detailed reply which makes it clear macOS 14 is the last supported major version](../assets/tidbits14/Example1-CopilotChat-Screenshot2of4.png)
 
 OK, so major versions older than 14 are obsolete. My final step was to build a second new column marking each row as obsolete or supported, so I started one more chat with the clear question *"In Excel, if I have a column with numbers, how do I make a new column with the value "EOL" if the number is less than 14, or "Supported" otherwise?"*:
 
-![A chat conversation showing my question and a detailed answer which suggests a reasonable looking formula and explains each part](../assets/tidbits14/Example1-CopilotChat-Screenshot3of4.png)
+![A conversation with Microsoft 365 Copilot showing my initial Excel question and a detailed answer suggesting a reasonable looking formula an explanation of each term](../assets/tidbits14/Example1-CopilotChat-Screenshot3of4.png)
 
 The suggested formulate looked plausible to me, so I pasted it in and found that all versions of macOS were showing as *Supported*, even macOS 11 ... hmmm ... that's not right! So, I continued the same conversation with a nice clear followup — *"This wrongly shows 11 as "supported""*:
 
-![A chat conversation showing my followup question and a detailed answer which suggests three things to try to clean up the data since it might be text not numbers, and explains them](../assets/tidbits14/Example1-CopilotChat-Screenshot4of4.png)
+![My reply in a Microsoft 365 Copilot conversation explaining why a previously suggested formula does not work, and a detailed reply suggesting a root cause and offering three suggestions to try with explanations for each](../assets/tidbits14/Example1-CopilotChat-Screenshot4of4.png)
 
-OK, so the first suggestion was so simple I'd actually already tried it before asking my followup question. I decided to skip right to the most robust possible third option (`=IF(VALUE(TRIM(A2))<14, "EOL", "Supported")`) and it worked perfectly! I could not conditionally format my spreadsheet to show obsolete OSes in a scary red colour, and supported OSes in a reassuring green colour 🙂 **BART: could not, or could? you have a smiley face so I'm confused**
+OK, so the first suggestion was so simple I'd actually already tried it before asking my followup question. I decided to skip right to the most robust possible third option (`=IF(VALUE(TRIM(A2))<14, "EOL", "Supported")`) and it worked perfectly! I could now conditionally format my spreadsheet to show obsolete OSes in a scary red colour, and supported OSes in a reassuring green colour 🙂
 
 ### Example 2 — Copilot Hallucinates, and may not be Best for Generic Programming Questions
 
@@ -135,7 +131,7 @@ Because this script is versioned in Git, I was working in VS Code, so I the obvi
 
 Copilot broke that bad news that there is no such feature in PowerShell, but did helpfully show me how to combine `if` and `-not` to achieve the same results.
 
-![A screenshot of a chat conversation showing a very clear answer to my question with suggested workarounds](../assets/tidbits14/Example2-GitHubCopilotExample1-1of2.png)
+![A conversation with GitHub Copilot showing my question about the unless keyword and a very clear answer explaining there is no such keyword and suggesting workaround workarounds](../assets/tidbits14/Example2-GitHubCopilotExample1-1of2.png)
 
 Fine, but I don't want to have three lines of code for each print statement, or, to have the text being printed so far off to the right that bits of it would be hidden till I scrolled, so I had a followup question. Another feature some language support is a post-fix form of the `if` statement. That is, a special variant of `if` when you want to control the execution of just a single statement rather than a code block, and where the statement comes before the condition. This can make some statements read in a more English way, so I used it a lot when I was working in Perl, for example:
 
@@ -147,7 +143,7 @@ So I continued my conversation with a simple followup — *"can I use a post-fix
 
 Copilot confidently told me I could, and gave me an example code snippet that looks just like what I was hoping would work, yay!
 
-![A screenshot of a chat conversation showing a detailed and plausible answer complete with sample code snippets](../assets/tidbits14/Example2-GitHubCopilotExample1-2of2.png)
+![A conversation with GitHub Copilot showing my initial questions about post-fix 'if' and a detailed and plausible-looking answer complete with sample code snippets](../assets/tidbits14/Example2-GitHubCopilotExample1-2of2.png)
 
 So I updated my script, and then tested my new `-Quiet` flag, and not only did it still print all the output I was trying to suppress, it also printed `if True` after ever line of output. Huh?
 
@@ -175,38 +171,47 @@ For each of those you would then define a *role* that would specify things like:
 
 All of this is captured in plain text files that can themselves be committed to Git, hence, the term *infrastructure as code*.
 
-I was busy creating a new Ansible role to capture the needed setup to deploy automatically;  updating TLS certificates from a new Certificate Authority over the ACME protocol (similar to Let's Encrypt, but with additional enterprise-focused features). As usual I was working in VS Code with GitHub Copilot enabled, and since our Ansible Git repo already has tens of custom roles defined within it, the code completions it was offering were excellent, and it was saving me a lot of typing and time.
+I was busy creating a new Ansible role to capture the needed setup to deploy automatically-updating TLS certificates from a new Certificate Authority using the ACME protocol (similar to Let's Encrypt, but with additional enterprise-focused features). As usual I was working in VS Code with GitHub Copilot enabled, and since our Ansible Git repo already has tens of custom roles defined within it, the code completions it was offering were excellent, and it was saving me a lot of typing and time.
 
 At one point, GitHub Copilot's code completion offered me about ten lines of code, nine of which made perfect sense to me, and fit our various conventions perfectly, but one line used an approach that was new to me, so I selected it, and literally asked GitHub Copilot to *"explain this line"*:
 
-![A screenshot of a chat conversation showing a detailed explanation of a line of code](../assets/tidbits14/Example3-GitHubCopilotExample2-1of5.jpg)
+![A conversation with GitHub Copilot showing my initial request to explain a line of code and a detailed reply clearly explains what the code does](../assets/tidbits14/Example3-GitHubCopilotExample2-1of5.jpg)
 
 This made perfect sense to me, and the example showed it would do exactly what I needed — convert a comma-separated list of domain names into an array of domain names.
 
 Earlier, I highlighted the fact that AI tools generate *average* code, so you need to treat it as a starting point, and verify it handles all needed edge-cases elegantly. This suggested code completion illustrates that perfectly, because I was immediately suspicious that it would not fall back gracefully to an empty array if the input was an empty string. Since it's not just legitimate but quite common to need TLS certs that cover just a single domain name, i.e. have zero *Service Alternative Names*, or SANs, my code absolutely needed to handle that scenario correctly. So, I continued the conversation with GitHub Copilot and asked *"can this handle an empty string?"*:
 
-![A screenshot of a chat conversation showing a a reply indicating that the code did not do what was needed and offering suggested solutions](../assets/tidbits14/Example3-GitHubCopilotExample2-2of5.jpg)
+![A conversation with GitHub Copilot asking if a selected line of code can support empty strings and a reply explaining what the code will do when presented with an empty string. The reply clearly shows that the bot does not 'think' the code as-is behaves in a desirable way, so it also offers some suggested improvements](../assets/tidbits14/Example3-GitHubCopilotExample2-2of5.jpg)
 
 I was glad I asked, because an array with one empty string is not at all the same as an empty array! Thankfully GitHub Copilot offered a suggested fix, so I applied it.
 
 The suggested fix included some YAML syntax that's outside of what I typically use, and while I had a pretty good idea what it probably meant, I wanted to be sure, so with my cursor on the line I continued my conversation with GitHub Copilot — *"what does >- mean on this line?"*:
 
-![A screenshot of a chat conversation showing a detailed explanation of syntax element](../assets/tidbits14/Example3-GitHubCopilotExample2-3of5.jpg)
+![A conversation with GitHub Copilot showing my initial question asking for an explanation of a specific piece of syntax, and the detailed explanation it replied with](../assets/tidbits14/Example3-GitHubCopilotExample2-3of5.jpg)
 
 That explanation made perfect sense, so I was now ready to test my new role. Unfortunately, it didn't go well 🙁
 
-The role triggered an error when applied to my test server, and the error was in code suggested to me by GitHub Copilot. Because I still still new to using AI for coding, my first reflex was to throw the error into a search engine and hope a good Stack Overflow link ranked highly in the results. This didn't work, so I decided to use GitHub Copilot's ability to easily add context to my advantage. I selected the lines of code that triggered the error and literally asked why that code produced the give error message:
+The role triggered an error when applied to my test server, and the error was in code suggested to me by GitHub Copilot. Because I was still new to using AI for coding, my first reflex was to throw the error into a search engine and hope a good Stack Overflow link ranked highly in the results. This didn't work, so I decided to use GitHub Copilot's ability to easily add context to my advantage. I selected the lines of code that triggered the error and literally asked why that code produced the give error message:
 
-![A screenshot of a chat conversation showing a question that references both specific lines of code and the error message produced by those lines showing a clear explanation of the of the cause and suggesting solutions](../assets/tidbits14/Example3-GitHubCopilotExample2-4of5.png)
+![A conversation with GitHub Copilot showing my intial question asking why the selected code produces the provided error with a detailed reply explaining the error's cause and offering possible solutions](../assets/tidbits14/Example3-GitHubCopilotExample2-4of5.png)
 
 Both the explanation and the suggested fix made sense to me, though I did chuckle that I needed the help of AI to fix a bug added to my code by AI. 🙂
 
 Rather than manually apply the suggested fix, I let GitHub Copilot do it for me. When you hover over a code snippet, three icons appear. The first asks GitHub Copilot to merge the suggestion into your code for you, the second to insert it at your cursor's position, and the third copies it to the clipboard. Since I needed to change existing code, I clicked on the merge button. This triggers a cool animation of the change rippling through your code, and when it has found all the lines that it thinks need to be changed, it presents them to as a series of diffs for you to confirm or reject:
 
-![A screenshot showing the old line of code in red, the suggested replacement in green, and buttons to accept or undo the change](../assets/tidbits14/Example3-GitHubCopilotExample2-5of5.png)
+![A VS Code screenshot showing a suggested change — the old line of code in shown in red, the suggested replacement below it in green, and a hovering toolbar providing buttons to accept or undo the change](../assets/tidbits14/Example3-GitHubCopilotExample2-5of5.png)
 
 With that change applied my new role, it worked perfectly! 🎉
 
 ## Final Thoughts
 
-TO DO
+I was initially very skeptical about coding with AI because the hype smelled like, well, hype. Most if it is, but that's not the point! Sure, these AI agents can't do nearly as much as the hype-merchants want you to believe, but they can do a lot, more than enough to be genuinely useful!
+
+If you've never used any of these tools before, don't judge them too quickly. They take a little getting used to, but you'll learn to adapt your side of the conversation to align with their strengths and avoid their weaknesses. Even now, over half a year into my experiments, I'm still learning new things regularly.
+
+Because these tools can be used in so many different ways, I think everyone's experiences will be unique, but what I've noticed is that the most important things I've learned are:
+
+1. Make informed decisions about which AI agents you trust which sub-sets of your data to!
+2. Always think in terms of conversations, and when you change the subject, explicitly start a new conversation with the AI!
+3. Use the right tool for the job — integrations really smooth out the friction and minimise distractions. Flipping between windows is a lot more disruptive to your flow than doing everything on the one screen.
+4. Develop the muscle mental muscle memory to treat pasting a secret into a code file as being every bit as unacceptable as telling your boss to go 🤬 their 🤬 in a 🤬!
