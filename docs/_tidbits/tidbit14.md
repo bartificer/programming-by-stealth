@@ -129,15 +129,15 @@ OK, so the first suggestion was so simple I'd actually already tried it before a
 
 Let's start by throwing some cold water on the AI hype and scare-mongering about replacing actual programmers with a prompt. Maybe some day, but not today or tomorrow!
 
-To set the scene, I needed to go back and add a new feature to an existing PowerShell script. Specifically, to add support for  a `-Quiet` flag to suppress all output that's not an error or a warning. That meant implementing the human logic *'unless in quiet mode, print  …'* repeatedly. I like to write my code in the most English-life way the syntax allows, and I know some language have an `unless` keyword that acts like *'if not'*. When it's available, I really like to use it, but I couldn't remember of PowerShell was or wasn't one of the languages that supports this keyword.
+To set the scene, I needed to go back and add a new feature to an existing PowerShell script. Specifically, to add support for  a `-Quiet` flag to suppress all output that's not an error or a warning. That meant implementing the human logic *'unless in quiet mode, print  …'* repeatedly. I like to write my code in the most English-life way the syntax allows, and I know some language have an `unless` keyword that acts like *'if not'*. When it's available, I really like to use it, but I couldn't remember if PowerShell was or wasn't one of the languages that supports this keyword.
 
-Because this script is versioned in Git I was working in VS Code, so I the obvious place to ask my question was the GitHub Copilot sidebar. Because of the free context, I didn't need to tell GitHub that I was asking it a PowerShell query, so I could simply ask *"is there an unless keyword?"*.
+Because this script is versioned in Git, I was working in VS Code, so I the obvious place to ask my question was the GitHub Copilot sidebar. Because of the free context, I didn't need to tell GitHub that I was asking it a PowerShell query, so I could simply ask *"is there an unless keyword?"*
 
 Copilot broke that bad news that there is no such feature in PowerShell, but did helpfully show me how to combine `if` and `-not` to achieve the same results.
 
 ![A screenshot of a chat conversation showing a very clear answer to my question with suggested workarounds](../assets/tidbits14/Example2-GitHubCopilotExample1-1of2.png)
 
-Fine, but I don't want to have three lines of code for each print statement, or, to have the text being printed so far off to the right bits of it would be hidden till I scrolled, so I had a followup question. Another feature some language support is a post-fix form of the `if` statement. That is, a special variant of `if` when you want to control the execution of just a single statement rather than a code block, and where the statement comes before the condition. This can make some statements read in a more English way, so I used it a lot when I was working in Perl, for example:
+Fine, but I don't want to have three lines of code for each print statement, or, to have the text being printed so far off to the right that bits of it would be hidden till I scrolled, so I had a followup question. Another feature some language support is a post-fix form of the `if` statement. That is, a special variant of `if` when you want to control the execution of just a single statement rather than a code block, and where the statement comes before the condition. This can make some statements read in a more English way, so I used it a lot when I was working in Perl, for example:
 
 ```perl
 print "some mesasge" if ! $QuietModeEnabled;
@@ -145,15 +145,15 @@ print "some mesasge" if ! $QuietModeEnabled;
 
 So I continued my conversation with a simple followup — *"can I use a post-fix form of if?"*.
 
-Copilot confidently told me I could, and gave me an example code snipped that looks just like what I was hoping would work, yay!
+Copilot confidently told me I could, and gave me an example code snippet that looks just like what I was hoping would work, yay!
 
 ![A screenshot of a chat conversation showing a detailed and plausible answer complete with sample code snippets](../assets/tidbits14/Example2-GitHubCopilotExample1-2of2.png)
 
 So I updated my script, and then tested my new `-Quiet` flag, and not only did it still print all the output I was trying to suppress, it also printed `if True` after ever line of output. Huh?
 
-Turns out Copilot hallucinated the entire feature! What the code samples, and hence my updated code, actually do is pass three arguments to PowerShell's `Write-Host` command — the string I was trying to conditionally print, the string `'if'`, and the Boolean result of evaluating the condition, which should indeed be `True` when the`-Quiet` flag is set!
+Turns out Copilot hallucinated the entire feature! What the code samples, and hence my updated code actually do is pass three arguments to PowerShell's `Write-Host` command — the string I was trying to conditionally print, the string `'if'`, and the Boolean result of evaluating the condition, which should indeed be `True` when the`-Quiet` flag is set!
 
-Out of curiosity I asked my favourite privacy-protecting stand-alone chatbot [Lumo](https://lumo.proton.me/) if PowerShell supported a post-fix form of `if`, and it quite correctly told that it does not, and suggested I just use the regular pre-fix form, which is what I ended up doing!
+Out of curiosity I asked my favourite privacy-protecting stand-alone chatbot, [Lumo](https://lumo.proton.me/), if PowerShell supported a post-fix form of `if`, and it quite correctly told that it does not, and suggested I just use the regular pre-fix form, which is what I ended up doing!
 
 ### Example 3 — A Bit of Everything
 
