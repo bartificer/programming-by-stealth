@@ -5,7 +5,7 @@ creators: [bart, allison]
 date: 2025-10-25
 ---
 
-In a recent instalment of Allison's Chit Chat Across the Pond podcast we discussed my experiences with AI in general, and promised deeper dives into coding with AI and working on the terminal with AI. This the first of those promised deeper dives (the second will appear as an instalment of Taming the Terminal some time soon).
+In a recent instalment of Allison's Chit Chat Across the Pond podcast, we discussed my experiences with AI in general and promised deeper dives into coding with AI and working on the terminal with AI. This is the first of those promised deeper dives (the second will appear as an instalment of Taming the Terminal sometime soon).
 
 ## Matching Podcast Episodes
 
@@ -19,25 +19,25 @@ TO DO
 
 ## Some Context
 
-My AI Journey began in work where I agreed with my manager that I would be make time in 2025 to experiment with AI so I'd have the needed first-hand experience to have meaningful discussions around the topic in my role as a cybersecurity specialist. Because of this work setting I couldn't just do what ever I wanted, I needed to comply with all our policies, most importantly our data protection policies. With my programming hat on that meant confining myself to the enterprise versions of Microsoft's Copilot suite, specifically the general-purpose Microsoft 365 chat bot in my Edge sidebar, and GitHub Copilot in VS Code.
+My AI Journey began in work where I agreed with my manager that I would make time in 2025 to experiment with AI so I'd have the needed first-hand experience to have meaningful discussions around the topic in my role as a cybersecurity specialist. Because of this work setting, I couldn't just do whatever I wanted; I needed to comply with all our policies, most importantly, our data protection policies. With my programming hat on, that meant confining myself to the enterprise versions of Microsoft's Copilot suite, specifically the general-purpose Microsoft 365 chatbot in my Edge sidebar, and GitHub Copilot in VS Code.
 
-It's almost been a year now, and I've really come to enjoy having these two Copilots help me with my various bits of coding work. This year that's meant getting some assistance while working with:
+It's almost been a year now, and I've really come to enjoy having these two Copilots help me with my various bits of coding work. This year, that's meant getting some assistance while working with:
 
 1. Some Excel formulas
 2. Some JSON processing with `jq`
 3. A little shell scripting with Bash
 4. A lot of data processing and dashboard creation in Azure Log Analytics Workspaces with KQL
 5. A lot of PowerShell scripting
-6. And even more Linux automation with Ansible which involves:
+6. And even more Linux automation with Ansible, which involves:
    1. Lots of YAML files defining custom Ansible components like roles and playbooks
    2. INI files defining inventories
    3. Jinja2 template strings all over the place
 
-If that sounds like a lot of different technologies, and a lot of confusing context switching, you'd be absolute right!
+If that sounds like a lot of different technologies and a lot of confusing context switching, you'd be absolutely right!
 
-Earlier in my career as a dogs-body sysadmin I generally got to immerse myself deeply in just one or two languages, initially Bash and Perl, then later NodeJS JavaScript, which meant almost everything I needed was generally fresh in my mind and I could work away with little need to reference documentation. But in my current role I need to jump from tool to tools multiple times a week, or even, a day. That kind of context switching gets really confusing really fast. I still have lots of knowledge and experience buried deep in my brain, but I need some help triggering the right memory at the right time, and having the appropriate CoPilot sitting right there in my sidebar has proven invaluable!
+Earlier in my career as a dogs-body sysadmin, I generally got to immerse myself deeply in just one or two languages. Initially, Bash and Perl, then later NodeJS JavaScript, which meant almost everything I needed was generally fresh in my mind, and I could work away with little need to reference documentation. But in my current role, I need to jump from tool to tool multiple times a week, or even a day. That kind of context switching gets really confusing, really fast. I still have lots of knowledge and experience buried deep in my brain, but I need some help triggering the right memory at the right time, and having the appropriate CoPilot sitting right there in my sidebar has proven invaluable!
 
-I really like Microsoft's naming choice here, because there is simply no way these AIs are even close to replacing skilled humans working on real-world mission-critical code, but they are capable of providing valuable assistance to help those skilled humans be more effective. Think of them as force multiplies, not replacements.
+I really like Microsoft's naming choice here, because there is simply no way these AIs are even close to replacing skilled humans working on real-world mission-critical code, but they are capable of providing valuable assistance to help those skilled humans be more effective. Think of them as force multipliers, not replacements.
 
 ## Big-Picture Advice
 
@@ -47,51 +47,51 @@ Large Language Models, or LLMs, are very much their own unique and special indes
 
 Our various bots have been trained on millions of lines of other people's code, and will produce code that's about as good as the average line of code out there. Sometimes *average* is more than you need, but sometimes it really isn't! 
 
-When you're doing something quick and dirty it's probably just fine. If the code the bot spits out does the one thing you need to do in the moment, great! Job done,  move on with your day.
+When you're doing something quick and dirty, it's probably just fine. If the code the bot spits out does the one thing you need to do in the moment, great! Job done,  move on with your day.
 
-But when you're working on a production code base that's going to be deployed to the real world dealing with real data for years to come, average is not nearly good enough! In that kind of situation, you need to treat everything the LLM produces as a starting point to build from. 
+But when you're working on a production code base that's going to be deployed to the real world, dealing with real data for years to come, average is not nearly good enough! In that kind of situation, you need to treat everything the LLM produces as a starting point to build from. 
 
-You need to check the real meaning of every argument, parameter, flag, etc., to be sure it does what you think it does. You should also assume it's going to miss a bunch of edge cases, so you probably need to add some additional checks around the suggested code. And, you should assume it won't fail gracefully when it meets the real word, and add all missing error handling.
+You need to check the real meaning of every argument, parameter, flag, etc., to be sure it does what you think it does. You should also assume it's going to miss a bunch of edge cases, so you probably need to add some additional checks around the suggested code. And, you should assume it won't fail gracefully when it meets the real world, and add all missing error handling.
 
 ### LLMS are Word Association Machines
 
-When you're working near the edges of your understanding, search engines can be infuriating to use because when you as value generic questions you get utterly useless results.
+When you're working near the edges of your understanding, search engines can be infuriating to use because when you ask vague, generic questions, you get utterly useless results.
 
-LLMs on the other hand can leverage their abilities to associate those same vague generic works with at least some relevant information, allowing them to give you at least somewhat helpful responses.
+LLMs, on the other hand, can leverage their abilities to associate those same vague, generic words with at least some relevant information, allowing them to give you at least somewhat helpful responses.
 
 But, that does not mean that using the correct jargon is not important. On the contrary, the more accurately you use the appropriate jargon, the higher the quality of the information these robots will associate with it, and the more helpful and correct their replies will be.
 
-When you don't know the right words to use, take cues from the helpful parts of the early answers in the conversation, as for clarifications between similar-sounding words, and fine-tone your responses to adopt ever more of the correct jargon.
+When you don't know the right words to use, take cues from the helpful parts of the early answers in the conversation. Ask for clarifications between similar-sounding words, and fine-tune your responses to adopt ever more of the correct jargon.
 
 ### Conversations, not Questions
 
-Speaking of conversations, LLMs are not search engines, they're chat bots! Unlike 2025 Siri, they **do remember** what you just said! Yes, they're excellent alternatives for search engines when you're trying to get conceptual answers rather than find specific resources, but they're not drop-in replacements. Don't treat the chat box like a search box — treat to your initial question as a conversations starter, and don't host accent there first response as the real answer. Ask follow-up questions — if the response is clearly off base, reply explaining **why** this is not what you need. If you don't understand some or all of the answer, ask for clarifications. If you're not sure if some suggested code will handle some specific edge case, ask!
+Speaking of conversations, LLMs are not search engines; they're chatbots! Unlike 2025 Siri, they **do remember** what you just said! Yes, they're excellent alternatives for search engines when you're trying to get conceptual answers rather than find specific resources, but they're not drop-in replacements. **BART: did you mean something different than host accent?** Don't treat the chat box like a search box — treat your initial question as a conversation starter, and don't host accent there first response as the real answer. Ask follow-up questions — if the response is clearly off base, reply explaining **why** this is not what you need. If you don't understand some or all of the answer, ask for clarification. If you're not sure if some suggested code will handle some specific edge case, ask!
 
-Another useful thing to do is to ask for links to relevant parts of official documentation. If the conversation has led you to believe a specific library, or class, or function is the best fit, ask for a link to the docs so you can really understand what the library, class, or function actually does.
+Another useful thing to do is to ask for links to relevant parts of official documentation. If the conversation has led you to believe a specific library, class, or function is the best fit, ask for a link to the docs so you can really understand what the library, class, or function actually does. **BART: I added these two sentences** This is another way to ensure the library, class, or function actually exists and the chatbot hasn't hallucinated it into existence. (Yes, that happens.)
 
 ### Favour Chatbots that Show Their Sources
 
-If you have the choice between two LLMs, one that doesn't show you links to the sources it used to construction it's reply, and ones that does, use the one that does! Firstly, the actual referenced website is a great initial indicator for the response's quality — if you're asking about PowerShell and the the sources are at `learn.microsoft.com`, there's a good chance they're accurate, but if they're simply based on `reddit.com` posts, increase your skepticism! But more than that, when the answer to your question is mission-critical, take the time to open the linked sources and verify the function calls, argument names, or what ever for yourself.
+If you have the choice between two LLMs, one that doesn't show you links to the sources it used to construct its reply, and one that does, use the one that does! Firstly, the actual referenced website is a great initial indicator for the response's quality — if you're asking about PowerShell and the sources are at `learn.microsoft.com`, there's a good chance they're accurate, but if they're simply based on `reddit.com` posts, increase your skepticism! But more than that, when the answer to your question is mission-critical, take the time to open the linked sources and verify the function calls, argument names, or whatever for yourself.
 
 ### Context is King
 
 Now that you're thinking in terms of conversations and the tools having a memory, let's loop back to that first abstraction — the fact that LLMs act as averaging machines. The context you give the LLMs biases what it is they average against.
 
-In the context of a chat interface that means code snippets, technologies, libraries, classes, functions, and what not mentioned earlier will be weighted more highly in the averages that appear as responses.
+In the context of a chat interface, that means code snippets, technologies, libraries, classes, functions, and whatnot mentioned earlier will be weighted more highly in the averages that appear as responses.
 
-But LLMs don't just chat, they can also offer short little code completions and even suggest entire sections of code as you type. These suggestions are also influenced by context, but that context is coming from the tool they're integrated into.
+But LLMs don't just chat; they can also offer short code completions and even suggest entire sections of code as you type. These suggestions are also influenced by context, but that context is coming from the tool they're integrated into.
 
-When you use an AI-enabled development environment (IDE), the context of the code around the code your working on — your current file, all your open tabs, and in many tools, all the code in the currently open project. This means that if you have a consistent coding style, the suggestions will start to *sound* ever more like your own code. The bigger the project you're working on, the better the suggestions get! So, don't experiment with toy projects, experiment with those ancient codebases that go back decades that no one person full understands, that's where the tools can give the absolute most value!
+When you use an AI-enabled development environment (IDE), it considers the context of the code around the code you're working on — your current file, all your open tabs, and, in many tools, all the code in the currently open project. This means that if you have a consistent coding style, the suggestions will start to *sound* ever more like your own code. The bigger the project you're working on, the better the suggestions get! So, don't experiment with toy projects, experiment with those ancient codebases that go back decades that no one person fully understands; that's where the tools can give the absolute most value!
 
 ### The Advantages an IDE Integration Brings
 
 As I've just hinted, one of the biggest advantages integrations bring is automatic context — you don't have to tell the AI which tools you're using, because the AI sees your code already!
 
-Not only can you save yourself some prompting, you can also refer directly to specific parts of your code more easily. You could ask *'why does line 42 give a divide by zero error?'*, but you don't even have to be that explicit, you can simply select the line or lines your question relates to and refer to it as simply *'this'*!
+Not only can you save yourself some prompting, but you can also refer directly to specific parts of your code more easily. You could ask *'why does line 42 give a divide by zero error?'*, but you don't even have to be that explicit, you can simply select the line or lines your question relates to and refer to it as simply *'this'*!
 
-In terms of chatting then you get free context and quick and easy references to specific chunks of code, but what about the replies, can you do more with those too? Of course you can! When the bot returns suggested code you get buttons to copy the code, insert the code at your cursor, or, if the suggestion is a change, and option to automatically apply the change to your file or files! That last option sounds really scary, but VS Code's GitHub Copilot integration does it in a very explicit and safe way, it shows you what it will remove in red, what it will add in green, and gives you accept and reject buttons for each proposed change.
+In terms of chatting, you get free context and quick and easy references to specific chunks of code. But what about the replies? Can you do more with those, too? Of course you can! When the bot returns suggested code, you get buttons to copy the code, insert the code at your cursor, or, if the suggestion is a change, an option to automatically apply the change to your file or files! That last option sounds really scary, but VS Code's GitHub Copilot integration does it in a very explicit and safe way. It shows you what it will remove in red, what it will add in green, and gives you accept and reject buttons for each proposed change.
 
-But you get value from an AI-enabled IDE without even enabling a chat box thanks to dramatically more powerful code completions, rather than just offering completions for the word you\'re currently typing, the AI will offer entire sections of code, including comments! Even when the suggestions are not perfect, it's often much less work to tweak a few details than it is to have to type it all out from scratch!
+But you get value from an AI-enabled IDE without even enabling a chat box, thanks to dramatically more powerful code completions. Rather than just offering completions for the word you\'re currently typing, the AI will offer entire sections of code, including comments! Even when the suggestions are not perfect, it's often much less work to tweak a few details than it is to have to type it all out from scratch!
 
 ## An Important Warning — NEVER INCLUDE SECRETS IN YOUR CODE
 
@@ -103,11 +103,11 @@ Different languages and environments have different best practices for secret ma
 
 These are not some kind of definitive list of best examples, but rather some anecdotes that caught my eye at a point in time when I had the time, energy, and presence of thought to grab them. These anecdotes don't prove anything, but they do add colour to my thoughts above.
 
-### Example 1 — Coding Help From a Regular Chat-Bot
+### Example 1 — Coding Help From a Regular Chatbot
 
 As a first example, here's a recent positive experience I had using just the regular Microsoft 365 Copilot Edge sidebar to get some useful coding help.
 
-To set the scene — I had a CSV export from a reporting tool that listed a while bunch of rows with macOS version numbers as major, minor, and patch numbers separated by dots, e.g. 15.6.1, and I needed to build some new columns to start aggregating the results into more useful buckets. First, I needed the major version as a column. I know Excel can split strings, but I couldn't remember the syntax, so I asked Copilot to help me with the formula. Since I was using a generic chatbot, I was careful to give all the needed context in my question — *"in excel, how do I get the a new column with the major version extracted from a three-part version number column?"*:
+To set the scene — I had a CSV export from a reporting tool that listed a whole bunch of rows with macOS version numbers as major, minor, and patch numbers separated by dots, e.g. 15.6.1, and I needed to build some new columns to start aggregating the results into more useful buckets. First, I needed the major version as a column. I know Excel can split strings, but I couldn't remember the syntax, so I asked Copilot to help me with the formula. Since I was using a generic chatbot, I was careful to give all the needed context in my question — *"in excel, how do I get the a new column with the major version extracted from a three-part version number column?"*:
 
 ![A chat conversation showing my question and a detailed answer including a correct code-snippet and an explanation of how it works](../assets/tidbits14/Example1-CopilotChat-Screenshot1of4.png)
 
