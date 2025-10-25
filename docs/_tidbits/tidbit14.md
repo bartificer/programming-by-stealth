@@ -107,23 +107,23 @@ These are not some kind of definitive list of best examples, but rather some ane
 
 As a first example, here's a recent positive experience I had using just the regular Microsoft 365 Copilot Edge sidebar to get some useful coding help.
 
-To set the scene — I had a CSV export from a reporting tool that listed a whole bunch of rows with macOS version numbers as major, minor, and patch numbers separated by dots, e.g. 15.6.1, and I needed to build some new columns to start aggregating the results into more useful buckets. First, I needed the major version as a column. I know Excel can split strings, but I couldn't remember the syntax, so I asked Copilot to help me with the formula. Since I was using a generic chatbot, I was careful to give all the needed context in my question — *"in excel, how do I get the a new column with the major version extracted from a three-part version number column?"*:
+To set the scene — I had a CSV export from a reporting tool that listed a whole bunch of rows with macOS version numbers as major, minor, and patch numbers separated by dots, e.g., 15.6.1, and I needed to build some new columns to start aggregating the results into more useful buckets. First, I needed the major version as a column. I know Excel can split strings, but I couldn't remember the syntax, so I asked Copilot to help me with the formula. Since I was using a generic chatbot, I was careful to give all the needed context in my question — *"in excel, how do I get a new column with the major version extracted from a three-part version number column?"*:
 
 ![A chat conversation showing my question and a detailed answer including a correct code-snippet and an explanation of how it works](../assets/tidbits14/Example1-CopilotChat-Screenshot1of4.png)
 
-My data was in a different row, so I needed to change the coordinates in the formula, but the suggested formula worked perfectly, I now had my new column with major version number. That gave me a better feel for my data, but then I realised my real question was not what the major version number was, but whether the version in question was supported. At this stage I've utterly lost touch with what versions Apple does or does not support, so I started a new chat and asked *"what versions of macOS are still supported by Apple?"*:
+My data was in a different row, so I needed to change the coordinates in the formula, but the suggested formula worked perfectly. I now had my new column with a major version number. That gave me a better feel for my data, but then I realised my real question was not what the major version number was, but whether the version in question was supported. At this stage, I've utterly lost touch with what versions Apple does or does not support, so I started a new chat and asked, *"what versions of macOS are still supported by Apple?"*:
 
 ![A chat conversation showing my question and a detailed answer which makes it clear macOS 14 is the last supported major version](../assets/tidbits14/Example1-CopilotChat-Screenshot2of4.png)
 
-OK, so major versions older than 14 are obsolete. My final step was to build a second new column marking each row as absolute or supported, so I started one more chat with the clear question *"In Excel, if I have a column with numbers, how do I make a new column with the value "EOL" if the number is less than 14, or "Supported" otherwise?"*:
+OK, so major versions older than 14 are obsolete. My final step was to build a second new column marking each row as obsolete or supported, so I started one more chat with the clear question *"In Excel, if I have a column with numbers, how do I make a new column with the value "EOL" if the number is less than 14, or "Supported" otherwise?"*:
 
 ![A chat conversation showing my question and a detailed answer which suggests a reasonable looking formula and explains each part](../assets/tidbits14/Example1-CopilotChat-Screenshot3of4.png)
 
 The suggested formulate looked plausible to me, so I pasted it in and found that all versions of macOS were showing as *Supported*, even macOS 11 ... hmmm ... that's not right! So, I continued the same conversation with a nice clear followup — *"This wrongly shows 11 as "supported""*:
 
-![A chat conversation showing my followup question and a detailed answer which suggests three things to try, and explains them](../assets/tidbits14/Example1-CopilotChat-Screenshot4of4.png)
+![A chat conversation showing my followup question and a detailed answer which suggests three things to try to clean up the data since it might be text not numbers, and explains them](../assets/tidbits14/Example1-CopilotChat-Screenshot4of4.png)
 
-OK, so the first suggestion was so simple I'd actually already tried it before asking my followup question. I decided to skip right to the most robust possible third option (`=IF(VALUE(TRIM(A2))<14, "EOL", "Supported")`) and it worked perfectly! I could not conditionally format my spreadsheet to show obsolete OSes in a scary red colour, and supported OSes in a reassuring green colour 🙂
+OK, so the first suggestion was so simple I'd actually already tried it before asking my followup question. I decided to skip right to the most robust possible third option (`=IF(VALUE(TRIM(A2))<14, "EOL", "Supported")`) and it worked perfectly! I could not conditionally format my spreadsheet to show obsolete OSes in a scary red colour, and supported OSes in a reassuring green colour 🙂 **BART: could not, or could? you have a smiley face so I'm confused**
 
 ### Example 2 — Copilot Hallucinates, and may not be Best for Generic Programming Questions
 
