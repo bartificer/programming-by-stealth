@@ -157,11 +157,11 @@ Out of curiosity I asked my favourite privacy-protecting stand-alone chatbot, [L
 
 ### Example 3 — A Bit of Everything
 
-In this example the exact syntax and what it means is much less important that the AI interactions, so don't stress about the minutia of what it is I needed to do.
+In this example, the exact syntax and what it means, is much less important than the AI interactions, so don't stress about the minutia of what it is I needed to do.
 
 With my work hat on, our tool of choice for managing the setup of our fleet of a few hundred Linux servers is [Ansible](https://en.wikipedia.org/wiki/Ansible_(software)). Ansible is an implementation of *infrastructure as code* philosophy. With Ansible you use a collection of YAML, INI, and JSON files to define the reality you wish to be true, and Ansible figures out how to make it so.
 
-Imagine you need to host a large web app, you could use Ansible to define a list of needed VMs, say:
+Imagine you need to host a large web app; you could use Ansible to define a list of needed VMs, say:
 
 1. 15 web servers
 2. 3 MySQL servers
@@ -175,15 +175,15 @@ For each of those you would then define a *role* that would specify things like:
 
 All of this is captured in plain text files that can themselves be committed to Git, hence, the term *infrastructure as code*.
 
-I was busy creating a new Ansible role to capture the needed setup to deploy automatically updating TLS certificates from a new CA over the ACME protocol (similar to Let's Encrypt, but with additional enterprise-focused features). As usual I was working in VS Code with GitHub Copilot enabled, and since our Ansible Git repo already has tens of custom roles defined within it, the code completions it was offering were excellent, and it was saving me a lot of typing and time.
+I was busy creating a new Ansible role to capture the needed setup to deploy automatically;  updating TLS certificates from a new Certificate Authority over the ACME protocol (similar to Let's Encrypt, but with additional enterprise-focused features). As usual I was working in VS Code with GitHub Copilot enabled, and since our Ansible Git repo already has tens of custom roles defined within it, the code completions it was offering were excellent, and it was saving me a lot of typing and time.
 
-At one point GitHub Copilot's code completion offered me about ten lines of code, nine of which made perfect sense to me, and fit our various conventions perfectly, but one line used an approach that was new to me, so I selected it, and literally asked GitHub Copilot to *"explain this line"*:
+At one point, GitHub Copilot's code completion offered me about ten lines of code, nine of which made perfect sense to me, and fit our various conventions perfectly, but one line used an approach that was new to me, so I selected it, and literally asked GitHub Copilot to *"explain this line"*:
 
 ![A screenshot of a chat conversation showing a detailed explanation of a line of code](../assets/tidbits14/Example3-GitHubCopilotExample2-1of5.jpg)
 
-This made perfect sense to me, and the example showed it would do exactly what I needed — convert a coma-separated list of domain names into an array of domain names.
+This made perfect sense to me, and the example showed it would do exactly what I needed — convert a comma-separated list of domain names into an array of domain names.
 
-Earlier I highlighted the fact that AI tools generate *average* code, so you need to treat it as a starting point, and verify it handles all needed edge-cases elegantly. This suggested code completion illustrates that perfectly, because I was immediately suspicious that it would not fall back gracefully to an empty array if the input was an empty string. Since it's not just legitimate but quite common to need TLS certs that cover just a single domain name, i.e. have zero *Service Alternative Names*, or SANs, my code absolutely needed to handle that scenario correctly. So, I continued the conversation with GitHub Copilot and asked *"can this handle an empty string?"*:
+Earlier, I highlighted the fact that AI tools generate *average* code, so you need to treat it as a starting point, and verify it handles all needed edge-cases elegantly. This suggested code completion illustrates that perfectly, because I was immediately suspicious that it would not fall back gracefully to an empty array if the input was an empty string. Since it's not just legitimate but quite common to need TLS certs that cover just a single domain name, i.e. have zero *Service Alternative Names*, or SANs, my code absolutely needed to handle that scenario correctly. So, I continued the conversation with GitHub Copilot and asked *"can this handle an empty string?"*:
 
 ![A screenshot of a chat conversation showing a a reply indicating that the code did not do what was needed and offering suggested solutions](../assets/tidbits14/Example3-GitHubCopilotExample2-2of5.jpg)
 
@@ -193,19 +193,19 @@ The suggested fix included some YAML syntax that's outside of what I typically u
 
 ![A screenshot of a chat conversation showing a detailed explanation of syntax element](../assets/tidbits14/Example3-GitHubCopilotExample2-3of5.jpg)
 
-That explanation made perfect sense, so I was no ready to test my new role. Unfortunately, it didn't go well 🙁
+That explanation made perfect sense, so I was now ready to test my new role. Unfortunately, it didn't go well 🙁
 
-The role triggered an error when applied to my test server, and the error was in code suggested to me by GitHub copilot. Because I still still new to using AI for coding my first reflex was to throw the error into a search engine and hope a good Stack Overflow link ranked highly in the results. This didn't work, so I decided to use GitHub Copilot's ability to easily add context to my advantage. I selected the lines of code that triggered the error and literally asked why that code produced the give error message:
+The role triggered an error when applied to my test server, and the error was in code suggested to me by GitHub Copilot. Because I still still new to using AI for coding, my first reflex was to throw the error into a search engine and hope a good Stack Overflow link ranked highly in the results. This didn't work, so I decided to use GitHub Copilot's ability to easily add context to my advantage. I selected the lines of code that triggered the error and literally asked why that code produced the give error message:
 
 ![A screenshot of a chat conversation showing a question that references both specific lines of code and the error message produced by those lines showing a clear explanation of the of the cause and suggesting solutions](../assets/tidbits14/Example3-GitHubCopilotExample2-4of5.png)
 
-Both the explanation and the suggested fix made sense to me, though I did chuckle that I needed the help of AI to fix a bug added to my code by AI 🙂
+Both the explanation and the suggested fix made sense to me, though I did chuckle that I needed the help of AI to fix a bug added to my code by AI. 🙂
 
-Rather than manually apply the suggested fix, I let GitHub Copilot do it for me. When you hover over a code snipped three icons appear. The first asks GitHub Copilot to merge the suggestion into your code for you, the second to insert it at your cursor's position, and the third copies it to the clipboard. Since I needed to change existing code, I clicked on the merge button. This triggers a cool animation of the change rippling through your code, and when it has found all the lines that it thinks need to be changed, it presents them to as a series of diffs for you to confirm or reject:
+Rather than manually apply the suggested fix, I let GitHub Copilot do it for me. When you hover over a code snippet, three icons appear. The first asks GitHub Copilot to merge the suggestion into your code for you, the second to insert it at your cursor's position, and the third copies it to the clipboard. Since I needed to change existing code, I clicked on the merge button. This triggers a cool animation of the change rippling through your code, and when it has found all the lines that it thinks need to be changed, it presents them to as a series of diffs for you to confirm or reject:
 
 ![A screenshot showing the old line of code in red, the suggested replacement in green, and buttons to accept or undo the change](../assets/tidbits14/Example3-GitHubCopilotExample2-5of5.png)
 
-With at change applied my new role worked perfectly! 🎉
+With that change applied my new role, it worked perfectly! 🎉
 
 ## Final Thoughts
 
