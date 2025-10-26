@@ -5,13 +5,15 @@ creators: [bart, allison]
 date: 2025-10-25
 ---
 
-In a recent instalment of Allison's Chit Chat Across the Pond podcast, we discussed my experiences with AI in general and promised deeper dives into coding with AI and working on the terminal with AI. This is the first of those promised deeper dives (the second will appear as an instalment of Taming the Terminal sometime soon).
+In a recent instalment of Allison's Chit Chat Across the Pond podcast, we discussed my experiences with AI in general and promised deeper dives into coding with AI and working on the terminal with AI. This is the first of those promised deeper dives (the second will appear as an instalment of [Taming the Terminal](https://ttt.bartificer.net/book.html) sometime soon).
 
 ## Matching Podcast Episodes
 
-<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_07_19.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_10_25.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
-TO DO
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2025_10_25.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2025_10_25.html">PBS_2025_10_25</a>
 
 ## Some Context
 
@@ -61,7 +63,7 @@ When you don't know the right words to use, take cues from the helpful parts of 
 
 ### Conversations, not Questions
 
-Speaking of conversations, LLMs are not search engines; they're chatbots! Unlike 2025 Siri, they **do** remember what you just said! Yes, they're excellent alternatives for search engines when you're trying to get conceptual answers rather than find specific resources, but they're not drop-in replacements, you need to interact with them differently. Don't treat the chat box like a search box — treat your initial question as a conversation starter, and don't accept their first response as the real answer. Ask follow-up questions — if the response is clearly off base, reply explaining **why** this is not what you need. If you don't understand some or all of the answer, ask for clarifications. If you're not sure if some suggested code will handle some specific edge case, ask!
+Speaking of conversations, LLMs are not search engines; they're chatbots! Unlike 2025 Siri, they **do** remember what you just said! Yes, they're excellent alternatives for search engines when you're trying to get conceptual answers rather than find specific resources, but they're not drop-in replacements; you need to interact with them differently. Don't treat the chat box like a search box — treat your initial question as a conversation starter, and don't accept their first response as the real answer. Ask follow-up questions — if the response is clearly off base, reply explaining **why** this is not what you need. If you don't understand some or all of the answer, ask for clarifications. If you're not sure if some suggested code will handle some specific edge case, ask!
 
 Another useful thing to do is to ask for links to relevant parts of official documentation. If the conversation has led you to believe a specific library, class, or function is the best fit, ask for a link to the docs so you can really understand what the library, class, or function actually does. This is another way to ensure the library, class, or function actually exists and the chatbot hasn't hallucinated it into existence. (Yes, that happens, especially in languages and libraries with consistent naming schemes for things.)
 
@@ -151,6 +153,8 @@ Turns out Copilot hallucinated the entire feature! What the code samples, and he
 
 Out of curiosity I asked my favourite privacy-protecting stand-alone chatbot, [Lumo](https://lumo.proton.me/), if PowerShell supported a post-fix form of `if`, and it quite correctly told that it does not, and suggested I just use the regular pre-fix form, which is what I ended up doing!
 
+If you don't believe AIs hallucinate, you might want to know about the study that OpenAI conducted that determined that hallucinations are a mathematical certainty: [openai.com/...](https://openai.com/index/why-language-models-hallucinate/)
+
 ### Example 3 — A Bit of Everything
 
 In this example, the exact syntax and what it means, is much less important than the AI interactions, so don't stress about the minutia of what it is I needed to do.
@@ -211,7 +215,7 @@ If you've never used any of these tools before, don't judge them too quickly. Th
 
 Because these tools can be used in so many different ways, I think everyone's experiences will be unique, but what I've noticed is that the most important things I've learned are:
 
-1. Make informed decisions about which AI agents you trust which sub-sets of your data to!
+1. Make informed decisions about which AI agents you trust which subsets of your data to!
 2. Always think in terms of conversations, and when you change the subject, explicitly start a new conversation with the AI!
 3. Use the right tool for the job — integrations really smooth out the friction and minimise distractions. Flipping between windows is a lot more disruptive to your flow than doing everything on the one screen.
-4. Develop the muscle mental muscle memory to treat pasting a secret into a code file as being every bit as unacceptable as telling your boss to go 🤬 their 🤬 in a 🤬!
+4. Develop the muscle mental muscle memory to treat pasting a secret into a code file as being every bit as unacceptable as swear at your boss!
