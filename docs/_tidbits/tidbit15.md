@@ -91,14 +91,14 @@ Each index.md file begins with a block of metadata called **front matter**. Fron
 
 ```yaml
 title: "Murder in Treggan Bay"
- summary: "A Devon Coast Mystery"
- date: "2025-10-11"
- series: "Treggan Bay Mysteries"
- series_id: "treggan-bay-mysteries"
- series_order: 1
- publisher: "Tonkoi Books"
- wordCount: 62000
- tagline: "He came to sell a cottage, not count alibis."
+summary: "A Devon Coast Mystery"
+date: "2025-10-11"
+series: "Treggan Bay Mysteries"
+series_id: "treggan-bay-mysteries"
+series_order: 1
+publisher: "Tonkoi Books"
+wordCount: 62000
+tagline: "He came to sell a cottage, not count alibis."
 ```
 
 This is where I put all the key details about the book: the title, a one-line summary, the publication date, which series it belongs to (and in what order), the publisher name, word count, a catchy tagline, etc. None of this text in the front matter actually appears verbatim on the page; instead, Hugo parses this metadata and makes it available to the templates. In other words, front matter is how I feed input data into Hugo’s template engine.
