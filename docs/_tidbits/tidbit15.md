@@ -43,7 +43,7 @@ So I rolled up my sleeves again and, in five days, built a brand-new website for
 
 ## What is Hugo?
 
-If you haven’t encountered it before, [Hugo](https://gohugo.io) is a popular open-source static site generator written in Go (the Go programming language). On its homepage Hugo boldly touts itself as *“the world’s fastest framework for building websites,”* and promises that its *“amazing speed and flexibility… makes building websites fun again.”*[[1\]](https://gohugo.io/#:~:text=The world’s fastest framework for,building websites) That sounded perfect for my needs – who doesn’t want fast and fun?
+If you haven’t encountered it before, [Hugo](https://gohugo.io) is a popular open-source static site generator written in Go (the Go programming language). On its homepage Hugo boldly touts itself as *“the world’s fastest framework for building websites,”* and promises that its *“amazing speed and flexibility… makes building websites fun again.”*[[1\]](https://gohugo.io/#:~:text=The world’s fastest framework for building websites) That sounded perfect for my needs – who doesn’t want fast and fun?
 
 But what does Hugo actually do? In essence, Hugo takes content you write (like markdown text for blog posts or, in my case, book descriptions) and merges it with templates that you design. The end result is a bunch of static HTML files that you can deploy anywhere. It’s like a high-speed printing press for web pages – you feed in your raw content and layout designs, and out come fully-formed web pages ready to serve to users. No databases or server-side code required for the live site.
 
@@ -75,11 +75,9 @@ With the templates in place, I moved on to adding our content – the actual tex
 
 For example, one of Jern’s novels is *Murder in Treggan Bay*. I created a folder content/books/murder-in-treggan-bay. Inside that folder, I placed three files:
 
-·   **index.md** – the main content file for the book (in Markdown format).
-
-·   **cover.jpg** – the cover image for the book.
-
-·   **extra-1.jpg** – an extra image I wanted to include on that page (in this case, perhaps a map or illustration related to the book).
+* **index.md** – the main content file for the book (in Markdown format).
+* **cover.jpg** – the cover image for the book.
+* **extra-1.jpg** – an extra image I wanted to include on that page (in this case, perhaps a map or illustration related to the book).
 
 That’s it – just those three files in a folder. When I run Hugo, it sees the murder-in-treggan-bay folder and knows that it should build a webpage for that book using the book template. The index.md provides the text and data for the page, and the template knows to pull in cover.jpg as the book cover image at the top, and extra-1.jpg further down in the page as supplementary content. Hugo seamlessly blends the content with the layout. I didn’t have to manually create an HTML page for *Murder in Treggan Bay*; Hugo generated it for me by applying the template to the content in that folder.
 
