@@ -1,6 +1,6 @@
 ---
 title: Building an Indie Author Site with Hugo by Eddie Tonkoi
-instalment: 14
+instalment: 15
 creators: [bart, allison, eddieTonkoi]
 date: 2025-11-05
 ---
