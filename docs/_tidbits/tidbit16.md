@@ -34,6 +34,16 @@ All of these components were installed on a single server, so everything was sel
 
 As the site continued to grow the demands on this single server grew and grew. For a while this could be compensated for with more RAM and more virtual CPUs, but eventually the limits of this kind of so-called *vertical scaling* were reached, and the site needed to scale horizontally. This is where the architecture becomes a little more complicated!
 
+## A Quick Overview if the 'LAMP Stack'
+
+Sysadmins managing websites refer to the all the software underpinning a websites as it's *stack*, and some of those combinations are or were so common they get named. This is where the so-called *LAMP Stack* comes from — Linux, Apache, MySQL & PHP.
+
+Up to this point in our story the server powering `podfeet.com` has always been a Linux server running an instance of the Apache web server app with the optional PHP module installed, and an instance of the MySQL database server app. That is to say, while the sheer amount of resources thrown at the site has been increasing, the site remained on a classic LAMP stack.
+
+To explain how the site hangs together today, let's set ourselves a baseline by exploring how it hung together before the stack was modernised. To do that, let's follow the full journey of one blog post from Allison's editor (Mars Edit), the website, to the first visitor's browser.
+
+### The Original *Post's Tale*
+
 LEFT OFF HERE!!!
 
 ## Final Thoughts
