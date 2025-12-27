@@ -1,0 +1,6 @@
+# Local development overrides
+repository: bartificer/programming-by-stealth
+
+# Manually set github values to prevent errors
+github:
+  baseurl: ""

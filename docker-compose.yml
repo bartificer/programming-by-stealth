@@ -1,0 +1,19 @@
+services:
+  jekyll:
+    image: ${BASE_IMAGE:-jekyll-base:latest}
+    container_name: ${CONTAINER_NAME:-jekyll-site}
+    ports:
+      - "${JEKYLL_PORT:-4000}:4000"
+      - "${LIVERELOAD_PORT:-35729}:35729"
+    volumes:
+      - .:/site
+      - gems:/usr/local/bundle  # Simple name, Docker prefixes it automatically
+    working_dir: /site/docs
+    environment:
+      - JEKYLL_ENV=${JEKYLL_ENV:-development}
+    command: bundle exec jekyll serve --host 0.0.0.0 --livereload --force_polling --config _config.yml,_config_dev.yml
+    stdin_open: true
+    tty: true
+
+volumes:
+  gems:  # Docker Compose creates it as {COMPOSE_PROJECT_NAME}_gems
