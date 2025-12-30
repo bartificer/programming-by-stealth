@@ -65,7 +65,42 @@ Unlike physical servers, virtual servers can easily have more RAM and CPU assign
 
 To understand what's about to change, and why, let's look at the life of a single post at this point in the site's evolution.
 
-LEFT OFF HERE!!!
+Allison starts by composing the post in her favourite client, Mars Edit. When the content is ready she pushes the *Publish* button and Mars Edit sends the new post to the server with an HTTP request Wordpress XML-RPC URL on the `podfeet.com` site. The web server app listening for HTTP requests is Apache, so it receives the request from MarsEdit and assigns an Apache *worker process* to the request. This is a Linux process that does all the work for this request. While it is servicing this request it can't do anything else, so if another requests arrives on the server before this worker finishes, Apache has to use a second parallel worker processes for the other request. This means that on a busy Apache web server there can be a lot of workers running at the same time.
+
+The URL MarsEdit called is part of the Wordpress web app which is written in PHP, so the Apache worker process has to load the PHP language into itself, and it does this using the `mod_php` Apache plugin. Now that the worker has learned how to execute PHP code, it gets to work dealing with Allison's XML-RPC request to publish her new post by executing the Wordpress PHP code. To publish a post all attachments need to get written to the Wordpress uploads folder, and the post an all its metadata need to get written to the database.
+
+For simplicity, I'm going to ignore the reality that publishing a post actually requires a back-and-forth between the Wordpress code and MarsEdit. Due to various optimisations in the HTTP protocol the same Apache worker will handle the full back-and-forth, so blurring it all into one request is a reasonable thing to do for clarity.
+
+Putting it all together the Apache worker process needs to:
+
+1. Load `mod_php` so it can execute the Wordpress code (costs CPU time and RAM)
+2. Save all attachments into the Wordpress uploads folder
+3. Connect to the database
+4. Write the content of the post into the database
+5. Close the database connection
+6. Reply to MarsEdit with the published post's metadata
+7. Shut itself down
+
+Some time later, a Nosillacastaway sees Allison's notification about the new post on the Podfeet Slack and wants to read it, so they open the post's URL in their browser, let's assume it's Safari.
+
+Safari connects to the `podfeet.com` web server and Apache creates a fresh worker process, that worker loads `mod_php`, then executes the Wordpress code which reads the posts content from the database, loads the theme and all the site's plugins from the Wordpress extensions folder, builds the HTML, CSS, and JavaScript needed to render the page, and returns it all to Safari which displays it.
+
+Again, this is not a small task, since the Apache worker needs to:
+
+1. Load `mod_php`
+2. Connect to the database
+3. Query the database for the post's content
+4. Load the extra PHP code for the site's theme and plugins
+5. Execute the Wordpress code to render the page
+6. Return the rendered content to the browser
+7. Shut itself down.
+
+I want to draw your attention to some key points here.
+
+1. Apache needs to start and stop workers all the time, and each worker gets its own copy of the `mod_php`, so Apache worker processes take up a lot of RAM, and when you have many running at once, much of that RAM is copies of the same code!
+2. Since each worker requires a substantial amount of RAM, Apache limits the number of them that can be started simultaneously. As long as there are more available workers than simultaneous visitors all is well,  but the moment there are more visitors than workers Apache has to start queueing the requests.
+3. Each process is making its own database connection, so the database server is having to open and close connections constantly, and it too has a limit, so it too can start to queue up requests.
+4. The same server is running all these Apache processes and handling all these database queries, so there is a lot of data flowing around inside the VM, this can overload the OS quite easily.
 
 ## Another Short Reprieve — Database-as-a-Service
 
