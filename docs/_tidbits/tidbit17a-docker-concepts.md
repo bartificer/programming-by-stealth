@@ -171,7 +171,7 @@ Although you can perfectly build an image from scratch, chances are high that so
 
 Without going too deep into the Docker image techniques for now, one term you might come across is **Docker layer**. A layer is a single instruction in the build of a Docker image. In our food analogy, if an image is a recipe, a layer is a step in that recipe.
 
-A **Docker container** is a running instance of an image. Docker start actually starts a container. In turn, this pulls in the image and executes the layers in the image. Containers are isolated from each other. So, back to our analogy, you can have two food trucks, both identical initially, but one makes French food, and the other makes Asian food, without even knowing about each other's existence.
+A **Docker container** is a running instance of an image. `docker start` actually starts a container. In turn, this pulls in the image and executes the layers in the image. Containers are isolated from each other. So, back to our analogy, you can have two food trucks, both identical initially, but one makes French food, and the other makes Asian food, without even knowing about each other's existence.
 
 A container can be easily started, stopped, destroyed, and rebuilt again. This means that any data stored within a container can get lost very easily. That's why we need volumes.
 
