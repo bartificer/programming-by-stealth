@@ -33,7 +33,7 @@ The simplest way to understand how the site works today, and why it now works th
 
 ### Simple Beginnings
 
-When Allison first dipped her toe into the podcasting world she hosted the website for the [NosillaCast](https://www.podfeet.com/) (`www.podfeet.com`) on a shared hosting plan from one of the major providers. This meant the site was sharing the resources of a single web and database server with tens or perhaps hundreds of other websites. Multi-site hosting like this is generally delivered using a management platform like CPanel or Plesk. This meant that Allison could do everything she needed to via a simple web control panel. For the most part, the underlying technical details were irrelevant. What web server the provider chose to deploy, which relational database they choose to offer, or which particular version of the PHP run-time, none of that mattered to Allison as long as the Wordpress installer was happy the server met its minimum requirements.
+When Allison first dipped her toe into the podcasting world, she hosted the website for the [NosillaCast](https://www.podfeet.com/) (`www.podfeet.com`) on a shared hosting plan from one of the major providers. This meant the site was sharing the resources of a single web and database server with tens or perhaps hundreds of other websites. Multi-site hosting like this is generally delivered using a management platform like CPanel or Plesk. This meant that Allison could do everything she needed to via a simple web control panel. For the most part, the underlying technical details were irrelevant. What web server the provider chose to deploy, which relational database they choose to offer, or which particular version of the PHP run-time, none of that mattered to Allison as long as the Wordpress installer was happy the server met its minimum requirements.
 
 These kinds of fully managed shared hosting offerings have two obvious advantages — they're inexpensive, and customers are liberated from all sysadmin tasks!
 
@@ -41,7 +41,7 @@ However, there is a significant limitation — they're resource-constrained, so 
 
 As the podcast grew in popularity the traffic to `podfeet.com` inevitably out-grew these shared hosting environments.
 
-Has the podcast reached this point just a few years earlier, Allison would have had no choice but to move to a rented dedicated physical server. This would have meant taking full responsibility for the sysadmin tasks, and of course, an order of magnitude jump in the monthly cost. But Allison's timing was perfect, she was able to dodge the sysadmin bullet for a few more years thanks to the rise of virtualisation.
+Had the podcast reached this point just a few years earlier, Allison would have had no choice but to move to a rented dedicated physical server. This would have meant taking full responsibility for the sysadmin tasks, and of course, an order of magnitude jump in the monthly cost. But Allison's timing was perfect, she was able to dodge the sysadmin bullet for a few more years thanks to the rise of virtualisation.
 
 The site's first upgrade was to move from a fully managed shared server to a similar service on a dedicated virtual private server running the same kind of control panel as those used on shared hosting. The only real difference was that now there was only one website on the server, not tens or hundreds. The bill obviously increased, but nowhere near as much as it would have just a few years earlier.
 
@@ -51,7 +51,7 @@ This reprieve was only ever going to be short-term, and soon enough Allison need
 
 While it was not relevant to Allison, the site had been served by Apache web servers running on Linux with MySQL databases for its entire history. This arrangement is so common it has a name — the *LAMP Stack*.
 
-Sysadmins managing websites refer to the all the software underpinning a websites as it's *stack*, and being nerdy types, sysadmins like to reduce stacks to acronyms, so the combination of Linux, Apache, MySQL & PHP became LAMP.
+Sysadmins managing websites refer to all the software underpinning a website as its *stack*, and being nerdy types, sysadmins like to reduce stacks to acronyms, so the combination of Linux, Apache, MySQL & PHP became LAMP.
 
 ## The Site's First Truly Dedicated Server
 
