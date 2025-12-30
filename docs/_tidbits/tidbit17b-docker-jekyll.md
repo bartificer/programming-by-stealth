@@ -5,14 +5,15 @@ creators: [helma]
 date: 2025-12-22
 ---
 
-Now that we have the concepts clear we can now work on an actual example. The ultimate goal is to add a Docker based build system to the PBS project, but let's start with a smaller task, which is replacing the virtual environment in the demo Jekyll site of episodes 177 through 181 with a Docker based system.
+Now that we have the concepts clear, we can work on an actual example. The ultimate goal is to add a Docker-based build system to the PBS project, but let's start with a smaller task, which is replacing the virtual environment in the demo Jekyll site of episodes 177 through 181 with a Docker-based system.
 
-macOS doesn't natively support Linux containers, so Docker needs a helper VM under the hood. The official tool is Docker Desktop, which is available at [https://docs.docker.com/get-started/get-docker/](https://docs.docker.com/get-started/get-docker/). So let's install it.
+macOS doesn't natively support Linux containers, so Docker needs a helper VM under the hood. The official tool is Docker Desktop, which is available at [docs.docker.com/get-started/get-docker/](https://docs.docker.com/get-started/get-docker/). So let's install it.
 
 Once installed, start Docker Desktop, because it needs to run to be able to run the containers. You don't need to set up an account and sign in. The extra features you get from signing in are not necessary if you just keep your Docker images locally.
-You might even never need to look at the GUI but sometimes it comes in handy.
 
-The other tool we are going to need is `make`. This tool is a golden oldie. It was created in 1976 out of frustration, according to Wikipedia. It has become the default build automation tool so long ago it's part of your default macOS installation. To check it, open a terminal window and type
+You might even never need to look at the GUI, but sometimes it comes in handy.
+
+The other tool we are going to need is `make`. This tool is a golden oldie. It was created in 1976 out of frustration, according to Wikipedia. It has become the default build automation tool so long ago that it's part of your default macOS installation. To check it, open a terminal window and type
 
 ```shell
 make
@@ -82,7 +83,7 @@ Now that the image is defined, we can go on to define the specifics for the cont
 
 ### Docker Compose
 
-If you study the Dockerfile closely you notice that there is no concept of mounting your files in the container. That is left to the container definition which can be done using a `docker-compose.yml` file. While a `Dockerfile` is defining a single image, a `docker-compose.yml` file can actually use multiple images to combine them into a development stack. A example of such a stack would be a WordPress environment that consists of two containers, one for the webserver and all the PHP files that make the WordPress site go and one for the database that holds all the website content.
+If you study the Dockerfile closely you notice that there is no concept of mounting your files in the container. That is left to the container definition which can be done using a `docker-compose.yml` file. While a `Dockerfile` is defining a single image, a `docker-compose.yml` file can actually use multiple images to combine them into a development stack. An example of such a stack would be a WordPress environment that consists of two containers, one for the webserver and all the PHP files that make the WordPress site go and one for the database that holds all the website content.
 
 We are not going to dive deep into the syntax of `docker-compose.yml`, but we are only going to touch on the elements that are relevant for this example. More information on the complete syntax can be found in the [Compose file reference](https://docs.docker.com/reference/compose-file/) documentation.
 
@@ -118,7 +119,7 @@ services:
     tty: true
 ```
 
-In `docker-compose.yml` a container is called a service. In this config we have one service called `jekyll` .  In a multi-container setup like the WordPress example, there would be a second service defining the database, usually called `db`, but any name will do.
+In `docker-compose.yml`, a container is called a service. In this config, we have one service called `jekyll`.  In a multi-container setup like the WordPress example, there would be a second service defining the database, usually called `db`, but any name will do.
 
 The `build` element indicates the directory to be used for the build. This is where the Dockerfile can be found and all the files required for the image.
 
@@ -135,13 +136,13 @@ Remember that we copied the Gemfile from the docs directory into image in the Do
 
 The `working_dir` element defines the directory to use as current directory. Note that this is the absolute path inside the container.
 
-The `command` element defines the command to execute the first time the container is started. Note that the Dockerfile has the same command, but any command in this element will override the one in the Dockerfile. In this case this one has an extra argument `--drafts`.
+The `command` element defines the command to execute the first time the container is started. Note that the Dockerfile has the same command, but any command in this element will override the one in the Dockerfile. In this case, this one has an extra argument, `--drafts`.
 
 The `stdin_open` and `tty` elements are set to true. This means it's possible to send input to the container through the standard input and attach a pseudo-TTY to the container and therefore get access to the input and output features. This makes it possible to enter the container or tell the container to execute a command and provide the output.
 
 ## Starting the Container
 
-Now that we have all the configuration files in place it's finally time to start the container. We are using a `docker-compose.yml` file, so the command will be
+Now that we have all the configuration files in place, it's finally time to start the container. We are using a `docker-compose.yml` file, so the command will be
 
 ```shell
 docker compose up
@@ -161,17 +162,17 @@ Restart the container with `docker compose up -d` to start the container in a de
 
 The commands to start and stop the container are relatively straightforward but they are more commands to remember and since Docker is designed to run from the command line it has a laundry list of flags that are necessary or handy to be used.
 
-To make this easier on ourselves and to make it more consistent we can start using the `make` command. This command allows us to basically create our own vocabulary to work with our project and the container.
+To make this easier on ourselves and to make it more consistent, we can start using the `make` command. This command allows us to basically create our own vocabulary to work with our project and the container.
 
 ### Makefile Syntax
 
-We won't cover the full Makefile syntax in depth, because there is an excellent tutorial available at [Learn Makefiles](https://makefiletutorial.com/) and since the tool exists for so long there is plenty of documentation out there. Here we will only look at the elements needed to create our own Makefile.
+We won't cover the full Makefile syntax in depth because there is an excellent tutorial available at [Learn Makefiles,](https://makefiletutorial.com/) and since the tool has existed for so long, there is plenty of documentation out there. Here, we will only look at the elements needed to create our own Makefile.
 
 The short version to use the `make` tool: if the Makefile defines a build target called `install` it can be executed using `make install` in the same directory where the Makefile is.
 
 Let's look at how such a build target is defined by creating a target for our 'start container' command.
 
-In the project root create a file called 'Makefile' with the following content
+In the project root, create a file called 'Makefile' with the following content:
 
 ```make
 up: ## Start the Jekyll server in the background
@@ -179,9 +180,10 @@ up: ## Start the Jekyll server in the background
 ```
 
 This creates the build target 'up'. Make calls a build target a _rule_.
-Every line below this line will be executed as part of this rule. Note that all these lines should be indented with a TAB character, no spaces. Failing to comply means `make` will either complain or the command will not be executed properly.
 
-A line that starts with a '@' character, tells `make` to stop echoing the command to the terminal.
+Every line below this line will be executed as part of this rule. Note that all these lines should be indented with a TAB character, no spaces. Failing to comply means `make` will either complain, or the command will not be executed properly.
+
+A line that starts with a '@' character tells `make` to stop echoing the command to the terminal.
 
 We can now start our container with the command
 
@@ -196,13 +198,13 @@ down: ## Stop the Jekyll server
 	@docker-compose down
 ```
 
-Make has a concept of dependencies, which means that before a rule is executed, the rule it depends on are executed first. This makes it trivial to define a 'restart' rule.
+`make` has a concept of dependencies, which means that before a rule is executed, the rules it depends on are executed first. This makes it trivial to define a 'restart' rule.
 
 ```make
 restart: down up ## Restart the Jekyll server
 ```
 
-Make was created for building software so it can check if files need to be recompiled. Therefore, the 'name' or target of a rule can be a filename. For example, a rule like this
+`make` was created for building software so it can check if files need to be recompiled. Therefore, the 'name' or target of a rule can be a filename. For example, a rule like this
 
 ```make
 *.c: 
@@ -221,7 +223,7 @@ To prevent this from happening we need to tell `make` that these are not actual 
 
 Now we can go on and add more rules, e.g. for entering the container, for rebuilding the container when the Gemfile has changed and a lot of other handy snippets.
 
-If we need to remember all these rules, what did we gain by introduction `make`?
+If we need to remember all these rules, what did we gain by introducing `make`?
 
 To prevent losing our minds we can add another rule called `help` and make it our default rule. Put the following text above the first rule, below the `.PHONY` line. `make` considers the first rule in the Makefile to be the default rule, but we can add a `.DEFAULT_GOAL` keyword just to be sure.
 
@@ -235,8 +237,8 @@ help: ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-20s %s\n", $$1, $$2}'
 ```
 
-So now, if we run `make help` or simply `make` we will get a list of all available rules with their description. Note that the description is the text after the double hashes. This gives us an easy way to maintain documentation of the rules without having to constantly remember to update the help rule.
-Note that the grep line uses the built-in variable MAKEFILE_LIST to get all rules in the Makefile.
+So now, if we run `make help` or simply `make`, we will get a list of all available rules with their description. Note that the description is the text after the double hashes. This gives us an easy way to maintain documentation of the rules without having to constantly remember to update the help rule.
+Note that the `grep` line uses the built-in variable MAKEFILE_LIST to get all rules in the Makefile.
 
 With this knowledge we can spruce up our Makefile with colours by adding colour variables at the top of our Makefile.
 
@@ -318,20 +320,22 @@ Now it's possible to build the Docker image with `make build`, drop into the con
 
 ## Reusing the Docker image
 
-Now that we have our Jekyll development environment we should be able to reuse it in the PBS project. After all that is also a Jekyll site.
+Now that we have our Jekyll development environment, we should be able to reuse it in the PBS project. After all, that is also a Jekyll site.
 
-The simplest way is to simply copy the three files we created `Dockerfile`, `docker-compose.yml` and `Makefile` to the root of the PBS project and we're done. Especially since the `pbs-jekyll-demoSite` is just a temporary project and can be thrown away. But what if it's another important project we want to keep and develop further.
+The simplest way is to simply copy the three files we created `Dockerfile`, `docker-compose.yml,` and `Makefile` to the root of the PBS project, and we're done. Especially since the `pbs-jekyll-demoSite` is just a temporary project and can be thrown away. But what if it's another important project we want to keep and develop further?
 
-Although there is still nothing wrong with copying the files and reusing them in the PBS project, there are some caveats. First of all, you cannot run the containers side by side because they use the same container name and the same ports. Sure, that's easily fixed, but there are more subtle problems. Remember that the Dockerfile copied the Gemfile into the image and ran `bundle install`. This means that all gems inside the image are those defined by the Gemfile of the project we used when we built the image, aka the demoSite project. It's more than likely that the PBS site uses a lot more gems.
+Although there is still nothing wrong with copying the files and reusing them in the PBS project, there are some caveats. First of all, you cannot run the containers side-by-side because they use the same container name and the same ports. Sure, that's easily fixed, but there are more subtle problems. Remember that the Dockerfile copied the Gemfile into the image and ran `bundle install`. This means that all gems inside the image are those defined by the Gemfile of the project we used when we built the image, aka the demoSite project. It's more than likely that the PBS site uses a lot more gems.
 
-Now we can of course update the image with the gems necessary for the PBS site and rebuild the container for the demoSite based on the updated image, but that still means they share the gems in the library, or, going back to our analogy, two food trucks that share the available set of knives. That is not complete isolation and of course it also does not replicate the production environment because in production both projects _are_ isolated and only have their own dependencies.
+Now we can, of course, update the image with the gems necessary for the PBS site and rebuild the container for the demoSite based on the updated image, but that still means they share the gems in the library, or, going back to our analogy, two food trucks that share the available set of knives. That is not complete isolation, and of course, it also does not replicate the production environment because in production, both projects _are_ isolated and only have their own dependencies.
 
 So we need to update the image to take out the command to install the gems in the image and move that to the container. That way each container has only its own set of requirements. Added bonus is that now, whenever the Gemfile changes, we no longer have to rebuild the image. We just need to rebuild the container, which is a lot faster.
 
-For starters, we have to figure out how to make sure the `bundle install` is run before the `bundle exec jekyll serve` command is run, or we get errors about jekyll not being available.
-The easy solution is to remove the jekyll serve command out of the container as well and run it manually from the Makefile. This works and will considerably simplify both the Dockerfile and the Docker Compose file, but it will put the mental load on us to remember that when the container is started, we need to run the bundle install and the jekyll serve commands.
+For starters, we have to figure out how to make sure the `bundle install` is run before the `bundle exec jekyll serve` command is run, or we get errors about Jekyll not being available.
+
+The easy solution is to remove the `jekyll serve` command from the container as well and run it manually from the Makefile. This works and will considerably simplify both the Dockerfile and the Docker Compose file, but it will put the mental load on us to remember that when the container is started, we need to run the bundle install and the jekyll serve commands.
 
 Let's make this easier for ourselves by having Docker handling this. First, we add an entrypoint to the Dockerfile. An entrypoint is a way to configure a container to run as an executable. So if we tell the entrypoint to run a script, the script will automatically run on the start of the container.
+
 The script to be run can be added to the Dockerfile as well, so we don't have to manage a separate script.
 
 The Dockerfile now becomes
@@ -383,7 +387,7 @@ CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--livereload", "
 ```
 
 We now took the command to run `bundle install` out of the Dockerfile and replaced it with a COPY command that copies the content of the here-document into a script that is stored in the image.
-This script checks if the Gemfile exists and if so it runs `bundle install`. In turn, bundle will check if anything needs to be actually installed.
+This script checks if the Gemfile exists, and if so, it runs `bundle install`. In turn, bundle will check if anything needs to be actually installed.
 
 The `docker-compose.yml` file will now take care of the correct Gemfile that is used to install the gems. This file will also contain project specific information such as the name of the container and the local port sprinkled throughout the file.
 
@@ -607,7 +611,7 @@ clean-all: ## Remove everything including gem cache
 
 Let's study the files more closely to understand the changes. As explained, several configuration elements are changed to a variable. All these variables have a default value, so the compose file still works when there is no `.env` file. The syntax to define the default values is similar to the way bash specifies defaults to variables.
 
-The second change is the fact that the jekyll service defines which image it uses. If the image is not present in the local Docker environment, as can be seen in the Docker Desktop dashboard, it will be searched in the Docker Hub online.
+The second change is the fact that the Jekyll service defines which image it uses. If the image is not present in the local Docker environment, as can be seen in the Docker Desktop dashboard, it will be searched in the Docker Hub online.
 
 Another change is the definition of a named volume. It tells Docker to map `/usr/local/bundle` to this named volume and to manage it. This means that on spinning up the container, Docker creates storage somewhere labelled with the defined name and copies the content of `/usr/local/bundle` into it. The storage is not part of your project, aka there will not be any \<project\>/\<volume name\> directory, but Docker knows how to find it.
 
@@ -622,19 +626,19 @@ The easiest way to see and inspect the volume, or delete it, is to use the Docke
 
 The Makefile has got a lot of changes, let's go through them.
 
-#### Use of the .env Contents
+#### Use of the `.env` Contents
 
-Now that we have put the project specific variables into a separate `.env` file it is possible to use those variables in the Makefile. This also makes the Makefile more generic and it allows us to add some info on the project to the help target. If you now run `make` or `make help` you will see a nice display of the content of the `.env` file.
+Now that we have put the project-specific variables into a separate `.env` file, it is possible to use those variables in the Makefile. This also makes the Makefile more generic, and it allows us to add some info on the project to the help target. If you now run `make` or `make help`, you will see a nice display of the content of the `.env` file.
 
 #### More and updated rules
 
 The main change in the rules is the result of the fact that the compose file expects an image with a certain name to exist. This means we need to build that image before the container can actually use it. Yes, this is similar to before, but this time the compose file cannot default to the Dockerfile that is in the same directory as the compose file, because the compose file expects an image with a specific name.
 
-We can add a rule in the Makefile to create the image with the specified name. This is the `rebuild-base` rule. And now that we use the `.env` contents we can make sure the image name is the one expected by the compose file.
+We can add a rule in the Makefile to create the image with the specified name. This is the `rebuild-base` rule. And now that we use the `.env` contents, we can make sure the image name is the one expected by the compose file.
 
-But what if we forget to build the image before we run `make up` to start the container? No problem, we just let Make handle this. We created a rule `ensure-base` that checks if the image exists and if not, it calls the `rebuild-base` rule.
+But what if we forget to build the image before we run `make up` to start the container? No problem, we just let Make handle this. We created a rule `ensure-base` that checks if the image exists, and if not, it calls the `rebuild-base` rule.
 
-In the `up` rule we now add a dependency on `ensure-base`. Together, this makes sure that whenever we run `make up` Make checks if the image exists and if not, builds it for us.
+In the `up` rule, we now add a dependency on `ensure-base`. Together, this makes sure that whenever we run `make up`, `make` checks if the image exists and if not, builds it for us.
 
 All the moving pieces are now in place so let's see if it all works by running `make up`. We expect that, just as before, we can open `http://localhost:4000` in our browser and see the front page of the demo site. If all is correct, the terminal shows
 
@@ -652,7 +656,7 @@ And all this with nice colours. A quick check of the website shows the demo site
 
 ## Adding the Docker Configuration to the PBS Project
 
-Now that we have created a setup that should be generic enough to be reused we can put it to the test.
+Now that we have created a setup that should be generic enough to be reused, we can put it to the test.
 Although these containers should eventually be able to run side by side, let's not get ahead of ourselves and stop the demo site container using the `make down` command.
 
 ```shell
@@ -667,11 +671,11 @@ Stopping Jekyll server...
 Copy the `Dockerfile`, `docker-compose.yml`, `.env` and `Makefile` files to the root of the PBS project.
 Without any changes if we run this configuration with `make up` we should get the PBS project in our browser.
 
-Does it work? Yes and no. No, we don't see the website in our browser at `http://localhost:4000` but if we check the logs with `make logs` we see that there is a problem with a missing repo. So the problem is in the jekyll setup, not in our Docker configuration.
+Does it work? Yes and no. No, we don't see the website in our browser at `http://localhost:4000` but if we check the logs with `make logs`, we see that there is a problem with a missing repo. So the problem is in the Jekyll setup, not in our Docker configuration.
 
 ### Troubleshooting Differences Between GitHub Pages and Docker Environments
 
-Do we call victory? Not yet. We also want to test if we can truly run both containers side by side and for that it would be nice if we could fix this repo problem so we can truly run both websites side by side.
+Do we call victory? Not yet. We also want to test if we can truly run both containers side-by-side, and for that, it would be nice if we could fix this repo problem so we can truly run both websites side-by-side.
 
 The actual error in `make logs` shows
 
@@ -679,10 +683,11 @@ The actual error in `make logs` shows
 No repo name found. Specify using PAGES_REPO_NWO environment variables, 'repository' in your configuration, or set up an 'origin' git remote pointing to your github.com repository.
 ```
 
-After some troubleshooting, the problem is clear: in GitHub Pages the `PAGES_REPO_NWO` variable is set automatically, but locally it is not set. There are several solutions to this problem. One is to set this environment variable in the compose and `.env` files or we can add the `repository` element to the `docs/_config.yml` file. The latter is either picked up or overridden by GitHub Pages so there is no difference between GitHub Pages and our local Docker environment.
+After some troubleshooting, the problem is clear: in GitHub Pages, the `PAGES_REPO_NWO` variable is set automatically, but locally it is not set. There are several solutions to this problem. One is to set this environment variable in the compose and `.env` files, or we can add the `repository` element to the `docs/_config.yml` file. The latter is either picked up or overridden by GitHub Pages, so there is no difference between GitHub Pages and our local Docker environment.
 
 However, to make absolutely sure we don't accidentally break production, we can also override the config file with a dev version. This means we can actually make changes to the config file that are only picked up locally AND we can still add it to git where it is not picked up by GitHub Pages.
-This sounds contradictory to the previous paragraph but its advantages will become clear later on.
+
+This sounds contradictory to the previous paragraph, but its advantages will become clear later on.
 
 For now, we need to make a few changes:
 1. create `docs/_config_dev.yml` and add the following line
@@ -721,7 +726,7 @@ There is a change in the compose file, so we need to rebuild the container.
 make restart
 ```
 
-Now, any change to any of these files will trigger jekyll to rebuild the site and automatically update your browser, but sometimes the outcome does not meet the expectations either we see an error where we don't expect one or vice versa. The quickest way is to rebuild everything and start over, which can easily be done with
+Now, any change to any of these files will trigger Jekyll to rebuild the site and automatically update your browser, but sometimes the outcome does not meet the expectations either we see an error where we don't expect one or vice versa. The quickest way is to rebuild everything and start over, which can easily be done with:
 
 ```shell
 make clean-all
@@ -730,21 +735,24 @@ make clean-all
 ### Fixing the Path to the Assets
 
 As usual, once an error is fixed a new problem pops up. This time the website does load but there is no formatting nor images. When we inspect the code we see links like `<img src="/pages/bartificer/programming-by-stealth/assets/logo.png" ...>`.
-Surely, that path does not exist locally. The problem lies in the fact that the theme uses links like `{{site.github.baseurl}}/assets/logo.png`. The variable is resolved to `/pages/bartificer/programming-by-stealth` which might work perfectly fine in GitHub Pages, but not in our local environment.
+
+Surely, that path does not exist locally. The problem lies in the fact that the theme uses links like `{{site.github.baseurl}}/assets/logo.png`. The variable is resolved to `/pages/bartificer/programming-by-stealth`, which might work perfectly fine in GitHub Pages, but not in our local environment.
 
 There are two ways to solve this problem, one is to modify the template file and the disable the GitHub behaviour. We will try both.
 
 #### Overriding the Layout File
 
 The best practice to solve this behaviour seems to be to replace all syntax like `{{site.github.baseurl}}/assets/logo.png` with `{{ '/assets/logo.png' | relative_url }}` in the `_layouts/default.html` template of the theme.
+
 The theme, however, is a remote theme, in a separate repository. It is not clear if this theme is only used for the PBS project or also in other projects, so for now it's a no-go to modify the theme directly.
 
-We can use the jekyll override functionality and create a local  `docs/_layouts/default.html` file that has these changes. When we add this file jekyll will immediately rebuild, and all looks fine. However, we don't want to be tripped up by caching issues, so we start fresh after a `make clean-all`.
+We can use the Jekyll override functionality and create a local  `docs/_layouts/default.html` file that has these changes. When we add this file, Jekyll will immediately rebuild, and all looks fine. However, we don't want to be tripped up by caching issues, so we start fresh after a `make clean-all`.
+
 After `make up` the website is displayed with all the markup and images in place again.
 
 We could declare the problem solved, but we have no way of testing if this works in production other than just push the change and hope GitHub Pages will not fall over in a heap. Let's leave that for a different moment.
 
-For now, we will disable this file by simply renaming it so jekyll will not recognise it as an override for the default template.
+For now, we will disable this file by simply renaming it so Jekyll will not recognise it as an override for the default template.
 
 The other solution to the problem is to override the GitHub related path resolve functionality by adding the following to our `_config_dev.yml` file.
 
@@ -760,10 +768,10 @@ If we now do a final `make clean-all` and `make up` we should see the PBS site i
 
 ## Running Both Containers Side by Side
 
-Now that the PBS website works, lets go back to our final test and try to run both containers (PBS and demo site) side by side.
-To make that work, we need to update some variables because each container needs to have a unique name and of course both servers need to use different ports.
+Now that the PBS website works, lets go back to our final test and try to run both containers (PBS and demo site) side by side. To make that work, we need to update some variables because each container needs to have a unique name and of course both servers need to use different ports.
 
 Since we simply copied the `.env` file from the demo site to the PBS project, the container is still called `demo-site`, which is visible in the logs.
+
 Let's correct that. Bring the container down with `make down` to avoid the container still being active when we change the name in the `.env` file and start it up again.
 
 While we're changing the `.env` file let's also change the other moving parts:
@@ -814,7 +822,7 @@ JEKYLL_ENV=development
 
 Run `make up` and check that the PBS site is available at `http://localhost:8080`.
 
-Now switch to the demo site project and run the container there too, but before we do that, we make one change: the location of the Dockerfile. Currently both projects have a Dockerfile and the `DOCKERFILE_PATH` has the path to the Dockerfile. If we want true reuse, we should have only one Dockerfile. Since the demo site is a temporary project, let's remove the Dockerfile there and update the `.env` file to point to the Dockerfile in the PBS project.
+Now switch to the demo site project and run the container there too, but before we do that, we make one change: the location of the Dockerfile. Currently, both projects have a Dockerfile, and the `DOCKERFILE_PATH` has the path to the Dockerfile. If we want true reuse, we should have only one Dockerfile. Since the demo site is a temporary project, let's remove the Dockerfile there and update the `.env` file to point to the Dockerfile in the PBS project.
 
 The updated `.env` file will be
 
@@ -868,4 +876,4 @@ No image building was necessary for the demo site.
 
 ## Conclusion
 
-With only four files added to existing projects, and a minor tweak to the PBS project, we managed to create a reusable local development environment that allows us to build Jekyll sites locally which mimics production as much as possible and keeps our local computer clean of all the necessary tools. And between Allison and Bart they can use the same environment without having to worry about discrepancies in versions and subtle changes in their local setup.
+With only four files added to existing projects and a minor tweak to the PBS project, we managed to create a reusable local development environment that allows us to build Jekyll sites locally, which mimics production as much as possible and keeps our local computer clean of all the necessary tools. And between Allison and Bart, they can use the same environment without having to worry about discrepancies in versions and subtle changes in their local setup.
