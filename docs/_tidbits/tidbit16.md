@@ -11,40 +11,79 @@ Allison has expressed some confusion about what exactly PHP-FPM is and how it re
 
 TO DO
 
+## Context — A Quick Wordpress Overview
+
+Like so many sites on the internet, `podfeet.com` is a Wordpress site. Wordpress is an open source content management system (CMS) written in PHP. The core Wordpress code handles the things all websites need, there's an API for theming the site, and a vibrant plugin ecosystem. With Wordpress all the posts, pages, comments, etc. are stored in a relational database, but attached media is stored in a folder to reduce the load on the database.
+
+To give authors the option to use stand-alone clients rather than the built-in web interface for writing their content, Wordpress also provides an XML-RPC API for clients to interact with.
+
+To "see" a Wordpress page the server hosting it has to run the Wordpress PHP code to generate the page, and that code will connect to the database to retrieve the content. Using the XML-RPC API from a client app is similar — the client sends web-requests to the site's XML-RPC URL, and server executes PHP code which connects to the database to perform the requested actions.
+
+In practical terms, a Wordpress site has three components:
+
+1. The PHP code for Wordpress itself,  the site owner's chose theme(s), and all installed plugins
+2. A relational database
+3. A media folder to store attachments
+
+
+
 ## The Podfeet Architecture Over Time
 
-When Allison first dipped her toe into the podcasting world, she hosted the website for the [NosillaCast](https://www.podfeet.com/) (`www.podfeet.com`) on a shared hosting plan from one of the major providers. This meant the site was sharing the resources of a single web and database server with tens or perhaps hundreds of other websites. Multi-site hosting like this is generally delivered using a management platform like CPanel or Plesk. This means all account administration, website administration, and database management is performed through a web portal, so everything is point-and-click. Users of these kinds of systems don't need to know anything about server administration, and they are generally very inexpensive. But they are resource-constrained!
+The simplest way to understand how the site works today, and why it now works this way, is to follow the site's evolution over time as both technology and the show developed.
 
-As Allison's podcast grew in popularity, the traffic to `podfeet.com` outgrew a shared hosting environment, and Allison needed to migrate to a dedicated server. That is to say, a server hosting only Allison's site. Thankfully, by the time Allison reached this point in the site's growth virtualisation had matured to the point that it was easy to rent a virtual private server, and even to get one with the same CPanel or Plesk control panel pre-configured. In effect, the meant Allison didn't need to learn any new skills, she just moved all her stuff into a roomier digital house!
+### Simple Beginnings
 
-Of course the site kept growing, and constraints of the CPanel environment started to look  more like a hindrance than a help, so Allison made the scariest move of all, and migrated to a bare virtual server without a web-based control panel. This is where Allison's sysadmin adventures really got going!
+When Allison first dipped her toe into the podcasting world she hosted the website for the [NosillaCast](https://www.podfeet.com/) (`www.podfeet.com`) on a shared hosting plan from one of the major providers. This meant the site was sharing the resources of a single web and database server with tens or perhaps hundreds of other websites. Multi-site hosting like this is generally delivered using a management platform like CPanel or Plesk. This meant that Allison could do everything she needed to via a simple web control panel. For the most part, the underlying technical details were irrelevant. What web server the provider chose to deploy, which relational database they choose to offer, or which particular version of the PHP run-time, none of that mattered to Allison as long as the Wordpress installer was happy the server met its minimum requirements.
 
-Throughout its entire history, from its initial launch right through to today, `podfeet.com` has been powered by the open source WordPress content management system. This is a web app written in PHP that stores its data in a MySQL database. This means that to run this app on a server, Allison needed to install and configure:
+These kinds of fully managed shared hosting offerings have two obvious advantages — they're inexpensive, and customers are liberated from all sysadmin tasks!
 
-1. The php language
-2. A web server app, she chose Apache
-3. A database server app, she chose MySQL
+However, there is a significant limitation — they're resource-constrained, so they're fine for personal websites or brochure sites for small businesses, but they're just not up to hosting even moderately popular sites!
 
-All of these components were installed on a single Linux server, so everything was self-contained and simple. With the software installed and configured on the server, the site consisted of just a few components:
+As the podcast grew in popularity the traffic to `podfeet.com` inevitably out-grew these shared hosting environments.
 
-1. A folder of php files containing the code for WordPress itself, Allison's chosen WordPress theme, and the WordPress plugins Allison chose to install to expand WordPress's capabilities
-2. A WordPress configuration file allowing it to find all the resources it needs
-3. A collection of folders with media assets and other static files, like the RSS feeds and any images or other media embedded into the site's posts and pages.
-4. A MySQL database containing the site's posts, pages, settings, and comments.
+Has the podcast reached this point just a few years earlier, Allison would have had no choice but to move to a rented dedicated physical server. This would have meant taking full responsibility for the sysadmin tasks, and of course, an order of magnitude jump in the monthly cost. But Allison's timing was perfect, she was able to dodge the sysadmin bullet for a few more years thanks to the rise of virtualisation.
 
-As the site continued to grow, the demands on this single server grew and grew. For a while, this could be compensated for with more RAM and more virtual CPUs, but eventually the limits of this kind of so-called *vertical scaling* were reached, and the site needed to scale horizontally. This is where the architecture becomes a little more complicated!
+The site's first upgrade was to move from a fully managed shared server to a similar service on a dedicated virtual private server running the same kind of control panel as those used on shared hosting. The only real difference was that now there was only one website on the server, not tens or hundreds. The bill obviously increased, but nowhere near as much as it would have just a few years earlier.
 
-## A Quick Overview of the 'LAMP Stack'
+This reprieve was only ever going to be short-term, and soon enough Allison needed to move to a bigger and better virtual private server, and this time, there was no control panel to handle the sysadmin tasks, it would finally be Allison's problem!
 
-Sysadmins managing websites refer to all the software underpinning a website as its *stack*, and some of those combinations are or were so common that they get named. This is where the so-called *LAMP Stack* comes from — Linux, Apache, MySQL & PHP.
+## More Context — The LAMP Stack
 
-Up to this point in our story, the server powering `podfeet.com` has always been a Linux server running an instance of the Apache web server app with the optional PHP module installed, and an instance of the MySQL database server app. That is to say, while the sheer amount of resources thrown at the site has been increasing, the site remained on a classic LAMP stack.
+While it was not relevant to Allison, the site had been served by Apache web servers running on Linux with MySQL databases for its entire history. This arrangement is so common it has a name — the *LAMP Stack*.
 
-To explain how the site hangs together today, let's set ourselves a baseline by exploring how it hung together before the stack was modernised. To do that, let's follow the full journey of one blog post from Allison's editor (Mars Edit), the website, to the first visitor's browser.
+Sysadmins managing websites refer to the all the software underpinning a websites as it's *stack*, and being nerdy types, sysadmins like to reduce stacks to acronyms, so the combination of Linux, Apache, MySQL & PHP became LAMP.
 
-### The Original *Post's Tale*
+## The Site's First Truly Dedicated Server
+
+Since the site had always run on a LAMP stack, the simplest option when moving to a dedicated server was to simply duplicate that environment.
+
+Allison ordered a CentOS-based Linux virtual private server, then installed the then latest versions of Apache, MySQL, and PHP, and with some help, configured it all so it worked, then copied over the site.
+
+Unlike physical servers, virtual servers can easily have more RAM and CPU assigned, so even as the site grew, the same server was able to grow for a long time too. Over the years there were a few like-for-like migrations to deal with CentOS upgrades and improved offerings, but the site and the server's fundamental structure remained the same — a basic LAMP stack running on a single server.
+
+## The Original *Post's Tale*
+
+To understand what's about to change, and why, let's look at the life of a single post at this point in the site's evolution.
 
 LEFT OFF HERE!!!
+
+## Another Short Reprieve — Database-as-a-Service
+
+TO DO
+
+## The Big Re-Architecting
+
+### The Problems with LAMP
+
+TO DO
+
+### The New Architecture
+
+TO DO
+
+## A Contemporary Post's Tale
+
+TO DO
 
 ## Final Thoughts
 
