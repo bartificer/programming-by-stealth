@@ -15,7 +15,7 @@ Welcome to **dependency hell**. Dependency hell is the term coined for the situa
 
 ## Another Problem to Be Solved: Outdated setup
 
-Recently, Allison and Bart created a new episode for Taming the Terminal. De previous one was several years ago so the scripts to build the various formats of the book didn't work any more because the packages were outdated and required an older version of Ruby than currently installed. Of course we can update everything and make the build system go again, but if Allison or Bart would like to build the book themselves, they would have to go through all the upgrade steps that were done to get the build system up and running again. Also, what if there is a small utility present on my machine that Allison and Bart don't have installed. The build would run smoothly on my machine, while it breaks on theirs. The old 'it works because it runs on my machine' syndrome.
+Recently, Allison and Bart created a new episode for Taming the Terminal. The previous one was several years ago, so the scripts to build the various formats of the book didn't work anymore because the packages were outdated and required an older version of Ruby than the one currently installed. Of course, we can update everything and make the build system go again, but if Allison or Bart would like to build the book themselves, they would have to go through all the upgrade steps that were done to get the build system up and running again. Also, what if there is a small utility present on my machine that Allison and Bart don't have installed? The build would run smoothly on my machine, while it breaks on theirs. The old 'it works because it runs on my machine' syndrome.
 
 You can escape these nightmares if you isolate each project's environment.
 
@@ -23,7 +23,7 @@ There are three ways to create such an isolation:
 
 - virtual environments
 - virtual machines
-- docker
+- Docker
 
 Let's have a look at each of these solutions.
 
@@ -31,9 +31,9 @@ Let's have a look at each of these solutions.
 
 Using **virtual environments** is a lightweight way to isolate dependencies for different projects. They allow developers to avoid version conflicts without needing system-wide installations.
 
-Different languages such as Ruby, Python and Node each have their own solution to virtual environments such as `venv` for Python and `nvm` for Node.
+Different languages, such as Ruby, Python, and Node, each have their own solution to virtual environments, such as `venv` for Python and `nvm` for Node.
 
-Let's look at the example Bart and Allison discussed some time ago when they installed Jekyll on their local machine:
+Let's look at the example Bart and Allison discussed some time ago when they installed Jekyll on their local machines:
 
 ### Ruby Virtual Environment Example (with `chruby` + `ruby-install` + `bundler`)
 
@@ -61,11 +61,11 @@ What are the benefits of Virtual environments?
 2. **No Global Pollution**
     - Avoids installing packages globally, keeping your system clean. The project only gets the packages it needs in the versions it needs.
 3. **Easier Collaboration**
-    - Ensures reproducibility. Others can recreate the same environment using a dependency definition file such as a `requirements.txt` for a Python project and a `Gemfile` for a Ruby project and of course a `package.json` for a Node or JavaScript project.
+    - Ensures reproducibility. Others can recreate the same environment using a dependency definition file, such as a `requirements.txt` for a Python project, a `Gemfile` for a Ruby project, and of course, a `package.json` for a Node or JavaScript project.
 4. **Safe Experimentation**
     - Try out new packages or versions without affecting existing setups.
 5. **Fast Setup**
-    - A virtual environment is typically faster than any of the other solutions such as spinning up a Docker container or a Virtual Machine.
+    - A virtual environment is typically faster than any of the other solutions, such as spinning up a Docker container or a Virtual Machine.
 
 ### Downsides of Virtual Environments
 
@@ -86,12 +86,12 @@ There are also downsides to virtual environments.
 
 3. **Harder to Clean Up System-wide Dependencies**
 
-    - While project dependencies are isolated, the underlying language runtime (Ruby or Python) still comes from the host system. Note that the all the versions of the interpreter (Ruby, Python or Node.js) are still installed globally on your system, the virtual environments simply make one version active and hide the others for that specific environment.
-    - You also have to be very diligent about maintaining the virtual environment of each project and create one for each new project. When you copy and paste a command from a Google or some AI tool session you might accidentally install the package or tool in the global or system-wide configuration.
+    - While project dependencies are isolated, the underlying language runtime (Ruby or Python) still comes from the host system. Note that all the versions of the interpreter (Ruby, Python, or Node.js) are still installed globally on your system; the virtual environments simply make one version active and hide the others for that specific environment.
+    - You also have to be very diligent about maintaining the virtual environment of each project and create one for each new project. When you copy and paste a command from a Google or some AI tool session, you might accidentally install the package or tool in the global or system-wide configuration.
 
 4. **Limited to Language-Specific Dependencies**
 
-    - You can't isolate other components you need such as PostgreSQL, Redis, NGINX, etc., like Docker or a Virtual Machine can.
+    - You can't isolate other components you need, such as PostgreSQL, Redis, NGINX, etc., as Docker or a Virtual Machine can.
 
 ### Most Used Virtual Environments by Language
 
@@ -104,14 +104,14 @@ There are also downsides to virtual environments.
 | **Elixir**                | `asdf` (manages versions), Mix (for deps) | `asdf` can manage Elixir + Erlang versions together.                                  |
 | **JavaScript (frontend)** | `npm`, `yarn`, `pnpm` workspaces          | Lockfiles and `node_modules` isolate dependencies per project.                        |
 
-You need to repeat similar steps for each programming language you need and the  step of installing the local environment for every project.
+You need to repeat similar steps for each programming language you need, and the step of installing the local environment for every project.
 
 For simple projects or projects that stick to one programming language, a virtual environment might be sufficient.
 
 ## Virtual Machines (VMs)
 
 At the other end of the spectrum of project environment isolation is the Virtual Machine or VM.
-A VM lets you emulate a full operating system (OS) inside your host computer. It's like having an extra computer within your computer. This can even be a different OS than your main computer. For example, if you need to run a Windows-only application on your mac, you typically use a VM to install Windows so you can install the Windows-only application.
+A VM lets you emulate a full operating system (OS) inside your host computer. It's like having an extra computer within your computer. This can even be a different OS than your main computer. For example, if you need to run a Windows-only application on your Mac, you typically use a VM to install Windows so you can install the Windows-only application.
 
 ### Popular VM Software for Developers
 
@@ -120,10 +120,10 @@ A VM lets you emulate a full operating system (OS) inside your host computer. It
 - **VirtualBox**: Free and open-source; less optimised but reliable.
 - **UTM**: macOS-native VM solution for Apple Silicon.
 
-With a VM you get a clean environment that won't interfere with your main system, but it also requires a lot of resources of your computer. The VM simulates a computer therefore it requires RAM and disk space which are taken from the available RAM and disk space of your computer. If you allocate too little RAM to the VM it will run slow, if you allocate too much, other applications outside the VM will start to run slow.
+With a VM, you get a clean environment that won't interfere with your main system, but it also requires a lot of resources of your computer. The VM simulates a computer; therefore, it requires RAM and disk space, which are taken from the available RAM and disk space of your computer. If you allocate too little RAM to the VM, it will run slowly; if you allocate too much, other applications outside the VM will start to run slowly.
 
 > ## Plan for VMs when buying a computer
-> If you plan to use VMs make sure your computer has plenty of RAM and disk space to accommodate the number of VMs you want to run simultaneously and whether you want to perform other tasks on your computer while a VM is running.
+> If you plan to use VMs, make sure your computer has plenty of RAM and disk space to accommodate the number of VMs you want to run simultaneously, and consider whether you want to perform other tasks on your computer while a VM is running.
 {: .aside}
 
 ## Docker-Based Environments 🐳
@@ -147,13 +147,13 @@ Imagine you need to prepare a meal.
 
 - A **virtual environment** is like cooking **inside your kitchen**, but keeping each recipe’s ingredients in separate, labelled containers. You rely entirely on the kitchen’s appliances and setup being compatible.
 - A **virtual machine** is building a **separate restaurant** on its own land. Everything, building, utilities, appliances, is self-contained.
-- A **Docker container** is a **food truck**.  It brings its own stove, own utensils and own ingredients. It only relies on your property for power and a place to park.
+- A **Docker container** is a **food truck**.  It brings its own stove, own utensils, and own ingredients. It only relies on your property for power and a place to park.
 
 So a Docker container sits in the middle of a light weight virtual environment and a fully separated VM.
 
 ### Docker Lingo
 
-When you dive into Docker you quickly come across different terms like images, containers and volumes. Let's explain them so we can use Docker correctly.
+When you dive into Docker, you quickly come across different terms like images, containers, and volumes. Let's explain them so we can use Docker correctly.
 
 A **Docker image** is a blueprint or template for a container. An image is read-only and versioned. It is built once and can be reused many times.
 
@@ -167,21 +167,23 @@ An image contains:
 
 In our analogy, a Docker image is a recipe or an empty food truck, ready for use.
 
-Although you can perfectly build an image from scratch, chances are high that someone has already solved your problem and made the resulting image available online. Typically these images can be found in [Docker hub](https://hub.docker.com/). You can use such an image as a base and add your own customisation to it. We won't cover this in this episode, but it might be addressed in a future episode.
+Although you can perfectly build an image from scratch, chances are high that someone has already solved your problem and made the resulting image available online. Typically, these images can be found in [Docker hub](https://hub.docker.com/). You can use such an image as a base and add your own customisation to it. We won't cover this in this episode, but it might be addressed in a future episode.
 
 Without going too deep into the Docker image techniques for now, one term you might come across is **Docker layer**. A layer is a single instruction in the build of a Docker image. In our food analogy, if an image is a recipe, a layer is a step in that recipe.
 
-A **Docker container** is a running instance of an image. Docker start actually starts a container. In turn this pulls in the image and executes the layers in the image. Containers are isolated from each other. So back to our analogy, you can have two food trucks, both identical initially, but one makes French food and the other makes Asian food, without even knowing about each other existence.
-A container can be easily started, stopped, destroyed and rebuilt again. This means that any data stored within a container can get lost very easily. That's why we need volumes.
+A **Docker container** is a running instance of an image. Docker start actually starts a container. In turn, this pulls in the image and executes the layers in the image. Containers are isolated from each other. So, back to our analogy, you can have two food trucks, both identical initially, but one makes French food, and the other makes Asian food, without even knowing about each other's existence.
+
+A container can be easily started, stopped, destroyed, and rebuilt again. This means that any data stored within a container can get lost very easily. That's why we need volumes.
 
 A **Docker volume** is a persistent storage location **outside** a container's lifecycle. This is the place where your project files live.
-Back to our analogy, a volume is the pantry where your ingredients are stored. If you keep your pantry separate but easy accessible from your food truck, you can replace or upgrade your food truck without losing the food.
+
+Back to our analogy, a volume is the pantry where your ingredients are stored. If you keep your pantry separate but easily accessible from your food truck, you can replace or upgrade your food truck without losing the food.
 
 ### How Are Containers Used?
 
 Each project or tool you work with --Jekyll, Node.js, PostgreSQL-- can run in its **own isolated container**. This means that you can have multiple versions of the same programming language or tool side by side, without conflicts. So project A uses Ruby 2.7, while project B uses Ruby 3.1. You can even run them side by side without clashes.
 
-And, as long as the image and container persist, you can even build an old project with an outdated version, while you updated your computer in the meantime and your system Ruby version went from 3.1 to 3.5.
+And, as long as the image and container persist, you could even build an old project with an outdated version, while you updated your computer in the meantime, and your system Ruby version went from 3.1 to 3.5.
 
 By default, Docker containers have their own **internal** file system. But that's not useful for development--you don't want your code trapped inside a container. So Docker allows you to **bind mount** a folder from your Mac into the container. This is called **volume binding**.
 
@@ -197,11 +199,11 @@ When you run Docker, it will mount that folder **into the container**, like:
 /container/workdir/my-jekyll-site
 ```
 
-This allows you to edit the files locally in VS Code or any other preferred editor. The container sees the live updates and can act on them, while changes persist on your Mac so they are not lost when the container stops.
+This allows you to edit the files locally in VS Code or any other preferred editor. The container sees the live updates and can act on them, while changes persist on your Mac, so they are not lost when the container stops.
 
-Think of it like a Dropbox folder. You're working on the file on your computer (which is called the host). Docker sees and uses the same file inside the container and any changes sync in both directions, in real time.
+Think of it like a Dropbox folder. You're working on the file on your computer (which is called the host). Docker sees and uses the same file inside the container, and any changes sync in both directions, in real time.
 
-So you don't lose work when the container is deleted. You can track everything in Git as normal and you can use your favourite development tools outside Docker.
+You don't lose work when the container is deleted. You can track everything in Git as normal, and you can use your favourite development tools outside Docker.
 
 ### Summary of the Concepts
 
@@ -213,6 +215,6 @@ So you don't lose work when the container is deleted. You can track everything i
 
 ## Final thoughts
 
-While Docker gives you a great isolated environment for your project, you might consider this too much work for the few projects you are involved in. That's fine and you can stick to a virtual environment.
+While Docker gives you a great isolated environment for your project, you might consider this too much work for the few projects you are involved in. That's fine, and you can stick to a virtual environment.
 
-However, when you work in a team on the same project, like Allison and Bart on PBS, you can share the Docker image and be assured that both use exactly the same setup and configurations. Odd errors and failures because not all team members are on exactly the same version of a tool, are gone. And, if ever a Windows-based or Linux-based user wants to contribute, the Docker container can be created on their OS and provide the same environment.
+However, when you work in a team on the same project, like Allison and Bart on PBS, you can share the Docker image and be assured that both use exactly the same setup and configurations. Odd errors and failures because not all team members are on exactly the same version of a tool are gone. And, if ever a Windows-based or Linux-based user wants to contribute, the Docker container can be created on their OS and provide the same environment.
