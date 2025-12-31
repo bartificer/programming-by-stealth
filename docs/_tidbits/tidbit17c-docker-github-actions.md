@@ -9,19 +9,19 @@ Now that we have our local development environment working for the PBS project, 
 
 ## The Problem to Be Solved
 
-In the PBS project there is a GitHub action setup that runs Vale as spell checker over all the content files. While it's a nice feature, it's quite tedious to go over to the GitHub site of the repo, find the Actions tab, find the latest output of the `vale-linter` job, look up the typos in the markdown files, fix them, commit, push and wait for the job to finish and start again.
+In the PBS project, there is a GitHub action setup that runs Vale as a spell checker over all the content files. While it's a nice feature, it's quite tedious to go over to the GitHub site of the repo, find the Actions tab, find the latest output of the `vale-linter` job, look up the typos in the markdown files, fix them, commit, push, and wait for the job to finish and start again.
 
-It would be much easier if we could run the Vale spell check locally and fix multiple typos at once before committing again. Also, locally the spell check will run much faster because there is no overhead of the environment setup that the GitHub workflow must do.
+It would be much easier if we could run the Vale spell check locally and fix multiple typos at once before committing again. Also, locally, the spell check will run much faster because there is no overhead of the environment setup that the GitHub workflow must do.
 
 ## Configuring Vale in the Docker Environment
 
-We want to use Vale with the same configuration as the GitHub Action does, so it can be run in both environments. We will not go deep into what Vale does, that can be left for another episode. Here we focus on using Vale in our Docker environment.
+We want to use Vale with the same configuration as the GitHub Action, so it can be run in both environments. We will not go deep into what Vale does; that can be left for another episode. Here, we focus on using Vale in our Docker environment.
 
 ## Installing Vale
 
 ### Installing Using Make
 
-The are two ways to install Vale, one is in the image and one is on demand in the Makefile. For now we go with the latter to see how it works, eventually we can add it to the image.
+There are two ways to install Vale: one is in the image, and the other is on demand in the Makefile. For now, we go with the latter to see how it works. Eventually we can add it to the image.
 
 Add the following to the Makefile
 
@@ -44,7 +44,7 @@ lint: ensure-base ## Run Vale linter
 	@echo "$(GREEN)✓ Linting complete$(NC)"
 ```
 
-With this rule, the script checks inside the container if Vale is installed, and if not, it will install Vale and then runs Vale on the files in the docs directory.
+With this rule, the script checks inside the container to see if Vale is installed, and if not, it will install Vale and then run Vale on the files in the docs directory.
 
 Now run `make lint` and look at the output. Vale will flag possible typos. 
 Here is a snippet of the output.
@@ -67,9 +67,9 @@ Here is a snippet of the output.
  200:49   error  Did you really mean 'intial'?         Vale.Spelling
 ```
 
-`intial` and `speically` are probably typos, while `cybersecurity` is just jargon. We can lookup the line number in the specified file (line 200 in tidbit14.md for `intial`) and decide if it's a true typo, and fix it, or it is actually jargon. In that case, the word can be added to the `.github/styles/config/vocabularies/PBS/accept.txt` file and Vale will treat it as correct.
+`intial` and `speically` are probably typos, while `cybersecurity` is just jargon. We can look up the line number in the specified file (line 200 in tidbit14.md for `intial`) and decide if it's a true typo, and fix it, or it is actually jargon. In that case, the word can be added to the `.github/styles/config/vocabularies/PBS/accept.txt` file, and Vale will treat it as correct.
 
-Now run the `make lint` command again and the number of errors should be less than before. Personally, I find it a joyous game to bring the errors down as much as possible.
+Now run the `make lint` command again, and the number of errors should be less than before. Personally, I find it a joyous game to bring the errors down as much as possible.
 
 ### Installing in the Image
 
