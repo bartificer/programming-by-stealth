@@ -1,9 +1,227 @@
 ---
-title: Simplifying Developer Setups with Docker -  Jekyll site
-instalment: 17b
+title: Simplifying Developer Setups with Docker
+instalment: 17
 creators: [helma]
-date: 2025-12-22
+date: 2025-12-29
 ---
+
+While listening to the episodes PBS 177 through 181 I realised I use a different approach to isolate programming environments, one that I increasingly embrace.
+
+## Problem to Be Solved: Dependency Chaos
+
+As a developer, you've probably faced this: you want to install a tool like Jekyll, and it needs Ruby, Bundler, and specific libraries. You install them, only to realize another project needs a **different** Ruby version. Things start to break.
+
+Welcome to **dependency hell**. Dependency hell is the term coined for the situation where different projects need different versions of the same library or package, but since the package is installed globally on your machine, you can have only one version of that package.
+
+## Another Problem to Be Solved: Outdated setup
+
+Recently, Allison and Bart created a new episode for Taming the Terminal. The previous one was several years ago, so the scripts to build the various formats of the book didn't work any more because the packages were outdated and required an older version of Ruby than the one currently installed. Of course, we can update everything and make the build system go again, but if Allison or Bart would like to build the book themselves, they would have to go through all the upgrade steps that were done to get the build system up and running again. Also, what if there is a small utility present on my machine that Allison and Bart don't have installed? The build would run smoothly on my machine, while it breaks on theirs. The old 'it works because it runs on my machine' syndrome.
+
+## The Concepts
+
+You can escape these nightmares if you isolate each project's environment.
+
+There are three ways to create such an isolation:
+
+- virtual environments
+- virtual machines
+- Docker
+
+Let's have a look at each of these solutions.
+
+### Virtual Environments
+
+Using **virtual environments** is a lightweight way to isolate dependencies for different projects. They allow developers to avoid version conflicts without needing system-wide installations.
+
+Different languages, such as Ruby, Python, and Node, each have their own solution to virtual environments, such as `venv` for Python and `nvm` for Node.
+
+Let's look at the example Bart and Allison discussed some time ago when they installed Jekyll on their local machines:
+
+#### Ruby Virtual Environment Example (with `chruby` + `ruby-install` + `bundler`)
+
+Allison and Bart used these tools to create the virtual environment:
+
+- **`chruby`** -- Lightweight Ruby version switcher.
+- **`ruby-install`** -- Installs Ruby versions (used with `chruby`).
+- **`bundler`** -- Manages gem dependencies per project.
+
+This is not a repeat of the installation instructions, but merely a summary of the steps involved:
+
+- Install `chruby` and `ruby-install`
+- Add the config files to the shell config (`~/.zshrc` or `~/.bashrc`)
+- Then reload the shell
+- Install a Ruby Version with `ruby-install`
+- After all this is installed, install Jekyll.
+
+#### Benefits of Using Virtual Environments
+
+What are the benefits of Virtual environments?
+
+1. **Dependency Isolation**
+    - Prevents version conflicts between projects.
+    - Each project can use its own versions of libraries or packages.
+2. **No Global Pollution**
+    - Avoids installing packages globally, keeping your system clean. The project only gets the packages it needs in the versions it needs.
+3. **Easier Collaboration**
+    - Ensures reproducibility. Others can recreate the same environment using a dependency definition file, such as a `requirements.txt` for a Python project, a `Gemfile` for a Ruby project, and of course, a `package.json` for a Node or JavaScript project.
+4. **Safe Experimentation**
+    - Try out new packages or versions without affecting existing setups.
+5. **Fast Setup**
+    - A virtual environment is typically faster than any of the other solutions, such as spinning up a Docker container or a Virtual Machine.
+
+#### Downsides of Virtual Environments
+
+There are also downsides to virtual environments.
+
+1. **Still Depends on Host Environment**
+
+    - It doesn't isolate system-level dependencies (e.g., binary tools, compilers).
+      For example, even when using `chruby` to select the correct Ruby version for Jekyll, Jekyll still relies on system tools like `git` and `curl`. If they are not installed on the host system, commands such as `bundle install` or fetching theme dependencies can fail, even though the Ruby environment is set up correctly.
+    - Still prone to conflicts with global PATH or language engines.
+      For example, if your system has a globally installed Jekyll from an older Ruby version earlier in your `PATH`, running `jekyll serve` may invoke the wrong executable instead of the one provided by your current `chruby`-selected Ruby, leading to confusing version and/or dependency errors.
+    - When you use multiple virtual environments (for multiple programming languages), your `.bashrc` or `.zshrc` becomes very large.
+      This can result in a noticeable delay between opening a terminal window and the prompt showing up.
+
+2. **Not Truly Cross-Platform**
+
+    - Environments might behave differently on Windows vs macOS vs Linux.
+
+3. **Harder to Clean Up System-wide Dependencies**
+
+    - While project dependencies are isolated, the underlying language runtime (Ruby or Python) still comes from the host system. Note that all the versions of the interpreter (Ruby, Python, or Node.js) are still installed globally on your system; the virtual environments simply make one version active and hide the others for that specific environment.
+    - You also have to be very diligent about maintaining the virtual environment of each project and create one for each new project. When you copy and paste a command from a Google or some AI tool session, you might accidentally install the package or tool in the global or system-wide configuration.
+
+4. **Limited to Language-Specific Dependencies**
+
+    - You can't isolate other components you need, such as PostgreSQL, Redis, NGINX, etc., as Docker or a Virtual Machine can.
+
+#### Most Used Virtual Environments by Language
+
+| Language                  | Common Virtual Env Tools                  | Notes                                                                                 |
+| ------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Python**                | `venv`, `virtualenv`, `pipenv`, `poetry`  | `venv` is built-in since Python 3.3; `poetry` is popular for full project management. |
+| **Node.js**               | `nvm` (Node Version Manager), `volta`     | Manage Node versions per project. `nvm` + `npm install` per project isolates deps.    |
+| **Ruby**                  | `rbenv`, `rvm`, `chruby` + Bundler        | `rbenv` + `bundler` is common. `Gemfile` defines project deps.                        |
+| **PHP**                   | `phpenv`, `composer`                      | `composer` handles package isolation. `phpenv` manages PHP versions.                  |
+| **Elixir**                | `asdf` (manages versions), Mix (for deps) | `asdf` can manage Elixir + Erlang versions together.                                  |
+| **JavaScript (frontend)** | `npm`, `yarn`, `pnpm` workspaces          | Lockfiles and `node_modules` isolate dependencies per project.                        |
+
+You need to repeat similar steps for each programming language you need, and the step of installing the local environment for every project.
+
+For simple projects or projects that stick to one programming language, a virtual environment might be sufficient.
+
+### Virtual Machines (VMs)
+
+At the other end of the spectrum of project environment isolation is the Virtual Machine or VM.
+A VM lets you emulate a full operating system (OS) inside your host computer. It's like having an extra computer within your computer. This can even be a different OS than your main computer. For example, if you need to run a Windows-only application on your Mac, you typically use a VM to install Windows so you can install the Windows-only application.
+
+#### Popular VM Software for Developers
+
+- **Parallels Desktop**: Commercial, highly optimised for macOS.
+- **VMware Fusion**: Professional-grade VM software with broad OS support.
+- **VirtualBox**: Free and open-source; less optimised but reliable.
+- **UTM**: macOS-native VM solution for Apple Silicon.
+
+With a VM, you get a clean environment that won't interfere with your main system, but it also requires a lot of resources of your computer. The VM simulates a computer; therefore, it requires RAM and disk space, which are taken from the available RAM and disk space of your computer. If you allocate too little RAM to the VM, it will run slowly; if you allocate too much, other applications outside the VM will start to run slowly.
+
+> ## Plan for VMs when buying a computer
+> If you plan to use VMs, make sure your computer has plenty of RAM and disk space to accommodate the number of VMs you want to run simultaneously, and consider whether you want to perform other tasks on your computer while a VM is running.
+{: .aside}
+
+### Docker-Based Environments 🐳
+
+Docker is a **containerization platform**--a tool that allows you to run software in **isolated, lightweight environments** called **containers**.
+
+Think of a **container** like a **mini virtual machine** that:
+
+- Has its own filesystem
+- Runs its own services
+- Contains all the dependencies and binaries it needs
+- BUT shares the host system's kernel (makes it faster and lighter)
+
+A container doesn't include a full OS (like a VM does). It just contains **your app and exactly what your app needs to run** -- nothing more. So you cannot run Windows in a Docker container on a macOS computer.
+
+#### Analogy
+
+Let's use a little analogy to compare the three types of environments, so the differences become more obvious.
+
+Imagine you need to prepare a meal.
+
+- A **virtual environment** is like cooking **inside your kitchen**, but keeping each recipe’s ingredients in separate, labelled containers. You rely entirely on the kitchen’s appliances and setup being compatible.
+- A **virtual machine** is building a **separate restaurant** on its own land. Everything, building, utilities, appliances, is self-contained.
+- A **Docker container** is a **food truck**.  It brings its own stove, own utensils, and own ingredients. It only relies on your property for power, infrastructure such as water and sewers and a place to park.
+
+So a Docker container sits in the middle of a light weight virtual environment and a fully separated VM.
+
+#### Docker Lingo
+
+When you dive into Docker, you quickly come across different terms like images, containers, and volumes. Let's explain them so we can use Docker correctly.
+
+A **Docker image** is a blueprint or template for a container. An image is read-only and versioned. It is built once and can be reused many times.
+
+An image contains:
+
+- A base OS layer (e.g. Alpine or Debian)
+- System libraries
+- Language runtime (Ruby, Node, Python, etc.)
+- Your application code (optional)
+- Instructions on how to start the app
+
+In our analogy, a Docker image is a recipe or an empty food truck, ready for use.
+
+Although you can perfectly build an image from scratch, chances are high that someone has already solved your problem and made the resulting image available online. Typically, these images can be found in [Docker hub](https://hub.docker.com/). You can use such an image as a base and add your own customisation to it. We won't cover this in this episode, but it might be addressed in a future episode.
+
+Without going too deep into the Docker image techniques for now, one term you might come across is **Docker layer**. A layer is a single instruction in the build of a Docker image. In our food analogy, if an image is a recipe, a layer is a step in that recipe.
+
+A **Docker container** is a running instance of an image. `docker start` actually starts a container. In turn, this pulls in the image and executes the layers in the image. Containers are isolated from each other. So, back to our analogy, you can have two food trucks, both identical initially, but one makes French food, and the other makes Asian food, without even knowing about each other's existence.
+
+A container can be easily started, stopped, destroyed, and rebuilt again. This means that any data stored within a container can get lost very easily. That's why we need volumes.
+
+A **Docker volume** is a persistent storage location **outside** a container's lifecycle. This is the place where your project files live.
+
+Back to our analogy, a volume is the pantry where your ingredients are stored. If you keep your pantry separate but easily accessible from your food truck, you can replace or upgrade your food truck without losing the food.
+
+#### How Are Containers Used?
+
+Each project or tool you work with --Jekyll, Node.js, PostgreSQL-- can run in its **own isolated container**. This means that you can have multiple versions of the same programming language or tool side by side, without conflicts. So project A uses Ruby 2.7, while project B uses Ruby 3.1. You can even run them side by side without clashes.
+
+And, as long as the image and container persist, you could even build an old project with an outdated version, while you updated your computer in the meantime, and your system Ruby version went from 3.1 to 3.5.
+
+By default, Docker containers have their own **internal** file system. But that's not useful for development--you don't want your code trapped inside a container. So Docker allows you to **bind mount** a folder from your Mac into the container. This is called **volume binding**.
+
+Let's say your project lives at:
+
+```shell
+/Users/you/projects/my-jekyll-site
+```
+
+When you run Docker, it will mount that folder **into the container**, like:
+
+```shell
+/container/workdir/my-jekyll-site
+```
+
+This allows you to edit the files locally in VS Code or any other preferred editor. The container sees the live updates and can act on them, while changes persist on your Mac, so they are not lost when the container stops.
+
+Think of it like a Dropbox folder. You're working on the file on your computer (which is called the host). Docker sees and uses the same file inside the container, and any changes sync in both directions, in real time.
+
+You don't lose work when the container is deleted. You can track everything in Git as normal, and you can use your favourite development tools outside Docker.
+
+#### Summary of the Docker terms
+
+| Concept   | What It Is         | Lifecycle   | Purpose              |
+| --------- | ------------------ | ----------- | -------------------- |
+| Image     | Blueprint          | Long-lived  | Defines environment   |
+| Container | Running instance   | Short-lived | Executes application |
+| Volume    | Persistent storage | Independent | Stores data          |
+
+### Final thoughts on the concepts
+
+While Docker gives you a great isolated environment for your project, you might consider this too much work for the few projects you are involved in. That's fine, and you can stick to a virtual environment.
+
+However, when you work in a team on the same project, like Allison and Bart on PBS, you can share the Docker image and be assured that both use exactly the same setup and configurations. Odd errors and failures because not all team members are on exactly the same version of a tool are gone. And, if ever a Windows-based or Linux-based user wants to contribute, the Docker container can be created on their OS and provide the same environment.
+
+## A worked example
 
 Now that we have the concepts clear, we can work on an actual example. The ultimate goal is to add a Docker-based build system to the PBS project, but let's start with a smaller task, which is replacing the virtual environment in the demo Jekyll site of episodes 177 through 181 with a Docker-based system.
 
@@ -31,7 +249,7 @@ To bring the pieces together, we will use Docker to create a self-contained envi
 
 ### Dockerfile
 
-As explained before, a Docker container is an instance of a Docker image, so the first thing to do is to build the image. The image is configured using a `Dockerfile`.  To come back to our food prep analogy, the Dockerfile is the recipe to create an image.
+As explained before, a Docker container is an instance of a Docker image, so the first thing to do is to build the image. The image is configured using a `Dockerfile`.  To come back to our food prep analogy, the Dockerfile is the recipe to create an image or the blueprint to create a food truck.
 
 Create a file named `Dockerfile` (it's case sensitive) in the project root with the following content
 
@@ -61,6 +279,9 @@ EXPOSE 4000
 # 7. Default command
 CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--livereload", "--force_polling"]
 ```
+
+> **NOTE**
+> This file is called `Dockerfile` (no extensions) by convention. You are welcome to rename it, but it requires you to specify this file in every invocation of Docker. So, the advice is to stick with convention.
 
 In the previous part we briefly mentioned Docker layers. Here we see the layers in action. Basically every line that starts with a command in capitals is a layer. Docker tries to cache the layers so changing and rebuilding an image will be quick.
 
@@ -172,7 +393,7 @@ The short version to use the `make` tool: if the Makefile defines a build target
 
 Let's look at how such a build target is defined by creating a target for our 'start container' command.
 
-In the project root, create a file called 'Makefile' with the following content:
+In the project root, create a file called `Makefile` (also, case-sensitive and no extension) with the following content:
 
 ```make
 up: ## Start the Jekyll server in the background
@@ -181,7 +402,7 @@ up: ## Start the Jekyll server in the background
 
 This creates the build target 'up'. Make calls a build target a _rule_.
 
-Every line below this line will be executed as part of this rule. Note that all these lines should be indented with a TAB character, no spaces. Failing to comply means `make` will either complain, or the command will not be executed properly.
+Every line below this line will be executed as part of this rule. Note that all these lines should be indented with a _TAB character_, no spaces. Failing to comply means `make` will either complain, or the command will not be executed properly.
 
 A line that starts with a '@' character tells `make` to stop echoing the command to the terminal.
 
@@ -334,7 +555,7 @@ For starters, we have to figure out how to make sure the `bundle install` is run
 
 The easy solution is to remove the `jekyll serve` command from the container as well and run it manually from the Makefile. This works and will considerably simplify both the Dockerfile and the Docker Compose file, but it will put the mental load on us to remember that when the container is started, we need to run the bundle install and the jekyll serve commands.
 
-Let's make this easier for ourselves by having Docker handling this. First, we add an entrypoint to the Dockerfile. An entrypoint is a way to configure a container to run as an executable. So if we tell the entrypoint to run a script, the script will automatically run on the start of the container.
+Let's make this easier for ourselves by having Docker handling this. First, we add an entrypoint to the Dockerfile. An **entrypoint** is a way to configure a container to run as an executable. So if we tell the entrypoint to run a script, the script will automatically run on the start of the container.
 
 The script to be run can be added to the Dockerfile as well, so we don't have to manage a separate script.
 
@@ -388,6 +609,19 @@ CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--livereload", "
 
 We now took the command to run `bundle install` out of the Dockerfile and replaced it with a COPY command that copies the content of the here-document into a script that is stored in the image.
 This script checks if the Gemfile exists, and if so, it runs `bundle install`. In turn, bundle will check if anything needs to be actually installed.
+
+> ## Here-doc
+> A _here-document_ (or _here-doc_) is a Bash feature that lets you pass a block of text directly to a command as its standard input, instead of reading it from a file or typing it interactively.
+It allows you to embed multi-line input in a script and feed it to a command in one place.
+>
+> ```bash
+> cat <<EOF
+> This text is sent to the cat command.
+> EOF
+> ```
+>
+> Everything between the markers is treated as input to the command.
+{: .aside}
 
 The `docker-compose.yml` file will now take care of the correct Gemfile that is used to install the gems. This file will also contain project specific information such as the name of the container and the local port sprinkled throughout the file.
 
@@ -613,7 +847,7 @@ Let's study the files more closely to understand the changes. As explained, seve
 
 The second change is the fact that the Jekyll service defines which image it uses. If the image is not present in the local Docker environment, as can be seen in the Docker Desktop dashboard, it will be searched in the Docker Hub online.
 
-Another change is the definition of a named volume. It tells Docker to map `/usr/local/bundle` to this named volume and to manage it. This means that on spinning up the container, Docker creates storage somewhere labelled with the defined name and copies the content of `/usr/local/bundle` into it. The storage is not part of your project, aka there will not be any \<project\>/\<volume name\> directory, but Docker knows how to find it.
+Another change is the definition of a named volume. It tells Docker to map `/usr/local/bundle` to this named volume and to manage it. This means that on spinning up the container, Docker creates storage somewhere labelled with the defined name and copies the content of `/usr/local/bundle` into it. The storage is not part of your project, aka there will not be any \<volume name\> directory in your project directory, but Docker knows how to find it.
 
 The previous sentence has been intentionally vague about the name of the volume, although it mentions 'gems' in the compose file. Because we have added a variable `COMPOSE_PROJECT_NAME` Docker will use that as prefix to this volume name. So in this example the volume name will become `demo_site_gems`.
 This ensures that every container will get its own volume.
@@ -736,23 +970,35 @@ make clean-all
 
 As usual, once an error is fixed a new problem pops up. This time the website does load but there is no formatting nor images. When we inspect the code we see links like `<img src="/pages/bartificer/programming-by-stealth/assets/logo.png" ...>`.
 
-Surely, that path does not exist locally. The problem lies in the fact that the theme uses links like `{{site.github.baseurl}}/assets/logo.png`. The variable is resolved to `/pages/bartificer/programming-by-stealth`, which might work perfectly fine in GitHub Pages, but not in our local environment.
+Surely, that path does not exist locally. The problem lies in the fact that the theme uses links like
+
+```text
+{% raw %}{{site.github.baseurl}}/assets/logo.png{% endraw %}
+```
+
+The variable is resolved to `/pages/bartificer/programming-by-stealth`, which might work perfectly fine in GitHub Pages, but not in our local environment.
 
 There are two ways to solve this problem, one is to modify the template file and the disable the GitHub behaviour. We will try both.
 
 #### Overriding the Layout File
 
-The best practice to solve this behaviour seems to be to replace all syntax like `{{site.github.baseurl}}/assets/logo.png` with `{{ '/assets/logo.png' | relative_url }}` in the `_layouts/default.html` template of the theme.
+The best practice to solve this behaviour seems to be to replace all syntax like {% raw %}`{{site.github.baseurl}}/assets/logo.png` {% endraw %} with `{% raw %}{{ '/assets/logo.png' | relative_url }}{% endraw %}` in the `_layouts/default.html` template of the theme.
 
 The theme, however, is a remote theme, in a separate repository. It is not clear if this theme is only used for the PBS project or also in other projects, so for now it's a no-go to modify the theme directly.
 
-We can use the Jekyll override functionality and create a local  `docs/_layouts/default.html` file that has these changes. When we add this file, Jekyll will immediately rebuild, and all looks fine. However, we don't want to be tripped up by caching issues, so we start fresh after a `make clean-all`.
+> ## Note to Bart
+> Seems like a good idea to update your template with this change anyway. 😉
+{: .aside :}
+
+We can use the Jekyll override functionality and create a local `docs/_layouts/default.html` file that has these changes. When we add this file, Jekyll will immediately rebuild, and all looks fine. However, we don't want to be tripped up by caching issues, so we start fresh after a `make clean-all`.
 
 After `make up` the website is displayed with all the markup and images in place again.
 
 We could declare the problem solved, but we have no way of testing if this works in production other than just push the change and hope GitHub Pages will not fall over in a heap. Let's leave that for a different moment.
 
 For now, we will disable this file by simply renaming it so Jekyll will not recognise it as an override for the default template.
+
+#### Overriding the GitHub variable
 
 The other solution to the problem is to override the GitHub related path resolve functionality by adding the following to our `_config_dev.yml` file.
 
@@ -874,6 +1120,411 @@ The demo site is now at `http://localhost:4000` while the PBS site still runs at
 
 No image building was necessary for the demo site.
 
-## Conclusion
+### Conclusion of our example
 
 With only four files added to existing projects and a minor tweak to the PBS project, we managed to create a reusable local development environment that allows us to build Jekyll sites locally, which mimics production as much as possible and keeps our local computer clean of all the necessary tools. And between Allison and Bart, they can use the same environment without having to worry about discrepancies in versions and subtle changes in their local setup.
+
+## Adding Github Actions to our Docker environment
+
+Now that we have our local development environment working for the PBS project, wouldn't it be nice if we could also run GitHub actions locally?
+
+### The Problem to Be Solved
+
+In the PBS project, there is a GitHub action setup that runs Vale as a spell checker over all the content files. While it's a nice feature, it's quite tedious to go over to the GitHub site of the repo, find the Actions tab, find the latest output of the `vale-linter` job, look up the typos in the markdown files, fix them, commit, push, and wait for the job to finish and start again.
+
+It would be much easier if we could run the Vale spell check locally and fix multiple typos at once before committing again. Also, locally, the spell check will run much faster because there is no overhead of the environment setup that the GitHub workflow must do.
+
+### Configuring Vale in the Docker Environment
+
+We want to use Vale with the same configuration as the GitHub Action, so it can be run in both environments. We will not go deep into what Vale does; that can be left for another episode. Here, we focus on using Vale in our Docker environment.
+
+### Installing Vale
+
+There are two ways to install Vale: one is in the image, and the other is on demand in the Makefile. For now, we go with the latter to see how it works. Eventually we can add it to the image.
+
+#### Installing Using Make
+
+Add the following to the Makefile
+
+```make
+lint: ensure-base ## Run Vale linter
+	@echo "$(YELLOW)Running Vale linter...$(NC)"
+	@docker-compose run --rm \
+		-e COLUMNS=${COLUMNS:-300} \
+		-w /site \
+		jekyll \
+		sh -c '\
+			if ! command -v vale >/dev/null 2>&1; then \
+				echo "Installing Vale..."; \
+				wget -q -O /tmp/vale.tar.gz https://github.com/errata-ai/vale/releases/download/v3.0.7/vale_3.0.7_Linux_64-bit.tar.gz && \
+				tar -xzf /tmp/vale.tar.gz -C /usr/local/bin && \
+				rm /tmp/vale.tar.gz && \
+				chmod +x /usr/local/bin/vale; \
+			fi && \
+			vale --no-wrap --minAlertLevel="${LEVEL:-suggestion}" docs/'
+	@echo "$(GREEN)✓ Linting complete$(NC)"
+```
+
+With this rule, the script checks inside the container to see if Vale is installed, and if not, it will install Vale and then run Vale on the files in the docs directory.
+
+Now run `make lint` and look at the output. Vale will flag possible typos. 
+Here is a snippet of the output.
+
+```
+ docs/_tidbits/tidbit11.md
+ 64:318   error  Did you really mean 'Bashy'?            Vale.Spelling
+ ...
+ 450:42   error  Did you really mean 'writting'?         Vale.Spelling
+ 478:1    error  Did you really mean 'mand'?             Vale.Spelling
+ 508:343  error  'that' is repeated!                     Vale.Repetition
+...
+ 585:67   error  Did you really mean 'speically'?        Vale.Spelling
+...
+
+ docs/_tidbits/tidbit14.md
+ 20:222   error  Did you really mean 'cybersecurity'?  Vale.Spelling
+ 96:213   error  'ever' is repeated!                   Vale.Repetition
+ 120:151  error  Did you really mean 'hmmm'?           Vale.Spelling
+ 200:49   error  Did you really mean 'intial'?         Vale.Spelling
+```
+
+`intial` and `speically` are probably typos, while `cybersecurity` is just jargon. We can look up the line number in the specified file (line 200 in tidbit14.md for `intial`) and decide if it's a true typo, and fix it, or it is actually jargon. In that case, the word can be added to the `.github/styles/config/vocabularies/PBS/accept.txt` file, and Vale will treat it as correct.
+
+Now run the `make lint` command again, and the number of errors should be less than before. Personally, I find it a joyous game to bring the errors down as much as possible.
+
+Having Vale available locally makes it much more usable. Again, Vale can do much more than spotting typos, but we'll leave that for another time.
+
+#### Installing in the Image
+
+The previous setup was relatively easy, but the Make rule is very complicated and not very well maintainable. We can move the actual installation of Vale to the image, so it will also be available for all other projects which focus on a Jekyll based website with narrative content, e.g. Bart's personal website should he decide to move it to Jekyll.
+
+Moving the installation to the image involves several steps:
+
+- put the installation instructions in the Dockerfile
+- rebuild the image and container
+- clean up the `make lint` rule
+
+Installing Vale in the Docker image means we add the installation instructions to the Dockerfile.
+
+```Dockerfile
+FROM ruby:3.3
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Vale
+RUN wget -q -O /tmp/vale.tar.gz https://github.com/errata-ai/vale/releases/download/v3.0.7/vale_3.0.7_Linux_64-bit.tar.gz && \
+    tar -xzf /tmp/vale.tar.gz -C /usr/local/bin && \
+    rm /tmp/vale.tar.gz && \
+    chmod +x /usr/local/bin/vale
+
+# Install bundler
+RUN gem install bundler
+...
+```
+
+The `docker-compose.yml` does not need any changes. So to rebuild the image we simply run
+
+```shell
+make rebuild-base
+```
+
+Once that finishes, we can simplify the Makefile.
+
+> ## Note
+> Strictly speaking, the container should be rebuilt to pick up the changed image, but since we have already installed Vale in the container you can keep using the container as long as necessary.
+>
+> When you restart the container, with `make restart` the old container will be removed and a new container based on the new version of the image will be restarted.
+{: .aside :}
+
+In the Makefile we can now update the `lint` target.
+
+```make
+lint: ensure-base ## Run Vale linter
+	@echo "$(YELLOW)Running Vale linter...$(NC)"
+	@docker-compose run --rm \
+		-e COLUMNS=${COLUMNS:-300} \
+		-w /site \
+		jekyll \
+		vale --no-wrap --minAlertLevel="${LEVEL:-suggestion}" docs/
+	@echo "$(GREEN)✓ Linting complete$(NC)"
+```
+
+With the make rule becoming simpler, we can even add extra rules that help with using Vale.
+
+```make
+lint-warnings: ## Run Vale with warning level only
+	@$(MAKE) lint LEVEL=warning
+
+
+lint-errors: ## Run Vale with error level only
+	@$(MAKE) lint LEVEL=error
+
+
+lint-file: ## Lint specific file (usage: make lint-file FILE=docs/page.md)
+ifndef FILE
+	@echo "$(RED)Error: Please specify FILE=path/to/file$(NC)"
+	@echo "Example: make lint-file FILE=docs/_tidbits/tidbits14.md"
+else
+	@echo "$(YELLOW)Linting $(FILE)...$(NC)"
+	@docker-compose run --rm \
+		-e COLUMNS=${COLUMNS:-300} \
+		-w /site \
+		jekyll \
+		vale --no-wrap --minAlertLevel="${LEVEL:-suggestion}" $(FILE)
+	@echo "$(GREEN)✓ Linting complete$(NC)"
+endif
+```
+
+## Using Docker in GitHub Actions - Updating the TTT Build Environment
+
+Now that we have a local setup that precisely defines which tools, libraries and configurations we need to produce the output, why not use that in the GitHub actions that also produce that same output? It would simplify maintenance because we only have to add changes to one setup, not two.
+
+This is exactly what we did for the Taming the Terminal project. After a long hiatus Bart and Allison decided to add a new TTT episode, but they were not able to build the website because time moved on and the requirements of the project became incompatible with the currently installed versions of Ruby and the other tools necessary to build the various outputs.
+
+When moving the build script to a Docker setup we could ensure that, even if the various pieces become outdated, we can still run the build and not worry about the conflicting requirements.
+
+Below is the new Dockerfile for the TTT project.
+
+```Dockerfile
+FROM asciidoctor/docker-asciidoctor:latest
+
+USER root
+
+# Tools needed for the build
+RUN apk add --no-cache zip rsync git openjdk17-jre wget unzip vale
+
+# Install hunspell + English GB dictionaries for Vale
+RUN apk add --no-cache hunspell hunspell-en
+
+# Install write-good Vale grammar rules inside the container
+RUN mkdir -p /opt/vale/styles \
+  && curl -sL https://github.com/errata-ai/write-good/releases/latest/download/write-good.zip \
+     -o /tmp/write-good.zip \
+  && unzip /tmp/write-good.zip -d /opt/vale/styles \
+  && rm /tmp/write-good.zip
+
+# Install epubcheck 4.2.6
+RUN wget -O /tmp/epubcheck.zip https://github.com/w3c/epubcheck/releases/download/v4.2.6/epubcheck-4.2.6.zip \
+    && unzip /tmp/epubcheck.zip -d /opt \
+    && mv /opt/epubcheck-4.2.6 /opt/epubcheck \
+    && rm /tmp/epubcheck.zip
+
+# Add wrapper script
+RUN printf '#!/bin/sh\nexec java -jar /opt/epubcheck/epubcheck.jar "$@"\n' \
+      > /usr/local/bin/epubcheck \
+    && chmod +x /usr/local/bin/epubcheck
+
+# Install Node.js + npm on Alpine
+RUN apk add --no-cache nodejs npm
+
+# Copy package.json for QR code generator
+COPY package.json package-lock.json* /workspace/
+
+# Install node dependencies
+RUN cd /workspace && npm install
+```
+
+Taming the Terminal is written using AsciiDoc and the AsciiDoctor project has conveniently created a Docker image that contains all the necessary requirements to run the build script.
+
+The AsciiDoctor image does not contain Vale, so we added it and we threw some other tools in as well that should make our lives easier. The epubcheck checks the generated epubs for any errors that might prevent the epubs being readable in an epub-reader.
+
+Every intro section has a QR-code to allow the users to listen to the podcast on a different device. These QR-codes are generated based on the url of audio files. The script to create the QR-codes is written in JavaScript, so node.js is added to the image.
+
+Finally, it's worth mentioning that the project directory inside the container is called 
+`/workspace`.
+
+The `docker-compose.yml` file is also relatively short
+
+```yaml
+services:
+  book-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    # Default command: run the full book build script
+    command: ["sh", "-lc", "./scripts/build-book.sh"]
+    volumes:
+      # Mount project source into the container
+      - .:/workspace
+      # Keep node_modules in a Docker volume (not in your repo)
+      - node_modules_cache:/workspace/node_modules
+
+volumes:
+  node_modules_cache:
+```
+
+The service uses the Dockerfile located in the same directory. It mounts the project directory as `/workspace` and it creates a named volume for the `node_modules` directory so our project directory is not cluttered with this directory.
+
+The `command` element calls a shell script called `build-book.sh`. In an attempt to keep the rules in the Makefile short and readable many of the heavy lifting is moved to scripts in the `scripts` directory. Since this directory is also available inside the container, we can quickly fix a bug in one of those scripts without having to rebuild the image or even restart the container.
+
+Coming back to this project after a long time, and of course not being as diligent in documenting as Allison, made it hard for me to figure out which of the script was the actual build script. That's where Make came to the rescue.
+
+This time all available actions are neatly documented in the Make file, along with a help rule that helps in remembering what to do.
+
+```make
+# Default target
+.DEFAULT_GOAL := help
+
+.PHONY: help check check_episodes npm-install build shell lint lint-vale
+
+DOCKER_STAMP := .docker-image.stamp
+DOCKER_DEPS  := Dockerfile docker-compose.yml scripts/build-book.sh package.json package-lock.json
+
+# ----------------------------------------------------------
+# HELP SYSTEM
+# ----------------------------------------------------------
+help:  ## Show this help message
+	@echo ""
+	@echo "Available Make targets:"
+	@echo ""
+	@awk 'BEGIN { FS=":.*## " } \
+		/^[a-zA-Z0-9_-]+:.*## / { \
+			names[++n] = $$1; \
+			descs[n] = $$2; \
+			if (length($$1) > max) max = length($$1); \
+		} \
+		END { \
+			for (i = 1; i <= n; i++) { \
+				printf "  %-*s - %s\n", max, names[i], descs[i]; \
+			} \
+		}' $(MAKEFILE_LIST)
+	@echo ""
+
+
+# ----------------------------------------------------------
+# CHECKS
+# ----------------------------------------------------------
+
+mp3-files:  ## Regenerate mp3_files from audio macros
+	@./scripts/update-mp3_files.py
+
+check: mp3-files check_episodes lint-vale  ## Run all checks (episodes, mp3 files, Vale)
+
+check_episodes:  ## Validate episode list, mp3 list, URL checks, newline normalization
+	@./scripts/check_episodes.sh
+
+# ----------------------------------------------------------
+# LINTING
+# ----------------------------------------------------------
+lint: lint-vale  ## Run all linters (currently Vale)
+spellcheck: lint-vale ## Run Vale style/spell checker inside Docker (synonym for lint-vale)
+
+lint-vale: lint-vale-error  ## Default: run Vale and show only errors
+
+lint-vale-suggestion: docker-build  ## Vale: show suggestions, warnings, and errors
+	@docker compose run --rm book-builder \
+	  sh -lc 'scripts/lint-vale.sh suggestion'
+
+lint-vale-warning: docker-build  ## Vale: show warnings and errors
+	@docker compose run --rm book-builder \
+	  sh -lc 'scripts/lint-vale.sh warning'
+
+lint-vale-error: docker-build  ## Vale: show only errors
+	@docker compose run --rm book-builder \
+	  sh -lc 'scripts/lint-vale.sh error'
+
+# ----------------------------------------------------------
+# PARTIAL BUILDS
+# ----------------------------------------------------------
+
+html: docker-build npm-install  ## Build only the HTML version
+	@docker compose run --rm book-builder \
+	  sh -lc "scripts/build-book.sh html"
+
+pdf: docker-build npm-install  ## Build only PDFs
+	@docker compose run --rm book-builder \
+	  sh -lc "scripts/build-book.sh pdf"
+
+epub: docker-build npm-install  ## Build only EPUBs
+	@docker compose run --rm book-builder \
+	  sh -lc 'scripts/build-book.sh epub'
+
+# ----------------------------------------------------------
+# FULL BOOK BUILD
+# ----------------------------------------------------------
+build: npm-install mp3_files  ## Build the full HTML, EPUB, PDF output using build-book.sh inside Docker
+	@docker compose run --rm book-builder
+
+# ----------------------------------------------------------
+# DOCKER BUILD
+# ----------------------------------------------------------
+
+# High-level target used everywhere (local + CI)
+docker-build: $(DOCKER_STAMP)  ## Build the Docker image for the book-builder environment (if needed)
+
+# Stamp file: updated when the image is (re)built
+$(DOCKER_STAMP): $(DOCKER_DEPS)
+	@docker compose build book-builder
+	@touch $(DOCKER_STAMP)
+
+# ----------------------------------------------------------
+# NODE DEPENDENCIES
+# ----------------------------------------------------------
+npm-install: docker-build  ## Install Node dependencies inside container using node_modules volume
+	@docker compose run --rm book-builder sh -lc 'if command -v npm >/dev/null 2>&1; then (npm ci || npm install); else echo "npm not found in container"; exit 1; fi'
+
+# ----------------------------------------------------------
+# INTERACTIVE SHELL
+# ----------------------------------------------------------
+shell: docker-build  ## Open an interactive shell in the book-builder container
+	@docker compose run --rm book-builder sh
+```
+
+Working with this new environment made it clear that manually updating the file that is used to create the QR-codes is tedious and requires close attention to avoid errors. We could as well add the generation of that file to the QR-script.
+
+That action also triggered a cleanup of the directory so the layout of the project directory has become much cleaner.
+
+Once everything worked again locally, we had to address the GitHub workflows. The `publish` workflow suffered from similar problems as the local build system. Why not use the same Docker image and Makefile?
+
+So the most relevant steps in the `publishing` workflow went from
+
+```yaml
+...
+- name: Setup Ruby
+        if: env.GHA_WORK_TO_DO == 1
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+
+- name: Checkout
+        if: env.GHA_WORK_TO_DO == 1
+        uses: actions/checkout@v2
+
+...
+        
+- name: Run bundle install
+        if: env.GHA_WORK_TO_DO == 1
+        run: |
+          gem install bundler
+          bundle install
+
+- name: Publish the book
+        if: env.GHA_WORK_TO_DO == 1
+        run: bundle exec rake
+...       
+```
+
+to
+
+```yaml
+...
+- name: Checkout
+        if: env.GHA_WORK_TO_DO == 1
+        uses: actions/checkout@v4
+...
+- name: Build book via Docker (make build)
+        if: env.GHA_WORK_TO_DO == 1
+        run: |
+          make build
+...
+```
+
+We can now be sure that the build in the GitHub workflow uses the exact same tools we are using locally and we no longer have to worry that we forget to update the GitHub workflow when we make local changes.
+
+Sure, the build job will take slightly longer because GitHub will have to build the image every time, but that is outweighed by the ease of use. And since this is not be a project that runs this job very frequently, it's not a problem.
+
+For more information on all the moving pieces, head over to the GitHub repository of [Taming the Terminal](https://github.com/bartificer/taming-the-terminal).
