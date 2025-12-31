@@ -31,7 +31,9 @@ Let's have a look at each of these solutions.
 
 ### Virtual Environments
 
-Using **virtual environments** is a lightweight way to isolate dependencies for different projects. They allow developers to avoid version conflicts without needing system-wide installations.
+Using **virtual environments** is a lightweight way to isolate dependencies for different projects. They allow developers to avoid version conflicts without needing system-wide installations. So it's the first step in solving the dependency hell problem.
+
+A virtual environment tries to contain all project dependencies to the project directory where the project lives. Dependencies are the specific versions of the programming language and libraries or modules that need to be installed in order for the app to work.
 
 Different languages, such as Ruby, Python, and Node, each have their own solution to virtual environments, such as `venv` for Python and `nvm` for Node.
 
@@ -51,7 +53,10 @@ This is not a repeat of the installation instructions, but merely a summary of t
 - Add the config files to the shell config (`~/.zshrc` or `~/.bashrc`)
 - Then reload the shell
 - Install a Ruby Version with `ruby-install`
-- After all this is installed, install Jekyll.
+- After all this is installed, install Jekyll and other dependencies using `bundle install`
+
+This setup contains the Ruby version and the necessary gem files to just this directory. 
+In another Ruby project there is no knowledge of these dependencies.
 
 #### Benefits of Using Virtual Environments
 
