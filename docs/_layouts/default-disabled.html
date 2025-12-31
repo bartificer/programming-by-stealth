@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+{% include defaults.txt -%}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Include  main CSS (with Bootstrap 4 compiled in) -->
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+    
+    <!-- Include Github-style Syntax Highlighting CSS -->
+    <link rel="stylesheet" href="{{ '/assets/syntax-github.css' | relative_url }}">
+    
+    <!-- Include Font Awesome 5 from CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+    <!-- Add the OpenGraph Site-level Metadata -->
+    <meta property="og:site_name" content="{{site.opengraph.site_name | default: site.title}}" />
+    {% if site.opengraph.locale %}<meta property="og:locale" content="{{site.opengraph.locale}}" />{% endif -%}
+
+    <!-- Add the OpenGraph Page-level Metadata -->
+    {% assign opengraph_title = page.opengraph.title | default: page.title | default: site.opengraph.title -%}
+    {% if opengraph_title %}<meta property="og:title" content="{{opengraph_title}}" /> {% endif -%}
+    {% if page.opengraph.description %}<meta property="og:description" content="{{page.opengraph.description}}" />{% endif -%}
+    {% assign opengraph_type = page.opengraph.type | default: site.opengraph.type -%}
+    {% if opengraph_type %}<meta property="og:type" content="{{opengraph_type}}" />{% endif -%}
+    {% if page.opengraph.url %}<meta property="og:url" content="{{page.opengraph.url}}" />{% endif -%}
+    {% assign opengraph_image = page.opengraph.image | default: site.opengraph.image -%}
+    {% if opengraph_image %}<meta property="og:image" content="{{opengraph_image}}" />{% endif -%}
+    {% if page.opengraph.audio %}<meta property="og:audio" content="{{page.opengraph.audio}}" />{% endif -%}
+    {% if page.opengraph.video %}<meta property="og:video" content="{{page.opengraph.video}}" />{% endif -%}
+
+    <!-- Set the page title as appropriate -->
+    {% if page.collection -%}
+    {% assign page_collection = site.collections | where: "label", page.collection | first -%}
+    <title>
+        {%- if page_collection.prefix %}{{ page_collection.prefix }}{% endif -%}
+        {%- if page.instalment %}{% if page_collection.prefix %}{{ " " }}{% endif %}{{ page.instalment }}{% endif -%}
+        {%- if page_collection.prefix or page.instalment %}: {% endif -%}
+        {{- page.title }}{% if page.miniseries %} ({{ page.miniseries }}){% endif -%}
+    </title>
+    {% else -%}
+    <title>{{ page.title | default: site.title }}</title>
+    {% endif -%}
+</head>
+<body>
+    <!-- Export select values from Jekyll Frontmatter -->
+    <input type="hidden" id="jekyll_frontmatter_page_title" value="{{page.title | escape}}">
+
+    <header class="bg-accent-light">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 text-center d-md-none">
+                    <img src="{{ '/assets/logo.png' | relative_url }}" alt="Logo" id="logo-header-sx">
+                </div>
+                <div class="col-3 col-xl-2 d-none d-md-block">
+                    <img src="{{ '/assets/logo.png' | relative_url }}" alt="Logo" id="logo-header-md">
+                </div>
+                <div class="col text-center text-md-left">
+                    <h1 class="display-3">{{site.title}}</h1>
+                    <p class="lead text-muted">{{site.description}}</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    {% assign default_nav_brand_url = "https://bartificer.net/" -%}
+    {% assign default_nav_brand_src = "/assets/logo-bartificer-brand.png" -%}
+    {% assign default_nav_brand_alt = "Bartificer Creations Logo" -%}
+    {% assign default_nav_brand_text = "A Bartificer Creation" -%}
+    <nav class="navbar navbar-dark navbar-expand-sm bg-accent">
+        {% if site.nav_brand.page -%}
+        {% assign nav_brand_page = site.pages | where: "path", site.nav_brand.page | first -%}
+        <a href="{{ nav_brand_page.url }}" class="navbar-brand">
+        {% else -%}
+        <a href="{{ site.nav_brand.url | default: default_nav_brand_url }}" target="_blank" class="navbar-brand">
+        {% endif -%}
+            <img src="{{ site.nav_brand.src | default: default_nav_brand_src | relative_url }}" alt="{{site.nav_brand.alt | default: default_nav_brand_alt}}" title="{{site.nav_brand.text | default: default_nav_brand_text}}" class="rounded" width="30" height="30">
+            <span class="d-none d-lg-inline font-bartificer ml-1">{{site.nav_brand.text | default: default_nav_brand_text}}</span>
+        </a>
+        <div class="collapse navbar-collapse" id="siteNav">
+          <ul class="navbar-nav">
+              {% assign home_path = "/" | relative_url %}
+              <li class="nav-item{% if page.url == home_path %} active{% endif %}">
+                  <a href="{{ home_path }}" class="nav-link"><i class="fas fa-home sitenav-icon" aria-hidden></i> Home</a>
+              </li>
+              {% if site.community.url %}
+              <li class="nav-item">
+                  <a href="{{ site.community.url }}" class="nav-link">
+                    <i class="{{ site.community.icon | default: default_community_icon }} sitenav-icon" aria-hidden></i>
+                    {{ site.community.labels.nav | default: 'Community' }}
+                </a>
+              </li>
+              {% endif %}
+              {% for item in site.nav_items %}
+              <li class="nav-item">
+                  <a href="{{item.url}}" class="nav-link"><i class="{{ item.icon | default: 'fas fa-link'}} sitenav-icon" aria-hidden></i> {{item.text}}</a>
+              </li>
+              {% endfor %}
+          </ul>
+        </div>
+        {% if site.github.repository_url %}
+        <a href="{{site.github.repository_url}}" class="btn btn-outline-accent-light ml-auto">
+            <span class="d-md-none d-lg-inline"><i class="fab fa-github" aria-label="View on GitHub"></i></span>
+            <span class="d-none d-md-inline">View on GitHub</span>
+        </a>
+        {% endif %}
+        <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#siteNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    
+    <main class="container my-4">
+        {{ content }}
+        
+        {% if site.community.description and site.community.url %}
+        <div class="alert alert-info mt-5">
+            <h1 class="alert-heading h4">{{ site.community.tagline | default: 'Join the Community' }}</h1>
+            {{ site.community.description | markdownify }}
+            <p><a href="{{ site.community.url }}" class="btn btn-primary">
+                <i class="{{ site.community.icon | default: default_community_icon }}" aria-hidden"></i>
+                {{ site.community.labels.button | default: 'Join In' }}
+            </a></p>
+        </div>
+        {% endif %}
+    </main>
+    
+    <!-- A spacer to take up the same amount of space as the floating footer -->
+    <div id="footer_wedge" class="m-0" style="height: 65px;"></div>
+    
+    <footer class="fixed-bottom bg-accent-light border-top border-accent">
+        <div class="container py-2">
+            <div class="row text-muted-accent text-center">
+                <div class="col-12">
+                    <span class="d-none d-md-inline">The content on this site is licensed as</span>
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+                        Creative Commons
+                        <span class="d-none d-sm-inline d-md-none d-lg-inline">Attribution-NonCommercial-ShareAlike</span>
+                        <span class="d-sm-none d-md-inline d-lg-none">By-NC-SA</span>
+                    </a>
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="badge badge-accent text-accent-light lead" aria-label="Creative Commons Icons">
+                        <i class="fab fa-creative-commons" aria-label="CC"></i>
+                        <i class="fab fa-creative-commons-by" aria-label="By"></i>
+                        <i class="fab fa-creative-commons-nc-eu" aria-label="NC"></i>
+                        <i class="fab fa-creative-commons-sa" aria-label="SA"></i>
+                    </a>
+                </div>
+                <div class="col-12 font-bartificer">
+                    <small>Theme by <a href="http://bartb.ie/" target="_blank">Bart Busschots</a> T/A <a href="https://bartificer.net/" target="_blank">Bartificer Creations</a>.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Include jQuery from local file -->
+    <script src="{{ '/assets/jquery-3.4.1.min.js' | relative_url }}"></script>
+    
+    <!-- Include Bootstrap JavaScript from local bundle (bundle includes popper.js but not jQuery) -->
+    <script src="{{ '/assets/bootstrap.bundle.min.js' | relative_url }}"></script>
+    
+    <!-- Include the theme's core scripts -->
+    <script src="{{ '/assets/main.js' | relative_url }}"></script>
+</body>
+</html>
