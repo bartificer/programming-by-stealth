@@ -104,17 +104,49 @@ I want to draw your attention to some key points here.
 
 ## Another Short Reprieve — Database-as-a-Service
 
-TO DO
+As the site continued to grow, even Allison's dedicated single server started to struggle.
+
+Remember this single server was running both Apache and MySQL, so the obvious way to split up the work is to move to a two-server setup, one running Apache and PHP, and there other MySQL.
+
+Again, Allison's timing was perfect. Had she arrived at this point five years earlier the only viable option would have been to purchase a second virtual server and move MySQL to that second server. However, that would not have been as good as the new option that was becoming common-place, a managed database.
+
+Optimising a database server is a black art. Even when you know what you're doing, it takes a lot of work to fine-tune MySQL to give you the best possible performance for your specific needs. This means that it's inevitable that when hobbyists run their own MySQL servers they will be configured sub-optimally. What you need from a database is an efficient service, so why not out-source the hassle of maintaining the server delivering that service entirely?
+
+The new trend in cloud computing that arrived at the perfect time was the Software-as-a-Service model, otherwise known as SaaS. Instead of buying a second VM, Allison added a managed MySQL database server to her DigitalOcean account, copied the existing database to that newly acquired service, and updated the Wordpress configuration to point at it instead of the locally running copy of MySQL. Then, the local MySQL was simply disabled. This halved the server's workload, so it was able to grow some more without the need to re-egineer the stack.
 
 ## The Big Re-Architecting
 
-### The Problems with LAMP
+As you can probably guess by now, the site has continued to grow, and so the site eventually out-grew the LAMP stack entirely. It was time for a big re-think!
 
-TO DO
+### The Problems with LAMP (or Apache Really)
 
-### The New Architecture
+The biggest problem with the LAMP stack is Apache. It was the first successful web server, so while it is very robust and battle-hardened, it is also quite primitive in some rather fundamental ways. Most notably, in how it handles simultaneous requests. Basically, the problem is all those memory-hungry worker processes hanging around waiting on various kinds of IO (input/output) from the file system and/or the database.
 
-TO DO
+The other pain point is the approach of embedding the ability to process PHP directly into each web worker process using `mod_php`. Teaching Apache to talk PHP with `mod_php` works effectively, but not efficiently! Apache is not optimised to be a PHP server, it's design is intentionally generic, allowing it to severe web apps written in just about any language.
+
+Can we replace Apache with something else?
+
+### The New Architecture — NGINX + PHP-FPM + Cloudflare
+
+If you think about it, in our previous LAMP setup Apache was doing double-duty, it was handling the intricacies of web serving, and the execution of PHP code. Why not split those two roles apart so both can be optimised separately?
+
+This is where NGINX comes into the picture — NGINX is a much more modern web server than Apache, and it has a much more efficient mechanism for handling concurrent connections. Rather than having lots of workers waiting on various IO tasks it runs a single master processes that rapidly cycles its attention between all the requests that are not currently waiting on IO operations. This approach reduces the RAM and CPU load on the server dramatically, and, it gives users snappier responses to boot!
+
+NGINX is a superb web server, but it is **only** a web server, it can't execute any code, not Python code, not Ruby code, not PHP code, nothing! So we need something else to run the Wordpress PHP code as and when needed. This is where PHP-FPM comes in.
+
+PHP-PFM is the PHP *PHP FastCGI Process Manager*. CGI is the *Common Gateway Interface*, and is a completely generic mechanism for web servers to request code execution in any language. FastCGI is a particularly efficient implementation of the CGI standard, and PHP-FPM is an extremely efficient FastCGI PHP executor.
+
+Rather than having Apache start a dedicated worker process for each request, and have it teach each each of those workers how to execute PHP code, NGINX uses a single very efficient master process, and out-sources the execution of all PHP code to the very efficient PHP-FPM.
+
+These optimisations make it possible for a single Linux VM to process many more web requests simultaneously using the same amount of RAM and CPU when compared to what you can achieve with Apache.
+
+So, moving away from Apache would have been enough to buy Allison some more time, there was another opportunity for even more optimisation — caching.
+
+The `podfeet.com` website is not updated many times per day, let alone many times per hour or per minute, so having NGINX+PHP-FPM render each page from scratch for each visitor is needlessly wasteful — until Allison posts a new post or a listener leaves a new comment, the HTML+CSS+JavaScript returned by the Wordpress code will be the same for every visitor. All that RAM, CPU, disk-IO, and all those database queries are just re-creating the same output over-and-over-and-over again.
+
+This is where CloudFlare enters the picture.
+
+LEFT OFF HERE
 
 ## A Contemporary Post's Tale
 
