@@ -544,6 +544,8 @@ logs: ## Show Jekyll server logs
 
 Now it's possible to build the Docker image with `make build`, drop into the container with `make shell` and clean everything up with `make clean`.
 
+> ✂️  _This concludes the content of the first podcast_
+
 ## Reusing the Docker image
 
 Now that we have our Jekyll development environment, we should be able to reuse it in the PBS project. After all, that is also a Jekyll site.
