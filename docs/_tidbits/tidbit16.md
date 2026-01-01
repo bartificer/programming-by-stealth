@@ -126,7 +126,11 @@ The other pain point is the approach of embedding the ability to process PHP dir
 
 Can we replace Apache with something else?
 
-### The New Architecture — NGINX + PHP-FPM + Cloudflare
+### The New Architecture
+
+The move to Allison's current stack involved upgrading to a new version of Linux (Rocky Linux 9), and two significant changes to the stack. The Linux upgrades is unremarkable, so let's look at the other changes in turn.
+
+### Apache → NGINX + PHP-FPM
 
 If you think about it, in our previous LAMP setup Apache was doing double-duty, it was handling the intricacies of web serving, and the execution of PHP code. Why not split those two roles apart so both can be optimised separately?
 
@@ -142,11 +146,27 @@ These optimisations make it possible for a single Linux VM to process many more 
 
 So, moving away from Apache would have been enough to buy Allison some more time, there was another opportunity for even more optimisation — caching.
 
+### Adding Caching (CloudFlare)
+
 The `podfeet.com` website is not updated many times per day, let alone many times per hour or per minute, so having NGINX+PHP-FPM render each page from scratch for each visitor is needlessly wasteful — until Allison posts a new post or a listener leaves a new comment, the HTML+CSS+JavaScript returned by the Wordpress code will be the same for every visitor. All that RAM, CPU, disk-IO, and all those database queries are just re-creating the same output over-and-over-and-over again.
+
+Why re-generate every page every time? Why not cache the pages that don't change, at least for a while?
+
+It's possible to configure NGINX to do that kind of caching, but that means more configurations to maintain, and caches, like databases, benefit from careful fine-tuning. Since we live in a Software-as-a-Service world, would it not be better to out-source that expertise too?
 
 This is where CloudFlare enters the picture.
 
-LEFT OFF HERE
+Not only does CloudFlare offer intelligent caching, it also offers a bunch of additional useful features (more on those in a moment), but better still, is saves the need for requests that can be handled by the cache ever even reaching the server at all.
+
+CloudFlare's infrastructure sits between your actual web server and the internet, so browsers send their requests to CloudFlare which then reaches back to your server only when needed. Instead of storing caches pages on your server, consuming your resources, the cached copies are stored in CloudFlare's world-class Content Delivery Network (CDN). CloudFlare are world leaders when to comes content delivery, and their freemium model makes it an excellent option for individuals and small organisations. Sites like `podfeet.com` don't need anything more than the free tier, and even that ties offers some real benefits:
+
+1. **Intelligent caching** — CloudFlare's caches are expertly tuned, and since they deliver more websites than anyone else in the world there really is no one better to configuring your cache for you!
+2. **DDOS Protection** — because their infrastructure sits in front of your server, they can soak up even the biggest denial of service attacks and save your website from getting knocked offline.
+3. **Web Application Firewall (WAF)** — as well as intelligently caching your website, CloudFlare also check incoming requests against known malicious behaviour, blocking likely malicious requests before they ever reach your server.
+4. **Traffic Shaping Rules** — the simplest kinds of traffic shaping rules are rate limits, but CloudFlare's rules can do much more than that. Do note the free plan does limit the number and complexity of your rules.
+5. **World-Class DNS Hosting** — the easiest way to configure CloudFlare is to move your DNS hosting to them (there are other options), and this is a real win-win because it takes the least possible amount of effort, and you get a great free service! Their authoritative DNS servers are robust and fast, and their DNS control panel is powerful and easy to use.
+
+Note that Allison needs a traffic shaping rule to rate-limit requests to the XML-RPC URL for the site, because API endpoints can't be cached, and spammers like to use the URL to try bulk-add ping-backs and/or comments to posts.
 
 ## A Contemporary Post's Tale
 
