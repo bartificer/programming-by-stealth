@@ -170,8 +170,44 @@ Note that Allison needs a traffic shaping rule to rate-limit requests to the XML
 
 ## A Contemporary Post's Tale
 
-TO DO
+To really see how this new architecture works, let's follow another article, but this time, we need to follow it not just as Allison posts, and as the first reader reads, but also when the second reader reads, because something very different will happen for them.
 
-## Final Thoughts
+### Part 1 — Allison Posts
 
-TO DO
+Allison is still using the Mars Edit client, so the new article and its attachments are still being uploaded via HTTPS requests to the XML-RPC URL. The first difference is that when Mars Edit contacts the IP address it has resolved for `podfeet.com`, it won't be communicating with Allison's server, but with CloudFlare's nearest available server, most likely in LA. Assuming the Mars Edit connections pass Cloudflare's various security checks, the CloudFlare server will relay the connection to the web server app now running on Allison's server. Note that because both Wordpress and Cloudflare correctly use the parts of the web standards for managing caches, no communications with the XML-RPC endpoint will ever get cached by Cloudflare.
+
+The web server now running is NGINX, so it will receive the requests from Mars Edit. Unlike Apache, NGINX can't execute PHP code, so it will pass the request to PHP-FPM. PHP-FPM will run the Wordpress code which will update the database and save any attachments into the Wordpress uploads folder, just like Apache previously did.
+
+The article is now published.
+
+### Part 2 — The First Reader
+
+The first browser to try view the new article will almost certainly be Allison's as she verifies everything looks good before posting about the new article to social media. So, let's just assume the brewers is Safari.
+
+Like Mars Edit, Safari resolves `podfeet.com` to an IP address and sends an HTTPS request for the new article to that IP. Again, that will be a CloudFlare server. After the requests passes all CloudFlare's security checks, the CloudFlare server will check its cache to see if it already has a copy of the article saved. This is a new article that hasn't been viewed yet, so it won't.
+
+Like before, the CloudFlare server will relay the request to Allison's server where NGINX will handle it. NGINX will again pass the request to PHP-FPM which will execute the Wordpress code, including the code for Allison's theme and the various plugins she has installed to generate the HTML code for the rendered article. PHP-FPM will pass that HTML back to NGINX which will pass it back to the CloudFlare server, **which will cache it**, before finally passing it back to Safari.
+
+When Safari receives the HTML it will include references to the files Allison attached to the article, so Safari will make further requests to get those files too. Let's assume these files are images (they almost always are), so Safari will ask the CloudFlare servers for each image. We'll just follow the first of those requests.
+
+Again, the CloudFlare server will check its cache, but again, since this is a new content that has not been viewed yet, it won't find a cached copy, so it will again relay the request to Allison's server. NGNIX receives the request, but since this is a request for an image file, it doesn't need any help, so it simply fetches the image from the Wordpress uploads folder, passes it back to the CloudFlare server, **which caches it**, before passing it back to Safari which display it. 
+
+### Part 3 — The Second Reader
+
+Let's assume NosillaCastaway Joop is as active as ever on the [Podfeet Slack](https://podfeet.com/slack) and sees Allison's post about the new article first. He clicks on the URL and his copy of Safari resolves the `podfeet.com`  name to the CloudFlare server nearest to him in the Netherlands. The Dutch Cloudflare server checks the Cloudflare CDN for a cached version of the article's URL, and finds the HTML the server in LA cached when Allison checked the article from her Mac. Rather than reach back to Allison's server, it just replies with the cached HTML, which Joop's Safari starts rendering. Again, it contains images, so Joop's Safari asks the Dutch CloudFlare server for those, and again, they exist in the cache, so the Dutch Cloudflare server replies to Joop's Safari with the images without ever contacting Allison's server.
+
+## Final Thoughts — the New Design's Implications
+
+This new design offers many new efficiencies which are greatly reducing the load on Allison's server:
+
+1. Overly eager bots are being block by Cloudflare's traffic shaping rules before ever reaching Allison's server
+2. Known malicious requests, including from any detected DDOS activity, are also being blocked
+3. The CloudFlare cache is reducing the number of legitimate requests that Allison's server needs to process
+4. NGINX+PHP-FPM are processing the remaining requests that do need to go to the server more efficiently
+
+There are two obvious drawbacks though:
+
+1. The setup has become more complex, so it's more difficult to understand and troubleshoot
+2. The logs within Wordpress and on Allison's server are now systematically undercounting visits, the only logs that give the full picture are on CloudFlare, and free users get limited access to those logs (it's not bad, but it's less than you can get on your own server)
+
+I think it's fair to say the advantages greatly outweigh the drawbacks, and the `podfeet.com` site is faster and healthier than it's been in some time!
