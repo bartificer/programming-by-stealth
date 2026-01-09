@@ -5,7 +5,7 @@ creators: [bart, allison]
 date: 2025-12-31
 ---
 
-Allison has expressed some confusion about what exactly PHP-FPM is and how it relates to NGINX and what it has to do with Wordpress, etc.. In this instalment we made sense of how a modern PHP-powered web app like the Wordpress Instance powering www.podfeet.com works by following an imaginary post from text on Allison's Mac to a post published on the website, to a web page displayed in the first visitor's browser.
+In passing comments on some recent [NosillaCast](https://www.podfeet.com/) episodes, Allison has expressed some confusion about what exactly [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) is and how it relates to [NGINX](https://nginx.org) and what it has to do with [Wordpress](https://wordpress.org), etc.. In this instalment we'll explore how these components can work together to deliver a PHP-powered web app like the Wordpress Instance powering www.podfeet.com using relatively cheap modern cloud services. We'll do this through two stories — the evolution of Allison's web hosting over time, and the journey of a single article posted to the NosillaCast website.
 
 ## Matching Podcast Episode
 
