@@ -5,27 +5,27 @@ creators: [bart, allison]
 date: 2025-12-31
 ---
 
-In passing comments on some recent [NosillaCast](https://www.podfeet.com/) episodes, Allison has expressed some confusion about what exactly [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) is and how it relates to [NGINX](https://nginx.org) and what it has to do with [Wordpress](https://wordpress.org), etc.. In this instalment we'll explore how these components can work together to deliver a PHP-powered web app like the Wordpress Instance powering www.podfeet.com using relatively cheap modern cloud services. We'll do this through two stories — the evolution of Allison's web hosting over time, and the journey of a single article posted to the NosillaCast website.
+In passing comments on some recent [NosillaCast](https://www.podfeet.com/) episodes, Allison has expressed some confusion about what exactly [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) is and how it relates to [NGINX](https://nginx.org) and what it has to do with [WordPress](https://wordpress.org), etc.. In this instalment we'll explore how these components can work together to deliver a PHP-powered web app like the WordPress Instance powering www.podfeet.com using relatively cheap modern cloud services. We'll do this through two stories — the evolution of Allison's web hosting over time, and the journey of a single article posted to the NosillaCast website.
 
 ## Matching Podcast Episode
 
 TO DO
 
-## Context — A Quick Wordpress Overview
+## Context — A Quick WordPress Overview
 
 Before we get stuck into our two stories, let's lay some groundwork.
 
-Like surprisingly many sites on the internet today, `podfeet.com` is a Wordpress site. Wordpress is an open source content management system (CMS) written in PHP. The core Wordpress code handles the things all websites need, there's an API for theming the site, and a vibrant plugin ecosystem for adding less generic capabilities. With Wordpress, all the posts, pages, comments, etc. are stored in a relational database. Any media attached to the posts and pages is stored in a folder to reduce the load on the database.
+Like surprisingly many sites on the internet today, `podfeet.com` is a WordPress site. WordPress is an open source content management system (CMS) written in PHP. The core WordPress code handles the things all websites need, there's an API for theming the site, and a vibrant plugin ecosystem for adding less generic capabilities. With WordPress, all the posts, pages, comments, etc. are stored in a relational database. Any media attached to the posts and pages is stored in a folder to reduce the load on the database.
 
-To give authors the option to use stand-alone clients rather than the built-in web interface for writing their content, Wordpress also provides an [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) API. XML-RPC is a protocol for sending API requests to web servers in XML format.
+To give authors the option to use stand-alone clients rather than the built-in web interface for writing their content, WordPress also provides an [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) API. XML-RPC is a protocol for sending API requests to web servers in XML format.
 
-To render a Wordpress page the server hosting it has to run the Wordpress PHP code to generate the page's HTML. The Wordpress PHP code connects to the database to retrieve the content. Using the XML-RPC API from a client app is similar — the client sends web-requests to the site's XML-RPC URL, and server executes PHP code which connects to the database to perform the requested actions.
+To render a WordPress page the server hosting it has to run the WordPress PHP code to generate the page's HTML. The WordPress PHP code connects to the database to retrieve the content. Using the XML-RPC API from a client app is similar — the client sends web-requests to the site's XML-RPC URL, and server executes PHP code which connects to the database to perform the requested actions.
 
-In practical terms, a Wordpress site has three components:
+In practical terms, a WordPress site has three components:
 
-1. **PHP code** — the core Wordpress code,  the code for the site owner's chosen theme(s), and the code for all the installed plugins.
+1. **PHP code** — the core WordPress code,  the code for the site owner's chosen theme(s), and the code for all the installed plugins.
 2. A **relational database**
-3. The Wordpress uploads **folder** where attached media like images are stored
+3. The WordPress uploads **folder** where attached media like images are stored
 
 
 
@@ -35,7 +35,7 @@ The simplest way to understand how the site works today, and why it now works th
 
 ### Simple Beginnings
 
-When Allison first dipped her toe into the podcasting waters, she hosted the website on a shared hosting plan from one of the major providers. This meant the site was sharing the resources of a single web and database server with tens, or perhaps even hundreds, of other websites. Multi-site hosting like this is generally delivered using a management platform like [CPanel](https://www.cpanel.net) or [Plesk](https://www.plesk.com). These platforms provide site owners with a web-based control panel for managing their site, so, for the most part, the underlying technical details were not relevant for her. As long as the platform met the minimum requirements for Wordpress, the rest was someone else's problem 🙂
+When Allison first dipped her toe into the podcasting waters, she hosted the website on a shared hosting plan from one of the major providers. This meant the site was sharing the resources of a single web and database server with tens, or perhaps even hundreds, of other websites. Multi-site hosting like this is generally delivered using a management platform like [CPanel](https://www.cpanel.net) or [Plesk](https://www.plesk.com). These platforms provide site owners with a web-based control panel for managing their site, so, for the most part, the underlying technical details were not relevant for her. As long as the platform met the minimum requirements for WordPress, the rest was someone else's problem 🙂
 
 These kinds of fully managed shared hosting offerings have two obvious advantages — they're inexpensive, and customers are liberated from all systems administration (sysadmin) tasks!
 
@@ -65,16 +65,16 @@ Unlike physical servers, virtual servers can easily have additional RAM and CPU 
 
 To understand what's about to change, and why, let's look at the life of a single post at this point in the site's evolution.
 
-Allison starts by composing the post in her favourite client, [MarsEdit](https://redsweater.com/marsedit/). When the content is ready she pushes the *Publish* button and MarsEdit sends the new post to the server with an HTTP request Wordpress XML-RPC URL on the `podfeet.com` site. The web server app listening for HTTP requests is Apache, so it receives the request from MarsEdit and assigns an Apache *worker process* to the request. This is a Linux process that does all the work for this request. While the worker is servicing this request it can't do anything else, so if another requests arrives on the server before this worker finishes, Apache has to use a second parallel worker processes for the other request. On a busy Apache web server there can be a lot of workers running at the same time!
+Allison starts by composing the post in her favourite client, [MarsEdit](https://redsweater.com/marsedit/). When the content is ready she pushes the *Publish* button and MarsEdit sends the new post to the server with an HTTP request WordPress XML-RPC URL on the `podfeet.com` site. The web server app listening for HTTP requests is Apache, so it receives the request from MarsEdit and assigns an Apache *worker process* to the request. This is a Linux process that does all the work for this request. While the worker is servicing this request it can't do anything else, so if another requests arrives on the server before this worker finishes, Apache has to use a second parallel worker processes for the other request. On a busy Apache web server there can be a lot of workers running at the same time!
 
-The XML-RPC URL MarsEdit called is part of the Wordpress which is written in PHP, so the Apache worker process has to load the PHP language into itself. Apache workers *learn* PHP using the `mod_php` Apache module. Now that the worker has learned how to execute PHP code, it gets to work dealing with Allison's XML-RPC request to publish her new article by executing the Wordpress PHP code. To publish an article all attachments need to get written to the Wordpress uploads folder, and the article and all its metadata need to get written to the database.
+The XML-RPC URL MarsEdit called is part of the WordPress which is written in PHP, so the Apache worker process has to load the PHP language into itself. Apache workers *learn* PHP using the `mod_php` Apache module. Now that the worker has learned how to execute PHP code, it gets to work dealing with Allison's XML-RPC request to publish her new article by executing the WordPress PHP code. To publish an article all attachments need to get written to the WordPress uploads folder, and the article and all its metadata need to get written to the database.
 
-For simplicity, I'm going to ignore the reality that publishing a post actually requires a back-and-forth between the Wordpress code and MarsEdit. Due to various optimisations in the HTTP protocol, the same Apache worker will handle the full back-and-forth, so blurring it all into one request is a reasonable thing to do for clarity.
+For simplicity, I'm going to ignore the reality that publishing a post actually requires a back-and-forth between the WordPress code and MarsEdit. Due to various optimisations in the HTTP protocol, the same Apache worker will handle the full back-and-forth, so blurring it all into one request is a reasonable thing to do for clarity.
 
 To publish the article the Apache worker process needs to:
 
-1. Load `mod_php` so it can execute the Wordpress code (which costs CPU time and consumes RAM)
-2. Save all attachments into the Wordpress uploads folder
+1. Load `mod_php` so it can execute the WordPress code (which costs CPU time and consumes RAM)
+2. Save all attachments into the WordPress uploads folder
 3. Connect to the database
 4. Write the content of the post into the database
 5. Close the database connection
@@ -83,7 +83,7 @@ To publish the article the Apache worker process needs to:
 
 Some time later, a Nosillacastaway sees Allison's social media post about the new article (perhaps on the [Podfeet Slack](https://podfeet.com/slack) and wants to read it, so they open the post's URL in their browser. Let's assume it's Safari.
 
-Safari connects to the `podfeet.com` web server and Apache creates a fresh worker process, that worker loads `mod_php`, then executes the Wordpress code which reads the article's content from the database, loads the theme and all the site's plugins from the Wordpress extensions folder, builds the HTML, CSS, and JavaScript needed to render the page, and returns all that to Safari which displays it. Again, this actually involves multiple requests to the server, but it will be handled by a single Apache worker, so we'll simplify it to a single request.
+Safari connects to the `podfeet.com` web server and Apache creates a fresh worker process, that worker loads `mod_php`, then executes the WordPress code which reads the article's content from the database, loads the theme and all the site's plugins from the WordPress extensions folder, builds the HTML, CSS, and JavaScript needed to render the page, and returns all that to Safari which displays it. Again, this actually involves multiple requests to the server, but it will be handled by a single Apache worker, so we'll simplify it to a single request.
 
 Again, this is not a small task, since the Apache worker needs to:
 
@@ -91,7 +91,7 @@ Again, this is not a small task, since the Apache worker needs to:
 2. Connect to the database
 3. Query the database for the article's content
 4. Load the extra PHP code for the site's theme and plugins
-5. Execute the Wordpress code to render the article
+5. Execute the WordPress code to render the article
 6. Return the rendered content to the browser
 7. Shut itself down
 
@@ -112,7 +112,7 @@ But again, Allison's timing was perfect. Had she arrived at this point five year
 
 Optimising a database server is a black art. Even when you know what you're doing, it takes a lot of work to fine-tune a MySQL server so it delivers the best possible performance for your specific use-case. This means that it's inevitable that when hobbyists run their own MySQL servers they will be configured sub-optimally. What you need from a database is an efficient service, so why not out-source the hassle of maintaining the server delivering that service entirely?
 
-Enter the Software-as-a-Service model, otherwise known as SaaS. Instead of buying a second VM, Allison added a managed MySQL database to her DigitalOcean account, copied the existing database to that newly acquired service, and updated the Wordpress configuration to point at it instead of the locally running copy of MySQL. Then, the local MySQL was simply disabled. This halved the server's workload, so it was able to grow some more without the need to re-egineer the stack.
+Enter the Software-as-a-Service model, otherwise known as SaaS. Instead of buying a second VM, Allison added a managed MySQL database to her DigitalOcean account, copied the existing database to that newly acquired service, and updated the WordPress configuration to point at it instead of the locally running copy of MySQL. Then, the local MySQL was simply disabled. This halved the server's workload, so it was able to grow some more without the need to re-egineer the stack.
 
 ## The Big Re-Architecting
 
@@ -136,7 +136,7 @@ If you think about it, in our previous LAMP setup Apache was doing double-duty �
 
 This is where [NGINX](https://nginx.org) (pronounced *engine-X*) enters the story — NGINX is a much more modern web server than Apache, and it has a much more efficient mechanism for handling concurrent connections. Rather than having lots of workers waiting on various IO tasks, it runs a single master processes that rapidly cycles its attention between all the requests that are not currently waiting on IO operations. This approach reduces the RAM and CPU load on the server dramatically, and, it gives users snappier responses too!
 
-NGINX is a superb web server, but it's **only** a web server, it can't execute any code, not Python code, not Ruby code, not PHP code, nothing! So we need something else to execute the Wordpress PHP code as and when needed. This is where [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) comes in.
+NGINX is a superb web server, but it's **only** a web server, it can't execute any code, not Python code, not Ruby code, not PHP code, nothing! So we need something else to execute the WordPress PHP code as and when needed. This is where [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) comes in.
 
 PHP-PFM is the PHP *PHP FastCGI Process Manager*. [CGI](https://en.wikipedia.org/wiki/Common_Gateway_Interface) is the *Common Gateway Interface*, and is a completely generic mechanism for web servers to request code execution in any language. [FastCGI](https://en.wikipedia.org/wiki/FastCGI) is a more efficient evolution of the original CGI protocol specifically designed for web servers to out-source web request processing to another app. PHP-FPM is a FastCGI processor for PHP code.
 
@@ -148,7 +148,7 @@ So, moving away from Apache would have been enough to buy Allison a little more 
 
 ### Adding Caching (CloudFlare)
 
-The `podfeet.com` website is not updated many times per day, let alone per hour or per minute, so having NGINX+PHP-FPM render each page from scratch for each visitor is needlessly wasteful — until Allison posts a new article or a listener leaves a new comment, the HTML+CSS+JavaScript returned by the Wordpress code will be the same for every visitor. All that RAM, CPU, disk-IO, and all those database queries are just re-creating the same output over-and-over-and-over again.
+The `podfeet.com` website is not updated many times per day, let alone per hour or per minute, so having NGINX+PHP-FPM render each page from scratch for each visitor is needlessly wasteful — until Allison posts a new article or a listener leaves a new comment, the HTML+CSS+JavaScript returned by the WordPress code will be the same for every visitor. All that RAM, CPU, disk-IO, and all those database queries are just re-creating the same output over-and-over-and-over again.
 
 Why re-generate every page every time? Why not cache the pages that don't change, at least for a while?
 
@@ -164,7 +164,7 @@ The way you deploy CloudFlare is to update your DNS records to they point at Clo
 4. **Traffic Shaping Rules** — the simplest kinds of traffic shaping rules are rate limits, but CloudFlare's rules can do much more than that. Do note the free plan does limit the number and complexity of your rules.
 5. **World-Class DNS Hosting** — the easiest way to configure CloudFlare is to move your DNS hosting to them (you can just point specific records, but that takes more on your end), and this is a real win-win because it takes the least possible amount of effort, and you get a great free service! Their authoritative DNS servers are robust and fast, and their DNS control panel is powerful and easy to use.
 
-Note that Allison uses a traffic shaping rule to rate-limit requests to the XML-RPC URL for the `podfeeet.com` site. This is because API endpoints can't be cached, and spammers like to use Wordpress's well-known XML-RPC URL to spam, sites with bulk ping-backs and/or comments.
+Note that Allison uses a traffic shaping rule to rate-limit requests to the XML-RPC URL for the `podfeeet.com` site. This is because API endpoints can't be cached, and spammers like to use WordPress's well-known XML-RPC URL to spam, sites with bulk ping-backs and/or comments.
 
 ## A Contemporary Post's Tale
 
@@ -172,9 +172,9 @@ To really see how this new architecture works, let's follow another article, but
 
 ### Part 1 — Allison Publishes
 
-Allison is still using the Mars Edit client, so the new article and its attachments are still being uploaded via HTTPS requests to the XML-RPC URL. The first difference is that when Mars Edit contacts the IP address it has resolved for `podfeet.com`, it won't be communicating with Allison's server, but with CloudFlare's nearest available server, most likely in LA. Assuming the Mars Edit connections pass Cloudflare's various security checks, the CloudFlare server will relay the connection to the web server app now running on Allison's server. Note that because both Wordpress and Cloudflare correctly use the parts of the web standards for managing caches, no communications with the XML-RPC endpoint will ever get cached by Cloudflare.
+Allison is still using the Mars Edit client, so the new article and its attachments are still being uploaded via HTTPS requests to the XML-RPC URL. The first difference is that when Mars Edit contacts the IP address it has resolved for `podfeet.com`, it won't be communicating with Allison's server, but with CloudFlare's nearest available server, most likely in LA. Assuming the Mars Edit connections pass Cloudflare's various security checks, the CloudFlare server will relay the connection to the web server app now running on Allison's server. Note that because both WordPress and Cloudflare correctly use the parts of the web standards for managing caches, no communications with the XML-RPC endpoint will ever get cached by Cloudflare.
 
-The web server now running is NGINX, so it will receive the requests from Mars Edit. Unlike Apache, NGINX can't execute PHP code, so it will pass the request to PHP-FPM. PHP-FPM will run the Wordpress code which will update the database and save any attachments into the Wordpress uploads folder, just like Apache previously did.
+The web server now running is NGINX, so it will receive the requests from Mars Edit. Unlike Apache, NGINX can't execute PHP code, so it will pass the request to PHP-FPM. PHP-FPM will run the WordPress code which will update the database and save any attachments into the WordPress uploads folder, just like Apache previously did.
 
 The article is now published.
 
@@ -184,11 +184,11 @@ The first browser to try view the new article will almost certainly be Allison's
 
 Like Mars Edit, Safari resolves `podfeet.com` to an IP address and sends an HTTPS request for the new article to that IP. Again, that will be a CloudFlare server. After the requests passes all CloudFlare's security checks, the CloudFlare server will check its cache to see if it already has a copy of the article saved. This is a new article that hasn't been viewed yet, so it won't.
 
-Like before, the CloudFlare server will relay the request to Allison's server where NGINX will handle it. NGINX will again pass the request to PHP-FPM which will execute the Wordpress code, including the code for Allison's theme and the various plugins she has installed to generate the HTML code for the rendered article. PHP-FPM will pass that HTML back to NGINX which will pass it back to the CloudFlare server, **which will cache it**, before finally passing it back to Safari.
+Like before, the CloudFlare server will relay the request to Allison's server where NGINX will handle it. NGINX will again pass the request to PHP-FPM which will execute the WordPress code, including the code for Allison's theme and the various plugins she has installed to generate the HTML code for the rendered article. PHP-FPM will pass that HTML back to NGINX which will pass it back to the CloudFlare server, **which will cache it**, before finally passing it back to Safari.
 
 When Safari receives the HTML it will include references to the files Allison attached to the article, so Safari will make further requests to get those files too. Let's assume these files are images (they almost always are), so Safari will ask the CloudFlare servers for each image. We'll just follow the first of those requests.
 
-Again, the CloudFlare server will check its cache, but again, since this is a new content that has not been viewed yet, it won't find a cached copy, so it will again relay the request to Allison's server. NGNIX receives the request, but since this is a request for an image file, it doesn't need any help, so it simply fetches the image from the Wordpress uploads folder, passes it back to the CloudFlare server, **which caches it**, before passing it back to Safari which display it. 
+Again, the CloudFlare server will check its cache, but again, since this is a new content that has not been viewed yet, it won't find a cached copy, so it will again relay the request to Allison's server. NGNIX receives the request, but since this is a request for an image file, it doesn't need any help, so it simply fetches the image from the WordPress uploads folder, passes it back to the CloudFlare server, **which caches it**, before passing it back to Safari which display it. 
 
 ### Part 3 — The Second Reader
 
@@ -206,6 +206,6 @@ This new design offers many new efficiencies which are greatly reducing the load
 There are two obvious drawbacks though:
 
 1. The setup has become more complex, so it's more difficult to understand and troubleshoot
-2. The logs within Wordpress and on Allison's server are now systematically undercounting visits, the only logs that give the full picture are on CloudFlare, and free users get limited access to those logs (it's not bad, but it's less than you can get on your own server)
+2. The logs within WordPress and on Allison's server are now systematically undercounting visits, the only logs that give the full picture are on CloudFlare, and free users get limited access to those logs (it's not bad, but it's less than you can get on your own server)
 
 I think it's fair to say the advantages greatly outweigh the drawbacks, and the `podfeet.com` site is faster and healthier than it's been in some time!
