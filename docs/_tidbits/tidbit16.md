@@ -7,6 +7,8 @@ date: 2025-12-31
 
 In passing comments on some recent [NosillaCast](https://www.podfeet.com/) episodes, Allison has expressed some confusion about what exactly [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) is and how it relates to [NGINX](https://nginx.org) and what it has to do with [WordPress](https://wordpress.org), etc. In this instalment, we'll explore how these components can work together to deliver a PHP-powered web app like the WordPress Instance powering www.podfeet.com using relatively cheap modern cloud services. We'll do this through two stories — the evolution of Allison's web hosting over time, and the journey of a single article posted to the NosillaCast website.
 
+Note that throughout this story the protagonist is simply *'Allison'*, but the NosillaCast community played a major supporting role in this entire adventure — lots of help diagnosing the pain points, lots of help troubleshooting the inevitable issues that come along with any change, lots of invaluable advice and guidance, and countless hours of hands-on help from heroes in the community for each of the many migrations.
+
 ## Matching Podcast Episode
 
 TO DO
@@ -128,9 +130,7 @@ Can we replace Apache with something else?
 
 ### The New Architecture
 
-**BART - My move to NGINX happened when Bill Reveal helped me, not when Tage moved me off of CentOS to Rocky**
-
-The move to Allison's current stack involved upgrading to a new version of Linux ([Rocky Linux](https://rockylinux.org) 9), and two significant changes to the stack — the replacement of Apache, and the Addition of Cloudflare. The Linux upgrade is unremarkable, so let's look at the other changes in turn.
+The move to Allison's current stack involved upgrading to a new version of Linux (CentOS 8), and two significant changes to the stack — the replacement of Apache, and the Addition of Cloudflare. The Linux upgrade is unremarkable, and has in fact been repeated since to [Rocky Linux](https://rockylinux.org) 9, so let's look at the other changes in turn.
 
 ### Apache → NGINX + PHP-FPM
 
@@ -182,13 +182,11 @@ The article is now published.
 
 ### Part 2 — The First Reader
 
-**BART: why isn't the database server involved from here down?**
-
 The first browser to try view the new article will almost certainly be Allison's, as she verifies everything looks good before posting about the new article to social media. So, let's just assume the browser is Safari.
 
 Like Mars Edit, Safari resolves `podfeet.com` to an IP address and sends an HTTPS request for the new article to that IP. Again, that will be a CloudFlare server. After the request passes all of CloudFlare's security checks, the CloudFlare server will check its cache to see if it already has a copy of the article saved. This is a new article that hasn't been viewed yet, so it won't.
 
-Like before, the CloudFlare server will relay the request to Allison's server, where NGINX will handle it. NGINX will again pass the request to PHP-FPM, which will execute the WordPress code, including the code for Allison's theme and the various plugins she has installed to generate the HTML code for the rendered article. PHP-FPM will pass that HTML back to NGINX, which will pass it back to the CloudFlare server, **which will cache it**, before finally passing it back to Safari.
+Like before, the CloudFlare server will relay the request to Allison's server, where NGINX will handle it. NGINX will again pass the request to PHP-FPM, which will execute the WordPress code, including the code for Allison's theme and the various plugins she has installed. The Wordpress code will query the database for the article's contents, and when it has everything it needs, generate the HTML code to render the article. PHP-FPM will pass the generated HTML back to NGINX, which will pass it back to the CloudFlare server, **which will cache it**, before finally passing it back to Safari.
 
 When Safari receives the HTML, it will include references to the files Allison attached to the article, so Safari will make further requests to get those files too. Let's assume these files are images (they almost always are), so Safari will ask the CloudFlare servers for each image. We'll just follow the first of those requests.
 
