@@ -65,15 +65,15 @@ Unlike physical servers, virtual servers can easily have additional RAM and CPU 
 
 To understand what's about to change, and why, let's look at the life of a single post at this point in the site's evolution.
 
-Allison starts by composing the post in her favourite client, Mars Edit. When the content is ready she pushes the *Publish* button and Mars Edit sends the new post to the server with an HTTP request Wordpress XML-RPC URL on the `podfeet.com` site. The web server app listening for HTTP requests is Apache, so it receives the request from MarsEdit and assigns an Apache *worker process* to the request. This is a Linux process that does all the work for this request. While it is servicing this request it can't do anything else, so if another requests arrives on the server before this worker finishes, Apache has to use a second parallel worker processes for the other request. This means that on a busy Apache web server there can be a lot of workers running at the same time.
+Allison starts by composing the post in her favourite client, [MarsEdit](https://redsweater.com/marsedit/). When the content is ready she pushes the *Publish* button and MarsEdit sends the new post to the server with an HTTP request Wordpress XML-RPC URL on the `podfeet.com` site. The web server app listening for HTTP requests is Apache, so it receives the request from MarsEdit and assigns an Apache *worker process* to the request. This is a Linux process that does all the work for this request. While the worker is servicing this request it can't do anything else, so if another requests arrives on the server before this worker finishes, Apache has to use a second parallel worker processes for the other request. On a busy Apache web server there can be a lot of workers running at the same time!
 
-The URL MarsEdit called is part of the Wordpress web app which is written in PHP, so the Apache worker process has to load the PHP language into itself, and it does this using the `mod_php` Apache plugin. Now that the worker has learned how to execute PHP code, it gets to work dealing with Allison's XML-RPC request to publish her new post by executing the Wordpress PHP code. To publish a post all attachments need to get written to the Wordpress uploads folder, and the post an all its metadata need to get written to the database.
+The XML-RPC URL MarsEdit called is part of the Wordpress which is written in PHP, so the Apache worker process has to load the PHP language into itself. Apache workers *learn* PHP using the `mod_php` Apache module. Now that the worker has learned how to execute PHP code, it gets to work dealing with Allison's XML-RPC request to publish her new article by executing the Wordpress PHP code. To publish an article all attachments need to get written to the Wordpress uploads folder, and the article and all its metadata need to get written to the database.
 
-For simplicity, I'm going to ignore the reality that publishing a post actually requires a back-and-forth between the Wordpress code and MarsEdit. Due to various optimisations in the HTTP protocol the same Apache worker will handle the full back-and-forth, so blurring it all into one request is a reasonable thing to do for clarity.
+For simplicity, I'm going to ignore the reality that publishing a post actually requires a back-and-forth between the Wordpress code and MarsEdit. Due to various optimisations in the HTTP protocol, the same Apache worker will handle the full back-and-forth, so blurring it all into one request is a reasonable thing to do for clarity.
 
-Putting it all together the Apache worker process needs to:
+To publish the article the Apache worker process needs to:
 
-1. Load `mod_php` so it can execute the Wordpress code (costs CPU time and RAM)
+1. Load `mod_php` so it can execute the Wordpress code (which costs CPU time and consumes RAM)
 2. Save all attachments into the Wordpress uploads folder
 3. Connect to the database
 4. Write the content of the post into the database
@@ -81,98 +81,96 @@ Putting it all together the Apache worker process needs to:
 6. Reply to MarsEdit with the published post's metadata
 7. Shut itself down
 
-Some time later, a Nosillacastaway sees Allison's notification about the new post on the Podfeet Slack and wants to read it, so they open the post's URL in their browser, let's assume it's Safari.
+Some time later, a Nosillacastaway sees Allison's social media post about the new article (perhaps on the [Podfeet Slack](https://podfeet.com/slack) and wants to read it, so they open the post's URL in their browser. Let's assume it's Safari.
 
-Safari connects to the `podfeet.com` web server and Apache creates a fresh worker process, that worker loads `mod_php`, then executes the Wordpress code which reads the posts content from the database, loads the theme and all the site's plugins from the Wordpress extensions folder, builds the HTML, CSS, and JavaScript needed to render the page, and returns it all to Safari which displays it.
+Safari connects to the `podfeet.com` web server and Apache creates a fresh worker process, that worker loads `mod_php`, then executes the Wordpress code which reads the article's content from the database, loads the theme and all the site's plugins from the Wordpress extensions folder, builds the HTML, CSS, and JavaScript needed to render the page, and returns all that to Safari which displays it. Again, this actually involves multiple requests to the server, but it will be handled by a single Apache worker, so we'll simplify it to a single request.
 
 Again, this is not a small task, since the Apache worker needs to:
 
 1. Load `mod_php`
 2. Connect to the database
-3. Query the database for the post's content
+3. Query the database for the article's content
 4. Load the extra PHP code for the site's theme and plugins
-5. Execute the Wordpress code to render the page
+5. Execute the Wordpress code to render the article
 6. Return the rendered content to the browser
-7. Shut itself down.
+7. Shut itself down
 
 I want to draw your attention to some key points here.
 
-1. Apache needs to start and stop workers all the time, and each worker gets its own copy of the `mod_php`, so Apache worker processes take up a lot of RAM, and when you have many running at once, much of that RAM is copies of the same code!
-2. Since each worker requires a substantial amount of RAM, Apache limits the number of them that can be started simultaneously. As long as there are more available workers than simultaneous visitors all is well,  but the moment there are more visitors than workers Apache has to start queueing the requests.
+1. Apache needs to start and stop workers all the time, and each worker gets its own copy of the `mod_php`, so Apache worker processes take up a lot of RAM. When you have many workers running at once, much of the used RAM is copies of the same code (e.g. many copies of `mod_php`)!
+2. Since each worker requires a substantial amount of RAM, Apache limits the number of workers running at any time. As long as there are more available workers than simultaneous visitors, all is well. But, the moment there are more visitors than workers, Apache has to start queueing the requests.
 3. Each process is making its own database connection, so the database server is having to open and close connections constantly, and it too has a limit, so it too can start to queue up requests.
-4. The same server is running all these Apache processes and handling all these database queries, so there is a lot of data flowing around inside the VM, this can overload the OS quite easily.
+4. The same server is running all these Apache processes and handling all these database connections, so there's a lot of data flowing around inside the VM, which can overload the OS.
 
 ## Another Short Reprieve — Database-as-a-Service
 
 As the site continued to grow, even Allison's dedicated single server started to struggle.
 
-Remember this single server was running both Apache and MySQL, so the obvious way to split up the work is to move to a two-server setup, one running Apache and PHP, and there other MySQL.
+Remember this single server was running both Apache and MySQL, so the obvious way to split up the work was divide those two tasks across two servers — one running Apache and PHP, and there other MySQL.
 
-Again, Allison's timing was perfect. Had she arrived at this point five years earlier the only viable option would have been to purchase a second virtual server and move MySQL to that second server. However, that would not have been as good as the new option that was becoming common-place, a managed database.
+But again, Allison's timing was perfect. Had she arrived at this point five years earlier the only viable option would have been to purchase a second virtual server and move MySQL to that second server. However, that would have cost more and been less efficient than the new option that had just become practical — a managed database!
 
-Optimising a database server is a black art. Even when you know what you're doing, it takes a lot of work to fine-tune MySQL to give you the best possible performance for your specific needs. This means that it's inevitable that when hobbyists run their own MySQL servers they will be configured sub-optimally. What you need from a database is an efficient service, so why not out-source the hassle of maintaining the server delivering that service entirely?
+Optimising a database server is a black art. Even when you know what you're doing, it takes a lot of work to fine-tune a MySQL server so it delivers the best possible performance for your specific use-case. This means that it's inevitable that when hobbyists run their own MySQL servers they will be configured sub-optimally. What you need from a database is an efficient service, so why not out-source the hassle of maintaining the server delivering that service entirely?
 
-The new trend in cloud computing that arrived at the perfect time was the Software-as-a-Service model, otherwise known as SaaS. Instead of buying a second VM, Allison added a managed MySQL database server to her DigitalOcean account, copied the existing database to that newly acquired service, and updated the Wordpress configuration to point at it instead of the locally running copy of MySQL. Then, the local MySQL was simply disabled. This halved the server's workload, so it was able to grow some more without the need to re-egineer the stack.
+Enter the Software-as-a-Service model, otherwise known as SaaS. Instead of buying a second VM, Allison added a managed MySQL database to her DigitalOcean account, copied the existing database to that newly acquired service, and updated the Wordpress configuration to point at it instead of the locally running copy of MySQL. Then, the local MySQL was simply disabled. This halved the server's workload, so it was able to grow some more without the need to re-egineer the stack.
 
 ## The Big Re-Architecting
 
-As you can probably guess by now, the site has continued to grow, and so the site eventually out-grew the LAMP stack entirely. It was time for a big re-think!
+As you can probably guess by now, the site continued to grow, and so the site eventually out-grew the LAMP stack entirely. It was time for a big re-think!
 
 ### The Problems with LAMP (or Apache Really)
 
-The biggest problem with the LAMP stack is Apache. It was the first successful web server, so while it is very robust and battle-hardened, it is also quite primitive in some rather fundamental ways. Most notably, in how it handles simultaneous requests. Basically, the problem is all those memory-hungry worker processes hanging around waiting on various kinds of IO (input/output) from the file system and/or the database.
+The biggest problem with the LAMP stack is Apache. It was the first successful web server, so while it's very robust and battle-hardened, it is also quite primitive in some rather fundamental ways. Most notably, in how it handles simultaneous requests. Basically, the problem is all those memory-hungry worker processes hanging around waiting on various kinds of IO (input/output) from the file system and/or the database.
 
-The other pain point is the approach of embedding the ability to process PHP directly into each web worker process using `mod_php`. Teaching Apache to talk PHP with `mod_php` works effectively, but not efficiently! Apache is not optimised to be a PHP server, it's design is intentionally generic, allowing it to severe web apps written in just about any language.
+The other pain-point is Apache's approach of embedding the ability to process PHP directly into each web worker process using `mod_php`. Teaching Apache to execute PHP with `mod_php` works effectively, but not efficiently! Apache is not optimised to be a PHP server, its design is intentionally generic, allowing it to severe web apps written in just about any language. It's a jack of all languages, but a master of none, so to speak 🙂
 
 Can we replace Apache with something else?
 
 ### The New Architecture
 
-The move to Allison's current stack involved upgrading to a new version of Linux (Rocky Linux 9), and two significant changes to the stack. The Linux upgrades is unremarkable, so let's look at the other changes in turn.
+The move to Allison's current stack involved upgrading to a new version of Linux ([Rocky Linux](https://rockylinux.org) 9), and two significant changes to the stack — the replacement of Apache, and the Addition of Cloudflare. The Linux upgrade is unremarkable, so let's look at the other changes in turn.
 
 ### Apache → NGINX + PHP-FPM
 
-If you think about it, in our previous LAMP setup Apache was doing double-duty, it was handling the intricacies of web serving, and the execution of PHP code. Why not split those two roles apart so both can be optimised separately?
+If you think about it, in our previous LAMP setup Apache was doing double-duty — it was handling the intricacies of web serving, and it was executing PHP code. Why not split those two roles apart so both can be optimised separately?
 
-This is where NGINX comes into the picture — NGINX is a much more modern web server than Apache, and it has a much more efficient mechanism for handling concurrent connections. Rather than having lots of workers waiting on various IO tasks it runs a single master processes that rapidly cycles its attention between all the requests that are not currently waiting on IO operations. This approach reduces the RAM and CPU load on the server dramatically, and, it gives users snappier responses to boot!
+This is where [NGINX](https://nginx.org) (pronounced *engine-X*) enters the story — NGINX is a much more modern web server than Apache, and it has a much more efficient mechanism for handling concurrent connections. Rather than having lots of workers waiting on various IO tasks, it runs a single master processes that rapidly cycles its attention between all the requests that are not currently waiting on IO operations. This approach reduces the RAM and CPU load on the server dramatically, and, it gives users snappier responses too!
 
-NGINX is a superb web server, but it is **only** a web server, it can't execute any code, not Python code, not Ruby code, not PHP code, nothing! So we need something else to run the Wordpress PHP code as and when needed. This is where PHP-FPM comes in.
+NGINX is a superb web server, but it's **only** a web server, it can't execute any code, not Python code, not Ruby code, not PHP code, nothing! So we need something else to execute the Wordpress PHP code as and when needed. This is where [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) comes in.
 
-PHP-PFM is the PHP *PHP FastCGI Process Manager*. CGI is the *Common Gateway Interface*, and is a completely generic mechanism for web servers to request code execution in any language. FastCGI is a particularly efficient implementation of the CGI standard, and PHP-FPM is an extremely efficient FastCGI PHP executor.
+PHP-PFM is the PHP *PHP FastCGI Process Manager*. [CGI](https://en.wikipedia.org/wiki/Common_Gateway_Interface) is the *Common Gateway Interface*, and is a completely generic mechanism for web servers to request code execution in any language. [FastCGI](https://en.wikipedia.org/wiki/FastCGI) is a more efficient evolution of the original CGI protocol specifically designed for web servers to out-source web request processing to another app. PHP-FPM is a FastCGI processor for PHP code.
 
-Rather than having Apache start a dedicated worker process for each request, and have it teach each each of those workers how to execute PHP code, NGINX uses a single very efficient master process, and out-sources the execution of all PHP code to the very efficient PHP-FPM.
+Rather than having Apache start a dedicated worker process for each request, and have it teach each of those workers how to execute PHP code, NGINX uses a single very efficient master process, and out-sources the execution of all PHP code to the very efficient PHP-FPM.
 
-These optimisations make it possible for a single Linux VM to process many more web requests simultaneously using the same amount of RAM and CPU when compared to what you can achieve with Apache.
+These optimisations make it possible for a single Linux VM to process many more web requests simultaneously on the same hardware compared to what can be achieved with Apache with `mod_php`.
 
-So, moving away from Apache would have been enough to buy Allison some more time, there was another opportunity for even more optimisation — caching.
+So, moving away from Apache would have been enough to buy Allison a little more time, but there was another opportunity for even more optimisation — caching!
 
 ### Adding Caching (CloudFlare)
 
-The `podfeet.com` website is not updated many times per day, let alone many times per hour or per minute, so having NGINX+PHP-FPM render each page from scratch for each visitor is needlessly wasteful — until Allison posts a new post or a listener leaves a new comment, the HTML+CSS+JavaScript returned by the Wordpress code will be the same for every visitor. All that RAM, CPU, disk-IO, and all those database queries are just re-creating the same output over-and-over-and-over again.
+The `podfeet.com` website is not updated many times per day, let alone per hour or per minute, so having NGINX+PHP-FPM render each page from scratch for each visitor is needlessly wasteful — until Allison posts a new article or a listener leaves a new comment, the HTML+CSS+JavaScript returned by the Wordpress code will be the same for every visitor. All that RAM, CPU, disk-IO, and all those database queries are just re-creating the same output over-and-over-and-over again.
 
 Why re-generate every page every time? Why not cache the pages that don't change, at least for a while?
 
-It's possible to configure NGINX to do that kind of caching, but that means more configurations to maintain, and caches, like databases, benefit from careful fine-tuning. Since we live in a Software-as-a-Service world, would it not be better to out-source that expertise too?
+It's possible to configure NGINX to do that kind of caching locally, but that means more configurations to maintain. Caches, like databases, benefit from careful fine-tuning, so they are also ideally suited to out-sourcing to experts! Since we now live in a Software-as-a-Service world, we can do just that — enter [CloudFlare](https://www.cloudflare.com/)!
 
-This is where CloudFlare enters the picture.
+Not only does CloudFlare offer intelligent caching, it also offers a bunch of additional useful features (more on those in a moment). But best of all, with CloudFlare deployed in front of your web server, the load on your server from every cached response is literally zero! If you were caching locally your server would still have some work to do, but with CloudFlare, your server is completely out of the loop for all cached responses.
 
-Not only does CloudFlare offer intelligent caching, it also offers a bunch of additional useful features (more on those in a moment), but better still, is saves the need for requests that can be handled by the cache ever even reaching the server at all.
-
-CloudFlare's infrastructure sits between your actual web server and the internet, so browsers send their requests to CloudFlare which then reaches back to your server only when needed. Instead of storing caches pages on your server, consuming your resources, the cached copies are stored in CloudFlare's world-class Content Delivery Network (CDN). CloudFlare are world leaders when to comes content delivery, and their freemium model makes it an excellent option for individuals and small organisations. Sites like `podfeet.com` don't need anything more than the free tier, and even that ties offers some real benefits:
+The way you deploy CloudFlare is to update your DNS records to they point at CloudFlare's servers rather than your own. The CloudFlare servers can then handle all the caching, and the cached copies are stored in CloudFlare's world-class Content Delivery Network (CDN). CloudFlare are world leaders when to comes content delivery, and their freemium model makes it an excellent option for individuals and small organisations. Sites like `podfeet.com` don't need anything beyond the free tier, and even that tier offers some real benefits:
 
 1. **Intelligent caching** — CloudFlare's caches are expertly tuned, and since they deliver more websites than anyone else in the world there really is no one better to configuring your cache for you!
 2. **DDOS Protection** — because their infrastructure sits in front of your server, they can soak up even the biggest denial of service attacks and save your website from getting knocked offline.
 3. **Web Application Firewall (WAF)** — as well as intelligently caching your website, CloudFlare also check incoming requests against known malicious behaviour, blocking likely malicious requests before they ever reach your server.
 4. **Traffic Shaping Rules** — the simplest kinds of traffic shaping rules are rate limits, but CloudFlare's rules can do much more than that. Do note the free plan does limit the number and complexity of your rules.
-5. **World-Class DNS Hosting** — the easiest way to configure CloudFlare is to move your DNS hosting to them (there are other options), and this is a real win-win because it takes the least possible amount of effort, and you get a great free service! Their authoritative DNS servers are robust and fast, and their DNS control panel is powerful and easy to use.
+5. **World-Class DNS Hosting** — the easiest way to configure CloudFlare is to move your DNS hosting to them (you can just point specific records, but that takes more on your end), and this is a real win-win because it takes the least possible amount of effort, and you get a great free service! Their authoritative DNS servers are robust and fast, and their DNS control panel is powerful and easy to use.
 
-Note that Allison needs a traffic shaping rule to rate-limit requests to the XML-RPC URL for the site, because API endpoints can't be cached, and spammers like to use the URL to try bulk-add ping-backs and/or comments to posts.
+Note that Allison uses a traffic shaping rule to rate-limit requests to the XML-RPC URL for the `podfeeet.com` site. This is because API endpoints can't be cached, and spammers like to use Wordpress's well-known XML-RPC URL to spam, sites with bulk ping-backs and/or comments.
 
 ## A Contemporary Post's Tale
 
-To really see how this new architecture works, let's follow another article, but this time, we need to follow it not just as Allison posts, and as the first reader reads, but also when the second reader reads, because something very different will happen for them.
+To really see how this new architecture works, let's follow another article, but this time, we need to follow it for one extra step. Like before we'll start with Allison publishing the article, and with the first visitor reading it, but we'll continue beyond that to look at the second visitor too. Why? Because the second visitor will be the first to benefit from the CloudFlare cache!
 
-### Part 1 — Allison Posts
+### Part 1 — Allison Publishes
 
 Allison is still using the Mars Edit client, so the new article and its attachments are still being uploaded via HTTPS requests to the XML-RPC URL. The first difference is that when Mars Edit contacts the IP address it has resolved for `podfeet.com`, it won't be communicating with Allison's server, but with CloudFlare's nearest available server, most likely in LA. Assuming the Mars Edit connections pass Cloudflare's various security checks, the CloudFlare server will relay the connection to the web server app now running on Allison's server. Note that because both Wordpress and Cloudflare correctly use the parts of the web standards for managing caches, no communications with the XML-RPC endpoint will ever get cached by Cloudflare.
 
