@@ -43,7 +43,7 @@ These kinds of fully managed shared hosting offerings have two obvious advantage
 
 However, there is a significant limitation — they're resource-constrained! This means shared hosting platforms are fine for personal websites and simple brochure sites for small businesses, but they're just not up to hosting an even moderately popular site.
 
-As the podcast grew in popularity, so did the traffic to `podfeet.com`, so it inevitably out-grew shared hosting.
+As the podcast grew in popularity, so did the traffic to `podfeet.com`, so it inevitably outgrew shared hosting.
 
 Had the podcast reached this point just a few years earlier, Allison would have had no choice but to move to a dedicated physical server. This would have meant taking full responsibility for the sysadmin tasks, and of course, an order of magnitude jump in the monthly cost. But Allison's timing was perfect; she was able to dodge the sysadmin bullet for a few more years thanks to the rise of virtualisation.
 
@@ -83,7 +83,7 @@ To publish the article, the Apache worker process needs to:
 6. Reply to MarsEdit with the published post's metadata
 7. Shut itself down
 
-Some time later, a Nosillacastaway sees Allison's social media post about the new article (perhaps on the [Podfeet Slack](https://podfeet.com/slack)) and wants to read it, so they open the post's URL in their browser. Let's assume it's Safari.
+Some time later, a NosillaCastaway sees Allison's social media post about the new article (perhaps on the [Podfeet Slack](https://podfeet.com/slack)) and wants to read it, so they open the post's URL in their browser. Let's assume it's Safari.
 
 Safari connects to the `podfeet.com` web server, and Apache creates a fresh worker process. That worker loads `mod_php`, then executes the WordPress code, which reads the article's content from the database, loads the theme and all the site's plugins from the WordPress extensions folder, builds the HTML, CSS, and JavaScript needed to render the page, and returns all that to Safari, which displays it. Again, this actually involves multiple requests to the server, but it will be handled by a single Apache worker, so we'll simplify it to a single request.
 
@@ -124,13 +124,13 @@ As you can probably guess by now, the site continued to grow, and so the site ev
 
 The biggest problem with the LAMP stack is Apache. It was the first successful web server, so while it's very robust and battle-hardened, it is also quite primitive in some rather fundamental ways. Most notably, in how it handles simultaneous requests. Basically, the problem is all those memory-hungry worker processes hanging around waiting on various kinds of IO (input/output) from the file system and/or the database.
 
-The other pain point is Apache's approach of embedding the ability to process PHP directly into each web worker process using `mod_php`. Teaching Apache to execute PHP with `mod_php` works effectively, but not efficiently! Apache is not optimised to be a PHP server, its design is intentionally generic, allowing it to serve web apps written in just about any language. It's a jack of all languages, but a master of none, so to speak 🙂
+The other pain point is Apache's approach of embedding the ability to process PHP directly into each web worker process using `mod_php`. Teaching Apache to execute PHP with `mod_php` works effectively, but not efficiently! Apache is not optimised to be a PHP server; its design is intentionally generic, allowing it to serve web apps written in just about any language. It's a jack of all languages, but a master of none, so to speak 🙂
 
 Can we replace Apache with something else?
 
 ### The New Architecture
 
-The move to Allison's current stack involved upgrading to a new version of Linux (CentOS 8), and two significant changes to the stack — the replacement of Apache, and the Addition of Cloudflare. The Linux upgrade is unremarkable, and has in fact been repeated since to [Rocky Linux](https://rockylinux.org) 9, so let's look at the other changes in turn.
+The move to Allison's current stack involved upgrading to a new version of Linux (CentOS 8), and two significant changes to the stack — the replacement of Apache, and the Addition of Cloudflare. The Linux upgrade is unremarkable and has in fact been repeated since to [Rocky Linux](https://rockylinux.org) 9, so let's look at the other changes in turn.
 
 ### Apache → NGINX + PHP-FPM
 
@@ -142,7 +142,7 @@ NGINX is a superb web server, but it's **only** a web server; it can't execute a
 
 PHP-PFM is the *PHP FastCGI Process Manager*. [CGI](https://en.wikipedia.org/wiki/Common_Gateway_Interface) is the *Common Gateway Interface*, and is a completely generic mechanism for web servers to request code execution in any language. [FastCGI](https://en.wikipedia.org/wiki/FastCGI) is a more efficient evolution of the original CGI protocol, specifically designed for web servers to outsource web request processing to another app. PHP-FPM is a FastCGI processor for PHP code.
 
-Rather than having Apache start a dedicated worker process for each request, and have it teach each of those workers how to execute PHP code, NGINX uses a single very efficient master process, and outsources the execution of all PHP code to the very efficient PHP-FPM.
+Rather than having Apache start a dedicated worker process for each request and have it teach each of those workers how to execute PHP code, NGINX uses a single very efficient master process, and outsources the execution of all PHP code to the very efficient PHP-FPM.
 
 These optimisations make it possible for a single Linux VM to process many more web requests simultaneously on the same hardware compared to what can be achieved with Apache with `mod_php`.
 
@@ -174,9 +174,9 @@ To really see how this new architecture works, let's follow another article, but
 
 ### Part 1 — Allison Publishes
 
-Allison is still using the Mars Edit client, so the new article and its attachments are still being uploaded via HTTPS requests to the XML-RPC URL. The first difference is that when Mars Edit contacts the IP address it has resolved for `podfeet.com`, it won't be communicating with Allison's server, but with CloudFlare's nearest available server, most likely in LA. Assuming the Mars Edit connections pass Cloudflare's various security checks, the CloudFlare server will relay the connection to the web server app now running on Allison's server. Note that because both WordPress and Cloudflare correctly use the parts of the web standards for managing caches, no communications with the XML-RPC endpoint will ever get cached by Cloudflare.
+Allison is still using the MarsEdit client, so the new article and its attachments are still being uploaded via HTTPS requests to the XML-RPC URL. The first difference is that when MarsEdit contacts the IP address it has resolved for `podfeet.com`, it won't be communicating with Allison's server, but with CloudFlare's nearest available server, most likely in LA. Assuming the MarsEdit connections pass Cloudflare's various security checks, the CloudFlare server will relay the connection to the web server app now running on Allison's server. Note that because both WordPress and Cloudflare correctly use the parts of the web standards for managing caches, no communications with the XML-RPC endpoint will ever get cached by Cloudflare.
 
-The web server now running is NGINX, so it will receive the requests from Mars Edit. Unlike Apache, NGINX can't execute PHP code, so it will pass the request to PHP-FPM. PHP-FPM will run the WordPress code, which will update the database and save any attachments into the WordPress uploads folder, just like Apache previously did.
+The web server now running is NGINX, so it will receive the requests from MarsEdit. Unlike Apache, NGINX can't execute PHP code, so it will pass the request to PHP-FPM. PHP-FPM will run the WordPress code, which will update the database and save any attachments into the WordPress uploads folder, just like Apache previously did.
 
 The article is now published.
 
@@ -184,7 +184,7 @@ The article is now published.
 
 The first browser to try view the new article will almost certainly be Allison's, as she verifies everything looks good before posting about the new article to social media. So, let's just assume the browser is Safari.
 
-Like Mars Edit, Safari resolves `podfeet.com` to an IP address and sends an HTTPS request for the new article to that IP. Again, that will be a CloudFlare server. After the request passes all of CloudFlare's security checks, the CloudFlare server will check its cache to see if it already has a copy of the article saved. This is a new article that hasn't been viewed yet, so it won't.
+Like MarsEdit, Safari resolves `podfeet.com` to an IP address and sends an HTTPS request for the new article to that IP. Again, that will be a CloudFlare server. After the request passes all of CloudFlare's security checks, the CloudFlare server will check its cache to see if it already has a copy of the article saved. This is a new article that hasn't been viewed yet, so it won't.
 
 Like before, the CloudFlare server will relay the request to Allison's server, where NGINX will handle it. NGINX will again pass the request to PHP-FPM, which will execute the WordPress code, including the code for Allison's theme and the various plugins she has installed. The Wordpress code will query the database for the article's contents, and when it has everything it needs, generate the HTML code to render the article. PHP-FPM will pass the generated HTML back to NGINX, which will pass it back to the CloudFlare server, **which will cache it**, before finally passing it back to Safari.
 
