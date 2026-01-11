@@ -7,11 +7,15 @@ date: 2025-12-31
 
 In passing comments on some recent [NosillaCast](https://www.podfeet.com/) episodes, Allison has expressed some confusion about what exactly [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) is and how it relates to [NGINX](https://nginx.org) and what it has to do with [WordPress](https://wordpress.org), etc. In this instalment, we'll explore how these components can work together to deliver a PHP-powered web app like the WordPress Instance powering www.podfeet.com using relatively cheap modern cloud services. We'll do this through two stories — the evolution of Allison's web hosting over time, and the journey of a single article posted to the NosillaCast website.
 
-Note that throughout this story the protagonist is simply *'Allison'*, but the NosillaCast community played a major supporting role in this entire adventure — lots of help diagnosing the pain points, lots of help troubleshooting the inevitable issues that come along with any change, lots of invaluable advice and guidance, and countless hours of hands-on help from heroes in the community for each of the many migrations. 
+Note that throughout this story the protagonist is simply *'Allison'*, but the NosillaCast community played a major supporting role in this entire adventure — lots of help diagnosing the pain points, lots of help troubleshooting the inevitable issues that come along with any change, lots of invaluable advice and guidance, and countless hours of hands-on help from heroes in the community for each of the many migrations.
 
 ## Matching Podcast Episode
 
-TBD
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_09.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_09.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_01_09.html">PBS_2026_01_09</a>
 
 ## Context — A Quick WordPress Overview
 
