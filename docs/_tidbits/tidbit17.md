@@ -2,10 +2,10 @@
 title: Simplifying Developer Setups with Docker
 instalment: 17
 creators: [helma, bart]
-date: 2026-01-28
+date: 2026-01-27
 ---
 
-> Note: this tidbut is guest-written by Helma van der Linden, and the matching podcast episodes are guest-hosted by Bart, temporarily taking Allison's role as the 'student'.
+> Note: this tidbit is guest-written by Helma van der Linden, and the matching podcast episodes are guest-hosted by Bart, temporarily taking Allison's role as the 'student'.
 {:.aside}
 
 While listening to the episodes [PBS 177](./pbs177) through [181](./pbs188) I realised I use a different approach to isolate programming environments, one that I increasingly embrace.
@@ -14,9 +14,13 @@ While listening to the episodes [PBS 177](./pbs177) through [181](./pbs188) I re
 
 The audio for this bumper-sized tidbit is spread across two podcast episodes
 
-INSERT FIRST AUDIO HERE
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_27.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
-The second podcast episode will be released shortly, so stay subscribed 😉
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_27.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_01_27.html">PBS_2026_01_27</a>
+
+The second podcast episode will be released shortly, so stay subscribed 😉. It will start at the heading entitled [Reusing the Docker image](#reusing-the-docker-image).
 
 ## Problem to Be Solved: Dependency Chaos
 
