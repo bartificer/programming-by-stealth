@@ -1,11 +1,22 @@
 ---
 title: Simplifying Developer Setups with Docker
 instalment: 17
-creators: [helma]
-date: 2025-12-29
+creators: [helma, bart]
+date: 2026-01-28
 ---
 
-While listening to the episodes PBS 177 through 181 I realised I use a different approach to isolate programming environments, one that I increasingly embrace.
+> Note: this tidbut is guest-written by Helma van der Linden, and the matching podcast episodes are guest-hosted by Bart, temporarily taking Allison's role as the 'student'.
+{:.aside}
+
+While listening to the episodes [PBS 177](./pbs177) through [181](./pbs188) I realised I use a different approach to isolate programming environments, one that I increasingly embrace.
+
+## Matching Podcast Episode
+
+The audio for this bumper-sized tidbit is spread across two podcast episodes
+
+INSERT FIRST AUDIO HERE
+
+The second podcast episode will be released shortly, so stay subscribed 😉
 
 ## Problem to Be Solved: Dependency Chaos
 
