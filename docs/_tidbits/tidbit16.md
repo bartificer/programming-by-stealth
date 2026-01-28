@@ -11,9 +11,9 @@ Note that throughout this story the protagonist is simply *'Allison'*, but the N
 
 ## Matching Podcast Episode
 
-<audio controls src="https://traffic.libsyn.com/forcedn/nosillacast/PBS_2026_01_09.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_09.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
-You can also <a href="https://traffic.libsyn.com/forcedn/nosillacast/PBS_2026_01_09.mp3" >Download the MP3</a>
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_09.mp3" >Download the MP3</a>
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_01_09.html">PBS_2026_01_09</a>
 
