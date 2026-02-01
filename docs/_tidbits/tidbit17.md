@@ -12,7 +12,9 @@ While listening to the episodes [PBS 177](./pbs177) through [181](./pbs188) I re
 
 ## Matching Podcast Episode
 
-The audio for this bumper-sized tidbit is spread across two podcast episodes
+The audio for this bumper-sized tidbit is spread across two podcast episodes:
+
+### PBS Tidbit 17a:
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_27.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -20,7 +22,19 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_01_27.html">PBS_2026_01_27</a>
 
-The second podcast episode will be released shortly, so stay subscribed 😉. It will start at the heading entitled [Reusing the Docker image](#reusing-the-docker-image).
+### PBS Tidbit 17b:
+
+Picks up at the heading entitled [Reusing the Docker image](#reusing-the-docker-image).
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_31.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_01_31.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_01_31.html">PBS_2026_01_31</a>
+
+## Downloads to Play Along
+
+During the instructions from Helma, you'll be using the Jekyll Demo Site that Bart created for PBS 178. When Helma says to install into the directory, you'll need to have downloaded the demo site to follow along. You can download it from Bart's GitHub repo: [github.com/bartificer...](https://github.com/bartificer/pbs-jekyll-demoSite/releases/tag/pbs178-startingPoint)
 
 ## Problem to Be Solved: Dependency Chaos
 
@@ -925,7 +939,7 @@ Stopping Jekyll server...
 ```
 
 Copy the `Dockerfile`, `docker-compose.yml`, `.env` and `Makefile` files to the root of the PBS project.
-Without any changes if we run this configuration with `make up` we should get the PBS project in our browser.
+Without any changes if we run this configuration with `make up` we should get the PBS project in our browser locally.
 
 Does it work? Yes and no. No, we don't see the website in our browser at `http://localhost:4000` but if we check the logs with `make logs`, we see that there is a problem with a missing repo. So the problem is in the Jekyll setup, not in our Docker configuration.
 
@@ -950,7 +964,7 @@ For now, we need to make a few changes:
    ```yaml
    repository: bartificer/programming-by-stealth
    ```
-2. update the `docker-compose.yml` file to use this file by adding a `command` element that uses this config_dev file. By adding a similar command to the `docker-compose.yml` file, we override the default command from the image with a specific one for this docker-compose file.
+2. update the `docker-compose.yml` file to use this file by adding a `command` element that uses this `config_dev` file. By adding a similar command to the `docker-compose.yml` file, we override the default command from the image with a specific one for this docker-compose file.
 
 The `docker-compose.yml` file now becomes
 
