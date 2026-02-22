@@ -43,15 +43,39 @@ Finally, I used the free version of [Font Awesome 7](https://fontawesome.com/#fa
 
 In many ways, the most investing lessons came from the unexpected surprises, so we'll spent most of our time on those, but before we do, I just want to quickly recognise the things that actually went to plan.
 
-1. Our discussions on Jekyll Layouts and Liquid Templates were detailed enough that I rarely needed to go beyond the feature in our PBS examples, and when I did, our discussions armed me well enough to get what I needed from the documentation with minimal effort.
-2. Using Bootstrap SASS variables to apply the colours and fonts from my corporate style guide worked just liked I'd hoped — with minimal effort I had a Bootstrap site works like any other, but looks unique.
-3. TO FINISH
+1. Our discussions on Jekyll Layouts and Liquid Templates were detailed enough that I rarely needed to go beyond the feature in our PBS examples, and when I did, our explorations armed me well enough to get what I needed from the documentation with minimal effort.
+2. TO REWORD — Using Bootstrap SASS variables to apply the colours and fonts from my corporate style guide worked just liked I'd hoped — with minimal effort I had a Bootstrap site that works like any other, but looks unique.
+3. Customising my OpenGraph metadata proved as rewarding as I'd hoped it would
 
 ### The Unexpected Surprises
 
+I'd put a lot of work into preparing for this project, so I was happy I'd dealt with the known-unknowns. But we're dealing with computers here's so it seemed inevitable I'd bump into some unknown-unknowns. Sure enough, there were indeed some things I didn't know that I didn't know I needed to know!
+
+#### Customising Bootstrap has Changed Significantly Since Version 4 — I needed to Learn CSS Variables
+
+The last version of Bootstrap I'd customised before this project was version 4, to build this very PBS website as it happens! I assumed I'd just do the same thing again, but there was more to it than that!
+
+Firstly, Bootstrap 5 is substantially more customisable than Bootstrap 4, and you can now think of those customisations as being two-layered, making SASS optional for quite some types of customisation.
+
+Bootstrap's final CSS file is built from a collection of SASS files which get compiled down to CSS. Deeply customising Bootstrap still requires working with SASS to alter the generated CSS, just like before, but that generated CSS now provides an entirely new avenue for many kinds of customisation — CSS variables.
+
+I've been avoiding CSS variables for many years, because when they first came out browser support was patchy at best. THat's just not true in 2026! IE is now totally and utterly dead, and thanks to the push for better cybersecurity, it's now utterly reasonable to assume that all browsers are modern, so CSS variables have arrived at the *they just work* stage of their evolution.
+
+Had I been working with Bootstrap 5.0, 5.1, or 5.2, I could have simply ignored CSS variables and done all my customisations at the SASS level like I had previously. But version 5.3 changed that. To add some very nice extra functionality to common components like dropdowns and nav bars, Bootstrap 5.3 added the concept of themes for certain Bootstrap components, including nav bars. I'm not actually making use of this new feature, but it's existence made it impossible for me to customise my site's nav bar purely with SASS, I needed to use CSS variables to get the nav bar to look right, so I finally learned how they work.
+
+The good news is CSS variables are both wonderfully powerful and quite simple, so I soon got the hang of them. Which proved to be a real boon later in the project when they proved very useful for some of my more bespoke layouts, letting me add some very pleasing little touches to episode lists for example, which take their colour queues from the podcast they belong to.
+
+#### Generating a Good Cross-Browser Favicon is not easy in 2026!
+
 TO DO
 
+#### TO DO — ADD MORE IF NEEDED
+
 ### My Site Structure and Taxonomy
+
+TO DO
+
+### There's Always More to Do!
 
 TO DO
 
