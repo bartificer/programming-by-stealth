@@ -218,13 +218,52 @@ In the same way that the data architecture made the URL structure easy to define
 
 You might notice that there's no folder for storing MP3 files or any images contained in show notes, that's intentional — even before migrating away from Wordpress I'd started to use a Digital Ocean CDN for my media assets, so I'm simply continuing to do that, with all my MP3s and show note attachments published under  `https://media.lets-talk.ie/`
 
-### There's Always More to Do!
+## There's Always More to Do!
 
-TO EXPAND
+All in all the new site is surprisingly completed for something I built in about three weeks, but that doesn't mean I don't still have some work to do.
 
-1. Clean up crudely imported back catalog (call out for help 🙂)
-2. Add support for tags
-3. Address some feedback already received from listeners (call out to submit issues)
+### 1 — Imperfect Content Imports
+
+The single biggest task remaining is to pay down the technical debt I'd built up on Wordpress. A lot of what is really data was hard-coded into the content, and I knew I was never going to be able to clean all that up programmatically. I was able to get all the information across, but not cleanly.
+
+I had two datasources to work with — a Wordpress export, and the podcast RSS feeds. As it happens, when you export your content from Wordpress the file you get is actually in an RSS-like format. These Wordpress exports have all the expected RSS fields, and then they have some additional custom fields.
+
+Since RSS is an XML data format I thought I might have to find some decent XML-parsing JavaScrip modules to build my data transfer script, but thankfully I found a better solution — a JavaScript library that converts RSS files to JSON, including any custom fields ([@sesamy/podcast-parser](https://www.npmjs.com/package/@sesamy/podcast-parser)).
+
+Once I had a mechanism for converting all my data to JSON I was able to mutate it into a workable format using `jq` and some NodeJS JavaScripts. If you're curious, you'll find all my migration scripts in the `/migration` folder in the GitHub repo.
+
+If you look at an un-migrated episode you'll see that all the content is there, but so is a bunch of hard-coded metadata that I used to add into each Wordpress post using TextExpander snippets. I never felt comfortable with this approach, but I wasn't able to figure out anything better given the constraints I was working under within Wordpress. Had I had the time and the skills to build a suite of custom plugins and/or a custom theme, I definitely could have, but despite a few aborted attempts, I never got there. It was much less work to migrate the entire site away from Wordpress than to learn everything I'd need to know to bend Wordpress to my will!
+
+Realistically, it's going to take many months, if not a year or two, to work through the entire back-catalogue, so I put my energy into making the best of the situation. As part of the migration process I added YAML front-matter to each episode listing the post-migration tasks still outstanding on the episode, e.g.:
+
+```yaml
+warnings:
+  metadata:
+    - unreviewed
+    - unchecked_guests
+  blurb:
+    - unreviewed
+  notes:
+    - crude_import
+```
+
+I then added some conditional sections to the Podcast Episode Jekyll layout to display appropriate Bootstrap alerts for the unreviewed metadata and information. As I clean up episodes I can remove this front matter, and the warnings will disappear.
+
+Because each unreviewed episode captures its unreviewed status in the front matter, I was able to create a hidden utility page that list all the episodes that have at least one warning ([/temp-episodes-to-review.html](https://www.lets-talk.ie/temp-episodes-to-review.html)).
+
+BTW — if you're comfortable with Jekyll, have a few minutes to spare to familiarise yourself with what's needed to properly format an episode on the new site, and some free time to donate, pull requests with episode fixes are always welcome 😉.
+
+### 2 — Add Episode Tags
+
+Wordpress supports tags, and had I taken the time to tag my episodes as I released them I could have imported those tags from Wordpress into Jekyll, but alas I never did take them time to tag my episodes with meaningful keywords, so there was nothing to import.
+
+At some stage, when all the episodes have been reviewed, I'd like to add tagging support to the new Jekyll site, and then start going through the back episodes and adding those tags I should have been adding all along.
+
+### 3 — Address any Bugs and Niggles I Find, as well as any Listener Feedback
+
+This is new software written within just three weeks, so I'm sure there are bugs! There are definitely a few niggles I've already found, and one listener has already provided some very valuable feedback for future tweaks.
+
+I'm not likely to get to these things quickly, so to avoid forgetting them I'm capturing them all as GitHub issues. If you have any feedback to share, or if you find any bugs, please feel free to [submit an issue](https://github.com/bartificer/www.lets-talk.ie/issues) too!
 
 ## The Next Few Programming by Stealth Instalments
 
