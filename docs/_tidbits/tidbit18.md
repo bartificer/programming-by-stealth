@@ -5,7 +5,9 @@ creators: [bart, allison]
 date: 2026-02-28
 ---
 
-TO DO
+It's not a coincidence that we spent the second half of 2025 covering website hosting on GitHub Pages with the Jekyll static site generator on the main feed. The motivation was simple — I wanted to migrate the website for my podcasts from Wordpress to GitHub Pages, and the second best way to truly learn something is to try teach it. What's the best way to learn? By doing! And that's what I spent January doing.
+
+Over three weeks I built an entirely fresh website for my shows and published it at [www.lets-talk.ie](https://lets-talk.ie). That proved to be quite the experience, so I thought it was worth sharing as a Tidbit.
 
 ## Matching Podcast Episode
 
@@ -13,15 +15,11 @@ TO DO
 
 ## Context
 
-As we record this instalment, we're paused between the first and second halves of a mini-series dedicated to building websites with the Jekyll Static Site Generator. In the first instalment we focused on the practicalities of building a basic customisable website with our own custom theme built on Bootstrap 5. We learned how we can built our site's theme using Jekyll layouts powered by HTML, SASS/CSS, and the Liquid templating engine, and how to encode our site's content and metadata using Markdown and YAML. In the second half we'll focus on organising our content onto meaningful taxonomies, allowing us build sites truly adapted to our publishing needs.
+As we record this instalment in late February 2026, we're paused between the first and second halves of a mini-series dedicated to building websites on GitHub Pages. We started with a generic look at how GitHub Pages can be customised to build static sites with just about any generator, but we focused mainly on using the default generator built into GitHub Pages, [Jekyll](https://jekyllrb.com). 
 
-The reason we're looking at Jekyll at all is that for various reasons, I've fallen out of love with Wordpress, and want to migrate both the website for the Let's Talk podcasts and my personal site from Wordpress to Jekyll.
+In the first part of our exploration of Jekyll and GitHub Pages we focused on the practicalities of building a basic website with our own custom layouts and style built with [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/). Specifically, we explored Jekyll's build process for converting folders of Markdown files with YAML front matter into HTML+CSS+JavaScript websites. Specifically we learned about the Jekyll configuration file, it's folder structure, and how to control the look of a site using Jekyll layouts, Jekyll variables, the Liquid templating engine, and the SASS CSS pre-processor. To capitalise on our existing knowledge we looked at how to integrate Bootstrap deeply into Jekyll allowing fine-grained customisations. 
 
-Writing the first half of the mini-series on Jekyll was the perfect preparation for my big January project this year — migrating my podcasts to my own bespoke Jekyll site. It's now February, so you'll be happy to know I succeeded, the new site went live in the last week of January, and you can see it for yourself at [lets-talk.ie](https://www.lets-talk.ie/).
-
-Had I not written the instalments [175](./pbs175) up to an including [181](./pbs181) I would never have succeeded in that project, but equally, until I'd done that project, I'd really have struggled to write the second half of the Jekyll series. The project let me cement what we have covered, discover a few gaps we'll need to back-fill, and get the really-world experience needed to clearly explain Jekyll's approach to organising content.
-
-With all that context establish, let me share my experiences building the new Let's Talk site with you all!
+Writing the first half of the mini-series on Jekyll was the perfect preparation for my big January project. Had I not written instalments [175](./pbs175) up to an including [181](./pbs181), I would never have succeeded. But equally, without having done that work I'd really have struggled to start writing the second half of the GitHub Page and Jekyll series.
 
 ## Building the new Let's Talk Podcasts Site
 
@@ -267,19 +265,20 @@ I'm not likely to get to these things quickly, so to avoid forgetting them I'm c
 
 ## The Next Few Programming by Stealth Instalments
 
-TO EXPAND
+Given my experiences with the Let's Talk site, we need to tweak our plans for the main series a little. Before we're ready to return to GitHub Pages and Jekyll we need to take a moment to back-fill some more fundamental knowledge:
 
-1. OpenGraph
-2. CSS Variables
-   1. How they work in general
-   2. How to use them to customise Bootstrap without SASS (very useful for web apps like Allison's Time Shifter Clock)
-3. SASS
-   1. A very high-level overview of how it works in general
-   2. A high-level overview of how it helps better customise websites where the content is written in Markdown, and hence, does not easily support the addition of CSS tags for applying Bootstrap styling directly
-4. Jekyll information architecture
-   1. Blogging with Jekyll
-   2. Collections
+1. We need to learn about CSS variables
+2. We need to learn the basics of the SASS CSS pre-processor
+3. Armed with an understanding of both CSS variables in SASS we need to look a little more deeply at customising Bootstrap, both with and without SASS.
+
+At that stage we'll be ready to dive back into GitHub Pages and Jekyll properly, focusing on:
+
+1. Blogging with Jekyll
+2. Content Collections in Jekyll
+
+Finally, we need to learn about the OpenGraph protocol so we can give our Jekyll layouts an important finishing touch by ensuring links to our work play nicely on social media.
+
 
 ## Final Thoughts
 
-TO DO
+I hope you found it investing to take a peek under the hood of a real-world Jekyll site hosted on GitHub Pages. While I try to make the examples in the main PBS series as useful as I can, they can never be as revealing as a production site. I certainly found the experience of putting the theory into practice very illuminating, and it's helped me to take stock of what we've done well so far in the GitHub Pages/Jekyll series, and where we've fallen short a bit. I hope you'll join us for the second half of our free web hosting adventure this spring!
