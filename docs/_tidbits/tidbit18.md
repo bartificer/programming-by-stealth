@@ -19,6 +19,8 @@ As we record this instalment in March 2026, we're paused between the first and s
 
 In the first part of our exploration of Jekyll and GitHub Pages, we focused on the practicalities of building a basic website with our own custom layouts and style built with [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/). Specifically, we explored Jekyll's build process for converting folders of Markdown files with YAML front matter into HTML+CSS+JavaScript websites. Specifically, we learned about the Jekyll configuration file, its folder structure, and how to control the look of a site using Jekyll layouts, Jekyll variables, the Liquid templating engine, and the SASS CSS pre-processor. To capitalise on our existing knowledge, we looked at how to integrate Bootstrap deeply into Jekyll, allowing fine-grained customisations. 
 
+**BART: Remind us of what SASS stands for? I know it's not the same as SaSS, but it is confusing that it almost has the same abbreviation and sounds the same when said out loud**
+
 Writing the first half of the mini-series on Jekyll was the perfect preparation for my big January project. Had I not written instalments [175](./pbs175) up to and including [181](./pbs181), I would never have succeeded. But equally, without having done that work, I'd really have struggled to start writing the second half of the GitHub Page and Jekyll series.
 
 ## Building the New Let's Talk Podcasts Site
