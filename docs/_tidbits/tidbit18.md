@@ -17,9 +17,7 @@ TO DO
 
 As we record this instalment in March 2026, we're paused between the first and second halves of a mini-series dedicated to building websites on GitHub Pages. We started with a generic look at how GitHub Pages can be customised to build static sites with just about any generator, but we focused mainly on using the default generator built into GitHub Pages, [Jekyll](https://jekyllrb.com). 
 
-In the first part of our exploration of Jekyll and GitHub Pages, we focused on the practicalities of building a basic website with our own custom layouts and style built with [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/). Specifically, we explored Jekyll's build process for converting folders of Markdown files with YAML front matter into HTML+CSS+JavaScript websites. Specifically, we learned about the Jekyll configuration file, its folder structure, and how to control the look of a site using Jekyll layouts, Jekyll variables, the Liquid templating engine, and the SASS CSS pre-processor. To capitalise on our existing knowledge, we looked at how to integrate Bootstrap deeply into Jekyll, allowing fine-grained customisations. 
-
-**BART: Remind us of what SASS stands for? I know it's not the same as SaSS, but it is confusing that it almost has the same abbreviation and sounds the same when said out loud**
+In the first part of our exploration of Jekyll and GitHub Pages, we focused on the practicalities of building a basic website with our own custom layouts and style built with [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/). Specifically, we explored Jekyll's build process for converting folders of Markdown files with YAML front matter into HTML+CSS+JavaScript websites. Specifically, we learned about the Jekyll configuration file, its folder structure, and how to control the look of a site using Jekyll layouts, Jekyll variables, the Liquid templating engine, and the [SASS](https://sass-lang.com) CSS pre-processor (*Syntactically Awesome Style Sheets*). To capitalise on our existing knowledge, we looked at how to integrate Bootstrap deeply into Jekyll, allowing fine-grained customisations. 
 
 Writing the first half of the mini-series on Jekyll was the perfect preparation for my big January project. Had I not written instalments [175](./pbs175) up to and including [181](./pbs181), I would never have succeeded. But equally, without having done that work, I'd really have struggled to start writing the second half of the GitHub Page and Jekyll series.
 
@@ -27,9 +25,7 @@ Writing the first half of the mini-series on Jekyll was the perfect preparation 
 
 ### The Practicalities
 
-I chose to target my site at the standard GitHub Pages version of Jekyll, not the newest 4.x branch, because I didn't want the extra complexity of maintaining my own GitHub action for building the site. I've also chosen to make the GitHub repository powering the site public, so the code and all the build tools are available for you all to see at [github.com/bartificer/www.lets-talk.ie](https://github.com/bartificer/www.lets-talk.ie).
-
- **BART - Why would maintaining your own GitHub actions be required with the new branch of Jekyll?**
+I chose to target my site at the standard GitHub Pages version of Jekyll, not the newest 4.x branch, because I didn't want the extra complexity of maintaining my own GitHub action for building the site (as we learned in [instalment 177](/pbs177), out-of-the-box GitHub Pages uses Jekyll 3.x). I've also chosen to make the GitHub repository powering the site public, so the code and all the build tools are available for you all to see at [github.com/bartificer/www.lets-talk.ie](https://github.com/bartificer/www.lets-talk.ie).
 
 When developing locally, I chose to use Docker, as so expertly explained by Helma in [the previous TidBit](./tidbit17). In fact, I used Helma's bells-and-whistles example setup for the site. You can see my Docker setup in the base of the site's GitHub repo.
 
@@ -52,8 +48,6 @@ In many ways, the most interesting lessons came from the unexpected surprises, s
 ### The Unexpected Surprises
 
 I'd put a lot of work into preparing for this project, so I was happy I'd dealt with the known-unknowns. But we're dealing with computers here, so it seemed inevitable I'd bump into some unknown-unknowns. Sure enough, there were indeed some things I didn't know that I didn't know I needed to know!
-
-**BART - I'm dying  😂 LOVE this paragraph**
 
 #### 1 — Customising Bootstrap has Changed Significantly Since Version 4 — I needed to Learn CSS Variables
 
@@ -93,9 +87,7 @@ A reasonable suite of favicons:
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/graphics/LetsTalk-Podcasts-Favicon-180px.png' | relative_url }}">{% comment %}iOS Homescreen icon{% endcomment %}{% endraw %}
 ```
 
-While these five icon files would not be enough were my site to be a progressive web app, they are enough for all the modern browsers and to allow the site to be nicely pinned to an iOS home screen.
-
-**BART: Why wouldn't they be enough for a progressive web app?**
+While these five icon files would not be enough were my site to be a progressive web app (PWA), they are enough for all the modern browsers and to allow the site to be nicely pinned to an iOS home screen. (PWAs need more than just icons, at the very least they need manifest files.)
 
 As you can see in the comment, I made use of the free Mac app [Iconology](https://apps.apple.com/ie/app/iconology/id1463452867?mt=12) to generate all the needed files from a single master image.
 
@@ -113,8 +105,6 @@ permalink: /patreon
 destination: https://www.patreon.com/ltpod
 ---
 ```
-
-**BART: sooooo jealous! I hate NGINX redirects!**
 
 This folder of simple files is mapped to the following Jekyll layout:
 
@@ -170,7 +160,7 @@ YAML front matter and a simple standard for content slugs allows the relationshi
 Each podcast has a three-letter slug (`lta` & `ltp`), and each podcast episode has a slug consisting of the three-letter slug for the podcast they belong to, and the digits of the episode number, e.g., `lta123` or `ltp42`. Each contributor has a slug based on their name (so it's easy to remember), e.g., `allison_sheridan`, and each podcast episode defines the following two metadata fields in its front matter:
 
 1. `host`, which has a contributor slug as its value
-2. `guests,` which is an optional array of contributor slugs
+2. `guests`, which is an optional array of contributor slugs
 
 Some aspects of this architecture might seem needlessly complex, but the design has been carefully chosen to allow me to add new shows without the need for a fundamental redesign. To add a new show, I would simply need to:
 
@@ -186,11 +176,11 @@ While Jekyll does provide a default mapping between Markdown files and URLs, tho
 
 Given my taxonomy, that led to a very simple URL structure:
 
-1. The URL for each special page is simply the page's file name as an HTML file, e.g.,`/support.html` (this is just Jekyll's default behaviour)
-2. The URL for each podcast is simply the podcast's slug as a folder, e.g.,`/lta`
-3. The URL for each podcast episode is similarly the episode's slug, e.g.,`/lta149`
-4. The URL for each contributor page is the contributor slug prefixed with `contributor/`, e.g.,`/contributor/allison_sheridan` 
-5. The local part of the URL for each redirect is defined by the `permalink` field in the redirect's front matter, e.g.,`/patreon` for the redirect to `https://www.patreon.com/ltpod`.
+1. The URL for each special page is simply the page's file name as an HTML file, e.g., `/support.html` (this is just Jekyll's default behaviour)
+2. The URL for each podcast is simply the podcast's slug as a folder, e.g., `/lta`
+3. The URL for each podcast episode is similarly the episode's slug, e.g., `/lta149`
+4. The URL for each contributor page is the contributor slug prefixed with `contributor/`, e.g., `/contributor/allison_sheridan` 
+5. The local part of the URL for each redirect is defined by the `permalink` field in the redirect's front matter, e.g., `/patreon` for the redirect to `https://www.patreon.com/ltpod`.
 
 ### Jekyll Layouts
 
@@ -224,9 +214,10 @@ In the same way that the data architecture made the URL structure easy to define
   * `/docs/assets/graphics` for the various banners and logos used within the various layouts
   * `/docs/assets/js` for the JavaScript files
 
-You might notice that there's no folder for storing MP3 files or any images contained in the shownotes; that's intentional. Even before migrating away from WordPress, I'd started to use a Digital Ocean CDN for my media assets, so I'm simply continuing to do that, with all my MP3s and show note attachments published under  `https://media.lets-talk.ie/`
+You might notice that there's no folder for storing MP3 files or any images contained in the shownotes; that's intentional. Even before migrating away from WordPress, I'd started to use a [Digital Ocean CDN](https://docs.digitalocean.com/products/spaces/how-to/enable-cdn/) for my media assets, so I'm simply continuing to do that, with all my MP3s and show note attachments published under  `https://media.lets-talk.ie/`.
 
-**BART: Tell me more? Do you mean a database server? or is it just a pile of files on a server?**
+> Digital Ocean implement their CDN as an optional feature on top of their Amazon S3-compatible object storage service ([Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)). From my point of view it's BLOB (Binary Large Object) storage that I access over the S3 protocol using my favourite file transfer client, [Transmit](https://panic.com/transmit/), which presents it as a window with folders of files that I can drag-and-drop into from Finder windows, but it can be used with any app that supports the S3 protocol.
+{: .aside}
 
 ## There's Always More to Do!
 
