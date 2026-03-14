@@ -236,17 +236,25 @@ All in all, the new site is surprisingly complete for something I built in about
 
 ### 1 — Imperfect Content Imports
 
-The single biggest task remaining is to pay down the technical debt I'd built up on WordPress. A lot of what is really data was hard-coded into the content, and I knew I was never going to be able to clean all that up programmatically. I was able to get all the information across, but not cleanly.
+The single biggest task remaining is to pay down the technical debt I'd built up on WordPress. 
 
-I had two data sources to work with — a WordPress export and the podcast RSS feeds. As it happens, when you export your content from WordPress, the file you get is actually in an RSS-like format. These WordPress exports have all the expected RSS fields, and then they have some additional custom fields.
+In Wordpress, much of what is really metadata was hard-coded into the content of individual episode posts — I was literally copying-and-pasting just about everything before the notes for the show itself from the current episodes into the new episode every time, and then I was relying on TextExpander snippets for duplicating standard components like the legend at the bottom of each Let's Talk Apple episode. That's just bad data architecture! So much of the content for each episode should have been encapsulated into custom fields and a custom theme, and I've known it all along. I also know Wordpress **can** be customised to capture all these things, and I know it **can** be themed just about any way you'd like, the problem was, try as I might, I never had the time to learn enough about either the PHP programming language, or Wordpress's expansive API to get where I needed to be. I started the process many time, trying different approaches, but in the end, I never got any of my attempts to bend Wordpress to my needs to completion. And all the time, more technical debt was building up!
 
-Since RSS is an XML data format, I thought I might have to find some decent XML-parsing JavaScript modules to build my data transfer script, but thankfully, I found a better solution — a JavaScript library that converts RSS files to JSON, including any custom fields ([@sesamy/podcast-parser](https://www.npmjs.com/package/@sesamy/podcast-parser)).
+Well, that debt just came due!
 
-Once I had a mechanism for converting all my data to JSON, I was able to mutate it into a workable format using `jq` and some NodeJS JavaScripts. If you're curious, you'll find all my migration scripts in the `/migration` folder in the GitHub repo.
+I needed to find a way to get my old data into the new site in such a way that it was at least readable, if not nicely presented.
 
-If you look at an unmigrated episode, you'll see that all the content is there, but so is a bunch of hard-coded metadata that I used to add into each WordPress post using TextExpander snippets. I never felt comfortable with this approach, but I wasn't able to figure out anything better given the constraints I was working under within WordPress. Had I had the time and the skills to build a suite of custom plugins and/or a custom theme, I definitely could have, but despite a few aborted attempts, I never got there. It was much less work to migrate the entire site away from WordPress than to learn everything I'd need to know to bend WordPress to my will!
+I had two data sources to work with — a WordPress export of all my podcast episode posts, and the RSS feeds for both shows. Conveniently, those two things are actually in the same basic format, because Wordpress content exports are actually RSS feeds with extra fields added for the Wordpress-specific metadata. This meant that if I could parse one of my data sources programatically, I could parse both! I knew that by picking-and-choosing the best presented information from both sources, I'd be able to get a usable import of my back-episodes. It probably wouldn't be clean, but it should be readable.
 
-Realistically, it's going to take many months, if not a year or two, to work through the entire back-catalogue, so I put my energy into making the best of the situation. As part of the migration process, I added YAML front-matter to each episode listing the post-migration tasks still outstanding on the episode, e.g.:
+Since RSS is an XML data format,I featured I might have to fall back to some kind of XML-parsing JavaScript module for my import code. I was really not looking forward to that because years of experience in work has taught me that parsing XML always ends in tears! Thankfully, I found a better solution — a JavaScript library ([@sesamy/podcast-parser](https://www.npmjs.com/package/@sesamy/podcast-parser)) on NPM that converts RSS files, including non-standard fields, to JSON, my favourite data format by far 😀
+
+Once I had my data in JSON format I was able to manipulate it easily using tools I'm very comfortable with like NodeJS JavaScripts and `jq` (see instalments starting from [155](./pbs155)). If you're curious, you'll find all my migration scripts in the `/migration` folder in the GitHub repo.
+
+If you look at a raw migrated episode (one that has not been manually cleaned up yet), you'll see that all the content is indeed there, but it's not always well formatted, and it's surrounded by a bunch of hard-coded metadata masquerading as content with broken images for hard-coded icons from the Wordpress site. I've found it takes just a few minutes to clean up most episodes, but each time I encounter a guest for the first time I need to create their contributor page which is a lot more time-consuming. On Wordpress I just hard-coded links to people's social media, but on this site each creator gets a permanent profile, so I need to write a short biography and add up-to-date social media links.
+
+Realistically, it's going to take many months, if not a year or two, to work through the entire back-catalogue, so I put my energy into making the best of the situation.
+
+As part of the migration process, I injected YAML front-matter to each episode capturing the post-migration tasks still outstanding on each episode. Specifically, the import script added the following to every episode:
 
 ```yaml
 warnings:
@@ -259,40 +267,40 @@ warnings:
     - crude_import
 ```
 
-I then added some conditional sections to the Podcast Episode Jekyll layout to display appropriate Bootstrap alerts for the unreviewed metadata and information. As I clean up episodes, I can remove this front matter, and the warnings will disappear.
+With that metadata captured for each episode, I was able to update my layout to add some conditional warning alerts explaining to readers that the page is in need of some review. As I work my way through each back episode, I remove the appropriate front matter, and the matching warnings disappear.
 
-Because each unreviewed episode captures its unreviewed status in the front matter, I was able to create a hidden utility page that lists all the episodes that have at least one warning ([/temp-episodes-to-review.html](https://www.lets-talk.ie/temp-episodes-to-review.html)).
+Because this metadata is captured in each episode's front matter, I could do more than just add warnings to appropriate episode pages, I could build a hidden utility page that lists all the episodes that have at least one remaining warning, helping me keep track of what remains to be done. Assuming you read this before I finish the task, you'll see how much I still have to do at [/temp-episodes-to-review.html](https://www.lets-talk.ie/temp-episodes-to-review.html).
 
-BTW — if you're comfortable with Jekyll, have a few minutes to spare to familiarise yourself with what's needed to properly format an episode on the new site, and some free time to donate, pull requests with episode fixes are always welcome 😉.
+By the way, if you're comfortable with Jekyll, have a few minutes to spare to familiarise yourself with what's needed to properly format an episode on the new site, and some free time to donate, **pull requests with episode fixes are always welcome** 😉
 
 ### 2 — Add Episode Tags
 
-WordPress supports tags, and had I taken the time to tag my episodes as I released them, I could have imported those tags from WordPress into Jekyll, but alas, I never did take the time to tag my episodes with meaningful keywords, so there was nothing to import.
+WordPress supports tags, as does Jekyll. Had I taken the time to tag my episodes as I released them over the last few years, I could have easily imported those tags into my new site. But alas, I never did take the time to do that tagging, so there was nothing to import.
 
-At some stage, when all the episodes have been reviewed, I'd like to add tagging support to the new Jekyll site, and then start going through the back episodes and adding those tags I should have been adding all along.
+At some stage, when all the episodes have been cleaned up, I'd like to add tagging support to the new Jekyll site, and then start going through the back episodes and adding those tags I wish I'd been adding all along. (I'm guessing a script that invokes some LLM's API would probably help with that — extracting a handful of the most important topics from a bunch of text is just the kind of thing they're good at!)
 
 ### 3 — Address any Bugs and Niggles I Find, and any Listener Feedback
 
 This is new software written within just three weeks, so I'm sure there are bugs! There are definitely a few niggles I've already found, and one listener has already provided some very valuable feedback for future tweaks.
 
-I'm not likely to get to these things quickly, so to avoid forgetting them, I'm capturing them all as GitHub issues. If you have any feedback to share or if you find any bugs, please feel free to [submit an issue](https://github.com/bartificer/www.lets-talk.ie/issues) too!
+I'm not likely to get to these things quickly, so to avoid forgetting them, I'm capturing them all as GitHub issues. **If you have any feedback to share or if you find any bugs**, please feel free to **[submit an issue](https://github.com/bartificer/www.lets-talk.ie/issues)**!
 
 ## The Next Few Programming by Stealth Instalments
 
-Given my experiences with the Let's Talk site, we need to tweak our plans for the main series a little. Before we're ready to return to GitHub Pages and Jekyll, we need to take a moment to backfill some more fundamental knowledge:
+Given my experiences with the Let's Talk site, we need to tweak our plans for the main series a little. Before we're ready to return to Jekyll, we need to take a moment to backfill some more fundamental knowledge we've inadvertently skipped over:
 
 1. We need to learn about CSS variables
 2. We need to learn the basics of the SASS CSS preprocessor
-3. Armed with an understanding of both CSS variables in SASS, we need to look a little more deeply at customising Bootstrap, both with and without SASS.
+3. Armed with an understanding of both CSS variables and SASS, we need to look a little more deeply at customising Bootstrap, both with and without SASS.
 
-At that stage, we'll be ready to dive back into GitHub Pages and Jekyll properly, focusing on:
+At that stage, we'll be ready to dive back into Jekyll, focusing on:
 
 1. Blogging with Jekyll
 2. Content Collections in Jekyll
 
-Finally, we need to learn about the OpenGraph protocol so we can give our Jekyll layouts an important finishing touch by ensuring links to our work play nicely on social media.
+Finally, we need to learn about the [OpenGraph](https://www.opengraph.io) protocol so we can give our Jekyll layouts an important finishing touch by ensuring links to our work embed nicely into social media posts.
 
 
 ## Final Thoughts
 
-I hope you found it interesting to take a peek under the hood of a real-world Jekyll site hosted on GitHub Pages. While I try to make the examples in the main PBS series as useful as I can, they can never be as revealing as a production site. I certainly found the experience of putting the theory into practice very illuminating, and it's helped me to take stock of what we've done well so far in the GitHub Pages/Jekyll series, and where we've fallen short a bit. I hope you'll join us for the second half of our free web hosting adventure this spring!
+I hope you found it interesting to take a peek under the hood of a real-world Jekyll site hosted for free on GitHub Pages. While I try to make the examples in the main PBS series as useful as I can, they can never be as revealing as a production site. I certainly found the experience of putting the theory into practice very illuminating, and it's helped me take stock of what we've done well, and where we've fallen a little short. I hope you'll join us for the second half of our free web hosting adventure this spring!
