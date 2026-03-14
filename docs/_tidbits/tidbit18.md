@@ -41,9 +41,14 @@ Finally, I used the free version of [Font Awesome 7](https://fontawesome.com/#fa
 
 In many ways, the most interesting lessons came from the unexpected surprises, so we'll spend most of our time on those, but before we do, I just want to quickly recognise the things that actually went to plan.
 
-1. Our discussions on Jekyll Layouts and Liquid Templates were detailed enough that I rarely needed to go beyond the features in our PBS examples, and when I did, our explorations armed me well enough to get what I needed from the documentation with minimal effort.
-2. In terms of the basics, using SASS variables to customise Bootstrap worked just like I thought it would. Within just a few minutes, I had successfully configured Bootstrap to use the custom colours and fonts from my corporate style guide. (But notice the little qualifier at the start; put a pin in Bootstrap customisation for later!)
-3. Customising my OpenGraph metadata proved as rewarding as I'd hoped it would — when I share episode links on social media, they look better than ever now! (E.g. [social.bartificer.ie/…](https://social.bartificer.ie/@ltpod/116109296418516823#.))
+1. Bootstrap 5 provided the scaffolding I needed to lay the site out using almost only their standard features and components:
+   1. Bootstrap's [grid layout](https://getbootstrap.com/docs/5.0/layout/grid/) with [breakpoints](https://getbootstrap.com/docs/5.0/layout/breakpoints/) made it easy to make the site completely responsive — it scales elegantly from the smallest phone screen to the largest desktop display.
+   2. The navigation is all built using Bootstrap [NavBars](https://getbootstrap.com/docs/5.0/components/navbar/), some with [Dropdowns](https://getbootstrap.com/docs/5.0/components/dropdowns/), [Buttons](https://getbootstrap.com/docs/5.0/components/buttons/), some grouped into [Button Groups](https://getbootstrap.com/docs/5.0/components/button-group/), and [Breadcrumbs](https://getbootstrap.com/docs/5.0/components/breadcrumb/).
+   3. Bootstrap [cards](https://getbootstrap.com/docs/5.0/components/card/) are used throughout the site to build little modular pieces of content — for example, the episode lists are built with cards for each episode laid out using a [Grid card](https://getbootstrap.com/docs/5.0/components/card/#grid-cards) layout.
+
+2. Our discussions on Jekyll Layouts and Liquid Templates were detailed enough that I rarely needed to go beyond the features in our PBS examples, and when I did, our explorations armed me well enough to get what I needed from the documentation with minimal effort.
+3. In terms of the basics, using SASS variables to customise Bootstrap worked just like I thought it would. Within just a few minutes, I had successfully configured Bootstrap to use the custom colours and fonts from my corporate style guide. (But notice the little qualifier at the start; put a pin in Bootstrap customisation for later!)
+4. Customising my OpenGraph metadata proved as rewarding as I'd hoped it would — when I share episode links on social media, they look better than ever now! (E.g. [social.bartificer.ie/…](https://social.bartificer.ie/@ltpod/116109296418516823#.))
 
 ### The Unexpected Surprises
 
@@ -91,7 +96,7 @@ While these five icon files would not be enough were my site to be a progressive
 
 As you can see in the comment, I made use of the free Mac app [Iconology](https://apps.apple.com/ie/app/iconology/id1463452867?mt=12) to generate all the needed files from a single master image.
 
-#### Redirects
+### The Forgotten Detail —  Redirects
 
 It was only at the very end of the project that I panicked momentarily. I realised I'd forgotten all about the utility redirects I'd defined in NGINX on my web server. When I moved the site to GitHub Pages, there would be no NGINX server, so no NGINX config to define those redirects.
 
@@ -149,8 +154,8 @@ If you're expecting this to be where I realised how naive I was, I'm relieved to
 
 I'd spent a lot of time thinking about my data architecture, and I think my resulting taxonomy is quite elegant. It's as complex as it needs to be, but no more complex than that. My site's content is divided into the following *buckets*:
 
-1. Special-purpose **pages**, e.g. the front page, the support page, and the credits page
-2. **Podcasts** — this taxonomy has two entries, one for each of my current shows.
+1. Special-purpose **pages**, e.g. the [front page](https://www.lets-talk.ie/), the [support page](https://www.lets-talk.ie/support.html), and the [credits page](https://www.lets-talk.ie/credits.html).
+2. **Podcasts** — this taxonomy has two entries, one for each of my current shows (Let's Talk Apple & [Let's Talk Photo](https://www.lets-talk.ie/ltp)).
 3. **Podcast Episodes** — this taxonomy is actually split across two Jekyll *collections*, one for each show, but both of these collections share the same Jekyll layout for episode pages.
 4. **Contributors** — details of each guest who has ever appeared on an episode.
 5. **Redirects** — memorable URLs for listeners which redirect to their true destinations, e.g., PayPal and Patreon.
@@ -260,7 +265,7 @@ WordPress supports tags, and had I taken the time to tag my episodes as I releas
 
 At some stage, when all the episodes have been reviewed, I'd like to add tagging support to the new Jekyll site, and then start going through the back episodes and adding those tags I should have been adding all along.
 
-### 3 — Address any Bugs and Niggles I Find, as well as any Listener Feedback
+### 3 — Address any Bugs and Niggles I Find, and any Listener Feedback
 
 This is new software written within just three weeks, so I'm sure there are bugs! There are definitely a few niggles I've already found, and one listener has already provided some very valuable feedback for future tweaks.
 
