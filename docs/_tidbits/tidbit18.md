@@ -2,7 +2,7 @@
 title: A Real-World Jekyll Example
 instalment: 18
 creators: [bart, allison]
-date: 2026-03-14{}
+date: 2026-03-14
 ---
 
 It's not a coincidence that we spent the second half of 2025 covering covering website hosting on GitHub Pages for first client-side web apps like XKPasswd, and then traditional websites built manually or with static site generators like Jekyll My motivation was simple — I wanted to migrate the website for my podcasts from WordPress to GitHub Pages, and the second-best way to truly learn something is to try to teach it. What's the best way to learn? By doing! And that's what I spent January doing.
