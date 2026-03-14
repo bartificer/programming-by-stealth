@@ -2,10 +2,10 @@
 title: A Real-World Jekyll Example
 instalment: 18
 creators: [bart, allison]
-date: 2026-02-28
+date: 2026-03-14{}
 ---
 
-It's not a coincidence that we spent the second half of 2025 covering website hosting on GitHub Pages with the Jekyll static site generator on the main feed. The motivation was simple — I wanted to migrate the website for my podcasts from WordPress to GitHub Pages, and the second-best way to truly learn something is to try to teach it. What's the best way to learn? By doing! And that's what I spent January doing.
+It's not a coincidence that we spent the second half of 2025 covering covering website hosting on GitHub Pages for first client-side web apps like XKPasswd, and then traditional websites built manually or with static site generators like Jekyll My motivation was simple — I wanted to migrate the website for my podcasts from WordPress to GitHub Pages, and the second-best way to truly learn something is to try to teach it. What's the best way to learn? By doing! And that's what I spent January doing.
 
 Over three weeks, I built an entirely fresh website for my shows and published it at [www.lets-talk.ie](https://lets-talk.ie). That proved to be quite the experience, so I thought it was worth sharing as a Tidbit.
 
@@ -15,25 +15,30 @@ TO DO
 
 ## Context
 
-As we record this instalment in March 2026, we're paused between the first and second halves of a mini-series dedicated to building websites on GitHub Pages. We started with a generic look at how GitHub Pages can be customised to build static sites with just about any generator, but we focused mainly on using the default generator built into GitHub Pages, [Jekyll](https://jekyllrb.com). 
+As summarised in the introduction, as we record this instalment in March 2026, we're paused between the first and second halves of a mini-series dedicated to building websites on GitHub Pages. We started with an explanation of the concept of a static site generator (instalment 175), then quickly described how to publish Javascript web apps like those we have built earlier in the show's history (instalment 176), before diving in to the detail of the Static site Generator GitHub Pages uses by default, [Jekyll](https://jekyllrb.com). 
 
-In the first part of our exploration of Jekyll and GitHub Pages, we focused on the practicalities of building a basic website with our own custom layouts and style built with [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/). Specifically, we explored Jekyll's build process for converting folders of Markdown files with YAML front matter into HTML+CSS+JavaScript websites. Specifically, we learned about the Jekyll configuration file, its folder structure, and how to control the look of a site using Jekyll layouts, Jekyll variables, the Liquid templating engine, and the [SASS](https://sass-lang.com) CSS pre-processor (*Syntactically Awesome Style Sheets*). To capitalise on our existing knowledge, we looked at how to integrate Bootstrap deeply into Jekyll, allowing fine-grained customisations. 
+So far our exploration of Jekyll on the practicalities of building a basic website with our own custom layouts and style built with [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/). Specifically, we explored Jekyll's build process for converting folders of Markdown files with YAML front matter into HTML+CSS+JavaScript websites. Wre learned about the Jekyll configuration file, its folder structure, and how to control the look of a site using Jekyll layouts, Jekyll variables, the Liquid templating engine, and the [SASS](https://sass-lang.com) CSS pre-processor (*Syntactically Awesome Style Sheets*). To capitalise on our existing knowledge, we looked at how to integrate Bootstrap deeply into Jekyll, allowing fine-grained customisations. 
 
-Writing the first half of the mini-series on Jekyll was the perfect preparation for my big January project. Had I not written instalments [175](./pbs175) up to and including [181](./pbs181), I would never have succeeded. But equally, without having done that work, I'd really have struggled to start writing the second half of the GitHub Page and Jekyll series.
+The focus was entirely on **how** to crating the scaffolding for a website, but we all but ignored all questions of content organisstion. we barely mentioned concepts like data architecture and taxonomies. That will be the focus of the up-coming second half of the series.
+
+Writing existing instalments was the perfect preparation for my big January project. Had I not written instalments [175](./pbs175) up to and including [181](./pbs181), I would never have succeeded. But equally, without having done that work, I'd really have struggled to start writing the second half of the series.
 
 ## Building the New Let's Talk Podcasts Site
 
 ### The Practicalities
 
-I chose to target my site at the standard GitHub Pages version of Jekyll, not the newest 4.x branch, because I didn't want the extra complexity of maintaining my own GitHub action for building the site (as we learned in [instalment 177](/pbs177), out-of-the-box GitHub Pages uses Jekyll 3.x). I've also chosen to make the GitHub repository powering the site public, so the code and all the build tools are available for you all to see at [github.com/bartificer/www.lets-talk.ie](https://github.com/bartificer/www.lets-talk.ie).
+I chose to target my site at the standard GitHub Pages version of Jekyll, not the newest 4.x branch. Why? To keep things simple and avoid the extra complexity of maintaining my own GitHub action for building the site. As we learned in [instalment 177](/pbs177), out-of-the-box GitHub Pages uses Jekyll 3.x, so if you want to use anything else, you need to teach GitHub how to build your site.
 
-When developing locally, I chose to use Docker, as so expertly explained by Helma in [the previous TidBit](./tidbit17). In fact, I used Helma's bells-and-whistles example setup for the site. You can see my Docker setup in the base of the site's GitHub repo.
+Since the podcasts and this series are all
+completely listener supported, I chosen to make the GitHub repository powering the site public. This means you can all see the code and the various configuration files powering the site at [github.com/bartificer/www.lets-talk.ie](https://github.com/bartificer/www.lets-talk.ie).
 
-I chose to build the theme using [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) as my base, and in preparation for this project, I engaged the excellent app development and design company [IconFactory](https://iconfactory.com) to commission updated logos and a corporate style guide, including a full colour palette and detailed typographic definitions for headings, subheadings, body text, etc.
+For deploying a local version of the site for testing and debugging I chose to use Docker (as so expertly explained by Helma in [TidBit 17](./tidbit17), rather than the more complex and traditional local install described in instalment TO DO. In fact, I used Helma's bells-and-whistles Jekyll example from tidbit for the site. You can see my Docker configuration files in the base of the site's GitHub repo.
 
-For me, graphic design and typography are like wine; I know what's bad, I know what's good, I know what I like, but I have no idea how to make my own! So, rather than spending weeks struggling to develop a style I'd never quite be happy with, I chose to commission some skilled craftspeople whose work I liked to do it for me 🙂
+I chose to build the theme using [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) as my base, and in preparation for this project. I also commissioned the excellent app development and design firm [IconFactory](https://iconfactory.com) to develop updated logos for the podcasts and a corporate style guide for Bartificer Crestions in general. This style guide is not a CSS style sheet, but a descriptive document that be be applied to any and all content I produce. it includes a full colour palette, and detailed typographic definitions for headings, subheadings, body text, etc..
 
-While the brief for the corporate style guide was broad, with the intention of using it for all Bartificer Creations' stationery, presentations, and websites, it was also explicitly designed to align with Bootstrap's approach to colours, and the font choice was limited to free fonts available via [Google Fonts](https://fonts.google.com) so they would all work on the web.
+For me, graphic design and typography are like wine — I know what's bad, I know what's good, I know what I like, but I have no idea how to make my own! So, rather than spending weeks struggling to develop a style I'd never quite be happy with, I chose to pay skilled craftspeople whose work I like to do it for me 🙂
+
+While the brief for the corporate style guide was broad, with the intention of using it for all Bartificer Creations' stationery, presentations, and websites, it was also explicitly designed to align with Bootstrap's approach to colours, and the font choice was limited to free fonts available via [Google Fonts](https://fonts.google.com) so they would all work on the web. So the style guide is not purely for Bootstrap, but it was designed to be easily applied to Bootstrap.
 
 Finally, I used the free version of [Font Awesome 7](https://fontawesome.com/#fa7) for the various little icons needed throughout the site.
 
@@ -41,42 +46,43 @@ Finally, I used the free version of [Font Awesome 7](https://fontawesome.com/#fa
 
 In many ways, the most interesting lessons came from the unexpected surprises, so we'll spend most of our time on those, but before we do, I just want to quickly recognise the things that actually went to plan.
 
-1. Bootstrap 5 provided the scaffolding I needed to lay the site out using almost only their standard features and components:
+1. Bootstrap 5 provided the scaffolding I needed to stuctue the site's pages using+ only their standard features and components:
    1. Bootstrap's [grid layout](https://getbootstrap.com/docs/5.0/layout/grid/) with [breakpoints](https://getbootstrap.com/docs/5.0/layout/breakpoints/) made it easy to make the site completely responsive — it scales elegantly from the smallest phone screen to the largest desktop display.
-   2. The navigation is all built using Bootstrap [NavBars](https://getbootstrap.com/docs/5.0/components/navbar/), some with [Dropdowns](https://getbootstrap.com/docs/5.0/components/dropdowns/), [Buttons](https://getbootstrap.com/docs/5.0/components/buttons/), some grouped into [Button Groups](https://getbootstrap.com/docs/5.0/components/button-group/), and [Breadcrumbs](https://getbootstrap.com/docs/5.0/components/breadcrumb/).
-   3. Bootstrap [cards](https://getbootstrap.com/docs/5.0/components/card/) are used throughout the site to build little modular pieces of content — for example, the episode lists are built with cards for each episode laid out using a [Grid card](https://getbootstrap.com/docs/5.0/components/card/#grid-cards) layout.
-
-2. Our discussions on Jekyll Layouts and Liquid Templates were detailed enough that I rarely needed to go beyond the features in our PBS examples, and when I did, our explorations armed me well enough to get what I needed from the documentation with minimal effort.
-3. In terms of the basics, using SASS variables to customise Bootstrap worked just like I thought it would. Within just a few minutes, I had successfully configured Bootstrap to use the custom colours and fonts from my corporate style guide. (But notice the little qualifier at the start; put a pin in Bootstrap customisation for later!)
-4. Customising my OpenGraph metadata proved as rewarding as I'd hoped it would — when I share episode links on social media, they look better than ever now! (E.g. [social.bartificer.ie/…](https://social.bartificer.ie/@ltpod/116109296418516823#.))
+   2. The navigation is all built using Bootstrap [NavBars](https://getbootstrap.com/docs/5.0/components/navbar/) with [Dropdowns](https://getbootstrap.com/docs/5.0/components/dropdowns/), [Buttons](https://getbootstrap.com/docs/5.0/components/buttons/), some grouped into [Button Groups](https://getbootstrap.com/docs/5.0/components/button-group/), and [Breadcrumbs](https://getbootstrap.com/docs/5.0/components/breadcrumb/).
+   3. Bootstrap [cards](https://getbootstrap.com/docs/5.0/components/card/) are used throughout the site to collect little modular pieces of content — for example, the episode lists are implemented as cards in a [Grid card](https://getbootstrap.com/docs/5.0/components/card/#grid-cards) layout.
+2. Our discussions on Jekyll Layouts and Liquid Templates were detailed enough that I rarely needed to go beyond the features in our PBS examples. When I did need more, I found our explorations had armed me well enough to get what I needed from the documentation with minimal effort.
+3. In terms of the **basics**, using SASS variables to customise Bootstrap worked just like I thought it would. Within just a few minutes, I had successfully configured Bootstrap to use the custom colours and fonts from my corporate style guide. But notice the little qualifier at the start; put a pin in that for later!
+4. Customising my OpenGraph metadata proved as rewarding as I'd hoped it would — when I share episode links on social media, they look better than ever now! As an example, here's the Mastodon post announcing Let's Talk Photo episode 149 — [social.bartificer.ie/…](https://social.bartificer.ie/@ltpod/116109296418516823#)
 
 ### The Unexpected Surprises
 
-I'd put a lot of work into preparing for this project, so I was happy I'd dealt with the known-unknowns. But we're dealing with computers here, so it seemed inevitable I'd bump into some unknown-unknowns. Sure enough, there were indeed some things I didn't know that I didn't know I needed to know!
+I'd put a lot of work into preparing for this project, so I was happy I'd dealt with the known-unknowns (other than those forgotten redirects 😉). But we're dealing with computers here, so it seemed inevitable I'd bump into some unknown-unknowns. Sure enough, there were indeed some things I didn't know that I didn't know I needed to know!
 
 #### 1 — Customising Bootstrap has Changed Significantly Since Version 4 — I needed to Learn CSS Variables
 
-The last version of Bootstrap I'd customised before this project was version 4, to build this very PBS website, as it happens! I assumed I'd just do the same thing again, but there was more to it than that!
+The last version of Bootstrap I'd customised before this project was version 4, to build this very PBS website, as it happens! I assumed I'd just do the same thing again, but there was of course more to it than that!
 
 Firstly, Bootstrap 5 is substantially more customisable than Bootstrap 4, and you can now think of those customisations as being two-layered, making SASS optional for quite some types of customisation.
 
-Bootstrap's final CSS file is built from a collection of SASS files, which get compiled down to CSS. Deeply customising Bootstrap still requires working with SASS to alter the generated CSS, just like before, but that generated CSS now provides an entirely new avenue for many kinds of customisations: CSS variables.
+Bootstrap's final CSS file is built from a collection of SASS files, which get compiled down to CSS. Deeply customising Bootstrap still requires working with SASS to alter the generated CSS, just like before. However, that generated CSS now provides an entirely new avenue for many kinds of customisations — CSS variables.
 
-I've been avoiding CSS variables for many years, because when they first came out, browser support was patchy at best. That's just not true in 2026! IE is now totally and utterly dead, and thanks to the push for better cybersecurity, it's now utterly reasonable to assume that all browsers are modern, so CSS variables have arrived at the *they just work* stage of their evolution.
+I've been avoiding CSS variables for many years, because when they first came out, browser support was patchy at best. That's just not true in 2026! IE is now totally and utterly dead, and thanks to the push for better cybersecurity, it's now utterly reasonable to assume that all browsers are modern. So, CSS variables have arrived at the *they just work* stage of their evolution.
 
-Had I been working with Bootstrap 5.0, 5.1, or 5.2, I could have simply ignored CSS variables and done all my customisations at the SASS level as I had previously. But version 5.3 changed that. To add some very nice extra functionality to common components like dropdowns and nav bars, Bootstrap 5.3 added the concept of themes for certain Bootstrap components, including nav bars. I'm not actually making use of this new feature, but its existence made it impossible for me to customise my site's nav bar purely with SASS. I needed to use CSS variables to get the nav bar to look right, so I finally learned how they work.
+Had I been working with Bootstrap 5.0, 5.1, or 5.2, I could have simply ignored these new CSS variables and done all my customisations with SASS, just like before. But version 5.3 changed that.
 
-The good news is that CSS variables are both wonderfully powerful and quite simple, so I soon got the hang of them. This proved to be a real boon later in the project when they proved very useful for some of my more bespoke layouts, letting me add some very pleasing little touches to episode lists, for example, which take their colour queues from the podcast they belong to.
+To add some very nice extra functionality to common components like dropdowns and navbars, Bootstrap 5.3 added the concept of themes for certain Bootstrap components, including navbars. I'm not actually making use of this new feature, but its existence made it impossible for me to customise my site's navbar purely with SASS. I needed to use CSS variables to get the navbar to look right, so I finally took the time to learn how they work.
+
+The good news is that CSS variables are both wonderfully powerful, and quite simple. So, I soon got the hang of them. This proved to be a real boon later in the project when they opened up some very useful opportunities for finessing some of my more bespoke compartments. The best example being the subtle accent colour on the podcast episode lists for each show — orange for Let's Talk Apple, and Green for Let's Talk Photo.
 
 #### 2 — Generating a Good Cross-Browser Favicon is not easy in 2026!
 
-I knew that if you want to make a web app that will behave nicely when pinned to a phone home screen or added to the macOS doc things get very complicated (as Allison found out with her [Elapsed Time Adder app](https://podfeet.github.io/time-adder/) a few months ago). I hadn't realised things had gotten nearly (though not quite) as confusing for regular browser favicons.
+I knew that if you want to make a web app that behaves well when pinned to a phone home screen or added to the macOS doc, things get  complicated (as Allison found out with her [Elapsed Time Adder app](https://podfeet.github.io/time-adder/) a few months ago). I hadn't realised things had gotten nearly (though not quite) as complicated for regular browser favicons.
 
-I'd assumed I'd just ask [Lumo](https://lumo.proton.me/) what the current correct resolution, file format, and HTML tag were, that I'd get a simple answer, and that I'd have a nice favicon with just a few minutes of work. Nope!
+I'd assumed I'd just ask [Lumo](https://lumo.proton.me/) what the current recommended resolution, file format, and HTML tag were, get a simple answer, and have a nice favicon with just a few minutes of work. Nope!
 
 It turns out there is actually quite a lot of debate about what the best thing to do is. After getting conflicting advice left, right, and centre that would have required me to make about 16 different files and add as many tags to my HTML `<head>` section, I eventually found some sanity on this very useful page — [faviconhelper.com/…](https://faviconhelper.com/favicon-sizes-guide).
 
-Based on my needs and their advice, I was able to narrow it down to *just* the following files and the following HTML+Liquid in a Jekyll include:
+Based on my needs and their advice, I was able to narrow it down to *just* the following files and the following HTML+Liquid code in a Jekyll include:
 
 ```html
 {% raw -%}{%- comment %}
@@ -92,15 +98,15 @@ A reasonable suite of favicons:
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/graphics/LetsTalk-Podcasts-Favicon-180px.png' | relative_url }}">{% comment %}iOS Homescreen icon{% endcomment %}{% endraw %}
 ```
 
-While these five icon files would not be enough were my site to be a progressive web app (PWA), they are enough for all the modern browsers and to allow the site to be nicely pinned to an iOS home screen. (PWAs need more than just icons, at the very least they need manifest files.)
+While these five icon files would not be enough were my site to be a progressive web app (PWA), they are enough for all the modern browsers, and to allow the site to be nicely pinned to an iOS home screen. (PWAs need more than just icons, at the very least they need manifest files.)
 
 As you can see in the comment, I made use of the free Mac app [Iconology](https://apps.apple.com/ie/app/iconology/id1463452867?mt=12) to generate all the needed files from a single master image.
 
 ### The Forgotten Detail —  Redirects
 
-It was only at the very end of the project that I panicked momentarily. I realised I'd forgotten all about the utility redirects I'd defined in NGINX on my web server. When I moved the site to GitHub Pages, there would be no NGINX server, so no NGINX config to define those redirects.
+It was only at the very end of the project that I panicked momentarily. I realised I'd forgotten all about the utility redirects I'd defined in NGINX on my web server. When I moved the site to GitHub Pages, there would be no NGINX server, so no NGINX config to define those redirects within 😱
 
-After 5 minutes, I remembered that you don't need a web server to do redirects; there are HTML tags for that, so I just needed a simple Jekyll collection with an equally simple matching custom Jekyll layout.
+After 5 minutes, I remembered that you don't need a web server to do redirects; there are HTML tags for that! So, I just needed a simple Jekyll collection with an equally simple matching custom Jekyll layout.
 
 My redirects are now defined, one per file, in a folder of very simplistic Markdown files, e.g. this one for the Patreon redirect:
 
@@ -146,9 +152,9 @@ Note: adapted from https://github.com/jekylltools/jekyll-redirect-layout (substa
 
 ### My Site Structure and Taxonomy
 
-My expectation was that if I had a clear vision for how to taxonomically organise my content, I'd end up with a simple but effective Jekyll folder structure and a sane collection of Jekyll layouts. Basically, if I decided on the taxonomy first, the site's entire structure would just fall into place.
+My expectation was that if I had a clear vision for how to taxonomically organise my content, I'd end up with a simple but effective Jekyll folder structure, and a sane collection of Jekyll layouts. Basically, if I decided on the taxonomy first, the site's entire structure would just fall into place.
 
-If you're expecting this to be where I realised how naive I was, I'm relieved to be able to say this is one instance where my expectations matched the reality perfectly!
+If you're expecting this to be where I realised how naive I'd been, I'm relieved to say this is one instance where my expectations matched reality perfectly!
 
 ### Data Architecture (Taxonomy)
 
@@ -170,14 +176,14 @@ Each podcast has a three-letter slug (`lta` & `ltp`), and each podcast episode h
 Some aspects of this architecture might seem needlessly complex, but the design has been carefully chosen to allow me to add new shows without the need for a fundamental redesign. To add a new show, I would simply need to:
 
 1. Create a Markdown file for it in the Podcasts collection
-2. Create a matching podcast episode collection
+2. Create a matching podcast episode collection in the site config file
 3. Update the front page to advertise it appropriately
 
-I could have made the front page generic, but since adding new shows is never going to be something I do often, I chose to optimise the front page layout for two shows, and to redesign it for three or four as and when needed.
+I could have made the front page generic, but since adding new shows is never going to be something I do often. rather than try to build a compelling layout for n shows, I chose to optimise the front page layout for two shows  now. if and when a third appears, I'll redesign the front page to optimise it for three.
 
 ### URL Structure
 
-While Jekyll does provide a default mapping between Markdown files and URLs, those mappings can be easily customised at the *collection* level, and one of the supposed approaches is to base URLs on content slugs (just like WordPress does).
+While Jekyll does provide a default mapping between Markdown files and URLs, those mappings can be easily customised at the *collection* level, and one of the supported approaches is to base URLs on content slugs (just like WordPress does).
 
 Given my taxonomy, that led to a very simple URL structure:
 
@@ -197,11 +203,11 @@ For the most part this taxonomy maps directly to the site's layouts:
 * `front_page.html` — a special layout just for the site's [front page](https://www.lets-talk.ie/).
 * `podcast.html` — a special layout for podcast home pages, e.g., the [Let's Talk Apple page](https://www.lets-talk.ie/lta).
 * `podcast_episode.html` — a special layout for podcast episode pages, e.g., [Let's Talk Photo episode 149](https://www.lets-talk.ie/ltp149).
-* `redirect.html` — a simple layout that implements an HTML redirect
+* `redirect.html` — a simple layout that implements an HTML redirect.
 
 ### Jekyll Folder Structure
 
-In the same way that the data architecture made the URL structure easy to define, it also naturally led to a simple folder structure. Special pages are simply markdown files in the site's root, and the other content is grouped into folders by collection. This is simply Jekyll's default folder structure. This is customisable, but I didn't see any need, because this file structure seems clear to me:
+In the same way that the data architecture made the URL structure easy to define, it also naturally led to a simple folder structure. Special pages are simply markdown files in the site's root, and the other content is grouped into folders by collection. This is simply Jekyll's default folder structure. This is customisable, but I didn't see any need —   this seems sensible to me:
 
 * Site Contents:
   * `/docs/*.md`  — special pages
@@ -213,20 +219,20 @@ In the same way that the data architecture made the URL structure easy to define
 * Site Design: (all Jekyll default locations or commonly adopted conventions)
   * `/docs/_includes` for reusable snippets
   * `/docs/_layouts` for Jekyll layouts
-  * `/docs/_sass` for the site's compiled style sheets
+  * `/docs/_sass` for the site's SASS style sheets (which Jekyll will compile to CSS)
   * `/docs/assets/css/style.scss` — the standard placeholder for the compiled CSS (from the SASS code)
   * `/docs/assets/fontawesome` for the embedded copy of Font Awesome (to avoid depending in their CDN)
   * `/docs/assets/graphics` for the various banners and logos used within the various layouts
   * `/docs/assets/js` for the JavaScript files
 
-You might notice that there's no folder for storing MP3 files or any images contained in the shownotes; that's intentional. Even before migrating away from WordPress, I'd started to use a [Digital Ocean CDN](https://docs.digitalocean.com/products/spaces/how-to/enable-cdn/) for my media assets, so I'm simply continuing to do that, with all my MP3s and show note attachments published under  `https://media.lets-talk.ie/`.
+You might notice that there's no folder for storing MP3 files, or any images contained in the shownotes; that's intentional. Even before migrating away from WordPress, I'd started to use a [Digital Ocean CDN](https://docs.digitalocean.com/products/spaces/how-to/enable-cdn/) for my media assets. I'm simply continuing as I was before, publishing all my MP3s and show note attachments under `https://media.lets-talk.ie/`.
 
-> Digital Ocean implement their CDN as an optional feature on top of their Amazon S3-compatible object storage service ([Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)). From my point of view it's BLOB (Binary Large Object) storage that I access over the S3 protocol using my favourite file transfer client, [Transmit](https://panic.com/transmit/), which presents it as a window with folders of files that I can drag-and-drop into from Finder windows, but it can be used with any app that supports the S3 protocol.
+> Digital Ocean implement their CDN as an optional feature on top of their Amazon S3-compatible object storage service ([Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)). From a user's point of view it's regular BLOB (Binary Large Object) storage like that sold by Amazon, Microsift, Google, Backblaze, and others, accessed over the S3 protocol. Since it's standard S3, any S3 client will work, but I use [Transmit](https://panic.com/transmit/), which presents the CDN as a window with folders of files that allow drag-and-drop to standard Finder windows. In other words, it looks just like an SFTP connection to a regular web server.
 {: .aside}
 
 ## There's Always More to Do!
 
-All in all, the new site is surprisingly complete for something I built in about three weeks, but that doesn't mean I don't still have some work to do.
+All in all, the new site is surprisingly complete for something I built in about three weeks, but that doesn't mean I don't still have some work to do!
 
 ### 1 — Imperfect Content Imports
 
