@@ -88,7 +88,7 @@ It turns out there is actually quite a lot of debate about what the best thing t
 Based on my needs and their advice, I was able to narrow it down to *just* the following files and the following HTML+Liquid code in a Jekyll include:
 
 ```html
-{% raw -%}{%- comment %}
+{% raw %}{%- comment %}
 A reasonable suite of favicons:
 -------------------------------
 - Sizes as recommended by https://faviconhelper.com/favicon-sizes-guide
@@ -123,7 +123,7 @@ destination: https://www.patreon.com/ltpod
 This folder of simple files is mapped to the following Jekyll layout:
 
 ```html
-{% raw -%}{%- comment %}
+{% raw %}{%- comment %}
 A simple layout to implement a redirected
 
 Required Frontmatter:
@@ -150,7 +150,7 @@ Note: adapted from https://github.com/jekylltools/jekyll-redirect-layout (substa
   <body>
     <a href="{{ destination }}">Follow this link if you are not redirected automatically.</a>
   </body>
-</html>{%- endraw %}
+</html>{% endraw %}
 ```
 
 ### My Site Structure and Taxonomy
