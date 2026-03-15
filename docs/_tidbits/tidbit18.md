@@ -11,7 +11,11 @@ Over three weeks, I built an entirely fresh website for my shows and published i
 
 ## Matching Podcast Episode
 
-TO DO
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_03_14.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_03_14.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_03_14.html">PBS_2026_03_14</a>
 
 ## Context
 
@@ -29,12 +33,11 @@ Writing existing instalments was the perfect preparation for my big January proj
 
 I chose to target my site at the standard GitHub Pages version of Jekyll, not the newest 4.x branch. Why? To keep things simple and avoid the extra complexity of maintaining my own GitHub action for building the site. As we learned in [instalment 177](/pbs177), out-of-the-box GitHub Pages uses Jekyll 3.x, so if you want to use anything else, you need to teach GitHub how to build your site.
 
-Since the podcasts and this series are all
-completely listener supported, I chosen to make the GitHub repository powering the site public. This means you can all see the code and the various configuration files powering the site at [github.com/bartificer/www.lets-talk.ie](https://github.com/bartificer/www.lets-talk.ie).
+Since the podcasts and this series are all completely listener-supported, I have chosen to make the GitHub repository powering the site public. This means you can all see the code and the various configuration files powering the site at [github.com/bartificer/www.lets-talk.ie](https://github.com/bartificer/www.lets-talk.ie).
 
-For deploying a local version of the site for testing and debugging I chose to use Docker (as so expertly explained by Helma in [TidBit 17](./tidbit17), rather than the more complex and traditional local install described in instalment TO DO. In fact, I used Helma's bells-and-whistles Jekyll example from tidbit for the site. You can see my Docker configuration files in the base of the site's GitHub repo.
+For deploying a local version of the site for testing and debugging, I chose to use Docker (as so expertly explained by Helma in [TidBit 17](./tidbit17), rather than the more complex and traditional local install described in instalment TO DO. In fact, I used Helma's bells-and-whistles Jekyll example from tidbit for the site. You can see my Docker configuration files in the base of the site's GitHub repo.
 
-I chose to build the theme using [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) as my base, and in preparation for this project. I also commissioned the excellent app development and design firm [IconFactory](https://iconfactory.com) to develop updated logos for the podcasts and a corporate style guide for Bartificer Crestions in general. This style guide is not a CSS style sheet, but a descriptive document that be be applied to any and all content I produce. it includes a full colour palette, and detailed typographic definitions for headings, subheadings, body text, etc..
+I chose to build the theme using [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) as my base, and in preparation for this project. I also commissioned the excellent app development and design firm [IconFactory](https://iconfactory.com) to develop updated logos for the podcasts and a corporate style guide for Bartificer Crestions in general. This style guide is not a CSS style sheet, but a descriptive document that can be applied to any and all content I produce. It includes a full colour palette and detailed typographic definitions for headings, subheadings, body text, etc..
 
 For me, graphic design and typography are like wine — I know what's bad, I know what's good, I know what I like, but I have no idea how to make my own! So, rather than spending weeks struggling to develop a style I'd never quite be happy with, I chose to pay skilled craftspeople whose work I like to do it for me 🙂
 
@@ -46,7 +49,7 @@ Finally, I used the free version of [Font Awesome 7](https://fontawesome.com/#fa
 
 In many ways, the most interesting lessons came from the unexpected surprises, so we'll spend most of our time on those, but before we do, I just want to quickly recognise the things that actually went to plan.
 
-1. Bootstrap 5 provided the scaffolding I needed to stuctue the site's pages using+ only their standard features and components:
+1. Bootstrap 5 provided the scaffolding I needed to structure the site's pages using only their standard features and components:
    1. Bootstrap's [grid layout](https://getbootstrap.com/docs/5.0/layout/grid/) with [breakpoints](https://getbootstrap.com/docs/5.0/layout/breakpoints/) made it easy to make the site completely responsive — it scales elegantly from the smallest phone screen to the largest desktop display.
    2. The navigation is all built using Bootstrap [NavBars](https://getbootstrap.com/docs/5.0/components/navbar/) with [Dropdowns](https://getbootstrap.com/docs/5.0/components/dropdowns/), [Buttons](https://getbootstrap.com/docs/5.0/components/buttons/), some grouped into [Button Groups](https://getbootstrap.com/docs/5.0/components/button-group/), and [Breadcrumbs](https://getbootstrap.com/docs/5.0/components/breadcrumb/).
    3. Bootstrap [cards](https://getbootstrap.com/docs/5.0/components/card/) are used throughout the site to collect little modular pieces of content — for example, the episode lists are implemented as cards in a [Grid card](https://getbootstrap.com/docs/5.0/components/card/#grid-cards) layout.
@@ -60,7 +63,7 @@ I'd put a lot of work into preparing for this project, so I was happy I'd dealt 
 
 #### 1 — Customising Bootstrap has Changed Significantly Since Version 4 — I needed to Learn CSS Variables
 
-The last version of Bootstrap I'd customised before this project was version 4, to build this very PBS website, as it happens! I assumed I'd just do the same thing again, but there was of course more to it than that!
+The last version of Bootstrap I'd customised before this project was version 4, to build this very PBS website, as it happens! I assumed I'd just do the same thing again, but there was, of course, more to it than that!
 
 Firstly, Bootstrap 5 is substantially more customisable than Bootstrap 4, and you can now think of those customisations as being two-layered, making SASS optional for quite some types of customisation.
 
@@ -98,7 +101,7 @@ A reasonable suite of favicons:
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/graphics/LetsTalk-Podcasts-Favicon-180px.png' | relative_url }}">{% comment %}iOS Homescreen icon{% endcomment %}{% endraw %}
 ```
 
-While these five icon files would not be enough were my site to be a progressive web app (PWA), they are enough for all the modern browsers, and to allow the site to be nicely pinned to an iOS home screen. (PWAs need more than just icons, at the very least they need manifest files.)
+While these five icon files would not be enough were my site to be a progressive web app (PWA), they are enough for all the modern browsers, and allow the site to be nicely pinned to an iOS home screen. (PWAs need more than just icons; at the very least, they need manifest files.)
 
 As you can see in the comment, I made use of the free Mac app [Iconology](https://apps.apple.com/ie/app/iconology/id1463452867?mt=12) to generate all the needed files from a single master image.
 
@@ -160,8 +163,8 @@ If you're expecting this to be where I realised how naive I'd been, I'm relieved
 
 I'd spent a lot of time thinking about my data architecture, and I think my resulting taxonomy is quite elegant. It's as complex as it needs to be, but no more complex than that. My site's content is divided into the following *buckets*:
 
-1. Special-purpose **pages**, e.g. the [front page](https://www.lets-talk.ie/), the [support page](https://www.lets-talk.ie/support.html), and the [credits page](https://www.lets-talk.ie/credits.html).
-2. **Podcasts** — this taxonomy has two entries, one for each of my current shows (Let's Talk Apple & [Let's Talk Photo](https://www.lets-talk.ie/ltp)).
+1. Special-purpose **pages**, e.g., the [front page](https://www.lets-talk.ie/), the [support page](https://www.lets-talk.ie/support.html), and the [credits page](https://www.lets-talk.ie/credits.html).
+2. **Podcasts** — this taxonomy has two entries, one for each of my current shows ([Let's Talk Apple](https://www.lets-talk.ie/lta) & [Let's Talk Photo](https://www.lets-talk.ie/ltp)).
 3. **Podcast Episodes** — this taxonomy is actually split across two Jekyll *collections*, one for each show, but both of these collections share the same Jekyll layout for episode pages.
 4. **Contributors** — details of each guest who has ever appeared on an episode.
 5. **Redirects** — memorable URLs for listeners which redirect to their true destinations, e.g., PayPal and Patreon.
@@ -179,7 +182,7 @@ Some aspects of this architecture might seem needlessly complex, but the design 
 2. Create a matching podcast episode collection in the site config file
 3. Update the front page to advertise it appropriately
 
-I could have made the front page generic, but since adding new shows is never going to be something I do often. rather than try to build a compelling layout for n shows, I chose to optimise the front page layout for two shows  now. if and when a third appears, I'll redesign the front page to optimise it for three.
+I could have made the front page generic, but since adding new shows is never going to be something I do often. Rather than try to build a compelling layout for n shows, I chose to optimise the front page layout for two shows now. If and when a third appears, I'll redesign the front page to optimise it for three.
 
 ### URL Structure
 
@@ -190,12 +193,12 @@ Given my taxonomy, that led to a very simple URL structure:
 1. The URL for each special page is simply the page's file name as an HTML file, e.g., `/support.html` (this is just Jekyll's default behaviour)
 2. The URL for each podcast is simply the podcast's slug as a folder, e.g., `/lta`
 3. The URL for each podcast episode is similarly the episode's slug, e.g., `/lta149`
-4. The URL for each contributor page is the contributor slug prefixed with `contributor/`, e.g., `/contributor/allison_sheridan` 
+4. The URL for each contributor page is the contributor slug prefixed with `/contributor/`, e.g., `/contributor/allison_sheridan` 
 5. The local part of the URL for each redirect is defined by the `permalink` field in the redirect's front matter, e.g., `/patreon` for the redirect to `https://www.patreon.com/ltpod`.
 
 ### Jekyll Layouts
 
-For the most part this taxonomy maps directly to the site's layouts:
+For the most part, this taxonomy maps directly to the site's layouts:
 
 * `default_base.html` — a very generic skeleton reused for the following layouts:
   * `default.html` — the site's default layout, used for the special pages like the [support page](https://www.lets-talk.ie/support.html).
@@ -227,7 +230,7 @@ In the same way that the data architecture made the URL structure easy to define
 
 You might notice that there's no folder for storing MP3 files, or any images contained in the shownotes; that's intentional. Even before migrating away from WordPress, I'd started to use a [Digital Ocean CDN](https://docs.digitalocean.com/products/spaces/how-to/enable-cdn/) for my media assets. I'm simply continuing as I was before, publishing all my MP3s and show note attachments under `https://media.lets-talk.ie/`.
 
-> Digital Ocean implement their CDN as an optional feature on top of their Amazon S3-compatible object storage service ([Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)). From a user's point of view it's regular BLOB (Binary Large Object) storage like that sold by Amazon, Microsift, Google, Backblaze, and others, accessed over the S3 protocol. Since it's standard S3, any S3 client will work, but I use [Transmit](https://panic.com/transmit/), which presents the CDN as a window with folders of files that allow drag-and-drop to standard Finder windows. In other words, it looks just like an SFTP connection to a regular web server.
+> Digital Ocean implement their CDN as an optional feature on top of its Amazon S3-compatible object storage service ([Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)). From a user's point of view, it's regular BLOB (Binary Large Object) storage like that sold by Amazon, Microsoft, Google, Backblaze, and others, accessed over the S3 protocol. Since it's standard S3, any S3 client will work, but I use [Transmit](https://panic.com/transmit/), which presents the CDN as a window with folders of files that allow drag-and-drop to standard Finder windows. In other words, it looks just like an SFTP connection to a regular web server.
 {: .aside}
 
 ## There's Always More to Do!
@@ -238,23 +241,25 @@ All in all, the new site is surprisingly complete for something I built in about
 
 The single biggest task remaining is to pay down the technical debt I'd built up on WordPress. 
 
-In Wordpress, much of what is really metadata was hard-coded into the content of individual episode posts — I was literally copying-and-pasting just about everything before the notes for the show itself from the current episodes into the new episode every time, and then I was relying on TextExpander snippets for duplicating standard components like the legend at the bottom of each Let's Talk Apple episode. That's just bad data architecture! So much of the content for each episode should have been encapsulated into custom fields and a custom theme, and I've known it all along. I also know Wordpress **can** be customised to capture all these things, and I know it **can** be themed just about any way you'd like, the problem was, try as I might, I never had the time to learn enough about either the PHP programming language, or Wordpress's expansive API to get where I needed to be. I started the process many time, trying different approaches, but in the end, I never got any of my attempts to bend Wordpress to my needs to completion. And all the time, more technical debt was building up!
+In Wordpress, much of what is really metadata was hard-coded into the content of individual episode posts — I was literally copying-and-pasting just about everything before the notes for the show itself from the current episodes into the new episode every time, and then I was relying on TextExpander snippets for duplicating standard components like the legend at the bottom of each Let's Talk Apple episode. That's just bad data architecture! So much of the content for each episode should have been encapsulated into custom fields and a custom theme, and I've known it all along. 
+
+I also know WordPress **can** be customised to capture all these things, and I know it **can** be themed just about any way you'd like. The problem was, try as I might, I never had the time to learn enough about either the PHP programming language or WordPress's expansive API to get where I needed to be. I started the process many times, trying different approaches, but in the end, I never got any of my attempts to bend WordPress to my needs to completion. And all the time, more technical debt was building up!
 
 Well, that debt just came due!
 
 I needed to find a way to get my old data into the new site in such a way that it was at least readable, if not nicely presented.
 
-I had two data sources to work with — a WordPress export of all my podcast episode posts, and the RSS feeds for both shows. Conveniently, those two things are actually in the same basic format, because Wordpress content exports are actually RSS feeds with extra fields added for the Wordpress-specific metadata. This meant that if I could parse one of my data sources programatically, I could parse both! I knew that by picking-and-choosing the best presented information from both sources, I'd be able to get a usable import of my back-episodes. It probably wouldn't be clean, but it should be readable.
+I had two data sources to work with — a WordPress export of all my podcast episode posts, and the RSS feeds for both shows. Conveniently, those two things are actually in the same basic format, because WordPress content exports are actually RSS feeds with extra fields added for the WordPress-specific metadata. This meant that if I could parse one of my data sources programmatically, I could parse both! I knew that by picking and choosing the best presented information from both sources, I'd be able to get a usable import of my back episodes. It probably wouldn't be clean, but it should be readable.
 
-Since RSS is an XML data format,I featured I might have to fall back to some kind of XML-parsing JavaScript module for my import code. I was really not looking forward to that because years of experience in work has taught me that parsing XML always ends in tears! Thankfully, I found a better solution — a JavaScript library ([@sesamy/podcast-parser](https://www.npmjs.com/package/@sesamy/podcast-parser)) on NPM that converts RSS files, including non-standard fields, to JSON, my favourite data format by far 😀
+Since RSS is an XML data format, I feared I might have to fall back to some kind of XML-parsing JavaScript module for my import code. I was really not looking forward to that because years of experience in work have taught me that parsing XML always ends in tears! Thankfully, I found a better solution — a JavaScript library ([@sesamy/podcast-parser](https://www.npmjs.com/package/@sesamy/podcast-parser)) on NPM that converts RSS files, including non-standard fields, to JSON, my favourite data format by far 😀
 
-Once I had my data in JSON format I was able to manipulate it easily using tools I'm very comfortable with like NodeJS JavaScripts and `jq` (see instalments starting from [155](./pbs155)). If you're curious, you'll find all my migration scripts in the `/migration` folder in the GitHub repo.
+Once I had my data in JSON format, I was able to manipulate it easily using tools I'm very comfortable with, like NodeJS, JavaScript, and `jq` (see instalments starting from [155](./pbs155)). If you're curious, you'll find all my migration scripts in the `/migration` folder in the GitHub repo.
 
-If you look at a raw migrated episode (one that has not been manually cleaned up yet), you'll see that all the content is indeed there, but it's not always well formatted, and it's surrounded by a bunch of hard-coded metadata masquerading as content with broken images for hard-coded icons from the Wordpress site. I've found it takes just a few minutes to clean up most episodes, but each time I encounter a guest for the first time I need to create their contributor page which is a lot more time-consuming. On Wordpress I just hard-coded links to people's social media, but on this site each creator gets a permanent profile, so I need to write a short biography and add up-to-date social media links.
+If you look at a raw migrated episode (one that has not been manually cleaned up yet), you'll see that all the content is indeed there, but it's not always well formatted, and it's surrounded by a bunch of hard-coded metadata masquerading as content with broken images for hard-coded icons from the WordPress site. I've found it takes just a few minutes to clean up most episodes, but each time I encounter a guest for the first time, I need to create their contributor page, which is a lot more time-consuming. On WordPress, I just hard-coded links to people's social media, but on this site, each creator gets a permanent profile, so I need to write a short biography and add up-to-date social media links.
 
 Realistically, it's going to take many months, if not a year or two, to work through the entire back-catalogue, so I put my energy into making the best of the situation.
 
-As part of the migration process, I injected YAML front-matter to each episode capturing the post-migration tasks still outstanding on each episode. Specifically, the import script added the following to every episode:
+As part of the migration process, I injected YAML front-matter to each episode, capturing the post-migration tasks still outstanding on each episode. Specifically, the import script added the following to every episode:
 
 ```yaml
 warnings:
@@ -269,7 +274,7 @@ warnings:
 
 With that metadata captured for each episode, I was able to update my layout to add some conditional warning alerts explaining to readers that the page is in need of some review. As I work my way through each back episode, I remove the appropriate front matter, and the matching warnings disappear.
 
-Because this metadata is captured in each episode's front matter, I could do more than just add warnings to appropriate episode pages, I could build a hidden utility page that lists all the episodes that have at least one remaining warning, helping me keep track of what remains to be done. Assuming you read this before I finish the task, you'll see how much I still have to do at [/temp-episodes-to-review.html](https://www.lets-talk.ie/temp-episodes-to-review.html).
+Because this metadata is captured in each episode's front matter, I could do more than just add warnings to appropriate episode pages; I could build a hidden utility page that lists all the episodes that have at least one remaining warning, helping me keep track of what remains to be done. Assuming you read this before I finish the task, you'll see how much I still have to do at [/temp-episodes-to-review.html](https://www.lets-talk.ie/temp-episodes-to-review.html).
 
 By the way, if you're comfortable with Jekyll, have a few minutes to spare to familiarise yourself with what's needed to properly format an episode on the new site, and some free time to donate, **pull requests with episode fixes are always welcome** 😉
 
