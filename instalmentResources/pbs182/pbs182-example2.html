@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PBS 182 — Example 2 (CSS Custom Properties)</title>
+    <style>
+      /*
+       * Import Desired Google Fonts:
+       * - Indie Flower (a handwriting font)
+       * - Ubuntu Mono (a monospaced font)
+       * - Ubuntu Sans (a sans-serif font)
+       */
+      @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+
+      /*
+       * Delcare custom properties for the page's look and feel
+       */
+
+      /* Custom properties for controlling Fonts */
+      @property --heading-font {
+        syntax: "<string>#"; /* A comma-separated list of font names */
+        inherits: true;
+        initial-value: "Ubuntu Mono", "monospace"; /* the quotation marks are not optional*/
+      }
+      @property --body-font {
+        syntax: "<string>#";
+        inherits: true;
+        initial-value: "Ubuntu Sans", "sans-serif"; /* the quotation marks are not optional*/
+      }
+
+      /*
+       * Style the page contents
+       */
+
+      /* Default all text to the defined body font */
+      body {
+        font-family: var(--body-font);
+      }
+
+      /* Default all headings to the defined heading font */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--heading-font);
+      }
+
+      /* Override the body font within quotations and explicitly apply the new value to paragraphs */
+      blockquote {
+        --body-font: "Indie Flower", "cursive";
+      }
+      blockquote p { /* custom properties can't be relied on to always apply unless you're very explicit */
+        font-family: var(--body-font);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PBS 182 — Example 2 (CSS Custom Properties)</h1>
+
+    <p>True wisdom is a rare and wonderful thing, and it should be cherished where ever it's found.</p>
+
+    <blockquote>
+      <p>"The world is a dangerous place to live; not because of the people who are evil, but because of the people who don't do anything about it."</p>
+      <p class="author">— Albert Einstein</p>
+    </blockquote>
+  </body>
+</html>
