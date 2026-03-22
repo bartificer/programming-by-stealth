@@ -27,10 +27,10 @@
         inherits: true;
         initial-value: "Ubuntu Sans", "sans-serif"; /* the quotation marks are not optional*/
       }
-      @property --base-font-size-px {
+      @property --base-font-size-px { /* the base font size to use expressed in pixels */
         syntax: "<integer>";
         inherits: true;
-        initial-value: 16; /* the base font size to use expressed in pixels */
+        initial-value: 16;
       }
 
       /* Custom properties controlling the page's colour scheme */
@@ -83,7 +83,7 @@
        * Style the page contents
        */
 
-      /* Calculate the derived custom properties accent background color based on the accent color and apply it to the entire document */
+      /* Calculate default values for the calculated custom properties */
       :root {
         /* calculate the accent background color from the accent color */
         --accent-background-color: color-mix(in srgb, var(--accent-color) 10%, white);
