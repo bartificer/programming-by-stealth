@@ -56,17 +56,22 @@
       }
 
       /* custom properties for controlling the page's layout */
-      @property --body-padding-em { /* the padding to use expressed in em units */
+      @property --space-rem { /* the base unit for padding and margins expressed in the root font's m-width */
         syntax: "<integer>";
         inherits: true;
-        initial-value: 2;
+        initial-value: 1; /* the same as used in Bootstrap */
       }
 
-      /* custom properties for controlling the quotation */
-      @property --quote-border-width { /* the widge of all borders as a single value, or the top, right, bottom & left width */
+      /* custom properties for controlling the presentation of the quotation */
+      @property --quote-border-width { /* the width of all borders as a single value, or the top, right, bottom & left width */
         syntax: "<length>+"; /* one or four space-separated widths */
         inherits: true;
         initial-value: 0px 0px 0px 5px;
+      }
+      @property --quote-border-radius { /* the radius of all borders as a single value, or the top-left, top-right, bottom-right & bottom-left radii */
+        syntax: "<length>+"; /* one or four space-separated radii */
+        inherits: true;
+        /* no initial value specified - will be calculated from the space unit */
       }
       @property --quote-border-style {
         syntax: "dotted|dashed|solid|double";
@@ -78,9 +83,13 @@
        * Style the page contents
        */
 
-      /* Calculate the accent background color based on the accent color and apply it to the entire document */
+      /* Calculate the derived custom properties accent background color based on the accent color and apply it to the entire document */
       :root {
+        /* calculate the accent background color from the accent color */
         --accent-background-color: color-mix(in srgb, var(--accent-color) 10%, white);
+
+        /* calculate the quotation border radii from the space unit */
+        --quote-border-radius: 0px calc(var(--space-rem) * 1rem) calc(var(--space-rem) * 1rem) 0px;
       }
 
       /* Experiment — un-comment this to change the accent to the Let's Talk Green */
@@ -88,16 +97,34 @@
         --accent-color: #93c01f;
       }*/
 
-      /* Style the body content */
+      /* configure the spacing */
       body {
-        font-family: var(--body-font);
-        font-size: calc(var(--base-font-size-px) * 1px);
-        color: var(--body-color);
-        background-color: var(--body-background-color);
-        padding: calc(var(--body-padding-em) * 1em);
+        margin: 0px;
+        padding: calc(var(--space-rem) * 1rem);
+      }
+      p, blockquote { /* the same as Bootstrap */
+        margin-top: 0px;
+        margin-bottom: calc(var(--space-rem) * 1rem);
+      }
+      h1, h2, h3, h4, h5, h6 { /* the same as Bootstrap */
+        margin-top: 0px;
+        margin-bottom: calc(var(--space-rem) * 0.5rem);
+      }
+      blockquote { /* add extra spacing around quotations */
+        padding: calc(var(--space-rem) * 1rem); /* needed with background colours and/or borders to move the text in from the edges */
+        margin-left: calc(var(--space-rem) * 2rem);
+        margin-right: calc(var(--space-rem) * 2rem);
       }
 
-      /* Style all headings */
+      /* apply default styles to the content */
+      :root { /* set the base font size on the root element so that it will form the basis for rem units */
+        font-size: calc(var(--base-font-size-px) * 1px);
+      }
+      body { /* define the default font for the page and set the page background colour */
+        font-family: var(--body-font);
+        color: var(--body-color);
+        background-color: var(--body-background-color); 
+      } /* override the default font for headings */
       h1, h2, h3, h4, h5, h6 {
         font-family: var(--heading-font);
         color: var(--accent-color);
@@ -105,19 +132,18 @@
 
       /* style quotations */
       blockquote {
-        /* Note: update all custom properties before applying their new values */
+        /* apply local changes to any needed custom properties before referencing them */
         --body-font: "Indie Flower", "cursive";
 
-        /* update the styles using the updated custom properties */
+        /* set the styles, using the localised custom properties */
         font-family: var(--body-font); /* add a more specific font-family declaration to 'win' against the one on the body */
         font-size: 1.5em; /* make the quote larger than the base font size */
         color: var(--accent-color); /* use the accent colour for the text of the quote */
-        background-color: var(--accent-background-color); /* use the accent background colour for the background of the quote */
-        margin: calc(var(--body-padding-em) * 1em - 1em); /* add some margin to the quote */
-        padding: calc(var(--body-padding-em) * 1em - 1em); /* add some padding around the quote */
+        background-color: var(--accent-background-color); /* use the accent background colour for the background */
         border-width: var(--quote-border-width); /* use the custom property to set the border width */
         border-style: var(--quote-border-style); /* use the custom property to set the border style */
-        border-color: color-mix(in srgb, var(--accent-color) 50%, white); /* use the accent colour for the border of the quote */
+        border-color: color-mix(in srgb, var(--accent-color) 50%, white); /* calculate the border colour from the accent color */
+        border-radius: var(--quote-border-radius); /* use the custom property to set the border radii */
       }
       blockquote p.author { /* emphasise the quote author */
         font-weight: bold;
