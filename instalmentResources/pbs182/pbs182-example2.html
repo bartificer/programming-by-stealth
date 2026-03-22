@@ -27,27 +27,100 @@
         inherits: true;
         initial-value: "Ubuntu Sans", "sans-serif"; /* the quotation marks are not optional*/
       }
+      @property --base-font-size-px {
+        syntax: "<integer>";
+        inherits: true;
+        initial-value: 16; /* the base font size to use expressed in pixels */
+      }
+
+      /* Custom properties controlling the page's colour scheme */
+      @property --body-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: black;
+      }
+      @property --body-background-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: white;
+      }
+      @property --accent-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: #00408d;
+      }
+      @property --accent-background-color {
+        syntax: "<color>";
+        inherits: true;
+        /* no initial value specified - will be calculated from the accent color */
+      }
+
+      /* custom properties for controlling the page's layout */
+      @property --body-padding-em { /* the padding to use expressed in em units */
+        syntax: "<integer>";
+        inherits: true;
+        initial-value: 2;
+      }
+
+      /* custom properties for controlling the quotation */
+      @property --quote-border-width { /* the widge of all borders as a single value, or the top, right, bottom & left width */
+        syntax: "<length>+"; /* one or four space-separated widths */
+        inherits: true;
+        initial-value: 0px 0px 0px 5px;
+      }
+      @property --quote-border-style {
+        syntax: "dotted|dashed|solid|double";
+        inherits: true;
+        initial-value: double;
+      }
 
       /*
        * Style the page contents
        */
 
-      /* Default all text to the defined body font */
+      /* Calculate the accent background color based on the accent color and apply it to the entire document */
+      :root {
+        --accent-background-color: color-mix(in srgb, var(--accent-color) 10%, white);
+      }
+
+      /* Experiment — un-comment this to change the accent to the Let's Talk Green */
+      /* :root {
+        --accent-color: #93c01f;
+      }*/
+
+      /* Style the body content */
       body {
         font-family: var(--body-font);
+        font-size: calc(var(--base-font-size-px) * 1px);
+        color: var(--body-color);
+        background-color: var(--body-background-color);
+        padding: calc(var(--body-padding-em) * 1em);
       }
 
-      /* Default all headings to the defined heading font */
+      /* Style all headings */
       h1, h2, h3, h4, h5, h6 {
         font-family: var(--heading-font);
+        color: var(--accent-color);
       }
 
-      /* Override the body font within quotations and explicitly apply the new value to paragraphs */
+      /* style quotations */
       blockquote {
+        /* Note: update all custom properties before applying their new values */
         --body-font: "Indie Flower", "cursive";
+
+        /* update the styles using the updated custom properties */
+        font-family: var(--body-font); /* add a more specific font-family declaration to 'win' against the one on the body */
+        font-size: 1.5em; /* make the quote larger than the base font size */
+        color: var(--accent-color); /* use the accent colour for the text of the quote */
+        background-color: var(--accent-background-color); /* use the accent background colour for the background of the quote */
+        margin: calc(var(--body-padding-em) * 1em - 1em); /* add some margin to the quote */
+        padding: calc(var(--body-padding-em) * 1em - 1em); /* add some padding around the quote */
+        border-width: var(--quote-border-width); /* use the custom property to set the border width */
+        border-style: var(--quote-border-style); /* use the custom property to set the border style */
+        border-color: color-mix(in srgb, var(--accent-color) 50%, white); /* use the accent colour for the border of the quote */
       }
-      blockquote p { /* custom properties can't be relied on to always apply unless you're very explicit */
-        font-family: var(--body-font);
+      blockquote p.author { /* emphasise the quote author */
+        font-weight: bold;
       }
     </style>
   </head>
