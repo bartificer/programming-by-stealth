@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PBS 182 — Example 2 (CSS Custom Properties)</title>
+    <style>
+      /*
+       * Import Desired Google Fonts:
+       * - Indie Flower (a handwriting font)
+       * - Ubuntu Mono (a monospaced font)
+       * - Ubuntu Sans (a sans-serif font)
+       */
+      @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+
+      /*
+       * Delcare custom properties for the page's look and feel
+       */
+
+      /* Custom properties for controlling Fonts */
+      @property --heading-font {
+        syntax: "<string>#"; /* A comma-separated list of font names */
+        inherits: true;
+        initial-value: "Ubuntu Mono", "monospace"; /* the quotation marks are not optional*/
+      }
+      @property --body-font {
+        syntax: "<string>#";
+        inherits: true;
+        initial-value: "Ubuntu Sans", "sans-serif"; /* the quotation marks are not optional*/
+      }
+      @property --base-font-size-px { /* the base font size to use expressed in pixels */
+        syntax: "<integer>";
+        inherits: true;
+        initial-value: 16;
+      }
+
+      /* Custom properties controlling the page's colour scheme */
+      @property --body-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: black;
+      }
+      @property --body-background-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: white;
+      }
+      @property --accent-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: #00408d;
+      }
+      @property --accent-background-color {
+        syntax: "<color>";
+        inherits: true;
+        /* no initial value specified - will be calculated from the accent color */
+      }
+
+      /* custom properties for controlling the page's layout */
+      @property --space-rem { /* the base unit for padding and margins expressed in the root font's m-width */
+        syntax: "<integer>";
+        inherits: true;
+        initial-value: 1; /* the same as used in Bootstrap */
+      }
+
+      /* custom properties for controlling the presentation of the quotation */
+      @property --quote-border-width { /* the width of all borders as a single value, or the top, right, bottom & left width */
+        syntax: "<length>+"; /* one or four space-separated widths */
+        inherits: true;
+        initial-value: 0px 0px 0px 5px;
+      }
+      @property --quote-border-radius { /* the radius of all borders as a single value, or the top-left, top-right, bottom-right & bottom-left radii */
+        syntax: "<length>+"; /* one or four space-separated radii */
+        inherits: true;
+        /* no initial value specified - will be calculated from the space unit */
+      }
+      @property --quote-border-style {
+        syntax: "dotted|dashed|solid|double";
+        inherits: true;
+        initial-value: double;
+      }
+
+      /*
+       * Style the page contents
+       */
+
+      /* Calculate default values for the calculated custom properties */
+      :root {
+        /* calculate the accent background color from the accent color */
+        --accent-background-color: color-mix(in srgb, var(--accent-color) 10%, white);
+
+        /* calculate the quotation border radii from the space unit */
+        --quote-border-radius: 0px calc(var(--space-rem) * 1rem) calc(var(--space-rem) * 1rem) 0px;
+
+        /* Experiment 1 — un-comment the next line to change the base font size to 24px */
+        /* --base-font-size-px: 24; */
+
+        /* Experiment 2 — un-comment the next line to double the spacing */
+        /* --space-rem: 2; */
+
+        /* Experiment 3 — un-comment the next three lines to change border around the quotation */
+        /* --quote-border-width: 1px;
+        --quote-border-style: dashed;
+        --quote-border-radius: 5px; */
+
+        /* Experiment 4 — uncomment the next line to change the accent colour to the gree from the Let's Talk logo */
+        /* --accent-color: #93c01f; */
+      }
+
+      /* configure the spacing */
+      body {
+        margin: 0px;
+        padding: calc(var(--space-rem) * 1rem);
+      }
+      p, blockquote { /* the same as Bootstrap */
+        margin-top: 0px;
+        margin-bottom: calc(var(--space-rem) * 1rem);
+      }
+      h1, h2, h3, h4, h5, h6 { /* the same as Bootstrap */
+        margin-top: 0px;
+        margin-bottom: calc(var(--space-rem) * 0.5rem);
+      }
+      blockquote { /* add extra spacing around quotations */
+        padding: calc(var(--space-rem) * 1rem); /* needed with background colours and/or borders to move the text in from the edges */
+        margin-left: calc(var(--space-rem) * 2rem);
+        margin-right: calc(var(--space-rem) * 2rem);
+      }
+
+      /* apply default styles to the content */
+      :root { /* set the base font size on the root element so that it will form the basis for rem units */
+        font-size: calc(var(--base-font-size-px) * 1px);
+      }
+      body { /* define the default font for the page and set the page background colour */
+        font-family: var(--body-font);
+        color: var(--body-color);
+        background-color: var(--body-background-color); 
+      } /* override the default font for headings */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--heading-font);
+        color: var(--accent-color);
+      }
+
+      /* style quotations */
+      blockquote {
+        /* apply local changes to any needed custom properties before referencing them */
+        --body-font: "Indie Flower", "cursive";
+
+        /* set the styles, using the localised custom properties */
+        font-family: var(--body-font); /* add a more specific font-family declaration to 'win' against the one on the body */
+        font-size: 1.5em; /* make the quote larger than the base font size */
+        color: var(--accent-color); /* use the accent colour for the text of the quote */
+        background-color: var(--accent-background-color); /* use the accent background colour for the background */
+        border-width: var(--quote-border-width); /* use the custom property to set the border width */
+        border-style: var(--quote-border-style); /* use the custom property to set the border style */
+        border-color: color-mix(in srgb, var(--accent-color) 50%, white); /* calculate the border colour from the accent color */
+        border-radius: var(--quote-border-radius); /* use the custom property to set the border radii */
+      }
+      blockquote p.author { /* emphasise the quote author */
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PBS 182 — Example 2 (CSS Custom Properties)</h1>
+
+    <p>True wisdom is a rare and wonderful thing, and it should be cherished where ever it's found.</p>
+
+    <blockquote>
+      <p>"The world is a dangerous place to live; not because of the people who are evil, but because of the people who don't do anything about it."</p>
+      <p class="author">— Albert Einstein</p>
+    </blockquote>
+  </body>
+</html>
