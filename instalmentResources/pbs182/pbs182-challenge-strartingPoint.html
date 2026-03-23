@@ -6,12 +6,12 @@
     <style>
       /* 
        * Basic layout — OK TO EDIT (probably not necessary)
-      */
+       */
       table#calculator {
         border-collapse: separate;
         text-align: center;
       }
-      table#calculator input#display{
+      table#calculator input.display{
         text-align: right;
         font-family: monospace;
         box-sizing: border-box;
@@ -63,7 +63,7 @@
       <tbody> 
         <tr>
           <td colspan="4" class="display-cell" >
-            <input id="display" type="text" value="0" readonly>
+            <input class="display" type="text" value="0" readonly>
           </td>
         </tr>
         <tr>
@@ -108,7 +108,7 @@
     $(document).ready(function() {
       // define variables
       $calculator = $('#calculator');
-      $display = $('#display');
+      $display = $('#calculator input[type="text"].display');
       
       // define helper functions
       state = function(newState) {
@@ -116,12 +116,15 @@
           $calculator.data('state', newState);
         }
         return $calculator.data('state');
-      }
+      };
+      empty = function() {
+        state('empty');
+        $display.val('0');
+      };
 
       // add a click hander to the clear button
       $('button.action[data-action="clear"]', $calculator).click(function() {
-        state('empty');
-        $display.val('0');
+        empty();
       });
 
       // add a click handler to the backspace button
@@ -131,8 +134,7 @@
           if (currentValue.length > 1) {
             $display.val(currentValue.slice(0, -1));
           } else {
-            state('empty');
-            $display.val('0');
+            empty();
           }
         }
       });
@@ -144,7 +146,12 @@
           $display.val($display.val() + $(this).data('digit'));
         } else {
           state('accumulating');
-          $display.val($(this).data('digit'));
+          if($(this).data('digit') === '.') {
+            // if the user clicks the decimal point when not accumulating, start with 0.
+            $display.val('0.');
+          }else{
+            $display.val($(this).data('digit'));
+          }
         }
       });
 
@@ -158,9 +165,16 @@
             // allow the user to start a negative number with the minus operator
             state('accumulating');
             $display.val($(this).data('operator'));
+          } else if ($(this).data('operator') === '.') {
+            // if the user clicks the decimal point when not accumulating, start with 0.
+            state('accumulating');
+            $display.val('0.');
+          } else if ($(this).data('operator') === '+') {
+            // allow the user to start with a plus operator, just prefix it with a 0
+            state('accumulating');
+            $display.val('0' + $(this).data('operator'));
           } else {
-            state('empty');
-            $display.val(0);
+            empty();
           }
         }
       });
@@ -177,8 +191,7 @@
             $display.val('Error');
           }
         } else {
-          state('empty');
-          $display.val(0);
+          empty();
         }
       });
     });
