@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PBS 182 Challenge — Styled Calculator App</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        border: 1px solid black;
+      }
+      input#display{
+        text-align: right;
+        font-family: monospace;
+      }
+      td.number-cell, td.operator-cell {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="4">PBS Delux Calculator</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr>
+          <td colspan="4" class="display-cell" >
+            <input id="display" type="text" value="0" readonly>
+          </td>
+        </tr>
+        <tr>
+          <td class="number-cell"><button id="button-7">7</button></td>
+          <td class="number-cell"><button id="button-8">8</button></td>
+          <td class="number-cell"><button id="button-9">9</button></td>
+          <td class="operator-cell"><button id="button-divide">&divide;</button></td>
+        </tr>
+        <tr>
+          <td class="number-cell"><button id="button-4">4</button></td>
+          <td class="number-cell"><button id="button-5">5</button></td>
+          <td class="number-cell"><button id="button-6">6</button></td>
+          <td class="operator-cell"><button id="button-multiply">&times;</button></td>
+        </tr>
+        <tr>
+          <td class="number-cell"><button id="button-1">1</button></td>
+          <td class="number-cell"><button id="button-2">2</button></td>
+          <td class="number-cell"><button id="button-3">3</button></td>
+          <td class="operator-cell"><button id="button-subtract">&minus;</button></td>
+        </tr>
+        <tr>
+          <td class="blank-cell">&nbsp;</td>
+          <td class="number-cell"><button id="button-0">0</button></td>
+          <td class="number-cell"><button id="button-decimal">.</button></td>
+          <td class="operator-cell"><button id="button-add">&plus;</button></td>
+        </tr>
+        <tr>
+          <td class="blank-cell">&nbsp;</td>
+          <td colspan="2" class="operator-cell"><button id="button-equals">=</button></td>
+          <td class="blank-cell">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+  </body> 
+
+  <!-- Import jQuery from CDN -->
+  <script src="https://code.jquery.com/jquery-4.0.0.slim.min.js" integrity="sha256-8DGpv13HIm+5iDNWw1XqxgFB4mj+yOKFNb+tHBZOowc=" crossorigin="anonymous"></script>
+
+  <script>
+    // jQuery code to handle button clicks and update the display will go here
+  </script>
+</html>
