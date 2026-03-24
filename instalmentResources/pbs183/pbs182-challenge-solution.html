@@ -7,7 +7,7 @@
       /*
        * Import Fonts from Google Fonts
        */
-      @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Quicksand:wght@300..700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
       
       /* 
        * Basic layout — OK TO EDIT (probably not necessary)
@@ -33,7 +33,7 @@
       /* --- YOUR CODE: START --- */
 
       /*
-       * Control the calculator's Readability
+       * Configure the calculator's Readability
        */
       
       @property --calc-base-font-size-px { /* Be sure to keep divisible by 8 */
@@ -64,7 +64,7 @@
       }
 
       /*
-       * Control the calculator's Color Scheme
+       * Configure the calculator's Branding
        */
       @property --calc-brand-color {
         syntax: '<color>';
@@ -95,6 +95,66 @@
       table#calculator thead th {
         color: var(--calc-brand-color);
         font-family: var(--calc-brand-font);
+      }
+
+      /*
+       * Configure the calculator's Usability
+       */
+
+      @property --calc-display-font {
+        syntax: '<string>#';
+        inherits: true;
+        initial-value: "Doto", "monospace";
+      }
+      @property --calc-button-font {
+        syntax: '<string>#';
+        inherits: true;
+        initial-value: "Quicksand", "sans-serif";
+      }
+
+      /* Style the display */
+      table#calculator input.display {
+        font-family: var(--calc-display-font);
+        background-color: color-mix(in srgb, var(--calc-brand-color), black 25%);
+        color: color-mix(in srgb, var(--calc-brand-color) 25%, white);
+        border-radius: calc(var(--calc-space-px) * 2px);
+        border-color: black;
+        border-style: solid;
+      }
+
+      /* common styles for all the buttons */
+      table#calculator button {
+        font-family: var(--calc-button-font);
+        color: #2c2c2c;
+        border-radius: calc(var(--calc-space-px) * 2px);
+        border-color: black;
+        border-style: solid;
+        background-color: LightGray;
+        border-width: 1px;
+      }
+
+      /* special styles for the operator buttons */
+      table#calculator button.operator {
+        color: black;
+        font-weight: bold;
+      }
+
+      /* special styles for the action buttons */
+      table#calculator button.action {
+        font-weight: bold;
+      }
+
+      /* special styles for the backspace and clear buttons */
+      table#calculator button[data-action="backspace"],
+      table#calculator button[data-action="clear"] {
+        background-color: oklch(from var(--calc-brand-color) l c 40);
+        color: white;
+      }
+
+      /** special styles for the calculate button */
+      table#calculator button[data-action="calculate"] {
+        background-color: oklch(from var(--calc-brand-color) l c 160);
+        color: white;
       }
 
       /* --- YOUR CODE: END --- */
@@ -244,7 +304,7 @@
           try {
             const result = eval($display.val());
             state('result');
-            $display.val(result);
+            $display.val('=' + result);
           } catch (e) {
             state('error');
             $display.val('Error');
