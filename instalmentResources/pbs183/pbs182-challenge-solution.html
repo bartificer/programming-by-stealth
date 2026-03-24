@@ -33,19 +33,55 @@
       /* --- YOUR CODE: START --- */
 
       /*
-       * Configure the calculator's Readability
+       * Define custom properties for controling the calculator's brand, readability, and usability.
        */
-      
+
+      /* the base font size for the calculator */
       @property --calc-base-font-size-px { /* Be sure to keep divisible by 8 */
-        syntax: '<integer>'; /* the base font size for the calculator */
+        syntax: '<integer>';
         inherits: true;
         initial-value: 24; /* 1.5x browser default */
       }
+
+      /* the base spacing unit for the calculator — derive from the base font size */
       @property --calc-space-px {
-        syntax: '<integer>'; /* the base spacing unit for the calculator*/
+        syntax: '<integer>'; 
         inherits: true;
         /* no initial value — will compute from --calc-base-font-size-px */
       }
+
+      /* the calculator's brand colour — used to derive many other colours in the design */
+      @property --calc-brand-color {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #00408d; /* The PBS Blue */
+      }
+
+      /* the calculator's brand font */
+      @property --calc-brand-font {
+        syntax: '<string>#';
+        inherits: true;
+        initial-value: "Ubuntu Mono", "monospace"; /* The heading font used on the PBS site */
+      }
+
+      /* the width of the calculator's outer border */
+      @property --calc-border-width {
+        syntax: '<length>';
+        inherits: true;
+        initial-value: 1px;
+      }
+
+      /* the style of the calculator's outer border */
+      @property --calc-border-style {
+        syntax: "ridge | inset | outset | groove | solid | dashed | dotted | double | none | hidden";
+        inherits: true;
+        initial-value: solid;
+      }
+
+      /*
+       * Configure the calculator's Readability
+       */
+      
       table#calculator {
         --calc-space-px: calc(var(--calc-base-font-size-px) / 8); /* set the base spacing unit to half the base font size */
         font-size: calc(var(--calc-base-font-size-px) * 1px);
@@ -66,26 +102,6 @@
       /*
        * Configure the calculator's Branding
        */
-      @property --calc-brand-color {
-        syntax: '<color>';
-        inherits: true;
-        initial-value: #00408d; /* The PBS Blue */
-      }
-      @property --calc-brand-font {
-        syntax: '<string>#';
-        inherits: true;
-        initial-value: "Ubuntu Mono", "monospace";
-      }
-      @property --calc-border-width {
-        syntax: '<length>';
-        inherits: true;
-        initial-value: 1px;
-      }
-      @property --calc-border-style {
-        syntax: "ridge | inset | outset | groove | solid | dashed | dotted | double | none | hidden";
-        inherits: true;
-        initial-value: solid;
-      }
       table#calculator {
         border-color: var(--calc-brand-color);
         border-width: var(--calc-border-width);
