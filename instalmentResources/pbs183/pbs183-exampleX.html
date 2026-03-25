@@ -18,6 +18,39 @@
       div#calculator {
         width: calc(var(--bs-breakpoint-sm) * 0.8); /* 80% of Bootrap's sm breakpoint */
       }
+
+      /*
+       * Define custom properties for the calculator
+       */
+      @property --calc-primary {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #1da6e5;
+      }
+      @property --calc-secondary {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #8c9daf;
+      }
+      @property --calc-success {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #78a046;
+      }
+      @property --calc-danger {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #dc5a3c;
+      }
+
+      /*
+       * TEST — change Bootstrap colours
+       */
+      div#calculator .btn-primary {
+        --bs-btn-bg: var(--calc-primary);
+        --bs-btn-border-color: color-mix(in srgb, var(--calc-primary), black 20%);
+        --bs-btn-hover-bg: color-mix(in srgb, var(--calc-primary), black 20%);
+      }
     </style>
   </head>
   <body>
