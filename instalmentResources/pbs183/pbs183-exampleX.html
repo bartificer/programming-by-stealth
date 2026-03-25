@@ -11,10 +11,13 @@
     <!-- The CSS to style the calculator interface -->
     <style>
       /* 
-       * Basic layout — OK TO EDIT (probably not necessary)
+       * Basic layout
        */
       
-      /* TO DO */
+      /* set the width of the calculator widget so it fits nicely on even the samllest breakpoint*/
+      div#calculator {
+        width: calc(var(--bs-breakpoint-sm) * 0.8); /* 80% of Bootrap's sm breakpoint */
+      }
     </style>
   </head>
   <body>
@@ -32,82 +35,82 @@
             - result: the result of a calculation is being displayed
             - error: an error message is being displayed
           -->
-          <div class="card" id="calculator" data-state="empty">
+          <div class="card text-center my-5 mx-auto" id="calculator" data-state="empty">
             <div class="card-header">
               PBS Delux Calculator
             </div>
             <div class="card-body">
               <div class="container">
                 <div class="row display-row">
-                  <div class="col display-col">
-                    <input class="display" type="text" value="0" readonly>  
+                  <div class="col px-1 display-col">
+                    <input class="display form-control form-control-lg text-end" type="text" value="0" readonly>  
                   </div>
                 </div>
-                <div class="row button-grid-row">
-                  <div class="col number-col">
-                    <button class="digit" data-digit="7">7</button>
+                <div class="row mt-2 button-grid-row">
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="7">7</button>
                   </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit="8">8</button>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="8">8</button>
                   </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit="9">9</button>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="9">9</button>
                   </div>
-                  <div class="col operator-col">
-                    <button class="operator" data-operator="/">&divide;</button>
-                  </div>
-                </div>
-                <div class="row button-grid-row">
-                  <div class="col number-col">
-                    <button class="digit" data-digit="4">4</button>
-                  </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit="5">5</button>
-                  </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit="6">6</button>
-                  </div>
-                  <div class="col operator-col">
-                    <button class="operator" data-operator="*">&times;</button>
+                  <div class="col px-1 operator-col">
+                    <button class="btn btn-sm btn-primary w-100 operator" data-operator="/">&divide;</button>
                   </div>
                 </div>
-                <div class="row button-grid-row">
-                  <div class="col number-col">
-                    <button class="digit" data-digit="1">1</button>
+                <div class="row mt-2 button-grid-row">
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="4">4</button>
                   </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit="2">2</button>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="5">5</button>
                   </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit="3">3</button>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="6">6</button>
                   </div>
-                  <div class="col operator-col">
-                    <button class="operator" data-operator="-">&minus;</button>
+                  <div class="col px-1 operator-col">
+                    <button class="btn btn-sm btn-primary w-100 operator" data-operator="*">&times;</button>
                   </div>
                 </div>
-                <div class="row button-grid-row">
-                  <div class="col blank-col">
+                <div class="row mt-2 button-grid-row">
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="1">1</button>
+                  </div>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="2">2</button>
+                  </div>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="3">3</button>
+                  </div>
+                  <div class="col px-1 operator-col">
+                    <button class="btn btn-sm btn-primary w-100 operator" data-operator="-">&minus;</button>
+                  </div>
+                </div>
+                <div class="row mt-2 button-grid-row">
+                  <div class="col px-1 blank-col">
                     &nbsp;
                   </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit="0">0</button>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit="0">0</button>
                   </div>
-                  <div class="col number-col">
-                    <button class="digit" data-digit=".">.</button>
+                  <div class="col px-1 number-col">
+                    <button class="btn btn-sm btn-secondary w-100 digit" data-digit=".">.</button>
                   </div>
-                  <div class="col operator-col">
-                    <button class="operator" data-operator="+">&plus;</button>
+                  <div class="col px-1 operator-col">
+                    <button class="btn btn-sm btn-primary w-100 operator" data-operator="+">&plus;</button>
                   </div>
                 </div>
-                <div class="row button-grid-row">
-                  <div class="col-3 action-col">
-                    <button class="action" data-action="clear">AC</button>
+                <div class="row mt-2 button-grid-row">
+                  <div class="col-3 px-1 action-col">
+                    <button class="btn btn-sm btn-danger w-100 action" data-action="clear">AC</button>
                   </div>
-                  <div class="col-3 action-col">
-                    <button class="action" data-action="backspace">&#9003;</button>
+                  <div class="col-3 px-1 action-col">
+                    <button class="btn btn-sm btn-danger w-100 action" data-action="backspace">&#9003;</button>
                   </div>
-                  <div class="col-6 action-col">
-                    <button class="action" data-action="calculate">=</button>
+                  <div class="col-6 px-1 action-col">
+                    <button class="btn btn-sm btn-success w-100 action" data-action="calculate">=</button>
                   </div>
                 </div>
               </div>
