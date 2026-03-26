@@ -10,6 +10,11 @@
     
     <!-- The CSS to style the calculator interface -->
     <style>
+      /*
+       * Import the Bartificer Fonts
+       */
+      @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Georama:ital,wght@0,100..900;1,100..900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
       /* 
        * Basic layout
        */
@@ -20,36 +25,122 @@
       }
 
       /*
-       * Define custom properties for the calculator
+       * Define custom properties for the Bartificer typography
        */
-      @property --calc-primary {
+      @property --bartificer-logo-font-family {
+        syntax: '<string>#';
+        inherits: true;
+        initial-value: "Exo 2", "sans-serif";
+      }
+      @property --bartificer-body-font-family {
+        syntax: '<string>#';
+        inherits: true;
+        initial-value: "Georama", "sans-serif";
+      }
+      @property --bartificer-monospace-font-family {
+        syntax: '<string>#';
+        inherits: true;
+        initial-value: "Victor Mono", "monospace";
+      }
+      @property --bartificer-monospace-font-weight {
+        syntax: '<integer>';
+        inherits: true;
+        initial-value: 500;
+      }
+
+      /*
+       * Define custom properites for the Bartificer colour scheme
+       */
+      @property --bartificer-logo-green {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #93c01f;
+      }
+      @property --bartificer-bg {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #faf8f0;
+      }
+      @property --bartificer-primary {
         syntax: '<color>';
         inherits: true;
         initial-value: #1da6e5;
       }
-      @property --calc-secondary {
+      @property --bartificer-secondary {
         syntax: '<color>';
         inherits: true;
         initial-value: #8c9daf;
       }
-      @property --calc-success {
+      @property --bartificer-success {
         syntax: '<color>';
         inherits: true;
         initial-value: #78a046;
       }
-      @property --calc-danger {
+      @property --bartificer-danger {
         syntax: '<color>';
         inherits: true;
         initial-value: #dc5a3c;
       }
 
       /*
-       * TEST — change Bootstrap colours
+       * Override the default Bootstrap card styles for the calculator card
+       */
+      div#calculator {
+        --bs-card-border-color: var(--bartificer-logo-green);
+        --bs-card-cap-bg: var(--bartificer-logo-green);
+        --bs-card-cap-color: white;
+        --bs-card-bg: var(--bartificer-bg);
+      }
+
+      /*
+       * Style the Calculator header
+       */
+      div#calculator .card-header {
+        font-family: var(--bartificer-logo-font-family);
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      /*
+       * Style the calculator display
+       */
+      div#calculator .display {
+        font-family: var(--bartificer-monospace-font-family);
+        font-weight: var(--bartificer-monospace-font-weight);
+      }
+
+      /*
+       * Style the calculator buttons
+       */
+      div#calculator .btn {
+        font-family: var(--bartificer-body-font-family);
+      }
+      div#calculator button.action {
+        font-weight: bold;
+      }
+
+      /*
+       * Override the default Bootstrap button colours for the buttons inside the calculator
        */
       div#calculator .btn-primary {
-        --bs-btn-bg: var(--calc-primary);
-        --bs-btn-border-color: color-mix(in srgb, var(--calc-primary), black 20%);
-        --bs-btn-hover-bg: color-mix(in srgb, var(--calc-primary), black 20%);
+        --bs-btn-bg: var(--bartificer-primary);
+        --bs-btn-border-color: color-mix(in srgb, var(--bartificer-primary), black 20%);
+        --bs-btn-hover-bg: color-mix(in srgb, var(--bartificer-primary), black 20%);
+      }
+      div#calculator .btn-secondary {
+        --bs-btn-bg: var(--bartificer-secondary);
+        --bs-btn-border-color: color-mix(in srgb, var(--bartificer-secondary), black 20%);
+        --bs-btn-hover-bg: color-mix(in srgb, var(--bartificer-secondary), black 20%);
+      }
+      div#calculator .btn-success {
+        --bs-btn-bg: var(--bartificer-success);
+        --bs-btn-border-color: color-mix(in srgb, var(--bartificer-success), black 20%);
+        --bs-btn-hover-bg: color-mix(in srgb, var(--bartificer-success), black 20%);
+      }
+      div#calculator .btn-danger {
+        --bs-btn-bg: var(--bartificer-danger);
+        --bs-btn-border-color: color-mix(in srgb, var(--bartificer-danger), black 20%);
+        --bs-btn-hover-bg: color-mix(in srgb, var(--bartificer-danger), black 20%);
       }
     </style>
   </head>
@@ -70,7 +161,7 @@
           -->
           <div class="card text-center my-5 mx-auto" id="calculator" data-state="empty">
             <div class="card-header">
-              PBS Delux Calculator
+              Bartificer Delux Calculator
             </div>
             <div class="card-body">
               <div class="container">
