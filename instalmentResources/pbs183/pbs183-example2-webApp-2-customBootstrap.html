@@ -12,6 +12,9 @@
     <style>
       /*
        * Import the Bartificer Fonts
+       * - Exo 2 — used in the Bartificer logo and headers
+       * - Georama — the Bartificer body font
+       * - Victor Mono — the Bartificer monospace font
        */
       @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Georama:ital,wght@0,100..900;1,100..900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
@@ -86,10 +89,10 @@
        * Override the default Bootstrap card styles for the calculator card
        */
       div#calculator {
-        --bs-card-border-color: var(--bartificer-logo-green);
-        --bs-card-cap-bg: var(--bartificer-logo-green);
-        --bs-card-cap-color: white;
-        --bs-card-bg: var(--bartificer-bg);
+        --bs-card-border-color: var(--bartificer-logo-green); /* override the card border colour */
+        --bs-card-cap-bg: var(--bartificer-logo-green); /* override the card header background colour */
+        --bs-card-cap-color: white; /* override the card header text colour */
+        --bs-card-bg: var(--bartificer-bg); /* override the card background colour */
       }
 
       /*
@@ -107,16 +110,6 @@
       div#calculator .display {
         font-family: var(--bartificer-monospace-font-family);
         font-weight: var(--bartificer-monospace-font-weight);
-      }
-
-      /*
-       * Style the calculator buttons
-       */
-      div#calculator .btn {
-        font-family: var(--bartificer-body-font-family);
-      }
-      div#calculator button.action {
-        font-weight: bold;
       }
 
       /*
@@ -141,6 +134,16 @@
         --bs-btn-bg: var(--bartificer-danger);
         --bs-btn-border-color: color-mix(in srgb, var(--bartificer-danger), black 20%);
         --bs-btn-hover-bg: color-mix(in srgb, var(--bartificer-danger), black 20%);
+      }
+
+      /*
+       * Style the calculator buttons
+       */
+      div#calculator .btn {
+        font-family: var(--bartificer-body-font-family);
+      }
+      div#calculator button.action {
+        font-weight: bold;
       }
     </style>
   </head>
