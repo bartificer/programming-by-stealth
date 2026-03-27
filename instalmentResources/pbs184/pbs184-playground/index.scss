@@ -1,3 +1,50 @@
-/* This style sheet has been generated from the SASS file ./index.scss. */
+/* 
+ * This style sheet has been generated from the SASS file ./index.scss.
+ * 
+ * To re-build this file from the latest version of the SASS file, run one of:
+ * - A one-time build   : `sass index.scss index.css`
+ * - A watch mode build : `sass --watch index.scss:index.css`
+ */
 
-// ADD YOUR SASS CODE HERE
+ //
+ // === Page Setup — DO NOT EDIT THIS SECTION ===
+ //
+
+/*
+ * Import Desired Google Fonts:
+ * - Ubuntu Sans      : the sans-serif body font from the PBS site
+ * - Ubuntu Mono      : the mono-spaced heading font from the PBS  site
+ * - Ubuntu Sans Mono : a mono-spaced sans-serif font that compliments the PBS site typography
+ * - Indie Flower     : a handwriting font that compliments the PBS site typorgraphy
+ */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+
+/*
+ * Basic page setup
+ */
+body {
+  font-family: 'Ubuntu Sans', sans-serif;
+  margin: 0px;
+  padding: 1rem 3rem;
+}
+h1, h2, h3, h4, h5, h6 { /* padding replicates Bootstrap convention */
+  font-family: 'Ubuntu Mono', monospace;
+  color: #00408d;
+  margin-top: 0px;
+  margin-bottom: 0.5rem;
+}
+p{ /* padding replicates Bootstrap convention */
+  margin-top: 0px;
+  margin-bottom: 1rem;
+}
+code, pre {
+  font-family: "Ubuntu Sans Mono", monospace;
+}
+
+//
+// === END PAGE SETUP ===
+//
+
+//
+// === Playground — ADD YOUR SASS CODE BELOW THIS SASS COMMENT ===
+//
