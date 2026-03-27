@@ -76,3 +76,9 @@ instalmentResources/pbs174/pc-sysadmin/
 instalmentResources/pbs176/docs/bundle.js
 
 instalmentResources/pbs176/docs/bundle.js.LICENSE.txt
+
+instalmentResources/pbs184/pbs184-playground/*.css.map
+
+instalmentResources/pbs184/pbs184-playground/index.css
+
+instalmentResources/pbs184/pbs184-playground/.sass-cache/
