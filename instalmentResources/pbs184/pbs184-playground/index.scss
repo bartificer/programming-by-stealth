@@ -92,3 +92,16 @@ header {
     }
   }
 }
+
+$border-color: #00408d;
+$border-style: solid;
+$border-width: 1px;
+$border-highlight-side: 'left';
+$border-highlight-width: 5px;
+
+// …
+
+blockquote {
+  border: $border-width $border-style $border-color;
+  border-#{$border-highlight-side}: $border-highlight-width $border-style $border-color;
+}
