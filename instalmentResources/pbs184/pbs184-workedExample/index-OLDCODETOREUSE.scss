@@ -19,6 +19,14 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
 
+//
+// === END PAGE SETUP ===
+//
+
+//
+// === KEEP AND REFACOR THE REMAINDER OF THIS CODE AS THE WORKED EXAMPLE
+//
+
 /*
  * Basic page setup
  */
@@ -40,14 +48,6 @@ p{ /* padding replicates Bootstrap convention */
 code, pre {
   font-family: "Ubuntu Sans Mono", monospace;
 }
-
-//
-// === END PAGE SETUP ===
-//
-
-//
-// === Playground — ADD YOUR SASS CODE BELOW THIS SASS COMMENT ===
-//
 
 /* style the header region */
 header {

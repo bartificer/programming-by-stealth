@@ -1,0 +1,45 @@
+/* 
+ * This style sheet has been generated from the SASS file ./index.scss.
+ * 
+ * To re-build this file from the latest version of the SASS file, run one of:
+ * - A one-time build   : `sass index.scss index.css`
+ * - A watch mode build : `sass --watch index.scss:index.css`
+ */
+
+ //
+ // === Page Setup — DO NOT EDIT THIS SECTION ===
+ //
+
+/*
+ * Import Desired Google Fonts:
+ * - Ubuntu Sans      : the sans-serif body font from the PBS site
+ * - Ubuntu Mono      : the mono-spaced heading font from the PBS  site
+ * - Ubuntu Sans Mono : a mono-spaced sans-serif font that compliments the PBS site typography
+ * - Indie Flower     : a handwriting font that compliments the PBS site typorgraphy
+ */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+
+//
+// === END PAGE SETUP ===
+//
+
+//
+// === Define Global Variables ===
+//
+
+// Typograhy Varialbes - capture the PBS house style
+$body-font-family: 'Ubuntu Sans', sans-serif;
+$heading-font-family: 'Ubuntu Mono', monospace;
+$code-font-family: 'Ubuntu Sans Mono', monospace;
+$handwriting-font-family: 'Indie Flower', cursive;
+// Add additional globoal typography-related variables here as needed
+
+// Colour Variables - capture the PBS house style
+$logo-colour: #00408d;
+$secondary-color: #5f5f5b;
+$body-background-color: white;
+$body-text-color: black;
+$heading-text-color: $logo-colour;
+$secondary-heading-text-color: $secondary-color;
+$code-text-color: $secondary-color;
+// add additional global colour-related variables here as needed
