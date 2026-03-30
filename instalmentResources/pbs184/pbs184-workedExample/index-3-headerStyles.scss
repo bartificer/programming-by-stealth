@@ -43,6 +43,9 @@ $heading-font-size-map: ( // replicate Bootstrap's sizes
 );
 $code-font-family: 'Ubuntu Sans Mono', monospace;
 $handwriting-font-family: 'Indie Flower', cursive;
+$banner-font-family: $body-font-family;
+$banner-font-weight: 100;
+$banner-font-size: 5rem;
 // Add additional globoal typography-related variables here as needed
 
 // Colour Variables - capture the PBS house style
@@ -53,6 +56,7 @@ $body-text-color: black;
 $heading-text-color: $logo-colour;
 $secondary-heading-text-color: $secondary-color;
 $code-text-color: $secondary-color;
+$banner-text-color: $secondary-heading-text-color;
 // add additional global colour-related variables here as needed
 
 /*
@@ -102,8 +106,7 @@ header, main {
 p { 
   @include block-spacing;
 
-  /* make lead spans within paragraphs stand out */
-  span.lead {
+  span.lead { /* make lead spans within paragraphs stand out */
     font-weight: bold; 
   }
 }
@@ -122,3 +125,56 @@ p.lead {
     @include block-spacing(true); // pass the optoinal argument to use header spacing
   }
 }
+
+/* style the header region */
+header {
+  // Style the page-level header without affecting other headers
+  h1 {
+    font-family: $banner-font-family;
+    font-weight: $banner-font-weight;
+    color: $banner-text-color;
+    font-size: $banner-font-size;
+  }
+
+  // Style the instructions
+  section {
+    /* clearly enclose the instructions */
+    border: 1px solid $logo-colour;
+    border-radius: 0.5em;
+    padding: 1em;
+    background-color: color-mix(in srgb, $logo-colour, white 90%);
+
+    /* clear space around the instructions */
+    margin-bottom: 2rem;
+
+    /* make the text more subtle */
+    color: $logo-colour;
+    font-size: 0.8rem;
+
+    /* compress the paragraphs a little */
+    p {
+      margin-bottom: 0.8em;
+    }
+
+    /* help the code snippets stand out */
+    code {
+      color: $code-text-color;
+      font-family: $code-font-family;
+    }
+    pre {
+      border-left: 3px solid $code-text-color;
+      padding-left: 1em;
+      margin-bottom: 0.8em;
+    }
+  }
+}
+
+// /* Default Code Styles */
+// pre {
+//   @include block-spacing;
+//   font-family: $code-font-family;
+// }
+// code {
+//   font-family: $code-font-family;
+//   color: $code-text-color;
+// }
