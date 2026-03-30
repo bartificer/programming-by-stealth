@@ -117,13 +117,3 @@ p.lead {
     @include block-spacing(true); // pass the optoinal argument to use header spacing
   }
 }
-
-// /* Default Code Styles */
-// pre {
-//   @include block-spacing;
-//   font-family: $code-font-family;
-// }
-// code {
-//   font-family: $code-font-family;
-//   color: $code-text-color;
-// }

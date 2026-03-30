@@ -29,7 +29,10 @@
 
 // Typograhy Varialbes - capture the PBS house style
 $body-font-family: 'Ubuntu Sans', sans-serif;
+$body-font-weight: normal;
+$body-line-height: 1.5; // replicate Bootstrap convention
 $heading-font-family: 'Ubuntu Mono', monospace;
+$heading-font-weight: bold;
 $code-font-family: 'Ubuntu Sans Mono', monospace;
 $handwriting-font-family: 'Indie Flower', cursive;
 // Add additional globoal typography-related variables here as needed
