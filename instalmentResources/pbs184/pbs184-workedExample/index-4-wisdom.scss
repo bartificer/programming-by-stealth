@@ -58,7 +58,6 @@ $heading-text-color: $logo-colour;
 $secondary-heading-text-color: $secondary-color;
 $code-text-color: $secondary-color;
 $banner-text-color: $secondary-heading-text-color;
-$handwriting-text-color: rgb(from $logo-colour r b g); /* use the CSS function rgb() to swap the blue and green channels of the logo colour*/
 // add additional global colour-related variables here as needed
 
 /*
@@ -136,27 +135,6 @@ blockquote {
   font-size: 1.5rem; /* increase the font size */
 }
 
-/* Default definition list styles */
-dl {
-  /* apply the default block-level spacing */
-  @include block-spacing;
-
-  dt {
-    /* apply the default block-level spacing for headers*/
-    @include block-spacing(true); // pass the optoinal argument to use header spacing
-
-    /* Emphasise the title text */
-    font-weight: bold;
-  }
-  dd {
-    /* apply the default block-level spacing */
-    @include block-spacing;
-
-    /* indent the left-side */
-    padding-left: 2rem;
-  }
-}
-
 /* style the header region */
 header {
   // Style the page-level header without affecting other headers
@@ -204,7 +182,7 @@ header {
 article#wisdom {
   blockquote {
     font-family : $handwriting-font-family; /* Use a cursive font */
-    color: $handwriting-text-color;
+    color: rgb(from $logo-colour r b g); /* use the CSS function rgb() to swap the blue and green channels of the logo colour*/
     font-size: 3rem; /* increase the size of the quotations */
 
     p { /* collapse the vertical space between the quotation and the author */
@@ -223,22 +201,6 @@ article#wisdom {
         text-transform: none;
         font-size: 1rem;
       }
-    }
-  }
-}
-
-/* style the humourous quotations */
-article#humour {
-  dl {
-    dt {
-      font-size: 1.25rem; /* increase the size of the comedian names */
-      text-transform: uppercase;
-      font-weight: normal; /* override the default bolding of dt elements */
-    }
-    dd {
-      font-family: $handwriting-font-family; /* Use a cursive font */
-      font-size: 2rem; /* increase the size */;
-      color: $handwriting-text-color;
     }
   }
 }
