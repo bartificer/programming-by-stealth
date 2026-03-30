@@ -43,3 +43,52 @@ $heading-text-color: $logo-colour;
 $secondary-heading-text-color: $secondary-color;
 $code-text-color: $secondary-color;
 // add additional global colour-related variables here as needed
+
+/*
+ * === Basic page setup ===
+ */
+
+/* Default colours, typography and body spacing */
+body {
+  background-color: $body-background-color;
+  color: $body-text-color;
+  font-family: $body-font-family;
+  margin: 0px;
+  padding: 1rem 3rem;
+}
+
+ // mixin to replicate the Bootstrap vertical spacing convention for block-level elements
+ // - $header: if true, use the Bootstrap convention for headers, else, for paragrahs
+ @mixin vertical-spacing($header :false) {
+  // always set the top margin to 0px
+   margin-top: 0px;
+
+  // use a small bottom margin for headers and a bigger one for everything else
+  @if $header {
+    margin-bottom: 0.5rem;
+  } @else {
+    margin-bottom: 1rem;
+  }
+ }
+
+/* Default Heading Styles */
+h1, h2, h3, h4, h5, h6 { /* padding replicates Bootstrap convention */
+  font-family: 'Ubuntu Mono', monospace;
+  color: #00408d;
+  @include vertical-spacing(true);
+}
+
+/* Default Paragraph Styles */
+p{ /* padding replicates Bootstrap convention */
+  @include vertical-spacing;
+}
+
+/* Default Code Styles */
+pre {
+  @include vertical-spacing;
+  font-family: $code-font-family;
+}
+code {
+  font-family: $code-font-family;
+  color: $code-text-color;
+}
