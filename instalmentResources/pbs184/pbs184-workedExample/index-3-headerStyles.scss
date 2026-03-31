@@ -29,7 +29,7 @@
 
 // Typograhy Varialbes - capture the PBS house style
 $body-font-family: 'Ubuntu Sans', sans-serif;
-$body-font-weight: normal; 
+$body-font-weight: normal;
 $body-line-height: 1.5; // replicate Bootstrap convention
 $heading-font-family: 'Ubuntu Mono', monospace;
 $heading-font-weight: bold;
@@ -126,9 +126,13 @@ p.lead {
   }
 }
 
-/* style the header region */
+/*
+ * === Customise the Specific Page Regions ===
+ */
+
+/* Style the header region */
 header {
-  // Style the page-level header without affecting other headers
+  /* Style the page-level header without affecting other headers */
   h1 {
     font-family: $banner-font-family;
     font-weight: $banner-font-weight;
@@ -136,7 +140,7 @@ header {
     font-size: $banner-font-size;
   }
 
-  // Style the instructions
+  /* Style the instrunctions */
   section {
     /* clearly enclose the instructions */
     border: 1px solid $logo-colour;
@@ -162,19 +166,11 @@ header {
       font-family: $code-font-family;
     }
     pre {
+      color: $code-text-color;
+      font-family: $code-font-family;
       border-left: 3px solid $code-text-color;
       padding-left: 1em;
       margin-bottom: 0.8em;
     }
   }
 }
-
-// /* Default Code Styles */
-// pre {
-//   @include block-spacing;
-//   font-family: $code-font-family;
-// }
-// code {
-//   font-family: $code-font-family;
-//   color: $code-text-color;
-// }
