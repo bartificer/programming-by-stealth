@@ -1,6 +1,7 @@
 ---
 title: More CSS
 instalment: 7
+miniseries: CSS
 creators: [bart, allison]
 date: 2016-01-22
 tags:
