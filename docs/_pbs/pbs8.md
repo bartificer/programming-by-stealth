@@ -1,6 +1,7 @@
 ---
 title: CSS Positioning
 instalment: 8
+miniseries: CSS
 creators: [bart, allison]
 date: 2016-02-06
 tags:

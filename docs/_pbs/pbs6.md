@@ -1,6 +1,7 @@
 ---
 title: Introducing CSS
 instalment: 6
+miniseries: CSS
 creators: [bart, allison]
 date: 2016-01-09
 tags:

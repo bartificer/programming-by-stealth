@@ -1,6 +1,7 @@
 ---
 title: JS Prototype Revision | CSS Attribute Selectors & Buttons
 instalment: 28
+miniseries: CSS
 creators: [bart, allison]
 date: 2017-01-20
 opengraph:

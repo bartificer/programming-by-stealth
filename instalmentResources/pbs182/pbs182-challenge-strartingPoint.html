@@ -4,6 +4,10 @@
     <meta charset="utf-8" />
     <title>PBS 182 Challenge — Styled Calculator App</title>
     <style>
+      /*
+       * OPTIONAL PLACEHOLDER - IF YOU WISH TO IMPORT FONTS, DO IT HERE!
+       */
+
       /* 
        * Basic layout — OK TO EDIT (probably not necessary)
        */
@@ -185,7 +189,7 @@
           try {
             const result = eval($display.val());
             state('result');
-            $display.val(result);
+            $display.val('=' + result);
           } catch (e) {
             state('error');
             $display.val('Error');
