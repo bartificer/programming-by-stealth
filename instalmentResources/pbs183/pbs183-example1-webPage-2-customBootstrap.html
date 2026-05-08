@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PBS 183 — Example 1 (Web Page - Custom Bootstrap)</title>
+
+    <!-- Import Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- Style the page -->
+    <style>
+      /*
+       * Import Desired Google Fonts:
+       * - Indie Flower (a handwriting font)
+       * - Ubuntu Mono (a monospaced font)
+       * - Ubuntu Sans (a sans-serif font)
+       */
+      @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+
+      /*
+       * Delcare custom properties for the page's look and feel
+       */
+
+      /* Custom properties for for the PBS typography */
+      @property --pbs-heading-font-family {
+        syntax: "<string>#"; /* A comma-separated list of font names */
+        inherits: true;
+        initial-value: "Ubuntu Mono", "monospace";
+      }
+      @property --pbs-body-font-family {
+        syntax: "<string>#";
+        inherits: true;
+        initial-value: "Ubuntu Sans", "sans-serif";
+      }
+      @property --pbs-handwriting-font-family {
+        syntax: "<string>#";
+        inherits: true;
+        initial-value: "Indie Flower", "cursive";
+      }
+
+      /* Custom properties for the PBS colour scheme */
+      @property --pbs-logo-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: #00408d;
+      }
+
+      /*
+       * Override default Bootstrap properties for the page
+       */
+      :root {
+        /* replace the default body font family with the PBS body font*/
+        --bs-body-font-family: var(--pbs-body-font-family);
+
+        /* replace the subtle info colours with variants of the PBS logo color */
+        --bs-info-bg-subtle: color-mix(in srgb, var(--pbs-logo-color), white 95%);
+        --bs-info-border-subtle: color-mix(in srgb, var(--pbs-logo-color), white 60%);
+      }
+
+      /*
+       * Apply the PBS style to the page
+       */
+      
+      /* set the heading font on the tags, and the matching Bootstrap classes */
+      h1, h2, h3, h4, h5, h6,
+      .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: var(--pbs-heading-font-family);
+        color: var(--pbs-logo-color);
+      }
+
+      /* add some personality to the quotation */
+      .blockquote {
+        font-family: var(--pbs-handwriting-font-family);
+        color: var(--pbs-logo-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <header class="col">
+          <h1>PBS 183 — Example 1 (Web Page - Custom Bootstrap)</h1>
+        </header>
+      </div>
+      <div class="row">
+        <main class="col">
+          <p class="lead">True wisdom is a rare and wonderful thing, and it should be cherished where ever it's found.</p>
+
+          <figure class="p-3 bg-info-subtle border-start border-info-subtle border-5 rounded-end-4">
+            <blockquote class="blockquote">
+              <p>"Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less."</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Marie Curie in a <cite title="1915 Letter to Irène Curie">1915 letter to her daughter Irène</cite>
+            </figcaption>
+          </figure>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

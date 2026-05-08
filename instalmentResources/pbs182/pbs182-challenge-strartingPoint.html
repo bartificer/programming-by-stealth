@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PBS 182 Challenge — Styled Calculator App</title>
+    <style>
+      /*
+       * OPTIONAL PLACEHOLDER - IF YOU WISH TO IMPORT FONTS, DO IT HERE!
+       */
+
+      /* 
+       * Basic layout — OK TO EDIT (probably not necessary)
+       */
+      table#calculator {
+        border-collapse: separate;
+        text-align: center;
+      }
+      table#calculator input.display{
+        text-align: right;
+        font-family: monospace;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      table#calculator button {
+        width: 100%;
+      }
+
+      /* 
+       *  Define Editable Look and Feel using Custom Properties — THIS IS WHERE YOU SHOULD BE FOCUSING YOUR ATTENTION
+       */
+
+      /* --- YOUR CODE: START --- */
+
+      /* Placeholder — REPLACE */
+      table {
+        width: 200px;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin: 2rem auto;
+      }
+      td {
+        padding: 0.25rem;
+      }
+
+      /* --- YOUR CODE: END --- */
+
+    </style>
+  </head>
+  <body>
+    <!--
+      The HTML for the calculator interface — DO NOT EDIT
+
+      Data Attributes:
+      ================
+      state: The current state of the calculator, which can be one of:
+        - empty: no input has been entered yet
+        - accumulating: a calculations is being entered
+        - result: the result of a calculation is being displayed
+        - error: an error message is being displayed
+    -->
+    <table id="calculator" data-state="empty">
+      <thead>
+        <tr>
+          <th colspan="4">PBS Delux Calculator</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr>
+          <td colspan="4" class="display-cell" >
+            <input class="display" type="text" value="0" readonly>
+          </td>
+        </tr>
+        <tr>
+          <td class="number-cell"><button class="digit" data-digit="7">7</button></td>
+          <td class="number-cell"><button class="digit" data-digit="8">8</button></td>
+          <td class="number-cell"><button class="digit" data-digit="9">9</button></td>
+          <td class="operator-cell"><button class="operator" data-operator="/">&divide;</button></td>
+        </tr>
+        <tr>
+          <td class="number-cell"><button class="digit" data-digit="4">4</button></td>
+          <td class="number-cell"><button class="digit" data-digit="5">5</button></td>
+          <td class="number-cell"><button class="digit" data-digit="6">6</button></td>
+          <td class="operator-cell"><button class="operator" data-operator="*">&times;</button></td>
+        </tr>
+        <tr>
+          <td class="number-cell"><button class="digit" data-digit="1">1</button></td>
+          <td class="number-cell"><button class="digit" data-digit="2">2</button></td>
+          <td class="number-cell"><button class="digit" data-digit="3">3</button></td>
+          <td class="operator-cell"><button class="operator" data-operator="-">&minus;</button></td>
+        </tr>
+        <tr>
+          <td class="blank-cell">&nbsp;</td>
+          <td class="number-cell"><button class="digit" data-digit="0">0</button></td>
+          <td class="number-cell"><button class="digit" data-digit=".">.</button></td>
+          <td class="operator-cell"><button class="operator" data-operator="+">&plus;</button></td>
+        </tr>
+        <tr>
+          <td class="action-cell"><button class="action" data-action="clear">AC</button></td>
+          <td class="action-cell"><button class="action" data-action="backspace">&#9003;</button></td>
+          <td colspan="2" class="action-cell"><button class="action" data-action="calculate">=</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </body> 
+
+  <!-- Import jQuery from CDN -->
+  <script src="https://code.jquery.com/jquery-4.0.0.slim.min.js" integrity="sha256-8DGpv13HIm+5iDNWw1XqxgFB4mj+yOKFNb+tHBZOowc=" crossorigin="anonymous"></script>
+
+  <!-- The JavaScript code to power the calculator - DO NOT EDIT -->
+  <script>
+    // Encapsulate all the code inside the jQuery ready function for simplicity and to ensure it runs after the DOM is fully loaded
+    $(document).ready(function() {
+      // define variables
+      $calculator = $('#calculator');
+      $display = $('#calculator input[type="text"].display');
+      
+      // define helper functions
+      state = function(newState) {
+        if (newState !== undefined) {
+          $calculator.data('state', newState);
+        }
+        return $calculator.data('state');
+      };
+      empty = function() {
+        state('empty');
+        $display.val('0');
+      };
+
+      // add a click hander to the clear button
+      $('button.action[data-action="clear"]', $calculator).click(function() {
+        empty();
+      });
+
+      // add a click handler to the backspace button
+      $('button.action[data-action="backspace"]', $calculator).click(function() {
+        if (state() === 'accumulating') {
+          const currentValue = $display.val();
+          if (currentValue.length > 1) {
+            $display.val(currentValue.slice(0, -1));
+          } else {
+            empty();
+          }
+        }
+      });
+
+      // add click handlers to the digit buttons
+      $('button.digit', $calculator).click(function() {
+        // if the calculator is in the accumulating state, add the digit to the display, otherwise, enter the accumulating state and set the display to the digit
+        if (state() === 'accumulating') {
+          $display.val($display.val() + $(this).data('digit'));
+        } else {
+          state('accumulating');
+          if($(this).data('digit') === '.') {
+            // if the user clicks the decimal point when not accumulating, start with 0.
+            $display.val('0.');
+          }else{
+            $display.val($(this).data('digit'));
+          }
+        }
+      });
+
+      // add click handlers to the operator buttons
+      $('button.operator', $calculator).click(function() {
+        // if the calculator is in the accumulating state, add the operator to the display, otherwise, enter the accumulating state and set the display to the operator
+        if (state() === 'accumulating') {
+          $display.val($display.val() + $(this).data('operator'));
+        } else {
+          if ($(this).data('operator') === '-') {
+            // allow the user to start a negative number with the minus operator
+            state('accumulating');
+            $display.val($(this).data('operator'));
+          } else if ($(this).data('operator') === '.') {
+            // if the user clicks the decimal point when not accumulating, start with 0.
+            state('accumulating');
+            $display.val('0.');
+          } else if ($(this).data('operator') === '+') {
+            // allow the user to start with a plus operator, just prefix it with a 0
+            state('accumulating');
+            $display.val('0' + $(this).data('operator'));
+          } else {
+            empty();
+          }
+        }
+      });
+
+      // add a click handler to the calculate button
+      $('button.action[data-action="calculate"]', $calculator).click(function() {
+        if (state() === 'accumulating') {
+          try {
+            const result = eval($display.val());
+            state('result');
+            $display.val('=' + result);
+          } catch (e) {
+            state('error');
+            $display.val('Error');
+          }
+        } else {
+          empty();
+        }
+      });
+    });
+  </script>
+</html>

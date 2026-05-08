@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PBS 182 — Example 1 (CSS Custom Properties)</title>
+    <style>
+      /* declare the logo colour variable and give it a default value */
+      @property --pbs-logo-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: #00408d;
+      }
+
+      /* set the colour of all headers to the logo colour */
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--pbs-logo-color);
+      }
+
+      /* set buttons to use the logo colour as their background, and to have white text, but fall back to a dark grey */
+      button {
+        color: white;
+        background-color: var(--pbs-logo-color);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PBS 182 — Example 1 (CSS Custom Properties)</h1>
+    <p>This examples uses as CSS custom property defined document-wide with an initial value to specify a colour to be used for all headings, and as the background for buttons.</p>
+
+    <p><button>A Button That Does Nothing</button></p>
+  </body>
+</html>
