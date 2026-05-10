@@ -60,7 +60,8 @@ Note that Continue can be used JetBrains in addition to VSCode, and with non-loc
 
 If you type `ollama` at the zsh prompt in your terminal app of choice you’ll get:
 
-```~ ➤ ollama
+```
+~ ➤ ollama
 % ollama
 ```
 
