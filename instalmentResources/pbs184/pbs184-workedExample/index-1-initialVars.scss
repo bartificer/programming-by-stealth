@@ -27,7 +27,7 @@
 // === Define Global Variables ===
 //
 
-// Typograhy Varialbes - capture the PBS house style
+// Typograhy Variables - capture the PBS house style
 $body-font-family: 'Ubuntu Sans', sans-serif;
 $body-font-weight: normal;
 $body-line-height: 1.5; // replicate Bootstrap convention
@@ -38,11 +38,11 @@ $handwriting-font-family: 'Indie Flower', cursive;
 // Add additional globoal typography-related variables here as needed
 
 // Colour Variables - capture the PBS house style
-$logo-colour: #00408d;
+$logo-color: #00408d;
 $secondary-color: #5f5f5b;
 $body-background-color: white;
 $body-text-color: black;
-$heading-text-color: $logo-colour;
+$heading-text-color: $logo-color;
 $secondary-heading-text-color: $secondary-color;
 $code-text-color: $secondary-color;
 // add additional global colour-related variables here as needed
