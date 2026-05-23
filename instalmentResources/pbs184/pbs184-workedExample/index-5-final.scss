@@ -27,7 +27,7 @@
 // === Define Global Variables ===
 //
 
-// Typograhy Varialbes - capture the PBS house style
+// Typograhy Variables - capture the PBS house style
 $body-font-family: 'Ubuntu Sans', sans-serif;
 $body-font-weight: normal;
 $body-line-height: 1.5; // replicate Bootstrap convention
@@ -49,15 +49,15 @@ $banner-font-size: 5rem;
 // Add additional globoal typography-related variables here as needed
 
 // Colour Variables - capture the PBS house style
-$logo-colour: #00408d;
+$logo-color: #00408d;
 $secondary-color: #5f5f5b;
 $body-background-color: white;
 $body-text-color: black;
-$heading-text-color: $logo-colour;
+$heading-text-color: $logo-color;
 $secondary-heading-text-color: $secondary-color;
 $code-text-color: $secondary-color;
 $banner-text-color: $secondary-heading-text-color;
-$handwriting-text-color: rgb(from $logo-colour r b g); /* use the CSS function rgb() to swap the blue and green channels of the logo colour */
+$handwriting-text-color: rgb(from $logo-color r b g); /* use the CSS function rgb() to swap the blue and green channels of the logo color */
 // add additional global colour-related variables here as needed
 
 /*
@@ -173,16 +173,16 @@ header {
   /* Style the instrunctions */
   section {
     /* clearly enclose the instructions */
-    border: 1px solid $logo-colour;
+    border: 1px solid $logo-color;
     border-radius: 0.5em;
     padding: 1em;
-    background-color: color-mix(in srgb, $logo-colour, white 90%);
+    background-color: color-mix(in srgb, $logo-color, white 90%);
 
     /* clear space around the instructions */
     margin-bottom: 2rem;
 
     /* make the text more subtle */
-    color: $logo-colour;
+    color: $logo-color;
     font-size: 0.8rem;
 
     /* compress the paragraphs a little */
