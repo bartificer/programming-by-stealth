@@ -1,0 +1,14 @@
+// Import the Boostrap functions
+@import "./node_modules/bootstrap/scss/functions";
+
+// ADD BOOTSTRAP VARIABLE OVERRIDES HERE
+
+// import Bootstrap's variables (including maps)
+@import "./node_modules/bootstrap/scss/variables";
+
+// UPDATE BOOTSTRAP MAPS HERE
+
+// Import the rest of Bootstrap
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+// ADD CUSTOM STYLES HERE

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PBS 185 (Worked Example)</title>
+
+    <!-- Import the compiled CSS (including customised Bootstrap) -->
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <header>
+      <h1>PBS 185 — Worked Example</h1>
+
+      <section id="instructions">
+        <p><span class="lead">Welcome to PBS 185 Worked Example!</span> This sample HTML page is designed to illustrate how SASS can be used to generate CSS for styling a web page.</p>
+        
+        <p>The instalment show notes walk readers through editing <code>index.scss</code> to generate the page's style sheet as <code>index.css</code>. To see the effect of your changes, first, compile the updated <code>index.scss</code> file to <code>index.css</code> with the command below, then refresh this oage in your browser:</p>
+
+        <pre>npx sass index.scss index.css</pre>
+      </section>
+    </header>
+
+    <main>
+      <article id="wisdom">
+        <h1>Wisdom</h1>
+        <p class="lead">Wisdom is previous and often comes from people who think deeply about the universe as it actually exists.</p>
+
+        <p>Scientists of all types, and most especially those that broke the mold are often very insightful, wise and worth listening to.</p>
+
+        <blockquote>
+          <p>"The world is a dangerous place to live; not because of the people who are evil, but because of the people who don't do anything about it."</p>
+          <p class="author">— Albert Einstein <span class="description">(pacifist and humanist)</span></p>
+        </blockquote>
+
+        <blockquote>
+          <p>"Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less."</p>
+          <p class="author">— Marie Curie <span class="description">(pioneering chemist and first female Nobel Laureate)</span></p>
+        </blockquote>
+
+        <blockquote>
+          <p>"Sometimes it is the people no one imagines anything of who do the things that no one can imagine."</p>
+          <p class="author">— Alan Turing <span class="description">(pioneering computer scientist and mathematician who happend to be gay)</span></p>
+        </blockquote>
+      </article>
+      <article id="humour">
+        <h1>Humour</h1>
+        <p class="lead">Humour helps us cope with, and understand, the world around us.</p>
+
+        <p>Humour takes many forms, but there is perhaps nothing more potent that the perfect one-liner. It takes real skill to distil a big idea into a single sentence!</p>
+
+        <dl>
+          <dt>George Carlin</dt>
+          <dd>"It's called the American Dream because you have to be asleep to believe it."</dd>
+          <dd>"The reason we argue about meaning is that we all secretly know there isn't any."</dd>
+          <dd>"Think of how stupid the average person is, and realize half of them are stupider than that."</dd>
+          <dt>Lenny Bruce</dt>
+          <dd>"Everything is funny, as long as it's happening to somebody else."</dd>
+          <dt>Joan Rivers</dt>
+          <dd>"Behind every great man is a woman rolling her eyes."</dd>
+          <dd>"Age is an issue of mind over matter. If you don't mind, it doesn't matter."</dd>
+          <dt>Janeane Garofalo</dt>
+          <dd>"The problem with being cynical is that you end up being right all the time."</dd>
+          <dd>"Politics is the art of looking for trouble, finding it everywhere, diagnosing it incorrectly, and applying the wrong remedies."</dd>
+        </dl>
+      </article>
+
+    </main>
+
+    <!-- Import the Bootstrap JavaScript bundle -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
