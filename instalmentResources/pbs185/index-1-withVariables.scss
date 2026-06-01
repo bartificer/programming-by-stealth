@@ -33,21 +33,31 @@ $bartificer-colors-light: (
 // import the Bartificer fonts from Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Georama:ital,wght@0,100..900;1,100..900&family=Reenie+Beanie&family=Saira+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Saira:ital,wght@0,100..900;1,100..900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+// capture the bartificer font families in a SASS map
+$bartificer-fontfamilies: (
+  body: ("Georama", sans-serif),
+  header: ("Saira Semi Condensed", sans-serif),
+  subheader: ("Saira", sans-serif),
+  handwriting: ("Reenie Beanie", cursive),
+  code: ("Victor Mono", monospace),
+  logo: ("Exo 2", sans-serif)
+);
+
 //
 // === Customise Bootstrap ===
 //
 
-// Import the Boostrap functions
+// -- Import the Boostrap functions --
 @import "./node_modules/bootstrap/scss/functions";
 
 // ADD BOOTSTRAP VARIABLE OVERRIDES HERE
 
-// import Bootstrap's variables (including maps)
+// -- import Bootstrap's variables (including maps) --
 @import "./node_modules/bootstrap/scss/variables";
 
 // UPDATE BOOTSTRAP MAPS HERE
 
-// Import the rest of Bootstrap
+// -- Import the rest of Bootstrap --
 @import "./node_modules/bootstrap/scss/bootstrap";
 
 // ADD CUSTOM STYLES HERE
