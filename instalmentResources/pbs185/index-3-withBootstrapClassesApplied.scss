@@ -94,4 +94,122 @@ $spacers: map.set($spacers, 6, $spacer * 6);
 // -- Import the rest of Bootstrap --
 @import "./node_modules/bootstrap/scss/bootstrap";
 
-// ADD CUSTOM STYLES HERE
+//
+// === Apply Bootstrap Styles ===
+//
+
+/* -- Apply top-level spacing -- */
+
+// Use Bootstrap's make-header mixins to make top-level containers fluid until they reach the large breakpoint
+header, main {
+  @include make-container; // convert the header and main tags to fluid containers
+}
+
+// use Bootrap media mixin to create a block that only applies from the lg breakpoint up
+@include media-breakpoint-up(xl) {
+  header, main {
+    @include make-container; // convert the header and main tags to fluid containers
+    max-width: map.get($container-max-widths, xl); // force the width of the xl breakpoint
+  }
+}
+
+/* -- Style the header region -- */
+header {
+
+  /* Convert the page heading to a display heading */
+  h1 {
+    @extend .display-1;
+  }
+
+  /* Display the instrunctions in a card-like way */
+  #instructions {
+    @extend .border;
+    @extend .rounded-3;
+    @extend .bg-light-subtle;
+    @extend .p-3;
+    @extend .small;
+
+    /* help the lead span stand out appropriately */
+    .lead {
+      @extend .small;
+      @extend .fw-semibold;
+    }
+
+    /* Help the code block stand out */
+    pre {
+      @extend .border-start;
+      @extend .border-3;
+      @extend .border-secondary;
+      @extend .rounded-end-3;
+      @extend .bg-secondary-subtle;
+      @extend .ms-3;
+      @extend .ps-3;
+      @extend .py-1;
+    }
+  }
+}
+
+/* -- Style the main region -- */
+main {
+  /* add the needed vertical spacing */
+  @extend .pt-5;
+  article {
+    @extend .mb-5;
+  }
+
+  /** style the wisdom article */
+  article#wisdom {
+    /* Style the wise quotations */
+    blockquote {
+      @extend .blockquote; // apply the default Bootstrap blockquote styling
+      @extend .mx-auto;
+      @extend .w-75;
+      @extend .my-5;
+      @extend .p-6; // apply our custom extra-wide padding
+      @extend .border;
+      @extend .rounded-5;
+      @extend .bg-info-subtle;
+      @extend .bg-gradient; // make use of the optional gradient feature
+      @extend .fs-1;
+      @extend .fw-light;
+      @extend .fst-italic;
+
+      /* style the paragraphs */
+      p {
+        @extend .m-0;
+      }
+
+      /* style the attributions */
+      p.author {
+        @extend .ms-6; // apply our custom extra-wide left margin
+        @extend .small;
+        @extend .text-uppercase;
+        @extend .fw-bold;
+        @extend .fs-3;
+        @extend .fst-normal;
+        .description {
+          @extend .small;
+          @extend .text-lowercase;
+          @extend .text-muted;
+          @extend .fw-normal;
+        }
+      }
+    }
+  }
+
+  /** style the humour article */
+  article#humour {
+    /* style the description list */
+    dl {
+      /* style the quotations themselves */
+      dd {
+        /* add some left margin */
+        @extend .ms-3;
+
+        /* style the text */
+        @extend .fw-light;
+        @extend .fst-italic;
+      }
+    }
+  }
+}
