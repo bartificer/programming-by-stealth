@@ -169,6 +169,45 @@ That was a great plan, because once I got the code converted and working again, 
 
 Since I was so familiar with the codebase all these changes proved surprisingly quick and easy to implement. I guess my original design must have been relatively sound, since I didn't need to make any fundamental changes, just add more properties and functions to the existing classes.
 
+### De-slugifying the URL
+
+This proved to be both easier than I feared, and a lot more complex than I realised it would be. Getting something that worked fairly well most of the time was easy, but getting this to work really well almost all the time took a lot of effort!
+
+As a first pass I knew this would be a two-step process:
+
+1. Extract the words
+2. Fix the case
+
+I was quickly found good modules for doing both of these things:
+
+1. [url-slug](https://www.npmjs.com/package/url-slug) for extracting the words
+2. [title-case](https://www.npmjs.com/package/title-case) for fixing the case
+
+I simply chained these tools together, and I soon had something that seems to work.
+
+I tested my solution by generating some show notes, and a nice supply of real-world data soon showed all the cracks!
+
+Some problems are simply impossible to fix because converting a title to a slug is an inherently lossy process. The most significant thing that gets lost is punctuation — all symbols and spacing characters get slugified to a `-`, so there's no way to reverse those back out. This has some annoying but unavoidable side-effects:
+
+1. Punctuation commonly used in headlines like simple colons and commas are lost, becoming simply spaces
+2. Currency symbols are lost
+3. Formatted numbers get broken up, e.g. `1,001` becomes `1 001`, and so does `1.001`!
+
+But other problems can be fixed with simple regular expressions, for example:
+
+1. Acronyms like `NASA` get title-caesd to `Nasa`, but a regular expression can easily find and fit those. **However**, some acronyms can't be fixed, for example `US` for the United States is indistinguishable from the collective noun `us`!
+2. Unusually capitalised words like `iPod` get title-cased to `Ipod`, but again, a regular expression can fix most of these
+3. There is not universal agreement on which small words don't get a leading capital when title-casing, style guides and preferences vary. This can be fixed by passing your own custom list to the `title-case` module.
+
+In the end the module was expanded to provide:
+
+1. A default set of *small words*
+2. A default set of common acronyms and unusually-cased words
+3. A mechanism for costuming the set of *small words*
+4. A configuration setting for providing custom set of capitalisation fixes
+
+Because even these fixes are imperfect, I added a warning (in yellow) to let the user know that the link needed to be de-slugified, so they know to check the final result for little fixes.
+
 ## Building a Javascript CLI
 
 Underlying all of my niggles was one master niggle — the fact that this was still a plain script, and not a full command line app.
@@ -190,7 +229,43 @@ Since all the other works was simpler than expected, I decided to add a CLI whil
 
 Rather than converting the ES6 module to a CLI, I chose to add the CLI as a separate wrapper around the module. This means the module can still be used within other Javascript code, so users can choose to integrate the logic into their own scripts by importing the module, or just use of my code directly by executing the CLI.
 
-LEFT OFF HERE!!!
+### Choosing a Platform
+
+Using NodeJS, you can manually write a Javascript script that behaves like a CLI app, but that's extremely laborious, and involved re-inventing lots and lots of proverbial wheels.
+
+A much better solution is to leverage a commonly used standard NodeJS module of some kind to handle the common logic all CLI apps need,  like parsing Linux-style command line arguments that support flaps and options like `-x` and `--thing=value`.
+
+After spending some time in conversation with my favourite privacy-protecting chat bot (Lumo), and then exploring the websites various contenders, there really was only one good option for my scale of project — [commander.js](https://github.com/tj/commander.js).
+
+This is a mature project that's MIT licensed, actively maintained, widely used, and currently shows 192 contributors. The documentation also looked sufficiently readable and detailed, so it seemed worth the mental investment to learn how to use this tool.
+
+Thankfully, my judgement proved correct — working with Commander proved to be a real joy, and I had a feature-rich CLI interface wrapped around my new ES6 modules in just a few days.
+
+Now, I can convert links by simply invoking the `linkify` command, and it will:
+
+1. Read my configuration file to configure itself to my preferences
+2. Read the URL from the clipboard, and echo it to the screen so I can see what it did (because my configuration file tells it to do both of those things)
+3. Convert the URL using my templates and my extraction logic (defined in my configuration file)
+4. Seamlessly fall back to de-sluggifying URLs when needed, and warn me when it does
+5. Show me the final link (again, because my configuration tells it to)
+6. Write the final link to the clipboard (again, because of my configuration)
+
+Once I had a basic CLI working, I started to add some proverbial bells and whistles, most notably, support for coloured terminal output. This makes it easier to distinguish between informational messages like echoing the URL and generate link, and warning messages like the one indicating the need to fall back to de-slugification. 
+
+I could of course have manually added the shell escape sequences for setting colours to my various output strings, but again, why re-invent that wheel!
+
+After another conversation with my favourite AI, I eventually chose to use [Kleur](https://github.com/lukeed/kleur#readme). I had a few reasons for making this choice:
+
+1. It has no dependencies, so it doesn't add more modules to my supply chain (a big cybersecurity concern these days 🙁)
+2. It's small and light-weight
+3. It\'s MIT licensed
+4. It's commonly used
+
+The syntax is also quite straightforward, for example:
+
+```javascript
+console.log(bold().red('this is a bold red message'));
+```
 
 ## Final Thoughts
 
