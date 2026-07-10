@@ -1,44 +1,55 @@
 ---
-title: Linkifier — a Javascript CLI App
+title: Building a Javascript CLI App with NodeJS
 instalment: 19
 creators: [bart, allison]
 date: 2026-08-01
 ---
 
-TO DO
+When evangelising this series I always say that the ability to code is *empowering* because it lets you scratch your own proverbial itch — you need the computer to do something for you, if you can code, you should be able to make that happen!
+
+I recently spent a few weeks doing a very thorough job of fixing a problem that was really starting to bug me.
+
+I will explain my *problem to be solved*, and describe how I solved it, but this tidbit isn't really about my specific command line app, but about how I went about building it, and how you could build your own NodeJS command app to solve your own problems.
+
+I named my app *Linkify*, and like I always do, released it as open source [on GitHub](https://github.com/bartificer/linkify). This means can have a peek under the covers to see (and perhaps judge 😉) my code!
+
+I haven't just released the code on GitHub though, I've also published the CLI itself [to NPM](https://www.npmjs.com/package/@bartificer/linkify), so if you have NPM installed you can play with the app yourself by simply running:
+
+```sh
+npm install --global '@bartificer/linkify'
+npx linkify generate 'https://podfeet.com/' --template markdown
+```
 
 ## Matching Podcast Episode
 
 TO DO
 
-## Context
+## The Problem to be Solved
 
-When evangelising this series I always say that the ability to code is *empowering* because it lets you scratch your own proverbial itch — you need the computer to do something for you, if you can code, you should be able to make that happen!
+I regularly produce news-related podcast content — the month's Apple News for [Let's Talk Apple](https://www.lets-talk.ie/lta), and the cybersecurity news for the [Security Bits](https://www.podfeet.com/blog/category/security-bits/) segments on [the NosillaCast](https://www.podfeet.com/blog/category/nosillacast/).
 
-This tidbit describes an open source command line app I developed because I had a problem I needed to solve, and I figure it might be of use to others too. What makes it particularly relevant is that I wrote this command line app in Javascript, demonstrating just how versatile a language it really is!
+If you look at the notes for these shows in general, you'll they're very similar, and consist largely of nested lists of links with some additional context around them. For example, the [June 2026 LTA,](https://www.lets-talk.ie/lta154) or [Security Bits for the 5th of July](https://www.podfeet.com/blog/2026/07/sb-2026-07-05/).
 
-### The Itch I Needed to Scratch
+I spent a lot of time thinking about the best way to format those links, because I was very keen to clearly show:
 
-I regular produce news-related podcast content — the month's Apple News for Let's Talk Apple, and the most important cybersecurity news for regular folk for the two-weekly Security Bits segments on the NosillaCast.
+1. Which parts of the text are from the linked source
+2. Where the story is from
 
-The notes for these shows are, for a large part, nested lists of links to news stories with additional commentary and context.
-
-I spent a lot of time thinking about the best way to format those links. I wanted to:
-
-1. Make it clear what parts of the text are from the linked source
-2. Who the linked source is
-
-I eventually settled on the following format: `STORY HEADLINE — domain.name/…`. For example:
+After lots of experimentation, I adopted the following format: `STORY HEADLINE — domain.name/…`. For example:
 
 *  The most recent Let's Talk Apple Episode: [LTA 154: June 2026 — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154) (at the time of writing this tidbit!)
 
-I wrote my notes in Markdown, so that means I need to create hundreds of links that looks like:
+I write all my show notes in Markdown, so that means I need to create hundreds of links of the form:
 
 ```markdown
 [LTA 154: June 2026 — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154)
 ```
 
-Creating one or two links of this format manually is not that difficult, but creating hundreds, that's extremely tedious!
+Creating one or two links of this format manually is not that difficult, but creating hundreds, that's a whole other story! To say I found the process tedious would be putting it very mildly 🙂
+
+I've also started to expand on my template a little, for example, when I link to Apple Press releases in Let's Talk Apple I want those to stand out exceptionally clearly as being Apple's PR spin, rather than independent reporting, so I now format those links like this:
+
+* [Mini Football Legends, Family ‍‍‍Feud ‍‍‍Pocket, and seven more hits join Apple ‍‍‍Arcade — 📣 Apple PR](https://www.apple.com/ie/newsroom/2026/06/mini-football-legends-family-feud-pocket-and-seven-more-hits-join-apple-arcade/)
 
 My first approach was to write a Javascript-based TextExpander shortcut that read a URL from the clipboard, then parsed the URL and produced a stub entry like:
 
@@ -46,28 +57,284 @@ My first approach was to write a Javascript-based TextExpander shortcut that rea
 [ — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154)
 ```
 
-This snippet even used TextExpander's functionality to move the cursor to put the insertion point after the opening `[`, ready for pasting in the headline.
+I've been podcasting for decades at this point, so this new CLI app is not my first pass at automating this process. In fact, it's the third:
 
-This turned link creation into a two-step process:
+1. A Javascript-based TextExpander snippet that generated the URL part of the link and moved the cursor to the correct position to paste in the headline
+2. A NodeJS script named `linkify.js` that solved the problem of automatically extracting the headline from the website given just its URL
+3. This new CLI app.
 
-1. Open the web page
-2. Copy the URL and insert it into the show notes with the TextExpander shortcut
-3. Copy the headline, and paste that into the notes to complete the link
+The `linkify.js` script actually implemented most of what the new CLI app does, but with a few important caveats, and all written in very old pre-ES6 Javascript. I'm actually quite prod of the fact that I got the basic design right almost a decade ago, and while the code needed a complete overhaul, the design didn't!
 
-Better, but still two steps for each link.
+So, if my decade old script had been working just fine for nine years, why put all this effort into a third iteration?
 
-What I really wanted was a mechanism could get me straight from a URL to a headline, and so, the Linkifier tool was born!
+### The AI Fly in the Ointment
 
-The initial version of the tool used the following basic process:
+The initial version of the script worked quite well, but it was just a script, not a full CLI, and it had some niggles.
 
-1. Read a URL from script arguments
-2. Download the HTML for the page at the URL
-3. Parse the downloaded HTML to extract the text from the  `<title>` tag, all `<h1>` tags, and all `<h2>` tags
-4. Apply the rule for the URL's domain to extract the headline from the appropriate tag
+None of those niggles were motivation enough to re-visit the tool, until that is, AI came along, and undermined the very foundation of the script's logic on site after site after site.
 
-This is more complex than you might expect, because different sites structure their HTML very differently! You might imagine the `<title>` tag would always have the best headline, but that usually has unwanted prefixes and post-fixes that need to be removed, and some are abbreviated! It may well be best practice to have the page's primary heading be the first `<h1>` tag on the page, but many sites don't do that, adding their site's title there instead. Sometimes the headline will be the second `<h1>`,  or maybe the first `<h2>`. It varies so much!
+Step 1 had always been to download the page's HTML, and that part never gave any trouble, until AI. All those bots crawling the web started to overload web servers, so more and more sites started to implement bot-blocking logic, and my little script was being seen as a bot!
 
-## How Linkifier Generates Links
+On every site that blocked my script, I had to fall back to manually copying in the title 🙁
+
+Initially it was just one or two sites, but the problem grew, and grew, and grew, until eventually, up to a third of my links needed to be manually created again. Something had to be done!
+
+### Some Other Niggles, and a Stretch Goal
+
+Obviously, the AI problem was by far the most important one to fix, but there were other lesser niggles too. 
+
+The biggest niggle was that the `linkify.js` script was pre-ES6 Javascript code. Rather than using the new `class` keyword it used the old `prototype` syntax. Needless to say, it also wasn't modularised. If I was going to re-visit this code I was going to need re-familiarise myself with it's finest nuances, so what better way to do that than to refactor the whole thing into a modern ES6 module!
+
+The other niggle was that while I described the ability to use different templates for different domains above, the `linkify.js` script couldn't actually do that! That was functionality I really wanted to add!
+
+Finally, there was also a kind of *stretch goal* — the ability to extract more information from the page than just the headline, making it possible to include things like image thumbnails in links to image-first sites like the wonderful [XKCD](https://xkcd.com/).
+
+Spoiler alert, I achieved that stretch goal, so now when link to XKCD commits in the *Pallet Cleaner* section of the Security Bits segments they look like this:
+
+* [XKCD 3262: Sports Commentary](https://xkcd.com/3262)
+   ![ADD A DESCRIPTION FOR THE VISUALLY IMPAIRED HERE](https://imgs.xkcd.com/comics/sports_commentary.png)
+
+## Handling Dependencies in 2026
+
+There are lots of reason I like to code with [NodeJS](https://nodejs.org/en), but a big one is the amazing library of open source packages available to me via the Node Package Manger ([NPM](https://www.npmjs.com)). I simply couldn't create tools like Linkifier without depending on open source modules — I neither have the time nor the skills to implement everything myself from scratch!
+
+In more innocent times, you were pretty safe importing just about any NPN module in your project. Worst-case, it was buggy and didn't work very well, so you tried something else!
+
+Alas, times have changed 🙁
+
+Cybercriminals have realised that compromising dependencies is a great way to get backdoors into otherwise well secured systems. This is referred to as a *software supply chain attack*, and it means that there are real dangers lurking in the NPM repository.
+
+Here are just some of the ways in which attackers are abusing NPM:
+
+1. Using AI to find new and un-known vulnerabilities in old and unmaintained modules that are still in use
+2. Sneaking additional malicious code into apparently helpful pull requests from the open source community
+3. Tricking worn out open source maintainers into accepting help from apparently helpful but malicious *volunteers*
+4. Hacking developer's NPM or GitHub accounts to publish malicious version of completely legitimate and well maintained modules
+5.  Hacking developers to computers to sneak malicious additions directly into the code
+
+The extra sting in the tail is that dependencies can be nested — modules can depend on other modules that depend on other modules *ad infinitum*. This tree-like structure of nested dependencies is referred to as a *dependency tree*. When you import one module, you may well actually be adding tens or even hundreds of modules into your project's dependency tree!
+
+If any one module anywhere in your dependency tree has a known vulnerability, then there's a **possibility** your code is vulnerable too. I say there's a *possibility* because not all vulnerabilities in the tree can actually be triggered from your code. If you depend on a module that has two functions, one with a known vulnerability, and one without, and your code only uses the safe one, then your code is not actually vulnerable!
+
+It's often much more nuanced than that — if the vulnerability can only be triggered when a third optional argument is passed, and you never pass such an argument, then even though you're using a function with a known vulnerability, you're still save because you're not using the vulnerable part of the module!
+
+In other words, **your code is not actually vulnerable to every vulnerability that exists in your dependency tree**!
+
+### There is no Simple Solution
+
+It might be tempting to just stop using NPM modules, but not only is that utterly impractical, it's also like to be **less** secure!
+
+No one can possibly be expert at everything, an no amount careful coding can make up for years of real-world testing by a large community. Realistically, the code you write yourself to avoid depending on NPM modules probably contains more vulnerabilities than any reputable NPM module does!
+
+This means we need a nuanced approach, which means we can't fall back to hard-and-fast rules, but we need to use out best judgement 🙁
+
+### Your Not Alone — There is Help!
+
+The entire open source community is very are of this supply-chain problem, so there's a lot of work underway to make it ever harder for the attackers to succeed. There will always be some attacks that do, but there's a lot going on to tighten things up.
+
+For example — both NPM and GitHub are updating their systems to add ever more safety mechanisms, and the community is responding with technical tools too.
+
+To illustrate this point, when I first signed up to GitHub decades ago, and when I first opened my NPM developer account, neither site required multi-factor authentication, and neither site did any kind of automated vulnerability scanning against the code I published.
+
+Today, I can't log in to GitHub without my PassKey, I was forced to add multi-factor authentication to my NPM account, I can't publish new versions of the Linkify tool without passing two mutli-factor authentication challenges, and all my code is scanned in the background by both GitHub and NPM checking for obvious problems.
+
+And then there are the tools built right into the `npm` command itself for managing known vulnerabilities in your dependencies.
+
+### Auditing your NPM Dependencies
+
+NPM track and monitor all known vulnerabilities in all NPM modules. They know the exact versions affected by each bug, and whether or not patched versions of those modules have been released, and if so, whether or not those patched versions introduce breaking changes.
+
+NPM classifies each known vulnerability into four severities — here they are summarised by my favourite privacy-respecting AI assistant [Lumo](https://proton.me/lumo):
+
+1. **Low** — Minor security issues that are unlikely to be exploitable in most environments or require very specific conditions to trigger.
+2. **Moderate** — Vulnerabilities that could lead to security issues but typically require a particular setup or user interaction to exploit.
+3. **High** — Serious vulnerabilities that pose a real risk and are often directly exploitable, potentially leading to data exposure or code execution.
+4. **Critical** — The most severe issues, typically allowing remote code execution, authentication bypass, or other high-impact exploitation.
+
+You can access this functionality using the `npm audit` command.
+
+To illustrate how this all works, let me walk you through my process for checking my NPM projects for known vulnerabilities.
+
+The first step is to see where things stand by asking NPM to give you an audit report. Simply open a terminal in your project folder, and run:
+
+```sh
+npm audit
+```
+
+This reads your dependencies from your `package.json` and `package-lock.json` files and checks your full dependency tree against NPM's vulnerability catalog.
+
+You just might get very lucky and find you have no vulnerabilities at all, but realistically, that's unlikely in any kind of substantial project that's been around for a while. You'll probably find at least some vulnerabilities to try address.
+
+The next step is to update your dependencies as much as you can without introducing breaking changes — that means never updating across a breaking change. NPM has your back here, by making it intentional difficult update modules across major versions.
+
+To see your available updates, run:
+
+```sh
+npm outdated
+```
+
+This will show output something like:
+
+```
+Package            Current   Wanted   Latest  Location                        Depended by
+clean-jsdoc-theme    4.3.3    4.3.3    5.0.7  node_modules/clean-jsdoc-theme  linkify
+commander           14.0.3   14.0.3   15.0.0  node_modules/commander          linkify
+url-slug             5.0.0    5.0.1    5.0.1  node_modules/url-slug           linkify
+webpack            5.105.4  5.108.4  5.108.4  node_modules/webpack            linkify
+webpack-cli          7.0.2    7.2.1    7.2.1  node_modules/webpack-cli        linkify
+```
+
+This shows three version numbers:
+
+* **Current** — the one you have installed
+* **Wanted** — the best available update **without breaking changes** 
+* **Latest** — the most recent published version
+
+You can safely update any module where the *current* version is behind the *wanted* version, regardless of whether there's also a  *latest* version that introduces breaking changes with commands of the form:
+
+```sh
+npm update url-slug
+```
+
+This command will never cross a major version boundary, which means it will not introduce breaking changes.
+
+Once you install all the safe-to-install updates, check your vulnerabilities again with `npm audit`.
+
+Hopefully you now have fewer, but you may still have some.
+
+Your next safe option is to allow `npm audit` to make safe edits to your `package-lock.json` file to override nested dependencies.
+
+This means that if one module important an vulnerable version of another, and there is a safe version of that second module available, your `package-lock.json` will be updated to use the safe version, even though the first module still specifies the unsafe version. Again, `npm audit` does this very carefully so as to make the smallest possible changes, and never to upgrade across major versions, hence, avoiding breaking changes.
+
+It feels very scary the first time you do it, but NPM really have worked hard to make this safe to do:
+
+```sh
+npm audit fix
+```
+
+At this point you've fixed every vulnerability that can be safely and easily fixed with simple modules updates, so what ever is left now is going to need some careful consideration.
+
+Check your current list of vulnerabilities one more time with `npm audit`, and hope to see as few remaining vulnerabilities as possible!
+
+At this point, we move from deterministic process to human judgement.
+
+### Applying your Best Judgement — LEFT OFF HERE — NEEDS RE-WRITE!
+
+You need to examine the remaining vulnerabilities to try understand their relevance to your use of the problematic dependency. 
+
+TO DO — stress that context matters
+
+Your situation could be very different to mine, so don't treat this as a suggestion! Because I only code for my own personal use, I don't need to be as cautious as I would were I coding professionally. I generally ignore low severity issues, and depending on the context, often ignore moderate issues too, but I always triage high severity issues, and try never to leave critical severity issues unfixed if at all possible.
+
+As I type this, the Linkify project has three vulnerabilities — two moderate, and one high. The two moderates I'm not even concerned about, but I do need to investigate the high.
+
+Here is what `npm audit` tells me:
+
+```
+showdown  *
+Severity: moderate
+Showdown vulnerable to Regular Expression Denial of Service (ReDoS) in link/anchor parsing - https://github.com/advisories/GHSA-rmmh-p597-ppvv
+fix available via `npm audit fix --force`
+Will install clean-jsdoc-theme@5.0.7, which is a breaking change
+node_modules/showdown
+  clean-jsdoc-theme  4.1.10 - 4.3.3
+  Depends on vulnerable versions of showdown
+  node_modules/clean-jsdoc-theme
+```
+
+This tells me there is a problem in all version of a module named `showdown` (the first line is the package name and affected version numbers). It then describes the error as a denial of service error when processing a regular expression.
+
+Finally, it offers a potential fix, but one with a giant big caveat — it includes breaking changes!
+
+However, it does tell me the issue is with my JSDoc theme, so that means it's a dev dependency, which means I could only use it to chew up my own CPU usage. I'm not going to do that, and the distributed version of the module doesn't contain the vulnerability at all, so I'm happy to leave things as they are.
+
+A this stage you might be wondering whether the only safe thing to do is to stop using NPM modules at all, and to just write everything from scratch! As well as being impractical, that's actually **less secure**! Why? Because no one is expert on everything, so much if not most of that code will be of a much lower quality than the code from well established modules, and hence, have far more vulnerabilities!
+
+### Some Guidance for Choosing your Dependencies — TO REWRITE
+
+So, the best you can do is to choose your modules with care. No module will ever be perfect, but here are some positive signals I look for:
+
+1. A healthy looking NPM page
+   1. A high number of weekly downloads
+   2. A thoughtful description
+   3. A link to a GitHub repository
+2. A recent release history, some bug fixes at least (not relevant to small modules that do one thing that doesn't change)
+3. Decent documentation (shows care,  and will save my sanity too!)
+4. Few, or better yet, no, dependencies
+
+## TO DO — DESIGN SECTION
+
+### Extracting Article Headlines is Not so Simple!
+
+NodeJS can fetch content from any URL, and there are jQuery-like libraries for processing HTML outside the browser, so surely it should be easy to just pull out the headline?
+
+My first attempt was to simply extract the text from the page's `<title>` tags. This usually does contain the headline, or at least most of it, but it's almost never just the headline! Just about every site pre-fixes or post-fixes their brand, so you always have something to delete manually afterwards, and some even truncate the headlines, meaning you need to copy-and-paste them manually.
+
+My second attempt was to lean in to the fact that it's best practice to have the most important title on a page be contained within the first `<h1>` tag on the page, but that actually breaks down in even more ways:
+
+1. With the introduction of semantic markup tags like `<heading>`, `<body>`, and `<article>`, there are now many possible best-practice ways of having the article title's `<h1>` tag not be the first `<h1>` tag on the page.
+2. Many websites choose to prioritise their brand or sub-publication name over and above the actual article's headline, so the headline might actually be in an `<h2>` tag!
+3. Some websites intentionally add hidden extra keywords to the end of their headline's `<h1>` tag in an attempt to game search engines
+4. A few really poorly designed sites don't even use heading tag at all but just a bolded paragraph with a large font size!
+
+My third attempt was to try design a kind of logic flow that would try multiple possibilities in order and somehow figure out which was best to use on any generic page. This was a very short-lived attempt, because it's an utterly impossible idea!
+
+So in the end I settled on the approach the CLI still uses today — customisable per-site logic captured in a configuration object.
+
+### Domain-Based Extraction Logic
+
+Being a sysadmin for most of my professional life, I instinctively leaned into the fact that website's are defined by their domain names — what makes Mac Stories different to Mac Voices is the domain name used in all their article URLs!
+
+To me, that meant that DNS (Domain Name System) names provided the best model for structuring the configuration object.
+
+The **configuration 'object' is** simply **a dictionary that maps DNS domain names to Javascript functions**!
+
+To understand why this approach works so well it's important to understand two nuances of how DNS name are structured
+
+1. DNS names are hierarchical, with the parts separated by periods (`.`), with the least significant name on the left. For example, `www.podfeet.com` is a subdomain of `podfeet.com` is a subdomain of the top-level domain `com`.
+2. There is an implied, usually hidden, root domain above all the top level domains like `com` , `net`, `org`, `ie` etc., and it is represented by a trailing `.`. According to the formal specification, all domain names end in `.`. Just about every app that uses domain names hides that fact from users, and silently inserts on their behalf. According to the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`!
+
+This hierarchical structure makes it possible to implement robust fall-back with an acceptable default to be used as a last resort.
+
+To illustrate the power of this example, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com` which still has a legacy mobile site on `m.somesite.com`, and a more modern website that's accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag, and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
+
+We could accommodate this simple universe with config with just three DNS name to function mappings:
+
+1. `somesite.com.` — a function that uses the page title with a regular expression to remove a standard prefix.
+2. `m.somesite.com.` — a function that uses the first `<h2>` tag.
+3. `.` — a function that uses the first `<h1>` tag if there is one, and the page title if there isn't.
+
+To see how this works, let's imagine needing to extract a headline from the URL `https://somesite.com/big-story1`. The process for determining the function to use is very simple in this case:
+
+1. Is there a mapping for `somesite.com.` — **yes**, so use it!
+
+OK, so what about the URL `https://www.somesite.com/big-story2`? This is a little more convoluted, but still quite simple:
+
+1. Is there a mapping for `www.somesite.com.` — **no**, try the parent domain
+2. Is there a mapping for `somesite.com.` — **yes**, so use it!
+
+Now what about any other site on the internet, say `https://www.anothersite.net`? Again, a little more convoluted, but it still works:
+
+1. Is there a mapping for `www.anothersite.net.` — **no**, try the parent domain
+2. Is there a mapping for `anothersite.net.` — **no**, try the parent domain
+3. Is there a mapping for `net.` — **no**, try the parent domain
+4. Is there a mapping for `.` — **yes**, so use it!
+
+In my decade of using this approach, it has yet to fail me!
+
+### The Solution to the Download Blocking — Reversing URL Slugs
+
+there never seemed to be an obvious solution. Until I realised that the sites that were blocking my script almost all contained the headlines in their URLs, all be it in *slugified* form!
+
+For example, The Mac Observer use URLs like: `https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/`
+
+This clearly contain the headline: *iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery*
+
+It's just been re-formatted a little, and lost it's capitalisation.
+
+Reversing this conversion might get to me near-perfect headlines that just needed some tweaks, so it was time to re-visit this code at last!
+
+## How Linkifier Generates Links — TO DO — MERGE INTO DESIGN SECTION
 
 So, we have this complex to problem to solve, how best to architect the code?
 
@@ -134,40 +401,6 @@ We now have the script's final logic:
 3. Covert the `LinkData` object to the output link using a `LinkTemplate` object
 
 Simple!
-
-## The AI Fly in the Ointment
-
-The initial version of the script worked quite well, but it was just a script, not a full CLI, and it had some niggles.
-
-None of those niggles were motivation enough to re-visit the tool, until that is, AI came along, and undermined the very foundation of the script's logic on site after site after site.
-
-Step 1 had always been to download the page's HTML, and that part never gave any trouble, until AI. All those bots crawling the web started to overload web servers, so more and more sites started to implement bot-blocking logic, and my little script was being seen as a bot!
-
-On ever site that blocked my script, I had to fall back to manually copying in the title 🙁
-
-Initially it was just one or two sites, but the problem grew, and grew, and grew, and there never seemed to be an obvious solution. Until I realised that the sites that were blocking my script almost all contained the headlines in their URLs, all be it in *slugified* form!
-
-For example, The Mac Observer use URLs like: `https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/`
-
-This clearly contain the headline: *iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery*
-
-It's just been re-formatted a little, and lost it's capitalisation.
-
-Reversing this conversion might get to me near-perfect headlines that just needed some tweaks, so it was time to re-visit this code at last!
-
-## Fixing the Niggles
-
-Because the configuration was self-contained, the core code hadn't been edited in years. I was going to need to invest a lot of mental energy remembering the fine-grained detail before making any changes, so it seemed wise capitalise on that effort by fixing as many of my little niggles as I could while the code base was fresh in my mind.
-
-The biggest niggle was that it was pre-ES6 Javascript code, so rather than using the new `class` keyword it used the old `prototype` syntax. Needless to say it also wasn't modularised, so I decided that the best way to reacquaint myself with the way the code works was to convert the code to a modern ES6 module.
-
-That was a great plan, because once I got the code converted and working again, I knew exactly where in the process to hook in the needed new features. Speaking of which, what niggles did I choose to address:
-
-1. *de-slugifying* URLs to give usable titles for sites that block scripts
-2. Adding the ability to assign different templates to different domains (I want to use a different template for Apple's PR site than for regular news sites)
-3. Adding the ability to extract additional data from the page on certain domain (making it possible to convert XKCD and NASA Astronomy Picture of the Day links to Markdown images)
-
-Since I was so familiar with the codebase all these changes proved surprisingly quick and easy to implement. I guess my original design must have been relatively sound, since I didn't need to make any fundamental changes, just add more properties and functions to the existing classes.
 
 ### De-slugifying the URL
 
