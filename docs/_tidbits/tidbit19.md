@@ -572,9 +572,42 @@ Like the list of specially capitalised words, the small words used are stored in
 
 ### Choosing my Dependencies
 
-TO DO — LEFT OFF HERE!!!
+Since we talked so much about dependencies, let's quickly look at those I chose to add to this project. For now, I'm going to ignore the dependencies used by the CLI, and focus purely on the dependencies used by the four classes that make up the ES6 module.
 
+I followed my own advice and used exactly as many modules as I needed, and no more:
 
+1. [Cheerio](https://www.npmjs.com/package/cheerio) — a browserless alternative to jQuery, used to parse web pages when building `PageData` objects.
+   1. Tens of millions of weekly downloads
+   2. Still maintained
+   3. [Excellent documentation](https://cheerio.js.org/docs/intro/)
+   4. Despite being a very large and powerful module with a lot of features, only has 11 dependencies
+2. [Mustache](https://www.npmjs.com/package/mustache) — used to render the template strings stored in the `LinkTemplate` objects.
+   1. Millions of weekly downloads
+   2. Not actively maintained, but no known vulnerabilities, and likely popular enough that any emerging vulnerabilities will be fixed
+   3. Zero dependencies 🎉
+   4. [Acceptable documentation](https://github.com/janl/mustache.js)
+3. [Node-Fetch](https://www.npmjs.com/package/node-fetch) — Used to fetch the HTML for a given URL
+   1. Hundreds of millions of weekly downloads 😳
+   2. Not very actively maintained, but no known vulnerabilities, and so popular that any emerging vulnerabilities will undoubtedly be fixed
+   3. Just 3 dependencies
+   4. Excellent documentation (in the NPM description)
+4. [title-case](https://www.npmjs.com/package/title-case) — used for converting strings to title-case
+   1. Millions of weekly downloads
+   2. Appears to still be maintained
+   3. Zero dependencies 🎉
+   4. Bare-minimum docs, if even 🙁
+5. [URI.js](https://www.npmjs.com/package/urijs) — used for parsing URLs, primarily for extracting the domain names
+   1. Millions of weekly downloads
+   2. Was actively maintained a decade ago, but no longer the case. No known vulnerabilities, but may need to be replaced soon
+   3. Zero dependencies 🎉
+   4. [Excellent documentation](https://medialize.github.io/URI.js/)
+6. [url-slug](https://www.npmjs.com/package/url-slug) — used to reverse URL slugs back to plain text
+   1. Hundreds of thousands of weekly downloads
+   2. Very actively maintained
+   3. Zero dependencies 🎉
+   4. Sufficient documentation (in the NPM description)
+
+Given many of those choices were made a decade ago, I'm relieved that only one might need to be replaced in the medium term 🙂
 
 ## Building a Javascript CLI — TO RE-WRITE
 
