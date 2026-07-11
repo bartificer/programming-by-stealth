@@ -478,58 +478,105 @@ This demonstrates the two big advantages this approach brings:
 
 In my decade of using this approach, it has yet to fail me!
 
-### De-slugifying the URL — TO MERGE WITH NEXT SECTION
+### The Solution to Download-Blocking — Reversing URL Slugs
 
-This proved to be both easier than I feared, and a lot more complex than I realised it would be. Getting something that worked fairly well most of the time was easy, but getting this to work really well almost all the time took a lot of effort!
+I spent a lot of time trying to figure out some way of getting around those pesky download blocks other than trying to integrate my script into a real browser. I know it's possible to have a script drive a browser automatically, and hence, get the content, but that was a layer of complexity I just didn't want to deal with! 
+
+And then, one day, I notice the solution had been staring me in the face all along — just about every news site embeds the headline right into the URL as a so-called *slug*!
+
+For example, consider this Mac Observer use URL: `https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/`
+
+It clearly contains the headline: *iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery*
+
+Well ... it sort of contains that headline — it's been *slugified* into a form that's compatible with the URL specification.
+
+How hard can it be to reverse this process? Can I *de-sligify* URLs to get headlines?
+
+It proved to be both easier than I feared, and a lot more complex than I realised it would be!
+
+Getting something that worked fairly well most of the time was easy, but getting it to work really well almost all the time took a lot of effort!
 
 As a first pass I knew this would be a two-step process:
 
 1. Extract the words
 2. Fix the case
 
-I was quickly found good modules for doing both of these things:
+Since there are standard algorithms for converting the words into the slugs, there are also standard algorithms for reversing the slugs back to text.
 
-1. [url-slug](https://www.npmjs.com/package/url-slug) for extracting the words
-2. [title-case](https://www.npmjs.com/package/title-case) for fixing the case
+The problem is, the text you get back is not quite the same as the text that went in. Why? Because slugification is an **inherently lossy process**. 
 
-I simply chained these tools together, and I soon had something that seems to work.
+What gets lost?
 
-I tested my solution by generating some show notes, and a nice supply of real-world data soon showed all the cracks!
+1. All character casing — slugs are all lower case
+2. All punctuation — spaces and all other punctuation characters get converted to dashes
+3. Diacritics (little adornments on letters like `é` & `ç`) — letters with diacritics get converted to plain letters, e.g. `à` → `a`
 
-Some problems are simply impossible to fix because converting a title to a slug is an inherently lossy process. The most significant thing that gets lost is punctuation — all symbols and spacing characters get slugified to a `-`, so there's no way to reverse those back out. This has some annoying but unavoidable side-effects:
+Given there is a generally accepted style for the capitalisation of title, so-called *title-case*, a simplistic implementation of this slug-reversing idea is actually very simple:
 
-1. Punctuation commonly used in headlines like simple colons and commas are lost, becoming simply spaces
+1. Apply a standard desligification algorithm
+2. Apply the title-case algorithm
+
+Naively, I assumed that would work well most of the time.
+
+I implement the algorithm and tried to use it for the notes for a Let's Talk Apple episode. I soon realised almost all the resulting headlines needed some manual fixes to get them right 🙁
+
+The biggest problems I was seeing were:
+
+1. Punctuation commonly used in headlines like simple colons and commas are lost (they all become spaces)
 2. Currency symbols are lost
-3. Formatted numbers get broken up, e.g. `1,001` becomes `1 001`, and so does `1.001`!
+3. Formatted numbers get broken up, and the process can't be reliably reversed. For example,  `1,001` becomes `1 001`, and so does `1.001`!
+4. Acronyms like `NASA` get title-caesd to `Nasa`
+5. Unusually capitalised words like `iPod` get title-cased to `Ipod`
+6. Accented words loose their accents
 
-But other problems can be fixed with simple regular expressions, for example:
+Sadly, the first three problems simply can't be solved — the information has simply been lost, and there's no way to get it back.
 
-1. Acronyms like `NASA` get title-caesd to `Nasa`, but a regular expression can easily find and fit those. **However**, some acronyms can't be fixed, for example `US` for the United States is indistinguishable from the collective noun `us`!
-2. Unusually capitalised words like `iPod` get title-cased to `Ipod`, but again, a regular expression can fix most of these
-3. There is not universal agreement on which small words don't get a leading capital when title-casing, style guides and preferences vary. This can be fixed by passing your own custom list to the `title-case` module.
+That last three can somewhat remediated though — they can't be perfectly solved, but simple text replacements can get us most of the way to where we need to be!
 
-In the end the module was expanded to provide:
+The slug-reversing process is implemented by the function `Linkifier.utilities.extractSlug()`. It stars by simply reversing the slug and then applying title-case, and then it tries to fix as many of the problems as it can.
 
-1. A default set of *small words*
-2. A default set of common acronyms and unusually-cased words
-3. A mechanism for costuming the set of *small words*
-4. A configuration setting for providing custom set of capitalisation fixes
+At the moment, there's just one type of fix applied, but there is another planned.
 
-Because even these fixes are imperfect, I added a warning (in yellow) to let the user know that the link needed to be de-slugified, so they know to check the final result for little fixes.
+Each instance of the `Linkifier` class contains a [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of words with strange capitalisations (`.speciallyCapitalisedWords`). 
 
-### The Solution to the Download Blocking — Reversing URL Slugs
+The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each word in the title, and replace it with the correctly capitalised version of the word.
 
-there never seemed to be an obvious solution. Until I realised that the sites that were blocking my script almost all contained the headlines in their URLs, all be it in *slugified* form!
+The set gets initialised from the array  `Linkifier.defaults.speciallyCapitalisedWords`, but it can be edited using Javascript's standard set manipulation functions.
 
-For example, The Mac Observer use URLs like: `https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/`
+The this addresses two of our problems quite well:
 
-This clearly contain the headline: *iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery*
+1. Most acronyms like `NASA` are now handled properly. **However**, some acronyms can't be fixed, for example `US` for the United States is indistinguishable from the collective noun `us`!
+2. Most strangely capitalised words like `iPod` are also handled properly, though some need to entered twice, for example `iPod` and `iPods`.
 
-It's just been re-formatted a little, and lost it's capitalisation.
+The plan is to augment the list of specially capitalised words with a map of simple text replacements, this would deal with two more edge cases:
 
-Reversing this conversion might get to me near-perfect headlines that just needed some tweaks, so it was time to re-visit this code at last!
+1. Words with internal punctuation like `So-called` could be corrected with mappings like `So Called` → `so-called`
+2. Commonly used accented words could be corrected with mappings like `Cliche` → `Cliché`
 
-## Building a Javascript CLI
+### Title-Casing has Nuance too!
+
+In the abstract, title-case is trivially simple — start every word with an upper-case letter!
+
+In reality, that looks terrible, so some common small words get rendered in all lower case, for example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories: *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
+
+The term for these special words is *small words*, and I had assumed there was some kind of universally agreed standard on which words do and don't get this treatment. Most people agree on most of the words, at least when writing in English, but there is no actually agreed standard.
+
+I used a module to implement my title-case conversion, and was surprised to discover it didn't lower-case two small words I absolutely expect to be lower-cased — *is* and *its*. The module supports adding additional small words, so by default, the module does two things:
+
+1. Uses the module's standard list (copied to `Linkifier.defaults.importedSmallWords` for easy access)
+2. Appends additional words (from `Linkifier.defaults.extraSmallWords`)
+
+That would have been enough to scratch my own itch, but since I'm the kind of person who nit-picks about these kinds of details, I know other people do too, so I made the list customisable 🙂
+
+Like the list of specially capitalised words, the small words used are stored in a Javascript set, specifically, `.smallWords`, so they can be manipulated using the standard Javascript set functions.
+
+### Choosing my Dependencies
+
+TO DO — LEFT OFF HERE!!!
+
+
+
+## Building a Javascript CLI — TO RE-WRITE
 
 Underlying all of my niggles was one master niggle — the fact that this was still a plain script, and not a full command line app.
 
