@@ -344,85 +344,13 @@ Here's what I look for:
 3. Decent documentation (shows care,  and will save my sanity too!)
 4. Few, or better yet, no, dependencies
 
-## TO DO — DESIGN SECTION
-
-### Extracting Article Headlines is Not so Simple!
-
-NodeJS can fetch content from any URL, and there are jQuery-like libraries for processing HTML outside the browser, so surely it should be easy to just pull out the headline?
-
-My first attempt was to simply extract the text from the page's `<title>` tags. This usually does contain the headline, or at least most of it, but it's almost never just the headline! Just about every site pre-fixes or post-fixes their brand, so you always have something to delete manually afterwards, and some even truncate the headlines, meaning you need to copy-and-paste them manually.
-
-My second attempt was to lean in to the fact that it's best practice to have the most important title on a page be contained within the first `<h1>` tag on the page, but that actually breaks down in even more ways:
-
-1. With the introduction of semantic markup tags like `<heading>`, `<body>`, and `<article>`, there are now many possible best-practice ways of having the article title's `<h1>` tag not be the first `<h1>` tag on the page.
-2. Many websites choose to prioritise their brand or sub-publication name over and above the actual article's headline, so the headline might actually be in an `<h2>` tag!
-3. Some websites intentionally add hidden extra keywords to the end of their headline's `<h1>` tag in an attempt to game search engines
-4. A few really poorly designed sites don't even use heading tag at all but just a bolded paragraph with a large font size!
-
-My third attempt was to try design a kind of logic flow that would try multiple possibilities in order and somehow figure out which was best to use on any generic page. This was a very short-lived attempt, because it's an utterly impossible idea!
-
-So in the end I settled on the approach the CLI still uses today — customisable per-site logic captured in a configuration object.
-
-### Domain-Based Extraction Logic
-
-Being a sysadmin for most of my professional life, I instinctively leaned into the fact that website's are defined by their domain names — what makes Mac Stories different to Mac Voices is the domain name used in all their article URLs!
-
-To me, that meant that DNS (Domain Name System) names provided the best model for structuring the configuration object.
-
-The **configuration 'object' is** simply **a dictionary that maps DNS domain names to Javascript functions**!
-
-To understand why this approach works so well it's important to understand two nuances of how DNS name are structured
-
-1. DNS names are hierarchical, with the parts separated by periods (`.`), with the least significant name on the left. For example, `www.podfeet.com` is a subdomain of `podfeet.com` is a subdomain of the top-level domain `com`.
-2. There is an implied, usually hidden, root domain above all the top level domains like `com` , `net`, `org`, `ie` etc., and it is represented by a trailing `.`. According to the formal specification, all domain names end in `.`. Just about every app that uses domain names hides that fact from users, and silently inserts on their behalf. According to the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`!
-
-This hierarchical structure makes it possible to implement robust fall-back with an acceptable default to be used as a last resort.
-
-To illustrate the power of this example, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com` which still has a legacy mobile site on `m.somesite.com`, and a more modern website that's accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag, and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
-
-We could accommodate this simple universe with config with just three DNS name to function mappings:
-
-1. `somesite.com.` — a function that uses the page title with a regular expression to remove a standard prefix.
-2. `m.somesite.com.` — a function that uses the first `<h2>` tag.
-3. `.` — a function that uses the first `<h1>` tag if there is one, and the page title if there isn't.
-
-To see how this works, let's imagine needing to extract a headline from the URL `https://somesite.com/big-story1`. The process for determining the function to use is very simple in this case:
-
-1. Is there a mapping for `somesite.com.` — **yes**, so use it!
-
-OK, so what about the URL `https://www.somesite.com/big-story2`? This is a little more convoluted, but still quite simple:
-
-1. Is there a mapping for `www.somesite.com.` — **no**, try the parent domain
-2. Is there a mapping for `somesite.com.` — **yes**, so use it!
-
-Now what about any other site on the internet, say `https://www.anothersite.net`? Again, a little more convoluted, but it still works:
-
-1. Is there a mapping for `www.anothersite.net.` — **no**, try the parent domain
-2. Is there a mapping for `anothersite.net.` — **no**, try the parent domain
-3. Is there a mapping for `net.` — **no**, try the parent domain
-4. Is there a mapping for `.` — **yes**, so use it!
-
-In my decade of using this approach, it has yet to fail me!
-
-### The Solution to the Download Blocking — Reversing URL Slugs
-
-there never seemed to be an obvious solution. Until I realised that the sites that were blocking my script almost all contained the headlines in their URLs, all be it in *slugified* form!
-
-For example, The Mac Observer use URLs like: `https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/`
-
-This clearly contain the headline: *iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery*
-
-It's just been re-formatted a little, and lost it's capitalisation.
-
-Reversing this conversion might get to me near-perfect headlines that just needed some tweaks, so it was time to re-visit this code at last!
-
-## How Linkifier Generates Links — TO DO — MERGE INTO DESIGN SECTION
+## Designing Linkifier
 
 So, we have this complex to problem to solve, how best to architect the code?
 
-I spent a lot of time thinking about this, because I need this code to be very maintainable — new sites come and go all the time, and existing sites re-design their templates every few years too! I knew I was going to be re-configuring the extraction process for of my news sources quite regularly, so that had to be easy to do!
+### Three Data Modelling Classes
 
-My brain work in an object-oriented way, so I started by building classes to describe the various moving parts. I ended up with three:
+My brain works in an object-oriented way, so a decade ago, I started by building classes to describe the various moving parts. I ended up with three:
 
 1. `PageData` — to represent the information extracted from the downloaded pages, primarily:
    1. `.url` — the page's URL
@@ -438,53 +366,119 @@ My brain work in an object-oriented way, so I started by building classes to des
    1. `.this.templateString` — a moustache template for rendering the link
    2. `.filters` — an optional list of filters to apply to each field, where the filters are simply functions that expect to be password one string, and will return a new string
 
-These classes have grown a little over time, adding support for some more powerful features like custom fields, but let's not confuse things needlessly!
+These three classes have grown a little over time, but they remain mostly un-changed in today's code.
 
-These three classes are a strong starting point — the process for generating a link now becomes:
+### A Three-Step Process
+
+The classes support a simple three-step link generation process:
 
 1. Download the HTML and parse it into a `PageData` object
 2. Somehow convert the `PageData` object to a `LinkData` object
 3. Convert the `LinkData` object to the final link using a `LinkTemplate` object
 
-That leaves one rather big piece of mystery meat — how do we convert an object containing all the possible sources for the desired headline into an object containing the **correct** headline?
+The initial script-based version of this code implemented this three-step process in a single script file that defined the three classes and then used them to work through that three-step process. It was a **looooooooong** script! It worked, but it sure wasn't easy to maintain — lots and lots of scrolling up and down!
 
-My approach here was to lean into the fact that URLs have domain names, and that domain names are hierarchical, with `.` as the  *root* domain that encompasses all possible domain.
+### A Primary Class to Tie it all Together
 
-I would attach conversion logic to domain names, and then resolve the correct logic by checking the URL's domain name.
+Re-writing the script as an ES6 module allowed me to split each of the data modelling classes out into their own files, which makes working in a tab-based IDE so much simpler!
 
-To explain the logic I implemented, imagine an unrealistically simplistic scenario where I define extraction logic for just two domain names:
+But what to do with the script's logic? In keeping with the object oriented approach, I chose to migrate the script's functional into a fourth class, `Linkifier`. This class now encapsulates the link generation logic.
 
-1. `podfeet.com`
-2.  `.` (the root domain)
+The `Linkifier` class acts as the entry point to the ES 6 module, so when you import the module into your own code you start by creating an instance of the `Linkifier` class. The CLI app is basically a wrapper around an instance of this class.
 
-Give that simple configuration, let's first try find conversion logic to use for URLs on the domain `www.podfeet.com`:
+The `Linkifier` class is more complex than the three data encapsulation functions — it contains a mix of static and instance variables and functions, most importantly:
 
-1.  Is there conversion logic defined for `www.podfeet.com` — **no**, so try the parent domain
-2. Is there logic for `podfeet.com` — **yes**, so use it!
+* `Linkifier.defaults` — a static dictionary exposing default values
+* `Linkifier.utilities` — a static dictionary exposing helper functions
+* A suite of instance functions for managing the configuration
+* A suite if instance functions for managing the data extraction logic
+* A suite of instance functions for managing the available templates
+* A suite of functions implementing each step of the link generation logic
+* `async .generateLink(url)` — the main function, the one that actually converts URLs to nicely formatted links!
 
-Now let's try find conversion logic for URLs on the domain `www.bartb.ie`:
+All in all this is quite a simple design — four classes to power a simple three-step processes, but I've been hiding the difficult part from you — the second step. The app *just* extracts the headline from the HTML, how card can that be?
 
-1. Is there conversion logic defined for `www.bartb.ie` — **no**, so try the parent domain
-2. Is there logic defined for `bartb.ie` — **no**, so try the parent domain
-3. Is there logic defined for `ie` — **no**, so try the parent domain
-4. Is there logic defined for `.` —  **yes**, so use it!
+### Extracting Article Headlines is Tricky!
+
+Actually fetching the HTML and then parsing it into a DOM-like data structure is quite easy to do, so with very little effort I was able to get to the point where I could use jQuery-like syntax to extract information from the pages pointe to by URLs.
+
+Somewhere in all that content is the article's headline, exactly as readers see it, but where?
+
+My first implementation simply extracted the text from the page's `<title>` tag. This usually does contain the headline, or at least most of it, but it's almost never just the headline! Just about every site pre-fixes or post-fixes their brand, so you always have something to delete manually afterwards. Worse still, some sites even truncate the headlines, meaning you need to copy-and-paste them manually.
+
+My second thought was to lean into the fact that it's been considered best practice to have the most important title on a page be contained within the first `<h1>` tag on the page. As sensible as this sounds, it breaks down in even more ways that using the `<title>` tag:
+
+1. With the introduction of semantic markup tags ( `<heading>` `<body>`, `<article>`, `<section>`, etc.) there are now many possible best-practice ways of having the article title's `<h1>` tag that contains the headline not be the first `<h1>` on the page.
+2. Many websites choose to prioritise their brand or sub-publication name over and above the actual article's headline, so the headline is sometimes in an `<h2>` tag.
+3. Some websites intentionally add invisible extra keywords to the end of their headline's `<h1>` tag in an attempt to game search engines.
+4. A few really poorly designed sites don't even use heading tags at all, they just a bolded paragraph and give it a bigger font size!
+
+My third approach was to try design some kind of algorithm that would try multiple possibilities in some sort of sensible order and somehow figure out which was right on each page. It didn't take me long to realise this would require so many conditions and caveats that it's effectively impossible!
+
+If you can't define a single piece of extraction logic that works on every site, then clearly, the solution is a mechanism for associating the appropriate logic to each website.
+
+This sound like it would be a terrible idea, but looking at my show notes I realised the vast majority of my links are from just a few tens of web sites. A few tens of simple functions proved to be a lot easier build than a single function that works everywhere!
+
+Both the original script and the new ES6 module use this approach — there is configuration variable that maps extraction logic to websites.
+
+### Per-Domain Healine Extraction Logic
+
+Extraction logic is just a fancy way of say *a function*, so the problem to be solved is somehow mapping functions to websites.
+
+Being a sysadmin for most of my professional life, I instinctively leaned into the fact that website's are defined by their domain names — what makes Mac Stories different to The Mac Observer is the domain name part of their their article URLs.
+
+This suggested that DNS (Domain Name System) names provided the best model for structuring the configuration object that maps extraction logic to websites.
+
+To understand why this approach works so well it's important to understand two nuances of how DNS name are structured
+
+1. DNS names are hierarchical, with the parts separated by periods (`.`), and the least significant name on the left. For example, `www.podfeet.com` is a subdomain of `podfeet.com` , which is a subdomain of the top-level domain `com`.
+
+2. There's an implied, usually hidden, root domain above all the top level domains ( `com` , `net`, `org`, `ie` etc.) and it is represented by a trailing `.`. According to the formal DNS specification, all domain names end with a final `.`. According to the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`! 
+
+   If you've never seen these dots, that's because just about everyone agrees the trailing dot looks ugly, so every app that uses domain names hides it, and silently inserts it into just before issuing DNS queries! 
+
+The original script used a dictionary with full DNS names, including the final `.`, as the keys, and Javascript functions as the values.
+
+These Javascript functions accepted a `PageData` object as their only argument, and returned a `LinkData` object. I always mentally referred to them as *Data Transformers*, or *Transfomer functions*.
+
+When building the `Linkifier` class I kept the same concept, and leaned into the name, but I chose to hide the details from the user by making the configuration variable private, and only exposing a suite of functions for managing the mappings. These functions lean into the *transformer* nomenclature:
+
+* `.registerTransformer(Domain, Function)` — a function for registering a data transformer function for a given domain, the trailing `.` is silently added if needed.
+* `.getTransformerForDomain(Domain)` — a function to return the transformer function for a given domain, the trailing `.` is optional, the function will return the same transformer function when passed `podfeet.com` or `podfeet.com.`.
+* `.‎domainToTransformerMappings` — a read-only copy of the underlying dictionary (does show the trailing `.`s).
+
+To illustrate the power of this approach, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com` which still has a legacy mobile site on `m.somesite.com`, and a more modern website that's accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag, and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
+
+We can accommodate this simple universe with a configuration that defines just three domain name-to-transformer-function mappings:
+
+1. `somesite.com.` — a transformer function that uses the page title with a regular expression to remove the prefix as the article title.
+2. `m.somesite.com.` — a function that uses the content of the first `<h2>` tag as the article title.
+3. `.` — a function that uses the content of the first `<h1>` tag as the article headline if there is one, otherwise it falls back to the page title.
+
+To see how this simply mapping works, let's imagine needing to extract a headline from the URL `https://somesite.com/big-story1`. The process for resolving the transformer function is:
+
+1. Is there a mapping for `somesite.com.` — **yes**, so use it!
+
+OK, so what about the URL `https://www.somesite.com/big-story2`? This is a little more convoluted, but still quite simple:
+
+1. Is there a mapping for `www.somesite.com.` — **no**, try the parent domain
+2. Is there a mapping for `somesite.com.` — **yes**, so use it!
+
+Now what about any other site on the internet, say `https://www.anothersite.net/big-story`? Again, a little more convoluted, but it still works:
+
+1. Is there a mapping for `www.anothersite.net.` — **no**, try the parent domain
+2. Is there a mapping for `anothersite.net.` — **no**, try the parent domain
+3. Is there a mapping for `net.` — **no**, try the parent domain
+4. Is there a mapping for `.` — **yes**, so use it!
 
 This demonstrates the two big advantages this approach brings:
 
-1. It supports links with or without the usually optional `www` prefix, since `http://www.podfeet.com/…` gets treated the same as `http://podfeet.com/…`
-2. It provides and easy way to define default logic for domains that don't have their own logic defined
+1. It supports links with or without the usually optional `www` prefix, since `https://www.somesite.com/…` gets treated the same as `https://somesite.com/…`
+2. It provides an easy way to define a default transformer for domains that don't have their own transformer.
 
-Fundamentally, the configuration object is simply a dictionary that maps domain names to functions that expect a `PageData` object and return a `LinkData` object!
+In my decade of using this approach, it has yet to fail me!
 
-We now have the script's final logic:
-
-1. Download the HTML code from the URL and parse it into a `PageData` object
-2. Resolve the correct extraction logic from the configuration, and use it to convert the `PageData` object into a `LinkData` object
-3. Covert the `LinkData` object to the output link using a `LinkTemplate` object
-
-Simple!
-
-### De-slugifying the URL
+### De-slugifying the URL — TO MERGE WITH NEXT SECTION
 
 This proved to be both easier than I feared, and a lot more complex than I realised it would be. Getting something that worked fairly well most of the time was easy, but getting this to work really well almost all the time took a lot of effort!
 
@@ -522,6 +516,18 @@ In the end the module was expanded to provide:
 4. A configuration setting for providing custom set of capitalisation fixes
 
 Because even these fixes are imperfect, I added a warning (in yellow) to let the user know that the link needed to be de-slugified, so they know to check the final result for little fixes.
+
+### The Solution to the Download Blocking — Reversing URL Slugs
+
+there never seemed to be an obvious solution. Until I realised that the sites that were blocking my script almost all contained the headlines in their URLs, all be it in *slugified* form!
+
+For example, The Mac Observer use URLs like: `https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/`
+
+This clearly contain the headline: *iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery*
+
+It's just been re-formatted a little, and lost it's capitalisation.
+
+Reversing this conversion might get to me near-perfect headlines that just needed some tweaks, so it was time to re-visit this code at last!
 
 ## Building a Javascript CLI
 
