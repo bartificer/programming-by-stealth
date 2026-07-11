@@ -218,17 +218,38 @@ Check your current list of vulnerabilities one more time with `npm audit`, and h
 
 At this point, we move from deterministic process to human judgement.
 
-### Applying your Best Judgement — LEFT OFF HERE — NEEDS RE-WRITE!
+### Applying your Best Judgement
 
 You need to examine the remaining vulnerabilities to try understand their relevance to your use of the problematic dependency. 
 
-TO DO — stress that context matters
+This is where **context matters**! Your situation could be very different to mine, so **don't construe my choices** in my situation **with any kind of recommendation**!
 
-Your situation could be very different to mine, so don't treat this as a suggestion! Because I only code for my own personal use, I don't need to be as cautious as I would were I coding professionally. I generally ignore low severity issues, and depending on the context, often ignore moderate issues too, but I always triage high severity issues, and try never to leave critical severity issues unfixed if at all possible.
+These days, I only code for my own personal use, so I don't need to be as cautious as I would were I coding professionally. My focus is on software that runs locally on the terminal, or purely client-side on the web, so the attack surface is very limited. Basically, abusing any vulnerabilities in my apps will harm no one but the person using the tool! 
 
-As I type this, the Linkify project has three vulnerabilities — two moderate, and one high. The two moderates I'm not even concerned about, but I do need to investigate the high.
+If I was writing software with the ability to harm others, say for use on corporate systems, or server-side web apps, then I'd need to be a lot more careful! There would be many more vulnerabilities that I would need to remediate immediately.
 
-Here is what `npm audit` tells me:
+So, given my very specific context, I ignore *low* severity issues, I give *moderate* severity issues a quick glance, and focus my attention to the *high* and *critical* ones. I triage every *high* severity issue carefully, and I fix *critical* issues as soon as possible.
+
+Another type of context to bear in mind is that there are two completely **different types of dependency**!
+
+* **Regular dependencies** — by default, `npm install` adds modules as regular dependencies.You'll find them listed in the `dependencies` array in your `package.json` file. Assuming you're using NodeJS and NPM correctly, these should all be dependencies that are needed to **run the built code**. That means that when the software is used in its normal way, these dependencies are relevant. It also means that if you publish your module to NPM, other users installing your module get these dependencies installed into their project's `node_modules` folder.
+* **Developer Dependencies** — when you add dependencies with the `npm install --save-dev` they get added as developer dependencies. You'll find these dependencies in the `devDependencies` folder in your `package.json` file. Again, assuming you're using NodeJS and NPM as intended, these dependencies are **not** relevant when running you software in the normal way, they are **only** used in your build process. This also means that if you publish your module to NPM, when **other people** install your module into their projects, they **do not get the developer dependencies**. (To the developer dependencies you need to clone the Git repository and then run  `npm ci` or a bare `npm install` without any arguments.)
+
+This distinction means that vulnerabilities in developer dependencies are fundamentally different to vulnerabilities in regular dependencies. For the most part, vulnerabilities in developer dependency can only be used to attack the person building the software, so they're generally of no value to attackers. However, there are some really important exceptions to that general rule, including:
+
+1. Developer dependency vulnerabilities that somehow **corrupt your build process**, secretly injecting malicious code into your legitimate software.
+2. Developer dependencies with vulnerabilities designed to **find secrets** and silently send them to an attacker.
+3. Developer dependency with vulnerabilities that maliciously **destroy data** (wipers).
+
+So, just to recap, there's no universally right approach to take to any of this — you need to make your own judgements based on the vulnerabilities themselves, how the vulnerable modules are used in your project, and the context of the software you're developing.
+
+### A Quick Example — Vulnerabilities in Linkify
+
+As I type this in July 2026, the Linkify project has just two vulnerabilities, both *moderate*. I've already made sure all the modules that can be safely updated have been, and I've run `npm audit --fix` to handle the remaining safe fixes. That means I need to apply my judgement these two vulnerabilities.
+
+Because the Linkify app is used locally and abusing vulnerabilities can only harm the person running the code, I'm not particularly concerned about *medium* vulnerabilities, but I do want to give them a quick look to be sure they really are OK to leave unaddressed.
+
+Here is what `npm audit` shows:
 
 ```
 showdown  *
@@ -242,23 +263,84 @@ node_modules/showdown
   node_modules/clean-jsdoc-theme
 ```
 
-This tells me there is a problem in all version of a module named `showdown` (the first line is the package name and affected version numbers). It then describes the error as a denial of service error when processing a regular expression.
+This is a little confusing, because it shows details for one vulnerability, but it says there are two?
 
-Finally, it offers a potential fix, but one with a giant big caveat — it includes breaking changes!
+The first line of the output tells me the vulnerability is in a module named `showdown`, and that the vulnerability affects all versions of that module (that's the `*`).
 
-However, it does tell me the issue is with my JSDoc theme, so that means it's a dev dependency, which means I could only use it to chew up my own CPU usage. I'm not going to do that, and the distributed version of the module doesn't contain the vulnerability at all, so I'm happy to leave things as they are.
+Let's see where this module sits within my dependency tree with `npm ls`:
 
-A this stage you might be wondering whether the only safe thing to do is to stop using NPM modules at all, and to just write everything from scratch! As well as being impractical, that's actually **less secure**! Why? Because no one is expert on everything, so much if not most of that code will be of a much lower quality than the code from well established modules, and hence, have far more vulnerabilities!
+```
+$ npm ls showdown
+@bartificer/linkify@3.1.4 /Users/bart/Documents/Temp/From GitHub/linkify
+└─┬ clean-jsdoc-theme@4.3.3
+  └── showdown@2.1.0
+```
 
-### Some Guidance for Choosing your Dependencies — TO REWRITE
+That shows me that `showdown` is a dependency of one of my dependencies, `clean-jsdoc-theme`. A quick check of `package.json` verifies my assumption that we're dealing with a developer dependency.
 
-So, the best you can do is to choose your modules with care. No module will ever be perfect, but here are some positive signals I look for:
+So, there is one actual vulnerability, but it affects two modules within my dependency tree, so, `npm audit` counts it twice.
+
+Looking at the output from `npm audit` again, we can see that NPM actually told us this in the little summary at the bottom of the vulnerability:
+
+```
+  clean-jsdoc-theme  4.1.10 - 4.3.3
+  Depends on vulnerable versions of showdown
+  node_modules/clean-jsdoc-theme
+```
+
+OK, can I **safely** update `clean-jsdoc-theme` beyond the highest vulnerable version (`4.3.3`)?
+
+Since I've already installed all my safe updates, I know the answer, but for completeness, here's what `npm outdated` shows:
+
+```
+$ npm outdated
+Package            Current  Wanted  Latest  Location                        Depended by
+clean-jsdoc-theme    4.3.3   4.3.3   5.0.7  node_modules/clean-jsdoc-theme  linkify
+commander           14.0.3  14.0.3  15.0.0  node_modules/commander          linkify
+```
+
+This is mixed news — I could have found that there simply is no patch at all, had all three of *current*, *wanted*, and *latest* been `4.3.3`, then patching would have been impossible, but *latest* shows `5.0.7`. This crosses are major version (`4.*.*` → `5.*.*`), so that implies there would be breaking changes. Let's check that with a quick look at the [release notes](https://github.com/ankitskvmdam/clean-jsdoc-theme/releases#release-v5.0.0) for `clean-jsdoc-theme`. The opening line says it all:
+
+> clean-jsdoc-theme v5 is a ground-up rewrite — a complete documentation suite, not a coat of paint on JSDoc's output.
+
+Scrolling down confirms there is indeed a long list of breaking changes.
+
+Again, looking back at the output from `npm audit`, it told us all this too:
+
+```
+fix available via `npm audit fix --force`
+Will install clean-jsdoc-theme@5.0.7, which is a breaking change
+```
+
+We have one more piece of context to consider — what is the actual vulnerability? What does it allow an attacker to do?
+
+Again, `npm audit` gave us a useful summary (and [a link](https://github.com/advisories/GHSA-rmmh-p597-ppvv)):
+
+```
+Showdown vulnerable to Regular Expression Denial of Service (ReDoS) in link/anchor parsing
+```
+
+We now have all our context — there is a vulnerability in the module that builds my documentation that can consume my RAM/CPU if I add an intentionally malicious link into my JSDoc comments. This is purely a developer dependency, so users downloading my module actually get zero vulnerabilities with any severity, and I'm quite happy to keep building my docs like I do because I know I'm not going to add a link designed to consume my own computer's resources!
+
+Mind you, that complete re-write looks interesting, so let's open [a GitHub issue](https://github.com/bartificer/linkify/issues/24) to actually do the upgrade with the breaking change in a deliberate and un-hurried way in the future.
+
+### Some Guidance for Choosing your Dependencies
+
+We know that writing everything from scratch is dangerous, and we know that importing other people's modules can also be dangerous, so what can we do? My advice is simple — **install exactly as many dependencies are you need, and no more**!
+
+Actually, I have some more advice — NPM is such a rich ecosystem that you usually find yourself with many possible modules to choose between for solving your specific problem. Choosing the right one can really reduce your exposure to vulnerabilities.
+
+I can't give you a universally agreed checklist, but I can share my approach.
+
+I don't try to find perfect modules, because while there are lots of choices, it's very rare they are **exactly** like my ideal module, instead, I look for positive signals, and I favour modules with more positive signals over those with fewer.
+
+Here's what I look for:
 
 1. A healthy looking NPM page
    1. A high number of weekly downloads
    2. A thoughtful description
    3. A link to a GitHub repository
-2. A recent release history, some bug fixes at least (not relevant to small modules that do one thing that doesn't change)
+2. A recent release history, with some bug fixes at least
 3. Decent documentation (shows care,  and will save my sanity too!)
 4. Few, or better yet, no, dependencies
 
