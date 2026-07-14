@@ -577,97 +577,311 @@ Since we talked so much about dependencies, let's quickly look at those I chose 
 I followed my own advice and used exactly as many modules as I needed, and no more:
 
 1. [Cheerio](https://www.npmjs.com/package/cheerio) — a browserless alternative to jQuery, used to parse web pages when building `PageData` objects.
-   1. Tens of millions of weekly downloads
-   2. Still maintained
-   3. [Excellent documentation](https://cheerio.js.org/docs/intro/)
-   4. Despite being a very large and powerful module with a lot of features, only has 11 dependencies
+   * Tens of millions of weekly downloads
+   * Still maintained
+   * Active [GitHub repo](https://github.com/cheeriojs/cheerio) 
+   * [Excellent documentation](https://cheerio.js.org/docs/intro/)
+   * Despite being a very large and powerful module with a lot of features, only has 11 dependencies
 2. [Mustache](https://www.npmjs.com/package/mustache) — used to render the template strings stored in the `LinkTemplate` objects.
    1. Millions of weekly downloads
    2. Not actively maintained, but no known vulnerabilities, and likely popular enough that any emerging vulnerabilities will be fixed
-   3. Zero dependencies 🎉
-   4. [Acceptable documentation](https://github.com/janl/mustache.js)
+   3. Has a [GitHub repo](https://github.com/janl/mustache.js), but also not recently active
+   4. Zero dependencies 🎉
+   5. [Acceptable documentation](https://github.com/janl/mustache.js)
 3. [Node-Fetch](https://www.npmjs.com/package/node-fetch) — Used to fetch the HTML for a given URL
    1. Hundreds of millions of weekly downloads 😳
    2. Not very actively maintained, but no known vulnerabilities, and so popular that any emerging vulnerabilities will undoubtedly be fixed
-   3. Just 3 dependencies
-   4. Excellent documentation (in the NPM description)
+   3. Has a [GitHub repo](https://github.com/node-fetch/node-fetch), but not recently active
+   4. Just 3 dependencies
+   5. Excellent documentation (in the NPM description)
 4. [title-case](https://www.npmjs.com/package/title-case) — used for converting strings to title-case
    1. Millions of weekly downloads
    2. Appears to still be maintained
-   3. Zero dependencies 🎉
-   4. Bare-minimum docs, if even 🙁
+   3. Has [GitHub repo](https://github.com/blakeembrey/change-case), but not recently active
+   4. Zero dependencies 🎉
+   5. Bare-minimum docs, if even 🙁
 5. [URI.js](https://www.npmjs.com/package/urijs) — used for parsing URLs, primarily for extracting the domain names
    1. Millions of weekly downloads
    2. Was actively maintained a decade ago, but no longer the case. No known vulnerabilities, but may need to be replaced soon
-   3. Zero dependencies 🎉
-   4. [Excellent documentation](https://medialize.github.io/URI.js/)
+   3. Has [GitHub repo](https://github.com/medialize/URI.js), but also inactive
+   4. Zero dependencies 🎉
+   5. [Excellent documentation](https://medialize.github.io/URI.js/)
 6. [url-slug](https://www.npmjs.com/package/url-slug) — used to reverse URL slugs back to plain text
    1. Hundreds of thousands of weekly downloads
    2. Very actively maintained
-   3. Zero dependencies 🎉
-   4. Sufficient documentation (in the NPM description)
+   3. Has active [GitHub repo](https://github.com/stldo/url-slug)
+   4. Zero dependencies 🎉
+   5. Sufficient documentation (in the NPM description)
 
 Given many of those choices were made a decade ago, I'm relieved that only one might need to be replaced in the medium term 🙂
 
-## Building a Javascript CLI — TO RE-WRITE
+## Building a Javascript CLI
 
-Underlying all of my niggles was one master niggle — the fact that this was still a plain script, and not a full command line app.
+With the ES 6 module built, I was still left with no way to execute my code other than a NodeJS script. That would have worked of course, but it would have left me with an underlying niggle that has been irking me for years.
 
-This meant that the command I was typing into my terminal was actually three commands piped together:
+Because my was not a proper CLI app, I needed to pipe three commands together to convert a link in my clipboard:
 
 1. `pbpaste` to output the current content of the clipboard
-2. `node` with the path to the script
+2. `node` with the path to the script to perform the conversion
 3. `pbcopy` to send the generated URL back to the clipboard
 
 This is obviously a long command, and it had two frustrating side effects:
 
-1. No matter how hard I tried to get rid of it, the final clipboard always contained a trailing newline character!
-2. On each site where the download failed, the clipboard got overridden with an empty string, so I had to go copy it again to then manually create the link!
+1. No matter how hard I tried to get rid of it, the final clipboard always contained a trailing newline character.
+2. On each site where the download failed, the clipboard got overridden with an empty string, so I had to go copy it again to then manually create the link.
 
-Clearly, I needed this to be a true CLI so I could just call it, have it load my configuration from a standard file name in my home directory (`~/.linkify-config.mjs`), read the clipboard, convert the link, and only write it back to the clipboard if the conversion was successful.
+A better solution would be to build a CLI wrapper around my ES6 module that could:
 
-Since all the other works was simpler than expected, I decided to add a CLI while I was familiar with the codebase.
+1. Support configuration files in known-locations like `~/.linkify-config.mjs`
+2. Optionally use the clipboard as the URL source and/or destination (using flags)
+3. Share my work in a conveniently usable way
 
-Rather than converting the ES6 module to a CLI, I chose to add the CLI as a separate wrapper around the module. This means the module can still be used within other Javascript code, so users can choose to integrate the logic into their own scripts by importing the module, or just use of my code directly by executing the CLI.
+Given how familiar I was with my code at this stage, it seemed like it was worth putting a little more time into this to get to the solution I really wanted.
 
-### Choosing a Platform
+### Choosing the Tooling
 
-Using NodeJS, you can manually write a Javascript script that behaves like a CLI app, but that's extremely laborious, and involved re-inventing lots and lots of proverbial wheels.
+For a script to feel like a CLI app it has to adopt all the standard conventions for Linux terminal apps. Re-inventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed to choose some modules to provide me the basics.
 
-A much better solution is to leverage a commonly used standard NodeJS module of some kind to handle the common logic all CLI apps need,  like parsing Linux-style command line arguments that support flaps and options like `-x` and `--thing=value`.
+Many years ago I experimented with Javascript CLI apps with NodeJS using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option I found fitted my needs best, but a lot of time had passed, so I spent a little time chatting with Lumo (my preferred AI chat bot) and ended up with two additional options to investigate:
 
-After spending some time in conversation with my favourite privacy-protecting chat bot (Lumo), and then exploring the websites various contenders, there really was only one good option for my scale of project — [commander.js](https://github.com/tj/commander.js).
+1. [OClif](https://oclif.io)
+   * Extremely powerful, and very feature rich
+   * Actively maintained with hundreds of thousands of weekly downloads on [NPM](https://www.npmjs.com/package/oclif)
+   * Very widely recommended, lots of tutorial blog posts online, and excellent documentation
+   * 137 dependencies — not unexpected for a module of this complexity
+   * Uses modern Javascript technologies like promises
+   * Requires TypeScript rather than pure Javascript
+   * The tool's power adds a lot of complexity — there's a lot of overhead for creating simple apps
+2. [Comander.js](https://github.com/tj/commander.js)
+   * Actively maintained with hundreds of thousands of weekly downloads on [NPM](https://www.npmjs.com/package/commander)
+   * Well document, also commonly recommended, and there are also a lot of tutorial blog posts online
+   * No dependencies 🎉
+   * Fewer features than OCLif, but still supports the relevant features for this project — single and double dash CLI flags and options, and support for sub-commands
+   * Also uses modern Javascript techniques like promises
+   * Much simpler to use than OClif, far less overhead
+   * Philosophically very like Caproal.js, so immediately felt familiar
 
-This is a mature project that's MIT licensed, actively maintained, widely used, and currently shows 192 contributors. The documentation also looked sufficiently readable and detailed, so it seemed worth the mental investment to learn how to use this tool.
+In the abstract, Oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it wasn't a good fit for me.
 
-Thankfully, my judgement proved correct — working with Commander proved to be a real joy, and I had a feature-rich CLI interface wrapped around my new ES6 modules in just a few days.
+Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it also has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my experience, and the scale of this project, it was clearly the best fit!
 
-Now, I can convert links by simply invoking the `linkify` command, and it will:
+Being a little simpler than Oclif, Commander.js doesn't include optional extra features like support for coloured terminal output. It's not in any way incompatible with coloured output, it just won't do that work for you.
 
-1. Read my configuration file to configure itself to my preferences
-2. Read the URL from the clipboard, and echo it to the screen so I can see what it did (because my configuration file tells it to do both of those things)
-3. Convert the URL using my templates and my extraction logic (defined in my configuration file)
-4. Seamlessly fall back to de-sluggifying URLs when needed, and warn me when it does
-5. Show me the final link (again, because my configuration tells it to)
-6. Write the final link to the clipboard (again, because of my configuration)
+Terminal text colouring works using cryptic Bash escape sequences. I absolutely could teach myself how they work and manually implement the colours, but again, that seemed like a terrible waste of my time!
 
-Once I had a basic CLI working, I started to add some proverbial bells and whistles, most notably, support for coloured terminal output. This makes it easier to distinguish between informational messages like echoing the URL and generate link, and warning messages like the one indicating the need to fall back to de-slugification. 
+In the past I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for this project, so I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, so I ended up choosing a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
-I could of course have manually added the shell escape sequences for setting colours to my various output strings, but again, why re-invent that wheel!
+Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it definitely has strong community support!
 
-After another conversation with my favourite AI, I eventually chose to use [Kleur](https://github.com/lukeed/kleur#readme). I had a few reasons for making this choice:
+Finally, I needed to interact with the clipboard. I'd researched this before for other projects, so I knew [Clipboardy](https://www.npmjs.com/package/clipboardy) was probably the right approach.
 
-1. It has no dependencies, so it doesn't add more modules to my supply chain (a big cybersecurity concern these days 🙁)
-2. It's small and light-weight
-3. It\'s MIT licensed
-4. It's commonly used
+A quick check verified that it is indeed still a good option. It's actively maintained, has a nice simple API, is downloaded millions of times a week, and it only has six dependencies.
 
-The syntax is also quite straightforward, for example:
+To summarise, adding a CLI adds three new dependencies to my project:
+
+1. [Commands.js](https://www.npmjs.com/package/commander) for implementing the CLI functionality
+2. [Kleur](https://www.npmjs.com/package/kleur) for adding formatted terminal output
+3. [Clipboardy](https://www.npmjs.com/package/clipboardy) for interacting with the clipboard
+
+### Handing Custom Configurations
+
+One of the most important things I wanted the CLI app to do is to support configuration files. These files needed to allow for two distinct types of configuration:
+
+1. Configuration of the `Linkify` module, including:
+   1. Defining headline extraction logic for sites
+   2. Defining templates and controlling templates
+   3. Controlling the de-slugification process
+2. Setting defaults for the CLI's apps own behaviour
+
+As a general rule, I prefer configuration files that are purely text, ideally in a nice simple text format like JSON or YAML. Unfortunately, that simply isn't an option when you need users to be able to define functions and instantiate objects, and I needed those capabilities.
+
+The only way to effectively configure a `Linkifier` object is to create one and then manipulate that instance to configure it as needed. This meant leaning into the design pattern used by other big Javascript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with an `.mjs` file rather than a `.json` or `.yaml` file.
+
+The configuration needs to facilitate two distinct types of configuration:
+
+1. The configuration of the ES6 module — headline extraction logic, templates, etc.
+2. The configuration of the CLI app — defaults for the supported flags and options
+
+To facilitate this, Linkifier configuration modules need to export a dictionary with one or both of the following keys as its default export:
+
+* `linkifier` — a configured instance of the `Linkifier` class
+* `options` — a dictionary mapping values to the CLI's flag and option names, but with the `--` omitted.
+
+With the structure of the configuration file defined, the next step is to figure out how to load it. Obviously, the command will need an option to manually specific a path, but you really don't want users to have to do that every time! Clearly, I wanted the `linkify` app to implement the Linux/Unix convention of supporting so-called *dot files*.
+
+I chose to have the command implement the following configuration loading priority, from highest precendence to lowest:
+
+1. A path specified on the commandline
+2. A file named `~/.linkify-config.mjs`
+3. The default configuration
+
+With that rather important detail decided, the next step was to design the app's syntax.
+
+### Designing the CLI Syntax
+
+Before trying to implement the app's functionality, I need to decide on the exact features to offer, and how to facilitate user input. In other words, what flags, options, and arguments would the command support and expect?
+
+I like the common sub-command design pattern used by commands like `git`. Single top-level commands expect to be passed a subcommand as the first argument to determine which of their supported actions to execute, like `git clone` and  `git commit`.
+
+Given the functionality I wanted to provide, I chose the following:
+
+1. `linkify generate-link` with the alias `linkify generate` to actually generate links
+2. `linkify show-defaults` with the alias `linkify defaults` to show users the default settings the command uses
+3. `linkify show-config` with the alias `linkify config` to show the users their currently loaded configuration
+4. `linkify preview-page-data` with the alias `linkify page-data` to fetch the `PageData` object for a given URL to help users develop their title extraction logic
+
+Without my needing to do any work, Commander.js automatically add a final `linkify help` sub-command. Assuming you follow best practices and assign descriptions to the commands, flags, and options you define, the output will be genuinely useful to your users.
+
+Next, before figuring out the details for each sub-command, you need to choose your list of global flags and options. I chose to add just a few:
+
+* `-V` or `--version` to echo the version number
+* `-C` or `--config` for specifying a configuration file path
+* `-d` or `--debug` for enabling additional output
+
+Finally, Commander.js also automatically adds `-h` and `--help` flags which show the command or the sub-command's help text.
+
+Now that we know the app's top-level API, the next step is to design the APIs for each of the sub-commands.
+
+The simpler sub-commands don't actually need an API, specifically, `linkify show-defaults` and `linkify show-config` don't need any arguments, flags, or options, so they have no API as such.
+
+The automatically created `linkify help` accepts just one argument, an optional sub-command name, allowing users to see the top-level help, or sub-command-specific help.
+
+#### Generating Links
+
+This is the most complex sub-command, so it has the richest API.
+
+Firstly, it accepts just one argument — a URL. Perhaps surprisingly, this argument is optional. Why? Because the app support reading the URL from the clipboard!
+
+All sub-commands support the global options and flags, but each sub-command can add more that only apply to that sub-command. `linkify generate` adds the following flags
+
+* `--from-clipboard` and `--no-from-clipboard` to force-enable or disable reading the URL from the clipboard, regardless of what the loaded config defines.
+* `--to-clipboard` and `--no-to-clipboard` to similarly force-enabled or disable outputting of the generated link to the clipboard
+* `-c` and `--clipboard` as a shortcut for `--from-clipboard` and `--to-clipboard`
+*  `--no-clipboard` as a shortcut for `--no-from-clipboard` and `--no-to-clipboard`
+* `-e` and `--echo-clipboard` to echo what is being read from and/or written to the clipboard to the terminal
+
+The `linkify generate-link` subcommand adds just one option:
+
+* `-t TEMPLATE_NAME` and `--template=TEMPLATE_NAME` to force a specific template to be used for rendering the link
+
+#### Viewing Page Data
+
+The `linkify preview-page-data` sub-command is similar to but a little simpler than the `linkify generate-link` sub-command, but it does still need an API.
+
+Like the page generation sub-command it accepts one argument, a URL, and it too is optional.
+
+To keep things consistent, all relevant flags supported by the link generation sub-command are also support by `linkify preview-page-data`, specifically:
+
+* `--from-clipboard` and `--no-from-clipboard`
+* `-c` and `--clipboard`, but simply as an alias for `--from-clipboard`
+* `--no-clipboard`, but simply as an alias for `--no-from-clipboard`
+* `-e` and `--echo-clipboard`
+
+### The CLI Code
+
+Because the CLI app is just a wrapper around the ES 6 module which is doing the vast majority of the work, and because Commands.js is quite light-weight, the code for the entire CLI app is contained in just one file!
+
+If you're curious to see the code, you'll find it in `bin/cli.mjs` [on GitHub](https://github.com/bartificer/linkify/blob/master/bin/cli.mjs).
+
+## Using the Command
+
+To get started using `linkify` yourself, the simplest thing to do is to install it at the account level (rather than into the current folder) with `npm`:
+
+```sh
+sudo npm install --global '@bartificer/linkify'
+```
+
+Once you have it installed you can execute it from any folder with the command `npx linkify`.
+
+To generate a link using all the default settings, simply run:
+
+```sh
+npx linkify generate https://www.podfeet.com
+```
+
+To see all the defaults, including the default list of templates available, run:
+
+```sh
+npx linkify defaults
+```
+
+To generate a Markdown link for Allison's website run:
+
+```sh
+npx linkify generate https://www.podfeet.com -t markdown
+```
+
+The command really is designed to be customised, so if you're going to use the command for real, you'll need to build yourself a `~/.linkify-config.mjs` file.
+
+The Git repo contains two examples to get you started, the first is a simple starter example:
 
 ```javascript
-console.log(bold().red('this is a bold red message'));
+// Example Linkifier Customisation Module - Minimal
+// ================================================
+// A customisation module defining defining both link generation customisations
+// and default CLI options.
+
+// Import the Needed Linkify Classes
+// ---------------------------------
+// 1. Linkifier - required for all link generation configuation customisations
+// 2. LinkData - required to add custom data transformers
+// 3. LinkTemplate - required to add custom templates
+import { Linkifier, LinkData, LinkTemplate } from '@bartificer/linkify';
+
+// Customise Link Generation
+// -------------------------
+
+// start with a default linkfifier
+const linkifier = new Linkifier();
+
+// add a custom template — a link with the page title and domain name as the text in markdown format
+// e.g. https://lets-talk.ie/lta → [Let's Talk Apple — lets-talk.ie/…](https://lets-talk.ie/lta)
+linkifier.registerTemplate( // a minimal template, no filters or extra field extractor
+    'markdown-domain', // the template's name
+    new LinkTemplate('[{{{text}}} — {{{uri.hostname}}}/…]({{{url}}})') //the template string in Mustache format
+);
+
+// Add a custom data transformer to strip the prefix from Daring Fireball blog posts
+// Without Custom transformer:
+// https://daringfireball.net/linked/2026/04/22/thompson-cook
+// transforms to:
+// [Daring Fireball: Ben Thompson on Tim Cook's Legacy — daringfireball.net/…](https://daringfireball.net/linked/2026/04/22/thompson-cook)
+// Want:
+// [Ben Thompson on Tim Cook's Legacy — daringfireball.net/…](https://daringfireball.net/linked/2026/04/22/thompson-cook)
+linkifier.registerTransformer(
+    'daringfirebill.net', // the domain name to apply the transformer to (propagates to sub-domains)
+    (pData) => { // an arrow function that takes a PageData object as input, and must return a LinkData object
+        return new LinkData(
+            pData.url, // pass the url through un-changed
+            pData.title.replace('Daring Fireball: ', '') // use the page title with the prefix removed as the link text
+        )
+    }
+);
+
+// Customise the App Behaviour
+// ---------------------------
+
+// set any desired options
+const options = {
+    clipboard: true, // equivalent to --clipboard flag
+    echoClipboard: true, // equivalent to --echo-clipboard flag (all two-word flags are camelCased)
+    template: 'markdown-domain' // equivalent to --template=markdown-domain 
+};
+
+// Export all Customisations
+// -------------------------
+
+// must export a plain object with the keys 'linkifier' and/or 'options' as 'default'
+const config = { linkifier, options };
+export {config as default};
 ```
+
+This file looks long, but it's mostly comments.
+
+For a more real-world example, you can see the latest snapshot of the configuration file I actually use for all my show notes in `examples/linkify-config-realworld.mjs` [on GitHub](https://github.com/bartificer/linkify/blob/master/examples/linkify-config-realworld.mjs).
 
 ## Final Thoughts
 
-TO DO
+Modernising my link generation tool, and solving my various problems and niggles was really satisfying. It reminded of just why I love being a coder. Making computers do your work for you really is so gratifying 🙂
+
+I hope to have whet a few appetites among you all, and I hope you'll be inspired to build your own CLI apps in Javascript. I really do recommend using Commander.js, it's powerful, light-weight, and very self-consistent. Once you get the module's philosophy, everything makes so much sense!
