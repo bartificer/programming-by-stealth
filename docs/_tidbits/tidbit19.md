@@ -9,11 +9,11 @@ When evangelising this series I always say that the ability to code is *empoweri
 
 I recently spent a few weeks doing a very thorough job of fixing a problem that was really starting to bug me.
 
-I will explain my *problem to be solved*, and describe how I solved it, but this tidbit isn't really about my specific command line app, but about how I went about building it, and how you could build your own NodeJS command app to solve your own problems.
+I will explain my *problem to be solved*, and describe how I solved it, but this tidbit isn't really about my specific command line app, but about how I went about building it, and how you could build your own NodeJS command line app to solve your own problems.
 
-I named my app *Linkify*, and like I always do, released it as open source [on GitHub](https://github.com/bartificer/linkify). This means can have a peek under the covers to see (and perhaps judge 😉) my code!
+I named my app *Linkify*, and like I always do, I released it as open source [on GitHub](https://github.com/bartificer/linkify). That means you can have a peek under the covers to see (and perhaps judge 😉) my code!
 
-I haven't just released the code on GitHub though, I've also published the CLI itself [to NPM](https://www.npmjs.com/package/@bartificer/linkify), so if you have NPM installed you can play with the app yourself by simply running:
+I haven't just released the code on GitHub though, I've also published the CLI itself [to NPM](https://www.npmjs.com/package/@bartificer/linkify), so if you have [NodeJS](https://nodejs.org/) installed you can play with the app yourself by simply running:
 
 ```sh
 npm install --global '@bartificer/linkify'
