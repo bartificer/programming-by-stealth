@@ -28,11 +28,11 @@ TO DO
 
 I regularly produce news-related podcast content — the month's Apple News for [Let's Talk Apple](https://www.lets-talk.ie/lta), and the cybersecurity news for the [Security Bits](https://www.podfeet.com/blog/category/security-bits/) segments on [the NosillaCast](https://www.podfeet.com/blog/category/nosillacast/).
 
-If you look at the notes for these shows in general, you'll they're very similar, and consist largely of nested lists of links with some additional context around them. For example, the [June 2026 LTA,](https://www.lets-talk.ie/lta154) or [Security Bits for the 5th of July](https://www.podfeet.com/blog/2026/07/sb-2026-07-05/).
+If you look at the notes for these shows, you'll see that they're quite similar — they consist largely of nested lists of links with some additional context around them.Take for example, the notes for the [June 2026 LTA,](https://www.lets-talk.ie/lta154) or [Security Bits for the 5th of July](https://www.podfeet.com/blog/2026/07/sb-2026-07-05/).
 
-I spent a lot of time thinking about the best way to format those links, because I was very keen to clearly show:
+Because my notes have so many links, their formatting is not arbitrary — I actually spent a lot of time thinking about the best way to format those links. My aim was to clearly show:
 
-1. Which parts of the text are from the linked source
+1. Which parts of the text are from the linked source, and hence, which words are mine
 2. Where the story is from
 
 After lots of experimentation, I adopted the following format: `STORY HEADLINE — domain.name/…`. For example:
@@ -45,56 +45,73 @@ I write all my show notes in Markdown, so that means I need to create hundreds o
 [LTA 154: June 2026 — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154)
 ```
 
-Creating one or two links of this format manually is not that difficult, but creating hundreds, that's a whole other story! To say I found the process tedious would be putting it very mildly 🙂
+Creating one or two links of this format manually is not that difficult, but creating hundreds, that's a whole other story! To say I found the process tedious would be putting it very mildly!
 
-I've also started to expand on my template a little, for example, when I link to Apple Press releases in Let's Talk Apple I want those to stand out exceptionally clearly as being Apple's PR spin, rather than independent reporting, so I now format those links like this:
+I've also started to expand on my template a little, for example, when I link to Apple Press releases in Let's Talk Apple, I want those to stand out clearly as being Apple's PR spin (rather than independent reporting). So, I now format those links like this:
 
 * [Mini Football Legends, Family ‍‍‍Feud ‍‍‍Pocket, and seven more hits join Apple ‍‍‍Arcade — 📣 Apple PR](https://www.apple.com/ie/newsroom/2026/06/mini-football-legends-family-feud-pocket-and-seven-more-hits-join-apple-arcade/)
 
-My first approach was to write a Javascript-based TextExpander shortcut that read a URL from the clipboard, then parsed the URL and produced a stub entry like:
+## Solving the Problem
 
-```markdown
-[ — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154)
-```
+I've been podcasting for decades at this point, so the CLI app inspiring this tidbit is not my first pass at automating this process. In fact, it's the third:
 
-I've been podcasting for decades at this point, so this new CLI app is not my first pass at automating this process. In fact, it's the third:
+1. A Javascript-based TextExpander snippet that generated the URL part of the link and moved the cursor to the correct position, where I could then manually paste in the headline. It produced link stubs like `[ — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154)`.
+2. A NodeJS script named `linkify.js` that went a step further by automatically extracting the headline from the website given just its URL, and then creating the full link.
+3. The *Linkifier* CLI app that inspired this tidbit.
 
-1. A Javascript-based TextExpander snippet that generated the URL part of the link and moved the cursor to the correct position to paste in the headline
-2. A NodeJS script named `linkify.js` that solved the problem of automatically extracting the headline from the website given just its URL
-3. This new CLI app.
+The `linkify.js` script actually implemented most of what the new CLI app does, but with a few important caveats:
 
-The `linkify.js` script actually implemented most of what the new CLI app does, but with a few important caveats, and all written in very old pre-ES6 Javascript. I'm actually quite prod of the fact that I got the basic design right almost a decade ago, and while the code needed a complete overhaul, the design didn't!
+1. Executing the script was tedious, and required piping a few commands together:
+   1.  `pbpaste` to read the URL from the clipboard
+   2. `node` to run the script and output the link
+   3.  `pbcopy` to write the link to the clipboard
+2. No matter how hard I tried, I never managed to pipe the commands together in such a way that the link did not end up on the clipboard with a trialing newline character.
+3. When the command failed, the clipboard got overwritten with nothingness, so I'd lose the link.
+4. The code was all written in old-fashioned pre-ES6 Javascript — rather than working with classes and packages, it built objects using the old `prototype` method, making the code absolutely tedious to maintain!
 
-So, if my decade old script had been working just fine for nine years, why put all this effort into a third iteration?
+Even though the script had its shortcomings, it did actually serve me well for many years. I'm actually quite prod of the fact that I got the basic design right almost a decade ago, and that while the code did needed a complete overhaul now, the design didn't!
+
+You might be wondering, if the old script had been working fine for nine years, why put all this effort into a third iteration now?
 
 ### The AI Fly in the Ointment
 
-The initial version of the script worked quite well, but it was just a script, not a full CLI, and it had some niggles.
+None of the little niggles I just described provided enough motivation to spend the best part of a month modernising and then expanding an old codebase. So what changed? 
 
-None of those niggles were motivation enough to re-visit the tool, until that is, AI came along, and undermined the very foundation of the script's logic on site after site after site.
+AI came along and undermined the very foundation of the script's logic — at first, it only started happening on a few sites, but soon, the problem ballooned.
 
-Step 1 had always been to download the page's HTML, and that part never gave any trouble, until AI. All those bots crawling the web started to overload web servers, so more and more sites started to implement bot-blocking logic, and my little script was being seen as a bot!
+How, exactly did AI undermine the script's operation?
+
+The script depended on downloading the HTML code for linked website so it could extract the headline. For years and years that worked reliably, but when AI bots started to overwhelm websites with their inconsiderate volume and regularity, more and more sites started to deploy bot-blocking tools, and my little script is of course a bot. A very benign one that never caused any website any stress, but a bot none-the-less!
+
+That meant that are more and more sites went dark to the script, I had to fall back to the old TextExpander snipped and manually copying-and-pasting the headlines ever more frequently.
 
 On every site that blocked my script, I had to fall back to manually copying in the title 🙁
 
-Initially it was just one or two sites, but the problem grew, and grew, and grew, until eventually, up to a third of my links needed to be manually created again. Something had to be done!
+The problem grew and grew, until eventually I realised I was having to fall back to my old process for about a third of my links — that's bloody time-consuming, so I found myself well motivated to engineer a third solution!
 
 ### Some Other Niggles, and a Stretch Goal
 
-Obviously, the AI problem was by far the most important one to fix, but there were other lesser niggles too. 
+Once I was motivated to re-visit the old code, I decided to fix as many of my niggles as possible.
 
-The biggest niggle was that the `linkify.js` script was pre-ES6 Javascript code. Rather than using the new `class` keyword it used the old `prototype` syntax. Needless to say, it also wasn't modularised. If I was going to re-visit this code I was going to need re-familiarise myself with it's finest nuances, so what better way to do that than to refactor the whole thing into a modern ES6 module!
+The first thing that absolutely needed to be done was to modernise the codebase. There was no way I was going to perform open-heart code-surgery on old code!
 
-The other niggle was that while I described the ability to use different templates for different domains above, the `linkify.js` script couldn't actually do that! That was functionality I really wanted to add!
+I decided step zero would be to translate the existing script into modularised ES6 classes. I wouldn't be changing any of the functions at this point, just re-arranging them into a modern structure.
 
-Finally, there was also a kind of *stretch goal* — the ability to extract more information from the page than just the headline, making it possible to include things like image thumbnails in links to image-first sites like the wonderful [XKCD](https://xkcd.com/).
+Step 1 would be to solve the AI problem, and then I'd start working down my other niggles:
 
-Spoiler alert, I achieved that stretch goal, so now when link to XKCD commits in the *Pallet Cleaner* section of the Security Bits segments they look like this:
+1. A mechanism for invoking the code that didn't require chaining together three terminal commands, and wouldn't add that unwanted trailing newline character
+2. A mechanism for applying different templates to different sites automatically, removing the need to manually change my Apple PR links so they had their little megaphone emojis.
+
+Finally, there was also a kind of *stretch goal* — the ability to extract more information from the page than just the headline. My aim was to make it possible to include things like image thumbnails in links to image-first sites like the wonderful [XKCD](https://xkcd.com/).
+
+Spoiler alert, I achieved that stretch goal! THat's why recent links to XKCD comics in the *Pallet Cleaner* section of the Security Bits segments they look like this:
 
 * [XKCD 3262: Sports Commentary](https://xkcd.com/3262)
    ![ADD A DESCRIPTION FOR THE VISUALLY IMPAIRED HERE](https://imgs.xkcd.com/comics/sports_commentary.png)
 
 ## Handling Dependencies in 2026
+
+BART PROOF-READ LEFT OFF HERE!!!
 
 There are lots of reason I like to code with [NodeJS](https://nodejs.org/en), but a big one is the amazing library of open source packages available to me via the Node Package Manger ([NPM](https://www.npmjs.com)). I simply couldn't create tools like Linkifier without depending on open source modules — I neither have the time nor the skills to implement everything myself from scratch!
 
