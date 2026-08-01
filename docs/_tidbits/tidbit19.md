@@ -17,7 +17,7 @@ I haven't just released the code on GitHub though; I've also published the CLI i
 
 ```sh
 npm install --global '@bartificer/linkify'
-npx linkify generate 'https://podfeet.com/' --template markdown
+npx linkify generate 'https://www.podfeet.com/blog/category/nosillacast/' --template markdown
 ```
 
 ## Matching Podcast Episode
