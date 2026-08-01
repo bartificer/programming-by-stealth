@@ -1,5 +1,5 @@
 ---
-title: Building a Javascript CLI App with NodeJS
+title: Building a JavaScript CLI App with NodeJS
 instalment: 19
 creators: [bart, allison]
 date: 2026-08-01
@@ -9,11 +9,11 @@ When evangelising this series, I always say that the ability to code is *empower
 
 I recently spent a few weeks doing a very thorough job of fixing a problem that was really starting to bug me.
 
-I will explain my *problem to be solved and describe how I solved it. But this tidbit isn't really about my specific command line app; it's about how I went about building it and how you could build your own NodeJS command line app to solve your own problems.
+I will explain my *problem to be solved* and describe how I solved it. But this tidbit isn't really about my specific command line app; it's about how I went about building it and how you could build your own NodeJS command line app to solve your own problems.
 
 I named my app *Linkify*, and like I always do, I released it as open source [on GitHub](https://github.com/bartificer/linkify). That means you can have a peek under the covers to see (and perhaps judge 😉) my code!
 
-I haven't just released the code on GitHub though, I've also published the CLI itself [to NPM](https://www.npmjs.com/package/@bartificer/linkify), so if you have [NodeJS](https://nodejs.org/) installed you can play with the app yourself by simply running:
+I haven't just released the code on GitHub though; I've also published the CLI itself [to NPM](https://www.npmjs.com/package/@bartificer/linkify), so if you have [NodeJS](https://nodejs.org/) installed you can play with the app yourself by simply running:
 
 ```sh
 npm install --global '@bartificer/linkify'
@@ -55,7 +55,7 @@ I've also started to expand on my template a little. For example, when I link to
 
 I've been podcasting for decades at this point, so the CLI app inspiring this tidbit is not my first pass at automating this process. In fact, it's the third:
 
-1. A Javascript-based TextExpander snippet that generated the URL part of the link and moved the cursor to the correct position, where I could then manually paste in the headline. It produced link stubs like `[ — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154)`.
+1. A JavaScript-based (which was *originally* in Perl) TextExpander snippet that generated the URL part of the link and moved the cursor to the correct position, where I could then manually paste in the headline. It produced link stubs like `[ — www.lets-talk.ie/…](https://www.lets-talk.ie/lta154)`.
 2. A NodeJS script named `linkify.js` that went a step further by automatically extracting the headline from the website given just its URL, and then creating the full link.
 3. The *Linkifier* CLI app that inspired this tidbit.
 
@@ -104,7 +104,7 @@ Step 1 would be to solve the AI problem, and then I'd start working down my othe
 
 Finally, there was also a kind of *stretch goal* — the ability to extract more information from the page than just the headline. My aim was to make it possible to include things like image thumbnails in links to image-first sites like the wonderful [XKCD](https://xkcd.com/).
 
-Spoiler alert, I achieved that stretch goal! That's why recent links to XKCD comics in the *Palate Cleaner* section of the Security Bits segments look like this:
+Spoiler alert: I achieved that stretch goal! That's why recent links to XKCD comics in the *Palate Cleaner* section of the Security Bits segments look like this:
 
 * [XKCD 3262: Sports Commentary](https://xkcd.com/3262)
    ![ADD A DESCRIPTION FOR THE VISUALLY IMPAIRED HERE](https://imgs.xkcd.com/comics/sports_commentary.png)
@@ -119,7 +119,7 @@ In more innocent times, you were pretty safe importing just about any NPM module
 
 Alas, times have changed 🙁
 
-Cybercriminals have realised that compromising dependencies is a great way to get backdoors into otherwise well secured systems. This is referred to as a *software supply chain attack*, and it means that there are real dangers lurking in the NPM repository.
+Cybercriminals have realised that compromising dependencies is a great way to get backdoors into otherwise well-secured systems. This is referred to as a *software supply chain attack*, and it means that there are real dangers lurking in the NPM repository.
 
 Here are just some of the ways in which attackers are abusing NPM:
 
@@ -222,7 +222,7 @@ Hopefully you now have fewer, but you may still have some.
 
 Your next safe option is to allow `npm audit` to make safe edits to your `package-lock.json` file to override nested dependencies.
 
-This means that if one module imported an vulnerable version of another, and there is a safe version of that second module available, your `package-lock.json` will be updated to use the safe version, even though the first module still specifies the unsafe version. Again, `npm audit` does this very carefully so as to make the smallest possible changes, and never to upgrade across major versions, hence, avoiding breaking changes.
+This means that if one module imported a vulnerable version of another, and there is a safe version of that second module available, your `package-lock.json` will be updated to use the safe version, even though the first module still specifies the unsafe version. Again, `npm audit` does this very carefully so as to make the smallest possible changes, and never to upgrade across major versions, hence avoiding breaking changes.
 
 It feels very scary the first time you do it, but NPM really have worked hard to make this safe to do:
 
