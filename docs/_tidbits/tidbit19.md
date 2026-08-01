@@ -5,11 +5,11 @@ creators: [bart, allison]
 date: 2026-08-01
 ---
 
-When evangelising this series I always say that the ability to code is *empowering* because it lets you scratch your own proverbial itch — you need the computer to do something for you, if you can code, you should be able to make that happen!
+When evangelising this series, I always say that the ability to code is *empowering* because it lets you scratch your own proverbial itch — you need the computer to do something for you. If you can code, you should be able to make that happen!
 
 I recently spent a few weeks doing a very thorough job of fixing a problem that was really starting to bug me.
 
-I will explain my *problem to be solved*, and describe how I solved it, but this tidbit isn't really about my specific command line app, but about how I went about building it, and how you could build your own NodeJS command line app to solve your own problems.
+I will explain my *problem to be solved and describe how I solved it. But this tidbit isn't really about my specific command line app; it's about how I went about building it and how you could build your own NodeJS command line app to solve your own problems.
 
 I named my app *Linkify*, and like I always do, I released it as open source [on GitHub](https://github.com/bartificer/linkify). That means you can have a peek under the covers to see (and perhaps judge 😉) my code!
 
@@ -47,7 +47,7 @@ I write all my show notes in Markdown, so that means I need to create hundreds o
 
 Creating one or two links of this format manually is not that difficult, but creating hundreds, that's a whole other story! To say I found the process tedious would be putting it very mildly!
 
-I've also started to expand on my template a little, for example, when I link to Apple Press releases in Let's Talk Apple, I want those to stand out clearly as being Apple's PR spin (rather than independent reporting). So, I now format those links like this:
+I've also started to expand on my template a little. For example, when I link to Apple Press releases in Let's Talk Apple, I want those to stand out clearly as being Apple's PR spin (rather than independent reporting). So, I now format those links like this:
 
 * [Mini Football Legends, Family ‍‍‍Feud ‍‍‍Pocket, and seven more hits join Apple ‍‍‍Arcade — 📣 Apple PR](https://www.apple.com/ie/newsroom/2026/06/mini-football-legends-family-feud-pocket-and-seven-more-hits-join-apple-arcade/)
 
@@ -67,9 +67,9 @@ The `linkify.js` script actually implemented most of what the new CLI app does, 
    3.  `pbcopy` to write the link to the clipboard
 2. No matter how hard I tried, I never managed to pipe the commands together in such a way that the link did not end up on the clipboard with a trialing newline character.
 3. When the command failed, the clipboard got overwritten with nothingness, so I'd lose the link.
-4. The code was all written in old-fashioned pre-ES6 Javascript — rather than working with classes and packages, it built objects using the old `prototype` method, making the code absolutely tedious to maintain!
+4. The code was all written in old-fashioned pre-ES6 JavaScript. Rather than working with classes and packages, it built objects using the old `prototype` method, making the code absolutely tedious to maintain!
 
-Even though the script had its shortcomings, it did actually serve me well for many years. I'm actually quite prod of the fact that I got the basic design right almost a decade ago, and that while the code did needed a complete overhaul now, the design didn't!
+Even though the script had its shortcomings, it did actually serve me well for many years. I'm actually quite proud of the fact that I got the basic design right almost a decade ago, and that while the code did need a complete overhaul now, the design did not!
 
 You might be wondering, if the old script had been working fine for nine years, why put all this effort into a third iteration now?
 
@@ -79,23 +79,23 @@ None of the little niggles I just described provided enough motivation to spend 
 
 AI came along and undermined the very foundation of the script's logic — at first, it only started happening on a few sites, but soon, the problem ballooned.
 
-How, exactly did AI undermine the script's operation?
+How, exactly, did AI undermine the script's operation?
 
-The script depended on downloading the HTML code for linked website so it could extract the headline. For years and years that worked reliably, but when AI bots started to overwhelm websites with their inconsiderate volume and regularity, more and more sites started to deploy bot-blocking tools, and my little script is of course a bot. A very benign one that never caused any website any stress, but a bot none-the-less!
+The script depended on downloading the HTML code for the linked website so it could extract the headline. For years and years, that worked reliably, but when AI bots started to overwhelm websites with their inconsiderate volume and regularity, more and more sites started to deploy bot-blocking tools, and my little script is, of course, a bot. A very benign one that never caused any website any stress, but a bot nonetheless!
 
-That meant that are more and more sites went dark to the script, I had to fall back to the old TextExpander snipped and manually copying-and-pasting the headlines ever more frequently.
+That meant that more and more sites went dark to the script, I had to fall back to the old TextExpander snippet and manually copy-and-paste the headlines ever more frequently.
 
 On every site that blocked my script, I had to fall back to manually copying in the title 🙁
 
-The problem grew and grew, until eventually I realised I was having to fall back to my old process for about a third of my links — that's bloody time-consuming, so I found myself well motivated to engineer a third solution!
+The problem grew and grew until eventually I realised I was having to fall back to my old process for about a third of my links. That's bloody time-consuming, so I found myself well motivated to engineer a third solution!
 
 ### Some Other Niggles, and a Stretch Goal
 
-Once I was motivated to re-visit the old code, I decided to fix as many of my niggles as possible.
+Once I was motivated to revisit the old code, I decided to fix as many of my niggles as possible.
 
-The first thing that absolutely needed to be done was to modernise the codebase. There was no way I was going to perform open-heart code-surgery on old code!
+The first thing that absolutely needed to be done was to modernise the codebase. There was no way I was going to perform open-heart code surgery on old code!
 
-I decided step zero would be to translate the existing script into modularised ES6 classes. I wouldn't be changing any of the functions at this point, just re-arranging them into a modern structure.
+I decided step zero would be to translate the existing script into modularised ES6 classes. I wouldn't be changing any of the functions at this point, just rearranging them into a modern structure.
 
 Step 1 would be to solve the AI problem, and then I'd start working down my other niggles:
 
@@ -104,18 +104,18 @@ Step 1 would be to solve the AI problem, and then I'd start working down my othe
 
 Finally, there was also a kind of *stretch goal* — the ability to extract more information from the page than just the headline. My aim was to make it possible to include things like image thumbnails in links to image-first sites like the wonderful [XKCD](https://xkcd.com/).
 
-Spoiler alert, I achieved that stretch goal! THat's why recent links to XKCD comics in the *Pallet Cleaner* section of the Security Bits segments they look like this:
+Spoiler alert, I achieved that stretch goal! That's why recent links to XKCD comics in the *Palate Cleaner* section of the Security Bits segments look like this:
 
 * [XKCD 3262: Sports Commentary](https://xkcd.com/3262)
    ![ADD A DESCRIPTION FOR THE VISUALLY IMPAIRED HERE](https://imgs.xkcd.com/comics/sports_commentary.png)
 
 ## Handling Dependencies in 2026
 
-Both the previous `linkify.js` script and the new `linkifier` CLI are built using [NodeJS](https://nodejs.org/en). Since ES6 I've become extremely fond of coding in Javascript, and the NodeJS environment is mature, well supported, and cross-platform. It also has a very well thought out mechanism for including third-party libraries in your own projects, the Node Package Manger, [NPM](https://www.npmjs.com).
+Both the previous `linkify.js` script and the new `linkifier` CLI are built using [NodeJS](https://nodejs.org/en). Since ES6, I've become extremely fond of coding in JavaScript, and the NodeJS environment is mature, well supported, and cross-platform. It also has a very well-thought-out mechanism for including third-party libraries in your own projects: the Node Package Manager [NPM](https://www.npmjs.com).
 
-I simply couldn't create tools like Linkifier without depending on open source modules — I neither have the time nor the skills to implement everything myself from scratch!
+I simply couldn't create tools like Linkifier without depending on open source modules. I neither have the time nor the skills to implement everything myself from scratch!
 
-In more innocent times, you were pretty safe importing just about any NPN module in your project. Worst-case, it was buggy and didn't work very well, so you tried something else!
+In more innocent times, you were pretty safe importing just about any NPM module in your project. Worst-case, it was buggy and didn't work very well, so you tried something else!
 
 Alas, times have changed 🙁
 
@@ -123,9 +123,9 @@ Cybercriminals have realised that compromising dependencies is a great way to ge
 
 Here are just some of the ways in which attackers are abusing NPM:
 
-1. Using AI to find new and un-known vulnerabilities in old and unmaintained modules that are still widely used.
+1. Using AI to find new and unknown vulnerabilities in old and unmaintained modules that are still widely used.
 2. Sneaking additional malicious code into apparently helpful pull requests to the open source community.
-3. Tricking worn out open source maintainers into accepting help from apparently helpful but malicious *"volunteers"*.
+3. Tricking worn-out open source maintainers into accepting help from apparently helpful but malicious *"volunteers"*.
 4. Hacking developer's NPM or GitHub accounts to publish malicious versions of completely legitimate and well maintained modules. Or, more nefariously, to quietly tweak their CI/CD pipelines (for example GitHub actions) to inject malicious code into every release after the intended code gets pushed!
 5. Hacking developers to computers to sneak malicious additions directly into the code.
 6. Compromising commonly used development tools — for example, in 2025 and 2026 we have seen a dramatic rise in compromised or malicious plugins in the [VSCode](https://code.visualstudio.com) market place.
@@ -134,25 +134,25 @@ The extra sting in the tail is that dependencies can be nested — modules can d
 
 If any one module anywhere in your dependency tree has a known vulnerability, then there's a **possibility** your code is vulnerable too. I say there's a *possibility* because not all vulnerabilities in your tree can actually be triggered from your code. If you depend on a module that has two functions, one with a known vulnerability, and one without, and your code only uses the safe one, then your code is not actually vulnerable!
 
-It's often much more nuanced than that — if the vulnerability can only be triggered when a third optional argument is passed, and you never pass such an argument, then even though you're using a function with a known vulnerability, you're still safe because you're not using the vulnerable part of the module.
+It's often much more nuanced than that. If the vulnerability can only be triggered when a third optional argument is passed, and you never pass such an argument, then even though you're using a function with a known vulnerability, you're still safe because you're not using the vulnerable part of the module.
 
 In other words, **your code is not actually vulnerable to every vulnerability that exists in your dependency tree**!
 
 ### There is no Simple Solution
 
-It might be tempting to just stop using NPM modules, but not only is that utterly impractical, it's also like to be **less** secure!
+It might be tempting to just stop using NPM modules, but not only is that utterly impractical, it's also likely to be **less** secure!
 
-No one can possibly be expert at everything, an no amount careful coding can make up for years of real-world testing by a large community. Realistically, the code you write yourself to avoid depending on NPM modules probably contains more vulnerabilities than any reputable NPM module does!
+No one can possibly be an expert at everything, and no amount of careful coding can make up for years of real-world testing by a large community. Realistically, the code you write yourself to avoid depending on NPM modules probably contains more vulnerabilities than any reputable NPM module does!
 
 This means we need a nuanced approach, which means we can't fall back to hard-and-fast rules, but we need to use our own best judgement 🙁
 
 ### You're Not Alone — There is Help!
 
-The entire open source community is very aware of these supply-chain problems, so there's a lot of work underway to make it ever harder for the attackers to succeed. There will always be some attacks that succeed, at least for a while, but there's a lot going on to tighten things up.
+The entire open source community is very aware of these supply-chain problems, so there's a lot of work underway to make it ever harder for attackers to succeed. There will always be some attacks that succeed, at least for a while, but a lot is going on to tighten things up.
 
- For example, both NPM and GitHub are updating their systems to add ever more safety mechanisms.
+For example, both NPM and GitHub are updating their systems to add ever more safety mechanisms.
 
-To illustrate this point, when I first signed up to GitHub decades ago, and when I first opened my NPM developer account, neither site required multi-factor authentication, and neither site did any kind of automated vulnerability scanning against the code I published.
+To illustrate this point, when I first signed up to GitHub decades ago and opened my NPM developer account, neither site required multi-factor authentication, and neither site did any kind of automated vulnerability scanning against the code I published.
 
 Today, I can't log into GitHub without my PassKey, and I was forced to add multi-factor authentication to my NPM account to continue publishing modules. I can't publish new versions of the Linkify tool without passing **two** multi-factor authentication challenges, and all my code is scanned in the background by both GitHub and NPM to check for known vulnerabilities.
 
@@ -162,7 +162,7 @@ NPM is a good example of  this — there are tools built right into the `npm` co
 
 ### Auditing your NPM Dependencies
 
-NPM track and monitor all known vulnerabilities in all NPM modules. They know the exact versions affected by each bug, and whether or not patched versions of those modules have been released. They also know, thanks to the [Semver](https://semver.org) numbering system NPM module use, whether or not the patched versions of previously vulnerable modules introduce breaking changes.
+The people controlling NPM track and monitor all known vulnerabilities in all NPM modules. They know the exact versions affected by each bug, and whether or not patched versions of those modules have been released. They also know, thanks to the [Semver](https://semver.org) numbering system NPM modules use, whether or not the patched versions of previously vulnerable modules introduce breaking changes.
 
 NPM classifies each known vulnerability into four severities — here they are as summarised by my favourite privacy-respecting AI assistant [Lumo](https://proton.me/lumo):
 
@@ -175,7 +175,7 @@ You can access this functionality using the `npm audit` command.
 
 To illustrate how this all works, let me walk you through my process for checking my NPM projects for known vulnerabilities.
 
-The first step is to see where things stand by asking NPM to give you an audit report. Simply open a terminal in your project folder and run:
+The first step to see where things stand is to ask NPM to give you an audit report. Simply open a terminal in your project folder and run:
 
 ```sh
 npm audit
@@ -185,7 +185,7 @@ This reads your dependencies from your `package.json` and `package-lock.json` fi
 
 You just might get very lucky and find you have no vulnerabilities at all. Maybe. Realistically thought, that's not likely in any kind of substantial project that you've been maintaining for a while. You'll probably find at least some vulnerabilities to triage.
 
-The next step is to update your dependencies as much as you can without introducing breaking changes — that means never updating across major versions (e.g. from `2.*.*` to `3.*.*`). NPM has your back here, by making it intentional difficult update modules across major versions.
+The next step is to update your dependencies as much as you can without introducing breaking changes — that means never updating across major versions (e.g., from `2.*.*` to `3.*.*`). NPM has your back here by making it intentionally difficult to update modules across major versions.
 
 To see your available updates, run:
 
@@ -210,7 +210,7 @@ This shows three version numbers:
 * **Wanted** — the best available update **without breaking changes** (assuming you've added your dependencies with `npm install` and not manually edited your `package.json` file to intentionally allow automatic upgrades across major versions)
 * **Latest** — the most recent published version
 
-You can safely update any module where the *current* version is behind the *wanted* version, regardless of whether there's also a  *latest* version that introduces breaking changes with commands of the form:
+You can safely update any module where the *current* version is behind the *wanted* version, regardless of whether there's also a *latest* version that introduces breaking changes with commands of the form:
 
 ```sh
 npm update PACKAGE_NAME
@@ -232,7 +232,7 @@ npm audit fix
 
 Check your current list of vulnerabilities one more time with `npm audit`, and hope to see as few remaining vulnerabilities as possible 🤞
 
-At this point you've fixed every vulnerability that can be safely and easily fixed with simple module updates. So, what ever vulnerabilities remain need careful consideration. In other words, we move from a deterministic process to human judgement.
+At this point you've fixed every vulnerability that can be safely and easily fixed with simple module updates. So, whatever vulnerabilities remain need careful consideration. In other words, we move from a deterministic process to human judgement.
 
 ### Applying your Best Judgement
 
@@ -248,7 +248,7 @@ So, given my very specific context, I generally:
 
 * Ignore *low* severity issues
 * Give *moderate* severity issues a quick glance
-* Focus my attention on any *high* and *critical* issues — triaging *high* severity issue carefully, and fixing *critical* issues as soon as possible
+* Focus my attention on any *high* and *critical* issues — triaging *high* severity issues carefully, and fixing *critical* issues as soon as possible
 
 Another type of context to bear in mind is that there are two completely **different types of dependency**!
 
@@ -259,7 +259,7 @@ This distinction means that vulnerabilities in developer dependencies are fundam
 
 1. Developer dependency vulnerabilities that somehow **corrupt your build process**, secretly injecting malicious code into your legitimate software.
 2. Developer dependencies with vulnerabilities designed to **find secrets** and silently steal them.
-3. Developer dependency with vulnerabilities that maliciously **destroy data** (wipers).
+3. Developer dependencies with vulnerabilities that maliciously **destroy data** (wipers).
 
 So, just to recap, there's no universally right approach to take to any of this — you need to make your own judgements based on the vulnerabilities themselves, how the vulnerable modules are used in your project, and the context of the software you're developing.
 
@@ -319,7 +319,7 @@ clean-jsdoc-theme    4.3.3   4.3.3   5.0.7  node_modules/clean-jsdoc-theme  link
 commander           14.0.3  14.0.3  15.0.0  node_modules/commander          linkify
 ```
 
-This is mixed news — I could have found that there simply is no patch at all, had all three of *current*, *wanted*, and *latest* been `4.3.3`, then patching would have been impossible, but *latest* shows `5.0.7`. This crosses a major version boundary (`4.*.*` → `5.*.*`), so that implies there would be breaking changes. Let's check that with a quick look at the [release notes](https://github.com/ankitskvmdam/clean-jsdoc-theme/releases#release-v5.0.0) for `clean-jsdoc-theme`. The opening line says it all:
+This is mixed news — I could have found that there simply is no patch at all. Had all three of *current*, *wanted*, and *latest* been `4.3.3`, then patching would have been impossible, but *latest* shows `5.0.7`. This crosses a major version boundary (`4.*.*` → `5.*.*`), so that implies there would be breaking changes. Let's check that with a quick look at the [release notes](https://github.com/ankitskvmdam/clean-jsdoc-theme/releases#release-v5.0.0) for `clean-jsdoc-theme`. The opening line says it all:
 
 > clean-jsdoc-theme v5 is a ground-up rewrite — a complete documentation suite, not a coat of paint on JSDoc's output.
 
@@ -344,9 +344,9 @@ We now have all our context — there is a vulnerability in the module that buil
 
 ### Some Guidance for Choosing your Dependencies
 
-We know that writing everything from scratch is dangerous, and we know that importing other people's modules can also be dangerous, so what can we do? My advice is simple — **install exactly as many dependencies are you need, and no more**!
+We know that writing everything from scratch is dangerous, and we know that importing other people's modules can also be dangerous, so what can we do? My advice is simple — **install exactly as many dependencies as you need, and no more**!
 
-Actually, I have some more advice — NPM is such a rich ecosystem that you usually find yourself with many possible modules to choose between for solving your specific problem. Choosing the right one can really reduce your exposure to vulnerabilities.
+Actually, I have some more advice. NPM is such a rich ecosystem that you usually find yourself with many possible modules to choose between to solve your specific problem. Choosing the right one can really reduce your exposure to vulnerabilities.
 
 I can't give you a universally agreed checklist, but I can share my approach.
 
@@ -354,7 +354,7 @@ I don't try to find perfect modules, because while there are lots of choices, it
 
 Here's what I look for:
 
-1. A healthy looking NPM page
+1. A healthy-looking NPM page
    1. A high number of weekly downloads
    2. A thoughtful description
    3. A link to a GitHub repository
