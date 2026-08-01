@@ -111,9 +111,9 @@ Spoiler alert, I achieved that stretch goal! THat's why recent links to XKCD com
 
 ## Handling Dependencies in 2026
 
-BART PROOF-READ LEFT OFF HERE!!!
+Both the previous `linkify.js` script and the new `linkifier` CLI are built using [NodeJS](https://nodejs.org/en). Since ES6 I've become extremely fond of coding in Javascript, and the NodeJS environment is mature, well supported, and cross-platform. It also has a very well thought out mechanism for including third-party libraries in your own projects, the Node Package Manger, [NPM](https://www.npmjs.com).
 
-There are lots of reason I like to code with [NodeJS](https://nodejs.org/en), but a big one is the amazing library of open source packages available to me via the Node Package Manger ([NPM](https://www.npmjs.com)). I simply couldn't create tools like Linkifier without depending on open source modules — I neither have the time nor the skills to implement everything myself from scratch!
+I simply couldn't create tools like Linkifier without depending on open source modules — I neither have the time nor the skills to implement everything myself from scratch!
 
 In more innocent times, you were pretty safe importing just about any NPN module in your project. Worst-case, it was buggy and didn't work very well, so you tried something else!
 
@@ -123,17 +123,18 @@ Cybercriminals have realised that compromising dependencies is a great way to ge
 
 Here are just some of the ways in which attackers are abusing NPM:
 
-1. Using AI to find new and un-known vulnerabilities in old and unmaintained modules that are still in use
-2. Sneaking additional malicious code into apparently helpful pull requests from the open source community
-3. Tricking worn out open source maintainers into accepting help from apparently helpful but malicious *volunteers*
-4. Hacking developer's NPM or GitHub accounts to publish malicious version of completely legitimate and well maintained modules
-5.  Hacking developers to computers to sneak malicious additions directly into the code
+1. Using AI to find new and un-known vulnerabilities in old and unmaintained modules that are still widely used.
+2. Sneaking additional malicious code into apparently helpful pull requests to the open source community.
+3. Tricking worn out open source maintainers into accepting help from apparently helpful but malicious *"volunteers"*.
+4. Hacking developer's NPM or GitHub accounts to publish malicious versions of completely legitimate and well maintained modules. Or, more nefariously, to quietly tweak their CI/CD pipelines (for example GitHub actions) to inject malicious code into every release after the intended code gets pushed!
+5. Hacking developers to computers to sneak malicious additions directly into the code.
+6. Compromising commonly used development tools — for example, in 2025 and 2026 we have seen a dramatic rise in compromised or malicious plugins in the [VSCode](https://code.visualstudio.com) market place.
 
-The extra sting in the tail is that dependencies can be nested — modules can depend on other modules that depend on other modules *ad infinitum*. This tree-like structure of nested dependencies is referred to as a *dependency tree*. When you import one module, you may well actually be adding tens or even hundreds of modules into your project's dependency tree!
+The extra sting in the tail is that dependencies can be nested — modules can depend on other modules that depend on other modules, *ad infinitum*. This branching structure of nested dependencies is referred to as a *dependency tree*. When you import one module, you may well get tens or even hundreds of modules added your project's dependency tree!
 
-If any one module anywhere in your dependency tree has a known vulnerability, then there's a **possibility** your code is vulnerable too. I say there's a *possibility* because not all vulnerabilities in the tree can actually be triggered from your code. If you depend on a module that has two functions, one with a known vulnerability, and one without, and your code only uses the safe one, then your code is not actually vulnerable!
+If any one module anywhere in your dependency tree has a known vulnerability, then there's a **possibility** your code is vulnerable too. I say there's a *possibility* because not all vulnerabilities in your tree can actually be triggered from your code. If you depend on a module that has two functions, one with a known vulnerability, and one without, and your code only uses the safe one, then your code is not actually vulnerable!
 
-It's often much more nuanced than that — if the vulnerability can only be triggered when a third optional argument is passed, and you never pass such an argument, then even though you're using a function with a known vulnerability, you're still save because you're not using the vulnerable part of the module!
+It's often much more nuanced than that — if the vulnerability can only be triggered when a third optional argument is passed, and you never pass such an argument, then even though you're using a function with a known vulnerability, you're still safe because you're not using the vulnerable part of the module.
 
 In other words, **your code is not actually vulnerable to every vulnerability that exists in your dependency tree**!
 
@@ -143,25 +144,27 @@ It might be tempting to just stop using NPM modules, but not only is that utterl
 
 No one can possibly be expert at everything, an no amount careful coding can make up for years of real-world testing by a large community. Realistically, the code you write yourself to avoid depending on NPM modules probably contains more vulnerabilities than any reputable NPM module does!
 
-This means we need a nuanced approach, which means we can't fall back to hard-and-fast rules, but we need to use out best judgement 🙁
+This means we need a nuanced approach, which means we can't fall back to hard-and-fast rules, but we need to use our own best judgement 🙁
 
-### Your Not Alone — There is Help!
+### You're Not Alone — There is Help!
 
-The entire open source community is very are of this supply-chain problem, so there's a lot of work underway to make it ever harder for the attackers to succeed. There will always be some attacks that do, but there's a lot going on to tighten things up.
+The entire open source community is very aware of these supply-chain problems, so there's a lot of work underway to make it ever harder for the attackers to succeed. There will always be some attacks that succeed, at least for a while, but there's a lot going on to tighten things up.
 
-For example — both NPM and GitHub are updating their systems to add ever more safety mechanisms, and the community is responding with technical tools too.
+ For example, both NPM and GitHub are updating their systems to add ever more safety mechanisms.
 
 To illustrate this point, when I first signed up to GitHub decades ago, and when I first opened my NPM developer account, neither site required multi-factor authentication, and neither site did any kind of automated vulnerability scanning against the code I published.
 
-Today, I can't log in to GitHub without my PassKey, I was forced to add multi-factor authentication to my NPM account, I can't publish new versions of the Linkify tool without passing two mutli-factor authentication challenges, and all my code is scanned in the background by both GitHub and NPM checking for obvious problems.
+Today, I can't log into GitHub without my PassKey, and I was forced to add multi-factor authentication to my NPM account to continue publishing modules. I can't publish new versions of the Linkify tool without passing **two** multi-factor authentication challenges, and all my code is scanned in the background by both GitHub and NPM to check for known vulnerabilities.
 
-And then there are the tools built right into the `npm` command itself for managing known vulnerabilities in your dependencies.
+The community is also responding with new tooling to help developers manage their dependencies safely.
+
+NPM is a good example of  this — there are tools built right into the `npm` command itself for managing known vulnerabilities in your dependency trees.
 
 ### Auditing your NPM Dependencies
 
-NPM track and monitor all known vulnerabilities in all NPM modules. They know the exact versions affected by each bug, and whether or not patched versions of those modules have been released, and if so, whether or not those patched versions introduce breaking changes.
+NPM track and monitor all known vulnerabilities in all NPM modules. They know the exact versions affected by each bug, and whether or not patched versions of those modules have been released. They also know, thanks to the [Semver](https://semver.org) numbering system NPM module use, whether or not the patched versions of previously vulnerable modules introduce breaking changes.
 
-NPM classifies each known vulnerability into four severities — here they are summarised by my favourite privacy-respecting AI assistant [Lumo](https://proton.me/lumo):
+NPM classifies each known vulnerability into four severities — here they are as summarised by my favourite privacy-respecting AI assistant [Lumo](https://proton.me/lumo):
 
 1. **Low** — Minor security issues that are unlikely to be exploitable in most environments or require very specific conditions to trigger.
 2. **Moderate** — Vulnerabilities that could lead to security issues but typically require a particular setup or user interaction to exploit.
@@ -172,17 +175,17 @@ You can access this functionality using the `npm audit` command.
 
 To illustrate how this all works, let me walk you through my process for checking my NPM projects for known vulnerabilities.
 
-The first step is to see where things stand by asking NPM to give you an audit report. Simply open a terminal in your project folder, and run:
+The first step is to see where things stand by asking NPM to give you an audit report. Simply open a terminal in your project folder and run:
 
 ```sh
 npm audit
 ```
 
-This reads your dependencies from your `package.json` and `package-lock.json` files and checks your full dependency tree against NPM's vulnerability catalog.
+This reads your dependencies from your `package.json` and `package-lock.json` files, and checks your full dependency tree against NPM's vulnerability database.
 
-You just might get very lucky and find you have no vulnerabilities at all, but realistically, that's unlikely in any kind of substantial project that's been around for a while. You'll probably find at least some vulnerabilities to try address.
+You just might get very lucky and find you have no vulnerabilities at all. Maybe. Realistically thought, that's not likely in any kind of substantial project that you've been maintaining for a while. You'll probably find at least some vulnerabilities to triage.
 
-The next step is to update your dependencies as much as you can without introducing breaking changes — that means never updating across a breaking change. NPM has your back here, by making it intentional difficult update modules across major versions.
+The next step is to update your dependencies as much as you can without introducing breaking changes — that means never updating across major versions (e.g. from `2.*.*` to `3.*.*`). NPM has your back here, by making it intentional difficult update modules across major versions.
 
 To see your available updates, run:
 
@@ -204,16 +207,14 @@ webpack-cli          7.0.2    7.2.1    7.2.1  node_modules/webpack-cli        li
 This shows three version numbers:
 
 * **Current** — the one you have installed
-* **Wanted** — the best available update **without breaking changes** 
+* **Wanted** — the best available update **without breaking changes** (assuming you've added your dependencies with `npm install` and not manually edited your `package.json` file to intentionally allow automatic upgrades across major versions)
 * **Latest** — the most recent published version
 
 You can safely update any module where the *current* version is behind the *wanted* version, regardless of whether there's also a  *latest* version that introduces breaking changes with commands of the form:
 
 ```sh
-npm update url-slug
+npm update PACKAGE_NAME
 ```
-
-This command will never cross a major version boundary, which means it will not introduce breaking changes.
 
 Once you install all the safe-to-install updates, check your vulnerabilities again with `npm audit`.
 
@@ -221,7 +222,7 @@ Hopefully you now have fewer, but you may still have some.
 
 Your next safe option is to allow `npm audit` to make safe edits to your `package-lock.json` file to override nested dependencies.
 
-This means that if one module important an vulnerable version of another, and there is a safe version of that second module available, your `package-lock.json` will be updated to use the safe version, even though the first module still specifies the unsafe version. Again, `npm audit` does this very carefully so as to make the smallest possible changes, and never to upgrade across major versions, hence, avoiding breaking changes.
+This means that if one module imported an vulnerable version of another, and there is a safe version of that second module available, your `package-lock.json` will be updated to use the safe version, even though the first module still specifies the unsafe version. Again, `npm audit` does this very carefully so as to make the smallest possible changes, and never to upgrade across major versions, hence, avoiding breaking changes.
 
 It feels very scary the first time you do it, but NPM really have worked hard to make this safe to do:
 
@@ -229,11 +230,9 @@ It feels very scary the first time you do it, but NPM really have worked hard to
 npm audit fix
 ```
 
-At this point you've fixed every vulnerability that can be safely and easily fixed with simple modules updates, so what ever is left now is going to need some careful consideration.
+Check your current list of vulnerabilities one more time with `npm audit`, and hope to see as few remaining vulnerabilities as possible 🤞
 
-Check your current list of vulnerabilities one more time with `npm audit`, and hope to see as few remaining vulnerabilities as possible!
-
-At this point, we move from deterministic process to human judgement.
+At this point you've fixed every vulnerability that can be safely and easily fixed with simple module updates. So, what ever vulnerabilities remain need careful consideration. In other words, we move from a deterministic process to human judgement.
 
 ### Applying your Best Judgement
 
@@ -241,30 +240,34 @@ You need to examine the remaining vulnerabilities to try understand their releva
 
 This is where **context matters**! Your situation could be very different to mine, so **don't construe my choices** in my situation **with any kind of recommendation**!
 
-These days, I only code for my own personal use, so I don't need to be as cautious as I would were I coding professionally. My focus is on software that runs locally on the terminal, or purely client-side on the web, so the attack surface is very limited. Basically, abusing any vulnerabilities in my apps will harm no one but the person using the tool! 
+These days, I only code for my own personal use, so I don't need to be as cautious as I would were I coding professionally. My focus is on software that runs locally in my terminal, or runs purely client-side on the web. That means the attack surface exposed through any vulnerabilities is very limited. Basically, abusing vulnerabilities in my apps will harm no one but the person running the code! I'm not going to abuse my code to hack myself, but if you want to abuse my code to hack yourself, have at it!
 
-If I was writing software with the ability to harm others, say for use on corporate systems, or server-side web apps, then I'd need to be a lot more careful! There would be many more vulnerabilities that I would need to remediate immediately.
+If I was writing software with the ability to harm others, say for use on corporate systems, or server-side web apps, then I'd need to be a lot more careful. There would be many more vulnerabilities that I'd need to remediate immediately.
 
-So, given my very specific context, I ignore *low* severity issues, I give *moderate* severity issues a quick glance, and focus my attention to the *high* and *critical* ones. I triage every *high* severity issue carefully, and I fix *critical* issues as soon as possible.
+So, given my very specific context, I generally:
+
+* Ignore *low* severity issues
+* Give *moderate* severity issues a quick glance
+* Focus my attention on any *high* and *critical* issues — triaging *high* severity issue carefully, and fixing *critical* issues as soon as possible
 
 Another type of context to bear in mind is that there are two completely **different types of dependency**!
 
 * **Regular dependencies** — by default, `npm install` adds modules as regular dependencies.You'll find them listed in the `dependencies` array in your `package.json` file. Assuming you're using NodeJS and NPM correctly, these should all be dependencies that are needed to **run the built code**. That means that when the software is used in its normal way, these dependencies are relevant. It also means that if you publish your module to NPM, other users installing your module get these dependencies installed into their project's `node_modules` folder.
-* **Developer Dependencies** — when you add dependencies with the `npm install --save-dev` they get added as developer dependencies. You'll find these dependencies in the `devDependencies` folder in your `package.json` file. Again, assuming you're using NodeJS and NPM as intended, these dependencies are **not** relevant when running you software in the normal way, they are **only** used in your build process. This also means that if you publish your module to NPM, when **other people** install your module into their projects, they **do not get the developer dependencies**. (To the developer dependencies you need to clone the Git repository and then run  `npm ci` or a bare `npm install` without any arguments.)
+* **Developer Dependencies** — when you add dependencies with `npm install --save-dev` they get added as developer dependencies. You'll find these dependencies in the `devDependencies` array in your `package.json` file. Again, assuming you're using NodeJS and NPM as intended, these dependencies are **not** relevant when running your software in the normal way, they're **only** used in your build process. This also means that if you publish your module to NPM, when **other people** install your module into their projects, they **do not get your developer dependencies**. (To get the developer dependencies you need to clone the Git repository and then run  `npm ci` or a bare `npm install` without any arguments.)
 
 This distinction means that vulnerabilities in developer dependencies are fundamentally different to vulnerabilities in regular dependencies. For the most part, vulnerabilities in developer dependency can only be used to attack the person building the software, so they're generally of no value to attackers. However, there are some really important exceptions to that general rule, including:
 
 1. Developer dependency vulnerabilities that somehow **corrupt your build process**, secretly injecting malicious code into your legitimate software.
-2. Developer dependencies with vulnerabilities designed to **find secrets** and silently send them to an attacker.
+2. Developer dependencies with vulnerabilities designed to **find secrets** and silently steal them.
 3. Developer dependency with vulnerabilities that maliciously **destroy data** (wipers).
 
 So, just to recap, there's no universally right approach to take to any of this — you need to make your own judgements based on the vulnerabilities themselves, how the vulnerable modules are used in your project, and the context of the software you're developing.
 
 ### A Quick Example — Vulnerabilities in Linkify
 
-As I type this in July 2026, the Linkify project has just two vulnerabilities, both *moderate*. I've already made sure all the modules that can be safely updated have been, and I've run `npm audit --fix` to handle the remaining safe fixes. That means I need to apply my judgement these two vulnerabilities.
+As I type these notes in July 2026, the Linkify project has just two vulnerabilities, both *moderate*. I've already made sure all the modules that can be safely updated have been, and I've run `npm audit --fix` to handle the remaining safe fixes. That means I need to apply my judgement these two vulnerabilities.
 
-Because the Linkify app is used locally and abusing vulnerabilities can only harm the person running the code, I'm not particularly concerned about *medium* vulnerabilities, but I do want to give them a quick look to be sure they really are OK to leave unaddressed.
+Remember that the Linkify app is used locally, so abusing any vulnerabilities within it can only harm the person running the code. In other words, you could only hack yourself! Because of that context, I'm not particularly concerned about *medium* vulnerabilities, but I do want to give them a quick look to be sure they really are OK to leave unaddressed.
 
 Here is what `npm audit` shows:
 
@@ -295,7 +298,7 @@ $ npm ls showdown
 
 That shows me that `showdown` is a dependency of one of my dependencies, `clean-jsdoc-theme`. A quick check of `package.json` verifies my assumption that we're dealing with a developer dependency.
 
-So, there is one actual vulnerability, but it affects two modules within my dependency tree, so, `npm audit` counts it twice.
+So, there's one actual vulnerability, but it affects two modules within my dependency tree — the vulnerable module itself, and the module that depends on the vulnerable module. That's why `npm audit` counts it twice.
 
 Looking at the output from `npm audit` again, we can see that NPM actually told us this in the little summary at the bottom of the vulnerability:
 
@@ -316,7 +319,7 @@ clean-jsdoc-theme    4.3.3   4.3.3   5.0.7  node_modules/clean-jsdoc-theme  link
 commander           14.0.3  14.0.3  15.0.0  node_modules/commander          linkify
 ```
 
-This is mixed news — I could have found that there simply is no patch at all, had all three of *current*, *wanted*, and *latest* been `4.3.3`, then patching would have been impossible, but *latest* shows `5.0.7`. This crosses are major version (`4.*.*` → `5.*.*`), so that implies there would be breaking changes. Let's check that with a quick look at the [release notes](https://github.com/ankitskvmdam/clean-jsdoc-theme/releases#release-v5.0.0) for `clean-jsdoc-theme`. The opening line says it all:
+This is mixed news — I could have found that there simply is no patch at all, had all three of *current*, *wanted*, and *latest* been `4.3.3`, then patching would have been impossible, but *latest* shows `5.0.7`. This crosses a major version boundary (`4.*.*` → `5.*.*`), so that implies there would be breaking changes. Let's check that with a quick look at the [release notes](https://github.com/ankitskvmdam/clean-jsdoc-theme/releases#release-v5.0.0) for `clean-jsdoc-theme`. The opening line says it all:
 
 > clean-jsdoc-theme v5 is a ground-up rewrite — a complete documentation suite, not a coat of paint on JSDoc's output.
 
@@ -337,9 +340,7 @@ Again, `npm audit` gave us a useful summary (and [a link](https://github.com/adv
 Showdown vulnerable to Regular Expression Denial of Service (ReDoS) in link/anchor parsing
 ```
 
-We now have all our context — there is a vulnerability in the module that builds my documentation that can consume my RAM/CPU if I add an intentionally malicious link into my JSDoc comments. This is purely a developer dependency, so users downloading my module actually get zero vulnerabilities with any severity, and I'm quite happy to keep building my docs like I do because I know I'm not going to add a link designed to consume my own computer's resources!
-
-Mind you, that complete re-write looks interesting, so let's open [a GitHub issue](https://github.com/bartificer/linkify/issues/24) to actually do the upgrade with the breaking change in a deliberate and un-hurried way in the future.
+We now have all our context — there is a vulnerability in the module that builds my documentation that can consume my RAM/CPU if I add an intentionally malicious link into my JSDoc comments. This is purely a developer dependency, so users downloading my module actually get zero vulnerabilities. I'm quite happy to keep building my docs like I do because I know I'm not going to add a link designed to consume my own computer's resources! So, I feel just fine leaving the vulnerability as-is, at least for now. When I have some time I'll migrate to the new version of the Clean JSDoc theme, because it does actually look interesting, so l opened [a GitHub issue](https://github.com/bartificer/linkify/issues/24) to remind myself to do the upgrade when I have the time.
 
 ### Some Guidance for Choosing your Dependencies
 
@@ -349,7 +350,7 @@ Actually, I have some more advice — NPM is such a rich ecosystem that you usua
 
 I can't give you a universally agreed checklist, but I can share my approach.
 
-I don't try to find perfect modules, because while there are lots of choices, it's very rare they are **exactly** like my ideal module, instead, I look for positive signals, and I favour modules with more positive signals over those with fewer.
+I don't try to find perfect modules, because while there are lots of choices, it's very rare they're **exactly** like my ideal module. Instead, I look for positive signals, and I favour modules with more positive signals over those with fewer.
 
 Here's what I look for:
 
@@ -360,6 +361,8 @@ Here's what I look for:
 2. A recent release history, with some bug fixes at least
 3. Decent documentation (shows care,  and will save my sanity too!)
 4. Few, or better yet, no, dependencies
+
+SUGGESTED BREAK POINT (AND END OF BART PROOF READ)
 
 ## Designing Linkifier
 
