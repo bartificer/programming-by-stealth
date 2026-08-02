@@ -22,7 +22,19 @@ npx linkify generate 'https://www.podfeet.com/blog/category/nosillacast/' --temp
 
 ## Matching Podcast Episode
 
-TO DO
+Note that in its written form, this instalment is presented as a single unit — it tells a coherent story, and it would lessen its effectiveness to break it into two parts. However, there is too much content here for a single podcast episode, so this single post will appear on the podcast as Tidbits 19a and 19b.
+
+### PBS Tidbit 19a:
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_08_01.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_08_01.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_01.html">PBS_2026_08_01</a>
+
+## PBS Tidbit 19b - Available Soon
+
+Begins at [Designing Linkifier](#designing-linkifier)
 
 ## The Problem to be Solved
 
@@ -106,8 +118,7 @@ Finally, there was also a kind of *stretch goal* — the ability to extract more
 
 Spoiler alert: I achieved that stretch goal! That's why recent links to XKCD comics in the *Palate Cleaner* section of the Security Bits segments look like this:
 
-* [XKCD 3262: Sports Commentary](https://xkcd.com/3262)
-   ![ADD A DESCRIPTION FOR THE VISUALLY IMPAIRED HERE](https://imgs.xkcd.com/comics/sports_commentary.png)
+* [![2 people watching sports with one saying THEY COULD BE IN TROUBLE. OVER THE LAST 36 YEARS, THEY'VE GONE 0 FOR 2 WHEN THEY'VE SCORED IN THE 37TH MINUTE TO LEAD 2-1 AGAINST A TEAM WHOSE COUNTRY COMES BEFORE THEIRS ALPHABETICALLY. Caption says I WISH SPORTS COMMENTATORS HADN'T DISCOVERED P-HACKING.](https://imgs.xkcd.com/comics/sports_commentary.png)](https://xkcd.com/3262)
 
 ## Handling Dependencies in 2026
 
@@ -362,7 +373,7 @@ Here's what I look for:
 3. Decent documentation (shows care,  and will save my sanity too!)
 4. Few, or better yet, no, dependencies
 
-SUGGESTED BREAK POINT (AND END OF BART PROOF READ)
+**Start of Tidbit 19b —Show notes not yet proofread beyond this point**
 
 ## Designing Linkifier
 
