@@ -234,9 +234,9 @@ What we need are sets of instructions for assembling multiple copies of the same
 
 ## Prototyped Objects
 
-> **Update (August 2026)**  — while JavaScript continues to use prototypes under the hood, the ES6 Javascript update (described later in the series) has replaced the use of the `prototype` syntax for implementing object orientation with more modern `class` syntax.
+> **Update**  — while JavaScript continues to use prototypes under the hood, the ES6 version of JavaScript added a more typical `class` keyword for implementing object orientation. The `prototype` syntax described in below remains valid, but is no longer in common use. The changes introduced ES6 introduced are discussed in a series of instalments starting with [PBS 43](./pbs43).
 >
-> The concepts described here remain relevant, but the implementation has changed.
+> While the implmentation has evolved, the concepts described here remain relevant.
 {: .aside}
 
 Different programming languages implement objects in different ways. JavaScript does it in its own unique and special way – it is a prototype-based object oriented language. If you are used to thinking of objects in terms of _classes_, like you would in Java or C++, JavaScript’s paradigm will take some getting used to. Beginners are very much at an advantage here – a lack of misleading preconceptions is definitely helpful when it comes to JavaScript objects.
