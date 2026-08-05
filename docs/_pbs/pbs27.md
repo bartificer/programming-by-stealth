@@ -299,6 +299,9 @@ If you load this page in your browser you’ll find that you can now focus the t
 
 ## A Challenge
 
+> **Update:** this challenge requests the use of the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 Because we have not yet learned enough about web forms to set a meaningful challenge, I’m going to use this opportunity for some revision.
 
 Feedback from readers/listeners suggests that many are still struggling a little with JavaScript prototypes, which we learned about back in [instalment 17](https://pbs.bartificer.net/pbs17), and revisited in the Complex Number challenge in [instalment 19](https://pbs.bartificer.net/pbs19).
