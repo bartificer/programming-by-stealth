@@ -373,7 +373,7 @@ Here's what I look for:
    1. A high number of weekly downloads
    2. A thoughtful description
    3. A link to a GitHub repository
-2. A recent release history, with some bug fixes at least
+2. A recent release history, with at least some bug fixes
 3. Decent documentation (shows care,  and will save my sanity too!)
 4. Few, or better yet, no, dependencies
 
@@ -398,10 +398,10 @@ My brain works in an object-oriented way, so a decade ago, I started by building
    2. `.text` — the link text
    3. `.description` — optional additional description text
 3. `LinkTemplate` — a template for converting `LinkData` objects into rendered links
-   1. `.templateString` — a moustache template for rendering the link
-   2. `.filters` — an optional list of filters to apply to each field, where the filters are simply functions that expect to be passwd one string, and will return a new string
+   1. `.templateString` — a Mustache template for rendering the link
+   2. `.filters` — an optional list of filters to apply to each field, where the filters are simply functions that expect to be passed one string, and will return a new string
 
-These three classes have grown a little over time, but they remain mostly un-changed in today's code.
+These three classes have grown a little over time, but they remain mostly unchanged in today's code.
 
 ### A Three-Step Process
 
@@ -415,15 +415,15 @@ The initial script-based version of this code implemented this three-step proces
 
 ### A New Primary Class to Tie it all Together
 
-Re-writing the script as an ES6 module allowed me to split each of the data modelling classes out into their own file, which makes working in a tab-based IDE so much simpler. But what to do with the script's logic? 
+Rewriting the script as an ES6 module allowed me to split each of the data modelling classes out into their own file, which makes working in a tab-based IDE so much simpler. But what to do with the script's logic? 
 
 In keeping with the object oriented approach, I chose to migrate the script's functionality into a fourth class, `Linkifier`. This class now encapsulates the three-step link generation process.
 
-The `Linkifier` class acts as the entry point to the ES 6 module, so when you import the module into your own code what you get is a pre-created instance of the `Linkifier` class using the default constructor. Additionally, the CLI app is nothing more than a wrapper around a `Linkifier` instance.
+The `Linkifier` class acts as the entry point to the ES6 module, so when you import the module into your own code, what you get is a pre-created instance of the `Linkifier` class using the default constructor. Additionally, the CLI app is nothing more than a wrapper around a `Linkifier` instance.
 
 The `Linkifier` class is more complex than the data modeling classes — it contains a mix of variables and functions, and those are a mix of instance and static. Most notably, the class provides:
 
-* `Linkifier.defaults` — a static dictionary exposing the default values for the configurable link geneation options.
+* `Linkifier.defaults` — a static dictionary exposing the default values for the configurable link generation options.
 * `Linkifier.utilities` — a static dictionary exposing a collection of useful helper functions.
 * A suite of instance functions for managing the link generation configuration.
 * A suite if instance functions for managing the data extraction logic.
@@ -439,7 +439,7 @@ By far the most complex problem to solve is step 2 — extracting the best headl
 
 Fetching the HTML and parsing it into a DOM-like data structure isn't challenging — there are excellent open souce modules available for both of those tasks. With very little effort I was able to get to the point where I could use jQuery-like syntax to extract information from the pages published at the URLs.
 
-The problem is finding the most appropriate text to use as the headline in all that data. The headline you see when you view the article in a browser literally must be there, but extracting it in a purely algorithmic way proved surprisingly challenging. The real internet is a very messy place, and just about every site does things just a little differently!
+The problem is finding the most appropriate text to use as the headline in all that data. The headline you see when you view the article in a browser literally must be there, but extracting it in a purely algorithmic way proved surprisingly challenging. The real internet is a very messy place, and just about every site does things a little differently!
 
 My first implementation simply extracted the text from the page's `<title>` tag. This usually does contain at least some of the headline, but not always all of it, and it usually contains **more** than just the headline. Just about every site pre-fixes or post-fixes some kind of branding around the headline, and some sites even truncate them. This approach left a lot of manual cleanup after the link was generated.
 
@@ -450,34 +450,34 @@ My second thought was to lean into the fact that it's been considered best pract
 3. Some websites intentionally add invisible extra keywords to the end of their headlines in an attempt to game search engines.
 4. A few really poorly designed sites don't even use heading tags for their article titles at all, but use styled paragraphs with bigger text and a bolder weight instead!
 
-My third approach was to try design some kind of algorithm that would try multiple possibilities in some sort of sensible order and somehow figure out which was right on each specific page. It didn't take long to realise this would require so many conditions and caveats that it's effectively impossible!
+My third approach was to try to design some kind of algorithm that would try multiple possibilities in some sort of sensible order and somehow figure out which was right on each specific page. It didn't take long to realise this would require so many conditions and caveats that it's effectively impossible!
 
-If you can't define a single algorythm that works everywhere, then **the obvious solution is per-site extraction logic**!
+If you can't define a single algorithm that works everywhere, then **the obvious solution is per-site extraction logic**!
 
 This sound like it would be a terrible idea, but looking at my show notes I realised the vast majority of my links are from just a few tens of web sites. A few tens of simple functions proved to be a lot easier build than a single universal function!
 
 Both the original script and the new ES6 module use this per-site approach. There's a configuration variable that maps extraction logic to websites.
 
-### Per-Domain Healine Extraction Logic
+### Per-Domain Headline Extraction Logic
 
 *'Extraction logic'* is just a fancy way of saying *functions*, so the problem to be solved is simply mapping functions to websites.
 
-Being a sysadmin for most of my professional life, I instinctively leaned into the fact that website's are defined by their domain names — what makes Mac Stories different to The Mac Observer is their domain names.
+Being a sysadmin for most of my professional life, I instinctively leaned into the fact that websites are defined by their domain names — what differentiates Mac Stories from The Mac Observer is their domain names.
 
-This suggested that DNS (Domain Name System) names provided the best model for structuring the mapping.
+This suggested that DNS (Domain Name System) names provide the best model for structuring the mapping.
 
 This has proven to work really well, and the reason is because of two of DNS's features:
 
-1. DNS names are hierarchical, with the parts separated by periods (`.`). The less significant name is always the left of the more signifficant one. For example, `www.podfeet.com` is a subdomain of `podfeet.com`, which is a subdomain of the top-level domain `com`.
-2. There's an implied, usually hidden, root domain above all the top level domains ( `com` , `net`, `org`, `ie` etc.) and it's represented by a trailing `.`. According to the formal DNS specification, all domain names end with this final `.`.
+1. DNS names are hierarchical, with the parts separated by periods (`.`). The less significant name is always to the left of the more significant one. For example, `www.podfeet.com` is a subdomain of `podfeet.com`, which is a subdomain of the top-level domain `com`.
+2. There's an implied, usually hidden, root domain above all the top-level domains ( `com` , `net`, `org`, `ie` etc.), and it's represented by a trailing `.`. According to the formal DNS specification, all domain names end with this final `.`.
 
-Yup, according to the letter of the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`! If you've never seen these trailing dots, that's because just about everyone agrees the trailing dot looks silly!, That's why all our apps hide them from us humans while silently inserting them as needed when constructing DNS queries! Some low-level DNS terminal commands will show these trailing dots, but most non-DNS admins just assume they're punctuation!
+Yup, according to the letter of the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`! If you've never seen these trailing dots, that's because just about everyone agrees the trailing dot looks silly! That's why all our apps hide them from us humans while silently inserting them as needed when constructing DNS queries! Some low-level DNS terminal commands will show these trailing dots, but most non-DNS admins just assume they're punctuation!
 
 The original script used a dictionary with full DNS names, including the final `.`, as the keys. The values were JavaScript functions.
 
-These Javascript functions accepted a `PageData` object as their only argument, and returned `LinkData` objects. I always mentally referred to these functions as *Data Transformers*, or *Transfomer Functions*.
+These JavaScript functions accepted a `PageData` object as their only argument and returned `LinkData` objects. I always mentally referred to these functions as *Data Transformers*, or *Transformer Functions*.
 
-When building the `Linkifier` class I kept the same concept, and leaned into the *transformer* name. But, rather than directly exposing the object I chose to make it private, and expose a suite of more human friendly functions for manipulating the mappings instead. The allows the module hide the trailing periods from users, avoiding needless confusion.
+When building the `Linkifier` class, I kept the same concept and leaned into the *transformer* name. But rather than directly exposing the object, I chose to make it private and expose a suite of more human-friendly functions for manipulating the mappings instead. This allows the module to hide the trailing periods from users, avoiding needless confusion.
 
 These are the user-facing functions for managing the mappings:
 
@@ -485,7 +485,7 @@ These are the user-facing functions for managing the mappings:
 * `.getTransformerForDomain(Domain)` — a function to return the transformer function for a given domain, again, the trailing `.` is optional, with the function adding it as needed.
 * `.‎domainToTransformerMappings` — a read-only copy of the underlying dictionary, which does have the trailing dots in the keys.
 
-To illustrate the power of this approach, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com`. This site has a legacy mobile site on `m.somesite.com`, as well as their modern website which is accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag, and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
+To illustrate the power of this approach, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com`. This site has a legacy mobile site on `m.somesite.com`, as well as its modern website, which is accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
 
 We can accommodate this simple universe with a configuration that defines just three mappings:
 
@@ -534,7 +534,7 @@ It clearly contains the headline: *'iPhone 18 Pro Max Could Be Thicker and Heavi
 
 Well ... it sort of contains that headline — it's been *slugified* into a form that's compatible with the URL specification.
 
-How hard can it be to reverse this process? Or, to put it another way, can I *de-sligify* URLs to get usable headlines?
+How hard can it be to reverse this process? Or, to put it another way, can I *de-slugify* URLs to get usable headlines?
 
 It proved to be both easier than I feared, and a lot more complex than I'd expected!
 
@@ -557,10 +557,10 @@ What gets lost?
 
 Given there is a generally accepted style for the capitalisation of article titles, so-called *title-case*, a simplistic implementation of this slug-reversing idea is easy:
 
-1. Apply a standard desligification algorithm
+1. Apply a standard deslugification algorithm
 2. Apply the title-case algorithm
 
-Naively, I assumed this would work well most of the time. But once I implemented it and tried to use it on the links for a real podcast episode, it became clear that almost all the headlines this simple algorithm outputs need manual fixing afterwards 🙁
+Naively, I assumed this would work well most of the time. But once I implemented it and tried to use it on the links for a real podcast episode, it became clear that almost all the headlines this simple algorithm outputs needed manual fixing afterwards 🙁
 
 The biggest problems I was seeing were:
 
@@ -569,7 +569,7 @@ The biggest problems I was seeing were:
 3. Formatted numbers get broken up, and the process can't be reliably reversed. For example,  `1,001` becomes `1 001`, and so does `1.001`!
 4. Acronyms get title-cased like any other word, so `NASA` becomes `Nasa`!
 5. Unusually capitalised words like `iPad` get title-cased like normal words too, so `iPad` becomes `Ipad`.
-6. Accented words loose their accents.
+6. Accented words lose their accents.
 
 Sadly, the first three problems simply can't be solved — the information has been lost, and there's no way to get it back.
 
@@ -579,42 +579,42 @@ The slug-reversing process is implemented by the function `Linkifier.utilities.e
 
 At the moment, there's just one type of fix applied, but there is another planned.
 
-Each instance of the `Linkifier` class contains a [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of words with unusual capitalisations (`.speciallyCapitalisedWords`). 
+Each instance of the `Linkifier` class contains a [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of words with unusual capitalisations (`.speciallyCapitalisedWords`). **BART: did you create this set? I thought it was a standard library when I saw the link, but that describes the Set object.**
 
-The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each, and replace it with the correctly capitalised version.
+The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each, and replaces it with the correctly capitalised version.
 
 The set gets initialised from the array `Linkifier.defaults.speciallyCapitalisedWords`, but it can be edited using Javascript's standard set manipulation functions.
 
 This addresses two of our problems quite well:
 
 1. Commonly used acronyms like `NASA` are now handled properly. **However**, some acronyms can't be fixed, for example `US` for the United States is indistinguishable from the collective noun `us`!
-2. Commonly used strangely capitalised words like `iPad` are also handled properly, though some need two enties in the set to work reliably — a singular and a plural. Healines are just as likely to disucss an iPhone feature as they are something affective all iPhones!
+2. Commonly used, strangely capitalised words like `iPad` are also handled properly, though some need two enties in the set to work reliably — a singular and a plural. Headlines are just as likely to disucss an iPhone feature as they are something affective all iPhones!
 
-The plan is to augment the list of specially capitalised words with a map of simple text replacements, this would deal with two more edge cases:
+The plan is to augment the list of specially capitalised words with a map of simple text replacements. This would deal with two more edge cases:
 
 1. Words with internal punctuation like `So-called` could be corrected with mappings like `So Called` → `So-called`
 2. Commonly used accented words could be corrected with mappings like `Cliche` → `Cliché`
 
-### Title-Casing has Nuance too!
+### Title Casing has Nuance too!
 
-In the abstract, title-case is trivially simple — start every word with an upper-case letter!
+In the abstract, title case is trivially simple — start every word with an upper case letter!
 
-In reality, that looks terrible, so some common small words get rendered in all lower case. For example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories users the headline *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
+In reality, that looks terrible, so some common small words get rendered in all lower case. For example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories user the headline *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
 
 The term for these special words is *small words*, and I had assumed there was some kind of universally agreed list of words that get this treatment. Most people do agree on most of the words, at least when writing in English, but not all of them, so there is no actual standard list 🙁
 
-I used a module to implement my title-case conversion, and was surprised to discover it didn't lower-case two small words I absolutely expect to be lower-cased — *is* and *its*. The module supports adding additional small words, so by default, the Linkifier module does two things:
+I used a module to implement my title case conversion, and was surprised to discover it didn't apply lower case to two small words I absolutely expect to be lowercased — *is* and *its*. The module supports adding additional small words, so by default, the Linkifier module does two things:
 
 1. Uses the title case module's standard list (copied to `Linkifier.defaults.importedSmallWords` for easy access)
 2. Appends additional words (from `Linkifier.defaults.extraSmallWords`)
 
 That would have been enough to scratch my own itch, but since I'm the kind of person who nit-picks about these little details, I know other people do too, so I made the list customisable 🙂
 
-Like the list of specially capitalised words, the small words used are stored as a Javascript set, specifically, `.smallWords`. Users can manipulate this set using the standard Javascript set functions.
+Like the list of specially capitalised words, the small words used are stored as a JavaScript set; specifically, `.smallWords`. Users can manipulate this set using the standard JavaScript set functions.
 
 ### Choosing my Dependencies
 
-Since we talked so much about dependency managment at the start of this article, let's quickly look at my dependeny choice for this this project. For now, I'm going to ignore the dependencies used by the CLI, and focus purely on the dependencies used by the four classes that make up the ES6 module.
+Since we talked so much about dependency managment at the start of this article, let's quickly look at my dependency choice for this this project. For now, I'm going to ignore the dependencies used by the CLI, and focus purely on the dependencies used by the four classes that make up the ES6 module.
 
 I followed my own advice and used exactly as many modules as I needed, and no more:
 
@@ -623,7 +623,7 @@ I followed my own advice and used exactly as many modules as I needed, and no mo
    * Still maintained
    * Active [GitHub repo](https://github.com/cheeriojs/cheerio) 
    * [Excellent documentation](https://cheerio.js.org/docs/intro/)
-   * Despite being a very large and powerful module with a lot of features, only has 11 dependencies
+   * Despite being a very large and powerful module with a lot of features, it only has 11 dependencies
 2. [Mustache](https://www.npmjs.com/package/mustache) — used to render the template strings stored in the `LinkTemplate` objects.
    * Millions of weekly downloads
    * Not actively maintained, but no known vulnerabilities, and likely popular enough that any emerging vulnerabilities will be fixed
@@ -636,7 +636,7 @@ I followed my own advice and used exactly as many modules as I needed, and no mo
    * Has a [GitHub repo](https://github.com/node-fetch/node-fetch), but not recently active
    * Just 3 dependencies
    * Excellent documentation (in the NPM description)
-4. [title-case](https://www.npmjs.com/package/title-case) — used for converting strings to title-case
+4. [title-case](https://www.npmjs.com/package/title-case) — used for converting strings to title case
    * Millions of weekly downloads
    * Appears to still be maintained
    * Has [GitHub repo](https://github.com/blakeembrey/change-case), but not recently active
