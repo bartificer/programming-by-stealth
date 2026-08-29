@@ -435,16 +435,16 @@ By far the most complex problem to solve is step 2 — extracting the best headl
 
 Fetching the HTML and parsing it into a DOM-like data structure isn't challenging — there are excellent open souce modules available for both of those tasks. With very little effort I was able to get to the point where I could use jQuery-like syntax to extract information from the pages published at the URLs.
 
-The problem is finding the most appropriate text to use as the headline in all that data. The headline you see when you view the article in a browser literally must be there, but extracting it in a purely algorithmic way proved extremely challenging. The real internet is a very messy place, and just about every site does things just a little differently.
+The problem is finding the most appropriate text to use as the headline in all that data. The headline you see when you view the article in a browser literally must be there, but extracting it in a purely algorithmic way proved surprisingly challenging. The real internet is a very messy place, and just about every site does things just a little differently!
 
 My first implementation simply extracted the text from the page's `<title>` tag. This usually does contain at least some of the headline, but not always all of it, and it usually contains **more** than just the headline. Just about every site pre-fixes or post-fixes some kind of branding around the headline, and some sites even truncate them. This approach left a lot of manual cleanup after the link was generated.
 
-My second thought was to lean into the fact that it's been considered best practice to have the most important title on a page be contained within the first `<h1>` tag on the page. As sensible as this sounds, it breaks down in even more ways that using the `<title>` tag:
+My second thought was to lean into the fact that it's been considered best practice to have the most important title on a page in the first `<h1>` tag on the page. As sensible as this sounds, it breaks down in even more ways that using the `<title>` tag:
 
-1. With the introduction of semantic markup tags (`<heading>` `<body>`, `<article>`, `<section>`, etc.) best practice changed, so while the article title should still be in **an** `<h1>`tag, it doesn't have to be first one on the page.
-2. Many websites choose to prioritise their brand or sub-publication name over and above the actual article's headline, so the headline is sometimes in an `<h2>` tag.
+1. With the introduction of semantic markup tags (`<heading>` `<body>`, `<article>`, `<section>`, etc.) best practice changed, so while the article title should still be **an** `<h1>` tag, it doesn't have to be first one!
+2. Many websites choose to prioritise their brand or sub-publication name over and above the actual article's headline, so the headline is sometimes an `<h2>` tag.
 3. Some websites intentionally add invisible extra keywords to the end of their headlines in an attempt to game search engines.
-4. A few really poorly designed sites don't even use heading tags at all, they just use a styled paragraph with bigger text and a bold weight!
+4. A few really poorly designed sites don't even use heading tags for their article titles at all, but use styled paragraphs with bigger text and a bolder weight instead!
 
 My third approach was to try design some kind of algorithm that would try multiple possibilities in some sort of sensible order and somehow figure out which was right on each specific page. It didn't take long to realise this would require so many conditions and caveats that it's effectively impossible!
 
@@ -456,30 +456,30 @@ Both the original script and the new ES6 module use this per-site approach. Ther
 
 ### Per-Domain Healine Extraction Logic
 
-*'Extraction logic'* is just a fancy way of saying *functions*, so the problem to be solved is somehow mapping functions to websites.
+*'Extraction logic'* is just a fancy way of saying *functions*, so the problem to be solved is simply mapping functions to websites.
 
-Being a sysadmin for most of my professional life, I instinctively leaned into the fact that website's are defined by their domain names — what makes Mac Stories different to The Mac Observer is the domain names in their their URLs.
+Being a sysadmin for most of my professional life, I instinctively leaned into the fact that website's are defined by their domain names — what makes Mac Stories different to The Mac Observer is their domain names.
 
-This suggested that DNS (Domain Name System) names provided the best model for structuring the configuration logic datastructure.
+This suggested that DNS (Domain Name System) names provided the best model for structuring the mapping.
 
-This approach works as well as it does because of two details of how DNS names work:
+This has proven to work really well, and the reason is because of two of DNS's features:
 
-1. DNS names are hierarchical, with the parts separated by periods (`.`). The less significant name is always the left of the more signifficant. For example, `www.podfeet.com` is a subdomain of `podfeet.com`, which is a subdomain of the top-level domain `com`.
+1. DNS names are hierarchical, with the parts separated by periods (`.`). The less significant name is always the left of the more signifficant one. For example, `www.podfeet.com` is a subdomain of `podfeet.com`, which is a subdomain of the top-level domain `com`.
 2. There's an implied, usually hidden, root domain above all the top level domains ( `com` , `net`, `org`, `ie` etc.) and it's represented by a trailing `.`. According to the formal DNS specification, all domain names end with this final `.`.
 
-Yup, according to the letter of the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`! If you've never seen these trailing dots, that's because just about everyone agrees the trailing dot looks silly, so all our apps hide them from us humans, and silently insert them when making DNS queries! Some low-level DNS terminal commands will show them, but most non-DNS admins just assume they're punctiation rather than part of the domain name!
+Yup, according to the letter of the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`! If you've never seen these trailing dots, that's because just about everyone agrees the trailing dot looks silly!, That's why all our apps hide them from us humans while silently inserting them as needed when constructing DNS queries! Some low-level DNS terminal commands will show these trailing dots, but most non-DNS admins just assume they're punctuation!
 
 The original script used a dictionary with full DNS names, including the final `.`, as the keys. The values were JavaScript functions.
 
 These Javascript functions accepted a `PageData` object as their only argument, and returned `LinkData` objects. I always mentally referred to these functions as *Data Transformers*, or *Transfomer Functions*.
 
-When building the `Linkifier` class I kept the same concept, and leaned into the *transformer* name. But, rather than directly exposing the object I chose to make it private, and expose a suite of more human friendly functions for manipulating the mappings instead. The allowed me to automatically add and remove the trailing periods as needed, avoiding the need to explain them to the module's users.
+When building the `Linkifier` class I kept the same concept, and leaned into the *transformer* name. But, rather than directly exposing the object I chose to make it private, and expose a suite of more human friendly functions for manipulating the mappings instead. The allows the module hide the trailing periods from users, avoiding needless confusion.
 
 These are the user-facing functions for managing the mappings:
 
 * `.registerTransformer(Domain, Function)` — a function for registering a data transformer function for a given domain, the trailing `.` is automatically added when needed.
 * `.getTransformerForDomain(Domain)` — a function to return the transformer function for a given domain, again, the trailing `.` is optional, with the function adding it as needed.
-* `.‎domainToTransformerMappings` — a read-only copy of the underlying dictionary, which obviously does have the trailing dots in the keys.
+* `.‎domainToTransformerMappings` — a read-only copy of the underlying dictionary, which does have the trailing dots in the keys.
 
 To illustrate the power of this approach, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com`. This site has a legacy mobile site on `m.somesite.com`, as well as their modern website which is accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag, and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
 
@@ -514,11 +514,11 @@ In my decade of using this approach, it has yet to fail me!
 
 ### The Solution to Bot-Blocking — Reversing URL Slugs
 
-I spent a lot of time trying to figure out some way of getting around those pesky bot blockers preventing my downloads. The only reliable approach I could thing of was to completely redesign my script so it worked with a real browser in some way, either with some kind of API for controling the browser's actions from a a script, or by re-implemnenting it as a browser plugin. Both of those approaches are outside of my area of expertese, and neither was in any way appealing to me.
+I spent a lot of time trying to figure out some way of getting around those pesky bot blockers preventing my downloads. The only reliable approach I could think of was a complete redesign to integrate my script into a real browser somehow. Perhaps using  some kind of browser-controlling API, or by re-implementing the entire script as a browser plugin. Both of those approaches are outside of my area of expertise, and neither was in any way appealing.
 
 But what if you could get a usable headline without ever downloading the page? That sounded impossible, until I noticed that just about every news site embeds simplified versions of their headline right into their URLs! 
 
-The term for these simpified headlines is URL *slugs*. When downloads fail, can I somehow reverse those slugs into a useful headline?
+The term for these simplified headlines is *'URL slugs'*. When downloads fail, can I somehow reverse those slugs into a useful headline?
 
 To get an idea of how these slugs work, here's an example URL for an article on The Mac Observer:
 
@@ -551,12 +551,12 @@ What gets lost?
 2. All punctuation — spaces and all other punctuation characters get converted to dashes.
 3. Diacritics (little adornments on letters like `é` & `ç`) — letters with diacritics get converted to plain letters, e.g. `à` → `a`.
 
-Given there is a generally accepted style for the capitalisation of article titles, so-called *title-case*, a simplistic implementation of this slug-reversing idea is actually very simple:
+Given there is a generally accepted style for the capitalisation of article titles, so-called *title-case*, a simplistic implementation of this slug-reversing idea is easy:
 
 1. Apply a standard desligification algorithm
 2. Apply the title-case algorithm
 
-Naively, I assumed this would work well most of the time. But once I implemented it and tried to use it on the links for a real Let's Talk Apple, it became clear that almost all the headlines this simple algorithm outputs need manual fixing afterwards 🙁
+Naively, I assumed this would work well most of the time. But once I implemented it and tried to use it on the links for a real podcast episode, it became clear that almost all the headlines this simple algorithm outputs need manual fixing afterwards 🙁
 
 The biggest problems I was seeing were:
 
@@ -564,31 +564,31 @@ The biggest problems I was seeing were:
 2. Currency symbols are lost.
 3. Formatted numbers get broken up, and the process can't be reliably reversed. For example,  `1,001` becomes `1 001`, and so does `1.001`!
 4. Acronyms get title-cased like any other word, so `NASA` becomes `Nasa`!
-5. Unusually capitalised words like `iPod` get title-cased like normal words too, so 'iPod' becomes `Ipod`.
+5. Unusually capitalised words like `iPad` get title-cased like normal words too, so `iPad` becomes `Ipad`.
 6. Accented words loose their accents.
 
 Sadly, the first three problems simply can't be solved — the information has been lost, and there's no way to get it back.
 
-That last three can somewhat remediated though. They can't be perfectly solved, but simple text replacements can get us a long way, removing most the need for manual fixes.
+But the last three, those can be remediated. Not perfectly, but well enough to make a real difference.
 
-The slug-reversing process is implemented by the function `Linkifier.utilities.extractSlug()`. It starts by simply reversing the slug and then applying title-case, and then it tries to fix as many of the problems as it can.
+The slug-reversing process is implemented by the function `Linkifier.utilities.extractSlug()`. It starts by simply reversing the slug and applying title-case, and then it tries to fix as many of the problems as it can.
 
 At the moment, there's just one type of fix applied, but there is another planned.
 
-Each instance of the `Linkifier` class contains a [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of words with strange capitalisations (`.speciallyCapitalisedWords`). 
+Each instance of the `Linkifier` class contains a [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of words with unusual capitalisations (`.speciallyCapitalisedWords`). 
 
-The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each in the title, and replace it with the correctly capitalised version.
+The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each, and replace it with the correctly capitalised version.
 
 The set gets initialised from the array `Linkifier.defaults.speciallyCapitalisedWords`, but it can be edited using Javascript's standard set manipulation functions.
 
-The this addresses two of our problems quite well:
+This addresses two of our problems quite well:
 
 1. Commonly used acronyms like `NASA` are now handled properly. **However**, some acronyms can't be fixed, for example `US` for the United States is indistinguishable from the collective noun `us`!
-2. Commonly used strangely capitalised words like `iPod` are also handled properly, though some need two enties in the set to work reliably, a singular and a plural. Healines are just as likely to disucss an iPhone feature as they are something affective all iPhones.
+2. Commonly used strangely capitalised words like `iPad` are also handled properly, though some need two enties in the set to work reliably — a singular and a plural. Healines are just as likely to disucss an iPhone feature as they are something affective all iPhones!
 
 The plan is to augment the list of specially capitalised words with a map of simple text replacements, this would deal with two more edge cases:
 
-1. Words with internal punctuation like `So-called` could be corrected with mappings like `So Called` → `so-called`
+1. Words with internal punctuation like `So-called` could be corrected with mappings like `So Called` → `So-called`
 2. Commonly used accented words could be corrected with mappings like `Cliche` → `Cliché`
 
 ### Title-Casing has Nuance too!
@@ -597,16 +597,16 @@ In the abstract, title-case is trivially simple — start every word with an upp
 
 In reality, that looks terrible, so some common small words get rendered in all lower case. For example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories users the headline *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
 
-The term for these special words is *small words*, and I had assumed there was some kind of universally agreed standard on which words do and don't get this treatment. Most people agree on most of the words, at least when writing in English, but there's no actually agreed standard.
+The term for these special words is *small words*, and I had assumed there was some kind of universally agreed list of words that get this treatment. Most people do agree on most of the words, at least when writing in English, but not all of them, so there is no actual standard list 🙁
 
 I used a module to implement my title-case conversion, and was surprised to discover it didn't lower-case two small words I absolutely expect to be lower-cased — *is* and *its*. The module supports adding additional small words, so by default, the Linkifier module does two things:
 
 1. Uses the title case module's standard list (copied to `Linkifier.defaults.importedSmallWords` for easy access)
 2. Appends additional words (from `Linkifier.defaults.extraSmallWords`)
 
-That would have been enough to scratch my own itch, but since I'm the kind of person who nit-picks about these kinds of details, I know other people do too, so I made the list customisable 🙂
+That would have been enough to scratch my own itch, but since I'm the kind of person who nit-picks about these little details, I know other people do too, so I made the list customisable 🙂
 
-Like the list of specially capitalised words, the small words used are stored as a Javascript set, specifically, `.smallWords`. Users can manipulat this set using the standard Javascript set functions.
+Like the list of specially capitalised words, the small words used are stored as a Javascript set, specifically, `.smallWords`. Users can manipulate this set using the standard Javascript set functions.
 
 ### Choosing my Dependencies
 
