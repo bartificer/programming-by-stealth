@@ -22,7 +22,7 @@ npx linkify generate 'https://www.podfeet.com/blog/category/nosillacast/' --temp
 
 ## Matching Podcast Episode
 
-Note that in its written form, this instalment is presented as a single unit — it tells a coherent story, and it would lessen its effectiveness to break it into two parts. However, there is too much content here for a single podcast episode, so this single post will appear on the podcast as Tidbits 19a and 19b.
+Note that in its written form, this instalment is presented as a single unit — it tells a coherent story, and it would lessen its effectiveness to break it into multiple parts. However, there's too much content here for a single podcast episode, so this single post will appear on the podcast as Tidbits 19a, 19b, and 19c.
 
 ### PBS Tidbit 19a:
 
@@ -35,6 +35,10 @@ Read an unedited, auto-generated transcript with chapter marks:  <a href="https:
 ## PBS Tidbit 19b - Available Soon
 
 Begins at [Designing Linkifier](#designing-linkifier)
+
+## PBS Tidbit 19c - Available Soon
+
+Begins at [Building a JavaScript CLI](#building-a-javascript-cli)
 
 ## The Problem to be Solved
 
@@ -653,9 +657,11 @@ I followed my own advice and used exactly as many modules as I needed, and no mo
 
 Given many of those choices were made a decade ago, I'm relieved that only one might need to be replaced in the medium term 🙂
 
-## Building a Javascript CLI — POSSIBLE BREAK POINT
+**Start of Tidbit 19c**
 
-With the ES 6 module built, one of my niggles remained, I still had no better way to execute the code than by chaining a script with two other terminal commands, which is long, cumbersome, and resuted in an unwanted trialing newline character I was never able to get rid of.
+## Building a JavaScript CLI
+
+With the ES 6 module built, one of my niggles remained, I still had no better way to execute the code than by chaining a script with two other terminal commands, which is long, cumbersome, and resulted in an unwanted trialing newline character I was never able to get rid of.
 
 To get a good experience on the terminal I needed a proper CLI. Now that I had all the logic encapsualted in an ES6 modules this was actually quite a simple task. What was needed was a simple CLI wrapper that arround the new module with:
 
