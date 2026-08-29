@@ -389,13 +389,13 @@ My brain works in an object-oriented way, so a decade ago, I started by building
    3. `.headings.h1[]` — an array with the content of all the `<h1>` tags, in order
    4. `.headings.h2[]` — an array with the content of all the `<h2>` tags, in order
    5. `.metadata` — a dictionary indexed by the standard SEO header names, e.g. `.metadata.author` for the text from the `content` attribute from the `<meta name="author">` tag
-2. `LinkData` — to represent extracted information which can be used in rendering the link, primarily:
+2. `LinkData` — to represent the extracted information that can be used in rendering the link, primarily:
    1. `.url` — the URL to link to
    2. `.text` — the link text
    3. `.description` — optional additional description text
 3. `LinkTemplate` — a template for converting `LinkData` objects into rendered links
    1. `.templateString` — a moustache template for rendering the link
-   2. `.filters` — an optional list of filters to apply to each field, where the filters are simply functions that expect to be password one string, and will return a new string
+   2. `.filters` — an optional list of filters to apply to each field, where the filters are simply functions that expect to be passwd one string, and will return a new string
 
 These three classes have grown a little over time, but they remain mostly un-changed in today's code.
 
@@ -405,15 +405,15 @@ The classes support a simple three-step link generation process:
 
 1. Download the HTML and parse it into a `PageData` object
 2. Apply appropriate logic to convert the `PageData` object to a `LinkData` object
-3. Convert the `LinkData` object to a rendered link in the desired form using a `LinkTemplate` object
+3. Convert the `LinkData` object to a rendered link in the desired format using a `LinkTemplate` object
 
-The initial script-based version of this code implemented this three-step process in a single **looooooooong** JavaScript. That one file defined the three classes and implemented the three-step process using those classes. It worked, but it sure wasn't easy to maintain — lots and lots of scrolling up and down!
+The initial script-based version of this code implemented this three-step process in a single **looooooooong** JavaScript file. That one file defined the three classes and implemented the three-step process using those classes. It worked, but it sure wasn't easy to maintain — lots and lots of scrolling up and down!
 
 ### A New Primary Class to Tie it all Together
 
-Re-writing the script as an ES6 module allowed me to split each of the data modelling classes out into their own file, which makes working in a tab-based IDE so much simpler!
+Re-writing the script as an ES6 module allowed me to split each of the data modelling classes out into their own file, which makes working in a tab-based IDE so much simpler. But what to do with the script's logic? 
 
-But what to do with the script's logic? In keeping with the object oriented approach, I chose to migrate the script's functionality into a fourth class, `Linkifier`. This class now encapsulates the link three-step link generation process.
+In keeping with the object oriented approach, I chose to migrate the script's functionality into a fourth class, `Linkifier`. This class now encapsulates the three-step link generation process.
 
 The `Linkifier` class acts as the entry point to the ES 6 module, so when you import the module into your own code what you get is a pre-created instance of the `Linkifier` class using the default constructor. Additionally, the CLI app is nothing more than a wrapper around a `Linkifier` instance.
 
@@ -653,7 +653,7 @@ I followed my own advice and used exactly as many modules as I needed, and no mo
 
 Given many of those choices were made a decade ago, I'm relieved that only one might need to be replaced in the medium term 🙂
 
-## Building a Javascript CLI
+## Building a Javascript CLI — POSSIBLE BREAK POINT
 
 With the ES 6 module built, one of my niggles remained, I still had no better way to execute the code than by chaining a script with two other terminal commands, which is long, cumbersome, and resuted in an unwanted trialing newline character I was never able to get rid of.
 
