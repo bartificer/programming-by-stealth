@@ -483,7 +483,7 @@ These are the user-facing functions for managing the mappings:
 
 * `.registerTransformer(Domain, Function)` — a function for registering a data transformer function for a given domain, the trailing `.` is automatically added when needed.
 * `.getTransformerForDomain(Domain)` — a function to return the transformer function for a given domain, again, the trailing `.` is optional, with the function adding it as needed.
-* `.‎domainToTransformerMappings` — a read-only copy of the underlying dictionary, which does have the trailing dots in the keys.
+* `.domainToTransformerMappings` — a read-only copy of the underlying dictionary, which does have the trailing dots in the keys.
 
 To illustrate the power of this approach, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com`. This site has a legacy mobile site on `m.somesite.com`, as well as its modern website, which is accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
 
@@ -579,7 +579,10 @@ The slug-reversing process is implemented by the function `Linkifier.utilities.e
 
 At the moment, there's just one type of fix applied, but there is another planned.
 
-Each instance of the `Linkifier` class contains a [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of words with unusual capitalisations (`.speciallyCapitalisedWords`). **BART: did you create this set? I thought it was a standard library when I saw the link, but that describes the Set object.**
+Each instance of the `Linkifier` class contains a set of words with unusual capitalisations (`.speciallyCapitalisedWords`).
+
+>  Note I used JavaScript's standard `Set` class to create my set of words. You can use this class to create array-like objects that behave like mathematical sets. Their biggest advantage over arrays is that the values they store are inherently unique. The class provides a full suite of standard set manipulation functions. You can learn on the relevant [Mozilla Developers Network page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
+{: .aside}
 
 The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each, and replaces it with the correctly capitalised version.
 
@@ -599,7 +602,7 @@ The plan is to augment the list of specially capitalised words with a map of sim
 
 In the abstract, title case is trivially simple — start every word with an upper case letter!
 
-In reality, that looks terrible, so some common small words get rendered in all lower case. For example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories user the headline *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
+In reality, that looks terrible, so some common small words get rendered in all lower case. For example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories uses the headline *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
 
 The term for these special words is *small words*, and I had assumed there was some kind of universally agreed list of words that get this treatment. Most people do agree on most of the words, at least when writing in English, but not all of them, so there is no actual standard list 🙁
 
