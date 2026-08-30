@@ -32,9 +32,21 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_01.html">PBS_2026_08_01</a>
 
-## PBS Tidbit 19b - Available Soon
+## PBS Tidbit 19b 
 
 Begins at [Designing Linkifier](#designing-linkifier)
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_08_29.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_08_29.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_29.html">PBS_2026_08_29</a>
+
+## PBS Tidbit 19c 
+
+Begins at [Building a Javascript CLI](#building-a-javascript-cli)
+
+Audio coming soon
 
 ## The Problem to be Solved
 
@@ -373,7 +385,7 @@ Here's what I look for:
 3. Decent documentation (shows care,  and will save my sanity too!)
 4. Few, or better yet, no, dependencies
 
-**Start of Tidbit 19b —Show notes not yet proofread beyond this point**
+**Start of Tidbit 19b**
 
 ## Designing Linkifier
 
@@ -584,9 +596,9 @@ The plan is to augment the list of specially capitalised words with a map of sim
 1. Words with internal punctuation like `So-called` could be corrected with mappings like `So Called` → `so-called`
 2. Commonly used accented words could be corrected with mappings like `Cliche` → `Cliché`
 
-### Title-Casing has Nuance too!
+### Title Casing has Nuance too!
 
-In the abstract, title-case is trivially simple — start every word with an upper-case letter!
+In the abstract, title case is trivially simple — start every word with an upper-case letter!
 
 In reality, that looks terrible, so some common small words get rendered in all lower case, for example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories: *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
 
@@ -645,6 +657,8 @@ I followed my own advice and used exactly as many modules as I needed, and no mo
    5. Sufficient documentation (in the NPM description)
 
 Given many of those choices were made a decade ago, I'm relieved that only one might need to be replaced in the medium term 🙂
+
+**Start of Tidbit 19c —Show notes not yet proofread beyond this point**
 
 ## Building a Javascript CLI
 
