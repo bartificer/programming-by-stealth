@@ -3,6 +3,7 @@ title: Building a JavaScript CLI App with NodeJS
 instalment: 19
 creators: [bart, allison]
 date: 2026-08-01
+
 ---
 
 When evangelising this series, I always say that the ability to code is *empowering* because it lets you scratch your own proverbial itch — you need the computer to do something for you. If you can code, you should be able to make that happen!
@@ -22,7 +23,7 @@ npx linkify generate 'https://www.podfeet.com/blog/category/nosillacast/' --temp
 
 ## Matching Podcast Episode
 
-Note that in its written form, this instalment is presented as a single unit — it tells a coherent story, and it would lessen its effectiveness to break it into two parts. However, there is too much content here for a single podcast episode, so this single post will appear on the podcast as Tidbits 19a and 19b.
+Note that in its written form, this instalment is presented as a single unit — it tells a coherent story, and it would lessen its effectiveness to break it into multiple parts. However, there's too much content here for a single podcast episode, so this single post will appear on the podcast as Tidbits 19a, 19b, and 19c.
 
 ### PBS Tidbit 19a:
 
@@ -32,7 +33,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_01.html">PBS_2026_08_01</a>
 
-## PBS Tidbit 19b 
+## PBS Tidbit 19b
 
 Begins at [Designing Linkifier](#designing-linkifier)
 
@@ -42,11 +43,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_29.html">PBS_2026_08_29</a>
 
-## PBS Tidbit 19c 
+## PBS Tidbit 19c - Available Soon
 
-Begins at [Building a Javascript CLI](#building-a-javascript-cli)
-
-Audio coming soon
+Begins at [Building a JavaScript CLI](#building-a-javascript-cli)
 
 ## The Problem to be Solved
 
@@ -87,7 +86,7 @@ The `linkify.js` script actually implemented most of what the new CLI app does, 
 
 1. Executing the script was tedious, and required piping a few commands together:
    1.  `pbpaste` to read the URL from the clipboard
-   2. `node` to run the script and output the link
+   2.  `node` to run the script and output the link
    3.  `pbcopy` to write the link to the clipboard
 2. No matter how hard I tried, I never managed to pipe the commands together in such a way that the link did not end up on the clipboard with a trialing newline character.
 3. When the command failed, the clipboard got overwritten with nothingness, so I'd lose the link.
@@ -381,7 +380,7 @@ Here's what I look for:
    1. A high number of weekly downloads
    2. A thoughtful description
    3. A link to a GitHub repository
-2. A recent release history, with some bug fixes at least
+2. A recent release history, with at least some bug fixes
 3. Decent documentation (shows care,  and will save my sanity too!)
 4. Few, or better yet, no, dependencies
 
@@ -389,7 +388,7 @@ Here's what I look for:
 
 ## Designing Linkifier
 
-So, we have this complex to problem to solve, how best to architect the code?
+So, we have this complex problem to solve, how best to architect the code?
 
 ### Three Data Modelling Classes
 
@@ -401,117 +400,120 @@ My brain works in an object-oriented way, so a decade ago, I started by building
    3. `.headings.h1[]` — an array with the content of all the `<h1>` tags, in order
    4. `.headings.h2[]` — an array with the content of all the `<h2>` tags, in order
    5. `.metadata` — a dictionary indexed by the standard SEO header names, e.g. `.metadata.author` for the text from the `content` attribute from the `<meta name="author">` tag
-2. `LinkData` — to represent extracted information which can be used in rendering the link, primarily:
+2. `LinkData` — to represent the extracted information that can be used in rendering the link, primarily:
    1. `.url` — the URL to link to
    2. `.text` — the link text
    3. `.description` — optional additional description text
 3. `LinkTemplate` — a template for converting `LinkData` objects into rendered links
-   1. `.this.templateString` — a moustache template for rendering the link
-   2. `.filters` — an optional list of filters to apply to each field, where the filters are simply functions that expect to be password one string, and will return a new string
+   1. `.templateString` — a Mustache template for rendering the link
+   2. `.filters` — an optional list of filters to apply to each field, where the filters are simply functions that expect to be passed one string, and will return a new string
 
-These three classes have grown a little over time, but they remain mostly un-changed in today's code.
+These three classes have grown a little over time, but they remain mostly unchanged in today's code.
 
 ### A Three-Step Process
 
 The classes support a simple three-step link generation process:
 
 1. Download the HTML and parse it into a `PageData` object
-2. Somehow convert the `PageData` object to a `LinkData` object
-3. Convert the `LinkData` object to the final link using a `LinkTemplate` object
+2. Apply appropriate logic to convert the `PageData` object to a `LinkData` object
+3. Convert the `LinkData` object to a rendered link in the desired format using a `LinkTemplate` object
 
-The initial script-based version of this code implemented this three-step process in a single script file that defined the three classes and then used them to work through that three-step process. It was a **looooooooong** script! It worked, but it sure wasn't easy to maintain — lots and lots of scrolling up and down!
+The initial script-based version of this code implemented this three-step process in a single **looooooooong** JavaScript file. That one file defined the three classes and implemented the three-step process using those classes. It worked, but it sure wasn't easy to maintain — lots and lots of scrolling up and down!
 
-### A Primary Class to Tie it all Together
+### A New Primary Class to Tie it all Together
 
-Re-writing the script as an ES6 module allowed me to split each of the data modelling classes out into their own files, which makes working in a tab-based IDE so much simpler!
+Rewriting the script as an ES6 module allowed me to split each of the data modelling classes out into their own file, which makes working in a tab-based IDE so much simpler. But what to do with the script's logic? 
 
-But what to do with the script's logic? In keeping with the object oriented approach, I chose to migrate the script's functional into a fourth class, `Linkifier`. This class now encapsulates the link generation logic.
+In keeping with the object oriented approach, I chose to migrate the script's functionality into a fourth class, `Linkifier`. This class now encapsulates the three-step link generation process.
 
-The `Linkifier` class acts as the entry point to the ES 6 module, so when you import the module into your own code you start by creating an instance of the `Linkifier` class. The CLI app is basically a wrapper around an instance of this class.
+The `Linkifier` class acts as the entry point to the ES6 module, so when you import the module into your own code, what you get is a pre-created instance of the `Linkifier` class using the default constructor. Additionally, the CLI app is nothing more than a wrapper around a `Linkifier` instance.
 
-The `Linkifier` class is more complex than the three data encapsulation functions — it contains a mix of static and instance variables and functions, most importantly:
+The `Linkifier` class is more complex than the data modeling classes — it contains a mix of variables and functions, and those are a mix of instance and static. Most notably, the class provides:
 
-* `Linkifier.defaults` — a static dictionary exposing default values
-* `Linkifier.utilities` — a static dictionary exposing helper functions
-* A suite of instance functions for managing the configuration
-* A suite if instance functions for managing the data extraction logic
-* A suite of instance functions for managing the available templates
-* A suite of functions implementing each step of the link generation logic
+* `Linkifier.defaults` — a static dictionary exposing the default values for the configurable link generation options.
+* `Linkifier.utilities` — a static dictionary exposing a collection of useful helper functions.
+* A suite of instance functions for managing the link generation configuration.
+* A suite if instance functions for managing the data extraction logic.
+* A suite of instance functions for managing the available link templates.
+* A suite of functions implementing each step of the link generation logic.
 * `async .generateLink(url)` — the main function, the one that actually converts URLs to nicely formatted links!
 
-All in all this is quite a simple design — four classes to power a simple three-step processes, but I've been hiding the difficult part from you — the second step. The app *just* extracts the headline from the HTML, how card can that be?
+All in all this is quite a simple design — four classes to power a simple three-step processes. This elegant design makes the code easier to understand and maintain, but there's actually a lot of nuance in that three-step process that I've been intentionally ignoring up to this point. 
+
+By far the most complex problem to solve is step 2 — extracting the best headline from the page. You'd think you *just* extract the `<title>` tag from the HTML, but no, in the real world things are a lot more complicated than that!
 
 ### Extracting Article Headlines is Tricky!
 
-Actually fetching the HTML and then parsing it into a DOM-like data structure is quite easy to do, so with very little effort I was able to get to the point where I could use jQuery-like syntax to extract information from the pages pointe to by URLs.
+Fetching the HTML and parsing it into a DOM-like data structure isn't challenging — there are excellent open souce modules available for both of those tasks. With very little effort I was able to get to the point where I could use jQuery-like syntax to extract information from the pages published at the URLs.
 
-Somewhere in all that content is the article's headline, exactly as readers see it, but where?
+The problem is finding the most appropriate text to use as the headline in all that data. The headline you see when you view the article in a browser literally must be there, but extracting it in a purely algorithmic way proved surprisingly challenging. The real internet is a very messy place, and just about every site does things a little differently!
 
-My first implementation simply extracted the text from the page's `<title>` tag. This usually does contain the headline, or at least most of it, but it's almost never just the headline! Just about every site pre-fixes or post-fixes their brand, so you always have something to delete manually afterwards. Worse still, some sites even truncate the headlines, meaning you need to copy-and-paste them manually.
+My first implementation simply extracted the text from the page's `<title>` tag. This usually does contain at least some of the headline, but not always all of it, and it usually contains **more** than just the headline. Just about every site pre-fixes or post-fixes some kind of branding around the headline, and some sites even truncate them. This approach left a lot of manual cleanup after the link was generated.
 
-My second thought was to lean into the fact that it's been considered best practice to have the most important title on a page be contained within the first `<h1>` tag on the page. As sensible as this sounds, it breaks down in even more ways that using the `<title>` tag:
+My second thought was to lean into the fact that it's been considered best practice to have the most important title on a page in the first `<h1>` tag on the page. As sensible as this sounds, it breaks down in even more ways that using the `<title>` tag:
 
-1. With the introduction of semantic markup tags ( `<heading>` `<body>`, `<article>`, `<section>`, etc.) there are now many possible best-practice ways of having the article title's `<h1>` tag that contains the headline not be the first `<h1>` on the page.
-2. Many websites choose to prioritise their brand or sub-publication name over and above the actual article's headline, so the headline is sometimes in an `<h2>` tag.
-3. Some websites intentionally add invisible extra keywords to the end of their headline's `<h1>` tag in an attempt to game search engines.
-4. A few really poorly designed sites don't even use heading tags at all, they just a bolded paragraph and give it a bigger font size!
+1. With the introduction of semantic markup tags (`<heading>` `<body>`, `<article>`, `<section>`, etc.) best practice changed, so while the article title should still be **an** `<h1>` tag, it doesn't have to be first one!
+2. Many websites choose to prioritise their brand or sub-publication name over and above the actual article's headline, so the headline is sometimes an `<h2>` tag.
+3. Some websites intentionally add invisible extra keywords to the end of their headlines in an attempt to game search engines.
+4. A few really poorly designed sites don't even use heading tags for their article titles at all, but use styled paragraphs with bigger text and a bolder weight instead!
 
-My third approach was to try design some kind of algorithm that would try multiple possibilities in some sort of sensible order and somehow figure out which was right on each page. It didn't take me long to realise this would require so many conditions and caveats that it's effectively impossible!
+My third approach was to try to design some kind of algorithm that would try multiple possibilities in some sort of sensible order and somehow figure out which was right on each specific page. It didn't take long to realise this would require so many conditions and caveats that it's effectively impossible!
 
-If you can't define a single piece of extraction logic that works on every site, then clearly, the solution is a mechanism for associating the appropriate logic to each website.
+If you can't define a single algorithm that works everywhere, then **the obvious solution is per-site extraction logic**!
 
-This sound like it would be a terrible idea, but looking at my show notes I realised the vast majority of my links are from just a few tens of web sites. A few tens of simple functions proved to be a lot easier build than a single function that works everywhere!
+This sound like it would be a terrible idea, but looking at my show notes I realised the vast majority of my links are from just a few tens of web sites. A few tens of simple functions proved to be a lot easier build than a single universal function!
 
-Both the original script and the new ES6 module use this approach — there is configuration variable that maps extraction logic to websites.
+Both the original script and the new ES6 module use this per-site approach. There's a configuration variable that maps extraction logic to websites.
 
-### Per-Domain Healine Extraction Logic
+### Per-Domain Headline Extraction Logic
 
-Extraction logic is just a fancy way of say *a function*, so the problem to be solved is somehow mapping functions to websites.
+*'Extraction logic'* is just a fancy way of saying *functions*, so the problem to be solved is simply mapping functions to websites.
 
-Being a sysadmin for most of my professional life, I instinctively leaned into the fact that website's are defined by their domain names — what makes Mac Stories different to The Mac Observer is the domain name part of their their article URLs.
+Being a sysadmin for most of my professional life, I instinctively leaned into the fact that websites are defined by their domain names — what differentiates Mac Stories from The Mac Observer is their domain names.
 
-This suggested that DNS (Domain Name System) names provided the best model for structuring the configuration object that maps extraction logic to websites.
+This suggested that DNS (Domain Name System) names provide the best model for structuring the mapping.
 
-To understand why this approach works so well it's important to understand two nuances of how DNS name are structured
+This has proven to work really well, and the reason is because of two of DNS's features:
 
-1. DNS names are hierarchical, with the parts separated by periods (`.`), and the least significant name on the left. For example, `www.podfeet.com` is a subdomain of `podfeet.com` , which is a subdomain of the top-level domain `com`.
+1. DNS names are hierarchical, with the parts separated by periods (`.`). The less significant name is always to the left of the more significant one. For example, `www.podfeet.com` is a subdomain of `podfeet.com`, which is a subdomain of the top-level domain `com`.
+2. There's an implied, usually hidden, root domain above all the top-level domains ( `com` , `net`, `org`, `ie` etc.), and it's represented by a trailing `.`. According to the formal DNS specification, all domain names end with this final `.`.
 
-2. There's an implied, usually hidden, root domain above all the top level domains ( `com` , `net`, `org`, `ie` etc.) and it is represented by a trailing `.`. According to the formal DNS specification, all domain names end with a final `.`. According to the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`! 
+Yup, according to the letter of the specification, Allison's domain name is not `www.podfeet.com`, but `www.podfeet.com.`! If you've never seen these trailing dots, that's because just about everyone agrees the trailing dot looks silly! That's why all our apps hide them from us humans while silently inserting them as needed when constructing DNS queries! Some low-level DNS terminal commands will show these trailing dots, but most non-DNS admins just assume they're punctuation!
 
-   If you've never seen these dots, that's because just about everyone agrees the trailing dot looks ugly, so every app that uses domain names hides it, and silently inserts it into just before issuing DNS queries! 
+The original script used a dictionary with full DNS names, including the final `.`, as the keys. The values were JavaScript functions.
 
-The original script used a dictionary with full DNS names, including the final `.`, as the keys, and Javascript functions as the values.
+These JavaScript functions accepted a `PageData` object as their only argument and returned `LinkData` objects. I always mentally referred to these functions as *Data Transformers*, or *Transformer Functions*.
 
-These Javascript functions accepted a `PageData` object as their only argument, and returned a `LinkData` object. I always mentally referred to them as *Data Transformers*, or *Transfomer functions*.
+When building the `Linkifier` class, I kept the same concept and leaned into the *transformer* name. But rather than directly exposing the object, I chose to make it private and expose a suite of more human-friendly functions for manipulating the mappings instead. This allows the module to hide the trailing periods from users, avoiding needless confusion.
 
-When building the `Linkifier` class I kept the same concept, and leaned into the name, but I chose to hide the details from the user by making the configuration variable private, and only exposing a suite of functions for managing the mappings. These functions lean into the *transformer* nomenclature:
+These are the user-facing functions for managing the mappings:
 
-* `.registerTransformer(Domain, Function)` — a function for registering a data transformer function for a given domain, the trailing `.` is silently added if needed.
-* `.getTransformerForDomain(Domain)` — a function to return the transformer function for a given domain, the trailing `.` is optional, the function will return the same transformer function when passed `podfeet.com` or `podfeet.com.`.
-* `.‎domainToTransformerMappings` — a read-only copy of the underlying dictionary (does show the trailing `.`s).
+* `.registerTransformer(Domain, Function)` — a function for registering a data transformer function for a given domain, the trailing `.` is automatically added when needed.
+* `.getTransformerForDomain(Domain)` — a function to return the transformer function for a given domain, again, the trailing `.` is optional, with the function adding it as needed.
+* `.domainToTransformerMappings` — a read-only copy of the underlying dictionary, which does have the trailing dots in the keys.
 
-To illustrate the power of this approach, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com` which still has a legacy mobile site on `m.somesite.com`, and a more modern website that's accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag, and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
+To illustrate the power of this approach, imagine the very simplified universe where all sites have acceptable titles in either their first `<h1>` tag or their `<title>` tag, except for one site, `somesite.com`. This site has a legacy mobile site on `m.somesite.com`, as well as its modern website, which is accessible via both `www.somesite.com` and `somesite.com`. The legacy mobile site has the site name as the only `<h1>` tag and the article headline as the first `<h2>` tag, while the modern site has the headline in the `<title>` tag, but prefixed with `Some Site | `.
 
-We can accommodate this simple universe with a configuration that defines just three domain name-to-transformer-function mappings:
+We can accommodate this simple universe with a configuration that defines just three mappings:
 
 1. `somesite.com.` — a transformer function that uses the page title with a regular expression to remove the prefix as the article title.
 2. `m.somesite.com.` — a function that uses the content of the first `<h2>` tag as the article title.
 3. `.` — a function that uses the content of the first `<h1>` tag as the article headline if there is one, otherwise it falls back to the page title.
 
-To see how this simply mapping works, let's imagine needing to extract a headline from the URL `https://somesite.com/big-story1`. The process for resolving the transformer function is:
+To see how this simple set of mappings works, let's imagine we need to extract a headline from the URL `https://somesite.com/big-story1`. The process for resolving the transformer function is:
 
 1. Is there a mapping for `somesite.com.` — **yes**, so use it!
 
 OK, so what about the URL `https://www.somesite.com/big-story2`? This is a little more convoluted, but still quite simple:
 
-1. Is there a mapping for `www.somesite.com.` — **no**, try the parent domain
+1. Is there a mapping for `www.somesite.com.` — **no**, try the parent domain.
 2. Is there a mapping for `somesite.com.` — **yes**, so use it!
 
 Now what about any other site on the internet, say `https://www.anothersite.net/big-story`? Again, a little more convoluted, but it still works:
 
-1. Is there a mapping for `www.anothersite.net.` — **no**, try the parent domain
-2. Is there a mapping for `anothersite.net.` — **no**, try the parent domain
-3. Is there a mapping for `net.` — **no**, try the parent domain
+1. Is there a mapping for `www.anothersite.net.` — **no**, try the parent domain.
+2. Is there a mapping for `anothersite.net.` — **no**, try the parent domain.
+3. Is there a mapping for `net.` — **no**, try the parent domain.
 4. Is there a mapping for `.` — **yes**, so use it!
 
 This demonstrates the two big advantages this approach brings:
@@ -521,173 +523,168 @@ This demonstrates the two big advantages this approach brings:
 
 In my decade of using this approach, it has yet to fail me!
 
-### The Solution to Download-Blocking — Reversing URL Slugs
+### The Solution to Bot-Blocking — Reversing URL Slugs
 
-I spent a lot of time trying to figure out some way of getting around those pesky download blocks other than trying to integrate my script into a real browser. I know it's possible to have a script drive a browser automatically, and hence, get the content, but that was a layer of complexity I just didn't want to deal with! 
+I spent a lot of time trying to figure out some way of getting around those pesky bot blockers preventing my downloads. The only reliable approach I could think of was a complete redesign to integrate my script into a real browser somehow. Perhaps using  some kind of browser-controlling API, or by re-implementing the entire script as a browser plugin. Both of those approaches are outside of my area of expertise, and neither was in any way appealing.
 
-And then, one day, I notice the solution had been staring me in the face all along — just about every news site embeds the headline right into the URL as a so-called *slug*!
+But what if you could get a usable headline without ever downloading the page? That sounded impossible, until I noticed that just about every news site embeds simplified versions of their headline right into their URLs! 
 
-For example, consider this Mac Observer use URL: `https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/`
+The term for these simplified headlines is *'URL slugs'*. When downloads fail, can I somehow reverse those slugs into a useful headline?
 
-It clearly contains the headline: *iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery*
+To get an idea of how these slugs work, here's an example URL for an article on The Mac Observer:
+
+```text
+https://www.macobserver.com/news/iphone-18-pro-max-could-be-thicker-and-heavier-due-to-bigger-battery/
+```
+
+It clearly contains the headline: *'iPhone 18 Pro Max Could Be Thicker and Heavier Due to Bigger Battery'*
 
 Well ... it sort of contains that headline — it's been *slugified* into a form that's compatible with the URL specification.
 
-How hard can it be to reverse this process? Can I *de-sligify* URLs to get headlines?
+How hard can it be to reverse this process? Or, to put it another way, can I *de-slugify* URLs to get usable headlines?
 
-It proved to be both easier than I feared, and a lot more complex than I realised it would be!
+It proved to be both easier than I feared, and a lot more complex than I'd expected!
 
-Getting something that worked fairly well most of the time was easy, but getting it to work really well almost all the time took a lot of effort!
+Getting something that worked fairly well most of the time was easy, but getting the process to work really well almost all the time took a lot of effort!
 
 As a first pass I knew this would be a two-step process:
 
 1. Extract the words
 2. Fix the case
 
-Since there are standard algorithms for converting the words into the slugs, there are also standard algorithms for reversing the slugs back to text.
+Since there are standard algorithms for converting headlines into the slugs, there are modules that implement these standards in reverse to retrieve text from slugs.
 
 The problem is, the text you get back is not quite the same as the text that went in. Why? Because slugification is an **inherently lossy process**. 
 
 What gets lost?
 
-1. All character casing — slugs are all lower case
-2. All punctuation — spaces and all other punctuation characters get converted to dashes
-3. Diacritics (little adornments on letters like `é` & `ç`) — letters with diacritics get converted to plain letters, e.g. `à` → `a`
+1. All character casing — slugs are all lower case.
+2. All punctuation — spaces and all other punctuation characters get converted to dashes.
+3. Diacritics (little adornments on letters like `é` & `ç`) — letters with diacritics get converted to plain letters, e.g. `à` → `a`.
 
-Given there is a generally accepted style for the capitalisation of title, so-called *title-case*, a simplistic implementation of this slug-reversing idea is actually very simple:
+Given there is a generally accepted style for the capitalisation of article titles, so-called *title-case*, a simplistic implementation of this slug-reversing idea is easy:
 
-1. Apply a standard desligification algorithm
+1. Apply a standard deslugification algorithm
 2. Apply the title-case algorithm
 
-Naively, I assumed that would work well most of the time.
-
-I implement the algorithm and tried to use it for the notes for a Let's Talk Apple episode. I soon realised almost all the resulting headlines needed some manual fixes to get them right 🙁
+Naively, I assumed this would work well most of the time. But once I implemented it and tried to use it on the links for a real podcast episode, it became clear that almost all the headlines this simple algorithm outputs needed manual fixing afterwards 🙁
 
 The biggest problems I was seeing were:
 
-1. Punctuation commonly used in headlines like simple colons and commas are lost (they all become spaces)
-2. Currency symbols are lost
+1. Punctuation commonly used in headlines like simple colons and commas are lost (they all become spaces).
+2. Currency symbols are lost.
 3. Formatted numbers get broken up, and the process can't be reliably reversed. For example,  `1,001` becomes `1 001`, and so does `1.001`!
-4. Acronyms like `NASA` get title-caesd to `Nasa`
-5. Unusually capitalised words like `iPod` get title-cased to `Ipod`
-6. Accented words loose their accents
+4. Acronyms get title-cased like any other word, so `NASA` becomes `Nasa`!
+5. Unusually capitalised words like `iPad` get title-cased like normal words too, so `iPad` becomes `Ipad`.
+6. Accented words lose their accents.
 
-Sadly, the first three problems simply can't be solved — the information has simply been lost, and there's no way to get it back.
+Sadly, the first three problems simply can't be solved — the information has been lost, and there's no way to get it back.
 
-That last three can somewhat remediated though — they can't be perfectly solved, but simple text replacements can get us most of the way to where we need to be!
+But the last three, those can be remediated. Not perfectly, but well enough to make a real difference.
 
-The slug-reversing process is implemented by the function `Linkifier.utilities.extractSlug()`. It stars by simply reversing the slug and then applying title-case, and then it tries to fix as many of the problems as it can.
+The slug-reversing process is implemented by the function `Linkifier.utilities.extractSlug()`. It starts by simply reversing the slug and applying title-case, and then it tries to fix as many of the problems as it can.
 
 At the moment, there's just one type of fix applied, but there is another planned.
 
-Each instance of the `Linkifier` class contains a [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of words with strange capitalisations (`.speciallyCapitalisedWords`). 
+Each instance of the `Linkifier` class contains a set of words with unusual capitalisations (`.speciallyCapitalisedWords`).
 
-The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each word in the title, and replace it with the correctly capitalised version of the word.
+>  Note I used JavaScript's standard `Set` class to create my set of words. You can use this class to create array-like objects that behave like mathematical sets. Their biggest advantage over arrays is that the values they store are inherently unique. The class provides a full suite of standard set manipulation functions. You can learn on the relevant [Mozilla Developers Network page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
+>  {: .aside}
 
-The set gets initialised from the array  `Linkifier.defaults.speciallyCapitalisedWords`, but it can be edited using Javascript's standard set manipulation functions.
+The `extractSlug()` function loops over this set and uses a case-insensitive regular expression to find the wrongly capitalised versions of each, and replaces it with the correctly capitalised version.
 
-The this addresses two of our problems quite well:
+The set gets initialised from the array `Linkifier.defaults.speciallyCapitalisedWords`, but it can be edited using Javascript's standard set manipulation functions.
 
-1. Most acronyms like `NASA` are now handled properly. **However**, some acronyms can't be fixed, for example `US` for the United States is indistinguishable from the collective noun `us`!
-2. Most strangely capitalised words like `iPod` are also handled properly, though some need to entered twice, for example `iPod` and `iPods`.
+This addresses two of our problems quite well:
 
-The plan is to augment the list of specially capitalised words with a map of simple text replacements, this would deal with two more edge cases:
+1. Commonly used acronyms like `NASA` are now handled properly. **However**, some acronyms can't be fixed, for example `US` for the United States is indistinguishable from the collective noun `us`!
+2. Commonly used, strangely capitalised words like `iPad` are also handled properly, though some need two enties in the set to work reliably — a singular and a plural. Headlines are just as likely to disucss an iPhone feature as they are something affective all iPhones!
 
-1. Words with internal punctuation like `So-called` could be corrected with mappings like `So Called` → `so-called`
+The plan is to augment the list of specially capitalised words with a map of simple text replacements. This would deal with two more edge cases:
+
+1. Words with internal punctuation like `So-called` could be corrected with mappings like `So Called` → `So-called`
 2. Commonly used accented words could be corrected with mappings like `Cliche` → `Cliché`
 
 ### Title Casing has Nuance too!
 
-In the abstract, title case is trivially simple — start every word with an upper-case letter!
+In the abstract, title case is trivially simple — start every word with an upper case letter!
 
-In reality, that looks terrible, so some common small words get rendered in all lower case, for example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories: *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
+In reality, that looks terrible, so some common small words get rendered in all lower case. For example, the headline on this recent [article](https://www.macstories.net/stories/headless-macs-and-hamstrung-ipads/) from Mac Stories uses the headline *"Headless Macs and Hamstrung iPads"*. Notice that the *and* is lower-cased.
 
-The term for these special words is *small words*, and I had assumed there was some kind of universally agreed standard on which words do and don't get this treatment. Most people agree on most of the words, at least when writing in English, but there is no actually agreed standard.
+The term for these special words is *small words*, and I had assumed there was some kind of universally agreed list of words that get this treatment. Most people do agree on most of the words, at least when writing in English, but not all of them, so there is no actual standard list 🙁
 
-I used a module to implement my title-case conversion, and was surprised to discover it didn't lower-case two small words I absolutely expect to be lower-cased — *is* and *its*. The module supports adding additional small words, so by default, the module does two things:
+I used a module to implement my title case conversion, and was surprised to discover it didn't apply lower case to two small words I absolutely expect to be lowercased — *is* and *its*. The module supports adding additional small words, so by default, the Linkifier module does two things:
 
-1. Uses the module's standard list (copied to `Linkifier.defaults.importedSmallWords` for easy access)
+1. Uses the title case module's standard list (copied to `Linkifier.defaults.importedSmallWords` for easy access)
 2. Appends additional words (from `Linkifier.defaults.extraSmallWords`)
 
-That would have been enough to scratch my own itch, but since I'm the kind of person who nit-picks about these kinds of details, I know other people do too, so I made the list customisable 🙂
+That would have been enough to scratch my own itch, but since I'm the kind of person who nit-picks about these little details, I know other people do too, so I made the list customisable 🙂
 
-Like the list of specially capitalised words, the small words used are stored in a Javascript set, specifically, `.smallWords`, so they can be manipulated using the standard Javascript set functions.
+Like the list of specially capitalised words, the small words used are stored as a JavaScript set; specifically, `.smallWords`. Users can manipulate this set using the standard JavaScript set functions.
 
 ### Choosing my Dependencies
 
-Since we talked so much about dependencies, let's quickly look at those I chose to add to this project. For now, I'm going to ignore the dependencies used by the CLI, and focus purely on the dependencies used by the four classes that make up the ES6 module.
+Since we talked so much about dependency managment at the start of this article, let's quickly look at my dependency choice for this this project. For now, I'm going to ignore the dependencies used by the CLI, and focus purely on the dependencies used by the four classes that make up the ES6 module.
 
 I followed my own advice and used exactly as many modules as I needed, and no more:
 
-1. [Cheerio](https://www.npmjs.com/package/cheerio) — a browserless alternative to jQuery, used to parse web pages when building `PageData` objects.
+1. [Cheerio](https://www.npmjs.com/package/cheerio) — a browserless alternative to jQuery. It's used to parse downloaded web pages when building `PageData` objects.
    * Tens of millions of weekly downloads
    * Still maintained
    * Active [GitHub repo](https://github.com/cheeriojs/cheerio) 
    * [Excellent documentation](https://cheerio.js.org/docs/intro/)
-   * Despite being a very large and powerful module with a lot of features, only has 11 dependencies
+   * Despite being a very large and powerful module with a lot of features, it only has 11 dependencies
 2. [Mustache](https://www.npmjs.com/package/mustache) — used to render the template strings stored in the `LinkTemplate` objects.
-   1. Millions of weekly downloads
-   2. Not actively maintained, but no known vulnerabilities, and likely popular enough that any emerging vulnerabilities will be fixed
-   3. Has a [GitHub repo](https://github.com/janl/mustache.js), but also not recently active
-   4. Zero dependencies 🎉
-   5. [Acceptable documentation](https://github.com/janl/mustache.js)
+   * Millions of weekly downloads
+   * Not actively maintained, but no known vulnerabilities, and likely popular enough that any emerging vulnerabilities will be fixed
+   * Has a [GitHub repo](https://github.com/janl/mustache.js), but also not recently active
+   * Zero dependencies 🎉
+   * [Acceptable documentation](https://github.com/janl/mustache.js)
 3. [Node-Fetch](https://www.npmjs.com/package/node-fetch) — Used to fetch the HTML for a given URL
-   1. Hundreds of millions of weekly downloads 😳
-   2. Not very actively maintained, but no known vulnerabilities, and so popular that any emerging vulnerabilities will undoubtedly be fixed
-   3. Has a [GitHub repo](https://github.com/node-fetch/node-fetch), but not recently active
-   4. Just 3 dependencies
-   5. Excellent documentation (in the NPM description)
-4. [title-case](https://www.npmjs.com/package/title-case) — used for converting strings to title-case
-   1. Millions of weekly downloads
-   2. Appears to still be maintained
-   3. Has [GitHub repo](https://github.com/blakeembrey/change-case), but not recently active
-   4. Zero dependencies 🎉
-   5. Bare-minimum docs, if even 🙁
+   * Hundreds of millions of weekly downloads 😳
+   * Not very actively maintained, but no known vulnerabilities, and so popular that any emerging vulnerabilities will undoubtedly be fixed
+   * Has a [GitHub repo](https://github.com/node-fetch/node-fetch), but not recently active
+   * Just 3 dependencies
+   * Excellent documentation (in the NPM description)
+4. [title-case](https://www.npmjs.com/package/title-case) — used for converting strings to title case
+   * Millions of weekly downloads
+   * Appears to still be maintained
+   * Has [GitHub repo](https://github.com/blakeembrey/change-case), but not recently active
+   * Zero dependencies 🎉
+   * Bare-minimum docs, if even 🙁
 5. [URI.js](https://www.npmjs.com/package/urijs) — used for parsing URLs, primarily for extracting the domain names
-   1. Millions of weekly downloads
-   2. Was actively maintained a decade ago, but no longer the case. No known vulnerabilities, but may need to be replaced soon
-   3. Has [GitHub repo](https://github.com/medialize/URI.js), but also inactive
-   4. Zero dependencies 🎉
-   5. [Excellent documentation](https://medialize.github.io/URI.js/)
+   * Millions of weekly downloads
+   * Was actively maintained a decade ago, but no longer the case. No known vulnerabilities, but may need to be replaced soon
+   * Has [GitHub repo](https://github.com/medialize/URI.js), but also inactive
+   * Zero dependencies 🎉
+   * [Excellent documentation](https://medialize.github.io/URI.js/)
 6. [url-slug](https://www.npmjs.com/package/url-slug) — used to reverse URL slugs back to plain text
-   1. Hundreds of thousands of weekly downloads
-   2. Very actively maintained
-   3. Has active [GitHub repo](https://github.com/stldo/url-slug)
-   4. Zero dependencies 🎉
-   5. Sufficient documentation (in the NPM description)
+   * Hundreds of thousands of weekly downloads
+   * Very actively maintained
+   * Has active [GitHub repo](https://github.com/stldo/url-slug)
+   * Zero dependencies 🎉
+   * Sufficient documentation (in the NPM description)
 
 Given many of those choices were made a decade ago, I'm relieved that only one might need to be replaced in the medium term 🙂
 
-**Start of Tidbit 19c —Show notes not yet proofread beyond this point**
+**Start of Tidbit 19c**
 
-## Building a Javascript CLI
+## Building a JavaScript CLI
 
-With the ES 6 module built, I was still left with no way to execute my code other than a NodeJS script. That would have worked of course, but it would have left me with an underlying niggle that has been irking me for years.
+With the ES 6 module built, one of my niggles remained, I still had no better way to execute the code than by chaining a script with two other terminal commands, which is long, cumbersome, and resulted in an unwanted trialing newline character I was never able to get rid of.
 
-Because my was not a proper CLI app, I needed to pipe three commands together to convert a link in my clipboard:
+To get a good experience on the terminal I needed a proper CLI. Now that I had all the logic encapsualted in an ES6 modules this was actually quite a simple task. What was needed was a simple CLI wrapper that arround the new module with:
 
-1. `pbpaste` to output the current content of the clipboard
-2. `node` with the path to the script to perform the conversion
-3. `pbcopy` to send the generated URL back to the clipboard
+1. Support for configuration files in known-locations like `~/.linkify-config.mjs`
+2. Direct clipboard integreation for reading URLs and writting generated links (using flags)
 
-This is obviously a long command, and it had two frustrating side effects:
-
-1. No matter how hard I tried to get rid of it, the final clipboard always contained a trailing newline character.
-2. On each site where the download failed, the clipboard got overridden with an empty string, so I had to go copy it again to then manually create the link.
-
-A better solution would be to build a CLI wrapper around my ES6 module that could:
-
-1. Support configuration files in known-locations like `~/.linkify-config.mjs`
-2. Optionally use the clipboard as the URL source and/or destination (using flags)
-3. Share my work in a conveniently usable way
-
-Given how familiar I was with my code at this stage, it seemed like it was worth putting a little more time into this to get to the solution I really wanted.
+Given how familiar I was with my code at this stage, it seemed like it was worth putting in a little more time and effort to get to to my ideal implementation!
 
 ### Choosing the Tooling
 
-For a script to feel like a CLI app it has to adopt all the standard conventions for Linux terminal apps. Re-inventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed to choose some modules to provide me the basics.
+For a script to feel like a CLI app it has to adopt all the standard conventions for Linux terminal apps. Re-inventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed build on top of some existing modules which provide basic CLI fuctionality.
 
-Many years ago I experimented with Javascript CLI apps with NodeJS using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option I found fitted my needs best, but a lot of time had passed, so I spent a little time chatting with Lumo (my preferred AI chat bot) and ended up with two additional options to investigate:
+Many years ago I experimented with NodeJS Javascript CLI apps using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option that seemed to fit my needs best, but a lot of time has passed since, so I needed to re-evalute my options. I spent a little time chatting with Lumo (my preferred AI chat bot) and ended up with two additional options to investigate:
 
 1. [OClif](https://oclif.io)
    * Extremely powerful, and very feature rich
@@ -708,51 +705,46 @@ Many years ago I experimented with Javascript CLI apps with NodeJS using [Capora
 
 In the abstract, Oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it wasn't a good fit for me.
 
-Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it also has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my experience, and the scale of this project, it was clearly the best fit!
+Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it also has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my experience, and the scale of this project, it was clearly the best fit.
 
-Being a little simpler than Oclif, Commander.js doesn't include optional extra features like support for coloured terminal output. It's not in any way incompatible with coloured output, it just won't do that work for you.
+Being a little simpler than Oclif, Commander.js doesn't include optional extra features like support for coloured terminal output. It's not in any way incompatible with coloured output, it just doesn't provide that functionality.
 
 Terminal text colouring works using cryptic Bash escape sequences. I absolutely could teach myself how they work and manually implement the colours, but again, that seemed like a terrible waste of my time!
 
-In the past I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for this project, so I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, so I ended up choosing a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
+In the past I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for this project, so I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evalating the options suggested by Lumo I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
-Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it definitely has strong community support!
+Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it definitely has strong community support.
 
 Finally, I needed to interact with the clipboard. I'd researched this before for other projects, so I knew [Clipboardy](https://www.npmjs.com/package/clipboardy) was probably the right approach.
 
 A quick check verified that it is indeed still a good option. It's actively maintained, has a nice simple API, is downloaded millions of times a week, and it only has six dependencies.
 
-To summarise, adding a CLI adds three new dependencies to my project:
+To summarise, adding a CLI added three new dependencies to my project:
 
-1. [Commands.js](https://www.npmjs.com/package/commander) for implementing the CLI functionality
-2. [Kleur](https://www.npmjs.com/package/kleur) for adding formatted terminal output
-3. [Clipboardy](https://www.npmjs.com/package/clipboardy) for interacting with the clipboard
+1. [Commands.js](https://www.npmjs.com/package/commander) for implementing the CLI functionality.
+2. [Kleur](https://www.npmjs.com/package/kleur) for adding formatted terminal output.
+3. [Clipboardy](https://www.npmjs.com/package/clipboardy) for interacting with the clipboard.
 
 ### Handing Custom Configurations
 
-One of the most important things I wanted the CLI app to do is to support configuration files. These files needed to allow for two distinct types of configuration:
+One of the most important features I wanted from my CLI app was support for configuration files. These files needed to allow for two distinct types of configuration:
 
 1. Configuration of the `Linkify` module, including:
    1. Defining headline extraction logic for sites
-   2. Defining templates and controlling templates
-   3. Controlling the de-slugification process
+   2. Defining and managing templates
+   3. Customising the de-slugification process
 2. Setting defaults for the CLI's apps own behaviour
 
-As a general rule, I prefer configuration files that are purely text, ideally in a nice simple text format like JSON or YAML. Unfortunately, that simply isn't an option when you need users to be able to define functions and instantiate objects, and I needed those capabilities.
+As a general rule, I prefer configuration files that are purely text, ideally in a nice simple text format like JSON or YAML. Unfortunately, that simply isn't an option when you need users to be able to define functions and instantiate objects, and both are needed in this case. Transformer functions are functions, and link templates are objects.
 
-The only way to effectively configure a `Linkifier` object is to create one and then manipulate that instance to configure it as needed. This meant leaning into the design pattern used by other big Javascript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with an `.mjs` file rather than a `.json` or `.yaml` file.
+If plain text configuartion was out, I still wanted to implement some kind of common design pattern so my app wouldn't be an odd-ball. I chose to adpot the design pattern used by popular big Javascript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with an `.mjs` file rather than a `.json` or `.yaml` file.
 
-The configuration needs to facilitate two distinct types of configuration:
-
-1. The configuration of the ES6 module — headline extraction logic, templates, etc.
-2. The configuration of the CLI app — defaults for the supported flags and options
-
-To facilitate this, Linkifier configuration modules need to export a dictionary with one or both of the following keys as its default export:
+Because we need to be able to configure both the link geneation behavious and the CLI's own default behaviour Linkifier configuration modules need to export a dictionary with one or both of the following keys as the default export:
 
 * `linkifier` — a configured instance of the `Linkifier` class
 * `options` — a dictionary mapping values to the CLI's flag and option names, but with the `--` omitted.
 
-With the structure of the configuration file defined, the next step is to figure out how to load it. Obviously, the command will need an option to manually specific a path, but you really don't want users to have to do that every time! Clearly, I wanted the `linkify` app to implement the Linux/Unix convention of supporting so-called *dot files*.
+With the structure of the configuration file defined, the next step is to figure out how to load it. Obviously, the command will need an option to manually specify a path, but you really don't want users to have to do that every time. Clearly, I wanted the `linkify` app to implement the Linux/Unix convention of supporting so-called *dot files*.
 
 I chose to have the command implement the following configuration loading priority, from highest precendence to lowest:
 
@@ -760,22 +752,22 @@ I chose to have the command implement the following configuration loading priori
 2. A file named `~/.linkify-config.mjs`
 3. The default configuration
 
-With that rather important detail decided, the next step was to design the app's syntax.
+With the configuration logic decided, the next step was to design the app's syntax.
 
 ### Designing the CLI Syntax
 
 Before trying to implement the app's functionality, I need to decide on the exact features to offer, and how to facilitate user input. In other words, what flags, options, and arguments would the command support and expect?
 
-I like the common sub-command design pattern used by commands like `git`. Single top-level commands expect to be passed a subcommand as the first argument to determine which of their supported actions to execute, like `git clone` and  `git commit`.
+I like the common sub-command design pattern used by commands like `git`. With this design pattern a single top-level command expects to be passed a subcommand as the first argument, and this sub-command will determine which of the app's supported actions to execute. For example, `git clone` to clone a repo, and `git commit` to commit changes to a branch.
 
-Given the functionality I wanted to provide, I chose the following:
+Given the functionality I wanted to provide, I chose the following sub-commands:
 
 1. `linkify generate-link` with the alias `linkify generate` to actually generate links
 2. `linkify show-defaults` with the alias `linkify defaults` to show users the default settings the command uses
 3. `linkify show-config` with the alias `linkify config` to show the users their currently loaded configuration
-4. `linkify preview-page-data` with the alias `linkify page-data` to fetch the `PageData` object for a given URL to help users develop their title extraction logic
+4. `linkify preview-page-data` with the alias `linkify page-data` to fetch the `PageData` object for a given URL to help users develop their headline extraction logic
 
-Without my needing to do any work, Commander.js automatically add a final `linkify help` sub-command. Assuming you follow best practices and assign descriptions to the commands, flags, and options you define, the output will be genuinely useful to your users.
+Commander.js automatically adds a final `linkify help` sub-command. Assuming you follow best practices and assign descriptions to the commands, flags, and options you define, the output will be genuinely useful to your users.
 
 Next, before figuring out the details for each sub-command, you need to choose your list of global flags and options. I chose to add just a few:
 
@@ -783,26 +775,26 @@ Next, before figuring out the details for each sub-command, you need to choose y
 * `-C` or `--config` for specifying a configuration file path
 * `-d` or `--debug` for enabling additional output
 
-Finally, Commander.js also automatically adds `-h` and `--help` flags which show the command or the sub-command's help text.
+Finally, Commander.js also automatically adds `-h` and `--help` flags which show appropriate command or sub-command's help text.
 
-Now that we know the app's top-level API, the next step is to design the APIs for each of the sub-commands.
+Now that we know the app's top-level interface details, the next step is to design the interfaces for each of the sub-commands.
 
-The simpler sub-commands don't actually need an API, specifically, `linkify show-defaults` and `linkify show-config` don't need any arguments, flags, or options, so they have no API as such.
+The simpler sub-commands don't actually need interfaces, specifically, `linkify show-defaults` and `linkify show-config` don't need any arguments, flags, or options.
 
 The automatically created `linkify help` accepts just one argument, an optional sub-command name, allowing users to see the top-level help, or sub-command-specific help.
 
 #### Generating Links
 
-This is the most complex sub-command, so it has the richest API.
+This is the most complex sub-command, so it has the richest interface.
 
 Firstly, it accepts just one argument — a URL. Perhaps surprisingly, this argument is optional. Why? Because the app support reading the URL from the clipboard!
 
-All sub-commands support the global options and flags, but each sub-command can add more that only apply to that sub-command. `linkify generate` adds the following flags
+All sub-commands support the global options and flags, but each sub-command can add more. `linkify generate` adds the following flags:
 
 * `--from-clipboard` and `--no-from-clipboard` to force-enable or disable reading the URL from the clipboard, regardless of what the loaded config defines.
 * `--to-clipboard` and `--no-to-clipboard` to similarly force-enabled or disable outputting of the generated link to the clipboard
 * `-c` and `--clipboard` as a shortcut for `--from-clipboard` and `--to-clipboard`
-*  `--no-clipboard` as a shortcut for `--no-from-clipboard` and `--no-to-clipboard`
+* `--no-clipboard` as a shortcut for `--no-from-clipboard` and `--no-to-clipboard`
 * `-e` and `--echo-clipboard` to echo what is being read from and/or written to the clipboard to the terminal
 
 The `linkify generate-link` subcommand adds just one option:
@@ -811,7 +803,7 @@ The `linkify generate-link` subcommand adds just one option:
 
 #### Viewing Page Data
 
-The `linkify preview-page-data` sub-command is similar to but a little simpler than the `linkify generate-link` sub-command, but it does still need an API.
+The `linkify preview-page-data` sub-command is similar to but a little simpler than the `linkify generate-link` sub-command, but it does still need an interface.
 
 Like the page generation sub-command it accepts one argument, a URL, and it too is optional.
 
@@ -824,13 +816,13 @@ To keep things consistent, all relevant flags supported by the link generation s
 
 ### The CLI Code
 
-Because the CLI app is just a wrapper around the ES 6 module which is doing the vast majority of the work, and because Commands.js is quite light-weight, the code for the entire CLI app is contained in just one file!
+Because the CLI app is just a wrapper around the ES 6 module, and because Commands.js is quite light-weight, the code for the entire CLI app is contained in just one file!
 
 If you're curious to see the code, you'll find it in `bin/cli.mjs` [on GitHub](https://github.com/bartificer/linkify/blob/master/bin/cli.mjs).
 
 ## Using the Command
 
-To get started using `linkify` yourself, the simplest thing to do is to install it at the account level (rather than into the current folder) with `npm`:
+To get started using `linkify` yourself, the simplest thing to do is to install it at the user level (rather than into the current folder) with `npm`:
 
 ```sh
 sudo npm install --global '@bartificer/linkify'
@@ -927,6 +919,8 @@ For a more real-world example, you can see the latest snapshot of the configurat
 
 ## Final Thoughts
 
-Modernising my link generation tool, and solving my various problems and niggles was really satisfying. It reminded of just why I love being a coder. Making computers do your work for you really is so gratifying 🙂
+Modernising my link generation tool, and solving my various problems and niggles, was really satisfying. It reminded me of just why I love being a coder. Making computers do real work for you really is so gratifying 🙂
 
-I hope to have whet a few appetites among you all, and I hope you'll be inspired to build your own CLI apps in Javascript. I really do recommend using Commander.js, it's powerful, light-weight, and very self-consistent. Once you get the module's philosophy, everything makes so much sense!
+I hope to have whet a few appetites, and I hope you'll be inspired to build your own CLI apps in Javascript. I really do recommend using Commander.js, it's powerful, light-weight, and very self-consistent. Once you get the module's philosophy, everything makes sense!
+
+Even if you never write your own CLI apps, I hope the discussion on dependency management in our modern, dangerous, world was helpful. Remember, use exactly as many dependencies as you need, choose them carefully, and maintain them over time!
