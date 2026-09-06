@@ -671,20 +671,22 @@ Given many of those choices were made a decade ago, I'm relieved that only one m
 
 ## Building a JavaScript CLI
 
-With the ES 6 module built, one of my niggles remained, I still had no better way to execute the code than by chaining a script with two other terminal commands, which is long, cumbersome, and resulted in an unwanted trialing newline character I was never able to get rid of.
+With the ES 6 module built, one of my niggles remained — I still had no better way to execute the code than by chaining a script with two other terminal commands. As I grumbled about earlier, this results in a long, cumbersome command, and an unwanted trialing newline character I can't seem to get rid of.
 
-To get a good experience on the terminal I needed a proper CLI. Now that I had all the logic encapsualted in an ES6 modules this was actually quite a simple task. What was needed was a simple CLI wrapper that arround the new module with:
+To get a good experience on the terminal I needed a proper command-line interface (CLI). With all the logic encapsulated in an ES6 modules this was actually quite a simple task — the CLI is simply a wrapper for the module that provides:
 
-1. Support for configuration files in known-locations like `~/.linkify-config.mjs`
+1. Support for configuration files, optionally in a known-location like `~/.linkify-config.mjs`
 2. Direct clipboard integreation for reading URLs and writting generated links (using flags)
 
-Given how familiar I was with my code at this stage, it seemed like it was worth putting in a little more time and effort to get to to my ideal implementation!
+Given how close I was to remediating all my niggles, it seemed like it was worth putting in a little more time and effort to finish the job properly!
 
 ### Choosing the Tooling
 
-For a script to feel like a CLI app it has to adopt all the standard conventions for Linux terminal apps. Re-inventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed build on top of some existing modules which provide basic CLI fuctionality.
+For a script to feel like a CLI app it has to adopt all the standard conventions for Linux terminal apps. Re-inventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed build on top of some existing CLI framework.
 
-Many years ago I experimented with NodeJS Javascript CLI apps using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option that seemed to fit my needs best, but a lot of time has passed since, so I needed to re-evalute my options. I spent a little time chatting with Lumo (my preferred AI chat bot) and ended up with two additional options to investigate:
+Many years ago I experimented with NodeJS Javascript CLI apps using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option that seemed to fit my needs best. But given how much time has passed, and how much things have changed, I needed to re-evaluate my options. 
+
+I spent a little time chatting with Lumo (my preferred AI chat bot) and ended up with two additional options to investigate:
 
 1. [OClif](https://oclif.io)
    * Extremely powerful, and very feature rich
@@ -703,29 +705,29 @@ Many years ago I experimented with NodeJS Javascript CLI apps using [Caporal.js]
    * Much simpler to use than OClif, far less overhead
    * Philosophically very like Caproal.js, so immediately felt familiar
 
-In the abstract, Oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it wasn't a good fit for me.
+In the abstract, Oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it just wasn't a good fit for me.
 
-Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it also has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my experience, and the scale of this project, it was clearly the best fit.
+Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my experience, and the scale of this project, it was clearly the best fit.
 
 Being a little simpler than Oclif, Commander.js doesn't include optional extra features like support for coloured terminal output. It's not in any way incompatible with coloured output, it just doesn't provide that functionality.
 
-Terminal text colouring works using cryptic Bash escape sequences. I absolutely could teach myself how they work and manually implement the colours, but again, that seemed like a terrible waste of my time!
+Terminal text colouring is implemented with cryptic-looking Bash escape sequences, so they can be hand-coded. I absolutely could teach myself how they work and manually implement the colours, but again, that seemed like a terrible waste of my time!
 
-In the past I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for this project, so I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evalating the options suggested by Lumo I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
+In the past I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for this project. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evalating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
-Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it definitely has strong community support.
+Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it also clearly has strong community support.
 
 Finally, I needed to interact with the clipboard. I'd researched this before for other projects, so I knew [Clipboardy](https://www.npmjs.com/package/clipboardy) was probably the right approach.
 
-A quick check verified that it is indeed still a good option. It's actively maintained, has a nice simple API, is downloaded millions of times a week, and it only has six dependencies.
+A quick check verified that it is indeed still a good option. It's actively maintained, has a nice simple API, is downloaded millions of times a week, and has only has six dependencies.
 
-To summarise, adding a CLI added three new dependencies to my project:
+To summarise, the CLI added three new dependencies to my project:
 
 1. [Commands.js](https://www.npmjs.com/package/commander) for implementing the CLI functionality.
 2. [Kleur](https://www.npmjs.com/package/kleur) for adding formatted terminal output.
 3. [Clipboardy](https://www.npmjs.com/package/clipboardy) for interacting with the clipboard.
 
-### Handing Custom Configurations
+### Handling Custom Configurations
 
 One of the most important features I wanted from my CLI app was support for configuration files. These files needed to allow for two distinct types of configuration:
 
@@ -735,16 +737,18 @@ One of the most important features I wanted from my CLI app was support for conf
    3. Customising the de-slugification process
 2. Setting defaults for the CLI's apps own behaviour
 
-As a general rule, I prefer configuration files that are purely text, ideally in a nice simple text format like JSON or YAML. Unfortunately, that simply isn't an option when you need users to be able to define functions and instantiate objects, and both are needed in this case. Transformer functions are functions, and link templates are objects.
+As a general rule, I prefer configuration files that are purely text, ideally in a nice simple format like JSON or YAML. Unfortunately, that can't work in this case, because users need to be able to define custom extraction logic, and to define their own templates, which means the configuration file needs to be support the definition of functions and the instantiation of objects. Some kind of JavaScript-native solution was needed.
 
-If plain text configuartion was out, I still wanted to implement some kind of common design pattern so my app wouldn't be an odd-ball. I chose to adpot the design pattern used by popular big Javascript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with an `.mjs` file rather than a `.json` or `.yaml` file.
+Even though I couldn't use JSON or YAML, I still wanted to implement some kind of common design pattern so my app wouldn't feel like an odd-ball. I chose to adpot the design pattern used by popular JavaScript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with a `.mjs` file rather than a `.json` or `.yaml` file.
 
-Because we need to be able to configure both the link geneation behavious and the CLI's own default behaviour Linkifier configuration modules need to export a dictionary with one or both of the following keys as the default export:
+When using modules as configuration files, you need to define what it is that the module should publish as its default export. Because we need to be able to configure both the link generation behaviour and the CLI's own default behaviour, I deduced that  Linkifier configuration modules must export dictionaries that define one or both of the following keys:
 
 * `linkifier` — a configured instance of the `Linkifier` class
-* `options` — a dictionary mapping values to the CLI's flag and option names, but with the `--` omitted.
+* `options` — a dictionary mapping values to the CLI's flags and options (with the `--` omitted).
 
-With the structure of the configuration file defined, the next step is to figure out how to load it. Obviously, the command will need an option to manually specify a path, but you really don't want users to have to do that every time. Clearly, I wanted the `linkify` app to implement the Linux/Unix convention of supporting so-called *dot files*.
+With the structure of the configuration file defined, the next step is to figure out how to load it.
+
+Obviously, the command will need an option to manually specify a configuration file path, but you really don't want users to have to do that every time! I wanted the `linkify` app to implement the Linux/Unix convention of supporting so-called *dot files*.
 
 I chose to have the command implement the following configuration loading priority, from highest precendence to lowest:
 
