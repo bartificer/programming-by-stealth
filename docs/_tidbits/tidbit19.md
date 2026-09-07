@@ -2,7 +2,7 @@
 title: Building a JavaScript CLI App with NodeJS
 instalment: 19
 creators: [bart, allison]
-date: 2026-08-01
+date: 2026-09-26
 
 ---
 
@@ -961,7 +961,7 @@ Once you have it installed you can execute it from any folder with the command `
 To generate a link using all the default settings, simply run:
 
 ```sh
-npx linkify generate https://www.podfeet.com
+npx linkify generate https://pbs.bartificer.net
 ```
 
 To see all the defaults, including the default list of templates available, run:
@@ -973,7 +973,7 @@ npx linkify defaults
 To generate a Markdown link for Allison's website run:
 
 ```sh
-npx linkify generate https://www.podfeet.com -t markdown
+npx linkify generate https://pbs.bartificer.net -t markdown
 ```
 
 The command really is designed to be customised, so if you're going to use the command for real, you'll need to build yourself a `~/.linkify-config.mjs` file.
@@ -1041,14 +1041,14 @@ const config = { linkifier, options };
 export {config as default};
 ```
 
-This file looks long, but it's mostly comments.
+This file looks long, but it's mostly comments. The comments have been written as a kind of pseudo-documentation, so if you want to start using `linkifier`, I strongly suggest reading it carefully.
 
 For a more real-world example, you can see the latest snapshot of the configuration file I actually use for all my show notes in `examples/linkify-config-realworld.mjs` [on GitHub](https://github.com/bartificer/linkify/blob/master/examples/linkify-config-realworld.mjs).
 
 ## Final Thoughts
 
-Modernising my link generation tool, and solving my various problems and niggles, was really satisfying. It reminded me of just why I love being a coder. Making computers do real work for you really is so gratifying 🙂
+The starting point for this coding adventure was a genuine problem-to-be-solved that was quite unique to me, and also having a real effect on my ability to get something useful done. Writing show notes should not feel like a chore! Thanks to my programming skills and experience, I was able to solve my own problem. That felt empowering the first time I did it, and it felt just as empowering this time around. It was the perfect reminder of why this series exists — getting computers do real work for you really feels great! 🙂
 
-I hope to have whet a few appetites, and I hope you'll be inspired to build your own CLI apps in Javascript. I really do recommend using Commander.js, it's powerful, light-weight, and very self-consistent. Once you get the module's philosophy, everything makes sense!
+While it is annoying that that innocent days when you could just install anything you fancied from NPM are over (if they ever really existed). I hope my description of the tools available and how I go about managing the risks was helpful. Hopefully you feel empowered to continue leveraging the amazing fruits of the open source movement, safely.
 
-Even if you never write your own CLI apps, I hope the discussion on dependency management in our modern, dangerous, world was helpful. Remember, use exactly as many dependencies as you need, choose them carefully, and maintain them over time!
+Finally, I hope the quick overview of how I developed what feels like a true-blue terminal command using JavaScript was informative, and perhaps even a little inspirational. Maybe something like Commander.js can help you take your scripts to the next level‽
