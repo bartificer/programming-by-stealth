@@ -760,20 +760,20 @@ With the configuration logic decided, the next step was to design the app's synt
 
 ### Designing the CLI Syntax
 
-Before trying to implement the app's functionality, I need to decide on the exact features to offer, and how to facilitate user input. In other words, what flags, options, and arguments would the command support and expect?
+Before trying to implement the app's functionality, I needed to decide on the exact features to offer, and how to facilitate user input. In other words, what flags, options, and arguments would the command required and support?
 
-I like the common sub-command design pattern used by commands like `git`. With this design pattern a single top-level command expects to be passed a subcommand as the first argument, and this sub-command will determine which of the app's supported actions to execute. For example, `git clone` to clone a repo, and `git commit` to commit changes to a branch.
+My first decision was to adopt the commonly used sub-command design pattern. In this series the best example of this approach is the `git` command. With this design pattern, a single top-level command expects to be passed a subcommand as the first argument, and this sub-command will determine which of the app's supported actions to execute. For example, `git clone` to clone a repo, and `git commit` to commit changes to a branch.
 
 Given the functionality I wanted to provide, I chose the following sub-commands:
 
-1. `linkify generate-link` with the alias `linkify generate` to actually generate links
-2. `linkify show-defaults` with the alias `linkify defaults` to show users the default settings the command uses
-3. `linkify show-config` with the alias `linkify config` to show the users their currently loaded configuration
-4. `linkify preview-page-data` with the alias `linkify page-data` to fetch the `PageData` object for a given URL to help users develop their headline extraction logic
+1. `linkify generate-link` with the alias `linkify generate` to generate links.
+2. `linkify show-defaults` with the alias `linkify defaults` to show users the default settings the command uses.
+3. `linkify show-config` with the alias `linkify config` to show the users their currently loaded configuration.
+4. `linkify preview-page-data` with the alias `linkify page-data` to fetch and display the `PageData` object for a given URL.  This is very helpful when developing headline extraction logic!
 
 Commander.js automatically adds a final `linkify help` sub-command. Assuming you follow best practices and assign descriptions to the commands, flags, and options you define, the output will be genuinely useful to your users.
 
-Next, before figuring out the details for each sub-command, you need to choose your list of global flags and options. I chose to add just a few:
+Next, before figuring out the details for each sub-command, I needed to choose the list of global flags and options to support. I kept it simple:
 
 * `-V` or `--version` to echo the version number
 * `-C` or `--config` for specifying a configuration file path
@@ -781,11 +781,11 @@ Next, before figuring out the details for each sub-command, you need to choose y
 
 Finally, Commander.js also automatically adds `-h` and `--help` flags which show appropriate command or sub-command's help text.
 
-Now that we know the app's top-level interface details, the next step is to design the interfaces for each of the sub-commands.
+Now that I had the app's top-level interface details, the next step was to design the interfaces for each of the sub-commands.
 
-The simpler sub-commands don't actually need interfaces, specifically, `linkify show-defaults` and `linkify show-config` don't need any arguments, flags, or options.
+The simpler sub-commands don't actually need interfaces. Specifically, neither `linkify show-defaults` nor `linkify show-config` need any arguments, flags, or options.
 
-The automatically created `linkify help` accepts just one argument, an optional sub-command name, allowing users to see the top-level help, or sub-command-specific help.
+The automatically created `linkify help` sub-command accepts just one argument, an optional sub-command name. This allows users to see the top-level help, or sub-command-specific help, e.g. `linkify help` for the top-level help, and `linkify help generate` for help with the `linkify generate` sub-command.
 
 #### Generating Links
 
@@ -793,25 +793,27 @@ This is the most complex sub-command, so it has the richest interface.
 
 Firstly, it accepts just one argument — a URL. Perhaps surprisingly, this argument is optional. Why? Because the app support reading the URL from the clipboard!
 
-All sub-commands support the global options and flags, but each sub-command can add more. `linkify generate` adds the following flags:
+All sub-commands support the global options and flags, but each sub-command can add its own extra options and flags.
+
+The `linkify generate` sub-command needs the following additional flags:
 
 * `--from-clipboard` and `--no-from-clipboard` to force-enable or disable reading the URL from the clipboard, regardless of what the loaded config defines.
-* `--to-clipboard` and `--no-to-clipboard` to similarly force-enabled or disable outputting of the generated link to the clipboard
-* `-c` and `--clipboard` as a shortcut for `--from-clipboard` and `--to-clipboard`
-* `--no-clipboard` as a shortcut for `--no-from-clipboard` and `--no-to-clipboard`
-* `-e` and `--echo-clipboard` to echo what is being read from and/or written to the clipboard to the terminal
+* `--to-clipboard` and `--no-to-clipboard` to similarly force-enabled or disable outputting of the generated link to the clipboard.
+* `-c` and `--clipboard` as a shortcut for `--from-clipboard` and `--to-clipboard`.
+* `--no-clipboard` as a shortcut for `--no-from-clipboard` and `--no-to-clipboard`.
+* `-e` and `--echo-clipboard` to echo what is being read from and/or written to the clipboard to the terminal.
 
-The `linkify generate-link` subcommand adds just one option:
+And the just one additional option:
 
 * `-t TEMPLATE_NAME` and `--template=TEMPLATE_NAME` to force a specific template to be used for rendering the link
 
 #### Viewing Page Data
 
-The `linkify preview-page-data` sub-command is similar to but a little simpler than the `linkify generate-link` sub-command, but it does still need an interface.
+The `linkify preview-page-data` sub-command is similar to, but a little simpler than, the `linkify generate-link` sub-command, so it also needs an interface.
 
-Like the page generation sub-command it accepts one argument, a URL, and it too is optional.
+Like the page generation sub-command, it accepts one optional argument, a URL.
 
-To keep things consistent, all relevant flags supported by the link generation sub-command are also support by `linkify preview-page-data`, specifically:
+To keep things consistent, all **relevant** flags supported by the link generation sub-command are also support by `linkify preview-page-data`, specifically:
 
 * `--from-clipboard` and `--no-from-clipboard`
 * `-c` and `--clipboard`, but simply as an alias for `--from-clipboard`
@@ -823,6 +825,128 @@ To keep things consistent, all relevant flags supported by the link generation s
 Because the CLI app is just a wrapper around the ES 6 module, and because Commands.js is quite light-weight, the code for the entire CLI app is contained in just one file!
 
 If you're curious to see the code, you'll find it in `bin/cli.mjs` [on GitHub](https://github.com/bartificer/linkify/blob/master/bin/cli.mjs).
+
+To get started using Commander.js yourself I strongly suggest reading the [Quick Start](https://github.com/tj/commander.js#quick-start) section of their documentation, but I do want to give you a little flavour of how Commander.js works.
+
+To use Commander.js you need to install it as a dependency with `npm install commander`, and then import the `Command` class from the module near the top of your CLI script:
+
+```javascript
+// import Commander.js (CLI framework)
+import { Command } from 'commander';
+```
+
+Once you have the `Command` class imported, use it to build an object to represent your top-level command. I rather unimaginatively chose to name mu instance of the `Command` class `cli`:
+
+```javascript
+/**
+ * The commander object representing the CLI itself.
+ * @type {module:commander.Command}
+ */
+const cli = new Command()
+  .name('linkify')
+  .version(VERSION)
+  .description('Convert URLs to rich links in any format based on the page contents.')
+  .option('-C, --config <path>', `path to config file (default: ~/${Linkifier.defaults.configFilename})`)
+  .option('-d, --debug', 'enable debug mode')
+  .hook('preAction', (cmd) => { if(cmd.opts().debug) utilities.enableDebugMessages() });
+```
+
+The first thing to notice is that the module is designed to facilitate function chaining, just like jQuery does.
+
+The return value from each action that modifies the `cli` object is a reference to the `cli` object itself, so you can just keep calling functions as long as you need.
+
+The above code is equivalent to the following:
+
+```javascript
+/**
+ * The commander object representing the CLI itself.
+ * @type {module:commander.Command}
+ */
+const cli = new Command();
+cli.name('linkify');
+cli.version(VERSION);
+cli.description('Convert URLs to rich links in any format based on the page contents.')
+cli.option('-C, --config <path>', `path to config file (default: ~/${Linkifier.defaults.configFilename})`)
+cli.option('-d, --debug', 'enable debug mode')
+cli.hook('preAction', (cmd) => { if(cmd.opts().debug) utilities.enableDebugMessages() });
+```
+
+The constructor returns a `Commander` object with none of its settings defined, and then you simply define what you need. In my case I set a name, a version number, a description (which appears in the help text), two options, and a pre-action hook to enable debug output as needed. A hook is simply a function that gets called at a given point in Commander.js's execution process. In this case, I specified `preAction`, because that's the hook that Commander.js invokes just before performing a command's defined action.
+
+We now have a CLI app that defines some properties, but does nothing! If we were creating a simple command that doesn't use sub-commands, we could define our action immediately, e.g. the following is a very basic Hello world command using Commander.js:
+
+```javascript
+const cli= new Command()
+  .name('Hello World')
+  .description('Print the universal newbie message!')
+  .action(async () => { console.log('Hello World!') });
+```
+
+Because `linkify` does use the sub-command design pattern I need to add additional commands to my top-level `cli` command, one for each action.
+
+Here's the definition of the `linkify generate` sub-command:
+
+```javascript
+/**
+ * The commander object representing the link generation sub-command.
+ * @type {module:commander.Command}
+ */
+const generate = cli.command('generate-link')
+  .alias('generate')
+  .summary('generate a link from a URL')
+  .option('--from-clipboard', 'read the URL from the clipboard')
+  .option('--no-from-clipboard', 'block all reading from the clipboard')
+  .option('--to-clipboard', 'write the link to the clipboard')
+  .option('--no-to-clipboard', 'block writting to the clipboard')
+  .option('-c, --clipboard', 'read the URL from the clipboard and write the link to the clipboard')
+  .option('--no-clipboard', 'block all clipboard interaction')
+  .option('-e, --echo-clipboard', 'echo information about clipboard interactions to STDOUT')
+  .option('-t --template <name>', 'the name of the template to use to render the link')
+  .argument('[url]', 'the URL to generate a link for, can also be read from the clipboard with the appropriate flags, or piped to to the command');
+  .hook('preAction', loadConfigHook) // load the config for this command
+  .action(async (u, o) => {
+    //
+    // --- gather the needed information ---
+    //
+
+    // merge and resolve options
+    const opts = mergeOptions(o); 
+
+    // resolve the URL
+    const url = await resolveURL(opts, u);
+
+    // resolve the explicit template (if any)
+    const tpl = resolveExplicitTemplate(opts); // could be null
+
+    //
+    // --- generate and output the link ---
+    //
+
+    // generate the link
+    const link = await CONFIG.linkifier.generateLink(url, tpl);
+
+    // output the link
+    if(opts.clipboard || opts.toClipboard){
+      await clipboard.write(link);
+      if(opts.echoClipboard){
+        utilities.info(`link written to clipboard:\n${grey(link)}`);
+      }
+    } else {
+      console.log(link);
+    }
+  });
+```
+
+With the top-level command and all sub-commands defined, all that remains is to tell Commander.js to do it's thing:
+
+```javascript
+// execute the CLI
+try {
+    cli.parse(process.argv);
+} catch (err) {
+    utilities.fatal(err.message);
+}
+```
 
 ## Using the Command
 
