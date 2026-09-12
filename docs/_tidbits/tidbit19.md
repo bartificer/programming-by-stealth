@@ -671,47 +671,51 @@ Given many of those choices were made a decade ago, I'm relieved that only one m
 
 ## Building a JavaScript CLI
 
-With the ES 6 module built, one of my niggles remained — I still had no better way to execute the code than by chaining a script with two other terminal commands. As I grumbled about earlier, this results in a long, cumbersome command, and an unwanted trialing newline character I can't seem to get rid of.
+With the ES 6 module built, one of my niggles remained — I still had no better way to execute the code than by chaining a script with two other terminal commands. As I grumbled about earlier, this results in a long, cumbersome command, and an unwanted trailing newline character I can't seem to get rid of.
 
-To get a good experience on the terminal I needed a proper command-line interface (CLI). With all the logic encapsulated in an ES6 modules this was actually quite a simple task — the CLI is simply a wrapper for the module that provides:
+To get a good experience on the terminal, I needed a proper command-line interface (CLI). With all the logic encapsulated in an ES6 module, this was actually quite a simple task — the CLI is simply a wrapper for the module that provides:
 
 1. Support for configuration files, optionally in a known-location like `~/.linkify-config.mjs`
-2. Direct clipboard integreation for reading URLs and writting generated links (using flags)
+2. Direct clipboard integreation for reading URLs and writing generated links (using flags)
 
 Given how close I was to remediating all my niggles, it seemed like it was worth putting in a little more time and effort to finish the job properly!
 
 ### Choosing the Tooling
 
-For a script to feel like a CLI app it has to adopt all the standard conventions for Linux terminal apps. Re-inventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed build on top of some existing CLI framework.
+**BART: I don't know what it means to use a framework. You have scripts, what does any of this do?**
 
-Many years ago I experimented with NodeJS Javascript CLI apps using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option that seemed to fit my needs best. But given how much time has passed, and how much things have changed, I needed to re-evaluate my options. 
+For a script to feel like a CLI app, it has to adopt all the standard conventions for Linux terminal apps. Reinventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed to build on top of some existing CLI framework.
 
-I spent a little time chatting with Lumo (my preferred AI chat bot) and ended up with two additional options to investigate:
+Many years ago, I experimented with NodeJS JavaScript CLI apps using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option that seemed to fit my needs best. But given how much time has passed and how much things have changed, I needed to re-evaluate my options. 
 
-1. [OClif](https://oclif.io)
+I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my preferred, privacy-protecting AI chat bot) and ended up with two additional options to investigate:
+
+1. [oclif](https://oclif.io)
    * Extremely powerful, and very feature rich
    * Actively maintained with hundreds of thousands of weekly downloads on [NPM](https://www.npmjs.com/package/oclif)
    * Very widely recommended, lots of tutorial blog posts online, and excellent documentation
    * 137 dependencies — not unexpected for a module of this complexity
-   * Uses modern Javascript technologies like promises
-   * Requires TypeScript rather than pure Javascript
+   * Uses modern JavaScript technologies like promises
+   * Requires TypeScript rather than pure JavaScript
    * The tool's power adds a lot of complexity — there's a lot of overhead for creating simple apps
-2. [Comander.js](https://github.com/tj/commander.js)
+2. [Commander.js](https://github.com/tj/commander.js)
    * Actively maintained with hundreds of thousands of weekly downloads on [NPM](https://www.npmjs.com/package/commander)
-   * Well document, also commonly recommended, and there are also a lot of tutorial blog posts online
+   * Well-documented, also commonly recommended, and there are also a lot of tutorial blog posts online
    * No dependencies 🎉
-   * Fewer features than OCLif, but still supports the relevant features for this project — single and double dash CLI flags and options, and support for sub-commands
-   * Also uses modern Javascript techniques like promises
-   * Much simpler to use than OClif, far less overhead
+   * Fewer features than oclif, but still supports the relevant features for this project — single and double dash CLI flags and options, and support for subcommands
+   * Also uses modern JavaScript techniques like promises
+   * Much simpler to use than oclif, far less overhead
    * Philosophically very like Caproal.js, so immediately felt familiar
 
-In the abstract, Oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it just wasn't a good fit for me.
+In the abstract, oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich, it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it just wasn't a good fit for me.
 
 Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my experience, and the scale of this project, it was clearly the best fit.
 
-Being a little simpler than Oclif, Commander.js doesn't include optional extra features like support for coloured terminal output. It's not in any way incompatible with coloured output, it just doesn't provide that functionality.
+Being a little simpler than oclif, Commander.js doesn't include optional extra features like support for coloured terminal output. It's not in any way incompatible with coloured output; it just doesn't provide that functionality.
 
 Terminal text colouring is implemented with cryptic-looking Bash escape sequences, so they can be hand-coded. I absolutely could teach myself how they work and manually implement the colours, but again, that seemed like a terrible waste of my time!
+
+**BART: Chalk to do what? I'm guessing colours?**
 
 In the past I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for this project. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evalating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
