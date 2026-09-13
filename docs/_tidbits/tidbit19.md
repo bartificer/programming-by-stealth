@@ -671,18 +671,38 @@ Given many of those choices were made a decade ago, I'm relieved that only one m
 
 ## Building a JavaScript CLI
 
-With the ES 6 module built, one of my niggles remained — I still had no better way to execute the code than by chaining a script with two other terminal commands. As I grumbled about earlier, this results in a long, cumbersome command, and an unwanted trailing newline character I can't seem to get rid of.
+At this point  in the process I had all the functionality in an ES 6 module that I could bring into a script with a simple:
 
-To get a good experience on the terminal, I needed a proper command-line interface (CLI). With all the logic encapsulated in an ES6 module, this was actually quite a simple task — the CLI is simply a wrapper for the module that provides:
+```javascript
+import { Linkifier } from '@bartificer/linkify'
+```
+
+I still needed a way to actually call the code, pass it a URL, and get a generated link.
+
+While debugging I was using a very simple test script, little more than:
+
+```javascript
+import { Linkifier } from '@bartificer/linkify';
+
+// test links
+console.log(Linkifier.generateLink('https://...'));
+...
+```
+
+I still needed a practical script to actually execute my shinny new code in a useful way!
+
+Before all this work I had a simple NodeJS script that expected to the passed the URL via the standard input stream, and then printed the generated link. I used it by chaining the script together with the Mac's clipboard commands, `pbpaste` and `pbcopy`.
+
+This worked, but as described previously, it was clunky, and always inserted an unwanted trialing newline character I just could not figure out how to eradicate!
+
+To get a genuinely good experience on the terminal, what I really wanted as a nodeJS script that behaved just like a regular terminal command!
+
+With all the logic encapsulated in the ES6 module, all this script needed to do was provide the mechanisms for executing the functionality in useful ways. Most importantly, I needed the CLI script to provide:
 
 1. Support for configuration files, optionally in a known-location like `~/.linkify-config.mjs`
-2. Direct clipboard integreation for reading URLs and writing generated links (using flags)
-
-Given how close I was to remediating all my niggles, it seemed like it was worth putting in a little more time and effort to finish the job properly!
+2. Direct clipboard integration for reading URLs and writing generated links (using flags)
 
 ### Choosing the Tooling
-
-**BART: I don't know what it means to use a framework. You have scripts, what does any of this do?**
 
 For a script to feel like a CLI app, it has to adopt all the standard conventions for Linux terminal apps. Reinventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed to build on top of some existing CLI framework.
 
