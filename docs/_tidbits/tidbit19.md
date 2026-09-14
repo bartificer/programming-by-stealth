@@ -729,21 +729,31 @@ I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my pre
 
 In the abstract, oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich, it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it just wasn't a good fit for me.
 
-Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my experience, and the scale of this project, it was clearly the best fit.
+Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my pre-existing knowledge, and the scale of this project, it was clearly the best fit.
 
-Being a little simpler than oclif, Commander.js doesn't include optional extra features like support for coloured terminal output. It's not in any way incompatible with coloured output; it just doesn't provide that functionality.
+One of the things that sets more modern terminal commands apart from older ones is their support for basic text formatting. Terminals remain the realm of fixed-width fonts, with each letter taking up one space in a regular grid, but within that limitation, modern terminals do support some text formatting, specifically:
 
-Terminal text colouring is implemented with cryptic-looking Bash escape sequences, so they can be hand-coded. I absolutely could teach myself how they work and manually implement the colours, but again, that seemed like a terrible waste of my time!
+1. Foreground text colour
+2. Background colour (the background colour of the imaginary grid square the letter occupies)
+3. Bold text
+4. Italic text
+5. Underlined text
 
-**BART: Chalk to do what? I'm guessing colours?**
+This kind of text formatting is applied using strange looking escape sequences. If you're feeling brave, you can manually add them to your text, but for reasons you'll understand in a moment, you really don't want to! For example, the following NodeJS JavaScript will print the phrase *"The next word will be red!"*, with all the letters in the terminal's default colour except for the letters `red` which will be in red:
 
-In the past I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for this project. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evalating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
+```javascript
+console.log("The next word will be \x1b[31mred\x1b[0m!")
+```
+
+More expansive tools like oclif can handle the text formatting for you, but being so much less ambitious, Commander.js doesn't include that kind of functionality. So, to get formatter text, I'd need to use another module.
+
+In the past, when I needed formatted terminal output I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for projects like this. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evaluating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
 Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it also clearly has strong community support.
 
-Finally, I needed to interact with the clipboard. I'd researched this before for other projects, so I knew [Clipboardy](https://www.npmjs.com/package/clipboardy) was probably the right approach.
+Finally, I needed to interact with the clipboard. I'd researched this recently for other projects, so I knew [Clipboardy](https://www.npmjs.com/package/clipboardy) was probably the right approach.
 
-A quick check verified that it is indeed still a good option. It's actively maintained, has a nice simple API, is downloaded millions of times a week, and has only has six dependencies.
+A quick check verified that it was indeed a good fit for this project. It's actively maintained, has a nice simple API, is downloaded millions of times a week, and has only has six dependencies.
 
 To summarise, the CLI added three new dependencies to my project:
 
