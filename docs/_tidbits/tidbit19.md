@@ -704,6 +704,8 @@ With all the logic encapsulated in the ES6 module, all this script needed to do 
 
 ### Choosing the Tooling
 
+**BART: Consider explaining what a framework is in this context. You have scripts you've written, so what does a framework actually do?**
+
 For a script to feel like a CLI app, it has to adopt all the standard conventions for Linux terminal apps. Reinventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed to build on top of some existing CLI framework.
 
 Many years ago, I experimented with NodeJS JavaScript CLI apps using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option that seemed to fit my needs best. But given how much time has passed and how much things have changed, I needed to re-evaluate my options. 
