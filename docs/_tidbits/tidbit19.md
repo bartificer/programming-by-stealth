@@ -25,7 +25,7 @@ npx linkify generate 'https://www.podfeet.com/blog/category/nosillacast/' --temp
 
 Note that in its written form, this instalment is presented as a single unit — it tells a coherent story, and it would lessen its effectiveness to break it into multiple parts. However, there's too much content here for a single podcast episode, so this single post will appear on the podcast as Tidbits 19a, 19b, and 19c.
 
-### PBS Tidbit 19a:
+### PBS Tidbit 19a
 
 <audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_08_01.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
 
@@ -33,7 +33,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_01.html">PBS_2026_08_01</a>
 
-## PBS Tidbit 19b
+### PBS Tidbit 19b
 
 Begins at [Designing Linkifier](#designing-linkifier)
 
@@ -43,7 +43,7 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_29.html">PBS_2026_08_29</a>
 
-## PBS Tidbit 19c - Available Soon
+### PBS Tidbit 19c — Available Soon
 
 Begins at [Building a JavaScript CLI](#building-a-javascript-cli)
 
@@ -671,15 +671,19 @@ Given many of those choices were made a decade ago, I'm relieved that only one m
 
 ## Building a JavaScript CLI
 
-At this point  in the process I had all the functionality in an ES 6 module that I could bring into a script with a simple:
+At this point  in the process I had captured all the functionality in an ES 6 module, but I still have no way to actually invoke the that code!
+
+Remember, modules are libraries that can b used **by** scripts, but they are not executable in and of themselves.
+
+Like simply importing jQuery doesn't actually **do** anything, importing Linkifier with an import line like the one below doesn't actually **do** anything.
 
 ```javascript
 import { Linkifier } from '@bartificer/linkify'
 ```
 
-I still needed a way to actually call the code, pass it a URL, and get a generated link.
+I still needed to write the code to get a URL from somewhere, call the `Linkifier.geneateLink()` function, and do something with the resulting link.
 
-While debugging I was using a very simple test script, little more than:
+While debugging the module I was using a very simple test script that was little more than the following:
 
 ```javascript
 import { Linkifier } from '@bartificer/linkify';
@@ -691,26 +695,39 @@ console.log(Linkifier.generateLink('https://...'));
 
 I still needed a practical script to actually execute my shinny new code in a useful way!
 
-Before all this work I had a simple NodeJS script that expected to the passed the URL via the standard input stream, and then printed the generated link. I used it by chaining the script together with the Mac's clipboard commands, `pbpaste` and `pbcopy`.
+Before I started this big re-write I had one big script that did everything:
 
-This worked, but as described previously, it was clunky, and always inserted an unwanted trialing newline character I just could not figure out how to eradicate!
+1. Read a URL from the clipboard
+2. Defined all the classes and functions
+3. Defined my templates and headline extraction logic
+4. Called the `generateLink()` function
+5. Printed the generated link to the standard output using `console.log()`
 
-To get a genuinely good experience on the terminal, what I really wanted as a nodeJS script that behaved just like a regular terminal command!
+To get the link into my clipboard I would pipe the output of my script into the Mac's `pbcopy` command to send the link to the clipboard, replacing the URL. 
 
-With all the logic encapsulated in the ES6 module, all this script needed to do was provide the mechanisms for executing the functionality in useful ways. Most importantly, I needed the CLI script to provide:
+This was quite a clunky terminal command, and to add insult to injury, at some point in the process and unwanted trailing newline character was always injected after the link. I never did find a way to avoid that!
 
-1. Support for configuration files, optionally in a known-location like `~/.linkify-config.mjs`
-2. Direct clipboard integration for reading URLs and writing generated links (using flags)
+I didn't want to just re-implement that same experience, I wanted to take things up a level, and build a script that behaves just like a regular terminal command.
+
+What makes a terminal command a terminal command? It needs to follow all the same conventions terminal apps follow. At the very least I wanted my script to support:
+
+1. Short flags like `-v` for verbose mode
+2. Long flags like `--verbose`
+3. Short options like `-t TEMPLATE_NAME` 
+4. Long options like `--tempalte=TEMPLATE_NAME`
+5. Piped input
+6. Account-level configuration using a so-called *dot file* like `~/.linkify-config.mjs`
+7. Built-in help text
+
+It is possible to re-implement all that commonly used functionality from scratch, but there are of course open source modules out there that act as a scaffold or framework for building NodeJS scripts with basic terminal functionality.
+
+As well as those generic terminal-like feature, I also wanted to add direct clipboard integration right into my script.
 
 ### Choosing the Tooling
 
-**BART: Consider explaining what a framework is in this context. You have scripts you've written, so what does a framework actually do?**
+Many years ago, I experimented with using [Caporal.js](https://github.com/mattallty/Caporal.js) to build terminal commands with NodeJs. At the time, that was the option that seemed to best fit my needs. But that was a long time ago, and a lot could have changed int he mean time, so I needed to re-evaluate my options. 
 
-For a script to feel like a CLI app, it has to adopt all the standard conventions for Linux terminal apps. Reinventing all that from scratch would be a massive undertaking, and there's no way I'd capture all the nuances. Clearly, I needed to build on top of some existing CLI framework.
-
-Many years ago, I experimented with NodeJS JavaScript CLI apps using [Caporal.js](https://github.com/mattallty/Caporal.js). At the time, that was the option that seemed to fit my needs best. But given how much time has passed and how much things have changed, I needed to re-evaluate my options. 
-
-I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my preferred, privacy-protecting AI chat bot) and ended up with two additional options to investigate:
+I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my preferred, privacy-protecting AI chat bot), and as well as discovering two additional options to investigate, I also learned that development on Caporal.js has stalled in recent years. I needed to choose between the two new options I discovered:
 
 1. [oclif](https://oclif.io)
    * Extremely powerful, and very feature rich
@@ -729,11 +746,15 @@ I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my pre
    * Much simpler to use than oclif, far less overhead
    * Philosophically very like Caproal.js, so immediately felt familiar
 
-In the abstract, oclif is the better option, but for a small tool like Linkifier, it's just overkill. Being so feature-rich, it inevitably has dependencies, and not just a few! Add to that the fact that I'd need to teach myself TypeScript to use it, and it just wasn't a good fit for me.
+In the abstract, oclif is the better option — it has many more features and is backed by a major tech company, SalesForce. But no project exists in the abstract! For a start, for a small tool like Linkifier, oclif is simply overkill! Secondly, it has a lot of dependencies, which is to be expected from a large feature-rich tool. And thirdly, and most problematically for me, it forces the use of [TypeScript](https://www.typescriptlang.org), a strongly typed variant of JavaScript that compiles to regular JavaScript. In the abstract, TypeScript sounds like a great tool, but I don't know TypeScript, and I wasn't in the mood to learn a whole new language!
 
-Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, but modernised. Being so much less ambitious, it has no dependencies, so using it would create less long-term maintenance work to keep the app secure. Given my pre-existing knowledge, and the scale of this project, it was clearly the best fit.
+Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, just modernised a little. Being so much less ambitious, it has no dependencies, meaning less long-term maintenance work to keep my CLI script secure.
 
-One of the things that sets more modern terminal commands apart from older ones is their support for basic text formatting. Terminals remain the realm of fixed-width fonts, with each letter taking up one space in a regular grid, but within that limitation, modern terminals do support some text formatting, specifically:
+Given my pre-existing knowledge, and the scale of this project, Command.js was clearly my best option, so that's what I chose to use.
+
+Commander.js gives me all the basic terminal-link functionality I just described, but some of the best modern terminal apps take things a little further with simple text formatting.
+
+Terminals remain the realm of fixed-width fonts, with each letter taking up one space in a regular grid, but within that limitation, modern terminals do support some text formatting, including:
 
 1. Foreground text colour
 2. Background colour (the background colour of the imaginary grid square the letter occupies)
@@ -741,17 +762,37 @@ One of the things that sets more modern terminal commands apart from older ones 
 4. Italic text
 5. Underlined text
 
-This kind of text formatting is applied using strange looking escape sequences. If you're feeling brave, you can manually add them to your text, but for reasons you'll understand in a moment, you really don't want to! For example, the following NodeJS JavaScript will print the phrase *"The next word will be red!"*, with all the letters in the terminal's default colour except for the letters `red` which will be in red:
+This kind of text formatting is applied using strange looking escape sequences. If you're feeling brave, you can manually add them to your text, but for reasons you'll understand in a moment, you really don't want to! For example, the following line of JavaScript will print the phrase *"The next word will be red!"* to the terminal. All the letters except for the letters `red` will appear in the terminal's default colour, but the letters `red` will appear in red:
 
 ```javascript
 console.log("The next word will be \x1b[31mred\x1b[0m!")
 ```
 
-More expansive tools like oclif can handle the text formatting for you, but being so much less ambitious, Commander.js doesn't include that kind of functionality. So, to get formatter text, I'd need to use another module.
+One of the many features oclif offers in addition to basic terminal functionality is formatted terminal output. But, as you'd expect from a more basic framework, Commander.js offer that feature. Nothing about Commander.js is incompatible with formatted terminal output, it just doesn't implement it for you. If you want formatted output, you need to code it yourself, or rely on another module for that functionality.
 
-In the past, when I needed formatted terminal output I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option for projects like this. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evaluating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
+In the past, when I needed formatted terminal output, I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evaluating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
 Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it also clearly has strong community support.
+
+With Kleur we can re-write our cryptic-looking example as:
+
+```javascript
+import kleur from 'kleur';
+console.log(`The next word will be ${kleur.red('red')}!`);
+```
+
+If you don't like pre-fixing the function names with `kleur.`, you can use the ES6 destructuring syntax to extract out the functions you want as stand-alone functions. This is what I chose to do in my code, so you'll find the following near the top of my CLI script's code:
+
+```javascript
+import kleur from 'kleur';
+const { bold, italic, blue, green, grey, red } = kleur;
+```
+
+This allows me to re-write our simple example as:
+
+```javascript
+console.log(`The next word will be ${red('red')}!`);
+```
 
 Finally, I needed to interact with the clipboard. I'd researched this recently for other projects, so I knew [Clipboardy](https://www.npmjs.com/package/clipboardy) was probably the right approach.
 
