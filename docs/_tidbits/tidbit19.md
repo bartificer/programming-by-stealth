@@ -746,13 +746,13 @@ I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my pre
    * Much simpler to use than oclif, far less overhead
    * Philosophically very like Caproal.js, so immediately felt familiar
 
-In the abstract, oclif is the better option — it has many more features and is backed by a major tech company, SalesForce. But no project exists in the abstract! For a start, for a small tool like Linkifier, oclif is simply overkill! Secondly, it has a lot of dependencies, which is to be expected from a large feature-rich tool. And thirdly, and most problematically for me, it forces the use of [TypeScript](https://www.typescriptlang.org), a strongly typed variant of JavaScript that compiles to regular JavaScript. In the abstract, TypeScript sounds like a great tool, but I don't know TypeScript, and I wasn't in the mood to learn a whole new language!
+In the abstract, oclif is the better option — it has many more features and is backed by a major tech company, Salesforce. But no project exists in the abstract! For a start, for a small tool like Linkifier, oclif is simply overkill! Secondly, it has a lot of dependencies, which is to be expected from a large, feature-rich tool. And thirdly, and most problematically for me, it forces the use of [TypeScript](https://www.typescriptlang.org), a strongly typed variant of JavaScript that compiles to regular JavaScript. In the abstract, TypeScript sounds like a great tool, but I don't know TypeScript, and I wasn't in the mood to learn a whole new language!
 
-Commander.js on the other hand felt immediately familiar because it really is the spiritual successor to Caporal.js, just modernised a little. Being so much less ambitious, it has no dependencies, meaning less long-term maintenance work to keep my CLI script secure.
+Commander.js, on the other hand, felt immediately familiar because it really is the spiritual successor to Caporal.js, just modernised a little. Being so much less ambitious, it has no dependencies, meaning less long-term maintenance work to keep my CLI script secure.
 
-Given my pre-existing knowledge, and the scale of this project, Command.js was clearly my best option, so that's what I chose to use.
+Given my pre-existing knowledge and the scale of this project, Commander.js was clearly my best option, so that's what I chose to use.
 
-Commander.js gives me all the basic terminal-link functionality I just described, but some of the best modern terminal apps take things a little further with simple text formatting.
+Commander.js gives me all the basic terminal-like **BART did you mean -link?** functionality I just described, but some of the best modern terminal apps take things a little further with simple text formatting.
 
 Terminals remain the realm of fixed-width fonts, with each letter taking up one space in a regular grid, but within that limitation, modern terminals do support some text formatting, including:
 
@@ -768,20 +768,20 @@ This kind of text formatting is applied using strange looking escape sequences. 
 console.log("The next word will be \x1b[31mred\x1b[0m!")
 ```
 
-One of the many features oclif offers in addition to basic terminal functionality is formatted terminal output. But, as you'd expect from a more basic framework, Commander.js offer that feature. Nothing about Commander.js is incompatible with formatted terminal output, it just doesn't implement it for you. If you want formatted output, you need to code it yourself, or rely on another module for that functionality.
+One of the many features oclif offers in addition to basic terminal functionality is formatted terminal output. But, as you'd expect from a more basic framework, Commander.js offers that feature. Nothing about Commander.js is incompatible with formatted terminal output; it just doesn'timplement it for you. If you want formatted output, you need to code it yourself or rely on another module for that functionality.
 
 In the past, when I needed formatted terminal output, I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evaluating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
-Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple, making it quick and easy to learn. Given it has tens of millions of weekly downloads, it also clearly has strong community support.
+Kleur is the fasted and most light-weight of the current terminal formatting modules, it has no dependencies, and the syntax is simple making it quick and easy to learn. Given it has tens of millions of weekly downloads, it also clearly has strong community support.
 
-With Kleur we can re-write our cryptic-looking example as:
+With Kleur we can rewrite our cryptic-looking example as:
 
 ```javascript
 import kleur from 'kleur';
 console.log(`The next word will be ${kleur.red('red')}!`);
 ```
 
-If you don't like pre-fixing the function names with `kleur.`, you can use the ES6 destructuring syntax to extract out the functions you want as stand-alone functions. This is what I chose to do in my code, so you'll find the following near the top of my CLI script's code:
+If you don't like prefixing the function names with `kleur.`, you can use the ES6 destructuring syntax to extract out the functions you want as stand-alone functions. This is what I chose to do in my code, so you'll find the following near the top of my CLI script's code:
 
 ```javascript
 import kleur from 'kleur';
@@ -814,11 +814,11 @@ One of the most important features I wanted from my CLI app was support for conf
    3. Customising the de-slugification process
 2. Setting defaults for the CLI's apps own behaviour
 
-As a general rule, I prefer configuration files that are purely text, ideally in a nice simple format like JSON or YAML. Unfortunately, that can't work in this case, because users need to be able to define custom extraction logic, and to define their own templates, which means the configuration file needs to be support the definition of functions and the instantiation of objects. Some kind of JavaScript-native solution was needed.
+As a general rule, I prefer configuration files that are purely text, ideally in a nice simple format like JSON or YAML. Unfortunately, that can't work in this case, because users need to be able to define custom extraction logic to define their own templates, which means the configuration file needs to be support the definition of functions and the instantiation of objects. Some kind of JavaScript-native solution was needed.
 
-Even though I couldn't use JSON or YAML, I still wanted to implement some kind of common design pattern so my app wouldn't feel like an odd-ball. I chose to adpot the design pattern used by popular JavaScript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with a `.mjs` file rather than a `.json` or `.yaml` file.
+Even though I couldn't use JSON or YAML, I still wanted to implement some kind of common design pattern so my app wouldn't feel like an oddball. I chose to adpot the design pattern used by popular JavaScript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with a `.mjs` file rather than a `.json` or `.yaml` file.
 
-When using modules as configuration files, you need to define what it is that the module should publish as its default export. Because we need to be able to configure both the link generation behaviour and the CLI's own default behaviour, I deduced that  Linkifier configuration modules must export dictionaries that define one or both of the following keys:
+When using modules as configuration files, you need to define what it is that the module should publish as its default export. Because we need to be able to configure both the link generation behaviour and the CLI's own default behaviour, I deduced that Linkifier configuration modules must export dictionaries that define one or both of the following keys:
 
 * `linkifier` — a configured instance of the `Linkifier` class
 * `options` — a dictionary mapping values to the CLI's flags and options (with the `--` omitted).
@@ -837,42 +837,42 @@ With the configuration logic decided, the next step was to design the app's synt
 
 ### Designing the CLI Syntax
 
-Before trying to implement the app's functionality, I needed to decide on the exact features to offer, and how to facilitate user input. In other words, what flags, options, and arguments would the command required and support?
+Before trying to implement the app's functionality, I needed to decide on the exact features to offer, and how to facilitate user input. In other words, what flags, options, and arguments would the command require and support?
 
-My first decision was to adopt the commonly used sub-command design pattern. In this series the best example of this approach is the `git` command. With this design pattern, a single top-level command expects to be passed a subcommand as the first argument, and this sub-command will determine which of the app's supported actions to execute. For example, `git clone` to clone a repo, and `git commit` to commit changes to a branch.
+My first decision was to adopt the commonly used subcommand design pattern. In this series the best example of this approach is the `git` command. With this design pattern, a single top-level command expects to be passed a subcommand as the first argument, and this subcommand will determine which of the app's supported actions to execute. For example, `git clone` to clone a repo, and `git commit` to commit changes to a branch.
 
-Given the functionality I wanted to provide, I chose the following sub-commands:
+Given the functionality I wanted to provide, I chose the following subcommands:
 
 1. `linkify generate-link` with the alias `linkify generate` to generate links.
 2. `linkify show-defaults` with the alias `linkify defaults` to show users the default settings the command uses.
 3. `linkify show-config` with the alias `linkify config` to show the users their currently loaded configuration.
 4. `linkify preview-page-data` with the alias `linkify page-data` to fetch and display the `PageData` object for a given URL.  This is very helpful when developing headline extraction logic!
 
-Commander.js automatically adds a final `linkify help` sub-command. Assuming you follow best practices and assign descriptions to the commands, flags, and options you define, the output will be genuinely useful to your users.
+Commander.js automatically adds a final `linkify help` subcommand. Assuming you follow best practices and assign descriptions to the commands, flags, and options you define, the output will be genuinely useful to your users.
 
-Next, before figuring out the details for each sub-command, I needed to choose the list of global flags and options to support. I kept it simple:
+Next, before figuring out the details for each subcommand, I needed to choose the list of global flags and options to support. I kept it simple:
 
 * `-V` or `--version` to echo the version number
 * `-C` or `--config` for specifying a configuration file path
 * `-d` or `--debug` for enabling additional output
 
-Finally, Commander.js also automatically adds `-h` and `--help` flags which show appropriate command or sub-command's help text.
+Finally, Commander.js also automatically adds `-h` and `--help` flags which show appropriate command or subcommand's help text.
 
-Now that I had the app's top-level interface details, the next step was to design the interfaces for each of the sub-commands.
+Now that I had the app's top-level interface details, the next step was to design the interfaces for each of the subcommands.
 
-The simpler sub-commands don't actually need interfaces. Specifically, neither `linkify show-defaults` nor `linkify show-config` need any arguments, flags, or options.
+The simpler subcommands don't actually need interfaces. Specifically, neither `linkify show-defaults` nor `linkify show-config` need any arguments, flags, or options.
 
-The automatically created `linkify help` sub-command accepts just one argument, an optional sub-command name. This allows users to see the top-level help, or sub-command-specific help, e.g. `linkify help` for the top-level help, and `linkify help generate` for help with the `linkify generate` sub-command.
+The automatically created `linkify help` subcommand accepts just one argument: an optional subcommand name. This allows users to see the top-level help, or subcommand-specific help, e.g. `linkify help` for the top-level help, and `linkify help generate` for help with the `linkify generate` subcommand.
 
 #### Generating Links
 
-This is the most complex sub-command, so it has the richest interface.
+This is the most complex subcommand, so it has the richest interface.
 
-Firstly, it accepts just one argument — a URL. Perhaps surprisingly, this argument is optional. Why? Because the app support reading the URL from the clipboard!
+Firstly, it accepts just one argument: a URL. Perhaps surprisingly, this argument is optional. Why? Because the app supports reading the URL from the clipboard!
 
-All sub-commands support the global options and flags, but each sub-command can add its own extra options and flags.
+All subcommands support the global options and flags, but each subcommand can add its own extra options and flags.
 
-The `linkify generate` sub-command needs the following additional flags:
+The `linkify generate` subcommand needs the following additional flags:
 
 * `--from-clipboard` and `--no-from-clipboard` to force-enable or disable reading the URL from the clipboard, regardless of what the loaded config defines.
 * `--to-clipboard` and `--no-to-clipboard` to similarly force-enabled or disable outputting of the generated link to the clipboard.
@@ -880,17 +880,17 @@ The `linkify generate` sub-command needs the following additional flags:
 * `--no-clipboard` as a shortcut for `--no-from-clipboard` and `--no-to-clipboard`.
 * `-e` and `--echo-clipboard` to echo what is being read from and/or written to the clipboard to the terminal.
 
-And the just one additional option:
+And just one additional option:
 
 * `-t TEMPLATE_NAME` and `--template=TEMPLATE_NAME` to force a specific template to be used for rendering the link
 
 #### Viewing Page Data
 
-The `linkify preview-page-data` sub-command is similar to, but a little simpler than, the `linkify generate-link` sub-command, so it also needs an interface.
+The `linkify preview-page-data` subcommand is similar to, but a little simpler than, the `linkify generate-link` subcommand, so it also needs an interface.
 
-Like the page generation sub-command, it accepts one optional argument, a URL.
+Like the page generation subcommand, it accepts one optional argument: a URL.
 
-To keep things consistent, all **relevant** flags supported by the link generation sub-command are also support by `linkify preview-page-data`, specifically:
+To keep things consistent, all **relevant** flags supported by the link generation subcommand are also support by `linkify preview-page-data`, specifically:
 
 * `--from-clipboard` and `--no-from-clipboard`
 * `-c` and `--clipboard`, but simply as an alias for `--from-clipboard`
@@ -899,7 +899,7 @@ To keep things consistent, all **relevant** flags supported by the link generati
 
 ### The CLI Code
 
-Because the CLI app is just a wrapper around the ES 6 module, and because Commands.js is quite light-weight, the code for the entire CLI app is contained in just one file!
+Because the CLI app is just a wrapper around the ES 6 module, and because Commands.js is quite lightweight, the code for the entire CLI app is contained in just one file!
 
 If you're curious to see the code, you'll find it in `bin/cli.mjs` [on GitHub](https://github.com/bartificer/linkify/blob/master/bin/cli.mjs).
 
@@ -912,7 +912,7 @@ To use Commander.js you need to install it as a dependency with `npm install com
 import { Command } from 'commander';
 ```
 
-Once you have the `Command` class imported, use it to build an object to represent your top-level command. I rather unimaginatively chose to name mu instance of the `Command` class `cli`:
+Once you have the `Command` class imported, use it to build an object to represent your top-level command. I rather unimaginatively chose to name my instance of the `Command` class `cli`:
 
 ```javascript
 /**
@@ -950,7 +950,7 @@ cli.hook('preAction', (cmd) => { if(cmd.opts().debug) utilities.enableDebugMessa
 
 The constructor returns a `Commander` object with none of its settings defined, and then you simply define what you need. In my case I set a name, a version number, a description (which appears in the help text), two options, and a pre-action hook to enable debug output as needed. A hook is simply a function that gets called at a given point in Commander.js's execution process. In this case, I specified `preAction`, because that's the hook that Commander.js invokes just before performing a command's defined action.
 
-We now have a CLI app that defines some properties, but does nothing! If we were creating a simple command that doesn't use sub-commands, we could define our action immediately, e.g. the following is a very basic Hello world command using Commander.js:
+We now have a CLI app that defines some properties, but does nothing! If we were creating a simple command that doesn't use subcommands, we could define our action immediately, e.g. the following is a very basic Hello world command using Commander.js:
 
 ```javascript
 const cli= new Command()
@@ -959,13 +959,13 @@ const cli= new Command()
   .action(async () => { console.log('Hello World!') });
 ```
 
-Because `linkify` does use the sub-command design pattern I need to add additional commands to my top-level `cli` command, one for each action.
+Because `linkify` does use the subcommand design pattern, I need to add additional commands to my top-level `cli` command, — one for each action.
 
-Here's the definition of the `linkify generate` sub-command:
+Here's the definition of the `linkify generate` subcommand:
 
 ```javascript
 /**
- * The commander object representing the link generation sub-command.
+ * The commander object representing the link generation subcommand.
  * @type {module:commander.Command}
  */
 const generate = cli.command('generate-link')
@@ -1014,7 +1014,7 @@ const generate = cli.command('generate-link')
   });
 ```
 
-With the top-level command and all sub-commands defined, all that remains is to tell Commander.js to do it's thing:
+With the top-level command and all subcommands defined, all that remains is to tell Commander.js to do it's thing:
 
 ```javascript
 // execute the CLI
@@ -1047,7 +1047,7 @@ To see all the defaults, including the default list of templates available, run:
 npx linkify defaults
 ```
 
-To generate a Markdown link for Allison's website run:
+To generate a Markdown link for Allison's website run: **BART: that's not my website**
 
 ```sh
 npx linkify generate https://pbs.bartificer.net -t markdown
@@ -1056,6 +1056,8 @@ npx linkify generate https://pbs.bartificer.net -t markdown
 The command really is designed to be customised, so if you're going to use the command for real, you'll need to build yourself a `~/.linkify-config.mjs` file.
 
 The Git repo contains two examples to get you started, the first is a simple starter example:
+
+**BART: I fixed a typo in here that you might want to fix in GitHub - it said daringfirebill instead of daringfireball**
 
 ```javascript
 // Example Linkifier Customisation Module - Minimal
@@ -1091,7 +1093,7 @@ linkifier.registerTemplate( // a minimal template, no filters or extra field ext
 // Want:
 // [Ben Thompson on Tim Cook's Legacy — daringfireball.net/…](https://daringfireball.net/linked/2026/04/22/thompson-cook)
 linkifier.registerTransformer(
-    'daringfirebill.net', // the domain name to apply the transformer to (propagates to sub-domains)
+    'daringfireball.net', // the domain name to apply the transformer to (propagates to sub-domains)
     (pData) => { // an arrow function that takes a PageData object as input, and must return a LinkData object
         return new LinkData(
             pData.url, // pass the url through un-changed
@@ -1124,8 +1126,8 @@ For a more real-world example, you can see the latest snapshot of the configurat
 
 ## Final Thoughts
 
-The starting point for this coding adventure was a genuine problem-to-be-solved that was quite unique to me, and also having a real effect on my ability to get something useful done. Writing show notes should not feel like a chore! Thanks to my programming skills and experience, I was able to solve my own problem. That felt empowering the first time I did it, and it felt just as empowering this time around. It was the perfect reminder of why this series exists — getting computers do real work for you really feels great! 🙂
+The starting point for this coding adventure was a genuine problem to be solved that was quite unique to me, and also having a real effect on my ability to get something useful done. Writing show notes should not feel like a chore! Thanks to my programming skills and experience, I was able to solve my own problem. That felt empowering the first time I did it, and it felt just as empowering this time around. It was the perfect reminder of why this series exists — getting computers to do real work for you really feels great! 🙂
 
-While it is annoying that that innocent days when you could just install anything you fancied from NPM are over (if they ever really existed). I hope my description of the tools available and how I go about managing the risks was helpful. Hopefully you feel empowered to continue leveraging the amazing fruits of the open source movement, safely.
+While it is annoying that that innocent days when you could just install anything you fancied from NPM are over (if they ever really existed), I hope my description of the tools available and how I go about managing the risks was helpful. Hopefully you feel empowered to continue leveraging the amazing fruits of the open source movement, safely.
 
 Finally, I hope the quick overview of how I developed what feels like a true-blue terminal command using JavaScript was informative, and perhaps even a little inspirational. Maybe something like Commander.js can help you take your scripts to the next level‽
