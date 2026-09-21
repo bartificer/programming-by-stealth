@@ -752,7 +752,7 @@ Commander.js, on the other hand, felt immediately familiar because it really is 
 
 Given my pre-existing knowledge and the scale of this project, Commander.js was clearly my best option, so that's what I chose to use.
 
-Commander.js gives me all the basic terminal-like **BART did you mean -link?** functionality I just described, but some of the best modern terminal apps take things a little further with simple text formatting.
+Commander.js provides the functionality to implement all the basic cli-app-like functionality I just described. However, some of the best modern terminal apps take things a little further by adding basic text formatting to their outputs.
 
 Terminals remain the realm of fixed-width fonts, with each letter taking up one space in a regular grid, but within that limitation, modern terminals do support some text formatting, including:
 
@@ -768,7 +768,7 @@ This kind of text formatting is applied using strange looking escape sequences. 
 console.log("The next word will be \x1b[31mred\x1b[0m!")
 ```
 
-One of the many features oclif offers in addition to basic terminal functionality is formatted terminal output. But, as you'd expect from a more basic framework, Commander.js offers that feature. Nothing about Commander.js is incompatible with formatted terminal output; it just doesn'timplement it for you. If you want formatted output, you need to code it yourself or rely on another module for that functionality.
+One of the many features oclif offers in addition to basic terminal functionality is formatted terminal output. But, as you'd expect from a more basic framework, doesn't offer that feature. Nothing about Commander.js is incompatible with formatted terminal output; it just doesn'timplement it for you. If you want formatted output, you need to code it yourself or rely on another module for that functionality.
 
 In the past, when I needed formatted terminal output, I used the very popular module [Chalk](https://www.npmjs.com/package/chalk), but again, I wasn't sure it was still the best option. So, I had another conversation with Lumo. There's nothing wrong with Chalk, but it's more powerful than I need, and after evaluating the options suggested by Lumo, I chose a lighter-weight option, [Kleur](https://www.npmjs.com/package/kleur).
 
@@ -814,11 +814,11 @@ One of the most important features I wanted from my CLI app was support for conf
    3. Customising the de-slugification process
 2. Setting defaults for the CLI's apps own behaviour
 
-As a general rule, I prefer configuration files that are purely text, ideally in a nice simple format like JSON or YAML. Unfortunately, that can't work in this case, because users need to be able to define custom extraction logic to define their own templates, which means the configuration file needs to be support the definition of functions and the instantiation of objects. Some kind of JavaScript-native solution was needed.
+As a general rule, I prefer configuration files that are purely text, ideally in a nice simple format like JSON or YAML. Unfortunately, that can't work in this case, because users need to be able to define custom extraction logic, and to define their own templates. Those requirements dictate that the configuration file must support the definition of functions, and the instantiation of objects. In other words, some kind of JavaScript-native solution was needed.
 
 Even though I couldn't use JSON or YAML, I still wanted to implement some kind of common design pattern so my app wouldn't feel like an oddball. I chose to adpot the design pattern used by popular JavaScript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with a `.mjs` file rather than a `.json` or `.yaml` file.
 
-When using modules as configuration files, you need to define what it is that the module should publish as its default export. Because we need to be able to configure both the link generation behaviour and the CLI's own default behaviour, I deduced that Linkifier configuration modules must export dictionaries that define one or both of the following keys:
+When using modules as configuration files, you need to define what it is that the module should publish as its default export. Because we need to be able to configure both the link generation behaviour and the CLI's own default behaviour, I decided that Linkifier configuration modules must export dictionaries that define one or both of the following keys:
 
 * `linkifier` — a configured instance of the `Linkifier` class
 * `options` — a dictionary mapping values to the CLI's flags and options (with the `--` omitted).
@@ -1047,7 +1047,7 @@ To see all the defaults, including the default list of templates available, run:
 npx linkify defaults
 ```
 
-To generate a Markdown link for Allison's website run: **BART: that's not my website**
+To generate a Markdown link for the PBS website run:
 
 ```sh
 npx linkify generate https://pbs.bartificer.net -t markdown
@@ -1056,8 +1056,6 @@ npx linkify generate https://pbs.bartificer.net -t markdown
 The command really is designed to be customised, so if you're going to use the command for real, you'll need to build yourself a `~/.linkify-config.mjs` file.
 
 The Git repo contains two examples to get you started, the first is a simple starter example:
-
-**BART: I fixed a typo in here that you might want to fix in GitHub - it said daringfirebill instead of daringfireball**
 
 ```javascript
 // Example Linkifier Customisation Module - Minimal
