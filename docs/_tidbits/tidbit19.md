@@ -671,9 +671,9 @@ Given many of those choices were made a decade ago, I'm relieved that only one m
 
 ## Building a JavaScript CLI
 
-At this point  in the process I had captured all the functionality in an ES 6 module, but I still have no way to actually invoke the that code!
+At this point in the process, I had captured all the functionality in an ES 6 module, but I till had no way to actually invoke that code!
 
-Remember, modules are libraries that can b used **by** scripts, but they are not executable in and of themselves.
+Remember, modules are libraries that can be used **by** scripts, but they are not executable in and of themselves.
 
 Like simply importing jQuery doesn't actually **do** anything, importing Linkifier with an import line like the one below doesn't actually **do** anything.
 
@@ -683,7 +683,7 @@ import { Linkifier } from '@bartificer/linkify'
 
 I still needed to write the code to get a URL from somewhere, call the `Linkifier.geneateLink()` function, and do something with the resulting link.
 
-While debugging the module I was using a very simple test script that was little more than the following:
+While debugging the module, I was using a very simple test script that was little more than the following:
 
 ```javascript
 import { Linkifier } from '@bartificer/linkify';
@@ -693,9 +693,9 @@ console.log(Linkifier.generateLink('https://...'));
 ...
 ```
 
-I still needed a practical script to actually execute my shinny new code in a useful way!
+I still needed a practical script to actually execute my shiny new code in a useful way!
 
-Before I started this big re-write I had one big script that did everything:
+Before I started this big rewrite, I had one big script that did everything:
 
 1. Read a URL from the clipboard
 2. Defined all the classes and functions
@@ -705,7 +705,7 @@ Before I started this big re-write I had one big script that did everything:
 
 To get the link into my clipboard I would pipe the output of my script into the Mac's `pbcopy` command to send the link to the clipboard, replacing the URL. 
 
-This was quite a clunky terminal command, and to add insult to injury, at some point in the process and unwanted trailing newline character was always injected after the link. I never did find a way to avoid that!
+This was quite a clunky terminal command, and, to add insult to injury, at some point in the process, an unwanted trailing newline character was always injected after the link. I never did find a way to avoid that!
 
 I didn't want to just re-implement that same experience, I wanted to take things up a level, and build a script that behaves just like a regular terminal command.
 
@@ -714,18 +714,18 @@ What makes a terminal command a terminal command? It needs to follow all the sam
 1. Short flags like `-v` for verbose mode
 2. Long flags like `--verbose`
 3. Short options like `-t TEMPLATE_NAME` 
-4. Long options like `--tempalte=TEMPLATE_NAME`
+4. Long options like `--template=TEMPLATE_NAME`
 5. Piped input
 6. Account-level configuration using a so-called *dot file* like `~/.linkify-config.mjs`
 7. Built-in help text
 
-It is possible to re-implement all that commonly used functionality from scratch, but there are of course open source modules out there that act as a scaffold or framework for building NodeJS scripts with basic terminal functionality.
+It is possible to re-implement all that commonly used functionality from scratch, but there are, of course, open source modules out there that act as a scaffold or framework for building NodeJS scripts with basic terminal functionality.
 
-As well as those generic terminal-like feature, I also wanted to add direct clipboard integration right into my script.
+As well as those generic terminal-like features, I also wanted to add direct clipboard integration right into my script.
 
 ### Choosing the Tooling
 
-Many years ago, I experimented with using [Caporal.js](https://github.com/mattallty/Caporal.js) to build terminal commands with NodeJs. At the time, that was the option that seemed to best fit my needs. But that was a long time ago, and a lot could have changed int he mean time, so I needed to re-evaluate my options. 
+Many years ago, I experimented with using [Caporal.js](https://github.com/mattallty/Caporal.js) to build terminal commands with NodeJS. At the time, that was the option that seemed to best fit my needs. But that was a long time ago, and a lot could have changed in the meantime, so I needed to re-evaluate my options. 
 
 I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my preferred, privacy-protecting AI chat bot), and as well as discovering two additional options to investigate, I also learned that development on Caporal.js has stalled in recent years. I needed to choose between the two new options I discovered:
 
@@ -736,7 +736,7 @@ I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my pre
    * 137 dependencies — not unexpected for a module of this complexity
    * Uses modern JavaScript technologies like promises
    * Requires TypeScript rather than pure JavaScript
-   * The tool's power adds a lot of complexity — there's a lot of overhead for creating simple apps
+   * The tool's power adds a lot of complexity which adds a lot of overhead for creating simple apps
 2. [Commander.js](https://github.com/tj/commander.js)
    * Actively maintained with hundreds of thousands of weekly downloads on [NPM](https://www.npmjs.com/package/commander)
    * Well-documented, also commonly recommended, and there are also a lot of tutorial blog posts online
