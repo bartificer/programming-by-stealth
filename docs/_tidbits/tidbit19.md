@@ -671,9 +671,9 @@ Given many of those choices were made a decade ago, I'm relieved that only one m
 
 ## Building a JavaScript CLI
 
-At this point in the process, I had captured all the functionality in an ES 6 module, but I till had no way to actually invoke that code!
+At this point in the process, I had captured all the functionality in an ES6 module, but I still had no way to actually invoke that code!
 
-Remember, modules are libraries that can be used **by** scripts, but they are not executable in and of themselves.
+Remember, modules are libraries that can be used **by** scripts, but they are not executable in and f themselves.
 
 Like simply importing jQuery doesn't actually **do** anything, importing Linkifier with an import line like the one below doesn't actually **do** anything.
 
@@ -744,7 +744,7 @@ I spent a little time chatting with [Lumo](https://lumo.proton.me/guest) (my pre
    * Fewer features than oclif, but still supports the relevant features for this project — single and double dash CLI flags and options, and support for subcommands
    * Also uses modern JavaScript techniques like promises
    * Much simpler to use than oclif, far less overhead
-   * Philosophically very like Caproal.js, so immediately felt familiar
+   * Philosophically very like Caporal.js, so immediately felt familiar
 
 In the abstract, oclif is the better option — it has many more features and is backed by a major tech company, Salesforce. But no project exists in the abstract! For a start, for a small tool like Linkifier, oclif is simply overkill! Secondly, it has a lot of dependencies, which is to be expected from a large, feature-rich tool. And thirdly, and most problematically for me, it forces the use of [TypeScript](https://www.typescriptlang.org), a strongly typed variant of JavaScript that compiles to regular JavaScript. In the abstract, TypeScript sounds like a great tool, but I don't know TypeScript, and I wasn't in the mood to learn a whole new language!
 
@@ -816,7 +816,7 @@ One of the most important features I wanted from my CLI app was support for conf
 
 As a general rule, I prefer configuration files that are purely text, ideally in a nice simple format like JSON or YAML. Unfortunately, that can't work in this case, because users need to be able to define custom extraction logic, and to define their own templates. Those requirements dictate that the configuration file must support the definition of functions, and the instantiation of objects. In other words, some kind of JavaScript-native solution was needed.
 
-Even though I couldn't use JSON or YAML, I still wanted to implement some kind of common design pattern so my app wouldn't feel like an oddball. I chose to adpot the design pattern used by popular JavaScript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with a `.mjs` file rather than a `.json` or `.yaml` file.
+Even though I couldn't use JSON or YAML, I still wanted to implement some kind of common design pattern so my app wouldn't feel like an oddball. I chose to adopt the design pattern used by popular JavaScript projects like https://webpack.js.org — using ES6 modules as configuration files. In other words, you configure the `linkify` command with a `.mjs` file rather than a `.json` or `.yaml` file.
 
 When using modules as configuration files, you need to define what it is that the module should publish as its default export. Because we need to be able to configure both the link generation behaviour and the CLI's own default behaviour, I decided that Linkifier configuration modules must export dictionaries that define one or both of the following keys:
 
@@ -839,7 +839,7 @@ With the configuration logic decided, the next step was to design the app's synt
 
 Before trying to implement the app's functionality, I needed to decide on the exact features to offer, and how to facilitate user input. In other words, what flags, options, and arguments would the command require and support?
 
-My first decision was to adopt the commonly used subcommand design pattern. In this series the best example of this approach is the `git` command. With this design pattern, a single top-level command expects to be passed a subcommand as the first argument, and this subcommand will determine which of the app's supported actions to execute. For example, `git clone` to clone a repo, and `git commit` to commit changes to a branch.
+My first decision was to adopt the commonly used subcommand design pattern. In this series, the best example of this approach is the `git` command. With this design pattern, a single top-level command expects to be passed a subcommand as the first argument, and this subcommand will determine which o,f the app's supported actions to execute. For example, `git clone` to clone a repo, and `git commit` to commit changes to a branch.
 
 Given the functionality I wanted to provide, I chose the following subcommands:
 
@@ -1041,7 +1041,7 @@ To generate a link using all the default settings, simply run:
 npx linkify generate https://pbs.bartificer.net
 ```
 
-To see all the defaults, including the default list of templates available, run:
+To see all the defaults, including the de,fault list of templates available, run:
 
 ```sh
 npx linkify defaults
@@ -1126,6 +1126,6 @@ For a more real-world example, you can see the latest snapshot of the configurat
 
 The starting point for this coding adventure was a genuine problem to be solved that was quite unique to me, and also having a real effect on my ability to get something useful done. Writing show notes should not feel like a chore! Thanks to my programming skills and experience, I was able to solve my own problem. That felt empowering the first time I did it, and it felt just as empowering this time around. It was the perfect reminder of why this series exists — getting computers to do real work for you really feels great! 🙂
 
-While it is annoying that that innocent days when you could just install anything you fancied from NPM are over (if they ever really existed), I hope my description of the tools available and how I go about managing the risks was helpful. Hopefully you feel empowered to continue leveraging the amazing fruits of the open source movement, safely.
+While it is annoying that the innocent days when you could just install anything you fancied from NPM are over (if they ever really existed), I hope my description of the tools available and how I go about managing the risks was helpful. Hopefully you feel empowered to continue leveraging the amazing fruits of the open source movement, safely.
 
 Finally, I hope the quick overview of how I developed what feels like a true-blue terminal command using JavaScript was informative, and perhaps even a little inspirational. Maybe something like Commander.js can help you take your scripts to the next level‽
