@@ -43,9 +43,15 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_08_29.html">PBS_2026_08_29</a>
 
-### PBS Tidbit 19c — Available Soon
+### PBS Tidbit 19c
 
 Begins at [Building a JavaScript CLI](#building-a-javascript-cli)
+
+<audio controls src="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_09_26.mp3?autoplay=0&loop=0&controls=1">Your browser does not support HTML 5 audio 🙁</audio>
+
+You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/nosillacast/PBS_2026_09_26.mp3" >Download the MP3</a>
+
+Read an unedited, auto-generated transcript with chapter marks:  <a href="https://podfeet.com/transcripts/PBS_2026_09_26.html">PBS_2026_09_26</a>
 
 ## The Problem to be Solved
 
