@@ -24,6 +24,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to the PBS 27 Challenges
 
+> **Update:** this challenge requests the use of the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 ```javascript
 // init name space - commented out in playground
 // var pbs = pbs ? pbs : {};
@@ -582,6 +585,9 @@ myDate.day(29);
 ```
 
 ## A Challenge
+
+> **Update:** this challenge solution uses the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
 
 Using either your own solution to the previous challenge, or my sample solution above as your starting point, make the following changes.
 

@@ -24,6 +24,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## PBS 30 Challenge Solution
 
+> **Update:** this challenge solution uses the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 The challenge was to add comparison functions to all three of our prototypes.
 
 You can find my entire solution in the file named `pbs30-challengeSolution` in this instalment’s ZIP file. Below are the snippets that are relevant to the challenge:
@@ -224,6 +227,11 @@ Our prototypes are now pretty complete – they have constructors, accessors, va
 
 ## Instance Functions
 
+> **Update**  — while JavaScript continues to use prototypes under the hood, the ES6 version of JavaScript added a more typical `class` keyword for implementing object orientation. The `prototype` syntax described below remains valid, but is no longer in common use. The changes ES6 introduced are discussed in a series of instalments starting with [PBS 43](./pbs43).
+>
+> While the implementation has evolved, the concepts described here remain relevant. The examples however, are out-dated.
+{: .aside}
+
 The functions we have written to build out our prototypes can be divided into three categories:
 
 - There are the unpublished private helper functions which are not really part of the prototypes, but rather, are utility functions used by the functions that do make up the prototype to avoid needless code reuse. When I say _unpublished_, I mean they are not available in the global scope.
@@ -252,6 +260,11 @@ You can recognise the definition of an instance function because it will have a 
 You can recognise an instance function being invoked because the thing on the left will be an object that is an instance of a prototype.
 
 ## Static Functions
+
+> **Update**  — while JavaScript continues to use prototypes under the hood, the ES6 version of JavaScript added a more typical `class` keyword for implementing object orientation. The `prototype` syntax described below remains valid, but is no longer in common use. The changes ES6 introduced are discussed in a series of instalments starting with [PBS 43](./pbs43).
+>
+> While the implementation has evolved, the concepts described here remain relevant. The examples however, are out-dated.
+{: .aside}
 
 Prototypes can contain another category of functions, so-called _static functions_, or colloquially, _class functions_. These functions are not called on instances of prototypes. Instead, they are properties of the prototype itself. Static functions are used to add functionality to the prototype as a whole, not to instances of the prototype.
 
@@ -375,6 +388,9 @@ function isValidateDMYCombo(d, m, y){
 
 ## A Challenge
 
+> **Update:** this challenge requests the use of the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 To help you get to grips with the concept of static functions, let’s write and test some!
 
 Firstly, write a static function named `pbs.Date.leapYearsBetween()` that takes two arguments, both years as integers, and returns an array of all leap years between those two years (inclusive).
@@ -455,6 +471,11 @@ console.log(pbs.DateTime.areEqual(dt3, dt4, dt5)); // true
 You can use your own version of our three prototypes as your starting point, or you can use the file `pbs31-challengeStartingPoint.js` in this instalment’s ZIP file.
 
 ## Final JavaScript Prototype Algorithm
+
+> **Update**  — while JavaScript continues to use prototypes under the hood, the ES6 version of JavaScript added a more typical `class` keyword for implementing object orientation. The `prototype` syntax described below remains valid, but is no longer in common use. The changes ES6 introduced are discussed in a series of instalments starting with [PBS 43](./pbs43).
+>
+> While the implementation has evolved, the concepts described here remain relevant. The examples however, are out-dated.
+{: .aside}
 
 Given all we have learned over the past few instalments, we need to update our original six-step process for creating prototypes one last time to the following nine-step process:
 

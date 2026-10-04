@@ -56,6 +56,9 @@ It’s obviously easier to buy direct. Then you won’t have to go through the c
 
 ## Solution to PBS 28 Challenge
 
+> **Update:** this challenge solution uses the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 Below is my solution to the challenge from [the previous instalment](https://pbs.bartificer.net/pbs28), written to run via NodeJS rather than in the PBS playground.
 
 ```javascript
@@ -663,6 +666,9 @@ The changes are very subtle – all we had to do was change `return this._date;`
 Once that’s done, we can add a `.clone()` function just like we did for `pbs.Date` and `pbs.Time`.
 
 ## Challenge
+
+> **Update:** this challenge requests the use of the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
 
 Add `.clone()` functions to your `pbs.Date` and `pbs.Time` prototypes. Next, update the accessors in your `pbs.DateTime` prototype to clone the values they get and set. Then, add a `.clone()` function to the `pbs.DateTime` prototype.
 

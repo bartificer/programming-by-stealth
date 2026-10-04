@@ -21,6 +21,9 @@ You can also <a href="http://media.blubrry.com/nosillacast/traffic.libsyn.com/no
 
 ## A Solution to the PBS 18 Challenge
 
+> **Update:** this challenge solution uses the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 The challenge set at the end of PBS 18 was to create prototypes representing IP addresses and subnets, to test them by using playground inputs 1 and 2 to create a subnet object, and to test if an IP address from playground input 3 is contained within that subnet or not.
 
 As always, I want to stress that there are an infinity of possible correct solutions, so this is just my solution. Your code can be different from mine and yet still totally correct.
