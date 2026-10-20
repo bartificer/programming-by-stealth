@@ -29,6 +29,9 @@ This is the final instalment for which we’ll be using our JavaScript playgroun
 
 ## A Solution to the PBS 17 Challenge
 
+> **Update:** this challenge solution uses the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 In short, the challenge was to create prototypes for objects representing quotations, and a random quotation generator, and then to use these prototypes to print out three random quotations.
 
 Again, I want to stress that there is no such thing as a definitive correct answer – there are an infinity of correct solutions to this challenge. My solution is shown below.
@@ -670,6 +673,9 @@ You’ll also notice that by catching the errors thrown within `factorial()`, th
 The [JavaScript cheatsheet](https://www.bartbusschots.ie/pbsdemos/PBS-JS-CheatSheet.html) has been updated to include the what we learned in this instalment.
 
 ## A Challenge
+
+> **Update:** this challenge requests the use of the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
 
 Create a prototype called `IP` that will represent an IP address. Internally, the IP address should be stored as an array of four integers. The constructor should default to the IP `0.0.0.0`, but should optionally accept an IP address as an argument, either as a string or as an array of integers.
 
