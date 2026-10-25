@@ -25,6 +25,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to PBS 31 Challenge
 
+> **Update:** this challenge solution uses the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 The challenge set at the end of [the previous instalment](https://pbs.bartificer.net/pbs31) was to add four static functions to the date and time prototypes we’ve been building up over recent instalments. Because the code for these prototypes is now very long, I’m only including the relevant excerpts below. You can find my full solution in this instalment’s ZIP file (`pbs31-challengeSolution.js`).
 
 ```javascript

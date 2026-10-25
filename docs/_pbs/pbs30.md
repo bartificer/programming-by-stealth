@@ -29,6 +29,9 @@ You can also <a href="https://media.blubrry.com/nosillacast/traffic.libsyn.com/n
 
 ## Solution to PBS 29 Challenge
 
+> **Update:** this challenge solution uses the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 ```javascript
 // init name space
 var pbs = pbs ? pbs : {};
@@ -613,6 +616,11 @@ Again, there should be symmetry in the outputs, if `t1.compareTo(t2)` returns `0
 
 ## Updated JavaScript Prototype Algorithm
 
+> **Update**  — while JavaScript continues to use prototypes under the hood, the ES6 version of JavaScript added a more typical `class` keyword for implementing object orientation. The `prototype` syntax described below remains valid, but is no longer in common use. The changes ES6 introduced are discussed in a series of instalments starting with [PBS 43](./pbs43).
+>
+> While the implementation has evolved, the concepts described here remain relevant. The examples however, are out-dated.
+{: .aside}
+
 Given all we have learned over the past few instalments, we need to update our original six-step process for creating prototypes to the following eight-step process:
 
 1.  Gather your requirements, specifically, what data do your objects need to store, and what functions need to be provided.
@@ -625,6 +633,9 @@ Given all we have learned over the past few instalments, we need to update our o
 8.  Provide comparison functions (`.equals()` & `.compareTo()`).
 
 ## Challenge
+
+> **Update:** this challenge requests the use of the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
 
 Add `.equals()` and `.compareTo()` functions to all three prototypes. You can make use of the `.equals()` and `.compareTo()` functions in `pbs.Date` and `pbs.Time` to avoid code duplication in `pbs.DateTime`.
 
