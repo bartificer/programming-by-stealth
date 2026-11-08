@@ -291,6 +291,9 @@ if(theInputs.length > 0){
 
 ## Challenge 5 – Complex Numbers
 
+> **Update:** this challenge and its solution use the `prototype` syntax which has since been superseded by the ES6 `class` keyword described in Instalment [instalment 46](./pbs46#introducing-classes).
+{: .aside}
+
 Build a prototype to represent a complex number. In case you’re a little rusty on the details, [this page offers a really nice explanation of complex numbers](https://www.mathsisfun.com/numbers/complex-numbers.html). The prototype should be named `ComplexNumber`.
 
 Build up your solution in the following way:
@@ -342,7 +345,7 @@ Define a constructor function for your prototype (it must be named the same as t
   </div>
 </div>
 
-    
+
 ### Step 2
 
 Add a so-called accessor function to the prototype to get or set the real part of the complex number. Name the function `real`.
@@ -379,15 +382,15 @@ Add a so-called accessor function to the prototype to get or set the real part o
       if(arguments.length == 0){
         return this._real;
       }
-
+    
       // otherwise, validate the first argument
       if(isNaN(r)){
         throw new Error('Type missmatch - number required');
       }
-
+    
       // store the new value
       this._real = r;
-
+    
       // return a reference to the current object
       return this;
     };
@@ -435,15 +438,15 @@ Create a similar accessor function for the imaginary part of the complex number,
       if(arguments.length == 0){
         return this._imaginary;
       }
-
+    
       // otherwise, validate the first argument
       if(isNaN(i)){
         throw new Error('Type missmatch - number required');
       }
-
+    
       // store the new value
       this._imaginary = i;
-
+    
       // return a reference to the current object
       return this;
     };
@@ -510,18 +513,18 @@ Add a function to the prototype named `toString`. This function should return a 
           ans += Math.abs(this._imaginary);
         }
         ans += 'i)'; // append the i and end the final perens
-
+    
         // return the assembled answer
         return ans;
       }
-
+    
       // if we got here, we are a special case, so deal with each possible one in turn
-
+    
       // deal with the case where both are zero
       if(this._real == 0 && this._imaginary == 0){
         return '0';
       }
-
+    
       // deal with the case where only the real part is zero
       if(this._real == 0){
         var ans = ''; // start with an empty string
@@ -536,7 +539,7 @@ Add a function to the prototype named `toString`. This function should return a 
         ans += 'i'; // append the i
         return ans;
       }
-
+    
       // if we got here, then the imaginary part must be zero
       return String(this._real); // force to a string
     };
@@ -658,11 +661,11 @@ Add a function named `parse` to the `ComplexNumber` prototype to update the valu
         // the arguments are not valid, so whine
         throw new Error('invalid arguments');
       }
-
+    
       // return a reference to the object
       return this;
     }
-  
+
 {% endhighlight %}
 
       </div>
@@ -743,7 +746,7 @@ Update your constructor so that it can accept the same arguments as the `.parse(
       // set the default values on all data keys
       this._real = 0;
       this._imaginary = 0;
-
+    
       // if there were arguments, deal with them
       if(arguments.length == 1){
         this.parse(arguments[0]);
@@ -751,7 +754,7 @@ Update your constructor so that it can accept the same arguments as the `.parse(
         this.parse(arguments[0], arguments[1]);
       }
     }
-  
+
 {% endhighlight %}
 
       </div>
@@ -816,15 +819,15 @@ Add a function named `add` to the `ComplexNumber` prototype which accepts one ar
       if(!(cn instanceof ComplexNumber)){
          throw new Error('invalid arguments');
       }
-
+    
       // do the maths
       this._real += cn.real();
       this._imaginary += cn.imaginary();
-
+    
       // return a reference to the object
       return this;
     }
-   
+
 {% endhighlight %}
 
       </div>
@@ -866,11 +869,11 @@ In a similar vain, add function named `subtract` to the `ComplexNumber` prototyp
       if(!(cn instanceof ComplexNumber)){
          throw new Error('invalid arguments');
       }
-
+    
       // do the maths
       this._real -= cn.real();
       this._imaginary -= cn.imaginary();
-
+    
       // return a reference to the object
       return this;
     }
@@ -919,17 +922,17 @@ Add a function named `multiplyBy` to the `ComplexNumber` prototype. The rule for
       if(!(cn instanceof ComplexNumber)){
          throw new Error('invalid arguments');
       }
-
+    
       // split out the a, b, c & d parts for the rule
       var a = this.real();
       var b = this.imaginary();
       var c = cn.real();
       var d = cn.imaginary();
-
+    
       // calcualte and store the results
       this._real = (a * c) - (b * d);
       this._imaginary = (a * d) + (b * c);
-
+    
       // return a reference to the object
       return this;
     };
@@ -971,11 +974,11 @@ Add a function named `conjugateOf` to the `ComplexNumber` prototype. This functi
         if(this.imaginary() &gt; 0){
           return new ComplexNumber(this.real(), 0 - this.imaginary());
         }
-
+    
         // otherwise, the imaginary part was negative or 0, so use the absolute value
         return new ComplexNumber(this.real(), Math.abs(this.imaginary()));
       };
-      
+
   {% endhighlight %}
 
         </div>

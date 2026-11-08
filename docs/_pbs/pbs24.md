@@ -221,6 +221,9 @@ Closures can be difficult to understand, as they are a kind of _spooky action at
 
 ### Objects as Pseudo-Namespaces (And the Ternary Operator)
 
+> **Update:** this technique has been obsoleted by ES6 modules, described in [instalment 128](./pbs128).
+{: .aside}
+
 If you were to add all your variables, functions, and prototypes directly into the global scope, you would have to chose the names for each one very carefully. If you use a generic name, you are very likely to create an incompatibility with other pieces of code. Rather than trying to pick many unique names, it’s much simpler to pick one name, give it to an object, and add all your functions, variables, and prototypes as key-value pairs within that object.
 
 You’ve already seen this technique in action – the PBS JavaScript playground used a single object named `pbs`, into which all the available functions were added as key-value pairs. Hence you had `pbs.say()`, `pbs.inputs()`, and so on. `pbs` was a variable in the global scope that pointed to an object. That object contained a key named `say` that referenced a function to render text to the output area, and another key named `inputs` that referenced a function to read the values from the input text boxes.
@@ -316,6 +319,9 @@ The above construction is hard to read, and would be even harder to read if the 
 ```
 
 ### A Recipe for Namespacing in JavaScript
+
+> **Update:** this technique has been obsoleted by ES6 modules, described in [instalment 128](./pbs128).
+{: .aside}
 
 We are now ready to look at a very common design pattern for simulating namespaces in JavaScript. I think it’s a good idea to understand what’s happening, but that’s not essential – I think many JavaScript programmers copy-and-paste this design pattern over and over again without fully understanding what’s happening.
 
